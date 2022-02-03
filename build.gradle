@@ -12,6 +12,7 @@ dependencies {
     compile 'org.threeten:threetenbp:1.3.5'
     implementation 'org.reflections:reflections:0.9.11'
     testImplementation 'junit:junit:4.12'
+    testImplementation 'org.apache.commons:commons-io:1.3.2'
 }
 
 sourceCompatibility = "7"
@@ -40,5 +41,5 @@ allprojects {
 }
 
 jar {
-    baseName 'aspose-slides-cloud-android-21.12.0'
+    baseName 'aspose-slides-cloud-android-22.1.0'
 }
