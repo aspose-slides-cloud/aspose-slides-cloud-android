@@ -28,7 +28,7 @@
 package com.aspose.slides.model;
 
 import java.util.Objects;
-import com.aspose.slides.model.OneValueChartDataPoint;
+import com.aspose.slides.model.ImageTransformEffect;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -42,34 +42,56 @@ import java.util.Hashtable;
 import java.util.Map;
 
 /**
- * One value chart data point.
+ * Represents a Color Change effect.
  */
-@ApiModel(description = "One value chart data point.")
-public class WaterfallChartDataPoint extends OneValueChartDataPoint {
-  @SerializedName(value = "setAsTotal", alternate = { "SetAsTotal" })
-  private Boolean setAsTotal;
+@ApiModel(description = "Represents a Color Change effect.")
+public class ColorChangeEffect extends ImageTransformEffect {
+  @SerializedName(value = "fromColor", alternate = { "FromColor" })
+  private String fromColor;
+
+  @SerializedName(value = "toColor", alternate = { "ToColor" })
+  private String toColor;
 
 
-  public WaterfallChartDataPoint() {
+  public ColorChangeEffect() {
     super();
+    setType(TypeEnum.COLORCHANGE);
   }
 
-  public WaterfallChartDataPoint setAsTotal(Boolean setAsTotal) {
-    this.setAsTotal = setAsTotal;
+  public ColorChangeEffect fromColor(String fromColor) {
+    this.fromColor = fromColor;
     return this;
   }
 
    /**
-   * Value.
-   * @return setAsTotal
+   * Color which will be replaced.
+   * @return fromColor
   **/
-  @ApiModelProperty(value = "Value.")
-  public Boolean isSetAsTotal() {
-    return setAsTotal;
+  @ApiModelProperty(value = "Color which will be replaced.")
+  public String getFromColor() {
+    return fromColor;
   }
 
-  public void setSetAsTotal(Boolean setAsTotal) {
-    this.setAsTotal = setAsTotal;
+  public void setFromColor(String fromColor) {
+    this.fromColor = fromColor;
+  }
+
+  public ColorChangeEffect toColor(String toColor) {
+    this.toColor = toColor;
+    return this;
+  }
+
+   /**
+   * Color which will replace.
+   * @return toColor
+  **/
+  @ApiModelProperty(value = "Color which will replace.")
+  public String getToColor() {
+    return toColor;
+  }
+
+  public void setToColor(String toColor) {
+    this.toColor = toColor;
   }
 
 
@@ -81,22 +103,23 @@ public class WaterfallChartDataPoint extends OneValueChartDataPoint {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    WaterfallChartDataPoint waterfallChartDataPoint = (WaterfallChartDataPoint) o;
-    return true && Objects.equals(this.setAsTotal, waterfallChartDataPoint.setAsTotal) && super.equals(o);
+    ColorChangeEffect colorChangeEffect = (ColorChangeEffect) o;
+    return true && Objects.equals(this.fromColor, colorChangeEffect.fromColor) && Objects.equals(this.toColor, colorChangeEffect.toColor) && super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(setAsTotal, super.hashCode());
+    return Objects.hash(fromColor, toColor, super.hashCode());
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class WaterfallChartDataPoint {\n");
+    sb.append("class ColorChangeEffect {\n");
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
-    sb.append("    setAsTotal: ").append(toIndentedString(setAsTotal)).append("\n");
+    sb.append("    fromColor: ").append(toIndentedString(fromColor)).append("\n");
+    sb.append("    toColor: ").append(toIndentedString(toColor)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -116,4 +139,7 @@ public class WaterfallChartDataPoint extends OneValueChartDataPoint {
 
   private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
 
+  static {
+      typeDeterminers.put("Type", TypeEnum.COLORCHANGE);
+  }
 }

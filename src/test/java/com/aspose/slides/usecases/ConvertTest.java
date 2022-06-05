@@ -35,6 +35,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Arrays;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNotEquals;
@@ -188,11 +189,54 @@ public class ConvertTest extends ApiTest {
     }
 
     @Test
+    public void convertSubshapePostFromStorageTest() throws ApiException, IOException {
+        initialize(null, null, null);
+        File converted = api.downloadSubshape(c_fileName, c_slideIndex, "4/shapes",1, c_shapeFormat, null, null, null, null, c_password, c_folderName, null, null);
+        assertNotNull(converted);
+        assertTrue(converted.length() > 0);
+        assertTrue(converted.canRead());
+    }
+
+    @Test
     public void convertShapePutFromStorageTest() throws ApiException, IOException {
         initialize(null, null, null);
         api.saveShape(c_fileName, c_slideIndex, c_shapeIndex, c_shapeFormat, c_outPath, null, null, null, null, c_password, c_folderName, null, null);
         ObjectExist exists = api.objectExists(c_outPath, null, null);
         assertTrue(exists.isExists());
+    }
+
+    @Test
+    public void convertSubshapePutFromStorageTest() throws ApiException, IOException {
+        initialize(null, null, null);
+        api.saveSubshape(c_fileName, c_slideIndex, "4/shapes", 1, c_shapeFormat, c_outPath, null, null, null, null, c_password, c_folderName, null, null);
+        ObjectExist exists = api.objectExists(c_outPath, null, null);
+        assertTrue(exists.isExists());
+    }
+
+    @Test
+    public void convertWithFontFallBackRulesTest() throws ApiException, IOException {
+        initialize(null, null, null);
+
+        ArrayList<FontFallbackRule> fontRules = new ArrayList<FontFallbackRule>();
+
+        FontFallbackRule fontFallbackRule1 = new FontFallbackRule();
+        fontFallbackRule1.setRangeStartIndex(c_startUnicodeIndex);
+        fontFallbackRule1.setRangeEndIndex(c_endUnicodeIndex);
+        fontFallbackRule1.setFallbackFontList(Arrays.asList("Vijaya"));
+        fontRules.add(fontFallbackRule1);
+
+        FontFallbackRule fontFallbackRule2 = new FontFallbackRule();
+        fontFallbackRule2.setRangeStartIndex(c_startUnicodeIndex);
+        fontFallbackRule2.setRangeEndIndex(c_endUnicodeIndex);
+        fontFallbackRule2.setFallbackFontList(Arrays.asList("Segoe UI Emoji", "Segoe UI Symbol", "Arial"));
+        fontRules.add(fontFallbackRule2);
+
+        ImageExportOptions exportOptions = new ImageExportOptions();
+        exportOptions.setFontFallbackRules(fontRules);
+
+        File response = api.downloadPresentation(c_fileName, ExportFormat.PNG, exportOptions, c_password, c_folderName, null, null, null);
+        assertNotNull(response);
+        assertTrue(response.length()>0);
     }
 
     private final String c_folderName = "TempSlidesSDK";
@@ -204,4 +248,6 @@ public class ConvertTest extends ApiTest {
     private final ExportFormat c_format = ExportFormat.PDF;
     private final SlideExportFormat c_slideFormat = SlideExportFormat.PDF;
     private final ShapeExportFormat c_shapeFormat = ShapeExportFormat.PNG;
+    private final int c_startUnicodeIndex = 0x0B80;
+    private final int c_endUnicodeIndex = 0x0BFF;
 }

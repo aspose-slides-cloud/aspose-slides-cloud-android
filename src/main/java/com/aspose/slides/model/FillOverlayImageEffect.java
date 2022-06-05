@@ -28,6 +28,8 @@
 package com.aspose.slides.model;
 
 import java.util.Objects;
+import com.aspose.slides.model.FillFormat;
+import com.aspose.slides.model.ImageTransformEffect;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -41,30 +43,28 @@ import java.util.Hashtable;
 import java.util.Map;
 
 /**
- * Represents segment of geometry path
+ * Represents a Fill Overlay effect. A fill overlay may be used to specify an additional fill for an object and blend the two fills together.
  */
-@ApiModel(description = "Represents segment of geometry path")
-public class PathSegment {
+@ApiModel(description = "Represents a Fill Overlay effect. A fill overlay may be used to specify an additional fill for an object and blend the two fills together.")
+public class FillOverlayImageEffect extends ImageTransformEffect {
   /**
-   * Gets or Sets type
+   * FillBlendMode.
    */
-  @JsonAdapter(TypeEnum.Adapter.class)
-  public enum TypeEnum {
-    CLOSE("Close"),
+  @JsonAdapter(BlendEnum.Adapter.class)
+  public enum BlendEnum {
+    DARKEN("Darken"),
     
-    MOVETO("MoveTo"),
+    LIGHTEN("Lighten"),
     
-    LINETO("LineTo"),
+    MULTIPLY("Multiply"),
     
-    ARCTO("ArcTo"),
+    OVERLAY("Overlay"),
     
-    QUADBEZIERTO("QuadBezierTo"),
-    
-    CUBICBEZIERTO("CubicBezierTo");
+    SCREEN("Screen");
 
     private String value;
 
-    TypeEnum(String value) {
+    BlendEnum(String value) {
       this.value = value;
     }
 
@@ -77,8 +77,8 @@ public class PathSegment {
       return String.valueOf(value);
     }
 
-    public static TypeEnum fromValue(String text) {
-      for (TypeEnum b : TypeEnum.values()) {
+    public static BlendEnum fromValue(String text) {
+      for (BlendEnum b : BlendEnum.values()) {
         if (String.valueOf(b.value).equals(text)) {
           return b;
         }
@@ -86,39 +86,66 @@ public class PathSegment {
       return null;
     }
 
-    public static class Adapter extends TypeAdapter<TypeEnum> {
+    public static class Adapter extends TypeAdapter<BlendEnum> {
       @Override
-      public void write(final JsonWriter jsonWriter, final TypeEnum enumeration) throws IOException {
+      public void write(final JsonWriter jsonWriter, final BlendEnum enumeration) throws IOException {
         jsonWriter.value(enumeration.getValue());
       }
 
       @Override
-      public TypeEnum read(final JsonReader jsonReader) throws IOException {
+      public BlendEnum read(final JsonReader jsonReader) throws IOException {
         String value = jsonReader.nextString();
-        return TypeEnum.fromValue(String.valueOf(value));
+        return BlendEnum.fromValue(String.valueOf(value));
       }
     }
   }
 
-  @SerializedName(value = "type", alternate = { "Type" })
-  private TypeEnum type;
+  @SerializedName(value = "blend", alternate = { "Blend" })
+  private BlendEnum blend;
+
+  @SerializedName(value = "fillFormat", alternate = { "FillFormat" })
+  private FillFormat fillFormat;
 
 
-  public PathSegment() {
+  public FillOverlayImageEffect() {
     super();
+    setType(TypeEnum.FILLOVERLAY);
+  }
+
+  public FillOverlayImageEffect blend(BlendEnum blend) {
+    this.blend = blend;
+    return this;
   }
 
    /**
-   * Get type
-   * @return type
+   * FillBlendMode.
+   * @return blend
   **/
-  @ApiModelProperty(value = "")
-  public TypeEnum getType() {
-    return type;
+  @ApiModelProperty(required = true, value = "FillBlendMode.")
+  public BlendEnum getBlend() {
+    return blend;
   }
 
-  protected void setType(TypeEnum type) {
-    this.type = type;
+  public void setBlend(BlendEnum blend) {
+    this.blend = blend;
+  }
+
+  public FillOverlayImageEffect fillFormat(FillFormat fillFormat) {
+    this.fillFormat = fillFormat;
+    return this;
+  }
+
+   /**
+   * Fill format.
+   * @return fillFormat
+  **/
+  @ApiModelProperty(value = "Fill format.")
+  public FillFormat getFillFormat() {
+    return fillFormat;
+  }
+
+  public void setFillFormat(FillFormat fillFormat) {
+    this.fillFormat = fillFormat;
   }
 
 
@@ -130,22 +157,23 @@ public class PathSegment {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    PathSegment pathSegment = (PathSegment) o;
-    return true && Objects.equals(this.type, pathSegment.type);
+    FillOverlayImageEffect fillOverlayImageEffect = (FillOverlayImageEffect) o;
+    return true && Objects.equals(this.blend, fillOverlayImageEffect.blend) && Objects.equals(this.fillFormat, fillOverlayImageEffect.fillFormat) && super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type);
+    return Objects.hash(blend, fillFormat, super.hashCode());
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class PathSegment {\n");
-    
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("class FillOverlayImageEffect {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
+    sb.append("    blend: ").append(toIndentedString(blend)).append("\n");
+    sb.append("    fillFormat: ").append(toIndentedString(fillFormat)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -165,4 +193,7 @@ public class PathSegment {
 
   private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
 
+  static {
+      typeDeterminers.put("Type", TypeEnum.FILLOVERLAY);
+  }
 }

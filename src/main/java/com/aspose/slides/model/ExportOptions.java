@@ -106,11 +106,6 @@ public class ExportOptions {
     this.fontFallbackRules = fontFallbackRules;
   }
 
-  public ExportOptions format(String format) {
-    this.format = format;
-    return this;
-  }
-
    /**
    * Get format
    * @return format
@@ -120,7 +115,7 @@ public class ExportOptions {
     return format;
   }
 
-  public void setFormat(String format) {
+  protected void setFormat(String format) {
     this.format = format;
   }
 

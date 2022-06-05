@@ -126,11 +126,6 @@ public class Task {
     super();
   }
 
-  public Task type(TypeEnum type) {
-    this.type = type;
-    return this;
-  }
-
    /**
    * Get type
    * @return type
@@ -140,7 +135,7 @@ public class Task {
     return type;
   }
 
-  public void setType(TypeEnum type) {
+  protected void setType(TypeEnum type) {
     this.type = type;
   }
 

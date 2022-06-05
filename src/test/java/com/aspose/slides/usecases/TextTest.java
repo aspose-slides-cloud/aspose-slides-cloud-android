@@ -34,9 +34,8 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertTrue;
+
+import static org.junit.Assert.*;
 
 /**
  * API tests for text methods
@@ -86,10 +85,39 @@ public class TextTest extends ApiTest {
         assertTrue(slideResultIgnoreCase.canRead());
     }
 
+    @Test
+    public void highlightShapeTextTest() throws ApiException, IOException {
+        initialize(null, null, null);
+
+        final int shapeIndex = 1, slideIndex = 6, paragraphIndex = 1;
+        api.highlightShapeText(c_fileName, slideIndex, shapeIndex, c_textToHighlight, c_highlightColor, null, false, c_password, c_folderName, null);
+        Paragraph para = api.getParagraph(c_fileName, slideIndex, shapeIndex, paragraphIndex, c_password, c_folderName, null);
+        assertNotEquals(para.getPortionList().get(0).getText(), c_textToHighlight);
+        assertNotEquals(para.getPortionList().get(0).getHighlightColor(), c_highlightColor);
+        assertEquals(para.getPortionList().get(1).getText(), c_textToHighlight);
+        assertEquals(para.getPortionList().get(1).getHighlightColor(), c_highlightColor);
+    }
+
+    @Test
+    public void highlightShapeRegexTest() throws ApiException, IOException {
+        initialize(null, null, null);
+
+        final int shapeIndex = 1, slideIndex = 6, paragraphIndex = 1;
+        api.highlightShapeRegex(c_fileName, slideIndex, shapeIndex, c_highlightRegex, c_highlightColor, null, false, c_password, c_folderName, null);
+        Paragraph para = api.getParagraph(c_fileName, slideIndex, shapeIndex, paragraphIndex, c_password, c_folderName, null);
+        assertNotEquals(para.getPortionList().get(0).getText(), c_textToHighlight);
+        assertNotEquals(para.getPortionList().get(0).getHighlightColor(), c_highlightColor);
+        assertEquals(para.getPortionList().get(1).getText(), c_textToHighlight);
+        assertEquals(para.getPortionList().get(1).getHighlightColor(), c_highlightColor);
+    }
+
     private final String c_folderName = "TempSlidesSDK";
     private final String c_fileName = "test.pptx";
     private final String c_password = "password";
     private final String c_oldValue = "text";
     private final String c_newValue = "new_text";
     private final int c_slideIndex = 1;
+    private final String c_textToHighlight = "highlight";
+    private final String c_highlightColor = "#FFF5FF8A";
+    private final String c_highlightRegex = "h.ghl[abci]ght";
 }

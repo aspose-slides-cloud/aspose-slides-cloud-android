@@ -28,6 +28,7 @@
 package com.aspose.slides.model;
 
 import java.util.Objects;
+import com.aspose.slides.model.ImageTransformEffect;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -41,84 +42,35 @@ import java.util.Hashtable;
 import java.util.Map;
 
 /**
- * Represents segment of geometry path
+ * Represents an Alpha Modulate Fixed effect.
  */
-@ApiModel(description = "Represents segment of geometry path")
-public class PathSegment {
-  /**
-   * Gets or Sets type
-   */
-  @JsonAdapter(TypeEnum.Adapter.class)
-  public enum TypeEnum {
-    CLOSE("Close"),
-    
-    MOVETO("MoveTo"),
-    
-    LINETO("LineTo"),
-    
-    ARCTO("ArcTo"),
-    
-    QUADBEZIERTO("QuadBezierTo"),
-    
-    CUBICBEZIERTO("CubicBezierTo");
+@ApiModel(description = "Represents an Alpha Modulate Fixed effect.")
+public class AlphaModulateFixedEffect extends ImageTransformEffect {
+  @SerializedName(value = "amount", alternate = { "Amount" })
+  private Double amount;
 
-    private String value;
 
-    TypeEnum(String value) {
-      this.value = value;
-    }
-
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    public static TypeEnum fromValue(String text) {
-      for (TypeEnum b : TypeEnum.values()) {
-        if (String.valueOf(b.value).equals(text)) {
-          return b;
-        }
-      }
-      return null;
-    }
-
-    public static class Adapter extends TypeAdapter<TypeEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final TypeEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public TypeEnum read(final JsonReader jsonReader) throws IOException {
-        String value = jsonReader.nextString();
-        return TypeEnum.fromValue(String.valueOf(value));
-      }
-    }
+  public AlphaModulateFixedEffect() {
+    super();
+    setType(TypeEnum.ALPHAMODULATEFIXED);
   }
 
-  @SerializedName(value = "type", alternate = { "Type" })
-  private TypeEnum type;
-
-
-  public PathSegment() {
-    super();
+  public AlphaModulateFixedEffect amount(Double amount) {
+    this.amount = amount;
+    return this;
   }
 
    /**
-   * Get type
-   * @return type
+   * Returns an amount of effect in percents.    
+   * @return amount
   **/
-  @ApiModelProperty(value = "")
-  public TypeEnum getType() {
-    return type;
+  @ApiModelProperty(required = true, value = "Returns an amount of effect in percents.    ")
+  public Double getAmount() {
+    return amount;
   }
 
-  protected void setType(TypeEnum type) {
-    this.type = type;
+  public void setAmount(Double amount) {
+    this.amount = amount;
   }
 
 
@@ -130,22 +82,22 @@ public class PathSegment {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    PathSegment pathSegment = (PathSegment) o;
-    return true && Objects.equals(this.type, pathSegment.type);
+    AlphaModulateFixedEffect alphaModulateFixedEffect = (AlphaModulateFixedEffect) o;
+    return true && Objects.equals(this.amount, alphaModulateFixedEffect.amount) && super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type);
+    return Objects.hash(amount, super.hashCode());
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class PathSegment {\n");
-    
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("class AlphaModulateFixedEffect {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
+    sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -165,4 +117,7 @@ public class PathSegment {
 
   private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
 
+  static {
+      typeDeterminers.put("Type", TypeEnum.ALPHAMODULATEFIXED);
+  }
 }

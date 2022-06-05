@@ -57,6 +57,12 @@ public class ResourceUri {
   @SerializedName(value = "title", alternate = { "Title" })
   private String title;
 
+  @SerializedName(value = "slideIndex", alternate = { "SlideIndex" })
+  private Integer slideIndex;
+
+  @SerializedName(value = "shapeIndex", alternate = { "ShapeIndex" })
+  private Integer shapeIndex;
+
 
   public ResourceUri() {
     super();
@@ -134,6 +140,42 @@ public class ResourceUri {
     this.title = title;
   }
 
+  public ResourceUri slideIndex(Integer slideIndex) {
+    this.slideIndex = slideIndex;
+    return this;
+  }
+
+   /**
+   * Resource slide index.
+   * @return slideIndex
+  **/
+  @ApiModelProperty(value = "Resource slide index.")
+  public Integer getSlideIndex() {
+    return slideIndex;
+  }
+
+  public void setSlideIndex(Integer slideIndex) {
+    this.slideIndex = slideIndex;
+  }
+
+  public ResourceUri shapeIndex(Integer shapeIndex) {
+    this.shapeIndex = shapeIndex;
+    return this;
+  }
+
+   /**
+   * Resource shape index.
+   * @return shapeIndex
+  **/
+  @ApiModelProperty(value = "Resource shape index.")
+  public Integer getShapeIndex() {
+    return shapeIndex;
+  }
+
+  public void setShapeIndex(Integer shapeIndex) {
+    this.shapeIndex = shapeIndex;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -144,12 +186,12 @@ public class ResourceUri {
       return false;
     }
     ResourceUri resourceUri = (ResourceUri) o;
-    return true && Objects.equals(this.href, resourceUri.href) && Objects.equals(this.relation, resourceUri.relation) && Objects.equals(this.linkType, resourceUri.linkType) && Objects.equals(this.title, resourceUri.title);
+    return true && Objects.equals(this.href, resourceUri.href) && Objects.equals(this.relation, resourceUri.relation) && Objects.equals(this.linkType, resourceUri.linkType) && Objects.equals(this.title, resourceUri.title) && Objects.equals(this.slideIndex, resourceUri.slideIndex) && Objects.equals(this.shapeIndex, resourceUri.shapeIndex);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(href, relation, linkType, title);
+    return Objects.hash(href, relation, linkType, title, slideIndex, shapeIndex);
   }
 
 
@@ -162,6 +204,8 @@ public class ResourceUri {
     sb.append("    relation: ").append(toIndentedString(relation)).append("\n");
     sb.append("    linkType: ").append(toIndentedString(linkType)).append("\n");
     sb.append("    title: ").append(toIndentedString(title)).append("\n");
+    sb.append("    slideIndex: ").append(toIndentedString(slideIndex)).append("\n");
+    sb.append("    shapeIndex: ").append(toIndentedString(shapeIndex)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -117,6 +117,9 @@ public class SmartArtNode {
   @SerializedName(value = "orgChartLayout", alternate = { "OrgChartLayout" })
   private OrgChartLayoutEnum orgChartLayout;
 
+  @SerializedName(value = "paragraphs", alternate = { "Paragraphs" })
+  private ResourceUri paragraphs;
+
 
   public SmartArtNode() {
     super();
@@ -220,6 +223,24 @@ public class SmartArtNode {
     this.orgChartLayout = orgChartLayout;
   }
 
+  public SmartArtNode paragraphs(ResourceUri paragraphs) {
+    this.paragraphs = paragraphs;
+    return this;
+  }
+
+   /**
+   * Get or sets list to paragraphs list
+   * @return paragraphs
+  **/
+  @ApiModelProperty(value = "Get or sets list to paragraphs list")
+  public ResourceUri getParagraphs() {
+    return paragraphs;
+  }
+
+  public void setParagraphs(ResourceUri paragraphs) {
+    this.paragraphs = paragraphs;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -230,12 +251,12 @@ public class SmartArtNode {
       return false;
     }
     SmartArtNode smartArtNode = (SmartArtNode) o;
-    return true && Objects.equals(this.nodes, smartArtNode.nodes) && Objects.equals(this.shapes, smartArtNode.shapes) && Objects.equals(this.isAssistant, smartArtNode.isAssistant) && Objects.equals(this.text, smartArtNode.text) && Objects.equals(this.orgChartLayout, smartArtNode.orgChartLayout);
+    return true && Objects.equals(this.nodes, smartArtNode.nodes) && Objects.equals(this.shapes, smartArtNode.shapes) && Objects.equals(this.isAssistant, smartArtNode.isAssistant) && Objects.equals(this.text, smartArtNode.text) && Objects.equals(this.orgChartLayout, smartArtNode.orgChartLayout) && Objects.equals(this.paragraphs, smartArtNode.paragraphs);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(nodes, shapes, isAssistant, text, orgChartLayout);
+    return Objects.hash(nodes, shapes, isAssistant, text, orgChartLayout, paragraphs);
   }
 
 
@@ -249,6 +270,7 @@ public class SmartArtNode {
     sb.append("    isAssistant: ").append(toIndentedString(isAssistant)).append("\n");
     sb.append("    text: ").append(toIndentedString(text)).append("\n");
     sb.append("    orgChartLayout: ").append(toIndentedString(orgChartLayout)).append("\n");
+    sb.append("    paragraphs: ").append(toIndentedString(paragraphs)).append("\n");
     sb.append("}");
     return sb.toString();
   }

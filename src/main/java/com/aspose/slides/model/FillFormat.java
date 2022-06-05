@@ -108,11 +108,6 @@ public class FillFormat {
     super();
   }
 
-  public FillFormat type(TypeEnum type) {
-    this.type = type;
-    return this;
-  }
-
    /**
    * Get type
    * @return type
@@ -122,7 +117,7 @@ public class FillFormat {
     return type;
   }
 
-  public void setType(TypeEnum type) {
+  protected void setType(TypeEnum type) {
     this.type = type;
   }
 

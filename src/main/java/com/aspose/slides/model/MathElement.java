@@ -134,11 +134,6 @@ public class MathElement {
     super();
   }
 
-  public MathElement type(TypeEnum type) {
-    this.type = type;
-    return this;
-  }
-
    /**
    * Get type
    * @return type
@@ -148,7 +143,7 @@ public class MathElement {
     return type;
   }
 
-  public void setType(TypeEnum type) {
+  protected void setType(TypeEnum type) {
     this.type = type;
   }
 

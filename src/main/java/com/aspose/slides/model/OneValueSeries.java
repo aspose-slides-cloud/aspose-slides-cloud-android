@@ -59,6 +59,71 @@ public class OneValueSeries extends Series {
   @SerializedName(value = "numberFormatOfValues", alternate = { "NumberFormatOfValues" })
   private String numberFormatOfValues;
 
+  @SerializedName(value = "showConnectorLines", alternate = { "ShowConnectorLines" })
+  private Boolean showConnectorLines;
+
+  /**
+   * Quartile method. Applied to BoxAndWhisker series only.
+   */
+  @JsonAdapter(QuartileMethodEnum.Adapter.class)
+  public enum QuartileMethodEnum {
+    EXCLUSIVE("Exclusive"),
+    
+    INCLUSIVE("Inclusive");
+
+    private String value;
+
+    QuartileMethodEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static QuartileMethodEnum fromValue(String text) {
+      for (QuartileMethodEnum b : QuartileMethodEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<QuartileMethodEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final QuartileMethodEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public QuartileMethodEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return QuartileMethodEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
+  @SerializedName(value = "quartileMethod", alternate = { "QuartileMethod" })
+  private QuartileMethodEnum quartileMethod;
+
+  @SerializedName(value = "showInnerPoints", alternate = { "ShowInnerPoints" })
+  private Boolean showInnerPoints;
+
+  @SerializedName(value = "showMeanLine", alternate = { "ShowMeanLine" })
+  private Boolean showMeanLine;
+
+  @SerializedName(value = "showMeanMarkers", alternate = { "ShowMeanMarkers" })
+  private Boolean showMeanMarkers;
+
+  @SerializedName(value = "showOutlierPoints", alternate = { "ShowOutlierPoints" })
+  private Boolean showOutlierPoints;
+
 
   public OneValueSeries() {
     super();
@@ -109,6 +174,114 @@ public class OneValueSeries extends Series {
     this.numberFormatOfValues = numberFormatOfValues;
   }
 
+  public OneValueSeries showConnectorLines(Boolean showConnectorLines) {
+    this.showConnectorLines = showConnectorLines;
+    return this;
+  }
+
+   /**
+   * True if inner points are shown. Applied to Waterfall series only.
+   * @return showConnectorLines
+  **/
+  @ApiModelProperty(value = "True if inner points are shown. Applied to Waterfall series only.")
+  public Boolean isShowConnectorLines() {
+    return showConnectorLines;
+  }
+
+  public void setShowConnectorLines(Boolean showConnectorLines) {
+    this.showConnectorLines = showConnectorLines;
+  }
+
+  public OneValueSeries quartileMethod(QuartileMethodEnum quartileMethod) {
+    this.quartileMethod = quartileMethod;
+    return this;
+  }
+
+   /**
+   * Quartile method. Applied to BoxAndWhisker series only.
+   * @return quartileMethod
+  **/
+  @ApiModelProperty(value = "Quartile method. Applied to BoxAndWhisker series only.")
+  public QuartileMethodEnum getQuartileMethod() {
+    return quartileMethod;
+  }
+
+  public void setQuartileMethod(QuartileMethodEnum quartileMethod) {
+    this.quartileMethod = quartileMethod;
+  }
+
+  public OneValueSeries showInnerPoints(Boolean showInnerPoints) {
+    this.showInnerPoints = showInnerPoints;
+    return this;
+  }
+
+   /**
+   * True if inner points are shown. Applied to BoxAndWhisker series only.
+   * @return showInnerPoints
+  **/
+  @ApiModelProperty(value = "True if inner points are shown. Applied to BoxAndWhisker series only.")
+  public Boolean isShowInnerPoints() {
+    return showInnerPoints;
+  }
+
+  public void setShowInnerPoints(Boolean showInnerPoints) {
+    this.showInnerPoints = showInnerPoints;
+  }
+
+  public OneValueSeries showMeanLine(Boolean showMeanLine) {
+    this.showMeanLine = showMeanLine;
+    return this;
+  }
+
+   /**
+   * True if mean line is shown. Applied to BoxAndWhisker series only.
+   * @return showMeanLine
+  **/
+  @ApiModelProperty(value = "True if mean line is shown. Applied to BoxAndWhisker series only.")
+  public Boolean isShowMeanLine() {
+    return showMeanLine;
+  }
+
+  public void setShowMeanLine(Boolean showMeanLine) {
+    this.showMeanLine = showMeanLine;
+  }
+
+  public OneValueSeries showMeanMarkers(Boolean showMeanMarkers) {
+    this.showMeanMarkers = showMeanMarkers;
+    return this;
+  }
+
+   /**
+   * True if mean markers are shown. Applied to BoxAndWhisker series only.
+   * @return showMeanMarkers
+  **/
+  @ApiModelProperty(value = "True if mean markers are shown. Applied to BoxAndWhisker series only.")
+  public Boolean isShowMeanMarkers() {
+    return showMeanMarkers;
+  }
+
+  public void setShowMeanMarkers(Boolean showMeanMarkers) {
+    this.showMeanMarkers = showMeanMarkers;
+  }
+
+  public OneValueSeries showOutlierPoints(Boolean showOutlierPoints) {
+    this.showOutlierPoints = showOutlierPoints;
+    return this;
+  }
+
+   /**
+   * True if outlier points are shown. Applied to BoxAndWhisker series only.
+   * @return showOutlierPoints
+  **/
+  @ApiModelProperty(value = "True if outlier points are shown. Applied to BoxAndWhisker series only.")
+  public Boolean isShowOutlierPoints() {
+    return showOutlierPoints;
+  }
+
+  public void setShowOutlierPoints(Boolean showOutlierPoints) {
+    this.showOutlierPoints = showOutlierPoints;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -119,12 +292,12 @@ public class OneValueSeries extends Series {
       return false;
     }
     OneValueSeries oneValueSeries = (OneValueSeries) o;
-    return true && Objects.equals(this.dataPoints, oneValueSeries.dataPoints) && Objects.equals(this.numberFormatOfValues, oneValueSeries.numberFormatOfValues) && super.equals(o);
+    return true && Objects.equals(this.dataPoints, oneValueSeries.dataPoints) && Objects.equals(this.numberFormatOfValues, oneValueSeries.numberFormatOfValues) && Objects.equals(this.showConnectorLines, oneValueSeries.showConnectorLines) && Objects.equals(this.quartileMethod, oneValueSeries.quartileMethod) && Objects.equals(this.showInnerPoints, oneValueSeries.showInnerPoints) && Objects.equals(this.showMeanLine, oneValueSeries.showMeanLine) && Objects.equals(this.showMeanMarkers, oneValueSeries.showMeanMarkers) && Objects.equals(this.showOutlierPoints, oneValueSeries.showOutlierPoints) && super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(dataPoints, numberFormatOfValues, super.hashCode());
+    return Objects.hash(dataPoints, numberFormatOfValues, showConnectorLines, quartileMethod, showInnerPoints, showMeanLine, showMeanMarkers, showOutlierPoints, super.hashCode());
   }
 
 
@@ -135,6 +308,12 @@ public class OneValueSeries extends Series {
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    dataPoints: ").append(toIndentedString(dataPoints)).append("\n");
     sb.append("    numberFormatOfValues: ").append(toIndentedString(numberFormatOfValues)).append("\n");
+    sb.append("    showConnectorLines: ").append(toIndentedString(showConnectorLines)).append("\n");
+    sb.append("    quartileMethod: ").append(toIndentedString(quartileMethod)).append("\n");
+    sb.append("    showInnerPoints: ").append(toIndentedString(showInnerPoints)).append("\n");
+    sb.append("    showMeanLine: ").append(toIndentedString(showMeanLine)).append("\n");
+    sb.append("    showMeanMarkers: ").append(toIndentedString(showMeanMarkers)).append("\n");
+    sb.append("    showOutlierPoints: ").append(toIndentedString(showOutlierPoints)).append("\n");
     sb.append("}");
     return sb.toString();
   }

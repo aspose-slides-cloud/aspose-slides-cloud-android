@@ -34,9 +34,10 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertEquals;
+
 import org.junit.Test;
+
+import static org.junit.Assert.*;
 
 /**
  * API tests for chart methods
@@ -230,6 +231,23 @@ public class LayoutSlideTest extends ApiTest {
         assertEquals(0, animation.getMainSequence().size());
     }
 
+    @Test
+    public void layoutSlideDeleteUnusedTest() throws ApiException, IOException{
+        initialize(null, null, null);
+        LayoutSlides layoutSlidesBefore = (LayoutSlides)api.getLayoutSlides(c_fileName, c_password, c_folderName, null);
+        assertEquals(c_slidesCount, layoutSlidesBefore.getSlideList().size());
+        LayoutSlides layoutSlidesAfter = (LayoutSlides)api.deleteUnusedLayoutSlides(c_fileName, c_password, c_folderName, null);
+        assertEquals(2, layoutSlidesAfter.getSlideList().size());
+    }
+
+    @Test
+    public void layoutSlideDeleteUnusedOnlineTest() throws ApiException, IOException{
+        byte[] document = Files.readAllBytes(Paths.get(testDataFolderName + "/" + c_fileName));
+        File response = api.deleteUnusedLayoutSlidesOnline(document, c_password);
+        assertNotNull(response);
+        assertTrue(response.length() > 0);
+    }
+
     private final String c_folderName = "TempSlidesSDK";
     private final String c_fileName = "test.pptx";
     private final String c_password = "password";
@@ -239,4 +257,5 @@ public class LayoutSlideTest extends ApiTest {
     private final int c_paragraphIndex = 1;
     private final int c_paragraphCount = 1;
     private final int c_portionCount = 1;
+    private final int c_slidesCount = 11;
 }

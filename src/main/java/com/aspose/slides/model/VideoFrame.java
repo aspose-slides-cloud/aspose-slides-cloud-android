@@ -33,6 +33,7 @@ import com.aspose.slides.model.FillFormat;
 import com.aspose.slides.model.GeometryShape;
 import com.aspose.slides.model.Hyperlink;
 import com.aspose.slides.model.LineFormat;
+import com.aspose.slides.model.PictureFill;
 import com.aspose.slides.model.ResourceUri;
 import com.aspose.slides.model.ThreeDFormat;
 import com.google.gson.TypeAdapter;
@@ -180,6 +181,9 @@ public class VideoFrame extends GeometryShape {
   @SerializedName(value = "base64Data", alternate = { "Base64Data" })
   private String base64Data;
 
+  @SerializedName(value = "pictureFillFormat", alternate = { "PictureFillFormat" })
+  private PictureFill pictureFillFormat;
+
 
   public VideoFrame() {
     super();
@@ -312,6 +316,24 @@ public class VideoFrame extends GeometryShape {
     this.base64Data = base64Data;
   }
 
+  public VideoFrame pictureFillFormat(PictureFill pictureFillFormat) {
+    this.pictureFillFormat = pictureFillFormat;
+    return this;
+  }
+
+   /**
+   * Picture fill format.
+   * @return pictureFillFormat
+  **/
+  @ApiModelProperty(value = "Picture fill format.")
+  public PictureFill getPictureFillFormat() {
+    return pictureFillFormat;
+  }
+
+  public void setPictureFillFormat(PictureFill pictureFillFormat) {
+    this.pictureFillFormat = pictureFillFormat;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -322,12 +344,12 @@ public class VideoFrame extends GeometryShape {
       return false;
     }
     VideoFrame videoFrame = (VideoFrame) o;
-    return true && Objects.equals(this.fullScreenMode, videoFrame.fullScreenMode) && Objects.equals(this.hideAtShowing, videoFrame.hideAtShowing) && Objects.equals(this.playLoopMode, videoFrame.playLoopMode) && Objects.equals(this.playMode, videoFrame.playMode) && Objects.equals(this.rewindVideo, videoFrame.rewindVideo) && Objects.equals(this.volume, videoFrame.volume) && Objects.equals(this.base64Data, videoFrame.base64Data) && super.equals(o);
+    return true && Objects.equals(this.fullScreenMode, videoFrame.fullScreenMode) && Objects.equals(this.hideAtShowing, videoFrame.hideAtShowing) && Objects.equals(this.playLoopMode, videoFrame.playLoopMode) && Objects.equals(this.playMode, videoFrame.playMode) && Objects.equals(this.rewindVideo, videoFrame.rewindVideo) && Objects.equals(this.volume, videoFrame.volume) && Objects.equals(this.base64Data, videoFrame.base64Data) && Objects.equals(this.pictureFillFormat, videoFrame.pictureFillFormat) && super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(fullScreenMode, hideAtShowing, playLoopMode, playMode, rewindVideo, volume, base64Data, super.hashCode());
+    return Objects.hash(fullScreenMode, hideAtShowing, playLoopMode, playMode, rewindVideo, volume, base64Data, pictureFillFormat, super.hashCode());
   }
 
 
@@ -343,6 +365,7 @@ public class VideoFrame extends GeometryShape {
     sb.append("    rewindVideo: ").append(toIndentedString(rewindVideo)).append("\n");
     sb.append("    volume: ").append(toIndentedString(volume)).append("\n");
     sb.append("    base64Data: ").append(toIndentedString(base64Data)).append("\n");
+    sb.append("    pictureFillFormat: ").append(toIndentedString(pictureFillFormat)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -29,6 +29,7 @@ package com.aspose.slides.model;
 
 import java.util.Objects;
 import com.aspose.slides.model.FillFormat;
+import com.aspose.slides.model.ImageTransformEffect;
 import com.aspose.slides.model.ResourceUri;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -38,6 +39,8 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Map;
@@ -120,6 +123,9 @@ public class PictureFill extends FillFormat {
 
   @SerializedName(value = "pictureFillMode", alternate = { "PictureFillMode" })
   private PictureFillModeEnum pictureFillMode;
+
+  @SerializedName(value = "imageTransformList", alternate = { "ImageTransformList" })
+  private List<ImageTransformEffect> imageTransformList = null;
 
 
   public PictureFill() {
@@ -289,6 +295,32 @@ public class PictureFill extends FillFormat {
     this.pictureFillMode = pictureFillMode;
   }
 
+  public PictureFill imageTransformList(List<ImageTransformEffect> imageTransformList) {
+    this.imageTransformList = imageTransformList;
+    return this;
+  }
+
+  public PictureFill addImageTransformListItem(ImageTransformEffect imageTransformListItem) {
+    if (this.imageTransformList == null) {
+      this.imageTransformList = new ArrayList<ImageTransformEffect>();
+    }
+    this.imageTransformList.add(imageTransformListItem);
+    return this;
+  }
+
+   /**
+   * Image transform effects.
+   * @return imageTransformList
+  **/
+  @ApiModelProperty(value = "Image transform effects.")
+  public List<ImageTransformEffect> getImageTransformList() {
+    return imageTransformList;
+  }
+
+  public void setImageTransformList(List<ImageTransformEffect> imageTransformList) {
+    this.imageTransformList = imageTransformList;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -299,12 +331,12 @@ public class PictureFill extends FillFormat {
       return false;
     }
     PictureFill pictureFill = (PictureFill) o;
-    return true && Objects.equals(this.cropBottom, pictureFill.cropBottom) && Objects.equals(this.cropLeft, pictureFill.cropLeft) && Objects.equals(this.cropRight, pictureFill.cropRight) && Objects.equals(this.cropTop, pictureFill.cropTop) && Objects.equals(this.dpi, pictureFill.dpi) && Objects.equals(this.image, pictureFill.image) && Objects.equals(this.base64Data, pictureFill.base64Data) && Objects.equals(this.svgData, pictureFill.svgData) && Objects.equals(this.pictureFillMode, pictureFill.pictureFillMode) && super.equals(o);
+    return true && Objects.equals(this.cropBottom, pictureFill.cropBottom) && Objects.equals(this.cropLeft, pictureFill.cropLeft) && Objects.equals(this.cropRight, pictureFill.cropRight) && Objects.equals(this.cropTop, pictureFill.cropTop) && Objects.equals(this.dpi, pictureFill.dpi) && Objects.equals(this.image, pictureFill.image) && Objects.equals(this.base64Data, pictureFill.base64Data) && Objects.equals(this.svgData, pictureFill.svgData) && Objects.equals(this.pictureFillMode, pictureFill.pictureFillMode) && Objects.equals(this.imageTransformList, pictureFill.imageTransformList) && super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(cropBottom, cropLeft, cropRight, cropTop, dpi, image, base64Data, svgData, pictureFillMode, super.hashCode());
+    return Objects.hash(cropBottom, cropLeft, cropRight, cropTop, dpi, image, base64Data, svgData, pictureFillMode, imageTransformList, super.hashCode());
   }
 
 
@@ -322,6 +354,7 @@ public class PictureFill extends FillFormat {
     sb.append("    base64Data: ").append(toIndentedString(base64Data)).append("\n");
     sb.append("    svgData: ").append(toIndentedString(svgData)).append("\n");
     sb.append("    pictureFillMode: ").append(toIndentedString(pictureFillMode)).append("\n");
+    sb.append("    imageTransformList: ").append(toIndentedString(imageTransformList)).append("\n");
     sb.append("}");
     return sb.toString();
   }

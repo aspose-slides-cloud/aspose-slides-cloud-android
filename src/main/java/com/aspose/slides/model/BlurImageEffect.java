@@ -28,6 +28,7 @@
 package com.aspose.slides.model;
 
 import java.util.Objects;
+import com.aspose.slides.model.ImageTransformEffect;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -41,84 +42,56 @@ import java.util.Hashtable;
 import java.util.Map;
 
 /**
- * Represents segment of geometry path
+ * Represents a Blur effect that is applied to the entire shape, including its fill. All color channels, including alpha, are affected.
  */
-@ApiModel(description = "Represents segment of geometry path")
-public class PathSegment {
-  /**
-   * Gets or Sets type
-   */
-  @JsonAdapter(TypeEnum.Adapter.class)
-  public enum TypeEnum {
-    CLOSE("Close"),
-    
-    MOVETO("MoveTo"),
-    
-    LINETO("LineTo"),
-    
-    ARCTO("ArcTo"),
-    
-    QUADBEZIERTO("QuadBezierTo"),
-    
-    CUBICBEZIERTO("CubicBezierTo");
+@ApiModel(description = "Represents a Blur effect that is applied to the entire shape, including its fill. All color channels, including alpha, are affected.")
+public class BlurImageEffect extends ImageTransformEffect {
+  @SerializedName(value = "radius", alternate = { "Radius" })
+  private Double radius;
 
-    private String value;
+  @SerializedName(value = "grow", alternate = { "Grow" })
+  private Boolean grow;
 
-    TypeEnum(String value) {
-      this.value = value;
-    }
 
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    public static TypeEnum fromValue(String text) {
-      for (TypeEnum b : TypeEnum.values()) {
-        if (String.valueOf(b.value).equals(text)) {
-          return b;
-        }
-      }
-      return null;
-    }
-
-    public static class Adapter extends TypeAdapter<TypeEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final TypeEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public TypeEnum read(final JsonReader jsonReader) throws IOException {
-        String value = jsonReader.nextString();
-        return TypeEnum.fromValue(String.valueOf(value));
-      }
-    }
+  public BlurImageEffect() {
+    super();
+    setType(TypeEnum.BLUR);
   }
 
-  @SerializedName(value = "type", alternate = { "Type" })
-  private TypeEnum type;
-
-
-  public PathSegment() {
-    super();
+  public BlurImageEffect radius(Double radius) {
+    this.radius = radius;
+    return this;
   }
 
    /**
-   * Get type
-   * @return type
+   * Returns or sets blur radius.
+   * @return radius
   **/
-  @ApiModelProperty(value = "")
-  public TypeEnum getType() {
-    return type;
+  @ApiModelProperty(required = true, value = "Returns or sets blur radius.")
+  public Double getRadius() {
+    return radius;
   }
 
-  protected void setType(TypeEnum type) {
-    this.type = type;
+  public void setRadius(Double radius) {
+    this.radius = radius;
+  }
+
+  public BlurImageEffect grow(Boolean grow) {
+    this.grow = grow;
+    return this;
+  }
+
+   /**
+   * Determines whether the bounds of the object should be grown as a result of the blurring. True indicates the bounds are grown while false indicates that they are not.
+   * @return grow
+  **/
+  @ApiModelProperty(required = true, value = "Determines whether the bounds of the object should be grown as a result of the blurring. True indicates the bounds are grown while false indicates that they are not.")
+  public Boolean isGrow() {
+    return grow;
+  }
+
+  public void setGrow(Boolean grow) {
+    this.grow = grow;
   }
 
 
@@ -130,22 +103,23 @@ public class PathSegment {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    PathSegment pathSegment = (PathSegment) o;
-    return true && Objects.equals(this.type, pathSegment.type);
+    BlurImageEffect blurImageEffect = (BlurImageEffect) o;
+    return true && Objects.equals(this.radius, blurImageEffect.radius) && Objects.equals(this.grow, blurImageEffect.grow) && super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type);
+    return Objects.hash(radius, grow, super.hashCode());
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class PathSegment {\n");
-    
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("class BlurImageEffect {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
+    sb.append("    radius: ").append(toIndentedString(radius)).append("\n");
+    sb.append("    grow: ").append(toIndentedString(grow)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -165,4 +139,7 @@ public class PathSegment {
 
   private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
 
+  static {
+      typeDeterminers.put("Type", TypeEnum.BLUR);
+  }
 }

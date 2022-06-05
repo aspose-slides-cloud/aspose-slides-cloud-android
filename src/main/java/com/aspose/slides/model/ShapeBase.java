@@ -451,11 +451,6 @@ public class ShapeBase extends ResourceBase {
     this.hyperlinkMouseOver = hyperlinkMouseOver;
   }
 
-  public ShapeBase type(TypeEnum type) {
-    this.type = type;
-    return this;
-  }
-
    /**
    * Get type
    * @return type
@@ -465,7 +460,7 @@ public class ShapeBase extends ResourceBase {
     return type;
   }
 
-  public void setType(TypeEnum type) {
+  protected void setType(TypeEnum type) {
     this.type = type;
   }
 

@@ -28,6 +28,7 @@
 package com.aspose.slides.model;
 
 import java.util.Objects;
+import com.aspose.slides.model.ImageTransformEffect;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -41,84 +42,56 @@ import java.util.Hashtable;
 import java.util.Map;
 
 /**
- * Represents segment of geometry path
+ * Represents a Duotone effect.
  */
-@ApiModel(description = "Represents segment of geometry path")
-public class PathSegment {
-  /**
-   * Gets or Sets type
-   */
-  @JsonAdapter(TypeEnum.Adapter.class)
-  public enum TypeEnum {
-    CLOSE("Close"),
-    
-    MOVETO("MoveTo"),
-    
-    LINETO("LineTo"),
-    
-    ARCTO("ArcTo"),
-    
-    QUADBEZIERTO("QuadBezierTo"),
-    
-    CUBICBEZIERTO("CubicBezierTo");
+@ApiModel(description = "Represents a Duotone effect.")
+public class DuotoneEffect extends ImageTransformEffect {
+  @SerializedName(value = "color1", alternate = { "Color1" })
+  private String color1;
 
-    private String value;
+  @SerializedName(value = "color2", alternate = { "Color2" })
+  private String color2;
 
-    TypeEnum(String value) {
-      this.value = value;
-    }
 
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    public static TypeEnum fromValue(String text) {
-      for (TypeEnum b : TypeEnum.values()) {
-        if (String.valueOf(b.value).equals(text)) {
-          return b;
-        }
-      }
-      return null;
-    }
-
-    public static class Adapter extends TypeAdapter<TypeEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final TypeEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public TypeEnum read(final JsonReader jsonReader) throws IOException {
-        String value = jsonReader.nextString();
-        return TypeEnum.fromValue(String.valueOf(value));
-      }
-    }
+  public DuotoneEffect() {
+    super();
+    setType(TypeEnum.DUOTONE);
   }
 
-  @SerializedName(value = "type", alternate = { "Type" })
-  private TypeEnum type;
-
-
-  public PathSegment() {
-    super();
+  public DuotoneEffect color1(String color1) {
+    this.color1 = color1;
+    return this;
   }
 
    /**
-   * Get type
-   * @return type
+   * Returns target color format for dark pixels.
+   * @return color1
   **/
-  @ApiModelProperty(value = "")
-  public TypeEnum getType() {
-    return type;
+  @ApiModelProperty(value = "Returns target color format for dark pixels.")
+  public String getColor1() {
+    return color1;
   }
 
-  protected void setType(TypeEnum type) {
-    this.type = type;
+  public void setColor1(String color1) {
+    this.color1 = color1;
+  }
+
+  public DuotoneEffect color2(String color2) {
+    this.color2 = color2;
+    return this;
+  }
+
+   /**
+   * Returns target color format for light pixels.
+   * @return color2
+  **/
+  @ApiModelProperty(value = "Returns target color format for light pixels.")
+  public String getColor2() {
+    return color2;
+  }
+
+  public void setColor2(String color2) {
+    this.color2 = color2;
   }
 
 
@@ -130,22 +103,23 @@ public class PathSegment {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    PathSegment pathSegment = (PathSegment) o;
-    return true && Objects.equals(this.type, pathSegment.type);
+    DuotoneEffect duotoneEffect = (DuotoneEffect) o;
+    return true && Objects.equals(this.color1, duotoneEffect.color1) && Objects.equals(this.color2, duotoneEffect.color2) && super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type);
+    return Objects.hash(color1, color2, super.hashCode());
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class PathSegment {\n");
-    
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("class DuotoneEffect {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
+    sb.append("    color1: ").append(toIndentedString(color1)).append("\n");
+    sb.append("    color2: ").append(toIndentedString(color2)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -165,4 +139,7 @@ public class PathSegment {
 
   private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
 
+  static {
+      typeDeterminers.put("Type", TypeEnum.DUOTONE);
+  }
 }

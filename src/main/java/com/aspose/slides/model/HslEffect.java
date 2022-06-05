@@ -28,6 +28,7 @@
 package com.aspose.slides.model;
 
 import java.util.Objects;
+import com.aspose.slides.model.ImageTransformEffect;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -41,84 +42,77 @@ import java.util.Hashtable;
 import java.util.Map;
 
 /**
- * Represents segment of geometry path
+ * Represents a Hue/Saturation/Luminance effect.
  */
-@ApiModel(description = "Represents segment of geometry path")
-public class PathSegment {
-  /**
-   * Gets or Sets type
-   */
-  @JsonAdapter(TypeEnum.Adapter.class)
-  public enum TypeEnum {
-    CLOSE("Close"),
-    
-    MOVETO("MoveTo"),
-    
-    LINETO("LineTo"),
-    
-    ARCTO("ArcTo"),
-    
-    QUADBEZIERTO("QuadBezierTo"),
-    
-    CUBICBEZIERTO("CubicBezierTo");
+@ApiModel(description = "Represents a Hue/Saturation/Luminance effect.")
+public class HslEffect extends ImageTransformEffect {
+  @SerializedName(value = "hue", alternate = { "Hue" })
+  private Double hue;
 
-    private String value;
+  @SerializedName(value = "saturation", alternate = { "Saturation" })
+  private Double saturation;
 
-    TypeEnum(String value) {
-      this.value = value;
-    }
+  @SerializedName(value = "luminance", alternate = { "Luminance" })
+  private Double luminance;
 
-    public String getValue() {
-      return value;
-    }
 
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    public static TypeEnum fromValue(String text) {
-      for (TypeEnum b : TypeEnum.values()) {
-        if (String.valueOf(b.value).equals(text)) {
-          return b;
-        }
-      }
-      return null;
-    }
-
-    public static class Adapter extends TypeAdapter<TypeEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final TypeEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public TypeEnum read(final JsonReader jsonReader) throws IOException {
-        String value = jsonReader.nextString();
-        return TypeEnum.fromValue(String.valueOf(value));
-      }
-    }
+  public HslEffect() {
+    super();
+    setType(TypeEnum.HSL);
   }
 
-  @SerializedName(value = "type", alternate = { "Type" })
-  private TypeEnum type;
-
-
-  public PathSegment() {
-    super();
+  public HslEffect hue(Double hue) {
+    this.hue = hue;
+    return this;
   }
 
    /**
-   * Get type
-   * @return type
+   * Hue
+   * @return hue
   **/
-  @ApiModelProperty(value = "")
-  public TypeEnum getType() {
-    return type;
+  @ApiModelProperty(required = true, value = "Hue")
+  public Double getHue() {
+    return hue;
   }
 
-  protected void setType(TypeEnum type) {
-    this.type = type;
+  public void setHue(Double hue) {
+    this.hue = hue;
+  }
+
+  public HslEffect saturation(Double saturation) {
+    this.saturation = saturation;
+    return this;
+  }
+
+   /**
+   * Saturation
+   * @return saturation
+  **/
+  @ApiModelProperty(required = true, value = "Saturation")
+  public Double getSaturation() {
+    return saturation;
+  }
+
+  public void setSaturation(Double saturation) {
+    this.saturation = saturation;
+  }
+
+  public HslEffect luminance(Double luminance) {
+    this.luminance = luminance;
+    return this;
+  }
+
+   /**
+   * Luminance
+   * @return luminance
+  **/
+  @ApiModelProperty(required = true, value = "Luminance")
+  public Double getLuminance() {
+    return luminance;
+  }
+
+  public void setLuminance(Double luminance) {
+    this.luminance = luminance;
   }
 
 
@@ -130,22 +124,24 @@ public class PathSegment {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    PathSegment pathSegment = (PathSegment) o;
-    return true && Objects.equals(this.type, pathSegment.type);
+    HslEffect hslEffect = (HslEffect) o;
+    return true && Objects.equals(this.hue, hslEffect.hue) && Objects.equals(this.saturation, hslEffect.saturation) && Objects.equals(this.luminance, hslEffect.luminance) && super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type);
+    return Objects.hash(hue, saturation, luminance, super.hashCode());
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class PathSegment {\n");
-    
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("class HslEffect {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
+    sb.append("    hue: ").append(toIndentedString(hue)).append("\n");
+    sb.append("    saturation: ").append(toIndentedString(saturation)).append("\n");
+    sb.append("    luminance: ").append(toIndentedString(luminance)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -165,4 +161,7 @@ public class PathSegment {
 
   private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
 
+  static {
+      typeDeterminers.put("Type", TypeEnum.HSL);
+  }
 }

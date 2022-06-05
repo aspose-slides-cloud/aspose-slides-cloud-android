@@ -26,17 +26,17 @@
 package com.aspose.slides.usecases;
 
 import com.aspose.slides.ApiException;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.aspose.slides.ApiTest;
 import com.aspose.slides.model.*;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+
+import static org.junit.Assert.*;
 
 /**
  * API tests for chart methods
@@ -319,7 +319,7 @@ public class ChartTest extends ApiTest {
     }
 
     @Test
-    public void chartSunburstTest() throws ApiException, IOException {
+    public void sunburstChartTest() throws ApiException, IOException {
         initialize(null, null, null);
         Chart dto = new Chart();
         dto.setChartType(Chart.ChartTypeEnum.SUNBURST);
@@ -373,6 +373,128 @@ public class ChartTest extends ApiTest {
         assertNotNull(chart);
         assertEquals(1, chart.getSeries().size());
         assertEquals(4, chart.getCategories().size());
+    }
+
+    @Test
+    public void multiLevelCategoryAxisTest() throws ApiException {
+        initialize(null, null, null);
+        Chart dto = new Chart();
+        dto.setX(100.0);
+        dto.setY(100.0);
+        dto.setWidth(500.0);
+        dto.setHeight(500.0);
+        dto.setChartType(Chart.ChartTypeEnum.CLUSTEREDCOLUMN);
+
+        List<Series> seriesList = new ArrayList<Series>();
+        OneValueSeries series = new OneValueSeries();
+        series.setType(Series.TypeEnum.CLUSTEREDCOLUMN);
+        List<OneValueChartDataPoint> dataPoints = new ArrayList<OneValueChartDataPoint>();
+        for (int i = 1; i <= 8; i++) {
+            OneValueChartDataPoint dataPoint = new OneValueChartDataPoint();
+            dataPoint.setValue(new Double(i));
+            dataPoints.add(dataPoint);
+        }
+        series.setDataPoints(dataPoints);
+        seriesList.add(series);
+
+        List<ChartCategory> categoryList = new ArrayList<ChartCategory>();
+        ChartCategory category1 = new ChartCategory();
+        category1.setValue("Category1");
+        category1.setParentCategories(new ArrayList(Arrays.asList("Sub-category 1", "Root 1")));
+        categoryList.add(category1);
+        ChartCategory category2 = new ChartCategory();
+        category2.setValue("Category2");
+        categoryList.add(category2);
+        ChartCategory category3 = new ChartCategory();
+        category3.setValue("Category3");
+        category3.setParentCategories(new ArrayList(Arrays.asList("Sub-category 2")));
+        categoryList.add(category3);
+        ChartCategory category4 = new ChartCategory();
+        category4.setValue("Category4");
+        categoryList.add(category4);
+        ChartCategory category5 = new ChartCategory();
+        category5.setValue("Category5");
+        category5.setParentCategories(new ArrayList(Arrays.asList("Sub-category 3", "Root 2")));
+        categoryList.add(category5);
+        ChartCategory category6 = new ChartCategory();
+        category6.setValue("Category6");
+        categoryList.add(category6);
+        ChartCategory category7 = new ChartCategory();
+        category7.setValue("Category7");
+        category7.setParentCategories(new ArrayList(Arrays.asList("Sub-category 4")));
+        categoryList.add(category7);
+        ChartCategory category8 = new ChartCategory();
+        category8.setValue("Category8");
+        categoryList.add(category8);
+
+        dto.setSeries(seriesList);
+        dto.setCategories(categoryList);
+
+        Chart chart = (Chart)api.createShape(c_fileName, c_slideIndex, dto, null, null, c_password, c_folderName, null);
+
+        assertEquals(Chart.ChartTypeEnum.CLUSTEREDCOLUMN, chart.getChartType());
+        assertEquals(1, chart.getSeries().size());
+        assertEquals(8, chart.getCategories().size());
+        assertEquals(2, chart.getCategories().get(0).getParentCategories().size());
+    }
+
+    @Ignore //NaN is not a valid double value as per JSON specification
+    @Test
+    public void hideChartLegendTest() throws ApiException {
+        initialize(null, null, null);
+        Chart chart = (Chart)api.getShape(c_fileName, c_slideIndex, c_shapeIndex, c_password, c_folderName, null);
+        chart.getLegend().setHasLegend(false);
+        chart = (Chart)api.updateShape(c_fileName, c_slideIndex, c_shapeIndex, chart, c_password, c_folderName, null);
+        assertFalse(chart.getLegend().isHasLegend());
+    }
+
+    @Ignore //NaN is not a valid double value as per JSON specification
+    @Test
+    public void chartGridLinesFormatTest() throws ApiException, IOException{
+        initialize(null, null, null);
+        Chart chart = (Chart)api.getShape(c_fileName, c_slideIndex, c_shapeIndex, c_password, c_folderName, null);
+
+        Axis horizontalAxis = new Axis();
+        ChartLinesFormat horizontalMajorGridLineFormat = new ChartLinesFormat();
+        horizontalMajorGridLineFormat.setLineFormat(new LineFormat());
+        horizontalMajorGridLineFormat.getLineFormat().setFillFormat(new NoFill());
+        horizontalAxis.setMajorGridLinesFormat(horizontalMajorGridLineFormat);
+        ChartLinesFormat horizontalMinorGridLineFormat = new ChartLinesFormat();
+        horizontalMinorGridLineFormat.setLineFormat(new LineFormat());
+        SolidFill solidFillFormat = new SolidFill();
+        solidFillFormat.setColor("Black");
+        horizontalMinorGridLineFormat.getLineFormat().setFillFormat(solidFillFormat);
+        horizontalAxis.setMinorGridLinesFormat(horizontalMinorGridLineFormat);
+
+        Axis verticalAxis = new Axis();
+        ChartLinesFormat verticalMajorGridLineFormat = new ChartLinesFormat();
+        GradientFill gradientFill = new GradientFill();
+        gradientFill.setDirection(GradientFill.DirectionEnum.FROMCORNER1);
+        GradientFillStop gradientFillStop1 = new GradientFillStop();
+        gradientFillStop1.setColor("White");
+        gradientFillStop1.setPosition(0.0);
+        GradientFillStop gradientFillStop2 = new GradientFillStop();
+        gradientFillStop2.setColor("Black");
+        gradientFillStop2.setPosition(1.0);
+        gradientFill.setStops(new ArrayList<GradientFillStop>(Arrays.asList(gradientFillStop1, gradientFillStop2)));
+        verticalMajorGridLineFormat.setLineFormat(new LineFormat());
+        verticalMajorGridLineFormat.getLineFormat().setFillFormat(gradientFill);
+        verticalAxis.setMinorGridLinesFormat(verticalMajorGridLineFormat);
+        ChartLinesFormat verticalMinorGridLineFormat = new ChartLinesFormat();
+        verticalMinorGridLineFormat.setLineFormat(new LineFormat());
+        verticalMinorGridLineFormat.getLineFormat().setFillFormat(new NoFill());
+        verticalAxis.setMinorGridLinesFormat(verticalMinorGridLineFormat);
+
+        Axes axes = new Axes();
+        axes.setHorizontalAxis(horizontalAxis);
+        axes.setVerticalAxis(verticalAxis);
+        chart.setAxes(axes);
+
+        chart = (Chart)api.updateShape(c_fileName, c_slideIndex, c_shapeIndex, chart, c_password, c_folderName, null);
+        assertTrue(chart.getAxes().getHorizontalAxis().getMajorGridLinesFormat().getLineFormat().getFillFormat() instanceof NoFill);
+        assertTrue(chart.getAxes().getHorizontalAxis().getMinorGridLinesFormat().getLineFormat().getFillFormat() instanceof SolidFill);
+        assertTrue(chart.getAxes().getVerticalAxis().getMajorGridLinesFormat().getLineFormat().getFillFormat() instanceof GradientFill);
+        assertTrue(chart.getAxes().getVerticalAxis().getMinorGridLinesFormat().getLineFormat().getFillFormat() instanceof NoFill);
     }
 
     private static final String c_folderName = "TempSlidesSDK";

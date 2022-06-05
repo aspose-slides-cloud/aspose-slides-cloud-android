@@ -28,6 +28,7 @@
 package com.aspose.slides.model;
 
 import java.util.Objects;
+import com.aspose.slides.model.ImageTransformEffect;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -41,84 +42,56 @@ import java.util.Hashtable;
 import java.util.Map;
 
 /**
- * Represents segment of geometry path
+ * Represents a Tint effect.
  */
-@ApiModel(description = "Represents segment of geometry path")
-public class PathSegment {
-  /**
-   * Gets or Sets type
-   */
-  @JsonAdapter(TypeEnum.Adapter.class)
-  public enum TypeEnum {
-    CLOSE("Close"),
-    
-    MOVETO("MoveTo"),
-    
-    LINETO("LineTo"),
-    
-    ARCTO("ArcTo"),
-    
-    QUADBEZIERTO("QuadBezierTo"),
-    
-    CUBICBEZIERTO("CubicBezierTo");
+@ApiModel(description = "Represents a Tint effect.")
+public class TintEffect extends ImageTransformEffect {
+  @SerializedName(value = "hue", alternate = { "Hue" })
+  private Double hue;
 
-    private String value;
+  @SerializedName(value = "amount", alternate = { "Amount" })
+  private Double amount;
 
-    TypeEnum(String value) {
-      this.value = value;
-    }
 
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    public static TypeEnum fromValue(String text) {
-      for (TypeEnum b : TypeEnum.values()) {
-        if (String.valueOf(b.value).equals(text)) {
-          return b;
-        }
-      }
-      return null;
-    }
-
-    public static class Adapter extends TypeAdapter<TypeEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final TypeEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public TypeEnum read(final JsonReader jsonReader) throws IOException {
-        String value = jsonReader.nextString();
-        return TypeEnum.fromValue(String.valueOf(value));
-      }
-    }
+  public TintEffect() {
+    super();
+    setType(TypeEnum.TINT);
   }
 
-  @SerializedName(value = "type", alternate = { "Type" })
-  private TypeEnum type;
-
-
-  public PathSegment() {
-    super();
+  public TintEffect hue(Double hue) {
+    this.hue = hue;
+    return this;
   }
 
    /**
-   * Get type
-   * @return type
+   * Hue
+   * @return hue
   **/
-  @ApiModelProperty(value = "")
-  public TypeEnum getType() {
-    return type;
+  @ApiModelProperty(required = true, value = "Hue")
+  public Double getHue() {
+    return hue;
   }
 
-  protected void setType(TypeEnum type) {
-    this.type = type;
+  public void setHue(Double hue) {
+    this.hue = hue;
+  }
+
+  public TintEffect amount(Double amount) {
+    this.amount = amount;
+    return this;
+  }
+
+   /**
+   * Amount
+   * @return amount
+  **/
+  @ApiModelProperty(required = true, value = "Amount")
+  public Double getAmount() {
+    return amount;
+  }
+
+  public void setAmount(Double amount) {
+    this.amount = amount;
   }
 
 
@@ -130,22 +103,23 @@ public class PathSegment {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    PathSegment pathSegment = (PathSegment) o;
-    return true && Objects.equals(this.type, pathSegment.type);
+    TintEffect tintEffect = (TintEffect) o;
+    return true && Objects.equals(this.hue, tintEffect.hue) && Objects.equals(this.amount, tintEffect.amount) && super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type);
+    return Objects.hash(hue, amount, super.hashCode());
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class PathSegment {\n");
-    
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("class TintEffect {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
+    sb.append("    hue: ").append(toIndentedString(hue)).append("\n");
+    sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -165,4 +139,7 @@ public class PathSegment {
 
   private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
 
+  static {
+      typeDeterminers.put("Type", TypeEnum.TINT);
+  }
 }

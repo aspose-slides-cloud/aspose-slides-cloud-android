@@ -68,7 +68,6 @@ public class NullablePropertyTest extends ApiTest {
         testDto.setTitle(testTitle);
         OneValueSeries testSeries = new OneValueSeries();
         testSeries.setType(OneValueSeries.TypeEnum.CLUSTEREDCOLUMN);
-        testSeries.setDataPointType(OneValueSeries.DataPointTypeEnum.ONEVALUE);
         testSeries.setName("Series1");
         OneValueChartDataPoint testPoint1 = new OneValueChartDataPoint();
         testPoint1.setValue(40.0);

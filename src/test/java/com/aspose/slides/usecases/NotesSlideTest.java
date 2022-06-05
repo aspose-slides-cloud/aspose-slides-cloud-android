@@ -34,10 +34,10 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+
 import org.junit.Test;
+
+import static org.junit.Assert.*;
 
 /**
  * API tests for chart methods
@@ -230,6 +230,31 @@ public class NotesSlideTest extends ApiTest {
         assertEquals(c_portionCount, portions.getItems().size());
     }
 
+    @Test
+    public void createNotesSlideTest() throws ApiException, IOException {
+        initialize(null, null, null);
+        NotesSlide dto = new NotesSlide();
+        dto.setText(c_notesSlideText);
+        NotesSlide response = api.createNotesSlide(c_fileName, c_slideIndex, dto, c_password, c_folderName, null);
+        assertEquals(c_notesSlideText, response.getText());
+    }
+
+    @Test
+    public void updateNotesSlideTest() throws ApiException, IOException {
+        initialize(null, null, null);
+        NotesSlide dto = new NotesSlide();
+        dto.setText(c_notesSlideText);
+        NotesSlide response = api.updateNotesSlide(c_fileName, c_slideIndex, dto, c_password, c_folderName, null);
+        assertEquals(c_notesSlideText, response.getText());
+    }
+
+    @Test
+    public void deleteNotesSlideTest() throws ApiException, IOException {
+        initialize(null, null, null);
+        Slide response = api.deleteNotesSlide(c_fileName, c_slideIndex, c_password, c_folderName, null);
+        assertNull(response.getNotesSlide());
+    }
+
     private final String c_folderName = "TempSlidesSDK";
     private final String c_fileName = "test.pptx";
     private final String c_password = "password";
@@ -240,4 +265,5 @@ public class NotesSlideTest extends ApiTest {
     private final int c_paragraphCount = 1;
     private final int c_portionCount = 1;
     private final NotesSlideExportFormat c_format = NotesSlideExportFormat.PNG;
+    private final String c_notesSlideText = "Notes slide text";
 }

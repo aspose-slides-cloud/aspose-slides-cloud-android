@@ -175,6 +175,27 @@ public class PropertyTest extends ApiTest {
         assertNotEquals(document.length, outputDocument.length());
     }
 
+    @Test
+    public void getViewPropertiesTest() throws ApiException, IOException {
+        initialize(null, null, null);
+        ViewProperties response = api.getViewProperties(c_fileName, c_password, c_folderName, null);
+        assertEquals(ViewProperties.ShowCommentsEnum.TRUE, response.getShowComments());
+    }
+
+    @Test
+    public void setViewPropertiesTest() throws ApiException, IOException {
+        initialize(null, null, null);
+        ViewProperties dto = new ViewProperties();
+        dto.showComments(ViewProperties.ShowCommentsEnum.FALSE);
+        CommonSlideViewProperties commonProperties = new CommonSlideViewProperties();
+        commonProperties.setScale(50);
+        dto.setSlideViewProperties(commonProperties);
+
+        ViewProperties response = api.setViewProperties(c_fileName, dto, c_password, c_folderName, null);
+        assertEquals(ViewProperties.ShowCommentsEnum.FALSE, response.getShowComments());
+        assertEquals(dto.getSlideViewProperties().getScale(), response.getSlideViewProperties().getScale());
+    }
+
     private final String c_folderName = "TempSlidesSDK";
     private final String c_fileName = "test.pptx";
     private final String c_password = "password";

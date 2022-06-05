@@ -49,6 +49,9 @@ public class OneValueChartDataPoint extends DataPoint {
   @SerializedName(value = "value", alternate = { "Value" })
   private Double value;
 
+  @SerializedName(value = "setAsTotal", alternate = { "SetAsTotal" })
+  private Boolean setAsTotal;
+
 
   public OneValueChartDataPoint() {
     super();
@@ -72,6 +75,24 @@ public class OneValueChartDataPoint extends DataPoint {
     this.value = value;
   }
 
+  public OneValueChartDataPoint setAsTotal(Boolean setAsTotal) {
+    this.setAsTotal = setAsTotal;
+    return this;
+  }
+
+   /**
+   * SetAsTotal. Applied to Waterfall data points only.
+   * @return setAsTotal
+  **/
+  @ApiModelProperty(value = "SetAsTotal. Applied to Waterfall data points only.")
+  public Boolean isSetAsTotal() {
+    return setAsTotal;
+  }
+
+  public void setSetAsTotal(Boolean setAsTotal) {
+    this.setAsTotal = setAsTotal;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -82,12 +103,12 @@ public class OneValueChartDataPoint extends DataPoint {
       return false;
     }
     OneValueChartDataPoint oneValueChartDataPoint = (OneValueChartDataPoint) o;
-    return true && Objects.equals(this.value, oneValueChartDataPoint.value) && super.equals(o);
+    return true && Objects.equals(this.value, oneValueChartDataPoint.value) && Objects.equals(this.setAsTotal, oneValueChartDataPoint.setAsTotal) && super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(value, super.hashCode());
+    return Objects.hash(value, setAsTotal, super.hashCode());
   }
 
 
@@ -97,6 +118,7 @@ public class OneValueChartDataPoint extends DataPoint {
     sb.append("class OneValueChartDataPoint {\n");
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    value: ").append(toIndentedString(value)).append("\n");
+    sb.append("    setAsTotal: ").append(toIndentedString(setAsTotal)).append("\n");
     sb.append("}");
     return sb.toString();
   }

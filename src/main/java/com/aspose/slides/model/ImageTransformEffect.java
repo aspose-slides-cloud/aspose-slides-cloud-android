@@ -41,26 +41,48 @@ import java.util.Hashtable;
 import java.util.Map;
 
 /**
- * Represents segment of geometry path
+ * Image transform effect
  */
-@ApiModel(description = "Represents segment of geometry path")
-public class PathSegment {
+@ApiModel(description = "Image transform effect")
+public class ImageTransformEffect {
   /**
    * Gets or Sets type
    */
   @JsonAdapter(TypeEnum.Adapter.class)
   public enum TypeEnum {
-    CLOSE("Close"),
+    ALPHABILEVEL("AlphaBiLevel"),
     
-    MOVETO("MoveTo"),
+    ALPHACEILING("AlphaCeiling"),
     
-    LINETO("LineTo"),
+    ALPHAFLOOR("AlphaFloor"),
     
-    ARCTO("ArcTo"),
+    ALPHAINVERSE("AlphaInverse"),
     
-    QUADBEZIERTO("QuadBezierTo"),
+    ALPHAMODULATE("AlphaModulate"),
     
-    CUBICBEZIERTO("CubicBezierTo");
+    ALPHAMODULATEFIXED("AlphaModulateFixed"),
+    
+    ALPHAREPLACE("AlphaReplace"),
+    
+    BILEVEL("BiLevel"),
+    
+    BLUR("Blur"),
+    
+    COLORCHANGE("ColorChange"),
+    
+    COLORREPLACE("ColorReplace"),
+    
+    DUOTONE("Duotone"),
+    
+    FILLOVERLAY("FillOverlay"),
+    
+    GRAYSCALE("GrayScale"),
+    
+    HSL("Hsl"),
+    
+    LUMINANCE("Luminance"),
+    
+    TINT("Tint");
 
     private String value;
 
@@ -104,7 +126,7 @@ public class PathSegment {
   private TypeEnum type;
 
 
-  public PathSegment() {
+  public ImageTransformEffect() {
     super();
   }
 
@@ -130,8 +152,8 @@ public class PathSegment {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    PathSegment pathSegment = (PathSegment) o;
-    return true && Objects.equals(this.type, pathSegment.type);
+    ImageTransformEffect imageTransformEffect = (ImageTransformEffect) o;
+    return true && Objects.equals(this.type, imageTransformEffect.type);
   }
 
   @Override
@@ -143,7 +165,7 @@ public class PathSegment {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class PathSegment {\n");
+    sb.append("class ImageTransformEffect {\n");
     
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("}");

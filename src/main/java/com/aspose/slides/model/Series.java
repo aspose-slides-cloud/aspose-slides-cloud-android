@@ -586,11 +586,6 @@ public class Series {
     this.lineFormat = lineFormat;
   }
 
-  public Series dataPointType(DataPointTypeEnum dataPointType) {
-    this.dataPointType = dataPointType;
-    return this;
-  }
-
    /**
    * Get dataPointType
    * @return dataPointType
@@ -600,7 +595,7 @@ public class Series {
     return dataPointType;
   }
 
-  public void setDataPointType(DataPointTypeEnum dataPointType) {
+  protected void setDataPointType(DataPointTypeEnum dataPointType) {
     this.dataPointType = dataPointType;
   }
 

@@ -29,17 +29,58 @@ import com.aspose.slides.ApiException;
 import com.aspose.slides.ApiTest;
 import com.aspose.slides.model.*;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
+import java.util.Base64;
+
+import org.junit.Ignore;
 import org.junit.Test;
+
+import static org.junit.Assert.*;
 
 /**
  * API tests for shape types
  */
 public class ShapeTest extends ApiTest {
+
+    @Test
+    public void getShapesTest() throws ApiException, IOException {
+        initialize(null, null, null);
+        Shapes shapes = api.getShapes(c_fileName, c_slideIndex, c_password, c_folderName, null, null);
+        assertEquals(2, shapes.getShapesLinks().size());
+    }
+
+    @Test
+    public void getShapesByTypeTest() throws ApiException, IOException {
+        initialize(null, null, null);
+        Shapes shapes = api.getShapes(c_fileName, c_slideIndex, c_password, c_folderName, null, ShapeType.CHART);
+        assertEquals(2, shapes.getShapesLinks().size());
+    }
+
+    @Test
+    public void getSubshapesTest() throws ApiException, IOException {
+        initialize(null, null, null);
+        Shapes shapes = api.getSubshapes(c_fileName, 1, "4/shapes", c_password, c_folderName, null);
+        assertEquals(2, shapes.getShapesLinks().size());
+    }
+
+    @Test
+    public void getShapeTest() throws ApiException, IOException {
+        initialize(null, null, null);
+        ShapeBase shape = api.getShape(c_fileName, c_slideIndex, 1, c_password, c_folderName, null);
+        assertEquals(ShapeBase.TypeEnum.CHART, shape.getType());
+    }
+
+    @Test
+    public void getSubshapeTest() throws ApiException, IOException {
+        initialize(null, null, null);
+        ShapeBase shape = api.getSubshape(c_fileName, 1, "4/shapes", 1, c_password, c_folderName, null);
+        assertEquals(ShapeBase.TypeEnum.SHAPE, shape.getType());
+    }
+
     @Test
     public void shapeAddTest() throws ApiException, IOException {
         initialize(null, null, null);
@@ -173,6 +214,32 @@ public class ShapeTest extends ApiTest {
         dto.setNodes(nodes);
         ShapeBase shape = api.createShape(c_fileName, c_slideIndex, dto, null, null, c_password, c_folderName, null);
         assertTrue(shape instanceof SmartArt);
+    }
+
+    @Test
+    public void smartArtTextFormatting() throws ApiException{
+        initialize(null, null, null);
+        Portion portion = new Portion();
+        portion.setText("New text");
+        portion.setFontHeight(24.0);
+        portion.setFontBold(Portion.FontBoldEnum.TRUE);
+        portion.spacing(3.0);
+        SolidFill fillFormat = new SolidFill();
+        fillFormat.setColor("#FFFFFF00");
+        portion.setFillFormat(fillFormat);
+
+        String targetNodePath = "1/nodes/1/nodes";
+        int slideIndex = 7;
+
+        Portion response = api.updateSubshapePortion(c_fileName, slideIndex, targetNodePath, 2, 1,
+                1, portion, c_password, c_folderName, null);
+        assertNotNull(response);
+        assertEquals(portion.getText(), response.getText());
+        assertEquals(portion.getFontHeight(), response.getFontHeight());
+        assertEquals(portion.getFontHeight(), response.getFontHeight());
+        assertEquals(portion.getFontBold(), response.getFontBold());
+        assertEquals(portion.getSpacing(), response.getSpacing());
+        assertTrue(portion.getFillFormat() instanceof SolidFill);
     }
 
     @Test
@@ -333,6 +400,108 @@ public class ShapeTest extends ApiTest {
     }
 
     @Test
+    public void createSubshapeTest() throws ApiException, IOException {
+        initialize(null, null, null);
+        Shape dto = new Shape();
+        dto.setShapeType(GeometryShape.ShapeTypeEnum.RECTANGLE);
+        dto.setX(200.0);
+        dto.setY(200.0);
+        dto.setWidth(50.0);
+        dto.setHeight(50.0);
+
+        ShapeBase response = api.createSubshape(c_fileName, 1, c_shapePath, dto, null, null, c_password, c_folderName, null);
+        assertTrue(response instanceof Shape);
+    }
+
+    @Test
+    public void updateShapeTest() throws ApiException, IOException {
+        initialize(null, null, null);
+        Shape dto = new Shape();
+        dto.setWidth(200.0);
+        dto.setHeight(200.0);
+        SolidFill fillFormat = new SolidFill();
+        fillFormat.setColor(c_color);
+        dto.setFillFormat(fillFormat);
+
+        ShapeBase response = api.updateShape(c_fileName, 1, 3, dto,  c_password, c_folderName, null);
+        assertTrue(response instanceof Shape);
+        assertEquals(dto.getWidth(), response.getWidth());
+        assertEquals(dto.getHeight(), response.getHeight());
+        assertTrue(response.getFillFormat() instanceof SolidFill);
+    }
+
+    @Test
+    public void updateSubshapeTest() throws ApiException, IOException {
+        initialize(null, null, null);
+        Shape dto = new Shape();
+        dto.setWidth(200.0);
+        dto.setHeight(200.0);
+        GradientFill fillFormat = new GradientFill();
+        fillFormat.setShape(GradientFill.ShapeEnum.LINEAR);
+        fillFormat.setDirection(GradientFill.DirectionEnum.FROMCORNER1);
+        ArrayList<GradientFillStop> gradientFillStops = new ArrayList<GradientFillStop>();
+        GradientFillStop gradientFillStop1 = new GradientFillStop();
+        gradientFillStop1.setColor(c_color);
+        gradientFillStop1.setPosition(0.0);
+        gradientFillStops.add(gradientFillStop1);
+        GradientFillStop gradientFillStop2 = new GradientFillStop();
+        gradientFillStop2.setColor(c_color);
+        gradientFillStop2.setPosition(1.0);
+        gradientFillStops.add(gradientFillStop2);
+        fillFormat.setStops(gradientFillStops);
+        dto.setFillFormat(fillFormat);
+        dto.setFillFormat(fillFormat);
+
+        ShapeBase response = api.updateSubshape(c_fileName, 1, c_shapePath, 1, dto,  c_password, c_folderName, null);
+        assertTrue(response instanceof Shape);
+        assertEquals(dto.getWidth(), response.getWidth());
+        assertEquals(dto.getHeight(), response.getHeight());
+        assertTrue(response.getFillFormat() instanceof GradientFill);
+    }
+
+    @Test
+    public void deleteShapesTest() throws ApiException, IOException {
+        initialize(null, null, null);
+        Shapes shapes = api.deleteShapes(c_fileName, c_slideIndex, null, c_password, c_folderName, null);
+        assertEquals(0, shapes.getShapesLinks().size());
+    }
+
+    @Test
+    public void deleteShapesIndexesTest() throws ApiException, IOException {
+        initialize(null, null, null);
+        Shapes shapes = api.deleteShapes(c_fileName, c_slideIndex, new ArrayList<Integer>(Arrays.asList(2)), c_password, c_folderName, null);
+        assertEquals(1, shapes.getShapesLinks().size());
+    }
+
+    @Test
+    public void deleteSubshapesTest() throws ApiException, IOException {
+        initialize(null, null, null);
+        Shapes shapes = api.deleteSubshapes(c_fileName, 1, c_shapePath, null, c_password, c_folderName, null);
+        assertEquals(0, shapes.getShapesLinks().size());
+    }
+
+    @Test
+    public void deleteSubshapesIndexesTest() throws ApiException, IOException {
+        initialize(null, null, null);
+        Shapes shapes = api.deleteSubshapes(c_fileName, 1, c_shapePath, new ArrayList<Integer>(Arrays.asList(2)), c_password, c_folderName, null);
+        assertEquals(1, shapes.getShapesLinks().size());
+    }
+
+    @Test
+    public void deleteShapeTest() throws ApiException, IOException {
+        initialize(null, null, null);
+        Shapes response = api.deleteShape(c_fileName, 1, 4, c_password, c_folderName, null);
+        assertEquals(3, response.getShapesLinks().size());
+    }
+
+    @Test
+    public void deleteSubshapeTest() throws ApiException, IOException {
+        initialize(null, null, null);
+        Shapes response = api.deleteSubshape(c_fileName, 1, c_shapePath, 1, c_password, c_folderName, null);
+        assertEquals(1, response.getShapesLinks().size());
+    }
+
+    @Test
     public void shapesAlignTest() throws ApiException, IOException {
         initialize(null, null, null);
         ShapeBase shape1 = api.getShape(c_fileName, 2, 1, c_password, c_folderName, null);
@@ -428,8 +597,120 @@ public class ShapeTest extends ApiTest {
         assertTrue(shape != null);
     }
 
+    @Test
+    public void zoomFrameAddTest() throws ApiException, IOException {
+        initialize(null, null, null);
+        ZoomFrame dto = new ZoomFrame();
+        dto.setX(20.0);
+        dto.setY(20.0);
+        dto.setWidth(200.0);
+        dto.setHeight(100.0);
+        dto.setTargetSlideIndex(2);
+
+        ShapeBase shape = api.createShape(c_fileName,c_slideIndex, dto, null, null, c_password, c_folderName, null);
+        assertTrue(shape instanceof ZoomFrame);
+        assertEquals(dto.getTargetSlideIndex(), ((ZoomFrame)shape).getTargetSlideIndex());
+    }
+
+    @Ignore //cannot deserialize class com.aspose.slides.model.SectionZoomFrame
+    @Test
+    public void sectionZoomFrameAddTest() throws ApiException, IOException {
+        initialize(null, null, null);
+        SectionZoomFrame dto = new SectionZoomFrame();
+        dto.setX(20.0);
+        dto.setY(20.0);
+        dto.setWidth(200.0);
+        dto.setHeight(100.0);
+        dto.setTargetSectionIndex(2);
+
+        ShapeBase shape = api.createShape(c_fileName,c_slideIndex, dto, null, null, c_password, c_folderName, null);
+        assertTrue(shape instanceof SectionZoomFrame);
+        assertEquals(dto.getTargetSectionIndex(), ((SectionZoomFrame)shape).getTargetSectionIndex());
+    }
+
+    @Test
+    public void oleObjectFrameAddByLinkTest() throws ApiException, IOException {
+        initialize(null, null, null);
+        OleObjectFrame dto = new OleObjectFrame();
+        dto.setX(100.0);
+        dto.setY(100.0);
+        dto.setWidth(200.0);
+        dto.setHeight(200.0);
+        dto.setLinkPath(c_oleObjectFileName);
+        dto.embeddedFileExtension("xlsx");
+
+        ShapeBase shape = api.createShape(c_fileName,c_slideIndex, dto, null, null, c_password, c_folderName, null);
+        assertTrue(shape instanceof OleObjectFrame);
+        assertEquals(((OleObjectFrame)shape).getLinkPath(), dto.getLinkPath());
+    }
+
+    @Test
+    public void oleObjectFrameAddEmbeddedTest() throws ApiException, IOException {
+        initialize(null, null, null);
+        byte[] file = Files.readAllBytes(Paths.get(testDataFolderName + "/" + c_oleObjectFileName));
+
+        OleObjectFrame dto = new OleObjectFrame();
+        dto.setX(100.0);
+        dto.setY(100.0);
+        dto.setWidth(200.0);
+        dto.setHeight(200.0);
+
+        String base64Data = new String(Base64.getEncoder().encode(file));
+        dto.setEmbeddedFileBase64Data(base64Data);
+        dto.embeddedFileExtension("xlsx");
+
+        ShapeBase shape = api.createShape(c_fileName,c_slideIndex, dto, null, null, c_password, c_folderName, null);
+        assertTrue(shape instanceof OleObjectFrame);
+        assertNotNull(((OleObjectFrame)shape).getEmbeddedFileBase64Data());
+    }
+
+    @Test
+    public void groupShapeAddTest() throws ApiException, IOException {
+        initialize(null, null, null);
+        int slideIndex = 5;
+        Shapes shapes = api.getShapes(c_fileName, slideIndex, c_password, c_folderName, null, null);
+        assertEquals(0, shapes.getShapesLinks().size());
+
+        GroupShape dto = new GroupShape();
+        api.createShape(c_fileName, slideIndex, dto, null, null, c_password, c_folderName, null);
+
+        Shape shape1 = new Shape();
+        shape1.setShapeType(GeometryShape.ShapeTypeEnum.RECTANGLE);
+        shape1.setX(50.0);
+        shape1.setY(400.0);
+        shape1.setWidth(50.0);
+        shape1.setHeight(50.0);
+
+        Shape shape2 = new Shape();
+        shape2.setShapeType(GeometryShape.ShapeTypeEnum.ELLIPSE);
+        shape2.setX(150.0);
+        shape2.setY(400.0);
+        shape2.setWidth(50.0);
+        shape2.setHeight(50.0);
+
+        Shape shape3 = new Shape();
+        shape3.setShapeType(GeometryShape.ShapeTypeEnum.TRIANGLE);
+        shape3.setX(250.0);
+        shape3.setY(400.0);
+        shape3.setWidth(50.0);
+        shape3.setHeight(50.0);
+
+        api.createSubshape(c_fileName, slideIndex, "1/shapes", shape1, null, null, c_password, c_folderName, null);
+        api.createSubshape(c_fileName, slideIndex, "1/shapes", shape2, null, null, c_password, c_folderName, null);
+        api.createSubshape(c_fileName, slideIndex, "1/shapes", shape3, null, null, c_password, c_folderName, null);
+
+        shapes = api.getShapes(c_fileName, slideIndex, c_password, c_folderName, null, null);
+        assertEquals(1, shapes.getShapesLinks().size());
+
+        shapes = api.getSubshapes(c_fileName, slideIndex, "1/shapes", c_password, c_folderName, null);
+        assertEquals(3, shapes.getShapesLinks().size());
+    }
+
     private final String c_folderName = "TempSlidesSDK";
     private final String c_fileName = "test.pptx";
     private final String c_password = "password";
     private final int c_slideIndex = 3;
+    private final String c_color = "#FFF5FF8A";
+    private final String c_shapePath = "4/shapes";
+    private final String c_oleObjectFileName = "oleObject.xlsx";
 }

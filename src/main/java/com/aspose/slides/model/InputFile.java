@@ -123,11 +123,6 @@ public class InputFile {
     this.password = password;
   }
 
-  public InputFile type(TypeEnum type) {
-    this.type = type;
-    return this;
-  }
-
    /**
    * Get type
    * @return type
@@ -137,7 +132,7 @@ public class InputFile {
     return type;
   }
 
-  public void setType(TypeEnum type) {
+  protected void setType(TypeEnum type) {
     this.type = type;
   }
 

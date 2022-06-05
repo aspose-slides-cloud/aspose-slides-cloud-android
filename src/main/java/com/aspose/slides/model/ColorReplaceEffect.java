@@ -28,12 +28,7 @@
 package com.aspose.slides.model;
 
 import java.util.Objects;
-import com.aspose.slides.model.EffectFormat;
-import com.aspose.slides.model.FillFormat;
-import com.aspose.slides.model.LineFormat;
-import com.aspose.slides.model.OneValueChartDataPoint;
-import com.aspose.slides.model.OneValueSeries;
-import com.aspose.slides.model.SeriesMarker;
+import com.aspose.slides.model.ImageTransformEffect;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -42,41 +37,40 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.List;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Map;
 
 /**
- * One value series.
+ * Represents a Color Replacement effect.
  */
-@ApiModel(description = "One value series.")
-public class WaterfallSeries extends OneValueSeries {
-  @SerializedName(value = "showConnectorLines", alternate = { "ShowConnectorLines" })
-  private Boolean showConnectorLines;
+@ApiModel(description = "Represents a Color Replacement effect.")
+public class ColorReplaceEffect extends ImageTransformEffect {
+  @SerializedName(value = "color", alternate = { "Color" })
+  private String color;
 
 
-  public WaterfallSeries() {
+  public ColorReplaceEffect() {
     super();
-    setDataPointType(DataPointTypeEnum.ONEVALUE);
+    setType(TypeEnum.COLORREPLACE);
   }
 
-  public WaterfallSeries showConnectorLines(Boolean showConnectorLines) {
-    this.showConnectorLines = showConnectorLines;
+  public ColorReplaceEffect color(String color) {
+    this.color = color;
     return this;
   }
 
    /**
-   * True if inner points are shown.
-   * @return showConnectorLines
+   * Returns color format which will replace color of every pixel.
+   * @return color
   **/
-  @ApiModelProperty(value = "True if inner points are shown.")
-  public Boolean isShowConnectorLines() {
-    return showConnectorLines;
+  @ApiModelProperty(value = "Returns color format which will replace color of every pixel.")
+  public String getColor() {
+    return color;
   }
 
-  public void setShowConnectorLines(Boolean showConnectorLines) {
-    this.showConnectorLines = showConnectorLines;
+  public void setColor(String color) {
+    this.color = color;
   }
 
 
@@ -88,22 +82,22 @@ public class WaterfallSeries extends OneValueSeries {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    WaterfallSeries waterfallSeries = (WaterfallSeries) o;
-    return true && Objects.equals(this.showConnectorLines, waterfallSeries.showConnectorLines) && super.equals(o);
+    ColorReplaceEffect colorReplaceEffect = (ColorReplaceEffect) o;
+    return true && Objects.equals(this.color, colorReplaceEffect.color) && super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(showConnectorLines, super.hashCode());
+    return Objects.hash(color, super.hashCode());
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class WaterfallSeries {\n");
+    sb.append("class ColorReplaceEffect {\n");
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
-    sb.append("    showConnectorLines: ").append(toIndentedString(showConnectorLines)).append("\n");
+    sb.append("    color: ").append(toIndentedString(color)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -124,6 +118,6 @@ public class WaterfallSeries extends OneValueSeries {
   private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
 
   static {
-      typeDeterminers.put("DataPointType", DataPointTypeEnum.ONEVALUE);
+      typeDeterminers.put("Type", TypeEnum.COLORREPLACE);
   }
 }

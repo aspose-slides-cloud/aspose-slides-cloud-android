@@ -195,11 +195,6 @@ public class SlideCommentBase {
     this.childComments = childComments;
   }
 
-  public SlideCommentBase type(TypeEnum type) {
-    this.type = type;
-    return this;
-  }
-
    /**
    * Get type
    * @return type
@@ -209,7 +204,7 @@ public class SlideCommentBase {
     return type;
   }
 
-  public void setType(TypeEnum type) {
+  protected void setType(TypeEnum type) {
     this.type = type;
   }
 
