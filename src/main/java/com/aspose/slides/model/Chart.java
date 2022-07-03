@@ -30,6 +30,7 @@ package com.aspose.slides.model;
 import java.util.Objects;
 import com.aspose.slides.model.Axes;
 import com.aspose.slides.model.ChartCategory;
+import com.aspose.slides.model.ChartSeriesGroup;
 import com.aspose.slides.model.ChartTitle;
 import com.aspose.slides.model.ChartWall;
 import com.aspose.slides.model.EffectFormat;
@@ -301,6 +302,12 @@ public class Chart extends ShapeBase {
   @SerializedName(value = "plotArea", alternate = { "PlotArea" })
   private PlotArea plotArea;
 
+  @SerializedName(value = "hasRoundedCorners", alternate = { "HasRoundedCorners" })
+  private Boolean hasRoundedCorners;
+
+  @SerializedName(value = "seriesGroups", alternate = { "SeriesGroups" })
+  private List<ChartSeriesGroup> seriesGroups = null;
+
 
   public Chart() {
     super();
@@ -521,6 +528,50 @@ public class Chart extends ShapeBase {
     this.plotArea = plotArea;
   }
 
+  public Chart hasRoundedCorners(Boolean hasRoundedCorners) {
+    this.hasRoundedCorners = hasRoundedCorners;
+    return this;
+  }
+
+   /**
+   * Specifies the chart area shall have rounded corners.
+   * @return hasRoundedCorners
+  **/
+  @ApiModelProperty(value = "Specifies the chart area shall have rounded corners.")
+  public Boolean isHasRoundedCorners() {
+    return hasRoundedCorners;
+  }
+
+  public void setHasRoundedCorners(Boolean hasRoundedCorners) {
+    this.hasRoundedCorners = hasRoundedCorners;
+  }
+
+  public Chart seriesGroups(List<ChartSeriesGroup> seriesGroups) {
+    this.seriesGroups = seriesGroups;
+    return this;
+  }
+
+  public Chart addSeriesGroupsItem(ChartSeriesGroup seriesGroupsItem) {
+    if (this.seriesGroups == null) {
+      this.seriesGroups = new ArrayList<ChartSeriesGroup>();
+    }
+    this.seriesGroups.add(seriesGroupsItem);
+    return this;
+  }
+
+   /**
+   * Gets groups of series. 
+   * @return seriesGroups
+  **/
+  @ApiModelProperty(value = "Gets groups of series. ")
+  public List<ChartSeriesGroup> getSeriesGroups() {
+    return seriesGroups;
+  }
+
+  public void setSeriesGroups(List<ChartSeriesGroup> seriesGroups) {
+    this.seriesGroups = seriesGroups;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -531,12 +582,12 @@ public class Chart extends ShapeBase {
       return false;
     }
     Chart chart = (Chart) o;
-    return true && Objects.equals(this.chartType, chart.chartType) && Objects.equals(this.showDataLabelsOverMaximum, chart.showDataLabelsOverMaximum) && Objects.equals(this.series, chart.series) && Objects.equals(this.categories, chart.categories) && Objects.equals(this.title, chart.title) && Objects.equals(this.backWall, chart.backWall) && Objects.equals(this.sideWall, chart.sideWall) && Objects.equals(this.floor, chart.floor) && Objects.equals(this.legend, chart.legend) && Objects.equals(this.axes, chart.axes) && Objects.equals(this.plotArea, chart.plotArea) && super.equals(o);
+    return true && Objects.equals(this.chartType, chart.chartType) && Objects.equals(this.showDataLabelsOverMaximum, chart.showDataLabelsOverMaximum) && Objects.equals(this.series, chart.series) && Objects.equals(this.categories, chart.categories) && Objects.equals(this.title, chart.title) && Objects.equals(this.backWall, chart.backWall) && Objects.equals(this.sideWall, chart.sideWall) && Objects.equals(this.floor, chart.floor) && Objects.equals(this.legend, chart.legend) && Objects.equals(this.axes, chart.axes) && Objects.equals(this.plotArea, chart.plotArea) && Objects.equals(this.hasRoundedCorners, chart.hasRoundedCorners) && Objects.equals(this.seriesGroups, chart.seriesGroups) && super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(chartType, showDataLabelsOverMaximum, series, categories, title, backWall, sideWall, floor, legend, axes, plotArea, super.hashCode());
+    return Objects.hash(chartType, showDataLabelsOverMaximum, series, categories, title, backWall, sideWall, floor, legend, axes, plotArea, hasRoundedCorners, seriesGroups, super.hashCode());
   }
 
 
@@ -556,6 +607,8 @@ public class Chart extends ShapeBase {
     sb.append("    legend: ").append(toIndentedString(legend)).append("\n");
     sb.append("    axes: ").append(toIndentedString(axes)).append("\n");
     sb.append("    plotArea: ").append(toIndentedString(plotArea)).append("\n");
+    sb.append("    hasRoundedCorners: ").append(toIndentedString(hasRoundedCorners)).append("\n");
+    sb.append("    seriesGroups: ").append(toIndentedString(seriesGroups)).append("\n");
     sb.append("}");
     return sb.toString();
   }

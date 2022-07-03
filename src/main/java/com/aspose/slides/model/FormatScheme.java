@@ -28,6 +28,9 @@
 package com.aspose.slides.model;
 
 import java.util.Objects;
+import com.aspose.slides.model.EffectFormat;
+import com.aspose.slides.model.FillFormat;
+import com.aspose.slides.model.LineFormat;
 import com.aspose.slides.model.ResourceBase;
 import com.aspose.slides.model.ResourceUri;
 import com.google.gson.TypeAdapter;
@@ -50,123 +53,123 @@ import java.util.Map;
 @ApiModel(description = "Represents Format Scheme for slide's theme")
 public class FormatScheme extends ResourceBase {
   @SerializedName(value = "backgroundStyles", alternate = { "BackgroundStyles" })
-  private List<ResourceUri> backgroundStyles = null;
+  private List<FillFormat> backgroundStyles = null;
 
   @SerializedName(value = "effectStyles", alternate = { "EffectStyles" })
-  private List<ResourceUri> effectStyles = null;
+  private List<EffectFormat> effectStyles = null;
 
   @SerializedName(value = "fillStyles", alternate = { "FillStyles" })
-  private List<ResourceUri> fillStyles = null;
+  private List<FillFormat> fillStyles = null;
 
   @SerializedName(value = "lineStyles", alternate = { "LineStyles" })
-  private List<ResourceUri> lineStyles = null;
+  private List<LineFormat> lineStyles = null;
 
 
   public FormatScheme() {
     super();
   }
 
-  public FormatScheme backgroundStyles(List<ResourceUri> backgroundStyles) {
+  public FormatScheme backgroundStyles(List<FillFormat> backgroundStyles) {
     this.backgroundStyles = backgroundStyles;
     return this;
   }
 
-  public FormatScheme addBackgroundStylesItem(ResourceUri backgroundStylesItem) {
+  public FormatScheme addBackgroundStylesItem(FillFormat backgroundStylesItem) {
     if (this.backgroundStyles == null) {
-      this.backgroundStyles = new ArrayList<ResourceUri>();
+      this.backgroundStyles = new ArrayList<FillFormat>();
     }
     this.backgroundStyles.add(backgroundStylesItem);
     return this;
   }
 
    /**
-   * Background style links.
+   * Background styles.
    * @return backgroundStyles
   **/
-  @ApiModelProperty(value = "Background style links.")
-  public List<ResourceUri> getBackgroundStyles() {
+  @ApiModelProperty(value = "Background styles.")
+  public List<FillFormat> getBackgroundStyles() {
     return backgroundStyles;
   }
 
-  public void setBackgroundStyles(List<ResourceUri> backgroundStyles) {
+  public void setBackgroundStyles(List<FillFormat> backgroundStyles) {
     this.backgroundStyles = backgroundStyles;
   }
 
-  public FormatScheme effectStyles(List<ResourceUri> effectStyles) {
+  public FormatScheme effectStyles(List<EffectFormat> effectStyles) {
     this.effectStyles = effectStyles;
     return this;
   }
 
-  public FormatScheme addEffectStylesItem(ResourceUri effectStylesItem) {
+  public FormatScheme addEffectStylesItem(EffectFormat effectStylesItem) {
     if (this.effectStyles == null) {
-      this.effectStyles = new ArrayList<ResourceUri>();
+      this.effectStyles = new ArrayList<EffectFormat>();
     }
     this.effectStyles.add(effectStylesItem);
     return this;
   }
 
    /**
-   * Effect style links.
+   * Effect styles.
    * @return effectStyles
   **/
-  @ApiModelProperty(value = "Effect style links.")
-  public List<ResourceUri> getEffectStyles() {
+  @ApiModelProperty(value = "Effect styles.")
+  public List<EffectFormat> getEffectStyles() {
     return effectStyles;
   }
 
-  public void setEffectStyles(List<ResourceUri> effectStyles) {
+  public void setEffectStyles(List<EffectFormat> effectStyles) {
     this.effectStyles = effectStyles;
   }
 
-  public FormatScheme fillStyles(List<ResourceUri> fillStyles) {
+  public FormatScheme fillStyles(List<FillFormat> fillStyles) {
     this.fillStyles = fillStyles;
     return this;
   }
 
-  public FormatScheme addFillStylesItem(ResourceUri fillStylesItem) {
+  public FormatScheme addFillStylesItem(FillFormat fillStylesItem) {
     if (this.fillStyles == null) {
-      this.fillStyles = new ArrayList<ResourceUri>();
+      this.fillStyles = new ArrayList<FillFormat>();
     }
     this.fillStyles.add(fillStylesItem);
     return this;
   }
 
    /**
-   * Fill style links.
+   * Fill styles.
    * @return fillStyles
   **/
-  @ApiModelProperty(value = "Fill style links.")
-  public List<ResourceUri> getFillStyles() {
+  @ApiModelProperty(value = "Fill styles.")
+  public List<FillFormat> getFillStyles() {
     return fillStyles;
   }
 
-  public void setFillStyles(List<ResourceUri> fillStyles) {
+  public void setFillStyles(List<FillFormat> fillStyles) {
     this.fillStyles = fillStyles;
   }
 
-  public FormatScheme lineStyles(List<ResourceUri> lineStyles) {
+  public FormatScheme lineStyles(List<LineFormat> lineStyles) {
     this.lineStyles = lineStyles;
     return this;
   }
 
-  public FormatScheme addLineStylesItem(ResourceUri lineStylesItem) {
+  public FormatScheme addLineStylesItem(LineFormat lineStylesItem) {
     if (this.lineStyles == null) {
-      this.lineStyles = new ArrayList<ResourceUri>();
+      this.lineStyles = new ArrayList<LineFormat>();
     }
     this.lineStyles.add(lineStylesItem);
     return this;
   }
 
    /**
-   * Line style links.
+   * Line style.
    * @return lineStyles
   **/
-  @ApiModelProperty(value = "Line style links.")
-  public List<ResourceUri> getLineStyles() {
+  @ApiModelProperty(value = "Line style.")
+  public List<LineFormat> getLineStyles() {
     return lineStyles;
   }
 
-  public void setLineStyles(List<ResourceUri> lineStyles) {
+  public void setLineStyles(List<LineFormat> lineStyles) {
     this.lineStyles = lineStyles;
   }
 

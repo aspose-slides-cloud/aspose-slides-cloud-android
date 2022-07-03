@@ -189,6 +189,22 @@ public class ParagraphTest extends ApiTest {
         assertEquals(dto.getDefaultPortionFormat().getFontHeight(), response.getDefaultPortionFormat().getFontHeight());
     }
 
+    @Test
+    public void getParagraphEffectiveTest() throws ApiException, IOException {
+        initialize(null, null, null);
+        Paragraph response = api.getParagraphEffective(c_fileName, c_slideIndex, c_shapeIndex, 1,
+                c_password, c_folderName, null);
+        assertEquals((Double) 72.0, response.getDefaultTabSize());
+    }
+
+    @Test
+    public void getSubShapeParagraphEffectiveTest() throws ApiException, IOException {
+        initialize(null, null, null);
+        Paragraph response = api.getSubshapeParagraphEffective(c_fileName, c_slideIndex, c_shapePath, 1,
+                1, c_password, c_folderName, null);
+        assertEquals((Double) 72.0, response.getDefaultTabSize());
+    }
+
     private final String c_folderName = "TempSlidesSDK";
     private final String c_fileName = "test.pptx";
     private final String c_password = "password";

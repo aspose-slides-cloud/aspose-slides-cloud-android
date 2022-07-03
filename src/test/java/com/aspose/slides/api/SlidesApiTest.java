@@ -43,6 +43,7 @@ import com.aspose.slides.model.*;
 import com.aspose.slides.model.ApiInfo;
 import com.aspose.slides.model.Chart;
 import com.aspose.slides.model.ChartCategory;
+import com.aspose.slides.model.ChartSeriesGroup;
 import com.aspose.slides.model.ColorScheme;
 import com.aspose.slides.model.DataPoint;
 import com.aspose.slides.model.DiscUsage;
@@ -31884,6 +31885,240 @@ public class SlidesApiTest extends ApiTest {
     }
     
     /**
+     * Read effective paragraph info.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getParagraphEffectiveTest() throws ApiException, Exception {
+        initialize("getParagraphEffective", null, null);
+        Paragraph response = null;
+        String valueName = (String)getTestValue("String", "getParagraphEffective", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "getParagraphEffective", "slideIndex");
+        Integer valueShapeIndex = (Integer)getTestValue("Integer", "getParagraphEffective", "shapeIndex");
+        Integer valueParagraphIndex = (Integer)getTestValue("Integer", "getParagraphEffective", "paragraphIndex");
+        String valuePassword = (String)getTestValue("String", "getParagraphEffective", "password");
+        String valueFolder = (String)getTestValue("String", "getParagraphEffective", "folder");
+        String valueStorage = (String)getTestValue("String", "getParagraphEffective", "storage");
+        response = api.getParagraphEffective(valueName, valueSlideIndex, valueShapeIndex, valueParagraphIndex, valuePassword, valueFolder, valueStorage);
+        assertNotNull(response);
+    }
+
+    /**
+     * Read effective paragraph info.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getParagraphEffectiveInvalidNameTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "getParagraphEffective", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "getParagraphEffective", "slideIndex");
+        Integer valueShapeIndex = (Integer)getTestValue("Integer", "getParagraphEffective", "shapeIndex");
+        Integer valueParagraphIndex = (Integer)getTestValue("Integer", "getParagraphEffective", "paragraphIndex");
+        String valuePassword = (String)getTestValue("String", "getParagraphEffective", "password");
+        String valueFolder = (String)getTestValue("String", "getParagraphEffective", "folder");
+        String valueStorage = (String)getTestValue("String", "getParagraphEffective", "storage");
+        try {
+            valueName = (String)invalidizeTestValue("String", valueName, "getParagraphEffective", "name");
+            initialize("getParagraphEffective", "name", valueName);
+            Paragraph response = api.getParagraphEffective(valueName, valueSlideIndex, valueShapeIndex, valueParagraphIndex, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "name", "getParagraphEffective", valueName);
+        }
+        if (needAssertResponse) {
+            assertResponse("name", "getParagraphEffective");
+        }
+    }
+    /**
+     * Read effective paragraph info.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getParagraphEffectiveInvalidSlideIndexTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "getParagraphEffective", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "getParagraphEffective", "slideIndex");
+        Integer valueShapeIndex = (Integer)getTestValue("Integer", "getParagraphEffective", "shapeIndex");
+        Integer valueParagraphIndex = (Integer)getTestValue("Integer", "getParagraphEffective", "paragraphIndex");
+        String valuePassword = (String)getTestValue("String", "getParagraphEffective", "password");
+        String valueFolder = (String)getTestValue("String", "getParagraphEffective", "folder");
+        String valueStorage = (String)getTestValue("String", "getParagraphEffective", "storage");
+        try {
+            valueSlideIndex = (Integer)invalidizeTestValue("Integer", valueSlideIndex, "getParagraphEffective", "slideIndex");
+            initialize("getParagraphEffective", "slideIndex", valueSlideIndex);
+            Paragraph response = api.getParagraphEffective(valueName, valueSlideIndex, valueShapeIndex, valueParagraphIndex, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "slideIndex", "getParagraphEffective", valueSlideIndex);
+        }
+        if (needAssertResponse) {
+            assertResponse("slideIndex", "getParagraphEffective");
+        }
+    }
+    /**
+     * Read effective paragraph info.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getParagraphEffectiveInvalidShapeIndexTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "getParagraphEffective", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "getParagraphEffective", "slideIndex");
+        Integer valueShapeIndex = (Integer)getTestValue("Integer", "getParagraphEffective", "shapeIndex");
+        Integer valueParagraphIndex = (Integer)getTestValue("Integer", "getParagraphEffective", "paragraphIndex");
+        String valuePassword = (String)getTestValue("String", "getParagraphEffective", "password");
+        String valueFolder = (String)getTestValue("String", "getParagraphEffective", "folder");
+        String valueStorage = (String)getTestValue("String", "getParagraphEffective", "storage");
+        try {
+            valueShapeIndex = (Integer)invalidizeTestValue("Integer", valueShapeIndex, "getParagraphEffective", "shapeIndex");
+            initialize("getParagraphEffective", "shapeIndex", valueShapeIndex);
+            Paragraph response = api.getParagraphEffective(valueName, valueSlideIndex, valueShapeIndex, valueParagraphIndex, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "shapeIndex", "getParagraphEffective", valueShapeIndex);
+        }
+        if (needAssertResponse) {
+            assertResponse("shapeIndex", "getParagraphEffective");
+        }
+    }
+    /**
+     * Read effective paragraph info.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getParagraphEffectiveInvalidParagraphIndexTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "getParagraphEffective", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "getParagraphEffective", "slideIndex");
+        Integer valueShapeIndex = (Integer)getTestValue("Integer", "getParagraphEffective", "shapeIndex");
+        Integer valueParagraphIndex = (Integer)getTestValue("Integer", "getParagraphEffective", "paragraphIndex");
+        String valuePassword = (String)getTestValue("String", "getParagraphEffective", "password");
+        String valueFolder = (String)getTestValue("String", "getParagraphEffective", "folder");
+        String valueStorage = (String)getTestValue("String", "getParagraphEffective", "storage");
+        try {
+            valueParagraphIndex = (Integer)invalidizeTestValue("Integer", valueParagraphIndex, "getParagraphEffective", "paragraphIndex");
+            initialize("getParagraphEffective", "paragraphIndex", valueParagraphIndex);
+            Paragraph response = api.getParagraphEffective(valueName, valueSlideIndex, valueShapeIndex, valueParagraphIndex, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "paragraphIndex", "getParagraphEffective", valueParagraphIndex);
+        }
+        if (needAssertResponse) {
+            assertResponse("paragraphIndex", "getParagraphEffective");
+        }
+    }
+    /**
+     * Read effective paragraph info.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getParagraphEffectiveInvalidPasswordTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "getParagraphEffective", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "getParagraphEffective", "slideIndex");
+        Integer valueShapeIndex = (Integer)getTestValue("Integer", "getParagraphEffective", "shapeIndex");
+        Integer valueParagraphIndex = (Integer)getTestValue("Integer", "getParagraphEffective", "paragraphIndex");
+        String valuePassword = (String)getTestValue("String", "getParagraphEffective", "password");
+        String valueFolder = (String)getTestValue("String", "getParagraphEffective", "folder");
+        String valueStorage = (String)getTestValue("String", "getParagraphEffective", "storage");
+        try {
+            valuePassword = (String)invalidizeTestValue("String", valuePassword, "getParagraphEffective", "password");
+            initialize("getParagraphEffective", "password", valuePassword);
+            Paragraph response = api.getParagraphEffective(valueName, valueSlideIndex, valueShapeIndex, valueParagraphIndex, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "password", "getParagraphEffective", valuePassword);
+        }
+        if (needAssertResponse) {
+            assertResponse("password", "getParagraphEffective");
+        }
+    }
+    /**
+     * Read effective paragraph info.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getParagraphEffectiveInvalidFolderTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "getParagraphEffective", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "getParagraphEffective", "slideIndex");
+        Integer valueShapeIndex = (Integer)getTestValue("Integer", "getParagraphEffective", "shapeIndex");
+        Integer valueParagraphIndex = (Integer)getTestValue("Integer", "getParagraphEffective", "paragraphIndex");
+        String valuePassword = (String)getTestValue("String", "getParagraphEffective", "password");
+        String valueFolder = (String)getTestValue("String", "getParagraphEffective", "folder");
+        String valueStorage = (String)getTestValue("String", "getParagraphEffective", "storage");
+        try {
+            valueFolder = (String)invalidizeTestValue("String", valueFolder, "getParagraphEffective", "folder");
+            initialize("getParagraphEffective", "folder", valueFolder);
+            Paragraph response = api.getParagraphEffective(valueName, valueSlideIndex, valueShapeIndex, valueParagraphIndex, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "folder", "getParagraphEffective", valueFolder);
+        }
+        if (needAssertResponse) {
+            assertResponse("folder", "getParagraphEffective");
+        }
+    }
+    /**
+     * Read effective paragraph info.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getParagraphEffectiveInvalidStorageTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "getParagraphEffective", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "getParagraphEffective", "slideIndex");
+        Integer valueShapeIndex = (Integer)getTestValue("Integer", "getParagraphEffective", "shapeIndex");
+        Integer valueParagraphIndex = (Integer)getTestValue("Integer", "getParagraphEffective", "paragraphIndex");
+        String valuePassword = (String)getTestValue("String", "getParagraphEffective", "password");
+        String valueFolder = (String)getTestValue("String", "getParagraphEffective", "folder");
+        String valueStorage = (String)getTestValue("String", "getParagraphEffective", "storage");
+        try {
+            valueStorage = (String)invalidizeTestValue("String", valueStorage, "getParagraphEffective", "storage");
+            initialize("getParagraphEffective", "storage", valueStorage);
+            Paragraph response = api.getParagraphEffective(valueName, valueSlideIndex, valueShapeIndex, valueParagraphIndex, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "storage", "getParagraphEffective", valueStorage);
+        }
+        if (needAssertResponse) {
+            assertResponse("storage", "getParagraphEffective");
+        }
+    }
+    
+    /**
      * Return coordinates of rect that bounds paragraph. The rect includes all the lines of text in paragraph, including empty ones.
      *
      * 
@@ -32943,6 +33178,279 @@ public class SlidesApiTest extends ApiTest {
         }
         if (needAssertResponse) {
             assertResponse("storage", "getPortion");
+        }
+    }
+    
+    /**
+     * Read effective portion info.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getPortionEffectiveTest() throws ApiException, Exception {
+        initialize("getPortionEffective", null, null);
+        Portion response = null;
+        String valueName = (String)getTestValue("String", "getPortionEffective", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "getPortionEffective", "slideIndex");
+        Integer valueShapeIndex = (Integer)getTestValue("Integer", "getPortionEffective", "shapeIndex");
+        Integer valueParagraphIndex = (Integer)getTestValue("Integer", "getPortionEffective", "paragraphIndex");
+        Integer valuePortionIndex = (Integer)getTestValue("Integer", "getPortionEffective", "portionIndex");
+        String valuePassword = (String)getTestValue("String", "getPortionEffective", "password");
+        String valueFolder = (String)getTestValue("String", "getPortionEffective", "folder");
+        String valueStorage = (String)getTestValue("String", "getPortionEffective", "storage");
+        response = api.getPortionEffective(valueName, valueSlideIndex, valueShapeIndex, valueParagraphIndex, valuePortionIndex, valuePassword, valueFolder, valueStorage);
+        assertNotNull(response);
+    }
+
+    /**
+     * Read effective portion info.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getPortionEffectiveInvalidNameTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "getPortionEffective", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "getPortionEffective", "slideIndex");
+        Integer valueShapeIndex = (Integer)getTestValue("Integer", "getPortionEffective", "shapeIndex");
+        Integer valueParagraphIndex = (Integer)getTestValue("Integer", "getPortionEffective", "paragraphIndex");
+        Integer valuePortionIndex = (Integer)getTestValue("Integer", "getPortionEffective", "portionIndex");
+        String valuePassword = (String)getTestValue("String", "getPortionEffective", "password");
+        String valueFolder = (String)getTestValue("String", "getPortionEffective", "folder");
+        String valueStorage = (String)getTestValue("String", "getPortionEffective", "storage");
+        try {
+            valueName = (String)invalidizeTestValue("String", valueName, "getPortionEffective", "name");
+            initialize("getPortionEffective", "name", valueName);
+            Portion response = api.getPortionEffective(valueName, valueSlideIndex, valueShapeIndex, valueParagraphIndex, valuePortionIndex, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "name", "getPortionEffective", valueName);
+        }
+        if (needAssertResponse) {
+            assertResponse("name", "getPortionEffective");
+        }
+    }
+    /**
+     * Read effective portion info.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getPortionEffectiveInvalidSlideIndexTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "getPortionEffective", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "getPortionEffective", "slideIndex");
+        Integer valueShapeIndex = (Integer)getTestValue("Integer", "getPortionEffective", "shapeIndex");
+        Integer valueParagraphIndex = (Integer)getTestValue("Integer", "getPortionEffective", "paragraphIndex");
+        Integer valuePortionIndex = (Integer)getTestValue("Integer", "getPortionEffective", "portionIndex");
+        String valuePassword = (String)getTestValue("String", "getPortionEffective", "password");
+        String valueFolder = (String)getTestValue("String", "getPortionEffective", "folder");
+        String valueStorage = (String)getTestValue("String", "getPortionEffective", "storage");
+        try {
+            valueSlideIndex = (Integer)invalidizeTestValue("Integer", valueSlideIndex, "getPortionEffective", "slideIndex");
+            initialize("getPortionEffective", "slideIndex", valueSlideIndex);
+            Portion response = api.getPortionEffective(valueName, valueSlideIndex, valueShapeIndex, valueParagraphIndex, valuePortionIndex, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "slideIndex", "getPortionEffective", valueSlideIndex);
+        }
+        if (needAssertResponse) {
+            assertResponse("slideIndex", "getPortionEffective");
+        }
+    }
+    /**
+     * Read effective portion info.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getPortionEffectiveInvalidShapeIndexTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "getPortionEffective", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "getPortionEffective", "slideIndex");
+        Integer valueShapeIndex = (Integer)getTestValue("Integer", "getPortionEffective", "shapeIndex");
+        Integer valueParagraphIndex = (Integer)getTestValue("Integer", "getPortionEffective", "paragraphIndex");
+        Integer valuePortionIndex = (Integer)getTestValue("Integer", "getPortionEffective", "portionIndex");
+        String valuePassword = (String)getTestValue("String", "getPortionEffective", "password");
+        String valueFolder = (String)getTestValue("String", "getPortionEffective", "folder");
+        String valueStorage = (String)getTestValue("String", "getPortionEffective", "storage");
+        try {
+            valueShapeIndex = (Integer)invalidizeTestValue("Integer", valueShapeIndex, "getPortionEffective", "shapeIndex");
+            initialize("getPortionEffective", "shapeIndex", valueShapeIndex);
+            Portion response = api.getPortionEffective(valueName, valueSlideIndex, valueShapeIndex, valueParagraphIndex, valuePortionIndex, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "shapeIndex", "getPortionEffective", valueShapeIndex);
+        }
+        if (needAssertResponse) {
+            assertResponse("shapeIndex", "getPortionEffective");
+        }
+    }
+    /**
+     * Read effective portion info.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getPortionEffectiveInvalidParagraphIndexTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "getPortionEffective", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "getPortionEffective", "slideIndex");
+        Integer valueShapeIndex = (Integer)getTestValue("Integer", "getPortionEffective", "shapeIndex");
+        Integer valueParagraphIndex = (Integer)getTestValue("Integer", "getPortionEffective", "paragraphIndex");
+        Integer valuePortionIndex = (Integer)getTestValue("Integer", "getPortionEffective", "portionIndex");
+        String valuePassword = (String)getTestValue("String", "getPortionEffective", "password");
+        String valueFolder = (String)getTestValue("String", "getPortionEffective", "folder");
+        String valueStorage = (String)getTestValue("String", "getPortionEffective", "storage");
+        try {
+            valueParagraphIndex = (Integer)invalidizeTestValue("Integer", valueParagraphIndex, "getPortionEffective", "paragraphIndex");
+            initialize("getPortionEffective", "paragraphIndex", valueParagraphIndex);
+            Portion response = api.getPortionEffective(valueName, valueSlideIndex, valueShapeIndex, valueParagraphIndex, valuePortionIndex, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "paragraphIndex", "getPortionEffective", valueParagraphIndex);
+        }
+        if (needAssertResponse) {
+            assertResponse("paragraphIndex", "getPortionEffective");
+        }
+    }
+    /**
+     * Read effective portion info.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getPortionEffectiveInvalidPortionIndexTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "getPortionEffective", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "getPortionEffective", "slideIndex");
+        Integer valueShapeIndex = (Integer)getTestValue("Integer", "getPortionEffective", "shapeIndex");
+        Integer valueParagraphIndex = (Integer)getTestValue("Integer", "getPortionEffective", "paragraphIndex");
+        Integer valuePortionIndex = (Integer)getTestValue("Integer", "getPortionEffective", "portionIndex");
+        String valuePassword = (String)getTestValue("String", "getPortionEffective", "password");
+        String valueFolder = (String)getTestValue("String", "getPortionEffective", "folder");
+        String valueStorage = (String)getTestValue("String", "getPortionEffective", "storage");
+        try {
+            valuePortionIndex = (Integer)invalidizeTestValue("Integer", valuePortionIndex, "getPortionEffective", "portionIndex");
+            initialize("getPortionEffective", "portionIndex", valuePortionIndex);
+            Portion response = api.getPortionEffective(valueName, valueSlideIndex, valueShapeIndex, valueParagraphIndex, valuePortionIndex, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "portionIndex", "getPortionEffective", valuePortionIndex);
+        }
+        if (needAssertResponse) {
+            assertResponse("portionIndex", "getPortionEffective");
+        }
+    }
+    /**
+     * Read effective portion info.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getPortionEffectiveInvalidPasswordTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "getPortionEffective", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "getPortionEffective", "slideIndex");
+        Integer valueShapeIndex = (Integer)getTestValue("Integer", "getPortionEffective", "shapeIndex");
+        Integer valueParagraphIndex = (Integer)getTestValue("Integer", "getPortionEffective", "paragraphIndex");
+        Integer valuePortionIndex = (Integer)getTestValue("Integer", "getPortionEffective", "portionIndex");
+        String valuePassword = (String)getTestValue("String", "getPortionEffective", "password");
+        String valueFolder = (String)getTestValue("String", "getPortionEffective", "folder");
+        String valueStorage = (String)getTestValue("String", "getPortionEffective", "storage");
+        try {
+            valuePassword = (String)invalidizeTestValue("String", valuePassword, "getPortionEffective", "password");
+            initialize("getPortionEffective", "password", valuePassword);
+            Portion response = api.getPortionEffective(valueName, valueSlideIndex, valueShapeIndex, valueParagraphIndex, valuePortionIndex, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "password", "getPortionEffective", valuePassword);
+        }
+        if (needAssertResponse) {
+            assertResponse("password", "getPortionEffective");
+        }
+    }
+    /**
+     * Read effective portion info.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getPortionEffectiveInvalidFolderTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "getPortionEffective", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "getPortionEffective", "slideIndex");
+        Integer valueShapeIndex = (Integer)getTestValue("Integer", "getPortionEffective", "shapeIndex");
+        Integer valueParagraphIndex = (Integer)getTestValue("Integer", "getPortionEffective", "paragraphIndex");
+        Integer valuePortionIndex = (Integer)getTestValue("Integer", "getPortionEffective", "portionIndex");
+        String valuePassword = (String)getTestValue("String", "getPortionEffective", "password");
+        String valueFolder = (String)getTestValue("String", "getPortionEffective", "folder");
+        String valueStorage = (String)getTestValue("String", "getPortionEffective", "storage");
+        try {
+            valueFolder = (String)invalidizeTestValue("String", valueFolder, "getPortionEffective", "folder");
+            initialize("getPortionEffective", "folder", valueFolder);
+            Portion response = api.getPortionEffective(valueName, valueSlideIndex, valueShapeIndex, valueParagraphIndex, valuePortionIndex, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "folder", "getPortionEffective", valueFolder);
+        }
+        if (needAssertResponse) {
+            assertResponse("folder", "getPortionEffective");
+        }
+    }
+    /**
+     * Read effective portion info.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getPortionEffectiveInvalidStorageTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "getPortionEffective", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "getPortionEffective", "slideIndex");
+        Integer valueShapeIndex = (Integer)getTestValue("Integer", "getPortionEffective", "shapeIndex");
+        Integer valueParagraphIndex = (Integer)getTestValue("Integer", "getPortionEffective", "paragraphIndex");
+        Integer valuePortionIndex = (Integer)getTestValue("Integer", "getPortionEffective", "portionIndex");
+        String valuePassword = (String)getTestValue("String", "getPortionEffective", "password");
+        String valueFolder = (String)getTestValue("String", "getPortionEffective", "folder");
+        String valueStorage = (String)getTestValue("String", "getPortionEffective", "storage");
+        try {
+            valueStorage = (String)invalidizeTestValue("String", valueStorage, "getPortionEffective", "storage");
+            initialize("getPortionEffective", "storage", valueStorage);
+            Portion response = api.getPortionEffective(valueName, valueSlideIndex, valueShapeIndex, valueParagraphIndex, valuePortionIndex, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "storage", "getPortionEffective", valueStorage);
+        }
+        if (needAssertResponse) {
+            assertResponse("storage", "getPortionEffective");
         }
     }
     
@@ -39896,6 +40404,279 @@ public class SlidesApiTest extends ApiTest {
     }
     
     /**
+     * Read effective paragraph info (for smart art and group shapes).
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getSubshapeParagraphEffectiveTest() throws ApiException, Exception {
+        initialize("getSubshapeParagraphEffective", null, null);
+        Paragraph response = null;
+        String valueName = (String)getTestValue("String", "getSubshapeParagraphEffective", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "getSubshapeParagraphEffective", "slideIndex");
+        String valuePath = (String)getTestValue("String", "getSubshapeParagraphEffective", "path");
+        Integer valueShapeIndex = (Integer)getTestValue("Integer", "getSubshapeParagraphEffective", "shapeIndex");
+        Integer valueParagraphIndex = (Integer)getTestValue("Integer", "getSubshapeParagraphEffective", "paragraphIndex");
+        String valuePassword = (String)getTestValue("String", "getSubshapeParagraphEffective", "password");
+        String valueFolder = (String)getTestValue("String", "getSubshapeParagraphEffective", "folder");
+        String valueStorage = (String)getTestValue("String", "getSubshapeParagraphEffective", "storage");
+        response = api.getSubshapeParagraphEffective(valueName, valueSlideIndex, valuePath, valueShapeIndex, valueParagraphIndex, valuePassword, valueFolder, valueStorage);
+        assertNotNull(response);
+    }
+
+    /**
+     * Read effective paragraph info (for smart art and group shapes).
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getSubshapeParagraphEffectiveInvalidNameTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "getSubshapeParagraphEffective", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "getSubshapeParagraphEffective", "slideIndex");
+        String valuePath = (String)getTestValue("String", "getSubshapeParagraphEffective", "path");
+        Integer valueShapeIndex = (Integer)getTestValue("Integer", "getSubshapeParagraphEffective", "shapeIndex");
+        Integer valueParagraphIndex = (Integer)getTestValue("Integer", "getSubshapeParagraphEffective", "paragraphIndex");
+        String valuePassword = (String)getTestValue("String", "getSubshapeParagraphEffective", "password");
+        String valueFolder = (String)getTestValue("String", "getSubshapeParagraphEffective", "folder");
+        String valueStorage = (String)getTestValue("String", "getSubshapeParagraphEffective", "storage");
+        try {
+            valueName = (String)invalidizeTestValue("String", valueName, "getSubshapeParagraphEffective", "name");
+            initialize("getSubshapeParagraphEffective", "name", valueName);
+            Paragraph response = api.getSubshapeParagraphEffective(valueName, valueSlideIndex, valuePath, valueShapeIndex, valueParagraphIndex, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "name", "getSubshapeParagraphEffective", valueName);
+        }
+        if (needAssertResponse) {
+            assertResponse("name", "getSubshapeParagraphEffective");
+        }
+    }
+    /**
+     * Read effective paragraph info (for smart art and group shapes).
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getSubshapeParagraphEffectiveInvalidSlideIndexTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "getSubshapeParagraphEffective", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "getSubshapeParagraphEffective", "slideIndex");
+        String valuePath = (String)getTestValue("String", "getSubshapeParagraphEffective", "path");
+        Integer valueShapeIndex = (Integer)getTestValue("Integer", "getSubshapeParagraphEffective", "shapeIndex");
+        Integer valueParagraphIndex = (Integer)getTestValue("Integer", "getSubshapeParagraphEffective", "paragraphIndex");
+        String valuePassword = (String)getTestValue("String", "getSubshapeParagraphEffective", "password");
+        String valueFolder = (String)getTestValue("String", "getSubshapeParagraphEffective", "folder");
+        String valueStorage = (String)getTestValue("String", "getSubshapeParagraphEffective", "storage");
+        try {
+            valueSlideIndex = (Integer)invalidizeTestValue("Integer", valueSlideIndex, "getSubshapeParagraphEffective", "slideIndex");
+            initialize("getSubshapeParagraphEffective", "slideIndex", valueSlideIndex);
+            Paragraph response = api.getSubshapeParagraphEffective(valueName, valueSlideIndex, valuePath, valueShapeIndex, valueParagraphIndex, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "slideIndex", "getSubshapeParagraphEffective", valueSlideIndex);
+        }
+        if (needAssertResponse) {
+            assertResponse("slideIndex", "getSubshapeParagraphEffective");
+        }
+    }
+    /**
+     * Read effective paragraph info (for smart art and group shapes).
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getSubshapeParagraphEffectiveInvalidPathTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "getSubshapeParagraphEffective", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "getSubshapeParagraphEffective", "slideIndex");
+        String valuePath = (String)getTestValue("String", "getSubshapeParagraphEffective", "path");
+        Integer valueShapeIndex = (Integer)getTestValue("Integer", "getSubshapeParagraphEffective", "shapeIndex");
+        Integer valueParagraphIndex = (Integer)getTestValue("Integer", "getSubshapeParagraphEffective", "paragraphIndex");
+        String valuePassword = (String)getTestValue("String", "getSubshapeParagraphEffective", "password");
+        String valueFolder = (String)getTestValue("String", "getSubshapeParagraphEffective", "folder");
+        String valueStorage = (String)getTestValue("String", "getSubshapeParagraphEffective", "storage");
+        try {
+            valuePath = (String)invalidizeTestValue("String", valuePath, "getSubshapeParagraphEffective", "path");
+            initialize("getSubshapeParagraphEffective", "path", valuePath);
+            Paragraph response = api.getSubshapeParagraphEffective(valueName, valueSlideIndex, valuePath, valueShapeIndex, valueParagraphIndex, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "path", "getSubshapeParagraphEffective", valuePath);
+        }
+        if (needAssertResponse) {
+            assertResponse("path", "getSubshapeParagraphEffective");
+        }
+    }
+    /**
+     * Read effective paragraph info (for smart art and group shapes).
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getSubshapeParagraphEffectiveInvalidShapeIndexTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "getSubshapeParagraphEffective", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "getSubshapeParagraphEffective", "slideIndex");
+        String valuePath = (String)getTestValue("String", "getSubshapeParagraphEffective", "path");
+        Integer valueShapeIndex = (Integer)getTestValue("Integer", "getSubshapeParagraphEffective", "shapeIndex");
+        Integer valueParagraphIndex = (Integer)getTestValue("Integer", "getSubshapeParagraphEffective", "paragraphIndex");
+        String valuePassword = (String)getTestValue("String", "getSubshapeParagraphEffective", "password");
+        String valueFolder = (String)getTestValue("String", "getSubshapeParagraphEffective", "folder");
+        String valueStorage = (String)getTestValue("String", "getSubshapeParagraphEffective", "storage");
+        try {
+            valueShapeIndex = (Integer)invalidizeTestValue("Integer", valueShapeIndex, "getSubshapeParagraphEffective", "shapeIndex");
+            initialize("getSubshapeParagraphEffective", "shapeIndex", valueShapeIndex);
+            Paragraph response = api.getSubshapeParagraphEffective(valueName, valueSlideIndex, valuePath, valueShapeIndex, valueParagraphIndex, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "shapeIndex", "getSubshapeParagraphEffective", valueShapeIndex);
+        }
+        if (needAssertResponse) {
+            assertResponse("shapeIndex", "getSubshapeParagraphEffective");
+        }
+    }
+    /**
+     * Read effective paragraph info (for smart art and group shapes).
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getSubshapeParagraphEffectiveInvalidParagraphIndexTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "getSubshapeParagraphEffective", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "getSubshapeParagraphEffective", "slideIndex");
+        String valuePath = (String)getTestValue("String", "getSubshapeParagraphEffective", "path");
+        Integer valueShapeIndex = (Integer)getTestValue("Integer", "getSubshapeParagraphEffective", "shapeIndex");
+        Integer valueParagraphIndex = (Integer)getTestValue("Integer", "getSubshapeParagraphEffective", "paragraphIndex");
+        String valuePassword = (String)getTestValue("String", "getSubshapeParagraphEffective", "password");
+        String valueFolder = (String)getTestValue("String", "getSubshapeParagraphEffective", "folder");
+        String valueStorage = (String)getTestValue("String", "getSubshapeParagraphEffective", "storage");
+        try {
+            valueParagraphIndex = (Integer)invalidizeTestValue("Integer", valueParagraphIndex, "getSubshapeParagraphEffective", "paragraphIndex");
+            initialize("getSubshapeParagraphEffective", "paragraphIndex", valueParagraphIndex);
+            Paragraph response = api.getSubshapeParagraphEffective(valueName, valueSlideIndex, valuePath, valueShapeIndex, valueParagraphIndex, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "paragraphIndex", "getSubshapeParagraphEffective", valueParagraphIndex);
+        }
+        if (needAssertResponse) {
+            assertResponse("paragraphIndex", "getSubshapeParagraphEffective");
+        }
+    }
+    /**
+     * Read effective paragraph info (for smart art and group shapes).
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getSubshapeParagraphEffectiveInvalidPasswordTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "getSubshapeParagraphEffective", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "getSubshapeParagraphEffective", "slideIndex");
+        String valuePath = (String)getTestValue("String", "getSubshapeParagraphEffective", "path");
+        Integer valueShapeIndex = (Integer)getTestValue("Integer", "getSubshapeParagraphEffective", "shapeIndex");
+        Integer valueParagraphIndex = (Integer)getTestValue("Integer", "getSubshapeParagraphEffective", "paragraphIndex");
+        String valuePassword = (String)getTestValue("String", "getSubshapeParagraphEffective", "password");
+        String valueFolder = (String)getTestValue("String", "getSubshapeParagraphEffective", "folder");
+        String valueStorage = (String)getTestValue("String", "getSubshapeParagraphEffective", "storage");
+        try {
+            valuePassword = (String)invalidizeTestValue("String", valuePassword, "getSubshapeParagraphEffective", "password");
+            initialize("getSubshapeParagraphEffective", "password", valuePassword);
+            Paragraph response = api.getSubshapeParagraphEffective(valueName, valueSlideIndex, valuePath, valueShapeIndex, valueParagraphIndex, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "password", "getSubshapeParagraphEffective", valuePassword);
+        }
+        if (needAssertResponse) {
+            assertResponse("password", "getSubshapeParagraphEffective");
+        }
+    }
+    /**
+     * Read effective paragraph info (for smart art and group shapes).
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getSubshapeParagraphEffectiveInvalidFolderTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "getSubshapeParagraphEffective", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "getSubshapeParagraphEffective", "slideIndex");
+        String valuePath = (String)getTestValue("String", "getSubshapeParagraphEffective", "path");
+        Integer valueShapeIndex = (Integer)getTestValue("Integer", "getSubshapeParagraphEffective", "shapeIndex");
+        Integer valueParagraphIndex = (Integer)getTestValue("Integer", "getSubshapeParagraphEffective", "paragraphIndex");
+        String valuePassword = (String)getTestValue("String", "getSubshapeParagraphEffective", "password");
+        String valueFolder = (String)getTestValue("String", "getSubshapeParagraphEffective", "folder");
+        String valueStorage = (String)getTestValue("String", "getSubshapeParagraphEffective", "storage");
+        try {
+            valueFolder = (String)invalidizeTestValue("String", valueFolder, "getSubshapeParagraphEffective", "folder");
+            initialize("getSubshapeParagraphEffective", "folder", valueFolder);
+            Paragraph response = api.getSubshapeParagraphEffective(valueName, valueSlideIndex, valuePath, valueShapeIndex, valueParagraphIndex, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "folder", "getSubshapeParagraphEffective", valueFolder);
+        }
+        if (needAssertResponse) {
+            assertResponse("folder", "getSubshapeParagraphEffective");
+        }
+    }
+    /**
+     * Read effective paragraph info (for smart art and group shapes).
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getSubshapeParagraphEffectiveInvalidStorageTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "getSubshapeParagraphEffective", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "getSubshapeParagraphEffective", "slideIndex");
+        String valuePath = (String)getTestValue("String", "getSubshapeParagraphEffective", "path");
+        Integer valueShapeIndex = (Integer)getTestValue("Integer", "getSubshapeParagraphEffective", "shapeIndex");
+        Integer valueParagraphIndex = (Integer)getTestValue("Integer", "getSubshapeParagraphEffective", "paragraphIndex");
+        String valuePassword = (String)getTestValue("String", "getSubshapeParagraphEffective", "password");
+        String valueFolder = (String)getTestValue("String", "getSubshapeParagraphEffective", "folder");
+        String valueStorage = (String)getTestValue("String", "getSubshapeParagraphEffective", "storage");
+        try {
+            valueStorage = (String)invalidizeTestValue("String", valueStorage, "getSubshapeParagraphEffective", "storage");
+            initialize("getSubshapeParagraphEffective", "storage", valueStorage);
+            Paragraph response = api.getSubshapeParagraphEffective(valueName, valueSlideIndex, valuePath, valueShapeIndex, valueParagraphIndex, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "storage", "getSubshapeParagraphEffective", valueStorage);
+        }
+        if (needAssertResponse) {
+            assertResponse("storage", "getSubshapeParagraphEffective");
+        }
+    }
+    
+    /**
      * Read shape paragraphs info (for smart art and group shapes).
      *
      * 
@@ -40440,6 +41221,320 @@ public class SlidesApiTest extends ApiTest {
         }
         if (needAssertResponse) {
             assertResponse("storage", "getSubshapePortion");
+        }
+    }
+    
+    /**
+     * Read effective portion info (for smart art and group shapes).
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getSubshapePortionEffectiveTest() throws ApiException, Exception {
+        initialize("getSubshapePortionEffective", null, null);
+        Portion response = null;
+        String valueName = (String)getTestValue("String", "getSubshapePortionEffective", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "getSubshapePortionEffective", "slideIndex");
+        String valuePath = (String)getTestValue("String", "getSubshapePortionEffective", "path");
+        Integer valueShapeIndex = (Integer)getTestValue("Integer", "getSubshapePortionEffective", "shapeIndex");
+        Integer valueParagraphIndex = (Integer)getTestValue("Integer", "getSubshapePortionEffective", "paragraphIndex");
+        Integer valuePortionIndex = (Integer)getTestValue("Integer", "getSubshapePortionEffective", "portionIndex");
+        String valuePassword = (String)getTestValue("String", "getSubshapePortionEffective", "password");
+        String valueFolder = (String)getTestValue("String", "getSubshapePortionEffective", "folder");
+        String valueStorage = (String)getTestValue("String", "getSubshapePortionEffective", "storage");
+        response = api.getSubshapePortionEffective(valueName, valueSlideIndex, valuePath, valueShapeIndex, valueParagraphIndex, valuePortionIndex, valuePassword, valueFolder, valueStorage);
+        assertNotNull(response);
+    }
+
+    /**
+     * Read effective portion info (for smart art and group shapes).
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getSubshapePortionEffectiveInvalidNameTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "getSubshapePortionEffective", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "getSubshapePortionEffective", "slideIndex");
+        String valuePath = (String)getTestValue("String", "getSubshapePortionEffective", "path");
+        Integer valueShapeIndex = (Integer)getTestValue("Integer", "getSubshapePortionEffective", "shapeIndex");
+        Integer valueParagraphIndex = (Integer)getTestValue("Integer", "getSubshapePortionEffective", "paragraphIndex");
+        Integer valuePortionIndex = (Integer)getTestValue("Integer", "getSubshapePortionEffective", "portionIndex");
+        String valuePassword = (String)getTestValue("String", "getSubshapePortionEffective", "password");
+        String valueFolder = (String)getTestValue("String", "getSubshapePortionEffective", "folder");
+        String valueStorage = (String)getTestValue("String", "getSubshapePortionEffective", "storage");
+        try {
+            valueName = (String)invalidizeTestValue("String", valueName, "getSubshapePortionEffective", "name");
+            initialize("getSubshapePortionEffective", "name", valueName);
+            Portion response = api.getSubshapePortionEffective(valueName, valueSlideIndex, valuePath, valueShapeIndex, valueParagraphIndex, valuePortionIndex, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "name", "getSubshapePortionEffective", valueName);
+        }
+        if (needAssertResponse) {
+            assertResponse("name", "getSubshapePortionEffective");
+        }
+    }
+    /**
+     * Read effective portion info (for smart art and group shapes).
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getSubshapePortionEffectiveInvalidSlideIndexTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "getSubshapePortionEffective", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "getSubshapePortionEffective", "slideIndex");
+        String valuePath = (String)getTestValue("String", "getSubshapePortionEffective", "path");
+        Integer valueShapeIndex = (Integer)getTestValue("Integer", "getSubshapePortionEffective", "shapeIndex");
+        Integer valueParagraphIndex = (Integer)getTestValue("Integer", "getSubshapePortionEffective", "paragraphIndex");
+        Integer valuePortionIndex = (Integer)getTestValue("Integer", "getSubshapePortionEffective", "portionIndex");
+        String valuePassword = (String)getTestValue("String", "getSubshapePortionEffective", "password");
+        String valueFolder = (String)getTestValue("String", "getSubshapePortionEffective", "folder");
+        String valueStorage = (String)getTestValue("String", "getSubshapePortionEffective", "storage");
+        try {
+            valueSlideIndex = (Integer)invalidizeTestValue("Integer", valueSlideIndex, "getSubshapePortionEffective", "slideIndex");
+            initialize("getSubshapePortionEffective", "slideIndex", valueSlideIndex);
+            Portion response = api.getSubshapePortionEffective(valueName, valueSlideIndex, valuePath, valueShapeIndex, valueParagraphIndex, valuePortionIndex, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "slideIndex", "getSubshapePortionEffective", valueSlideIndex);
+        }
+        if (needAssertResponse) {
+            assertResponse("slideIndex", "getSubshapePortionEffective");
+        }
+    }
+    /**
+     * Read effective portion info (for smart art and group shapes).
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getSubshapePortionEffectiveInvalidPathTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "getSubshapePortionEffective", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "getSubshapePortionEffective", "slideIndex");
+        String valuePath = (String)getTestValue("String", "getSubshapePortionEffective", "path");
+        Integer valueShapeIndex = (Integer)getTestValue("Integer", "getSubshapePortionEffective", "shapeIndex");
+        Integer valueParagraphIndex = (Integer)getTestValue("Integer", "getSubshapePortionEffective", "paragraphIndex");
+        Integer valuePortionIndex = (Integer)getTestValue("Integer", "getSubshapePortionEffective", "portionIndex");
+        String valuePassword = (String)getTestValue("String", "getSubshapePortionEffective", "password");
+        String valueFolder = (String)getTestValue("String", "getSubshapePortionEffective", "folder");
+        String valueStorage = (String)getTestValue("String", "getSubshapePortionEffective", "storage");
+        try {
+            valuePath = (String)invalidizeTestValue("String", valuePath, "getSubshapePortionEffective", "path");
+            initialize("getSubshapePortionEffective", "path", valuePath);
+            Portion response = api.getSubshapePortionEffective(valueName, valueSlideIndex, valuePath, valueShapeIndex, valueParagraphIndex, valuePortionIndex, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "path", "getSubshapePortionEffective", valuePath);
+        }
+        if (needAssertResponse) {
+            assertResponse("path", "getSubshapePortionEffective");
+        }
+    }
+    /**
+     * Read effective portion info (for smart art and group shapes).
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getSubshapePortionEffectiveInvalidShapeIndexTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "getSubshapePortionEffective", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "getSubshapePortionEffective", "slideIndex");
+        String valuePath = (String)getTestValue("String", "getSubshapePortionEffective", "path");
+        Integer valueShapeIndex = (Integer)getTestValue("Integer", "getSubshapePortionEffective", "shapeIndex");
+        Integer valueParagraphIndex = (Integer)getTestValue("Integer", "getSubshapePortionEffective", "paragraphIndex");
+        Integer valuePortionIndex = (Integer)getTestValue("Integer", "getSubshapePortionEffective", "portionIndex");
+        String valuePassword = (String)getTestValue("String", "getSubshapePortionEffective", "password");
+        String valueFolder = (String)getTestValue("String", "getSubshapePortionEffective", "folder");
+        String valueStorage = (String)getTestValue("String", "getSubshapePortionEffective", "storage");
+        try {
+            valueShapeIndex = (Integer)invalidizeTestValue("Integer", valueShapeIndex, "getSubshapePortionEffective", "shapeIndex");
+            initialize("getSubshapePortionEffective", "shapeIndex", valueShapeIndex);
+            Portion response = api.getSubshapePortionEffective(valueName, valueSlideIndex, valuePath, valueShapeIndex, valueParagraphIndex, valuePortionIndex, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "shapeIndex", "getSubshapePortionEffective", valueShapeIndex);
+        }
+        if (needAssertResponse) {
+            assertResponse("shapeIndex", "getSubshapePortionEffective");
+        }
+    }
+    /**
+     * Read effective portion info (for smart art and group shapes).
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getSubshapePortionEffectiveInvalidParagraphIndexTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "getSubshapePortionEffective", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "getSubshapePortionEffective", "slideIndex");
+        String valuePath = (String)getTestValue("String", "getSubshapePortionEffective", "path");
+        Integer valueShapeIndex = (Integer)getTestValue("Integer", "getSubshapePortionEffective", "shapeIndex");
+        Integer valueParagraphIndex = (Integer)getTestValue("Integer", "getSubshapePortionEffective", "paragraphIndex");
+        Integer valuePortionIndex = (Integer)getTestValue("Integer", "getSubshapePortionEffective", "portionIndex");
+        String valuePassword = (String)getTestValue("String", "getSubshapePortionEffective", "password");
+        String valueFolder = (String)getTestValue("String", "getSubshapePortionEffective", "folder");
+        String valueStorage = (String)getTestValue("String", "getSubshapePortionEffective", "storage");
+        try {
+            valueParagraphIndex = (Integer)invalidizeTestValue("Integer", valueParagraphIndex, "getSubshapePortionEffective", "paragraphIndex");
+            initialize("getSubshapePortionEffective", "paragraphIndex", valueParagraphIndex);
+            Portion response = api.getSubshapePortionEffective(valueName, valueSlideIndex, valuePath, valueShapeIndex, valueParagraphIndex, valuePortionIndex, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "paragraphIndex", "getSubshapePortionEffective", valueParagraphIndex);
+        }
+        if (needAssertResponse) {
+            assertResponse("paragraphIndex", "getSubshapePortionEffective");
+        }
+    }
+    /**
+     * Read effective portion info (for smart art and group shapes).
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getSubshapePortionEffectiveInvalidPortionIndexTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "getSubshapePortionEffective", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "getSubshapePortionEffective", "slideIndex");
+        String valuePath = (String)getTestValue("String", "getSubshapePortionEffective", "path");
+        Integer valueShapeIndex = (Integer)getTestValue("Integer", "getSubshapePortionEffective", "shapeIndex");
+        Integer valueParagraphIndex = (Integer)getTestValue("Integer", "getSubshapePortionEffective", "paragraphIndex");
+        Integer valuePortionIndex = (Integer)getTestValue("Integer", "getSubshapePortionEffective", "portionIndex");
+        String valuePassword = (String)getTestValue("String", "getSubshapePortionEffective", "password");
+        String valueFolder = (String)getTestValue("String", "getSubshapePortionEffective", "folder");
+        String valueStorage = (String)getTestValue("String", "getSubshapePortionEffective", "storage");
+        try {
+            valuePortionIndex = (Integer)invalidizeTestValue("Integer", valuePortionIndex, "getSubshapePortionEffective", "portionIndex");
+            initialize("getSubshapePortionEffective", "portionIndex", valuePortionIndex);
+            Portion response = api.getSubshapePortionEffective(valueName, valueSlideIndex, valuePath, valueShapeIndex, valueParagraphIndex, valuePortionIndex, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "portionIndex", "getSubshapePortionEffective", valuePortionIndex);
+        }
+        if (needAssertResponse) {
+            assertResponse("portionIndex", "getSubshapePortionEffective");
+        }
+    }
+    /**
+     * Read effective portion info (for smart art and group shapes).
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getSubshapePortionEffectiveInvalidPasswordTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "getSubshapePortionEffective", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "getSubshapePortionEffective", "slideIndex");
+        String valuePath = (String)getTestValue("String", "getSubshapePortionEffective", "path");
+        Integer valueShapeIndex = (Integer)getTestValue("Integer", "getSubshapePortionEffective", "shapeIndex");
+        Integer valueParagraphIndex = (Integer)getTestValue("Integer", "getSubshapePortionEffective", "paragraphIndex");
+        Integer valuePortionIndex = (Integer)getTestValue("Integer", "getSubshapePortionEffective", "portionIndex");
+        String valuePassword = (String)getTestValue("String", "getSubshapePortionEffective", "password");
+        String valueFolder = (String)getTestValue("String", "getSubshapePortionEffective", "folder");
+        String valueStorage = (String)getTestValue("String", "getSubshapePortionEffective", "storage");
+        try {
+            valuePassword = (String)invalidizeTestValue("String", valuePassword, "getSubshapePortionEffective", "password");
+            initialize("getSubshapePortionEffective", "password", valuePassword);
+            Portion response = api.getSubshapePortionEffective(valueName, valueSlideIndex, valuePath, valueShapeIndex, valueParagraphIndex, valuePortionIndex, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "password", "getSubshapePortionEffective", valuePassword);
+        }
+        if (needAssertResponse) {
+            assertResponse("password", "getSubshapePortionEffective");
+        }
+    }
+    /**
+     * Read effective portion info (for smart art and group shapes).
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getSubshapePortionEffectiveInvalidFolderTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "getSubshapePortionEffective", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "getSubshapePortionEffective", "slideIndex");
+        String valuePath = (String)getTestValue("String", "getSubshapePortionEffective", "path");
+        Integer valueShapeIndex = (Integer)getTestValue("Integer", "getSubshapePortionEffective", "shapeIndex");
+        Integer valueParagraphIndex = (Integer)getTestValue("Integer", "getSubshapePortionEffective", "paragraphIndex");
+        Integer valuePortionIndex = (Integer)getTestValue("Integer", "getSubshapePortionEffective", "portionIndex");
+        String valuePassword = (String)getTestValue("String", "getSubshapePortionEffective", "password");
+        String valueFolder = (String)getTestValue("String", "getSubshapePortionEffective", "folder");
+        String valueStorage = (String)getTestValue("String", "getSubshapePortionEffective", "storage");
+        try {
+            valueFolder = (String)invalidizeTestValue("String", valueFolder, "getSubshapePortionEffective", "folder");
+            initialize("getSubshapePortionEffective", "folder", valueFolder);
+            Portion response = api.getSubshapePortionEffective(valueName, valueSlideIndex, valuePath, valueShapeIndex, valueParagraphIndex, valuePortionIndex, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "folder", "getSubshapePortionEffective", valueFolder);
+        }
+        if (needAssertResponse) {
+            assertResponse("folder", "getSubshapePortionEffective");
+        }
+    }
+    /**
+     * Read effective portion info (for smart art and group shapes).
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getSubshapePortionEffectiveInvalidStorageTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "getSubshapePortionEffective", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "getSubshapePortionEffective", "slideIndex");
+        String valuePath = (String)getTestValue("String", "getSubshapePortionEffective", "path");
+        Integer valueShapeIndex = (Integer)getTestValue("Integer", "getSubshapePortionEffective", "shapeIndex");
+        Integer valueParagraphIndex = (Integer)getTestValue("Integer", "getSubshapePortionEffective", "paragraphIndex");
+        Integer valuePortionIndex = (Integer)getTestValue("Integer", "getSubshapePortionEffective", "portionIndex");
+        String valuePassword = (String)getTestValue("String", "getSubshapePortionEffective", "password");
+        String valueFolder = (String)getTestValue("String", "getSubshapePortionEffective", "folder");
+        String valueStorage = (String)getTestValue("String", "getSubshapePortionEffective", "storage");
+        try {
+            valueStorage = (String)invalidizeTestValue("String", valueStorage, "getSubshapePortionEffective", "storage");
+            initialize("getSubshapePortionEffective", "storage", valueStorage);
+            Portion response = api.getSubshapePortionEffective(valueName, valueSlideIndex, valuePath, valueShapeIndex, valueParagraphIndex, valuePortionIndex, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "storage", "getSubshapePortionEffective", valueStorage);
+        }
+        if (needAssertResponse) {
+            assertResponse("storage", "getSubshapePortionEffective");
         }
     }
     
@@ -54236,6 +55331,279 @@ public class SlidesApiTest extends ApiTest {
         }
         if (needAssertResponse) {
             assertResponse("storage", "updateChartSeries");
+        }
+    }
+    
+    /**
+     * Update a series group in a chart.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void updateChartSeriesGroupTest() throws ApiException, Exception {
+        initialize("updateChartSeriesGroup", null, null);
+        Chart response = null;
+        String valueName = (String)getTestValue("String", "updateChartSeriesGroup", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "updateChartSeriesGroup", "slideIndex");
+        Integer valueShapeIndex = (Integer)getTestValue("Integer", "updateChartSeriesGroup", "shapeIndex");
+        Integer valueSeriesGroupIndex = (Integer)getTestValue("Integer", "updateChartSeriesGroup", "seriesGroupIndex");
+        ChartSeriesGroup valueSeriesGroup = (ChartSeriesGroup)getTestValue("ChartSeriesGroup", "updateChartSeriesGroup", "seriesGroup");
+        String valuePassword = (String)getTestValue("String", "updateChartSeriesGroup", "password");
+        String valueFolder = (String)getTestValue("String", "updateChartSeriesGroup", "folder");
+        String valueStorage = (String)getTestValue("String", "updateChartSeriesGroup", "storage");
+        response = api.updateChartSeriesGroup(valueName, valueSlideIndex, valueShapeIndex, valueSeriesGroupIndex, valueSeriesGroup, valuePassword, valueFolder, valueStorage);
+        assertNotNull(response);
+    }
+
+    /**
+     * Update a series group in a chart.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void updateChartSeriesGroupInvalidNameTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "updateChartSeriesGroup", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "updateChartSeriesGroup", "slideIndex");
+        Integer valueShapeIndex = (Integer)getTestValue("Integer", "updateChartSeriesGroup", "shapeIndex");
+        Integer valueSeriesGroupIndex = (Integer)getTestValue("Integer", "updateChartSeriesGroup", "seriesGroupIndex");
+        ChartSeriesGroup valueSeriesGroup = (ChartSeriesGroup)getTestValue("ChartSeriesGroup", "updateChartSeriesGroup", "seriesGroup");
+        String valuePassword = (String)getTestValue("String", "updateChartSeriesGroup", "password");
+        String valueFolder = (String)getTestValue("String", "updateChartSeriesGroup", "folder");
+        String valueStorage = (String)getTestValue("String", "updateChartSeriesGroup", "storage");
+        try {
+            valueName = (String)invalidizeTestValue("String", valueName, "updateChartSeriesGroup", "name");
+            initialize("updateChartSeriesGroup", "name", valueName);
+            Chart response = api.updateChartSeriesGroup(valueName, valueSlideIndex, valueShapeIndex, valueSeriesGroupIndex, valueSeriesGroup, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "name", "updateChartSeriesGroup", valueName);
+        }
+        if (needAssertResponse) {
+            assertResponse("name", "updateChartSeriesGroup");
+        }
+    }
+    /**
+     * Update a series group in a chart.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void updateChartSeriesGroupInvalidSlideIndexTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "updateChartSeriesGroup", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "updateChartSeriesGroup", "slideIndex");
+        Integer valueShapeIndex = (Integer)getTestValue("Integer", "updateChartSeriesGroup", "shapeIndex");
+        Integer valueSeriesGroupIndex = (Integer)getTestValue("Integer", "updateChartSeriesGroup", "seriesGroupIndex");
+        ChartSeriesGroup valueSeriesGroup = (ChartSeriesGroup)getTestValue("ChartSeriesGroup", "updateChartSeriesGroup", "seriesGroup");
+        String valuePassword = (String)getTestValue("String", "updateChartSeriesGroup", "password");
+        String valueFolder = (String)getTestValue("String", "updateChartSeriesGroup", "folder");
+        String valueStorage = (String)getTestValue("String", "updateChartSeriesGroup", "storage");
+        try {
+            valueSlideIndex = (Integer)invalidizeTestValue("Integer", valueSlideIndex, "updateChartSeriesGroup", "slideIndex");
+            initialize("updateChartSeriesGroup", "slideIndex", valueSlideIndex);
+            Chart response = api.updateChartSeriesGroup(valueName, valueSlideIndex, valueShapeIndex, valueSeriesGroupIndex, valueSeriesGroup, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "slideIndex", "updateChartSeriesGroup", valueSlideIndex);
+        }
+        if (needAssertResponse) {
+            assertResponse("slideIndex", "updateChartSeriesGroup");
+        }
+    }
+    /**
+     * Update a series group in a chart.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void updateChartSeriesGroupInvalidShapeIndexTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "updateChartSeriesGroup", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "updateChartSeriesGroup", "slideIndex");
+        Integer valueShapeIndex = (Integer)getTestValue("Integer", "updateChartSeriesGroup", "shapeIndex");
+        Integer valueSeriesGroupIndex = (Integer)getTestValue("Integer", "updateChartSeriesGroup", "seriesGroupIndex");
+        ChartSeriesGroup valueSeriesGroup = (ChartSeriesGroup)getTestValue("ChartSeriesGroup", "updateChartSeriesGroup", "seriesGroup");
+        String valuePassword = (String)getTestValue("String", "updateChartSeriesGroup", "password");
+        String valueFolder = (String)getTestValue("String", "updateChartSeriesGroup", "folder");
+        String valueStorage = (String)getTestValue("String", "updateChartSeriesGroup", "storage");
+        try {
+            valueShapeIndex = (Integer)invalidizeTestValue("Integer", valueShapeIndex, "updateChartSeriesGroup", "shapeIndex");
+            initialize("updateChartSeriesGroup", "shapeIndex", valueShapeIndex);
+            Chart response = api.updateChartSeriesGroup(valueName, valueSlideIndex, valueShapeIndex, valueSeriesGroupIndex, valueSeriesGroup, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "shapeIndex", "updateChartSeriesGroup", valueShapeIndex);
+        }
+        if (needAssertResponse) {
+            assertResponse("shapeIndex", "updateChartSeriesGroup");
+        }
+    }
+    /**
+     * Update a series group in a chart.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void updateChartSeriesGroupInvalidSeriesGroupIndexTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "updateChartSeriesGroup", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "updateChartSeriesGroup", "slideIndex");
+        Integer valueShapeIndex = (Integer)getTestValue("Integer", "updateChartSeriesGroup", "shapeIndex");
+        Integer valueSeriesGroupIndex = (Integer)getTestValue("Integer", "updateChartSeriesGroup", "seriesGroupIndex");
+        ChartSeriesGroup valueSeriesGroup = (ChartSeriesGroup)getTestValue("ChartSeriesGroup", "updateChartSeriesGroup", "seriesGroup");
+        String valuePassword = (String)getTestValue("String", "updateChartSeriesGroup", "password");
+        String valueFolder = (String)getTestValue("String", "updateChartSeriesGroup", "folder");
+        String valueStorage = (String)getTestValue("String", "updateChartSeriesGroup", "storage");
+        try {
+            valueSeriesGroupIndex = (Integer)invalidizeTestValue("Integer", valueSeriesGroupIndex, "updateChartSeriesGroup", "seriesGroupIndex");
+            initialize("updateChartSeriesGroup", "seriesGroupIndex", valueSeriesGroupIndex);
+            Chart response = api.updateChartSeriesGroup(valueName, valueSlideIndex, valueShapeIndex, valueSeriesGroupIndex, valueSeriesGroup, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "seriesGroupIndex", "updateChartSeriesGroup", valueSeriesGroupIndex);
+        }
+        if (needAssertResponse) {
+            assertResponse("seriesGroupIndex", "updateChartSeriesGroup");
+        }
+    }
+    /**
+     * Update a series group in a chart.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void updateChartSeriesGroupInvalidSeriesGroupTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "updateChartSeriesGroup", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "updateChartSeriesGroup", "slideIndex");
+        Integer valueShapeIndex = (Integer)getTestValue("Integer", "updateChartSeriesGroup", "shapeIndex");
+        Integer valueSeriesGroupIndex = (Integer)getTestValue("Integer", "updateChartSeriesGroup", "seriesGroupIndex");
+        ChartSeriesGroup valueSeriesGroup = (ChartSeriesGroup)getTestValue("ChartSeriesGroup", "updateChartSeriesGroup", "seriesGroup");
+        String valuePassword = (String)getTestValue("String", "updateChartSeriesGroup", "password");
+        String valueFolder = (String)getTestValue("String", "updateChartSeriesGroup", "folder");
+        String valueStorage = (String)getTestValue("String", "updateChartSeriesGroup", "storage");
+        try {
+            valueSeriesGroup = (ChartSeriesGroup)invalidizeTestValue("ChartSeriesGroup", valueSeriesGroup, "updateChartSeriesGroup", "seriesGroup");
+            initialize("updateChartSeriesGroup", "seriesGroup", valueSeriesGroup);
+            Chart response = api.updateChartSeriesGroup(valueName, valueSlideIndex, valueShapeIndex, valueSeriesGroupIndex, valueSeriesGroup, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "seriesGroup", "updateChartSeriesGroup", valueSeriesGroup);
+        }
+        if (needAssertResponse) {
+            assertResponse("seriesGroup", "updateChartSeriesGroup");
+        }
+    }
+    /**
+     * Update a series group in a chart.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void updateChartSeriesGroupInvalidPasswordTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "updateChartSeriesGroup", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "updateChartSeriesGroup", "slideIndex");
+        Integer valueShapeIndex = (Integer)getTestValue("Integer", "updateChartSeriesGroup", "shapeIndex");
+        Integer valueSeriesGroupIndex = (Integer)getTestValue("Integer", "updateChartSeriesGroup", "seriesGroupIndex");
+        ChartSeriesGroup valueSeriesGroup = (ChartSeriesGroup)getTestValue("ChartSeriesGroup", "updateChartSeriesGroup", "seriesGroup");
+        String valuePassword = (String)getTestValue("String", "updateChartSeriesGroup", "password");
+        String valueFolder = (String)getTestValue("String", "updateChartSeriesGroup", "folder");
+        String valueStorage = (String)getTestValue("String", "updateChartSeriesGroup", "storage");
+        try {
+            valuePassword = (String)invalidizeTestValue("String", valuePassword, "updateChartSeriesGroup", "password");
+            initialize("updateChartSeriesGroup", "password", valuePassword);
+            Chart response = api.updateChartSeriesGroup(valueName, valueSlideIndex, valueShapeIndex, valueSeriesGroupIndex, valueSeriesGroup, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "password", "updateChartSeriesGroup", valuePassword);
+        }
+        if (needAssertResponse) {
+            assertResponse("password", "updateChartSeriesGroup");
+        }
+    }
+    /**
+     * Update a series group in a chart.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void updateChartSeriesGroupInvalidFolderTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "updateChartSeriesGroup", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "updateChartSeriesGroup", "slideIndex");
+        Integer valueShapeIndex = (Integer)getTestValue("Integer", "updateChartSeriesGroup", "shapeIndex");
+        Integer valueSeriesGroupIndex = (Integer)getTestValue("Integer", "updateChartSeriesGroup", "seriesGroupIndex");
+        ChartSeriesGroup valueSeriesGroup = (ChartSeriesGroup)getTestValue("ChartSeriesGroup", "updateChartSeriesGroup", "seriesGroup");
+        String valuePassword = (String)getTestValue("String", "updateChartSeriesGroup", "password");
+        String valueFolder = (String)getTestValue("String", "updateChartSeriesGroup", "folder");
+        String valueStorage = (String)getTestValue("String", "updateChartSeriesGroup", "storage");
+        try {
+            valueFolder = (String)invalidizeTestValue("String", valueFolder, "updateChartSeriesGroup", "folder");
+            initialize("updateChartSeriesGroup", "folder", valueFolder);
+            Chart response = api.updateChartSeriesGroup(valueName, valueSlideIndex, valueShapeIndex, valueSeriesGroupIndex, valueSeriesGroup, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "folder", "updateChartSeriesGroup", valueFolder);
+        }
+        if (needAssertResponse) {
+            assertResponse("folder", "updateChartSeriesGroup");
+        }
+    }
+    /**
+     * Update a series group in a chart.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void updateChartSeriesGroupInvalidStorageTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "updateChartSeriesGroup", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "updateChartSeriesGroup", "slideIndex");
+        Integer valueShapeIndex = (Integer)getTestValue("Integer", "updateChartSeriesGroup", "shapeIndex");
+        Integer valueSeriesGroupIndex = (Integer)getTestValue("Integer", "updateChartSeriesGroup", "seriesGroupIndex");
+        ChartSeriesGroup valueSeriesGroup = (ChartSeriesGroup)getTestValue("ChartSeriesGroup", "updateChartSeriesGroup", "seriesGroup");
+        String valuePassword = (String)getTestValue("String", "updateChartSeriesGroup", "password");
+        String valueFolder = (String)getTestValue("String", "updateChartSeriesGroup", "folder");
+        String valueStorage = (String)getTestValue("String", "updateChartSeriesGroup", "storage");
+        try {
+            valueStorage = (String)invalidizeTestValue("String", valueStorage, "updateChartSeriesGroup", "storage");
+            initialize("updateChartSeriesGroup", "storage", valueStorage);
+            Chart response = api.updateChartSeriesGroup(valueName, valueSlideIndex, valueShapeIndex, valueSeriesGroupIndex, valueSeriesGroup, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "storage", "updateChartSeriesGroup", valueStorage);
+        }
+        if (needAssertResponse) {
+            assertResponse("storage", "updateChartSeriesGroup");
         }
     }
     

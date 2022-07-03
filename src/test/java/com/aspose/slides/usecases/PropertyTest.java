@@ -40,6 +40,8 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
+
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -194,6 +196,18 @@ public class PropertyTest extends ApiTest {
         ViewProperties response = api.setViewProperties(c_fileName, dto, c_password, c_folderName, null);
         assertEquals(ViewProperties.ShowCommentsEnum.FALSE, response.getShowComments());
         assertEquals(dto.getSlideViewProperties().getScale(), response.getSlideViewProperties().getScale());
+    }
+
+    @Test
+    public void protectionCheckTest() throws ApiException, IOException {
+        initialize(null, null, null);
+        ProtectionProperties protectionProperties = api.getProtectionProperties(c_fileName, null, c_folderName, null);
+        Assert.assertTrue(protectionProperties.isIsEncrypted());
+        Assert.assertNull(protectionProperties.getReadPassword());
+
+        protectionProperties = api.getProtectionProperties(c_fileName, c_password, c_folderName, null);
+        Assert.assertTrue(protectionProperties.isIsEncrypted());
+        Assert.assertNotNull(protectionProperties.getReadPassword());
     }
 
     private final String c_folderName = "TempSlidesSDK";

@@ -497,6 +497,19 @@ public class ChartTest extends ApiTest {
         assertTrue(chart.getAxes().getVerticalAxis().getMinorGridLinesFormat().getLineFormat().getFillFormat() instanceof NoFill);
     }
 
+    @Test
+    public void chartSeriesGroupsTest() throws ApiException, IOException {
+        initialize(null, null, null);
+        Chart chart = (Chart)api.getShape(c_fileName, c_slideIndex, c_shapeIndex, c_password, c_folderName, null);
+        assertEquals(1, chart.getSeriesGroups().size());
+        ChartSeriesGroup seriesGroup = chart.getSeriesGroups().get(0);
+        seriesGroup.setOverlap(10);
+        chart = api.updateChartSeriesGroup(c_fileName, c_slideIndex, c_shapeIndex, c_seriesGroupIndex,
+                seriesGroup, c_password, c_folderName, null);
+        int overlap = chart.getSeriesGroups().get(0).getOverlap();
+        assertEquals(10, overlap);
+    }
+
     private static final String c_folderName = "TempSlidesSDK";
     private static final String c_fileName = "test.pptx";
     private static final String c_password = "password";
@@ -506,4 +519,5 @@ public class ChartTest extends ApiTest {
     private static final int c_categoryIndex = 2;
     private static final int c_seriesCount = 3;
     private static final int c_categoryCount = 4;
+    private static final int c_seriesGroupIndex = 1;
 }

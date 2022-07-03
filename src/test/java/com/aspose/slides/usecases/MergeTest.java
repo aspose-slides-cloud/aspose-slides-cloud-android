@@ -81,9 +81,7 @@ public class MergeTest extends ApiTest {
         FileInfo file2 = new FileInfo();
         file2.setName(c_fileName2);
         file2.setData(Files.readAllBytes(Paths.get(testDataFolderName + "/" + c_fileName2)));
-        List<FileInfo> files = new ArrayList<FileInfo>();
-        files.add(file1);
-        files.add(file2);
+        List<FileInfo> files = Arrays.asList(file1, file2);
         api.mergeOnline(files, null, null);
     }
 

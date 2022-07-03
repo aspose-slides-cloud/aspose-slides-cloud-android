@@ -52,6 +52,9 @@ public class OneValueChartDataPoint extends DataPoint {
   @SerializedName(value = "setAsTotal", alternate = { "SetAsTotal" })
   private Boolean setAsTotal;
 
+  @SerializedName(value = "invertIfNegative", alternate = { "InvertIfNegative" })
+  private Boolean invertIfNegative;
+
 
   public OneValueChartDataPoint() {
     super();
@@ -93,6 +96,24 @@ public class OneValueChartDataPoint extends DataPoint {
     this.setAsTotal = setAsTotal;
   }
 
+  public OneValueChartDataPoint invertIfNegative(Boolean invertIfNegative) {
+    this.invertIfNegative = invertIfNegative;
+    return this;
+  }
+
+   /**
+   * True if the data point shall invert its colors if the value is negative. Applies to bar, column and bubble series.
+   * @return invertIfNegative
+  **/
+  @ApiModelProperty(value = "True if the data point shall invert its colors if the value is negative. Applies to bar, column and bubble series.")
+  public Boolean isInvertIfNegative() {
+    return invertIfNegative;
+  }
+
+  public void setInvertIfNegative(Boolean invertIfNegative) {
+    this.invertIfNegative = invertIfNegative;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -103,12 +124,12 @@ public class OneValueChartDataPoint extends DataPoint {
       return false;
     }
     OneValueChartDataPoint oneValueChartDataPoint = (OneValueChartDataPoint) o;
-    return true && Objects.equals(this.value, oneValueChartDataPoint.value) && Objects.equals(this.setAsTotal, oneValueChartDataPoint.setAsTotal) && super.equals(o);
+    return true && Objects.equals(this.value, oneValueChartDataPoint.value) && Objects.equals(this.setAsTotal, oneValueChartDataPoint.setAsTotal) && Objects.equals(this.invertIfNegative, oneValueChartDataPoint.invertIfNegative) && super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(value, setAsTotal, super.hashCode());
+    return Objects.hash(value, setAsTotal, invertIfNegative, super.hashCode());
   }
 
 
@@ -119,6 +140,7 @@ public class OneValueChartDataPoint extends DataPoint {
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    value: ").append(toIndentedString(value)).append("\n");
     sb.append("    setAsTotal: ").append(toIndentedString(setAsTotal)).append("\n");
+    sb.append("    invertIfNegative: ").append(toIndentedString(invertIfNegative)).append("\n");
     sb.append("}");
     return sb.toString();
   }

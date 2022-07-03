@@ -189,6 +189,22 @@ public class PortionTest extends ApiTest {
         assertTrue(response.getHeight() > 0);
     }
 
+    @Test
+    public void getPortionEffectiveTest() throws ApiException, IOException {
+        initialize(null, null, null);
+        Portion response = api.getPortionEffective(c_fileName, c_slideIndex, c_shapeIndex, c_paragraphIndex,
+                c_portionIndex, c_password, c_folderName, null);
+        assertEquals((Double)18.0, response.getFontHeight());
+    }
+
+    @Test
+    public void getSubshapePortionEffectiveTest() throws ApiException, IOException {
+        initialize(null, null, null);
+        Portion response = api.getSubshapePortionEffective(c_fileName, c_slideIndex, c_shapePath, 1,
+                c_paragraphIndex, c_portionIndex, c_password, c_folderName, null);
+        assertEquals((Double)18.0, response.getFontHeight());
+    }
+
     private final String c_folderName = "TempSlidesSDK";
     private final String c_fileName = "test.pptx";
     private final String c_password = "password";

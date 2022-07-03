@@ -53,11 +53,11 @@ public class PptxExportOptions extends ExportOptions {
    */
   @JsonAdapter(ConformanceEnum.Adapter.class)
   public enum ConformanceEnum {
-    ECMA376_2006("Ecma376_2006"),
+    ECMA376("Ecma376"),
     
-    ISO29500_2008_TRANSITIONAL("Iso29500_2008_Transitional"),
+    ISO29500TRANSITIONAL("Iso29500Transitional"),
     
-    ISO29500_2008_STRICT("Iso29500_2008_Strict");
+    ISO29500STRICT("Iso29500Strict");
 
     private String value;
 

@@ -961,7 +961,7 @@ public class ApiClient {
         } else if (formParams.size() > 0) {
             List<FileInfo> files = null;
             Object[] bodyParts = null;
-            if (ArrayList.class.isAssignableFrom(formParams.values().toArray()[0].getClass())) {
+            if (List.class.isAssignableFrom(formParams.values().toArray()[0].getClass())) {
                 files = (List<FileInfo>)formParams.values().toArray()[0];
             } else {
                 bodyParts = formParams.values().toArray();
