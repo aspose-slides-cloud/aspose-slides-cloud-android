@@ -58,6 +58,9 @@ import org.threeten.bp.OffsetTime;
 public class JSON {
     private Gson gson;
     private boolean isLenientOnJson = false;
+    private IntegerTypeAdapter integerTypeAdapter = new IntegerTypeAdapter();
+    private FloatTypeAdapter floatTypeAdapter = new FloatTypeAdapter();
+    private DoubleTypeAdapter doubleTypeAdapter = new DoubleTypeAdapter();
     private DateTypeAdapter dateTypeAdapter = new DateTypeAdapter();
     private SqlDateTypeAdapter sqlDateTypeAdapter = new SqlDateTypeAdapter();
     private OffsetDateTimeTypeAdapter offsetDateTimeTypeAdapter = new OffsetDateTimeTypeAdapter();
@@ -68,6 +71,9 @@ public class JSON {
         Map<String, Map<String, String>> valueMap = new HashMap<String, Map<String, String>>();
         String currentValue = null;
         GsonBuilder gsonBuilder = new GsonBuilder()
+            .registerTypeAdapter(Integer.class, integerTypeAdapter)
+            .registerTypeAdapter(Float.class, floatTypeAdapter)
+            .registerTypeAdapter(Double.class, doubleTypeAdapter)
             .registerTypeAdapter(Date.class, dateTypeAdapter)
             .registerTypeAdapter(java.sql.Date.class, sqlDateTypeAdapter)
             .registerTypeAdapter(OffsetDateTime.class, offsetDateTimeTypeAdapter)
@@ -174,7 +180,14 @@ public class JSON {
         Map<String, RuntimeTypeAdapterFactory> typeAdapters,
         Map<String, Map<String, String>> valueMap) {
         String name = classObject.getSimpleName();
+        String subclassName = subclass.getSimpleName();
         if (classObject.getPackage().getName().equals("com.aspose.slides.model")) {
+            if (!typeAdapters.containsKey(subclassName)) {
+                typeAdapters.put(subclassName, RuntimeTypeAdapterFactory.of(subclass, propertyName));
+                valueMap.put(subclassName, new HashMap<String, String>());
+                valueMap.get(subclassName).put(propertyValue, null);
+                typeAdapters.get(subclassName).registerSubtype(subclass, propertyValue);
+            }
             if (!typeAdapters.containsKey(name)) {
                 typeAdapters.put(name, RuntimeTypeAdapterFactory.of(classObject, propertyName));
                 valueMap.put(name, new HashMap<String, String>());
@@ -300,6 +313,93 @@ public class JSON {
         catch (Exception ex) {
             //Reject the class in any unexpected case
             return false;
+        }
+    }
+    
+    /**
+     * Gson TypeAdapter for JSR310 Integer type
+     */
+    public static class IntegerTypeAdapter extends TypeAdapter<Integer> {
+
+        public IntegerTypeAdapter() {
+        }
+
+        @Override
+        public void write(JsonWriter out, Integer value) throws IOException {
+            if (value == null) {
+                out.nullValue();
+            } else {
+                out.value(value);
+            }
+        }
+
+        @Override
+        public Integer read(JsonReader in) throws IOException {
+            switch (in.peek()) {
+                case NULL:
+                    in.nextNull();
+                    return null;
+                default:
+                    return Integer.parseInt(in.nextString());
+            }
+        }
+    }
+    
+    /**
+     * Gson TypeAdapter for JSR310 Float type
+     */
+    public static class FloatTypeAdapter extends TypeAdapter<Float> {
+
+        public FloatTypeAdapter() {
+        }
+
+        @Override
+        public void write(JsonWriter out, Float value) throws IOException {
+            if (value == null) {
+                out.nullValue();
+            } else {
+                out.value(value);
+            }
+        }
+
+        @Override
+        public Float read(JsonReader in) throws IOException {
+            switch (in.peek()) {
+                case NULL:
+                    in.nextNull();
+                    return null;
+                default:
+                    return Float.parseFloat(in.nextString());
+            }
+        }
+    }
+    
+    /**
+     * Gson TypeAdapter for JSR310 Double type
+     */
+    public static class DoubleTypeAdapter extends TypeAdapter<Double> {
+
+        public DoubleTypeAdapter() {
+        }
+
+        @Override
+        public void write(JsonWriter out, Double value) throws IOException {
+            if (value == null) {
+                out.nullValue();
+            } else {
+                out.value(value);
+            }
+        }
+
+        @Override
+        public Double read(JsonReader in) throws IOException {
+            switch (in.peek()) {
+                case NULL:
+                    in.nextNull();
+                    return null;
+                default:
+                    return Double.parseDouble(in.nextString());
+            }
         }
     }
     

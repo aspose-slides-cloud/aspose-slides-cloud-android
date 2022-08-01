@@ -144,6 +144,29 @@ public class MergeTest extends ApiTest {
         api.mergeOnline(files, request, null);
     }
 
+    @Test
+    public void MergeOrderedUrl() throws ApiException, IOException {
+        initialize(null, null, null);
+        api.copyFile(tempFolderName + "/" + c_fileName, c_folderName + "/" + c_fileName, null,
+                null, null);
+
+        OrderedMergeRequest request = new OrderedMergeRequest();
+        PresentationToMerge presentation1 = new PresentationToMerge();
+        presentation1.setPath(tempFolderName + "/" + c_fileName);
+        presentation1.setPassword(c_password);
+        presentation1.setSlides(Arrays.asList( 1, 2 ));
+        presentation1.setSource(PresentationToMerge.SourceEnum.STORAGE);
+
+        PresentationToMerge presentation2 = new PresentationToMerge();
+        presentation2.setPath(c_url);
+        presentation2.setSource(PresentationToMerge.SourceEnum.URL);
+        presentation2.setSlides(Arrays.asList( 1 ));
+        request.setPresentations(Arrays.asList( presentation1, presentation2 ));
+
+        api.mergeOnline(null, request, null);
+    }
+
+    private final String c_url = "https://drive.google.com/uc?export=download&id=1ycMzd7e--Ro9H8eH2GL5fPP7-2HjX4My";
     private final String c_folderName = "TempSlidesSDK";
     private final String c_fileName = "test.pptx";
     private final String c_fileName2 = "test-unprotected.pptx";

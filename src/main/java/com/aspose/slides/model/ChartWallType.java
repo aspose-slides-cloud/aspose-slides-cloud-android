@@ -41,60 +41,20 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
 /**
- * Represents a format for notes slide export.
+ * 3D chart wall type
  */
-@JsonAdapter(NotesSlideExportFormat.Adapter.class)
-public enum NotesSlideExportFormat {
+@JsonAdapter(ChartWallType.Adapter.class)
+public enum ChartWallType {
   
-  JPEG("Jpeg"),
+  FLOOR("Floor"),
   
-  PNG("Png"),
+  SIDEWALL("SideWall"),
   
-  GIF("Gif"),
-  
-  BMP("Bmp"),
-  
-  TIFF("Tiff"),
-  
-  HTML("Html"),
-  
-  PDF("Pdf"),
-  
-  XPS("Xps"),
-  
-  PPTX("Pptx"),
-  
-  ODP("Odp"),
-  
-  OTP("Otp"),
-  
-  PPT("Ppt"),
-  
-  PPS("Pps"),
-  
-  PPSX("Ppsx"),
-  
-  PPTM("Pptm"),
-  
-  PPSM("Ppsm"),
-  
-  POTX("Potx"),
-  
-  POT("Pot"),
-  
-  POTM("Potm"),
-  
-  SVG("Svg"),
-  
-  FODP("Fodp"),
-  
-  XAML("Xaml"),
-  
-  HTML5("Html5");
+  BACKWALL("BackWall");
 
   private String value;
 
-  NotesSlideExportFormat(String value) {
+  ChartWallType(String value) {
     this.value = value;
   }
 
@@ -102,8 +62,8 @@ public enum NotesSlideExportFormat {
     return value;
   }
 
-  public static NotesSlideExportFormat fromValue(String text) {
-    for (NotesSlideExportFormat b : NotesSlideExportFormat.values()) {
+  public static ChartWallType fromValue(String text) {
+    for (ChartWallType b : ChartWallType.values()) {
       if (String.valueOf(b.value).equals(text)) {
         return b;
       }
@@ -111,16 +71,16 @@ public enum NotesSlideExportFormat {
     return null;
   }
 
-  public static class Adapter extends TypeAdapter<NotesSlideExportFormat> {
+  public static class Adapter extends TypeAdapter<ChartWallType> {
     @Override
-    public void write(final JsonWriter jsonWriter, final NotesSlideExportFormat enumeration) throws IOException {
+    public void write(final JsonWriter jsonWriter, final ChartWallType enumeration) throws IOException {
       jsonWriter.value(enumeration.getValue());
     }
 
     @Override
-    public NotesSlideExportFormat read(final JsonReader jsonReader) throws IOException {
+    public ChartWallType read(final JsonReader jsonReader) throws IOException {
       String value = jsonReader.nextString();
-      return NotesSlideExportFormat.fromValue(String.valueOf(value));
+      return ChartWallType.fromValue(String.valueOf(value));
     }
   }
 }

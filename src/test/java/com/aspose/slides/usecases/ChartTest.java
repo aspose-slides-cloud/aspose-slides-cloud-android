@@ -26,6 +26,7 @@
 package com.aspose.slides.usecases;
 
 import com.aspose.slides.ApiException;
+import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -438,21 +439,19 @@ public class ChartTest extends ApiTest {
         assertEquals(2, chart.getCategories().get(0).getParentCategories().size());
     }
 
-    @Ignore //NaN is not a valid double value as per JSON specification
     @Test
     public void hideChartLegendTest() throws ApiException {
         initialize(null, null, null);
+        Legend legend = new Legend();
+        legend.setHasLegend(false);
+        api.setChartLegend(c_fileName, c_slideIndex, c_shapeIndex, legend, c_password, c_folderName, null);
         Chart chart = (Chart)api.getShape(c_fileName, c_slideIndex, c_shapeIndex, c_password, c_folderName, null);
-        chart.getLegend().setHasLegend(false);
-        chart = (Chart)api.updateShape(c_fileName, c_slideIndex, c_shapeIndex, chart, c_password, c_folderName, null);
         assertFalse(chart.getLegend().isHasLegend());
     }
 
-    @Ignore //NaN is not a valid double value as per JSON specification
     @Test
     public void chartGridLinesFormatTest() throws ApiException, IOException{
         initialize(null, null, null);
-        Chart chart = (Chart)api.getShape(c_fileName, c_slideIndex, c_shapeIndex, c_password, c_folderName, null);
 
         Axis horizontalAxis = new Axis();
         ChartLinesFormat horizontalMajorGridLineFormat = new ChartLinesFormat();
@@ -479,18 +478,16 @@ public class ChartTest extends ApiTest {
         gradientFill.setStops(new ArrayList<GradientFillStop>(Arrays.asList(gradientFillStop1, gradientFillStop2)));
         verticalMajorGridLineFormat.setLineFormat(new LineFormat());
         verticalMajorGridLineFormat.getLineFormat().setFillFormat(gradientFill);
-        verticalAxis.setMinorGridLinesFormat(verticalMajorGridLineFormat);
+        verticalAxis.setMajorGridLinesFormat(verticalMajorGridLineFormat);
         ChartLinesFormat verticalMinorGridLineFormat = new ChartLinesFormat();
         verticalMinorGridLineFormat.setLineFormat(new LineFormat());
         verticalMinorGridLineFormat.getLineFormat().setFillFormat(new NoFill());
         verticalAxis.setMinorGridLinesFormat(verticalMinorGridLineFormat);
 
-        Axes axes = new Axes();
-        axes.setHorizontalAxis(horizontalAxis);
-        axes.setVerticalAxis(verticalAxis);
-        chart.setAxes(axes);
+        api.setChartAxis(c_fileName, c_slideIndex, c_shapeIndex, AxisType.HORIZONTALAXIS, horizontalAxis, c_password, c_folderName, null);
+        api.setChartAxis(c_fileName, c_slideIndex, c_shapeIndex, AxisType.VERTICALAXIS, verticalAxis, c_password, c_folderName, null);
 
-        chart = (Chart)api.updateShape(c_fileName, c_slideIndex, c_shapeIndex, chart, c_password, c_folderName, null);
+        Chart chart = (Chart)api.getShape(c_fileName, c_slideIndex, c_shapeIndex, c_password, c_folderName, null);
         assertTrue(chart.getAxes().getHorizontalAxis().getMajorGridLinesFormat().getLineFormat().getFillFormat() instanceof NoFill);
         assertTrue(chart.getAxes().getHorizontalAxis().getMinorGridLinesFormat().getLineFormat().getFillFormat() instanceof SolidFill);
         assertTrue(chart.getAxes().getVerticalAxis().getMajorGridLinesFormat().getLineFormat().getFillFormat() instanceof GradientFill);
@@ -504,12 +501,56 @@ public class ChartTest extends ApiTest {
         assertEquals(1, chart.getSeriesGroups().size());
         ChartSeriesGroup seriesGroup = chart.getSeriesGroups().get(0);
         seriesGroup.setOverlap(10);
-        chart = api.updateChartSeriesGroup(c_fileName, c_slideIndex, c_shapeIndex, c_seriesGroupIndex,
+        chart = api.setChartSeriesGroup(c_fileName, c_slideIndex, c_shapeIndex, c_seriesGroupIndex,
                 seriesGroup, c_password, c_folderName, null);
         int overlap = chart.getSeriesGroups().get(0).getOverlap();
         assertEquals(10, overlap);
     }
 
+    @Test
+    public void setChartLegend() throws ApiException {
+        initialize(null, null, null);
+        Legend legend = new Legend();
+        legend.setOverlay(true);
+        SolidFill fillFormat = new SolidFill();
+        fillFormat.setColor(c_color);
+        legend.setFillFormat(fillFormat);
+
+        Legend response = api.setChartLegend(c_fileName, c_slideIndex, c_shapeIndex, legend, c_password, c_folderName,
+                null);
+        assertEquals(response.getFillFormat().getType(), FillFormat.TypeEnum.SOLID);
+        assertTrue(response.isOverlay());
+    }
+
+    @Test
+    public void setChartAxis() throws ApiException {
+        initialize(null, null, null);
+        Axis axis = new Axis();
+        axis.setHasTitle(true);
+        axis.setIsAutomaticMaxValue(false);
+        axis.setMaxValue(10.0);
+
+        Axis response = api.setChartAxis(c_fileName, c_slideIndex, c_shapeIndex, AxisType.VERTICALAXIS, axis, c_password, c_folderName,
+                null);
+        assertTrue(response.isHasTitle());
+
+        assertEquals(axis.getMaxValue(), response.getMaxValue());
+    }
+
+    @Test
+    public void setChartWall() throws ApiException {
+        initialize(null, null, null);
+        ChartWall wall = new ChartWall();
+        SolidFill fillFormat = new SolidFill();
+        fillFormat.setColor(c_color);
+        wall.setFillFormat(fillFormat);
+
+        ChartWall response = api.setChartWall(c_fileName, c_slideIndex, c_shapeIndex, ChartWallType.BACKWALL , wall,
+                c_password, c_folderName,null);
+        assertEquals(response.getFillFormat().getType(), FillFormat.TypeEnum.SOLID);
+    }
+
+    private static final String c_color = "#77CEF9";
     private static final String c_folderName = "TempSlidesSDK";
     private static final String c_fileName = "test.pptx";
     private static final String c_password = "password";

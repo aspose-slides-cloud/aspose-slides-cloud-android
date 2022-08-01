@@ -41,9 +41,11 @@ import com.aspose.slides.ApiTest;
 import com.aspose.slides.model.*;
 
 import com.aspose.slides.model.ApiInfo;
+import com.aspose.slides.model.Axis;
 import com.aspose.slides.model.Chart;
 import com.aspose.slides.model.ChartCategory;
 import com.aspose.slides.model.ChartSeriesGroup;
+import com.aspose.slides.model.ChartWall;
 import com.aspose.slides.model.ColorScheme;
 import com.aspose.slides.model.DataPoint;
 import com.aspose.slides.model.DiscUsage;
@@ -67,6 +69,7 @@ import com.aspose.slides.model.Images;
 import com.aspose.slides.model.InteractiveSequence;
 import com.aspose.slides.model.LayoutSlide;
 import com.aspose.slides.model.LayoutSlides;
+import com.aspose.slides.model.Legend;
 import com.aspose.slides.model.MasterSlide;
 import com.aspose.slides.model.MasterSlides;
 import com.aspose.slides.model.NotesSlide;
@@ -23711,6 +23714,266 @@ public class SlidesApiTest extends ApiTest {
         }
         if (needAssertResponse) {
             assertResponse("password", "deleteUnusedLayoutSlidesOnline");
+        }
+    }
+    
+    /**
+     * Removes unused master slides.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void deleteUnusedMasterSlidesTest() throws ApiException, Exception {
+        initialize("deleteUnusedMasterSlides", null, null);
+        MasterSlides response = null;
+        String valueName = (String)getTestValue("String", "deleteUnusedMasterSlides", "name");
+        Boolean valueIgnorePreserveField = (Boolean)getTestValue("Boolean", "deleteUnusedMasterSlides", "ignorePreserveField");
+        String valuePassword = (String)getTestValue("String", "deleteUnusedMasterSlides", "password");
+        String valueFolder = (String)getTestValue("String", "deleteUnusedMasterSlides", "folder");
+        String valueStorage = (String)getTestValue("String", "deleteUnusedMasterSlides", "storage");
+        response = api.deleteUnusedMasterSlides(valueName, valueIgnorePreserveField, valuePassword, valueFolder, valueStorage);
+        assertNotNull(response);
+    }
+
+    /**
+     * Removes unused master slides.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void deleteUnusedMasterSlidesInvalidNameTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "deleteUnusedMasterSlides", "name");
+        Boolean valueIgnorePreserveField = (Boolean)getTestValue("Boolean", "deleteUnusedMasterSlides", "ignorePreserveField");
+        String valuePassword = (String)getTestValue("String", "deleteUnusedMasterSlides", "password");
+        String valueFolder = (String)getTestValue("String", "deleteUnusedMasterSlides", "folder");
+        String valueStorage = (String)getTestValue("String", "deleteUnusedMasterSlides", "storage");
+        try {
+            valueName = (String)invalidizeTestValue("String", valueName, "deleteUnusedMasterSlides", "name");
+            initialize("deleteUnusedMasterSlides", "name", valueName);
+            MasterSlides response = api.deleteUnusedMasterSlides(valueName, valueIgnorePreserveField, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "name", "deleteUnusedMasterSlides", valueName);
+        }
+        if (needAssertResponse) {
+            assertResponse("name", "deleteUnusedMasterSlides");
+        }
+    }
+    /**
+     * Removes unused master slides.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void deleteUnusedMasterSlidesInvalidIgnorePreserveFieldTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "deleteUnusedMasterSlides", "name");
+        Boolean valueIgnorePreserveField = (Boolean)getTestValue("Boolean", "deleteUnusedMasterSlides", "ignorePreserveField");
+        String valuePassword = (String)getTestValue("String", "deleteUnusedMasterSlides", "password");
+        String valueFolder = (String)getTestValue("String", "deleteUnusedMasterSlides", "folder");
+        String valueStorage = (String)getTestValue("String", "deleteUnusedMasterSlides", "storage");
+        try {
+            valueIgnorePreserveField = (Boolean)invalidizeTestValue("Boolean", valueIgnorePreserveField, "deleteUnusedMasterSlides", "ignorePreserveField");
+            initialize("deleteUnusedMasterSlides", "ignorePreserveField", valueIgnorePreserveField);
+            MasterSlides response = api.deleteUnusedMasterSlides(valueName, valueIgnorePreserveField, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "ignorePreserveField", "deleteUnusedMasterSlides", valueIgnorePreserveField);
+        }
+        if (needAssertResponse) {
+            assertResponse("ignorePreserveField", "deleteUnusedMasterSlides");
+        }
+    }
+    /**
+     * Removes unused master slides.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void deleteUnusedMasterSlidesInvalidPasswordTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "deleteUnusedMasterSlides", "name");
+        Boolean valueIgnorePreserveField = (Boolean)getTestValue("Boolean", "deleteUnusedMasterSlides", "ignorePreserveField");
+        String valuePassword = (String)getTestValue("String", "deleteUnusedMasterSlides", "password");
+        String valueFolder = (String)getTestValue("String", "deleteUnusedMasterSlides", "folder");
+        String valueStorage = (String)getTestValue("String", "deleteUnusedMasterSlides", "storage");
+        try {
+            valuePassword = (String)invalidizeTestValue("String", valuePassword, "deleteUnusedMasterSlides", "password");
+            initialize("deleteUnusedMasterSlides", "password", valuePassword);
+            MasterSlides response = api.deleteUnusedMasterSlides(valueName, valueIgnorePreserveField, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "password", "deleteUnusedMasterSlides", valuePassword);
+        }
+        if (needAssertResponse) {
+            assertResponse("password", "deleteUnusedMasterSlides");
+        }
+    }
+    /**
+     * Removes unused master slides.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void deleteUnusedMasterSlidesInvalidFolderTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "deleteUnusedMasterSlides", "name");
+        Boolean valueIgnorePreserveField = (Boolean)getTestValue("Boolean", "deleteUnusedMasterSlides", "ignorePreserveField");
+        String valuePassword = (String)getTestValue("String", "deleteUnusedMasterSlides", "password");
+        String valueFolder = (String)getTestValue("String", "deleteUnusedMasterSlides", "folder");
+        String valueStorage = (String)getTestValue("String", "deleteUnusedMasterSlides", "storage");
+        try {
+            valueFolder = (String)invalidizeTestValue("String", valueFolder, "deleteUnusedMasterSlides", "folder");
+            initialize("deleteUnusedMasterSlides", "folder", valueFolder);
+            MasterSlides response = api.deleteUnusedMasterSlides(valueName, valueIgnorePreserveField, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "folder", "deleteUnusedMasterSlides", valueFolder);
+        }
+        if (needAssertResponse) {
+            assertResponse("folder", "deleteUnusedMasterSlides");
+        }
+    }
+    /**
+     * Removes unused master slides.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void deleteUnusedMasterSlidesInvalidStorageTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "deleteUnusedMasterSlides", "name");
+        Boolean valueIgnorePreserveField = (Boolean)getTestValue("Boolean", "deleteUnusedMasterSlides", "ignorePreserveField");
+        String valuePassword = (String)getTestValue("String", "deleteUnusedMasterSlides", "password");
+        String valueFolder = (String)getTestValue("String", "deleteUnusedMasterSlides", "folder");
+        String valueStorage = (String)getTestValue("String", "deleteUnusedMasterSlides", "storage");
+        try {
+            valueStorage = (String)invalidizeTestValue("String", valueStorage, "deleteUnusedMasterSlides", "storage");
+            initialize("deleteUnusedMasterSlides", "storage", valueStorage);
+            MasterSlides response = api.deleteUnusedMasterSlides(valueName, valueIgnorePreserveField, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "storage", "deleteUnusedMasterSlides", valueStorage);
+        }
+        if (needAssertResponse) {
+            assertResponse("storage", "deleteUnusedMasterSlides");
+        }
+    }
+    
+    /**
+     * Removes unused master slides.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void deleteUnusedMasterSlidesOnlineTest() throws ApiException, Exception {
+        initialize("deleteUnusedMasterSlidesOnline", null, null);
+        File response = null;
+        byte[] valueDocument = (byte[])getTestValue("byte[]", "deleteUnusedMasterSlidesOnline", "document");
+        Boolean valueIgnorePreserveField = (Boolean)getTestValue("Boolean", "deleteUnusedMasterSlidesOnline", "ignorePreserveField");
+        String valuePassword = (String)getTestValue("String", "deleteUnusedMasterSlidesOnline", "password");
+        response = api.deleteUnusedMasterSlidesOnline(valueDocument, valueIgnorePreserveField, valuePassword);
+        assertTrue(response.isFile());
+    }
+
+    /**
+     * Removes unused master slides.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void deleteUnusedMasterSlidesOnlineInvalidDocumentTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        byte[] valueDocument = (byte[])getTestValue("byte[]", "deleteUnusedMasterSlidesOnline", "document");
+        Boolean valueIgnorePreserveField = (Boolean)getTestValue("Boolean", "deleteUnusedMasterSlidesOnline", "ignorePreserveField");
+        String valuePassword = (String)getTestValue("String", "deleteUnusedMasterSlidesOnline", "password");
+        try {
+            valueDocument = (byte[])invalidizeTestValue("byte[]", valueDocument, "deleteUnusedMasterSlidesOnline", "document");
+            initialize("deleteUnusedMasterSlidesOnline", "document", valueDocument);
+            File response = api.deleteUnusedMasterSlidesOnline(valueDocument, valueIgnorePreserveField, valuePassword);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "document", "deleteUnusedMasterSlidesOnline", valueDocument);
+        }
+        if (needAssertResponse) {
+            assertResponse("document", "deleteUnusedMasterSlidesOnline");
+        }
+    }
+    /**
+     * Removes unused master slides.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void deleteUnusedMasterSlidesOnlineInvalidIgnorePreserveFieldTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        byte[] valueDocument = (byte[])getTestValue("byte[]", "deleteUnusedMasterSlidesOnline", "document");
+        Boolean valueIgnorePreserveField = (Boolean)getTestValue("Boolean", "deleteUnusedMasterSlidesOnline", "ignorePreserveField");
+        String valuePassword = (String)getTestValue("String", "deleteUnusedMasterSlidesOnline", "password");
+        try {
+            valueIgnorePreserveField = (Boolean)invalidizeTestValue("Boolean", valueIgnorePreserveField, "deleteUnusedMasterSlidesOnline", "ignorePreserveField");
+            initialize("deleteUnusedMasterSlidesOnline", "ignorePreserveField", valueIgnorePreserveField);
+            File response = api.deleteUnusedMasterSlidesOnline(valueDocument, valueIgnorePreserveField, valuePassword);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "ignorePreserveField", "deleteUnusedMasterSlidesOnline", valueIgnorePreserveField);
+        }
+        if (needAssertResponse) {
+            assertResponse("ignorePreserveField", "deleteUnusedMasterSlidesOnline");
+        }
+    }
+    /**
+     * Removes unused master slides.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void deleteUnusedMasterSlidesOnlineInvalidPasswordTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        byte[] valueDocument = (byte[])getTestValue("byte[]", "deleteUnusedMasterSlidesOnline", "document");
+        Boolean valueIgnorePreserveField = (Boolean)getTestValue("Boolean", "deleteUnusedMasterSlidesOnline", "ignorePreserveField");
+        String valuePassword = (String)getTestValue("String", "deleteUnusedMasterSlidesOnline", "password");
+        try {
+            valuePassword = (String)invalidizeTestValue("String", valuePassword, "deleteUnusedMasterSlidesOnline", "password");
+            initialize("deleteUnusedMasterSlidesOnline", "password", valuePassword);
+            File response = api.deleteUnusedMasterSlidesOnline(valueDocument, valueIgnorePreserveField, valuePassword);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "password", "deleteUnusedMasterSlidesOnline", valuePassword);
+        }
+        if (needAssertResponse) {
+            assertResponse("password", "deleteUnusedMasterSlidesOnline");
         }
     }
     
@@ -50677,6 +50940,1059 @@ public class SlidesApiTest extends ApiTest {
     }
     
     /**
+     * Set chart axis.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void setChartAxisTest() throws ApiException, Exception {
+        initialize("setChartAxis", null, null);
+        Axis response = null;
+        String valueName = (String)getTestValue("String", "setChartAxis", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "setChartAxis", "slideIndex");
+        Integer valueShapeIndex = (Integer)getTestValue("Integer", "setChartAxis", "shapeIndex");
+        AxisType valueAxisType = (AxisType)getTestValue("AxisType", "setChartAxis", "axisType");
+        Axis valueAxis = (Axis)getTestValue("Axis", "setChartAxis", "axis");
+        String valuePassword = (String)getTestValue("String", "setChartAxis", "password");
+        String valueFolder = (String)getTestValue("String", "setChartAxis", "folder");
+        String valueStorage = (String)getTestValue("String", "setChartAxis", "storage");
+        response = api.setChartAxis(valueName, valueSlideIndex, valueShapeIndex, valueAxisType, valueAxis, valuePassword, valueFolder, valueStorage);
+        assertNotNull(response);
+    }
+
+    /**
+     * Set chart axis.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void setChartAxisInvalidNameTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "setChartAxis", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "setChartAxis", "slideIndex");
+        Integer valueShapeIndex = (Integer)getTestValue("Integer", "setChartAxis", "shapeIndex");
+        AxisType valueAxisType = (AxisType)getTestValue("AxisType", "setChartAxis", "axisType");
+        Axis valueAxis = (Axis)getTestValue("Axis", "setChartAxis", "axis");
+        String valuePassword = (String)getTestValue("String", "setChartAxis", "password");
+        String valueFolder = (String)getTestValue("String", "setChartAxis", "folder");
+        String valueStorage = (String)getTestValue("String", "setChartAxis", "storage");
+        try {
+            valueName = (String)invalidizeTestValue("String", valueName, "setChartAxis", "name");
+            initialize("setChartAxis", "name", valueName);
+            Axis response = api.setChartAxis(valueName, valueSlideIndex, valueShapeIndex, valueAxisType, valueAxis, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "name", "setChartAxis", valueName);
+        }
+        if (needAssertResponse) {
+            assertResponse("name", "setChartAxis");
+        }
+    }
+    /**
+     * Set chart axis.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void setChartAxisInvalidSlideIndexTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "setChartAxis", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "setChartAxis", "slideIndex");
+        Integer valueShapeIndex = (Integer)getTestValue("Integer", "setChartAxis", "shapeIndex");
+        AxisType valueAxisType = (AxisType)getTestValue("AxisType", "setChartAxis", "axisType");
+        Axis valueAxis = (Axis)getTestValue("Axis", "setChartAxis", "axis");
+        String valuePassword = (String)getTestValue("String", "setChartAxis", "password");
+        String valueFolder = (String)getTestValue("String", "setChartAxis", "folder");
+        String valueStorage = (String)getTestValue("String", "setChartAxis", "storage");
+        try {
+            valueSlideIndex = (Integer)invalidizeTestValue("Integer", valueSlideIndex, "setChartAxis", "slideIndex");
+            initialize("setChartAxis", "slideIndex", valueSlideIndex);
+            Axis response = api.setChartAxis(valueName, valueSlideIndex, valueShapeIndex, valueAxisType, valueAxis, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "slideIndex", "setChartAxis", valueSlideIndex);
+        }
+        if (needAssertResponse) {
+            assertResponse("slideIndex", "setChartAxis");
+        }
+    }
+    /**
+     * Set chart axis.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void setChartAxisInvalidShapeIndexTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "setChartAxis", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "setChartAxis", "slideIndex");
+        Integer valueShapeIndex = (Integer)getTestValue("Integer", "setChartAxis", "shapeIndex");
+        AxisType valueAxisType = (AxisType)getTestValue("AxisType", "setChartAxis", "axisType");
+        Axis valueAxis = (Axis)getTestValue("Axis", "setChartAxis", "axis");
+        String valuePassword = (String)getTestValue("String", "setChartAxis", "password");
+        String valueFolder = (String)getTestValue("String", "setChartAxis", "folder");
+        String valueStorage = (String)getTestValue("String", "setChartAxis", "storage");
+        try {
+            valueShapeIndex = (Integer)invalidizeTestValue("Integer", valueShapeIndex, "setChartAxis", "shapeIndex");
+            initialize("setChartAxis", "shapeIndex", valueShapeIndex);
+            Axis response = api.setChartAxis(valueName, valueSlideIndex, valueShapeIndex, valueAxisType, valueAxis, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "shapeIndex", "setChartAxis", valueShapeIndex);
+        }
+        if (needAssertResponse) {
+            assertResponse("shapeIndex", "setChartAxis");
+        }
+    }
+    /**
+     * Set chart axis.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void setChartAxisInvalidAxisTypeTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "setChartAxis", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "setChartAxis", "slideIndex");
+        Integer valueShapeIndex = (Integer)getTestValue("Integer", "setChartAxis", "shapeIndex");
+        AxisType valueAxisType = (AxisType)getTestValue("AxisType", "setChartAxis", "axisType");
+        Axis valueAxis = (Axis)getTestValue("Axis", "setChartAxis", "axis");
+        String valuePassword = (String)getTestValue("String", "setChartAxis", "password");
+        String valueFolder = (String)getTestValue("String", "setChartAxis", "folder");
+        String valueStorage = (String)getTestValue("String", "setChartAxis", "storage");
+        try {
+            valueAxisType = (AxisType)invalidizeTestValue("AxisType", valueAxisType, "setChartAxis", "axisType");
+            initialize("setChartAxis", "axisType", valueAxisType);
+            Axis response = api.setChartAxis(valueName, valueSlideIndex, valueShapeIndex, valueAxisType, valueAxis, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "axisType", "setChartAxis", valueAxisType);
+        }
+        if (needAssertResponse) {
+            assertResponse("axisType", "setChartAxis");
+        }
+    }
+    /**
+     * Set chart axis.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void setChartAxisInvalidAxisTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "setChartAxis", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "setChartAxis", "slideIndex");
+        Integer valueShapeIndex = (Integer)getTestValue("Integer", "setChartAxis", "shapeIndex");
+        AxisType valueAxisType = (AxisType)getTestValue("AxisType", "setChartAxis", "axisType");
+        Axis valueAxis = (Axis)getTestValue("Axis", "setChartAxis", "axis");
+        String valuePassword = (String)getTestValue("String", "setChartAxis", "password");
+        String valueFolder = (String)getTestValue("String", "setChartAxis", "folder");
+        String valueStorage = (String)getTestValue("String", "setChartAxis", "storage");
+        try {
+            valueAxis = (Axis)invalidizeTestValue("Axis", valueAxis, "setChartAxis", "axis");
+            initialize("setChartAxis", "axis", valueAxis);
+            Axis response = api.setChartAxis(valueName, valueSlideIndex, valueShapeIndex, valueAxisType, valueAxis, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "axis", "setChartAxis", valueAxis);
+        }
+        if (needAssertResponse) {
+            assertResponse("axis", "setChartAxis");
+        }
+    }
+    /**
+     * Set chart axis.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void setChartAxisInvalidPasswordTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "setChartAxis", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "setChartAxis", "slideIndex");
+        Integer valueShapeIndex = (Integer)getTestValue("Integer", "setChartAxis", "shapeIndex");
+        AxisType valueAxisType = (AxisType)getTestValue("AxisType", "setChartAxis", "axisType");
+        Axis valueAxis = (Axis)getTestValue("Axis", "setChartAxis", "axis");
+        String valuePassword = (String)getTestValue("String", "setChartAxis", "password");
+        String valueFolder = (String)getTestValue("String", "setChartAxis", "folder");
+        String valueStorage = (String)getTestValue("String", "setChartAxis", "storage");
+        try {
+            valuePassword = (String)invalidizeTestValue("String", valuePassword, "setChartAxis", "password");
+            initialize("setChartAxis", "password", valuePassword);
+            Axis response = api.setChartAxis(valueName, valueSlideIndex, valueShapeIndex, valueAxisType, valueAxis, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "password", "setChartAxis", valuePassword);
+        }
+        if (needAssertResponse) {
+            assertResponse("password", "setChartAxis");
+        }
+    }
+    /**
+     * Set chart axis.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void setChartAxisInvalidFolderTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "setChartAxis", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "setChartAxis", "slideIndex");
+        Integer valueShapeIndex = (Integer)getTestValue("Integer", "setChartAxis", "shapeIndex");
+        AxisType valueAxisType = (AxisType)getTestValue("AxisType", "setChartAxis", "axisType");
+        Axis valueAxis = (Axis)getTestValue("Axis", "setChartAxis", "axis");
+        String valuePassword = (String)getTestValue("String", "setChartAxis", "password");
+        String valueFolder = (String)getTestValue("String", "setChartAxis", "folder");
+        String valueStorage = (String)getTestValue("String", "setChartAxis", "storage");
+        try {
+            valueFolder = (String)invalidizeTestValue("String", valueFolder, "setChartAxis", "folder");
+            initialize("setChartAxis", "folder", valueFolder);
+            Axis response = api.setChartAxis(valueName, valueSlideIndex, valueShapeIndex, valueAxisType, valueAxis, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "folder", "setChartAxis", valueFolder);
+        }
+        if (needAssertResponse) {
+            assertResponse("folder", "setChartAxis");
+        }
+    }
+    /**
+     * Set chart axis.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void setChartAxisInvalidStorageTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "setChartAxis", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "setChartAxis", "slideIndex");
+        Integer valueShapeIndex = (Integer)getTestValue("Integer", "setChartAxis", "shapeIndex");
+        AxisType valueAxisType = (AxisType)getTestValue("AxisType", "setChartAxis", "axisType");
+        Axis valueAxis = (Axis)getTestValue("Axis", "setChartAxis", "axis");
+        String valuePassword = (String)getTestValue("String", "setChartAxis", "password");
+        String valueFolder = (String)getTestValue("String", "setChartAxis", "folder");
+        String valueStorage = (String)getTestValue("String", "setChartAxis", "storage");
+        try {
+            valueStorage = (String)invalidizeTestValue("String", valueStorage, "setChartAxis", "storage");
+            initialize("setChartAxis", "storage", valueStorage);
+            Axis response = api.setChartAxis(valueName, valueSlideIndex, valueShapeIndex, valueAxisType, valueAxis, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "storage", "setChartAxis", valueStorage);
+        }
+        if (needAssertResponse) {
+            assertResponse("storage", "setChartAxis");
+        }
+    }
+    
+    /**
+     * Set chart axis.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void setChartLegendTest() throws ApiException, Exception {
+        initialize("setChartLegend", null, null);
+        Legend response = null;
+        String valueName = (String)getTestValue("String", "setChartLegend", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "setChartLegend", "slideIndex");
+        Integer valueShapeIndex = (Integer)getTestValue("Integer", "setChartLegend", "shapeIndex");
+        Legend valueLegend = (Legend)getTestValue("Legend", "setChartLegend", "legend");
+        String valuePassword = (String)getTestValue("String", "setChartLegend", "password");
+        String valueFolder = (String)getTestValue("String", "setChartLegend", "folder");
+        String valueStorage = (String)getTestValue("String", "setChartLegend", "storage");
+        response = api.setChartLegend(valueName, valueSlideIndex, valueShapeIndex, valueLegend, valuePassword, valueFolder, valueStorage);
+        assertNotNull(response);
+    }
+
+    /**
+     * Set chart axis.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void setChartLegendInvalidNameTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "setChartLegend", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "setChartLegend", "slideIndex");
+        Integer valueShapeIndex = (Integer)getTestValue("Integer", "setChartLegend", "shapeIndex");
+        Legend valueLegend = (Legend)getTestValue("Legend", "setChartLegend", "legend");
+        String valuePassword = (String)getTestValue("String", "setChartLegend", "password");
+        String valueFolder = (String)getTestValue("String", "setChartLegend", "folder");
+        String valueStorage = (String)getTestValue("String", "setChartLegend", "storage");
+        try {
+            valueName = (String)invalidizeTestValue("String", valueName, "setChartLegend", "name");
+            initialize("setChartLegend", "name", valueName);
+            Legend response = api.setChartLegend(valueName, valueSlideIndex, valueShapeIndex, valueLegend, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "name", "setChartLegend", valueName);
+        }
+        if (needAssertResponse) {
+            assertResponse("name", "setChartLegend");
+        }
+    }
+    /**
+     * Set chart axis.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void setChartLegendInvalidSlideIndexTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "setChartLegend", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "setChartLegend", "slideIndex");
+        Integer valueShapeIndex = (Integer)getTestValue("Integer", "setChartLegend", "shapeIndex");
+        Legend valueLegend = (Legend)getTestValue("Legend", "setChartLegend", "legend");
+        String valuePassword = (String)getTestValue("String", "setChartLegend", "password");
+        String valueFolder = (String)getTestValue("String", "setChartLegend", "folder");
+        String valueStorage = (String)getTestValue("String", "setChartLegend", "storage");
+        try {
+            valueSlideIndex = (Integer)invalidizeTestValue("Integer", valueSlideIndex, "setChartLegend", "slideIndex");
+            initialize("setChartLegend", "slideIndex", valueSlideIndex);
+            Legend response = api.setChartLegend(valueName, valueSlideIndex, valueShapeIndex, valueLegend, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "slideIndex", "setChartLegend", valueSlideIndex);
+        }
+        if (needAssertResponse) {
+            assertResponse("slideIndex", "setChartLegend");
+        }
+    }
+    /**
+     * Set chart axis.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void setChartLegendInvalidShapeIndexTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "setChartLegend", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "setChartLegend", "slideIndex");
+        Integer valueShapeIndex = (Integer)getTestValue("Integer", "setChartLegend", "shapeIndex");
+        Legend valueLegend = (Legend)getTestValue("Legend", "setChartLegend", "legend");
+        String valuePassword = (String)getTestValue("String", "setChartLegend", "password");
+        String valueFolder = (String)getTestValue("String", "setChartLegend", "folder");
+        String valueStorage = (String)getTestValue("String", "setChartLegend", "storage");
+        try {
+            valueShapeIndex = (Integer)invalidizeTestValue("Integer", valueShapeIndex, "setChartLegend", "shapeIndex");
+            initialize("setChartLegend", "shapeIndex", valueShapeIndex);
+            Legend response = api.setChartLegend(valueName, valueSlideIndex, valueShapeIndex, valueLegend, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "shapeIndex", "setChartLegend", valueShapeIndex);
+        }
+        if (needAssertResponse) {
+            assertResponse("shapeIndex", "setChartLegend");
+        }
+    }
+    /**
+     * Set chart axis.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void setChartLegendInvalidLegendTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "setChartLegend", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "setChartLegend", "slideIndex");
+        Integer valueShapeIndex = (Integer)getTestValue("Integer", "setChartLegend", "shapeIndex");
+        Legend valueLegend = (Legend)getTestValue("Legend", "setChartLegend", "legend");
+        String valuePassword = (String)getTestValue("String", "setChartLegend", "password");
+        String valueFolder = (String)getTestValue("String", "setChartLegend", "folder");
+        String valueStorage = (String)getTestValue("String", "setChartLegend", "storage");
+        try {
+            valueLegend = (Legend)invalidizeTestValue("Legend", valueLegend, "setChartLegend", "legend");
+            initialize("setChartLegend", "legend", valueLegend);
+            Legend response = api.setChartLegend(valueName, valueSlideIndex, valueShapeIndex, valueLegend, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "legend", "setChartLegend", valueLegend);
+        }
+        if (needAssertResponse) {
+            assertResponse("legend", "setChartLegend");
+        }
+    }
+    /**
+     * Set chart axis.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void setChartLegendInvalidPasswordTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "setChartLegend", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "setChartLegend", "slideIndex");
+        Integer valueShapeIndex = (Integer)getTestValue("Integer", "setChartLegend", "shapeIndex");
+        Legend valueLegend = (Legend)getTestValue("Legend", "setChartLegend", "legend");
+        String valuePassword = (String)getTestValue("String", "setChartLegend", "password");
+        String valueFolder = (String)getTestValue("String", "setChartLegend", "folder");
+        String valueStorage = (String)getTestValue("String", "setChartLegend", "storage");
+        try {
+            valuePassword = (String)invalidizeTestValue("String", valuePassword, "setChartLegend", "password");
+            initialize("setChartLegend", "password", valuePassword);
+            Legend response = api.setChartLegend(valueName, valueSlideIndex, valueShapeIndex, valueLegend, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "password", "setChartLegend", valuePassword);
+        }
+        if (needAssertResponse) {
+            assertResponse("password", "setChartLegend");
+        }
+    }
+    /**
+     * Set chart axis.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void setChartLegendInvalidFolderTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "setChartLegend", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "setChartLegend", "slideIndex");
+        Integer valueShapeIndex = (Integer)getTestValue("Integer", "setChartLegend", "shapeIndex");
+        Legend valueLegend = (Legend)getTestValue("Legend", "setChartLegend", "legend");
+        String valuePassword = (String)getTestValue("String", "setChartLegend", "password");
+        String valueFolder = (String)getTestValue("String", "setChartLegend", "folder");
+        String valueStorage = (String)getTestValue("String", "setChartLegend", "storage");
+        try {
+            valueFolder = (String)invalidizeTestValue("String", valueFolder, "setChartLegend", "folder");
+            initialize("setChartLegend", "folder", valueFolder);
+            Legend response = api.setChartLegend(valueName, valueSlideIndex, valueShapeIndex, valueLegend, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "folder", "setChartLegend", valueFolder);
+        }
+        if (needAssertResponse) {
+            assertResponse("folder", "setChartLegend");
+        }
+    }
+    /**
+     * Set chart axis.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void setChartLegendInvalidStorageTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "setChartLegend", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "setChartLegend", "slideIndex");
+        Integer valueShapeIndex = (Integer)getTestValue("Integer", "setChartLegend", "shapeIndex");
+        Legend valueLegend = (Legend)getTestValue("Legend", "setChartLegend", "legend");
+        String valuePassword = (String)getTestValue("String", "setChartLegend", "password");
+        String valueFolder = (String)getTestValue("String", "setChartLegend", "folder");
+        String valueStorage = (String)getTestValue("String", "setChartLegend", "storage");
+        try {
+            valueStorage = (String)invalidizeTestValue("String", valueStorage, "setChartLegend", "storage");
+            initialize("setChartLegend", "storage", valueStorage);
+            Legend response = api.setChartLegend(valueName, valueSlideIndex, valueShapeIndex, valueLegend, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "storage", "setChartLegend", valueStorage);
+        }
+        if (needAssertResponse) {
+            assertResponse("storage", "setChartLegend");
+        }
+    }
+    
+    /**
+     * Set a series group in a chart.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void setChartSeriesGroupTest() throws ApiException, Exception {
+        initialize("setChartSeriesGroup", null, null);
+        Chart response = null;
+        String valueName = (String)getTestValue("String", "setChartSeriesGroup", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "setChartSeriesGroup", "slideIndex");
+        Integer valueShapeIndex = (Integer)getTestValue("Integer", "setChartSeriesGroup", "shapeIndex");
+        Integer valueSeriesGroupIndex = (Integer)getTestValue("Integer", "setChartSeriesGroup", "seriesGroupIndex");
+        ChartSeriesGroup valueSeriesGroup = (ChartSeriesGroup)getTestValue("ChartSeriesGroup", "setChartSeriesGroup", "seriesGroup");
+        String valuePassword = (String)getTestValue("String", "setChartSeriesGroup", "password");
+        String valueFolder = (String)getTestValue("String", "setChartSeriesGroup", "folder");
+        String valueStorage = (String)getTestValue("String", "setChartSeriesGroup", "storage");
+        response = api.setChartSeriesGroup(valueName, valueSlideIndex, valueShapeIndex, valueSeriesGroupIndex, valueSeriesGroup, valuePassword, valueFolder, valueStorage);
+        assertNotNull(response);
+    }
+
+    /**
+     * Set a series group in a chart.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void setChartSeriesGroupInvalidNameTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "setChartSeriesGroup", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "setChartSeriesGroup", "slideIndex");
+        Integer valueShapeIndex = (Integer)getTestValue("Integer", "setChartSeriesGroup", "shapeIndex");
+        Integer valueSeriesGroupIndex = (Integer)getTestValue("Integer", "setChartSeriesGroup", "seriesGroupIndex");
+        ChartSeriesGroup valueSeriesGroup = (ChartSeriesGroup)getTestValue("ChartSeriesGroup", "setChartSeriesGroup", "seriesGroup");
+        String valuePassword = (String)getTestValue("String", "setChartSeriesGroup", "password");
+        String valueFolder = (String)getTestValue("String", "setChartSeriesGroup", "folder");
+        String valueStorage = (String)getTestValue("String", "setChartSeriesGroup", "storage");
+        try {
+            valueName = (String)invalidizeTestValue("String", valueName, "setChartSeriesGroup", "name");
+            initialize("setChartSeriesGroup", "name", valueName);
+            Chart response = api.setChartSeriesGroup(valueName, valueSlideIndex, valueShapeIndex, valueSeriesGroupIndex, valueSeriesGroup, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "name", "setChartSeriesGroup", valueName);
+        }
+        if (needAssertResponse) {
+            assertResponse("name", "setChartSeriesGroup");
+        }
+    }
+    /**
+     * Set a series group in a chart.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void setChartSeriesGroupInvalidSlideIndexTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "setChartSeriesGroup", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "setChartSeriesGroup", "slideIndex");
+        Integer valueShapeIndex = (Integer)getTestValue("Integer", "setChartSeriesGroup", "shapeIndex");
+        Integer valueSeriesGroupIndex = (Integer)getTestValue("Integer", "setChartSeriesGroup", "seriesGroupIndex");
+        ChartSeriesGroup valueSeriesGroup = (ChartSeriesGroup)getTestValue("ChartSeriesGroup", "setChartSeriesGroup", "seriesGroup");
+        String valuePassword = (String)getTestValue("String", "setChartSeriesGroup", "password");
+        String valueFolder = (String)getTestValue("String", "setChartSeriesGroup", "folder");
+        String valueStorage = (String)getTestValue("String", "setChartSeriesGroup", "storage");
+        try {
+            valueSlideIndex = (Integer)invalidizeTestValue("Integer", valueSlideIndex, "setChartSeriesGroup", "slideIndex");
+            initialize("setChartSeriesGroup", "slideIndex", valueSlideIndex);
+            Chart response = api.setChartSeriesGroup(valueName, valueSlideIndex, valueShapeIndex, valueSeriesGroupIndex, valueSeriesGroup, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "slideIndex", "setChartSeriesGroup", valueSlideIndex);
+        }
+        if (needAssertResponse) {
+            assertResponse("slideIndex", "setChartSeriesGroup");
+        }
+    }
+    /**
+     * Set a series group in a chart.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void setChartSeriesGroupInvalidShapeIndexTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "setChartSeriesGroup", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "setChartSeriesGroup", "slideIndex");
+        Integer valueShapeIndex = (Integer)getTestValue("Integer", "setChartSeriesGroup", "shapeIndex");
+        Integer valueSeriesGroupIndex = (Integer)getTestValue("Integer", "setChartSeriesGroup", "seriesGroupIndex");
+        ChartSeriesGroup valueSeriesGroup = (ChartSeriesGroup)getTestValue("ChartSeriesGroup", "setChartSeriesGroup", "seriesGroup");
+        String valuePassword = (String)getTestValue("String", "setChartSeriesGroup", "password");
+        String valueFolder = (String)getTestValue("String", "setChartSeriesGroup", "folder");
+        String valueStorage = (String)getTestValue("String", "setChartSeriesGroup", "storage");
+        try {
+            valueShapeIndex = (Integer)invalidizeTestValue("Integer", valueShapeIndex, "setChartSeriesGroup", "shapeIndex");
+            initialize("setChartSeriesGroup", "shapeIndex", valueShapeIndex);
+            Chart response = api.setChartSeriesGroup(valueName, valueSlideIndex, valueShapeIndex, valueSeriesGroupIndex, valueSeriesGroup, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "shapeIndex", "setChartSeriesGroup", valueShapeIndex);
+        }
+        if (needAssertResponse) {
+            assertResponse("shapeIndex", "setChartSeriesGroup");
+        }
+    }
+    /**
+     * Set a series group in a chart.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void setChartSeriesGroupInvalidSeriesGroupIndexTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "setChartSeriesGroup", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "setChartSeriesGroup", "slideIndex");
+        Integer valueShapeIndex = (Integer)getTestValue("Integer", "setChartSeriesGroup", "shapeIndex");
+        Integer valueSeriesGroupIndex = (Integer)getTestValue("Integer", "setChartSeriesGroup", "seriesGroupIndex");
+        ChartSeriesGroup valueSeriesGroup = (ChartSeriesGroup)getTestValue("ChartSeriesGroup", "setChartSeriesGroup", "seriesGroup");
+        String valuePassword = (String)getTestValue("String", "setChartSeriesGroup", "password");
+        String valueFolder = (String)getTestValue("String", "setChartSeriesGroup", "folder");
+        String valueStorage = (String)getTestValue("String", "setChartSeriesGroup", "storage");
+        try {
+            valueSeriesGroupIndex = (Integer)invalidizeTestValue("Integer", valueSeriesGroupIndex, "setChartSeriesGroup", "seriesGroupIndex");
+            initialize("setChartSeriesGroup", "seriesGroupIndex", valueSeriesGroupIndex);
+            Chart response = api.setChartSeriesGroup(valueName, valueSlideIndex, valueShapeIndex, valueSeriesGroupIndex, valueSeriesGroup, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "seriesGroupIndex", "setChartSeriesGroup", valueSeriesGroupIndex);
+        }
+        if (needAssertResponse) {
+            assertResponse("seriesGroupIndex", "setChartSeriesGroup");
+        }
+    }
+    /**
+     * Set a series group in a chart.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void setChartSeriesGroupInvalidSeriesGroupTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "setChartSeriesGroup", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "setChartSeriesGroup", "slideIndex");
+        Integer valueShapeIndex = (Integer)getTestValue("Integer", "setChartSeriesGroup", "shapeIndex");
+        Integer valueSeriesGroupIndex = (Integer)getTestValue("Integer", "setChartSeriesGroup", "seriesGroupIndex");
+        ChartSeriesGroup valueSeriesGroup = (ChartSeriesGroup)getTestValue("ChartSeriesGroup", "setChartSeriesGroup", "seriesGroup");
+        String valuePassword = (String)getTestValue("String", "setChartSeriesGroup", "password");
+        String valueFolder = (String)getTestValue("String", "setChartSeriesGroup", "folder");
+        String valueStorage = (String)getTestValue("String", "setChartSeriesGroup", "storage");
+        try {
+            valueSeriesGroup = (ChartSeriesGroup)invalidizeTestValue("ChartSeriesGroup", valueSeriesGroup, "setChartSeriesGroup", "seriesGroup");
+            initialize("setChartSeriesGroup", "seriesGroup", valueSeriesGroup);
+            Chart response = api.setChartSeriesGroup(valueName, valueSlideIndex, valueShapeIndex, valueSeriesGroupIndex, valueSeriesGroup, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "seriesGroup", "setChartSeriesGroup", valueSeriesGroup);
+        }
+        if (needAssertResponse) {
+            assertResponse("seriesGroup", "setChartSeriesGroup");
+        }
+    }
+    /**
+     * Set a series group in a chart.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void setChartSeriesGroupInvalidPasswordTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "setChartSeriesGroup", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "setChartSeriesGroup", "slideIndex");
+        Integer valueShapeIndex = (Integer)getTestValue("Integer", "setChartSeriesGroup", "shapeIndex");
+        Integer valueSeriesGroupIndex = (Integer)getTestValue("Integer", "setChartSeriesGroup", "seriesGroupIndex");
+        ChartSeriesGroup valueSeriesGroup = (ChartSeriesGroup)getTestValue("ChartSeriesGroup", "setChartSeriesGroup", "seriesGroup");
+        String valuePassword = (String)getTestValue("String", "setChartSeriesGroup", "password");
+        String valueFolder = (String)getTestValue("String", "setChartSeriesGroup", "folder");
+        String valueStorage = (String)getTestValue("String", "setChartSeriesGroup", "storage");
+        try {
+            valuePassword = (String)invalidizeTestValue("String", valuePassword, "setChartSeriesGroup", "password");
+            initialize("setChartSeriesGroup", "password", valuePassword);
+            Chart response = api.setChartSeriesGroup(valueName, valueSlideIndex, valueShapeIndex, valueSeriesGroupIndex, valueSeriesGroup, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "password", "setChartSeriesGroup", valuePassword);
+        }
+        if (needAssertResponse) {
+            assertResponse("password", "setChartSeriesGroup");
+        }
+    }
+    /**
+     * Set a series group in a chart.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void setChartSeriesGroupInvalidFolderTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "setChartSeriesGroup", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "setChartSeriesGroup", "slideIndex");
+        Integer valueShapeIndex = (Integer)getTestValue("Integer", "setChartSeriesGroup", "shapeIndex");
+        Integer valueSeriesGroupIndex = (Integer)getTestValue("Integer", "setChartSeriesGroup", "seriesGroupIndex");
+        ChartSeriesGroup valueSeriesGroup = (ChartSeriesGroup)getTestValue("ChartSeriesGroup", "setChartSeriesGroup", "seriesGroup");
+        String valuePassword = (String)getTestValue("String", "setChartSeriesGroup", "password");
+        String valueFolder = (String)getTestValue("String", "setChartSeriesGroup", "folder");
+        String valueStorage = (String)getTestValue("String", "setChartSeriesGroup", "storage");
+        try {
+            valueFolder = (String)invalidizeTestValue("String", valueFolder, "setChartSeriesGroup", "folder");
+            initialize("setChartSeriesGroup", "folder", valueFolder);
+            Chart response = api.setChartSeriesGroup(valueName, valueSlideIndex, valueShapeIndex, valueSeriesGroupIndex, valueSeriesGroup, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "folder", "setChartSeriesGroup", valueFolder);
+        }
+        if (needAssertResponse) {
+            assertResponse("folder", "setChartSeriesGroup");
+        }
+    }
+    /**
+     * Set a series group in a chart.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void setChartSeriesGroupInvalidStorageTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "setChartSeriesGroup", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "setChartSeriesGroup", "slideIndex");
+        Integer valueShapeIndex = (Integer)getTestValue("Integer", "setChartSeriesGroup", "shapeIndex");
+        Integer valueSeriesGroupIndex = (Integer)getTestValue("Integer", "setChartSeriesGroup", "seriesGroupIndex");
+        ChartSeriesGroup valueSeriesGroup = (ChartSeriesGroup)getTestValue("ChartSeriesGroup", "setChartSeriesGroup", "seriesGroup");
+        String valuePassword = (String)getTestValue("String", "setChartSeriesGroup", "password");
+        String valueFolder = (String)getTestValue("String", "setChartSeriesGroup", "folder");
+        String valueStorage = (String)getTestValue("String", "setChartSeriesGroup", "storage");
+        try {
+            valueStorage = (String)invalidizeTestValue("String", valueStorage, "setChartSeriesGroup", "storage");
+            initialize("setChartSeriesGroup", "storage", valueStorage);
+            Chart response = api.setChartSeriesGroup(valueName, valueSlideIndex, valueShapeIndex, valueSeriesGroupIndex, valueSeriesGroup, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "storage", "setChartSeriesGroup", valueStorage);
+        }
+        if (needAssertResponse) {
+            assertResponse("storage", "setChartSeriesGroup");
+        }
+    }
+    
+    /**
+     * Set 3D chart wall.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void setChartWallTest() throws ApiException, Exception {
+        initialize("setChartWall", null, null);
+        ChartWall response = null;
+        String valueName = (String)getTestValue("String", "setChartWall", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "setChartWall", "slideIndex");
+        Integer valueShapeIndex = (Integer)getTestValue("Integer", "setChartWall", "shapeIndex");
+        ChartWallType valueChartWallType = (ChartWallType)getTestValue("ChartWallType", "setChartWall", "chartWallType");
+        ChartWall valueChartWall = (ChartWall)getTestValue("ChartWall", "setChartWall", "chartWall");
+        String valuePassword = (String)getTestValue("String", "setChartWall", "password");
+        String valueFolder = (String)getTestValue("String", "setChartWall", "folder");
+        String valueStorage = (String)getTestValue("String", "setChartWall", "storage");
+        response = api.setChartWall(valueName, valueSlideIndex, valueShapeIndex, valueChartWallType, valueChartWall, valuePassword, valueFolder, valueStorage);
+        assertNotNull(response);
+    }
+
+    /**
+     * Set 3D chart wall.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void setChartWallInvalidNameTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "setChartWall", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "setChartWall", "slideIndex");
+        Integer valueShapeIndex = (Integer)getTestValue("Integer", "setChartWall", "shapeIndex");
+        ChartWallType valueChartWallType = (ChartWallType)getTestValue("ChartWallType", "setChartWall", "chartWallType");
+        ChartWall valueChartWall = (ChartWall)getTestValue("ChartWall", "setChartWall", "chartWall");
+        String valuePassword = (String)getTestValue("String", "setChartWall", "password");
+        String valueFolder = (String)getTestValue("String", "setChartWall", "folder");
+        String valueStorage = (String)getTestValue("String", "setChartWall", "storage");
+        try {
+            valueName = (String)invalidizeTestValue("String", valueName, "setChartWall", "name");
+            initialize("setChartWall", "name", valueName);
+            ChartWall response = api.setChartWall(valueName, valueSlideIndex, valueShapeIndex, valueChartWallType, valueChartWall, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "name", "setChartWall", valueName);
+        }
+        if (needAssertResponse) {
+            assertResponse("name", "setChartWall");
+        }
+    }
+    /**
+     * Set 3D chart wall.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void setChartWallInvalidSlideIndexTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "setChartWall", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "setChartWall", "slideIndex");
+        Integer valueShapeIndex = (Integer)getTestValue("Integer", "setChartWall", "shapeIndex");
+        ChartWallType valueChartWallType = (ChartWallType)getTestValue("ChartWallType", "setChartWall", "chartWallType");
+        ChartWall valueChartWall = (ChartWall)getTestValue("ChartWall", "setChartWall", "chartWall");
+        String valuePassword = (String)getTestValue("String", "setChartWall", "password");
+        String valueFolder = (String)getTestValue("String", "setChartWall", "folder");
+        String valueStorage = (String)getTestValue("String", "setChartWall", "storage");
+        try {
+            valueSlideIndex = (Integer)invalidizeTestValue("Integer", valueSlideIndex, "setChartWall", "slideIndex");
+            initialize("setChartWall", "slideIndex", valueSlideIndex);
+            ChartWall response = api.setChartWall(valueName, valueSlideIndex, valueShapeIndex, valueChartWallType, valueChartWall, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "slideIndex", "setChartWall", valueSlideIndex);
+        }
+        if (needAssertResponse) {
+            assertResponse("slideIndex", "setChartWall");
+        }
+    }
+    /**
+     * Set 3D chart wall.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void setChartWallInvalidShapeIndexTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "setChartWall", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "setChartWall", "slideIndex");
+        Integer valueShapeIndex = (Integer)getTestValue("Integer", "setChartWall", "shapeIndex");
+        ChartWallType valueChartWallType = (ChartWallType)getTestValue("ChartWallType", "setChartWall", "chartWallType");
+        ChartWall valueChartWall = (ChartWall)getTestValue("ChartWall", "setChartWall", "chartWall");
+        String valuePassword = (String)getTestValue("String", "setChartWall", "password");
+        String valueFolder = (String)getTestValue("String", "setChartWall", "folder");
+        String valueStorage = (String)getTestValue("String", "setChartWall", "storage");
+        try {
+            valueShapeIndex = (Integer)invalidizeTestValue("Integer", valueShapeIndex, "setChartWall", "shapeIndex");
+            initialize("setChartWall", "shapeIndex", valueShapeIndex);
+            ChartWall response = api.setChartWall(valueName, valueSlideIndex, valueShapeIndex, valueChartWallType, valueChartWall, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "shapeIndex", "setChartWall", valueShapeIndex);
+        }
+        if (needAssertResponse) {
+            assertResponse("shapeIndex", "setChartWall");
+        }
+    }
+    /**
+     * Set 3D chart wall.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void setChartWallInvalidChartWallTypeTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "setChartWall", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "setChartWall", "slideIndex");
+        Integer valueShapeIndex = (Integer)getTestValue("Integer", "setChartWall", "shapeIndex");
+        ChartWallType valueChartWallType = (ChartWallType)getTestValue("ChartWallType", "setChartWall", "chartWallType");
+        ChartWall valueChartWall = (ChartWall)getTestValue("ChartWall", "setChartWall", "chartWall");
+        String valuePassword = (String)getTestValue("String", "setChartWall", "password");
+        String valueFolder = (String)getTestValue("String", "setChartWall", "folder");
+        String valueStorage = (String)getTestValue("String", "setChartWall", "storage");
+        try {
+            valueChartWallType = (ChartWallType)invalidizeTestValue("ChartWallType", valueChartWallType, "setChartWall", "chartWallType");
+            initialize("setChartWall", "chartWallType", valueChartWallType);
+            ChartWall response = api.setChartWall(valueName, valueSlideIndex, valueShapeIndex, valueChartWallType, valueChartWall, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "chartWallType", "setChartWall", valueChartWallType);
+        }
+        if (needAssertResponse) {
+            assertResponse("chartWallType", "setChartWall");
+        }
+    }
+    /**
+     * Set 3D chart wall.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void setChartWallInvalidChartWallTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "setChartWall", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "setChartWall", "slideIndex");
+        Integer valueShapeIndex = (Integer)getTestValue("Integer", "setChartWall", "shapeIndex");
+        ChartWallType valueChartWallType = (ChartWallType)getTestValue("ChartWallType", "setChartWall", "chartWallType");
+        ChartWall valueChartWall = (ChartWall)getTestValue("ChartWall", "setChartWall", "chartWall");
+        String valuePassword = (String)getTestValue("String", "setChartWall", "password");
+        String valueFolder = (String)getTestValue("String", "setChartWall", "folder");
+        String valueStorage = (String)getTestValue("String", "setChartWall", "storage");
+        try {
+            valueChartWall = (ChartWall)invalidizeTestValue("ChartWall", valueChartWall, "setChartWall", "chartWall");
+            initialize("setChartWall", "chartWall", valueChartWall);
+            ChartWall response = api.setChartWall(valueName, valueSlideIndex, valueShapeIndex, valueChartWallType, valueChartWall, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "chartWall", "setChartWall", valueChartWall);
+        }
+        if (needAssertResponse) {
+            assertResponse("chartWall", "setChartWall");
+        }
+    }
+    /**
+     * Set 3D chart wall.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void setChartWallInvalidPasswordTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "setChartWall", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "setChartWall", "slideIndex");
+        Integer valueShapeIndex = (Integer)getTestValue("Integer", "setChartWall", "shapeIndex");
+        ChartWallType valueChartWallType = (ChartWallType)getTestValue("ChartWallType", "setChartWall", "chartWallType");
+        ChartWall valueChartWall = (ChartWall)getTestValue("ChartWall", "setChartWall", "chartWall");
+        String valuePassword = (String)getTestValue("String", "setChartWall", "password");
+        String valueFolder = (String)getTestValue("String", "setChartWall", "folder");
+        String valueStorage = (String)getTestValue("String", "setChartWall", "storage");
+        try {
+            valuePassword = (String)invalidizeTestValue("String", valuePassword, "setChartWall", "password");
+            initialize("setChartWall", "password", valuePassword);
+            ChartWall response = api.setChartWall(valueName, valueSlideIndex, valueShapeIndex, valueChartWallType, valueChartWall, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "password", "setChartWall", valuePassword);
+        }
+        if (needAssertResponse) {
+            assertResponse("password", "setChartWall");
+        }
+    }
+    /**
+     * Set 3D chart wall.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void setChartWallInvalidFolderTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "setChartWall", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "setChartWall", "slideIndex");
+        Integer valueShapeIndex = (Integer)getTestValue("Integer", "setChartWall", "shapeIndex");
+        ChartWallType valueChartWallType = (ChartWallType)getTestValue("ChartWallType", "setChartWall", "chartWallType");
+        ChartWall valueChartWall = (ChartWall)getTestValue("ChartWall", "setChartWall", "chartWall");
+        String valuePassword = (String)getTestValue("String", "setChartWall", "password");
+        String valueFolder = (String)getTestValue("String", "setChartWall", "folder");
+        String valueStorage = (String)getTestValue("String", "setChartWall", "storage");
+        try {
+            valueFolder = (String)invalidizeTestValue("String", valueFolder, "setChartWall", "folder");
+            initialize("setChartWall", "folder", valueFolder);
+            ChartWall response = api.setChartWall(valueName, valueSlideIndex, valueShapeIndex, valueChartWallType, valueChartWall, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "folder", "setChartWall", valueFolder);
+        }
+        if (needAssertResponse) {
+            assertResponse("folder", "setChartWall");
+        }
+    }
+    /**
+     * Set 3D chart wall.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void setChartWallInvalidStorageTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "setChartWall", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "setChartWall", "slideIndex");
+        Integer valueShapeIndex = (Integer)getTestValue("Integer", "setChartWall", "shapeIndex");
+        ChartWallType valueChartWallType = (ChartWallType)getTestValue("ChartWallType", "setChartWall", "chartWallType");
+        ChartWall valueChartWall = (ChartWall)getTestValue("ChartWall", "setChartWall", "chartWall");
+        String valuePassword = (String)getTestValue("String", "setChartWall", "password");
+        String valueFolder = (String)getTestValue("String", "setChartWall", "folder");
+        String valueStorage = (String)getTestValue("String", "setChartWall", "storage");
+        try {
+            valueStorage = (String)invalidizeTestValue("String", valueStorage, "setChartWall", "storage");
+            initialize("setChartWall", "storage", valueStorage);
+            ChartWall response = api.setChartWall(valueName, valueSlideIndex, valueShapeIndex, valueChartWallType, valueChartWall, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "storage", "setChartWall", valueStorage);
+        }
+        if (needAssertResponse) {
+            assertResponse("storage", "setChartWall");
+        }
+    }
+    
+    /**
      * Set document properties.
      *
      * 
@@ -55331,279 +56647,6 @@ public class SlidesApiTest extends ApiTest {
         }
         if (needAssertResponse) {
             assertResponse("storage", "updateChartSeries");
-        }
-    }
-    
-    /**
-     * Update a series group in a chart.
-     *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void updateChartSeriesGroupTest() throws ApiException, Exception {
-        initialize("updateChartSeriesGroup", null, null);
-        Chart response = null;
-        String valueName = (String)getTestValue("String", "updateChartSeriesGroup", "name");
-        Integer valueSlideIndex = (Integer)getTestValue("Integer", "updateChartSeriesGroup", "slideIndex");
-        Integer valueShapeIndex = (Integer)getTestValue("Integer", "updateChartSeriesGroup", "shapeIndex");
-        Integer valueSeriesGroupIndex = (Integer)getTestValue("Integer", "updateChartSeriesGroup", "seriesGroupIndex");
-        ChartSeriesGroup valueSeriesGroup = (ChartSeriesGroup)getTestValue("ChartSeriesGroup", "updateChartSeriesGroup", "seriesGroup");
-        String valuePassword = (String)getTestValue("String", "updateChartSeriesGroup", "password");
-        String valueFolder = (String)getTestValue("String", "updateChartSeriesGroup", "folder");
-        String valueStorage = (String)getTestValue("String", "updateChartSeriesGroup", "storage");
-        response = api.updateChartSeriesGroup(valueName, valueSlideIndex, valueShapeIndex, valueSeriesGroupIndex, valueSeriesGroup, valuePassword, valueFolder, valueStorage);
-        assertNotNull(response);
-    }
-
-    /**
-     * Update a series group in a chart.
-     *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void updateChartSeriesGroupInvalidNameTest() throws ApiException {
-        Boolean needAssertResponse = false;
-        String valueName = (String)getTestValue("String", "updateChartSeriesGroup", "name");
-        Integer valueSlideIndex = (Integer)getTestValue("Integer", "updateChartSeriesGroup", "slideIndex");
-        Integer valueShapeIndex = (Integer)getTestValue("Integer", "updateChartSeriesGroup", "shapeIndex");
-        Integer valueSeriesGroupIndex = (Integer)getTestValue("Integer", "updateChartSeriesGroup", "seriesGroupIndex");
-        ChartSeriesGroup valueSeriesGroup = (ChartSeriesGroup)getTestValue("ChartSeriesGroup", "updateChartSeriesGroup", "seriesGroup");
-        String valuePassword = (String)getTestValue("String", "updateChartSeriesGroup", "password");
-        String valueFolder = (String)getTestValue("String", "updateChartSeriesGroup", "folder");
-        String valueStorage = (String)getTestValue("String", "updateChartSeriesGroup", "storage");
-        try {
-            valueName = (String)invalidizeTestValue("String", valueName, "updateChartSeriesGroup", "name");
-            initialize("updateChartSeriesGroup", "name", valueName);
-            Chart response = api.updateChartSeriesGroup(valueName, valueSlideIndex, valueShapeIndex, valueSeriesGroupIndex, valueSeriesGroup, valuePassword, valueFolder, valueStorage);
-            needAssertResponse = true;
-        } catch (ApiException ex) {
-            assertException(ex, "name", "updateChartSeriesGroup", valueName);
-        }
-        if (needAssertResponse) {
-            assertResponse("name", "updateChartSeriesGroup");
-        }
-    }
-    /**
-     * Update a series group in a chart.
-     *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void updateChartSeriesGroupInvalidSlideIndexTest() throws ApiException {
-        Boolean needAssertResponse = false;
-        String valueName = (String)getTestValue("String", "updateChartSeriesGroup", "name");
-        Integer valueSlideIndex = (Integer)getTestValue("Integer", "updateChartSeriesGroup", "slideIndex");
-        Integer valueShapeIndex = (Integer)getTestValue("Integer", "updateChartSeriesGroup", "shapeIndex");
-        Integer valueSeriesGroupIndex = (Integer)getTestValue("Integer", "updateChartSeriesGroup", "seriesGroupIndex");
-        ChartSeriesGroup valueSeriesGroup = (ChartSeriesGroup)getTestValue("ChartSeriesGroup", "updateChartSeriesGroup", "seriesGroup");
-        String valuePassword = (String)getTestValue("String", "updateChartSeriesGroup", "password");
-        String valueFolder = (String)getTestValue("String", "updateChartSeriesGroup", "folder");
-        String valueStorage = (String)getTestValue("String", "updateChartSeriesGroup", "storage");
-        try {
-            valueSlideIndex = (Integer)invalidizeTestValue("Integer", valueSlideIndex, "updateChartSeriesGroup", "slideIndex");
-            initialize("updateChartSeriesGroup", "slideIndex", valueSlideIndex);
-            Chart response = api.updateChartSeriesGroup(valueName, valueSlideIndex, valueShapeIndex, valueSeriesGroupIndex, valueSeriesGroup, valuePassword, valueFolder, valueStorage);
-            needAssertResponse = true;
-        } catch (ApiException ex) {
-            assertException(ex, "slideIndex", "updateChartSeriesGroup", valueSlideIndex);
-        }
-        if (needAssertResponse) {
-            assertResponse("slideIndex", "updateChartSeriesGroup");
-        }
-    }
-    /**
-     * Update a series group in a chart.
-     *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void updateChartSeriesGroupInvalidShapeIndexTest() throws ApiException {
-        Boolean needAssertResponse = false;
-        String valueName = (String)getTestValue("String", "updateChartSeriesGroup", "name");
-        Integer valueSlideIndex = (Integer)getTestValue("Integer", "updateChartSeriesGroup", "slideIndex");
-        Integer valueShapeIndex = (Integer)getTestValue("Integer", "updateChartSeriesGroup", "shapeIndex");
-        Integer valueSeriesGroupIndex = (Integer)getTestValue("Integer", "updateChartSeriesGroup", "seriesGroupIndex");
-        ChartSeriesGroup valueSeriesGroup = (ChartSeriesGroup)getTestValue("ChartSeriesGroup", "updateChartSeriesGroup", "seriesGroup");
-        String valuePassword = (String)getTestValue("String", "updateChartSeriesGroup", "password");
-        String valueFolder = (String)getTestValue("String", "updateChartSeriesGroup", "folder");
-        String valueStorage = (String)getTestValue("String", "updateChartSeriesGroup", "storage");
-        try {
-            valueShapeIndex = (Integer)invalidizeTestValue("Integer", valueShapeIndex, "updateChartSeriesGroup", "shapeIndex");
-            initialize("updateChartSeriesGroup", "shapeIndex", valueShapeIndex);
-            Chart response = api.updateChartSeriesGroup(valueName, valueSlideIndex, valueShapeIndex, valueSeriesGroupIndex, valueSeriesGroup, valuePassword, valueFolder, valueStorage);
-            needAssertResponse = true;
-        } catch (ApiException ex) {
-            assertException(ex, "shapeIndex", "updateChartSeriesGroup", valueShapeIndex);
-        }
-        if (needAssertResponse) {
-            assertResponse("shapeIndex", "updateChartSeriesGroup");
-        }
-    }
-    /**
-     * Update a series group in a chart.
-     *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void updateChartSeriesGroupInvalidSeriesGroupIndexTest() throws ApiException {
-        Boolean needAssertResponse = false;
-        String valueName = (String)getTestValue("String", "updateChartSeriesGroup", "name");
-        Integer valueSlideIndex = (Integer)getTestValue("Integer", "updateChartSeriesGroup", "slideIndex");
-        Integer valueShapeIndex = (Integer)getTestValue("Integer", "updateChartSeriesGroup", "shapeIndex");
-        Integer valueSeriesGroupIndex = (Integer)getTestValue("Integer", "updateChartSeriesGroup", "seriesGroupIndex");
-        ChartSeriesGroup valueSeriesGroup = (ChartSeriesGroup)getTestValue("ChartSeriesGroup", "updateChartSeriesGroup", "seriesGroup");
-        String valuePassword = (String)getTestValue("String", "updateChartSeriesGroup", "password");
-        String valueFolder = (String)getTestValue("String", "updateChartSeriesGroup", "folder");
-        String valueStorage = (String)getTestValue("String", "updateChartSeriesGroup", "storage");
-        try {
-            valueSeriesGroupIndex = (Integer)invalidizeTestValue("Integer", valueSeriesGroupIndex, "updateChartSeriesGroup", "seriesGroupIndex");
-            initialize("updateChartSeriesGroup", "seriesGroupIndex", valueSeriesGroupIndex);
-            Chart response = api.updateChartSeriesGroup(valueName, valueSlideIndex, valueShapeIndex, valueSeriesGroupIndex, valueSeriesGroup, valuePassword, valueFolder, valueStorage);
-            needAssertResponse = true;
-        } catch (ApiException ex) {
-            assertException(ex, "seriesGroupIndex", "updateChartSeriesGroup", valueSeriesGroupIndex);
-        }
-        if (needAssertResponse) {
-            assertResponse("seriesGroupIndex", "updateChartSeriesGroup");
-        }
-    }
-    /**
-     * Update a series group in a chart.
-     *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void updateChartSeriesGroupInvalidSeriesGroupTest() throws ApiException {
-        Boolean needAssertResponse = false;
-        String valueName = (String)getTestValue("String", "updateChartSeriesGroup", "name");
-        Integer valueSlideIndex = (Integer)getTestValue("Integer", "updateChartSeriesGroup", "slideIndex");
-        Integer valueShapeIndex = (Integer)getTestValue("Integer", "updateChartSeriesGroup", "shapeIndex");
-        Integer valueSeriesGroupIndex = (Integer)getTestValue("Integer", "updateChartSeriesGroup", "seriesGroupIndex");
-        ChartSeriesGroup valueSeriesGroup = (ChartSeriesGroup)getTestValue("ChartSeriesGroup", "updateChartSeriesGroup", "seriesGroup");
-        String valuePassword = (String)getTestValue("String", "updateChartSeriesGroup", "password");
-        String valueFolder = (String)getTestValue("String", "updateChartSeriesGroup", "folder");
-        String valueStorage = (String)getTestValue("String", "updateChartSeriesGroup", "storage");
-        try {
-            valueSeriesGroup = (ChartSeriesGroup)invalidizeTestValue("ChartSeriesGroup", valueSeriesGroup, "updateChartSeriesGroup", "seriesGroup");
-            initialize("updateChartSeriesGroup", "seriesGroup", valueSeriesGroup);
-            Chart response = api.updateChartSeriesGroup(valueName, valueSlideIndex, valueShapeIndex, valueSeriesGroupIndex, valueSeriesGroup, valuePassword, valueFolder, valueStorage);
-            needAssertResponse = true;
-        } catch (ApiException ex) {
-            assertException(ex, "seriesGroup", "updateChartSeriesGroup", valueSeriesGroup);
-        }
-        if (needAssertResponse) {
-            assertResponse("seriesGroup", "updateChartSeriesGroup");
-        }
-    }
-    /**
-     * Update a series group in a chart.
-     *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void updateChartSeriesGroupInvalidPasswordTest() throws ApiException {
-        Boolean needAssertResponse = false;
-        String valueName = (String)getTestValue("String", "updateChartSeriesGroup", "name");
-        Integer valueSlideIndex = (Integer)getTestValue("Integer", "updateChartSeriesGroup", "slideIndex");
-        Integer valueShapeIndex = (Integer)getTestValue("Integer", "updateChartSeriesGroup", "shapeIndex");
-        Integer valueSeriesGroupIndex = (Integer)getTestValue("Integer", "updateChartSeriesGroup", "seriesGroupIndex");
-        ChartSeriesGroup valueSeriesGroup = (ChartSeriesGroup)getTestValue("ChartSeriesGroup", "updateChartSeriesGroup", "seriesGroup");
-        String valuePassword = (String)getTestValue("String", "updateChartSeriesGroup", "password");
-        String valueFolder = (String)getTestValue("String", "updateChartSeriesGroup", "folder");
-        String valueStorage = (String)getTestValue("String", "updateChartSeriesGroup", "storage");
-        try {
-            valuePassword = (String)invalidizeTestValue("String", valuePassword, "updateChartSeriesGroup", "password");
-            initialize("updateChartSeriesGroup", "password", valuePassword);
-            Chart response = api.updateChartSeriesGroup(valueName, valueSlideIndex, valueShapeIndex, valueSeriesGroupIndex, valueSeriesGroup, valuePassword, valueFolder, valueStorage);
-            needAssertResponse = true;
-        } catch (ApiException ex) {
-            assertException(ex, "password", "updateChartSeriesGroup", valuePassword);
-        }
-        if (needAssertResponse) {
-            assertResponse("password", "updateChartSeriesGroup");
-        }
-    }
-    /**
-     * Update a series group in a chart.
-     *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void updateChartSeriesGroupInvalidFolderTest() throws ApiException {
-        Boolean needAssertResponse = false;
-        String valueName = (String)getTestValue("String", "updateChartSeriesGroup", "name");
-        Integer valueSlideIndex = (Integer)getTestValue("Integer", "updateChartSeriesGroup", "slideIndex");
-        Integer valueShapeIndex = (Integer)getTestValue("Integer", "updateChartSeriesGroup", "shapeIndex");
-        Integer valueSeriesGroupIndex = (Integer)getTestValue("Integer", "updateChartSeriesGroup", "seriesGroupIndex");
-        ChartSeriesGroup valueSeriesGroup = (ChartSeriesGroup)getTestValue("ChartSeriesGroup", "updateChartSeriesGroup", "seriesGroup");
-        String valuePassword = (String)getTestValue("String", "updateChartSeriesGroup", "password");
-        String valueFolder = (String)getTestValue("String", "updateChartSeriesGroup", "folder");
-        String valueStorage = (String)getTestValue("String", "updateChartSeriesGroup", "storage");
-        try {
-            valueFolder = (String)invalidizeTestValue("String", valueFolder, "updateChartSeriesGroup", "folder");
-            initialize("updateChartSeriesGroup", "folder", valueFolder);
-            Chart response = api.updateChartSeriesGroup(valueName, valueSlideIndex, valueShapeIndex, valueSeriesGroupIndex, valueSeriesGroup, valuePassword, valueFolder, valueStorage);
-            needAssertResponse = true;
-        } catch (ApiException ex) {
-            assertException(ex, "folder", "updateChartSeriesGroup", valueFolder);
-        }
-        if (needAssertResponse) {
-            assertResponse("folder", "updateChartSeriesGroup");
-        }
-    }
-    /**
-     * Update a series group in a chart.
-     *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void updateChartSeriesGroupInvalidStorageTest() throws ApiException {
-        Boolean needAssertResponse = false;
-        String valueName = (String)getTestValue("String", "updateChartSeriesGroup", "name");
-        Integer valueSlideIndex = (Integer)getTestValue("Integer", "updateChartSeriesGroup", "slideIndex");
-        Integer valueShapeIndex = (Integer)getTestValue("Integer", "updateChartSeriesGroup", "shapeIndex");
-        Integer valueSeriesGroupIndex = (Integer)getTestValue("Integer", "updateChartSeriesGroup", "seriesGroupIndex");
-        ChartSeriesGroup valueSeriesGroup = (ChartSeriesGroup)getTestValue("ChartSeriesGroup", "updateChartSeriesGroup", "seriesGroup");
-        String valuePassword = (String)getTestValue("String", "updateChartSeriesGroup", "password");
-        String valueFolder = (String)getTestValue("String", "updateChartSeriesGroup", "folder");
-        String valueStorage = (String)getTestValue("String", "updateChartSeriesGroup", "storage");
-        try {
-            valueStorage = (String)invalidizeTestValue("String", valueStorage, "updateChartSeriesGroup", "storage");
-            initialize("updateChartSeriesGroup", "storage", valueStorage);
-            Chart response = api.updateChartSeriesGroup(valueName, valueSlideIndex, valueShapeIndex, valueSeriesGroupIndex, valueSeriesGroup, valuePassword, valueFolder, valueStorage);
-            needAssertResponse = true;
-        } catch (ApiException ex) {
-            assertException(ex, "storage", "updateChartSeriesGroup", valueStorage);
-        }
-        if (needAssertResponse) {
-            assertResponse("storage", "updateChartSeriesGroup");
         }
     }
     

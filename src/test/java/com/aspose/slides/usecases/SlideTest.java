@@ -46,7 +46,6 @@ public class SlideTest extends ApiTest {
         assertEquals(c_slideCount + 1, slides.getSlideList().size());
     }
 
-    @Ignore //The specified key does not exist. TempSlidesSDK/TemplateCV.pptx
     @Test
     public void copySlideFromSourceTest() throws ApiException, IOException {
         initialize(null, null, null);
@@ -155,7 +154,7 @@ public class SlideTest extends ApiTest {
     private static final String c_sourceFileName = "TemplateCV.pptx";
     private static final String c_password = "password";
     private static final int c_slideIndex = 1;
-    private static final int c_slideCount = 7;
+    private static final int c_slideCount = 8;
     private static final String c_layoutSlidePath = "layoutSlides/3";
     private static final String c_color = "#FFF5FF8A";
 }

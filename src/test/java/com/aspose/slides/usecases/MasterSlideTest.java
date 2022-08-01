@@ -34,9 +34,10 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertEquals;
+
 import org.junit.Test;
+
+import static org.junit.Assert.*;
 
 /**
  * API tests for chart methods
@@ -236,6 +237,21 @@ public class MasterSlideTest extends ApiTest {
         animation = api.deleteSpecialSlideAnimation(
             c_fileName, c_slideIndex, SpecialSlideType.MASTERSLIDE, c_password, c_folderName, null);
         assertEquals(0, animation.getMainSequence().size());
+    }
+
+    @Test
+    public void masterSlideDeleteUnusedTest() throws ApiException, IOException{
+        initialize(null, null, null);
+        MasterSlides result = (MasterSlides) api.deleteUnusedMasterSlides(c_fileName, true, c_password, c_folderName, null);
+        assertEquals(1, result.getSlideList().size());
+    }
+
+    @Test
+    public void masterSlideDeleteUnusedOnlineTest() throws ApiException, IOException{
+        byte[] document = Files.readAllBytes(Paths.get(testDataFolderName + "/" + c_fileName));
+        File response = api.deleteUnusedMasterSlidesOnline(document, true, c_password);
+        assertNotNull(response);
+        assertTrue(response.length() > 0);
     }
 
     private final String c_folderName = "TempSlidesSDK";

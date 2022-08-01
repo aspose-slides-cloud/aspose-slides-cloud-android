@@ -612,7 +612,6 @@ public class ShapeTest extends ApiTest {
         assertEquals(dto.getTargetSlideIndex(), ((ZoomFrame)shape).getTargetSlideIndex());
     }
 
-    @Ignore //cannot deserialize class com.aspose.slides.model.SectionZoomFrame
     @Test
     public void sectionZoomFrameAddTest() throws ApiException, IOException {
         initialize(null, null, null);

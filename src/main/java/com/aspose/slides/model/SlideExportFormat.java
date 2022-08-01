@@ -88,7 +88,9 @@ public enum SlideExportFormat {
   
   FODP("Fodp"),
   
-  XAML("Xaml");
+  XAML("Xaml"),
+  
+  HTML5("Html5");
 
   private String value;
 

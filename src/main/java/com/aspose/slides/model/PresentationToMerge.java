@@ -63,7 +63,9 @@ public class PresentationToMerge {
   public enum SourceEnum {
     STORAGE("Storage"),
     
-    REQUEST("Request");
+    REQUEST("Request"),
+    
+    URL("Url");
 
     private String value;
 

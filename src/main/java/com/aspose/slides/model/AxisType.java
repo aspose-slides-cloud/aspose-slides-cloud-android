@@ -41,60 +41,22 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
 /**
- * Represents a format for notes slide export.
+ * Defines axis type.
  */
-@JsonAdapter(NotesSlideExportFormat.Adapter.class)
-public enum NotesSlideExportFormat {
+@JsonAdapter(AxisType.Adapter.class)
+public enum AxisType {
   
-  JPEG("Jpeg"),
+  HORIZONTALAXIS("HorizontalAxis"),
   
-  PNG("Png"),
+  VERTICALAXIS("VerticalAxis"),
   
-  GIF("Gif"),
+  SECONDARYHORIZONTALAXIS("SecondaryHorizontalAxis"),
   
-  BMP("Bmp"),
-  
-  TIFF("Tiff"),
-  
-  HTML("Html"),
-  
-  PDF("Pdf"),
-  
-  XPS("Xps"),
-  
-  PPTX("Pptx"),
-  
-  ODP("Odp"),
-  
-  OTP("Otp"),
-  
-  PPT("Ppt"),
-  
-  PPS("Pps"),
-  
-  PPSX("Ppsx"),
-  
-  PPTM("Pptm"),
-  
-  PPSM("Ppsm"),
-  
-  POTX("Potx"),
-  
-  POT("Pot"),
-  
-  POTM("Potm"),
-  
-  SVG("Svg"),
-  
-  FODP("Fodp"),
-  
-  XAML("Xaml"),
-  
-  HTML5("Html5");
+  SECONDARYVERTICALAXIS("SecondaryVerticalAxis");
 
   private String value;
 
-  NotesSlideExportFormat(String value) {
+  AxisType(String value) {
     this.value = value;
   }
 
@@ -102,8 +64,8 @@ public enum NotesSlideExportFormat {
     return value;
   }
 
-  public static NotesSlideExportFormat fromValue(String text) {
-    for (NotesSlideExportFormat b : NotesSlideExportFormat.values()) {
+  public static AxisType fromValue(String text) {
+    for (AxisType b : AxisType.values()) {
       if (String.valueOf(b.value).equals(text)) {
         return b;
       }
@@ -111,16 +73,16 @@ public enum NotesSlideExportFormat {
     return null;
   }
 
-  public static class Adapter extends TypeAdapter<NotesSlideExportFormat> {
+  public static class Adapter extends TypeAdapter<AxisType> {
     @Override
-    public void write(final JsonWriter jsonWriter, final NotesSlideExportFormat enumeration) throws IOException {
+    public void write(final JsonWriter jsonWriter, final AxisType enumeration) throws IOException {
       jsonWriter.value(enumeration.getValue());
     }
 
     @Override
-    public NotesSlideExportFormat read(final JsonReader jsonReader) throws IOException {
+    public AxisType read(final JsonReader jsonReader) throws IOException {
       String value = jsonReader.nextString();
-      return NotesSlideExportFormat.fromValue(String.valueOf(value));
+      return AxisType.fromValue(String.valueOf(value));
     }
   }
 }
