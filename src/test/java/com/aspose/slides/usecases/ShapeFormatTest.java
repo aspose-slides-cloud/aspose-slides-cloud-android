@@ -39,7 +39,7 @@ import org.junit.Test;
 public class ShapeFormatTest extends ApiTest {
     @Test
     public void shapeFormatLine() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         Shape dto = new Shape();
         LineFormat lineFormat = new LineFormat();
         lineFormat.setStyle(LineFormat.StyleEnum.THICKTHIN);
@@ -55,7 +55,7 @@ public class ShapeFormatTest extends ApiTest {
 
     @Test
     public void shapeFormatFill() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         Shape dto = new Shape();
         SolidFill fillFormat = new SolidFill();
         fillFormat.setColor("#FFFFFF00");
@@ -70,7 +70,7 @@ public class ShapeFormatTest extends ApiTest {
 
     @Test
     public void shapeFormatEffect() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         Shape dto = new Shape();
         EffectFormat effectFormat = new EffectFormat();
         InnerShadowEffect innerShadow = new InnerShadowEffect();
@@ -89,7 +89,7 @@ public class ShapeFormatTest extends ApiTest {
 
     @Test
     public void shapeFormat3D() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         Shape dto = new Shape();
         ThreeDFormat threeDFormat = new ThreeDFormat();
         threeDFormat.setDepth(4.0);

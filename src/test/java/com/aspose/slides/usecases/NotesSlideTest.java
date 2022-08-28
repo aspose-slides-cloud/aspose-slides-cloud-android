@@ -45,21 +45,21 @@ import static org.junit.Assert.*;
 public class NotesSlideTest extends ApiTest {
     @Test
     public void notesSlideStorageTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         NotesSlide notesSlide = api.getNotesSlide(c_fileName, c_slideIndex, c_password, c_folderName, null);
         assertNotNull(notesSlide);
     }
 
     @Test
     public void notesSlideExistsStorageTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         EntityExists exists = api.notesSlideExists(c_fileName, c_slideIndex, c_password, c_folderName, null);
         assertNotNull(exists);
     }
 
     @Test
     public void notesSlideDownloadStorageTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         File notesSlide = api.downloadNotesSlide(c_fileName, c_slideIndex, c_format, null, null, c_password, c_folderName, null, null);
         assertNotNull(notesSlide);
         assertTrue(notesSlide.length() > 0);
@@ -91,7 +91,7 @@ public class NotesSlideTest extends ApiTest {
 
     @Test
     public void notesSlideShapesTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         Shapes shapes = api.getSpecialSlideShapes(
             c_fileName, c_slideIndex, SpecialSlideType.NOTESSLIDE, c_password, c_folderName, null);
         assertEquals(c_shapeCount, shapes.getShapesLinks().size());
@@ -124,7 +124,7 @@ public class NotesSlideTest extends ApiTest {
 
     @Test
     public void notesSlideParagraphsTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         Paragraphs paragraphs = api.getSpecialSlideParagraphs(
             c_fileName, c_slideIndex, SpecialSlideType.NOTESSLIDE, c_shapeIndex, c_password, c_folderName, null);
         assertEquals(c_paragraphCount, paragraphs.getParagraphLinks().size());
@@ -169,7 +169,7 @@ public class NotesSlideTest extends ApiTest {
 
     @Test
     public void notesSlidePortionsTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         Portions portions = api.getSpecialSlidePortions(
             c_fileName, c_slideIndex, SpecialSlideType.NOTESSLIDE, c_shapeIndex, c_paragraphIndex, c_password, c_folderName, null);
         assertEquals(c_portionCount, portions.getItems().size());
@@ -232,7 +232,7 @@ public class NotesSlideTest extends ApiTest {
 
     @Test
     public void createNotesSlideTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         NotesSlide dto = new NotesSlide();
         dto.setText(c_notesSlideText);
         NotesSlide response = api.createNotesSlide(c_fileName, c_slideIndex, dto, c_password, c_folderName, null);
@@ -241,7 +241,7 @@ public class NotesSlideTest extends ApiTest {
 
     @Test
     public void updateNotesSlideTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         NotesSlide dto = new NotesSlide();
         dto.setText(c_notesSlideText);
         NotesSlide response = api.updateNotesSlide(c_fileName, c_slideIndex, dto, c_password, c_folderName, null);
@@ -250,7 +250,7 @@ public class NotesSlideTest extends ApiTest {
 
     @Test
     public void deleteNotesSlideTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         Slide response = api.deleteNotesSlide(c_fileName, c_slideIndex, c_password, c_folderName, null);
         assertNull(response.getNotesSlide());
     }

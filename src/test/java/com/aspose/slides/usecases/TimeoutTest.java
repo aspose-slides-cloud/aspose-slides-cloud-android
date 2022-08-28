@@ -57,7 +57,7 @@ public class TimeoutTest extends ApiTest {
     @Test
     public void timeoutTest() throws ApiException, IOException {
         /* unstable test
-        initialize("postSlideSaveAs", null, null);
+        initialize("postSlideSaveAs", null, null, null);
         String configContents = new String(Files.readAllBytes(Paths.get("testConfig.json")), Charset.defaultCharset());
         Configuration config = new JSON().deserialize(configContents, new TypeToken<Configuration>(){}.getType());
         config.setTimeout(1);

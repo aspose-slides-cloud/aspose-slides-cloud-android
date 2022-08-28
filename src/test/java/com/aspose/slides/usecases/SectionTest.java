@@ -41,7 +41,7 @@ import org.junit.Test;
 public class SectionTest extends ApiTest {
     @Test
     public void sectionsGetTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         Sections sections = api.getSections(c_fileName, c_password, c_folderName, null);
         assertNotNull(sections);
         assertEquals(c_sectionCount, sections.getSectionList().size());
@@ -49,7 +49,7 @@ public class SectionTest extends ApiTest {
 
     @Test
     public void sectionsPutTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         Sections dto = new Sections();
         List<Section> sectionList = new ArrayList<Section>();
         Section section1 = new Section();
@@ -71,7 +71,7 @@ public class SectionTest extends ApiTest {
 
     @Test
     public void sectionPostTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         Sections sections = api.createSection(c_fileName, "NewSection", 5, c_password, c_folderName, null);
         assertNotNull(sections);
         assertEquals(c_sectionCount + 1, sections.getSectionList().size());
@@ -80,7 +80,7 @@ public class SectionTest extends ApiTest {
     @Test
     public void sectionPutTest() throws ApiException, IOException {
         final String sectionName = "NewSection";
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         Sections sections = api.updateSection(c_fileName, 2, sectionName, c_password, c_folderName, null);
         assertNotNull(sections);
         assertEquals(c_sectionCount, sections.getSectionList().size());
@@ -89,7 +89,7 @@ public class SectionTest extends ApiTest {
 
     @Test
     public void sectionMoveTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         Sections sections = api.moveSection(c_fileName, 1, 2, c_password, c_folderName, null);
         assertNotNull(sections);
         assertEquals(c_sectionCount, sections.getSectionList().size());
@@ -97,7 +97,7 @@ public class SectionTest extends ApiTest {
 
     @Test
     public void sectionsClearTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         Sections sections = api.deleteSections(c_fileName, null, null, c_password, c_folderName, null);
         assertNotNull(sections);
         assertEquals(0, sections.getSectionList().size());
@@ -105,7 +105,7 @@ public class SectionTest extends ApiTest {
 
     @Test
     public void sectionsDeleteTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         List<Integer> indexes = new ArrayList<Integer>();
         indexes.add(2);
         indexes.add(3);
@@ -116,7 +116,7 @@ public class SectionTest extends ApiTest {
 
     @Test
     public void sectionDeleteTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         Sections sections = api.deleteSection(c_fileName, 2, null, c_password, c_folderName, null);
         assertNotNull(sections);
         assertEquals(c_sectionCount - 1, sections.getSectionList().size());

@@ -57,7 +57,7 @@ public class CreateTest extends ApiTest {
 
     @Test
     public void createFromStorageTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         api.deleteFile(c_folderName + "/" + c_newFileName, null, null);
         Document created = api.createPresentationFromSource(c_newFileName, c_folderName + "/" + c_fileName, c_password, null, null, c_folderName, null);
         assertNotNull(created);
@@ -65,7 +65,7 @@ public class CreateTest extends ApiTest {
 
     @Test
     public void createFromTemplateTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         api.deleteFile(c_folderName + "/" + c_fileName, null, null);
         api.copyFile(tempFolderName + "/" + c_templateFileName, c_folderName + "/" + c_templateFileName, null, null, null);
         Document created = api.createPresentationFromTemplate(c_fileName, c_folderName + "/" + c_templateFileName, c_template, null, null, null, null, c_folderName, null);
@@ -81,7 +81,7 @@ public class CreateTest extends ApiTest {
 
     @Test
     public void appendFromHtml() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         int slideCount = api.getSlides(c_fileName, c_password, c_folderName, null).getSlideList().size();
         Document updated = api.importFromHtml(c_fileName, c_html, c_password, c_folderName, null);
         assertNotNull(updated);
@@ -98,7 +98,7 @@ public class CreateTest extends ApiTest {
 
     @Test
     public void appendFromPdf() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         int slideCount = api.getSlides(c_fileName, c_password, c_folderName, null).getSlideList().size();
         byte[] pdf = Files.readAllBytes(Paths.get(testDataFolderName + "/" + c_pdfFileName));
         Document updated = api.importFromPdf(c_fileName, pdf, c_password, c_folderName, null);

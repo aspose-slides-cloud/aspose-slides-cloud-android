@@ -23,7 +23,7 @@ import static org.junit.Assert.*;
 public class CommentTest extends ApiTest {
     @Test
     public void createCommentTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         SlideComment dto = new SlideComment();
         dto.setText(c_commentText);
         dto.setAuthor(c_author);
@@ -56,7 +56,7 @@ public class CommentTest extends ApiTest {
 
     @Test
     public void getSlideCommentsTest() throws ApiException, IOException{
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         SlideComments response = (SlideComments) api.getSlideComments(c_fileName, c_slideIndex, c_password, c_folderName,null);
         assertEquals(2, response.getList().size());
         assertEquals(1, response.getList().get(0).getChildComments().size());
@@ -64,7 +64,7 @@ public class CommentTest extends ApiTest {
 
     @Test
     public void deleteCommentsTest() throws ApiException, IOException{
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         api.deleteComments(c_fileName, null, c_password, c_folderName, null);
         SlideComments response = (SlideComments) api.getSlideComments(c_fileName, c_slideIndex, c_password, c_folderName,null);
         assertEquals(0, response.getList().size());
@@ -79,7 +79,7 @@ public class CommentTest extends ApiTest {
 
     @Test
     public void deleteSlidesCommentsTest() throws ApiException, IOException{
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         api.deleteSlideComments(c_fileName, c_slideIndex, null, c_password, c_folderName, null);
         SlideComments response = (SlideComments) api.getSlideComments(c_fileName, c_slideIndex, c_password, c_folderName,null);
         assertEquals(0, response.getList().size());
@@ -94,7 +94,7 @@ public class CommentTest extends ApiTest {
 
     @Test
     public void createModernCommentTestTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         int textSelectionStartIndex = 1;
         int textSelectionLength = 5;
 
@@ -116,7 +116,7 @@ public class CommentTest extends ApiTest {
 
     @Test
     public void createShapeModernCommentTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         int textSelectionStartIndex = 1;
         int textSelectionLength = 5;
 

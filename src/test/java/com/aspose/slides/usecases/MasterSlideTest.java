@@ -47,7 +47,7 @@ public class MasterSlideTest extends ApiTest {
     public void masterSlidesTest() throws ApiException, IOException {
         String sourceFile = "TemplateCV.pptx";
         String sourcePath = c_folderName + "/" + sourceFile;
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         MasterSlides masterSlides = api.getMasterSlides(c_fileName, c_password, c_folderName, null);
         assertEquals(1, masterSlides.getSlideList().size());
 
@@ -63,7 +63,7 @@ public class MasterSlideTest extends ApiTest {
 
     @Test
     public void masterSlideShapesTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         Shapes shapes = api.getSpecialSlideShapes(
             c_fileName, c_slideIndex, SpecialSlideType.MASTERSLIDE, c_password, c_folderName, null);
         assertEquals(c_shapeCount, shapes.getShapesLinks().size());
@@ -96,7 +96,7 @@ public class MasterSlideTest extends ApiTest {
 
     @Test
     public void masterSlideParagraphsTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         Paragraphs paragraphs = api.getSpecialSlideParagraphs(
             c_fileName, c_slideIndex, SpecialSlideType.MASTERSLIDE, c_shapeIndex, c_password, c_folderName, null);
         assertEquals(c_paragraphCount, paragraphs.getParagraphLinks().size());
@@ -141,7 +141,7 @@ public class MasterSlideTest extends ApiTest {
 
     @Test
     public void masterSlidePortionsTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         Portions portions = api.getSpecialSlidePortions(
             c_fileName, c_slideIndex, SpecialSlideType.MASTERSLIDE, c_shapeIndex, c_paragraphIndex, c_password, c_folderName, null);
         assertEquals(c_portionCount, portions.getItems().size());
@@ -204,7 +204,7 @@ public class MasterSlideTest extends ApiTest {
 
     @Test
     public void masterSlideAnimationTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         SlideAnimation animation = api.getSpecialSlideAnimation(
             c_fileName, c_slideIndex, SpecialSlideType.MASTERSLIDE, null, null, c_password, c_folderName, null);
         assertEquals(1, animation.getMainSequence().size());
@@ -241,7 +241,7 @@ public class MasterSlideTest extends ApiTest {
 
     @Test
     public void masterSlideDeleteUnusedTest() throws ApiException, IOException{
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         MasterSlides result = (MasterSlides) api.deleteUnusedMasterSlides(c_fileName, true, c_password, c_folderName, null);
         assertEquals(1, result.getSlideList().size());
     }

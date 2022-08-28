@@ -40,7 +40,7 @@ import java.util.List;
 public class AnimationTest extends ApiTest {
     @Test
     public void animationGetTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         Shape dto = new Shape();
         dto.setShapeType(GeometryShape.ShapeTypeEnum.CALLOUT1);
         SlideAnimation animation = api.getAnimation(c_fileName, c_slideIndex, null, null, c_password, c_folderName, null);
@@ -55,7 +55,7 @@ public class AnimationTest extends ApiTest {
 
     @Test
     public void animationSetTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         SlideAnimation dto = new SlideAnimation();
         List<Effect> effects = new ArrayList<Effect>();
 
@@ -80,7 +80,7 @@ public class AnimationTest extends ApiTest {
 
     @Test
     public void animationCreateEffectTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         Effect dto = new Effect();
         dto.setType(Effect.TypeEnum.BLAST);
         dto.setShapeIndex(3);
@@ -91,7 +91,7 @@ public class AnimationTest extends ApiTest {
 
     @Test
     public void animationCreateInteractiveSequenceTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         InteractiveSequence dto = new InteractiveSequence();
         dto.setTriggerShapeIndex(2);
         List<Effect> effects = new ArrayList<Effect>();
@@ -107,7 +107,7 @@ public class AnimationTest extends ApiTest {
 
     @Test
     public void animationCreateInteractiveSequenceEffectTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         Effect dto = new Effect();
         dto.setType(Effect.TypeEnum.BLAST);
         dto.setShapeIndex(3);
@@ -118,7 +118,7 @@ public class AnimationTest extends ApiTest {
 
     @Test
     public void animationUpdateEffectTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         Effect dto = new Effect();
         dto.setType(Effect.TypeEnum.BLAST);
         dto.setShapeIndex(3);
@@ -129,7 +129,7 @@ public class AnimationTest extends ApiTest {
 
     @Test
     public void animationUpdateInteractiveSequenceEffectTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         Effect dto = new Effect();
         dto.setType(Effect.TypeEnum.BLAST);
         dto.setShapeIndex(3);
@@ -140,7 +140,7 @@ public class AnimationTest extends ApiTest {
 
     @Test
     public void animationDeleteTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         SlideAnimation animation = api.deleteAnimation(c_fileName, c_slideIndex, c_password, c_folderName, null);
         assertEquals(0, animation.getMainSequence().size());
         assertEquals(0, animation.getInteractiveSequences().size());
@@ -148,7 +148,7 @@ public class AnimationTest extends ApiTest {
 
     @Test
     public void animationDeleteMainSequenceTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         SlideAnimation animation = api.deleteAnimationMainSequence(c_fileName, c_slideIndex, c_password, c_folderName, null);
         assertEquals(0, animation.getMainSequence().size());
         assertEquals(c_interactiveSequenceCount, animation.getInteractiveSequences().size());
@@ -156,7 +156,7 @@ public class AnimationTest extends ApiTest {
 
     @Test
     public void animationDeleteMainSequenceEffectTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         SlideAnimation animation = api.deleteAnimationEffect(c_fileName, c_slideIndex, 1, c_password, c_folderName, null);
         assertEquals(c_effectCount - 1, animation.getMainSequence().size());
         assertEquals(c_interactiveSequenceCount, animation.getInteractiveSequences().size());
@@ -164,7 +164,7 @@ public class AnimationTest extends ApiTest {
 
     @Test
     public void animationDeleteInteractiveSequencesTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         SlideAnimation animation = api.deleteAnimationInteractiveSequences(c_fileName, c_slideIndex, c_password, c_folderName, null);
         assertEquals(c_effectCount, animation.getMainSequence().size());
         assertEquals(0, animation.getInteractiveSequences().size());
@@ -172,7 +172,7 @@ public class AnimationTest extends ApiTest {
 
     @Test
     public void animationDeleteInteractiveSequenceTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         SlideAnimation animation = api.deleteAnimationInteractiveSequence(c_fileName, c_slideIndex, 1, c_password, c_folderName, null);
         assertEquals(c_effectCount, animation.getMainSequence().size());
         assertEquals(c_interactiveSequenceCount - 1, animation.getInteractiveSequences().size());
@@ -180,7 +180,7 @@ public class AnimationTest extends ApiTest {
 
     @Test
     public void animationDeleteInteractiveSequenceEffectTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         SlideAnimation animation = api.deleteAnimationInteractiveSequenceEffect(c_fileName, c_slideIndex, 1, 1, c_password, c_folderName, null);
         assertEquals(c_effectCount, animation.getMainSequence().size());
         assertEquals(c_interactiveSequenceCount, animation.getInteractiveSequences().size());

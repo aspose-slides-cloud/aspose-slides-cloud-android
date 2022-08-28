@@ -48,7 +48,7 @@ public class NullablePropertyTest extends ApiTest {
      */
     @Test
     public void nullablePropertyTest() throws ApiException, IOException {
-        initialize("noSpecificMethod", "noSpecificProperty", null);
+        initialize("noSpecificMethod", "noSpecificProperty", null, null);
         String folderName = "TempSlidesSDK";
         String fileName = "test.pptx";
         String password = "password";

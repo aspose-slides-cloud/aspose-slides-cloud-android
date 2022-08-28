@@ -70,7 +70,7 @@ public class ConvertTest extends ApiTest {
     @Test
     public void convertPostFromStorageTest() throws ApiException, IOException {
         String fileName = "test.pdf";
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         api.copyFile(tempFolderName + "/" + fileName, c_folderName + "/" + fileName, null, null, null);
         File converted = api.downloadPresentation(fileName, ExportFormat.HTML5, null, c_password, c_folderName, null, null, null);
         assertNotNull(converted);
@@ -80,7 +80,7 @@ public class ConvertTest extends ApiTest {
 
     @Test
     public void convertPutFromStorageTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         api.savePresentation(c_fileName, c_format, c_outPath, null, c_password, c_folderName, null, null, null);
         ObjectExist exists = api.objectExists(c_outPath, null, null);
         assertTrue(exists.isExists());
@@ -99,7 +99,7 @@ public class ConvertTest extends ApiTest {
     @Test
     public void convertWithOptionsFromStorageTest() throws ApiException, IOException {
         ExportFormat format = ExportFormat.PNG;
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         File converted1 = api.downloadPresentation(c_fileName, format, null, c_password, c_folderName, null, null, null);
         ImageExportOptions options = new ImageExportOptions();
         options.setWidth(480);
@@ -127,7 +127,7 @@ public class ConvertTest extends ApiTest {
 
     @Test
     public void convertSlidePostFromStorageTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         File converted = api.downloadSlide(c_fileName, c_slideIndex, c_slideFormat, null, null, null, c_password, c_folderName, null, null);
         assertNotNull(converted);
         assertTrue(converted.length() > 0);
@@ -136,7 +136,7 @@ public class ConvertTest extends ApiTest {
 
     @Test
     public void convertSlidePutFromStorageTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         api.saveSlide(c_fileName, c_slideIndex, c_slideFormat, c_outPath, null, null, null, c_password, c_folderName, null, null);
         ObjectExist exists = api.objectExists(c_outPath, null, null);
         assertTrue(exists.isExists());
@@ -154,7 +154,7 @@ public class ConvertTest extends ApiTest {
 
     @Test
     public void convertSlideWithOptionsFromStorageTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         File converted1 = api.downloadSlide(c_fileName, c_slideIndex, c_slideFormat, null, null, null, c_password, c_folderName, null, null);
         PdfExportOptions options = new PdfExportOptions();
         options.setDrawSlidesFrame(true);
@@ -181,7 +181,7 @@ public class ConvertTest extends ApiTest {
 
     @Test
     public void convertShapePostFromStorageTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         File converted = api.downloadShape(c_fileName, c_slideIndex, c_shapeIndex, c_shapeFormat, null, null, null, null, c_password, c_folderName, null, null);
         assertNotNull(converted);
         assertTrue(converted.length() > 0);
@@ -190,7 +190,7 @@ public class ConvertTest extends ApiTest {
 
     @Test
     public void convertSubshapePostFromStorageTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         File converted = api.downloadSubshape(c_fileName, c_slideIndex, "4/shapes",1, c_shapeFormat, null, null, null, null, c_password, c_folderName, null, null);
         assertNotNull(converted);
         assertTrue(converted.length() > 0);
@@ -199,7 +199,7 @@ public class ConvertTest extends ApiTest {
 
     @Test
     public void convertShapePutFromStorageTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         api.saveShape(c_fileName, c_slideIndex, c_shapeIndex, c_shapeFormat, c_outPath, null, null, null, null, c_password, c_folderName, null, null);
         ObjectExist exists = api.objectExists(c_outPath, null, null);
         assertTrue(exists.isExists());
@@ -207,7 +207,7 @@ public class ConvertTest extends ApiTest {
 
     @Test
     public void convertSubshapePutFromStorageTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         api.saveSubshape(c_fileName, c_slideIndex, "4/shapes", 1, c_shapeFormat, c_outPath, null, null, null, null, c_password, c_folderName, null, null);
         ObjectExist exists = api.objectExists(c_outPath, null, null);
         assertTrue(exists.isExists());
@@ -215,7 +215,7 @@ public class ConvertTest extends ApiTest {
 
     @Test
     public void convertWithFontFallBackRulesTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
 
         ArrayList<FontFallbackRule> fontRules = new ArrayList<FontFallbackRule>();
 

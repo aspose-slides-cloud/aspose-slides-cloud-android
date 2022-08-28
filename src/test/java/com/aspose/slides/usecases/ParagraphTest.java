@@ -18,35 +18,35 @@ public class ParagraphTest extends ApiTest {
 
     @Test
     public void getParagraphTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         Paragraph response = api.getParagraph(c_fileName, c_slideIndex, c_shapeIndex, 1, c_password, c_folderName, null);
         assertEquals(2, response.getPortionList().size());
     }
 
     @Test
     public void getParagraphsTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         Paragraphs response = api.getParagraphs(c_fileName, c_slideIndex, c_shapeIndex, c_password, c_folderName, null);
         assertEquals(2, response.getParagraphLinks().size());
     }
 
     @Test
     public void getSubshapeParagraphTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         Paragraph response = api.getSubshapeParagraph(c_fileName, c_slideIndex, c_shapePath, 1, 1, c_password, c_folderName, null);
         assertEquals(2, response.getPortionList().size());
     }
 
     @Test
     public void getSubshapeParagraphsTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         Paragraphs response = api.getSubshapeParagraphs(c_fileName, c_slideIndex,  c_shapePath, 1, c_password, c_folderName, null);
         assertEquals(2, response.getParagraphLinks().size());
     }
 
     @Test
     public void createParagraphTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         Paragraph dto = new Paragraph();
         dto.setMarginLeft(2.0);
         dto.setMarginRight(2.0);
@@ -60,7 +60,7 @@ public class ParagraphTest extends ApiTest {
 
     @Test
     public void createParagraphWithPortionsTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         Paragraph dto = new Paragraph();
         Portion portion1 = new Portion();
         portion1.setText("Portion1");
@@ -75,7 +75,7 @@ public class ParagraphTest extends ApiTest {
 
     @Test
     public void createSubshapeParagraphTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         Paragraph dto = new Paragraph();
         dto.setMarginLeft(2.0);
         dto.setMarginRight(2.0);
@@ -89,7 +89,7 @@ public class ParagraphTest extends ApiTest {
 
     @Test
     public void updateParagraphTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         Paragraph dto = new Paragraph();
         dto.setMarginLeft(2.0);
         dto.setMarginRight(2.0);
@@ -103,7 +103,7 @@ public class ParagraphTest extends ApiTest {
 
     @Test
     public void updateSubshapeParagraphTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         Paragraph dto = new Paragraph();
         dto.setMarginLeft(2.0);
         dto.setMarginRight(2.0);
@@ -117,49 +117,49 @@ public class ParagraphTest extends ApiTest {
 
     @Test
     public void deleteParagraphsTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         Paragraphs response = api.deleteParagraphs(c_fileName, c_slideIndex, c_shapeIndex, null, c_password, c_folderName, null);
         assertEquals(0, response.getParagraphLinks().size());
     }
 
     @Test
     public void deleteParagraphsIndexesTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         Paragraphs response = api.deleteParagraphs(c_fileName, c_slideIndex, c_shapeIndex, new ArrayList<Integer>(Arrays.asList(2)), c_password, c_folderName, null);
         assertEquals(1, response.getParagraphLinks().size());
     }
 
     @Test
     public void deleteSubshapeParagraphsTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         Paragraphs response = api.deleteSubshapeParagraphs(c_fileName, c_slideIndex, c_shapePath, 1, null, c_password, c_folderName, null);
         assertEquals(0, response.getParagraphLinks().size());
     }
 
     @Test
     public void deleteSubshapeParagraphsIndexesTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         Paragraphs response = api.deleteSubshapeParagraphs(c_fileName, c_slideIndex, c_shapePath, 1, new ArrayList<Integer>(Arrays.asList(1)), c_password, c_folderName, null);
         assertEquals(1, response.getParagraphLinks().size());
     }
 
     @Test
     public void deleteParagraphTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         Paragraphs response = api.deleteParagraph(c_fileName, c_slideIndex, c_shapeIndex, 1, c_password, c_folderName, null);
         assertEquals(1, response.getParagraphLinks().size());
     }
 
     @Test
     public void deleteSubshapeParagraphTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         Paragraphs response = api.deleteSubshapeParagraph(c_fileName, c_slideIndex, c_shapePath, 1, 1, c_password, c_folderName, null);
         assertEquals(1, response.getParagraphLinks().size());
     }
 
     @Test
     public void getParagraphRectTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         TextBounds response = api.getParagraphRectangle(c_fileName, c_slideIndex, c_shapeIndex, 1, c_password, c_folderName, null);
         assertNotNull(response);
         assertTrue(response.getX() > 0);
@@ -170,7 +170,7 @@ public class ParagraphTest extends ApiTest {
 
     @Test
     public void paragraphDefaultPortionFormatTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         Paragraph dto = new Paragraph();
         PortionFormat defaultPortionFormat = new PortionFormat();
         defaultPortionFormat.setFontHeight(20.0);
@@ -191,7 +191,7 @@ public class ParagraphTest extends ApiTest {
 
     @Test
     public void getParagraphEffectiveTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         Paragraph response = api.getParagraphEffective(c_fileName, c_slideIndex, c_shapeIndex, 1,
                 c_password, c_folderName, null);
         assertEquals((Double) 72.0, response.getDefaultTabSize());
@@ -199,7 +199,7 @@ public class ParagraphTest extends ApiTest {
 
     @Test
     public void getSubShapeParagraphEffectiveTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         Paragraph response = api.getSubshapeParagraphEffective(c_fileName, c_slideIndex, c_shapePath, 1,
                 1, c_password, c_folderName, null);
         assertEquals((Double) 72.0, response.getDefaultTabSize());

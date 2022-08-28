@@ -35,9 +35,6 @@ public class ValueRule extends TestRule {
     @SerializedName("InvalidValue")
     private JsonElement invalidValue;
 
-    @SerializedName("Type")
-    private String type;
-
     public Boolean getIsValueSet() {
         return value != null;
     }
@@ -52,10 +49,6 @@ public class ValueRule extends TestRule {
 
     public Object getInvalidValue() {
         return getJsonElementValue(invalidValue);
-    }
-
-    public String getType() {
-        return type;
     }
     
     private Object getJsonElementValue(JsonElement element) {

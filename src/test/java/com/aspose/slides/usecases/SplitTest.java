@@ -46,7 +46,7 @@ import static org.junit.Assert.assertTrue;
 public class SplitTest extends ApiTest {
     @Test
     public void splitStorageTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         SplitDocumentResult result = api.split(c_fileName, null, null, null, null, null, null, null, c_password, c_folderName, null, null);
         SplitDocumentResult resultFromTo = api.split(c_fileName, null, null, null, null, 2, 3, null, c_password, c_folderName, null, null);
         assertEquals(2, resultFromTo.getSlides().size());
@@ -86,7 +86,7 @@ public class SplitTest extends ApiTest {
 
     @Test
     public void splitWithOptionsTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         PdfExportOptions options = new PdfExportOptions();
         options.setJpegQuality(50);
         SplitDocumentResult result = api.split(c_fileName, options, SlideExportFormat.PDF, null, null, null, null, null, c_password, c_folderName, null, null);

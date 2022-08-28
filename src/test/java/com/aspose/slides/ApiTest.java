@@ -51,6 +51,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.lang.reflect.Type;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.containsString;
@@ -127,60 +129,41 @@ public class ApiTest {
     }
 
     protected Object getTestValue(String type, String functionName, String name) {
-        Object value = "test" + name;
-        for (TestRule r : getRules(testRules.getValues(), functionName, name)) {
+        Object value = "testValue";
+        StringBuilder outType = new StringBuilder();
+        for (TestRule r : getRulesWithType(testRules.getValues(), functionName, name, type, outType)) {
             ValueRule vr = (ValueRule)r;
-            if (isGoodRuleType(vr, type)) {
-                String ruleType = vr.getType();
-                if (ruleType != null) {
-                    type = ruleType;
-                }
-                if (vr.getIsValueSet()) {
-                    value = vr.getValue();
-                }
+            if (vr.getIsValueSet()) {
+                value = vr.getValue();
             }
         }
-        return getTypedTestValue(type, functionName, name, value);
-    }
-
-    protected boolean isGoodRuleType(ValueRule rule, String type) {
-        String ruleType = rule.getType();
-        if (ruleType == null) {
-            return true;
-        }
-        try {
-            Class<?> baseClassInfo = Class.forName("com.aspose.slides.model." + type);
-            Class<?> subClassInfo = Class.forName("com.aspose.slides.model." + ruleType);
-            return baseClassInfo.isAssignableFrom(subClassInfo);
-        } catch (Exception ex) {
-            //Exception just means not a model class; ignore it
-        }
-        return false;
+        return getTypedTestValue(type, outType, functionName, name, untemplatize(value, name, null));
     }
 
     protected Object invalidizeTestValue(String type, Object value, String functionName, String name) {
         Object invalidValue = null;
-        for (TestRule r : getRules(testRules.getValues(), functionName, name)) {
+        StringBuilder outType = new StringBuilder();
+        for (TestRule r : getRulesWithType(testRules.getValues(), functionName, name, type, outType)) {
             ValueRule vr = (ValueRule)r;
             if (vr.getIsInvalidValueSet()) {
                 invalidValue = vr.getInvalidValue();
             }
         }
-        return getTypedTestValue(type, functionName, name, untemplatize(invalidValue, value));
+        return getTypedTestValue(type, outType, functionName, name, untemplatize(invalidValue, name, value));
     }
 
-    protected void initialize(String functionName, String invalidParameterName, Object invalidParameterValue) throws ApiException {
+    protected void initialize(String functionName, String invalidParameterName, String invalidParameterType, Object invalidParameterValue) throws ApiException {
         if (!initialized) {
             initializeStorage();
             initialized = true;
         }
         Map<String, FileRule> files = new HashMap<String, FileRule>();
-        for (TestRule r : getRules(testRules.getFiles(), functionName, invalidParameterName)) {
+        for (TestRule r : getRules(testRules.getFiles(), functionName, invalidParameterName, invalidParameterType)) {
             FileRule fr = (FileRule)r;
-            String actualName = (String)untemplatize(fr.getFile(), invalidParameterValue);
+            String actualName = (String)untemplatize(fr.getFile(), invalidParameterName, invalidParameterValue);
             String path = folderName;
             if (fr.getFolder() != null) {
-                path = (String)untemplatize(fr.getFolder(), invalidParameterValue);
+                path = (String)untemplatize(fr.getFolder(), invalidParameterName, invalidParameterValue);
             }
             path = path + "/" + actualName;
             files.put(path, fr);
@@ -223,10 +206,10 @@ public class ApiTest {
         }
     }
 
-    protected void assertException(ApiException ex, String name, String functionName, Object value) {
+    protected void assertException(ApiException ex, String type, String name, String functionName, Object value) {
         Integer code = 0;
         String message = "Unexpeceted message";
-        for (TestRule rule : getRules(testRules.getResults(), functionName, name)) {
+        for (TestRule rule : getRules(testRules.getResults(), functionName, name, type)) {
             ResultRule rr = (ResultRule)rule;
             if (rr.getCode() != null) {
                 code = rr.getCode();
@@ -237,13 +220,13 @@ public class ApiTest {
         }
         if (ex.getCode() != 0) {
             assertThat(ex.getCode(), is(code));
-            assertThat(ex.getMessage(), containsString((String)untemplatize(message, value)));
+            assertThat(ex.getMessage(), containsString((String)untemplatize(message, name, value)));
         }
     }
 
-    protected void assertResponse(String name, String functionName) {
+    protected void assertResponse(String type, String name, String functionName) {
         Boolean failed = true;
-        for (TestRule rule : getRules(testRules.getOKToNotFail(), functionName, name)) {
+        for (TestRule rule : getRules(testRules.getOKToNotFail(), functionName, name, type)) {
             failed = false;
         }
         if (failed) {
@@ -251,29 +234,98 @@ public class ApiTest {
         }
     }
     
-    private List<TestRule> getRules(List<? extends TestRule> rules, String functionName, String fieldName) {
+    private List<TestRule> getRules(List<? extends TestRule> rules, String functionName, String fieldName, String fieldType) {
+        return getRulesWithType(rules, functionName, fieldName, fieldType, new StringBuilder());
+    }
+    
+    private List<TestRule> getRulesWithType(List<? extends TestRule> rules, String functionName, String fieldName, String fieldType, StringBuilder outType) {
         List<TestRule> filteredRules = new ArrayList<TestRule>();
         for (TestRule r: rules) {
-            if (applies(r, functionName, fieldName)) {
+            if (applies(r, functionName, fieldName, fieldType, outType)) {
                 filteredRules.add(r);
             }
         }
         return filteredRules;
     }
 
-    private Boolean applies(TestRule rule, String functionName, String fieldName) {
-        return (rule.getMethod() == null || (functionName != null && rule.getMethod().equalsIgnoreCase(functionName)))
+    private Boolean applies(TestRule rule, String functionName, String fieldName, String type, StringBuilder outType) {
+        return appliesValue(functionName, rule.getMethod())
             && (rule.getInvalid() == null || ((fieldName != null) == rule.getInvalid()))
-            && (rule.getParameter() == null || (fieldName != null && rule.getParameter().equalsIgnoreCase(fieldName)))
+            && appliesValue(fieldName, rule.getParameter())
+            && appliesType(type, rule.getType(), outType)
             && (rule.getLanguage() == null || "java".equals(rule.getLanguage().toLowerCase()));
     }
 
-    private Object untemplatize(Object template, Object value) {
+    private Boolean appliesValue(String value, String ruleValue) {
+        if (ruleValue == null) {
+            return true;
+        }
+        if (value == null) {
+            return false;
+        }
+        if (ruleValue.startsWith("/") && ruleValue.endsWith("/")) {
+            Pattern p = Pattern.compile(ruleValue.substring(1, ruleValue.length() - 1), Pattern.CASE_INSENSITIVE);
+            Matcher m = p.matcher(value);
+            return m.find();
+        }
+        return ruleValue.equalsIgnoreCase(value);
+    }
+
+    private Boolean appliesType(String type, String ruleType, StringBuilder outType) {
+        if (ruleType == null) {
+            return true;
+        }
+        if (ruleType.equals("bool")) {
+            return type.equals("Boolean");
+        }
+        if (ruleType.equals("number")) {
+            return type.equals("Integer");
+        }
+        if (ruleType.equals("int")) {
+            return type.equals("Integer");
+        }
+        if (ruleType.equals("int[]")) {
+            return type.equals("List<Integer>");
+        }
+        if (ruleType.equals("stream")) {
+            return type.equals("byte[]");
+        }
+        if (ruleType.equals("stream[]")) {
+            return type.equals("List<FileInfo>");
+        }
+        if (ruleType.equals("model")) {
+            try {
+                Class<?> classInfo = Class.forName("com.aspose.slides.model." + type);
+                if (classInfo.isEnum()) {
+                    return false;
+                }
+                return true;
+            } catch (Exception ex) {
+                return false;
+            }
+        }
+        try {
+            Class<?> ruleClassInfo = Class.forName("com.aspose.slides.model." + ruleType);
+            Class<?> classInfo = Class.forName("com.aspose.slides.model." + type);
+            if (classInfo.isAssignableFrom(ruleClassInfo)) {
+                outType.setLength(0);
+                outType.append(ruleType);
+                return true;
+            }
+            return false;
+        } catch (Exception ex) {
+            return false;
+        }
+    }
+
+    private Object untemplatize(Object template, Object name, Object value) {
         if (template == null && value != null && value instanceof String) {
             return value;
         }
         if (template != null && template instanceof String) {
-            return ((String)template).replace("%v", value == null ? "" : value.toString());
+            return ((String)template)
+                .replace("%n", name == null ? "" : name.toString())
+                .replace("%v", value == null ? "" : value.toString());
         }
         return template;
     }
@@ -294,41 +346,12 @@ public class ApiTest {
         return null;
     }
     
-    private Object getTypedTestValue(String type, String functionName, String name, Object value) {
+    private Object getTypedTestValue(String type, StringBuilder outType, String functionName, String name, Object value) {
         if (value == null) {
             return null;
         }
-        if ("byte[]".equals(type)) {
-            try {
-                String filePath = getFilePath();
-                if ("importFromPdf".equalsIgnoreCase(functionName)) {
-                    filePath = testDataFolderName + "/test.pdf";
-                }
-                if ("image".equalsIgnoreCase(name)) {
-                    filePath = testDataFolderName + "/watermark.png";
-                }
-                return Files.readAllBytes(Paths.get(filePath));
-            } catch (IOException ex) {
-                Logger.getLogger(ApiTest.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        if ("List<FileInfo>".equals(type)) {
-            try {
-                FileInfo fileInfo1 = new FileInfo();
-                fileInfo1.setData(Files.readAllBytes(Paths.get("TestData/test.pptx")));
-                fileInfo1.setName("test.pptx");
-
-                FileInfo fileInfo2 = new FileInfo();
-                fileInfo2.setData(Files.readAllBytes(Paths.get("TestData/test-unprotected.pptx")));
-                fileInfo2.setName("test-unprotected.pptx");
-
-                List<FileInfo> files = new ArrayList<FileInfo>();
-                files.add(fileInfo1);
-                files.add(fileInfo2);
-                return files;
-            } catch (IOException ex) {
-                Logger.getLogger(ApiTest.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        if (outType.length() > 0) {
+            type = outType.toString();
         }
         if ("Integer".equals(type)) {
             return Integer.decode(value.toString());
@@ -338,9 +361,6 @@ public class ApiTest {
         }
         if ("Boolean".equals(type)) {
             return "true".equals(value.toString().toLowerCase());
-        }
-        if ("List<FileInfo>".equals(type)) {
-            return null;
         }
         if ("List<Integer>".equals(type)) {
             List<Integer> values = new ArrayList<Integer>();
@@ -358,6 +378,30 @@ public class ApiTest {
             return new Gson().fromJson((JsonObject)value, typeObject);
         } catch (Exception ex) {
             //Exception just means not a model class; ignore it
+        }
+        if (value.toString().startsWith("@")) {
+            String fileValue = value.toString().substring(1);
+            if (fileValue.startsWith("(") && fileValue.endsWith(")")) {
+                List<FileInfo> files = new ArrayList<FileInfo>();
+                for (String fileName : fileValue.substring(1, fileValue.length() - 1).split(",")) {
+                    try {
+                        FileInfo fileInfo = new FileInfo();
+                        fileInfo.setData(Files.readAllBytes(Paths.get(testDataFolderName + "/" + fileName)));
+                        fileInfo.setName(fileName);
+                        files.add(fileInfo);
+                    } catch (IOException ex) {
+                        Logger.getLogger(ApiTest.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+                return files;
+            }
+            try {
+                String filePath = testDataFolderName + "/" + fileValue;
+                return Files.readAllBytes(Paths.get(filePath));
+            } catch (IOException ex) {
+                Logger.getLogger(ApiTest.class.getName()).log(Level.SEVERE, null, ex);
+                return null;
+            }
         }
         return value;
     }

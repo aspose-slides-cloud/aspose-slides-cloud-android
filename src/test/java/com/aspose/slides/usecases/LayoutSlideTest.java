@@ -47,7 +47,7 @@ public class LayoutSlideTest extends ApiTest {
     public void layoutSlidesTest() throws ApiException, IOException {
         String sourceFile = "TemplateCV.pptx";
         String sourcePath = c_folderName + "/" + sourceFile;
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         LayoutSlides layoutSlides = api.getLayoutSlides(c_fileName, c_password, c_folderName, null);
         assertEquals(11, layoutSlides.getSlideList().size());
 
@@ -63,7 +63,7 @@ public class LayoutSlideTest extends ApiTest {
 
     @Test
     public void layoutSlideShapesTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         Shapes shapes = api.getSpecialSlideShapes(
             c_fileName, c_slideIndex, SpecialSlideType.LAYOUTSLIDE, c_password, c_folderName, null);
         assertEquals(c_shapeCount, shapes.getShapesLinks().size());
@@ -96,7 +96,7 @@ public class LayoutSlideTest extends ApiTest {
 
     @Test
     public void layoutSlideParagraphsTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         Paragraphs paragraphs = api.getSpecialSlideParagraphs(
             c_fileName, c_slideIndex, SpecialSlideType.LAYOUTSLIDE, c_shapeIndex, c_password, c_folderName, null);
         assertEquals(c_paragraphCount, paragraphs.getParagraphLinks().size());
@@ -133,7 +133,7 @@ public class LayoutSlideTest extends ApiTest {
 
     @Test
     public void layoutSlidePortionsTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         Portions portions = api.getSpecialSlidePortions(
             c_fileName, c_slideIndex, SpecialSlideType.LAYOUTSLIDE, c_shapeIndex, c_paragraphIndex, c_password, c_folderName, null);
         assertEquals(c_portionCount, portions.getItems().size());
@@ -196,7 +196,7 @@ public class LayoutSlideTest extends ApiTest {
 
     @Test
     public void layoutSlideAnimationTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         SlideAnimation animation = api.getSpecialSlideAnimation(
             c_fileName, c_slideIndex, SpecialSlideType.LAYOUTSLIDE, null, null, c_password, c_folderName, null);
         assertEquals(1, animation.getMainSequence().size());
@@ -233,7 +233,7 @@ public class LayoutSlideTest extends ApiTest {
 
     @Test
     public void layoutSlideDeleteUnusedTest() throws ApiException, IOException{
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         LayoutSlides layoutSlidesBefore = (LayoutSlides)api.getLayoutSlides(c_fileName, c_password, c_folderName, null);
         assertEquals(c_slidesCount, layoutSlidesBefore.getSlideList().size());
         LayoutSlides layoutSlidesAfter = (LayoutSlides)api.deleteUnusedLayoutSlides(c_fileName, c_password, c_folderName, null);

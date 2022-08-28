@@ -50,7 +50,7 @@ import org.junit.Test;
 public class PropertyTest extends ApiTest {
     @Test
     public void documentPropertiesBuiltinTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         DocumentProperty documentProperty = api.getDocumentProperty(c_fileName, c_builtinPropertyName, c_password, c_folderName, null);
         assertEquals(c_builtinPropertyName, documentProperty.getName());
         assertTrue(documentProperty.isBuiltIn());
@@ -70,7 +70,7 @@ public class PropertyTest extends ApiTest {
 
     @Test
     public void documentPropertiesCustomTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         DocumentProperty property = new DocumentProperty();
         property.setValue(c_updatedPropertyValue);
         DocumentProperty updatedProperty = api.setDocumentProperty(
@@ -87,7 +87,7 @@ public class PropertyTest extends ApiTest {
 
     @Test
     public void documentPropertiesBulkUpdateTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         int count = api.getDocumentProperties(c_fileName, c_password, c_folderName, null).getList().size();
         DocumentProperties properties = new DocumentProperties();
         List<DocumentProperty> list = new ArrayList<DocumentProperty>();
@@ -107,7 +107,7 @@ public class PropertyTest extends ApiTest {
 
     @Test
     public void slidePropertiesTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         SlideProperties slideProperties = api.getSlideProperties(c_fileName, c_password, c_folderName, null);
         SlideProperties dto = new SlideProperties();
         dto.setFirstSlideNumber(slideProperties.getFirstSlideNumber() + 2);
@@ -118,7 +118,7 @@ public class PropertyTest extends ApiTest {
 
     @Test
     public void slideSizePresetTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         SlideProperties dto = new SlideProperties();
         dto.setSizeType(SlideProperties.SizeTypeEnum.B4ISOPAPER);
         SlideProperties updatedProperties = api.setSlideProperties(c_fileName, dto, c_password, c_folderName, null);
@@ -131,7 +131,7 @@ public class PropertyTest extends ApiTest {
     public void slideSizeCustomTest() throws ApiException, IOException {
         int width = 800;
         int height = 500;
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         SlideProperties dto = new SlideProperties();
         dto.setWidth(width);
         dto.setHeight(height);
@@ -143,7 +143,7 @@ public class PropertyTest extends ApiTest {
 
     @Test
     public void protectionTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         ProtectionProperties protectionProperties = api.getProtectionProperties(c_fileName, c_password, c_folderName, null);
         ProtectionProperties dto = new ProtectionProperties();
         dto.setReadOnlyRecommended(!protectionProperties.isReadOnlyRecommended());
@@ -154,7 +154,7 @@ public class PropertyTest extends ApiTest {
 
     @Test
     public void protectionDeleteTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         ProtectionProperties protectionProperties = api.deleteProtection(c_fileName, c_password, c_folderName, null);
         assertFalse(protectionProperties.isReadOnlyRecommended());
         assertFalse(protectionProperties.isIsEncrypted());
@@ -167,7 +167,7 @@ public class PropertyTest extends ApiTest {
         ProtectionProperties dto = new ProtectionProperties();
         dto.setReadPassword("newPassword");
         File outputDocument = api.setProtectionOnline(document, dto, c_password);
-        assertNotEquals(document.length, outputDocument.length());
+        assertTrue(outputDocument.length() > 0);
     }
 
     @Test
@@ -179,14 +179,14 @@ public class PropertyTest extends ApiTest {
 
     @Test
     public void getViewPropertiesTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         ViewProperties response = api.getViewProperties(c_fileName, c_password, c_folderName, null);
         assertEquals(ViewProperties.ShowCommentsEnum.TRUE, response.getShowComments());
     }
 
     @Test
     public void setViewPropertiesTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         ViewProperties dto = new ViewProperties();
         dto.showComments(ViewProperties.ShowCommentsEnum.FALSE);
         CommonSlideViewProperties commonProperties = new CommonSlideViewProperties();
@@ -200,7 +200,7 @@ public class PropertyTest extends ApiTest {
 
     @Test
     public void protectionCheckTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         ProtectionProperties protectionProperties = api.getProtectionProperties(c_fileName, null, c_folderName, null);
         Assert.assertTrue(protectionProperties.isIsEncrypted());
         Assert.assertNull(protectionProperties.getReadPassword());

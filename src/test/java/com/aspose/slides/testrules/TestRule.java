@@ -37,6 +37,9 @@ public abstract class TestRule {
     @SerializedName("Parameter")
     private String parameter;
 
+    @SerializedName("Type")
+    private String type;
+
     @SerializedName("Language")
     private String language;
 
@@ -50,6 +53,10 @@ public abstract class TestRule {
 
     public String getParameter() {
         return parameter;
+    }
+
+    public String getType() {
+        return type;
     }
 
     public String getLanguage() {

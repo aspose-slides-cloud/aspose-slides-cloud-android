@@ -40,7 +40,7 @@ import org.junit.Test;
 public class HeaderFooterTest extends ApiTest {
     @Test
     public void slidesFooterTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
 
         HeaderFooter dto = new HeaderFooter();
         dto.setIsFooterVisible(true);
@@ -56,7 +56,7 @@ public class HeaderFooterTest extends ApiTest {
 
     @Test
     public void slideFooterTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
 
         HeaderFooter dto = new HeaderFooter();
         dto.setIsFooterVisible(true);
@@ -74,7 +74,7 @@ public class HeaderFooterTest extends ApiTest {
 
     @Test
     public void notesSlideFooterTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
 
         NotesSlideHeaderFooter dto = new NotesSlideHeaderFooter();
         dto.setIsHeaderVisible(true);

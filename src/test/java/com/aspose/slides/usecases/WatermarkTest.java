@@ -47,7 +47,7 @@ import org.junit.Test;
 public class WatermarkTest extends ApiTest {
     @Test
     public void watermarkTextStorageTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         int shapeCount = api.getShapes(c_fileName, c_slideIndex, c_password, c_folderName, null, null).getShapesLinks().size();
         api.createWatermark(c_fileName, null, null, c_watermarkText, null, null, c_password, c_folderName, null);
         assertEquals(shapeCount + 1, api.getShapes(c_fileName, c_slideIndex, c_password, c_folderName, null, null).getShapesLinks().size());
@@ -60,7 +60,7 @@ public class WatermarkTest extends ApiTest {
 
     @Test
     public void watermarkDtoStorageTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         int shapeCount = api.getShapes(c_fileName, c_slideIndex, c_password, c_folderName, null, null).getShapesLinks().size();
         Shape dto = new Shape();
         dto.setText(c_watermarkText);
@@ -75,7 +75,7 @@ public class WatermarkTest extends ApiTest {
 
     @Test
     public void watermarkImageStorageTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         int shapeCount = api.getShapes(c_fileName, c_slideIndex, c_password, c_folderName, null, null).getShapesLinks().size();
         byte[] watermarkFile = Files.readAllBytes(Paths.get(testDataFolderName + "/" + c_watermarkFileName));
         api.createImageWatermark(c_fileName, watermarkFile, null, c_password, c_folderName, null);
@@ -88,7 +88,7 @@ public class WatermarkTest extends ApiTest {
 
     @Test
     public void watermarkImageDtoStorageTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         int shapeCount = api.getShapes(c_fileName, c_slideIndex, c_password, c_folderName, null, null).getShapesLinks().size();
         byte[] watermarkFile = Files.readAllBytes(Paths.get(testDataFolderName + "/" + c_watermarkFileName));
         String base64Data = new String(Base64.getEncoder().encode(watermarkFile));

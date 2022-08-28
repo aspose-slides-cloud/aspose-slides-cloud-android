@@ -44,7 +44,7 @@ import org.junit.Test;
 public class MathTest extends ApiTest {
     @Test
     public void mathGetTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         Portion portion = api.getPortion(
                 c_fileName, c_slideIndex, c_shapeIndex, c_paragraphIndex, c_portionIndex, c_password, c_folderName, null);
         assertNotNull(portion.getMathParagraph());
@@ -57,7 +57,7 @@ public class MathTest extends ApiTest {
 
     @Test
     public void mathGetNullTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         Portion portion = api.getPortion(
                 c_fileName, c_slideIndex, c_notMathShapeIndex, c_paragraphIndex, c_portionIndex, c_password, c_folderName, null);
         assertNull(portion.getMathParagraph());
@@ -65,7 +65,7 @@ public class MathTest extends ApiTest {
 
     @Test
     public void mathCreateTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         Portion dto = new Portion();
         MathParagraph mathParagraph = new MathParagraph();
         List<BlockElement> mathBlocks = new ArrayList<BlockElement>();
@@ -110,7 +110,7 @@ public class MathTest extends ApiTest {
 
     @Test
     public void mathUpdateTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         Portion dto = new Portion();
         MathParagraph mathParagraph = new MathParagraph();
         List<BlockElement> mathBlocks = new ArrayList<BlockElement>();
@@ -156,7 +156,7 @@ public class MathTest extends ApiTest {
 
     @Test
     public void mathDownloadTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         File mathMl = api.downloadPortionAsMathMl(
             c_fileName, c_slideIndex, c_shapeIndex, c_paragraphIndex, c_portionIndex, c_password, c_folderName, null);
         assertNotNull(mathMl);
@@ -166,7 +166,7 @@ public class MathTest extends ApiTest {
 
     @Test
     public void mathDownloadNullTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         try {
             //Cannot convert an ordinary portion to MathML
             File mathMl = api.downloadPortionAsMathMl(
@@ -179,7 +179,7 @@ public class MathTest extends ApiTest {
     @Test
     public void mathSaveTest() throws ApiException, IOException {
         String outPath = c_folderName + "/mathml.xml";
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         api.savePortionAsMathMl(
             c_fileName, c_slideIndex, c_shapeIndex, c_paragraphIndex, c_portionIndex, outPath, c_password, c_folderName, null);
         ObjectExist exists = api.objectExists(outPath, null, null);

@@ -48,7 +48,7 @@ import static org.junit.Assert.assertTrue;
 public class MergeTest extends ApiTest {
     @Test
     public void mergeStorageTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         api.copyFile(tempFolderName + "/" + c_fileName, c_folderName + "/" + c_fileName, null, null, null);
         api.copyFile(tempFolderName + "/" + c_fileName2, c_folderName + "/" + c_fileName2, null, null, null);
         api.copyFile(tempFolderName + "/" + c_fileNamePdf, c_folderName + "/" + c_fileNamePdf, null, null, null);
@@ -62,7 +62,7 @@ public class MergeTest extends ApiTest {
 
     @Test
     public void mergeOrderedStorageTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         api.copyFile(tempFolderName + "/" + c_fileName, c_folderName + "/" + c_fileName, null, null, null);
         api.copyFile(tempFolderName + "/" + c_fileName2, c_folderName + "/" + c_fileName2, null, null, null);
         OrderedMergeRequest request = new OrderedMergeRequest();
@@ -125,7 +125,7 @@ public class MergeTest extends ApiTest {
 
     @Test
     public void mergeOrderedCombinedTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         api.copyFile(tempFolderName + "/" + c_fileName2, c_folderName + "/" + c_fileName2, null, null, null);
         FileInfo file1 = new FileInfo();
         file1.setName(c_fileName);
@@ -146,7 +146,7 @@ public class MergeTest extends ApiTest {
 
     @Test
     public void MergeOrderedUrl() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         api.copyFile(tempFolderName + "/" + c_fileName, c_folderName + "/" + c_fileName, null,
                 null, null);
 

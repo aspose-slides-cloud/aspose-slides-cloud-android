@@ -40,7 +40,7 @@ import org.junit.Test;
 public class HyperlinkTest extends ApiTest {
     @Test
     public void hyperlinkGetShapeTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         ShapeBase shape = api.getShape(c_fileName, c_slideIndex, c_shapeIndex, c_password, c_folderName, null);
         assertNotNull(shape.getHyperlinkClick());
         assertEquals(Hyperlink.ActionTypeEnum.HYPERLINK, shape.getHyperlinkClick().getActionType());
@@ -49,7 +49,7 @@ public class HyperlinkTest extends ApiTest {
 
     @Test
     public void hyperlinkGetPortionTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         Portion portion = api.getPortion(c_fileName, c_slideIndex, c_hoverShapeIndex, c_paragraphIndex, c_portionIndex, c_password, c_folderName, null);
         assertNull(portion.getHyperlinkClick());
         assertNotNull(portion.getHyperlinkMouseOver());
@@ -60,7 +60,7 @@ public class HyperlinkTest extends ApiTest {
     public void hyperlinkCreateShapeTest() throws ApiException, IOException {
         int slideIndex = 1;
         int shapeIndex = 1;
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         Shape shape = new Shape();
         Hyperlink hyperlink = new Hyperlink();
         hyperlink.setActionType(Hyperlink.ActionTypeEnum.HYPERLINK);
@@ -75,7 +75,7 @@ public class HyperlinkTest extends ApiTest {
     public void hyperlinkCreatePortionTest() throws ApiException, IOException {
         int slideIndex = 1;
         int shapeIndex = 1;
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         Portion dto = new Portion();
         dto.setText("Link text");
         Hyperlink link = new Hyperlink();
@@ -89,7 +89,7 @@ public class HyperlinkTest extends ApiTest {
 
     @Test
     public void hyperlinkDeleteTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         PictureFrame shape = new PictureFrame();
         Hyperlink hyperlink = new Hyperlink();
         hyperlink.setIsDisabled(true);

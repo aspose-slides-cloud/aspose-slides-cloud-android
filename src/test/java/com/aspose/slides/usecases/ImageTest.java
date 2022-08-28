@@ -46,7 +46,7 @@ import static org.junit.Assert.assertTrue;
 public class ImageTest extends ApiTest {
     @Test
     public void imagesGetTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         Images images = api.getPresentationImages(c_fileName, c_password, c_folderName, null);
         Images slideImages = api.getSlideImages(c_fileName, 1, c_password, c_folderName, null);
         assertTrue(images.getList().size() > slideImages.getList().size());
@@ -54,7 +54,7 @@ public class ImageTest extends ApiTest {
 
     @Test
     public void imagesDownloadStorageTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         File images = api.downloadImagesDefaultFormat(c_fileName, c_password, c_folderName, null);
         File imagesPng = api.downloadImages(c_fileName, ImageExportFormat.PNG, c_password, c_folderName, null);
         assertTrue(images.canRead());
@@ -80,7 +80,7 @@ public class ImageTest extends ApiTest {
 
     @Test
     public void imageDownloadStorageTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         File image = api.downloadImageDefaultFormat(c_fileName, c_imageIndex, c_password, c_folderName, null);
         File imagePng = api.downloadImage(c_fileName, c_imageIndex, ImageExportFormat.PNG, c_password, c_folderName, null);
         assertTrue(image.canRead());

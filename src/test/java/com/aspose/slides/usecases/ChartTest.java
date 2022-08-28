@@ -45,7 +45,7 @@ import static org.junit.Assert.*;
 public class ChartTest extends ApiTest {
     @Test
     public void chartGetTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         Chart chart = (Chart)api.getShape(c_fileName, c_slideIndex, c_shapeIndex, c_password, c_folderName, null);
         assertNotNull(chart);
         assertEquals(c_seriesCount, chart.getSeries().size());
@@ -54,7 +54,7 @@ public class ChartTest extends ApiTest {
 
     @Test
     public void chartCreateTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         Chart dto = new Chart();
         dto.setChartType(Chart.ChartTypeEnum.CLUSTEREDCOLUMN);
         dto.setWidth(400.0);
@@ -108,7 +108,7 @@ public class ChartTest extends ApiTest {
 
     @Test
     public void chartUpdateTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         Chart dto = new Chart();
         dto.setChartType(Chart.ChartTypeEnum.CLUSTEREDCOLUMN);
         dto.setWidth(400.0);
@@ -162,7 +162,7 @@ public class ChartTest extends ApiTest {
 
     @Test
     public void chartSeriesCreateTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         OneValueSeries series = new OneValueSeries();
         series.setName("Series1");
         List<OneValueChartDataPoint> dataPoints = new ArrayList<OneValueChartDataPoint>();
@@ -187,7 +187,7 @@ public class ChartTest extends ApiTest {
 
     @Test
     public void chartSeriesUpdateTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         OneValueSeries series = new OneValueSeries();
         series.setName("Series1");
         List<OneValueChartDataPoint> dataPoints = new ArrayList<OneValueChartDataPoint>();
@@ -212,7 +212,7 @@ public class ChartTest extends ApiTest {
 
     @Test
     public void chartSeriesDeleteTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         Chart chart = api.deleteChartSeries(c_fileName, c_slideIndex, c_shapeIndex, c_seriesIndex, c_password, c_folderName, null);
         assertNotNull(chart);
         assertEquals(c_seriesCount - 1, chart.getSeries().size());
@@ -222,7 +222,7 @@ public class ChartTest extends ApiTest {
     @Test
     public void chartCategoryCreateTest() throws ApiException, IOException {
         //SLIDESCLOUD-1133
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         ChartCategory category = new ChartCategory();
         category.setValue("NewCategory");
         List<OneValueChartDataPoint> dataPoints = new ArrayList<OneValueChartDataPoint>();
@@ -247,7 +247,7 @@ public class ChartTest extends ApiTest {
     @Test
     public void chartCategoryUpdateTest() throws ApiException, IOException {
         //SLIDESCLOUD-1133
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         ChartCategory category = new ChartCategory();
         category.setValue("NewCategory");
         List<OneValueChartDataPoint> dataPoints = new ArrayList<OneValueChartDataPoint>();
@@ -272,7 +272,7 @@ public class ChartTest extends ApiTest {
     @Test
     public void chartCategoryDeleteTest() throws ApiException, IOException {
         //SLIDESCLOUD-1133
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         Chart chart = api.deleteChartCategory(c_fileName, c_slideIndex, c_shapeIndex, c_categoryIndex, c_password, c_folderName, null);
         assertNotNull(chart);
         assertEquals(c_seriesCount, chart.getSeries().size());
@@ -282,7 +282,7 @@ public class ChartTest extends ApiTest {
 
     @Test
     public void chartDataPointCreateTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         OneValueChartDataPoint dataPoint = new OneValueChartDataPoint();
         dataPoint.setValue(40.0);
         try {
@@ -296,7 +296,7 @@ public class ChartTest extends ApiTest {
     @Test
     public void chartDataPointUpdateTest() throws ApiException, IOException {
         //SLIDESCLOUD-1133
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         OneValueChartDataPoint dataPoint = new OneValueChartDataPoint();
         dataPoint.setValue(40.0);
         Chart chart = api.updateChartDataPoint(c_fileName, c_slideIndex, c_shapeIndex, c_seriesIndex, c_categoryIndex, dataPoint, c_password, c_folderName, null);
@@ -310,7 +310,7 @@ public class ChartTest extends ApiTest {
     @Test
     public void chartDataPointDeleteTest() throws ApiException, IOException {
         //SLIDESCLOUD-1133
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         Chart chart = api.deleteChartDataPoint(c_fileName, c_slideIndex, c_shapeIndex, c_seriesIndex, c_categoryIndex, c_password, c_folderName, null);
         assertNotNull(chart);
         assertEquals(c_seriesCount, chart.getSeries().size());
@@ -321,7 +321,7 @@ public class ChartTest extends ApiTest {
 
     @Test
     public void sunburstChartTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         Chart dto = new Chart();
         dto.setChartType(Chart.ChartTypeEnum.SUNBURST);
         dto.setWidth(400.0);
@@ -378,7 +378,7 @@ public class ChartTest extends ApiTest {
 
     @Test
     public void multiLevelCategoryAxisTest() throws ApiException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         Chart dto = new Chart();
         dto.setX(100.0);
         dto.setY(100.0);
@@ -441,7 +441,7 @@ public class ChartTest extends ApiTest {
 
     @Test
     public void hideChartLegendTest() throws ApiException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         Legend legend = new Legend();
         legend.setHasLegend(false);
         api.setChartLegend(c_fileName, c_slideIndex, c_shapeIndex, legend, c_password, c_folderName, null);
@@ -451,7 +451,7 @@ public class ChartTest extends ApiTest {
 
     @Test
     public void chartGridLinesFormatTest() throws ApiException, IOException{
-        initialize(null, null, null);
+        initialize(null, null, null, null);
 
         Axis horizontalAxis = new Axis();
         ChartLinesFormat horizontalMajorGridLineFormat = new ChartLinesFormat();
@@ -496,7 +496,7 @@ public class ChartTest extends ApiTest {
 
     @Test
     public void chartSeriesGroupsTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         Chart chart = (Chart)api.getShape(c_fileName, c_slideIndex, c_shapeIndex, c_password, c_folderName, null);
         assertEquals(1, chart.getSeriesGroups().size());
         ChartSeriesGroup seriesGroup = chart.getSeriesGroups().get(0);
@@ -509,7 +509,7 @@ public class ChartTest extends ApiTest {
 
     @Test
     public void setChartLegend() throws ApiException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         Legend legend = new Legend();
         legend.setOverlay(true);
         SolidFill fillFormat = new SolidFill();
@@ -524,7 +524,7 @@ public class ChartTest extends ApiTest {
 
     @Test
     public void setChartAxis() throws ApiException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         Axis axis = new Axis();
         axis.setHasTitle(true);
         axis.setIsAutomaticMaxValue(false);
@@ -539,7 +539,7 @@ public class ChartTest extends ApiTest {
 
     @Test
     public void setChartWall() throws ApiException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         ChartWall wall = new ChartWall();
         SolidFill fillFormat = new SolidFill();
         fillFormat.setColor(c_color);

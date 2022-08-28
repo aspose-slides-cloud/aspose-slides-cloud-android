@@ -16,7 +16,7 @@ import static org.junit.Assert.assertTrue;
 public class TextFormatTest extends ApiTest {
     @Test
     public void textFormat3DTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
 
         Shape dto = new Shape();
         dto.setShapeType(GeometryShape.ShapeTypeEnum.RECTANGLE);

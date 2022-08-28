@@ -43,7 +43,7 @@ import static org.junit.Assert.*;
 public class TextTest extends ApiTest {
     @Test
     public void textGetTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         TextItems presentationItems = api.getPresentationTextItems(c_fileName, null, c_password, c_folderName, null);
         TextItems presentationItemsWithEmpty = api.getPresentationTextItems(c_fileName, true, c_password, c_folderName, null);
         TextItems slideItems = api.getSlideTextItems(c_fileName, c_slideIndex, null, c_password, c_folderName, null);
@@ -55,16 +55,16 @@ public class TextTest extends ApiTest {
 
     @Test
     public void textReplaceStorageTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         DocumentReplaceResult result = api.replacePresentationText(c_fileName, c_oldValue, c_newValue, null, c_password, c_folderName, null);
 
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         DocumentReplaceResult resultIgnoreCase = api.replacePresentationText(c_fileName, c_oldValue, c_newValue, true, c_password, c_folderName, null);
 
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         SlideReplaceResult slideResult = api.replaceSlideText(c_fileName, c_slideIndex, c_oldValue, c_newValue, null, c_password, c_folderName, null);
 
-        initialize(null, null, null);
+        initialize(null, null, null, null);
         SlideReplaceResult slideResultIgnoreCase = api.replaceSlideText(c_fileName, c_slideIndex, c_oldValue, c_newValue, true, c_password, c_folderName, null);
 
         assertTrue(resultIgnoreCase.getMatches() > result.getMatches());
@@ -87,7 +87,7 @@ public class TextTest extends ApiTest {
 
     @Test
     public void highlightShapeTextTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
 
         final int shapeIndex = 1, slideIndex = 6, paragraphIndex = 1;
         api.highlightShapeText(c_fileName, slideIndex, shapeIndex, c_textToHighlight, c_highlightColor, null, false, c_password, c_folderName, null);
@@ -100,7 +100,7 @@ public class TextTest extends ApiTest {
 
     @Test
     public void highlightShapeRegexTest() throws ApiException, IOException {
-        initialize(null, null, null);
+        initialize(null, null, null, null);
 
         final int shapeIndex = 1, slideIndex = 6, paragraphIndex = 1;
         api.highlightShapeRegex(c_fileName, slideIndex, shapeIndex, c_highlightRegex, c_highlightColor, null, false, c_password, c_folderName, null);
