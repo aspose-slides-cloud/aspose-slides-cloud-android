@@ -41,6 +41,7 @@ import java.util.Base64;
 
 import org.junit.Ignore;
 import org.junit.Test;
+import sun.rmi.runtime.Log;
 
 import static org.junit.Assert.*;
 
@@ -715,8 +716,64 @@ public class ShapeTest extends ApiTest {
         api.copyFile(tempFolderName + "/" + c_fileName, c_folderName + "/" + c_fileName, null, null, null);
         byte[] file = Files.readAllBytes(Paths.get(testDataFolderName + "/" + c_svgFile));
 
-        Shapes response = api.importShapesFromSvg(c_fileName, slideIndex, file, 50, 50, 300, 300, Arrays.asList(1,3,5), c_password, c_folderName, null);
+        Shapes response = api.importShapesFromSvg(c_fileName, slideIndex, file, 50, 50, 300, 300, Arrays.asList(1,3,5), false, c_password, c_folderName, null);
         assertTrue(response.getShapesLinks().size() == 3);
+    }
+
+    @Test
+    public void CreateSmartArtNode() throws ApiException, IOException {
+        initialize(null, null, null, null);
+        int slideIndex = 7;
+        String newNodeText = "New root node";
+        SmartArt response = api.createSmartArtNode(c_fileName, slideIndex, c_smartArtIndex, null, newNodeText,
+                null, c_password, c_folderName, null);
+        assertEquals(response.getNodes().size(), 2);
+        assertEquals(response.getNodes().get(1).getText(), newNodeText);
+    }
+
+    @Test
+    public void CreateSmartArtSubNode() throws ApiException, IOException {
+        initialize(null, null, null, null);
+        int slideIndex = 7;
+        String newSubNodeText = "New sub-node";
+        String subNodePath = "1";
+        int position = 1;
+        SmartArt response = api.createSmartArtNode(c_fileName, slideIndex, c_smartArtIndex, subNodePath, newSubNodeText,
+                position, c_password, c_folderName, null);
+        assertEquals(response.getNodes().get(0).getNodes().size(), 5);
+        assertEquals(response.getNodes().get(0).getNodes().get(0).getText(), newSubNodeText);
+    }
+
+    @Test
+    public void CreateSmartArtSubSubNode() throws ApiException, IOException {
+        initialize(null, null, null, null);
+        int slideIndex = 7;
+        String newSubNodeText = "New sub-sub-node";
+        String subNodePath = "1/nodes/1";
+        SmartArt response = api.createSmartArtNode(c_fileName, slideIndex, c_smartArtIndex, subNodePath, newSubNodeText,
+                null, c_password, c_folderName, null);
+        assertEquals(response.getNodes().get(0).getNodes().get(0).getNodes().size(), 1);
+        assertEquals(response.getNodes().get(0).getNodes().get(0).getNodes().get(0).getText(), newSubNodeText);
+    }
+
+    @Test
+    public void DeleteSmartArtNode() throws ApiException, IOException {
+        int slideIndex = 7;
+        int smartArtIndex = 2;
+        int nodeIndex = 1;
+        SmartArt response = api.deleteSmartArtNode(c_fileName, slideIndex, smartArtIndex, nodeIndex, null,
+                 c_password, c_folderName, null);
+        assertEquals(response.getNodes().size(), 2);
+    }
+
+    @Test
+    public void DeleteSmartArtSubNode() throws ApiException, IOException {
+        int slideIndex = 7;
+        int nodeIndex = 1;
+        String subNodePath = "2";
+        SmartArt response = api.deleteSmartArtNode(c_fileName, slideIndex, c_smartArtIndex, nodeIndex, subNodePath,
+                c_password, c_folderName, null);
+        assertEquals(response.getNodes().get(0).getNodes().size(), 3);
     }
 
     private final String c_svgFile = "shapes.svg";
@@ -724,6 +781,7 @@ public class ShapeTest extends ApiTest {
     private final String c_fileName = "test.pptx";
     private final String c_password = "password";
     private final int c_slideIndex = 3;
+    private final int c_smartArtIndex = 1;
     private final String c_color = "#FFF5FF8A";
     private final String c_shapePath = "4/shapes";
     private final String c_oleObjectFileName = "oleObject.xlsx";

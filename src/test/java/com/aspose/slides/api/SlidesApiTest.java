@@ -100,6 +100,7 @@ import com.aspose.slides.model.SlideComments;
 import com.aspose.slides.model.SlideProperties;
 import com.aspose.slides.model.SlideReplaceResult;
 import com.aspose.slides.model.Slides;
+import com.aspose.slides.model.SmartArt;
 import com.aspose.slides.model.SplitDocumentResult;
 import com.aspose.slides.model.StorageExist;
 import com.aspose.slides.model.TextBounds;
@@ -7066,6 +7067,320 @@ public class SlidesApiTest extends ApiTest {
         }
         if (needAssertResponse) {
             assertResponse("String", "storage", "createSlide");
+        }
+    }
+    
+    /**
+     * Add SmartArt node
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void createSmartArtNodeTest() throws ApiException, Exception {
+        initialize("createSmartArtNode", null, null, null);
+        SmartArt response = null;
+        String valueName = (String)getTestValue("String", "createSmartArtNode", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "createSmartArtNode", "slideIndex");
+        Integer valueSmartArtIndex = (Integer)getTestValue("Integer", "createSmartArtNode", "smartArtIndex");
+        String valueSubNode = (String)getTestValue("String", "createSmartArtNode", "subNode");
+        String valueText = (String)getTestValue("String", "createSmartArtNode", "text");
+        Integer valuePosition = (Integer)getTestValue("Integer", "createSmartArtNode", "position");
+        String valuePassword = (String)getTestValue("String", "createSmartArtNode", "password");
+        String valueFolder = (String)getTestValue("String", "createSmartArtNode", "folder");
+        String valueStorage = (String)getTestValue("String", "createSmartArtNode", "storage");
+        response = api.createSmartArtNode(valueName, valueSlideIndex, valueSmartArtIndex, valueSubNode, valueText, valuePosition, valuePassword, valueFolder, valueStorage);
+        assertNotNull(response);
+    }
+
+    /**
+     * Add SmartArt node
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void createSmartArtNodeInvalidNameTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "createSmartArtNode", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "createSmartArtNode", "slideIndex");
+        Integer valueSmartArtIndex = (Integer)getTestValue("Integer", "createSmartArtNode", "smartArtIndex");
+        String valueSubNode = (String)getTestValue("String", "createSmartArtNode", "subNode");
+        String valueText = (String)getTestValue("String", "createSmartArtNode", "text");
+        Integer valuePosition = (Integer)getTestValue("Integer", "createSmartArtNode", "position");
+        String valuePassword = (String)getTestValue("String", "createSmartArtNode", "password");
+        String valueFolder = (String)getTestValue("String", "createSmartArtNode", "folder");
+        String valueStorage = (String)getTestValue("String", "createSmartArtNode", "storage");
+        try {
+            valueName = (String)invalidizeTestValue("String", valueName, "createSmartArtNode", "name");
+            initialize("createSmartArtNode", "name", "String", valueName);
+            SmartArt response = api.createSmartArtNode(valueName, valueSlideIndex, valueSmartArtIndex, valueSubNode, valueText, valuePosition, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "String", "name", "createSmartArtNode", valueName);
+        }
+        if (needAssertResponse) {
+            assertResponse("String", "name", "createSmartArtNode");
+        }
+    }
+    /**
+     * Add SmartArt node
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void createSmartArtNodeInvalidSlideIndexTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "createSmartArtNode", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "createSmartArtNode", "slideIndex");
+        Integer valueSmartArtIndex = (Integer)getTestValue("Integer", "createSmartArtNode", "smartArtIndex");
+        String valueSubNode = (String)getTestValue("String", "createSmartArtNode", "subNode");
+        String valueText = (String)getTestValue("String", "createSmartArtNode", "text");
+        Integer valuePosition = (Integer)getTestValue("Integer", "createSmartArtNode", "position");
+        String valuePassword = (String)getTestValue("String", "createSmartArtNode", "password");
+        String valueFolder = (String)getTestValue("String", "createSmartArtNode", "folder");
+        String valueStorage = (String)getTestValue("String", "createSmartArtNode", "storage");
+        try {
+            valueSlideIndex = (Integer)invalidizeTestValue("Integer", valueSlideIndex, "createSmartArtNode", "slideIndex");
+            initialize("createSmartArtNode", "slideIndex", "Integer", valueSlideIndex);
+            SmartArt response = api.createSmartArtNode(valueName, valueSlideIndex, valueSmartArtIndex, valueSubNode, valueText, valuePosition, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "Integer", "slideIndex", "createSmartArtNode", valueSlideIndex);
+        }
+        if (needAssertResponse) {
+            assertResponse("Integer", "slideIndex", "createSmartArtNode");
+        }
+    }
+    /**
+     * Add SmartArt node
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void createSmartArtNodeInvalidSmartArtIndexTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "createSmartArtNode", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "createSmartArtNode", "slideIndex");
+        Integer valueSmartArtIndex = (Integer)getTestValue("Integer", "createSmartArtNode", "smartArtIndex");
+        String valueSubNode = (String)getTestValue("String", "createSmartArtNode", "subNode");
+        String valueText = (String)getTestValue("String", "createSmartArtNode", "text");
+        Integer valuePosition = (Integer)getTestValue("Integer", "createSmartArtNode", "position");
+        String valuePassword = (String)getTestValue("String", "createSmartArtNode", "password");
+        String valueFolder = (String)getTestValue("String", "createSmartArtNode", "folder");
+        String valueStorage = (String)getTestValue("String", "createSmartArtNode", "storage");
+        try {
+            valueSmartArtIndex = (Integer)invalidizeTestValue("Integer", valueSmartArtIndex, "createSmartArtNode", "smartArtIndex");
+            initialize("createSmartArtNode", "smartArtIndex", "Integer", valueSmartArtIndex);
+            SmartArt response = api.createSmartArtNode(valueName, valueSlideIndex, valueSmartArtIndex, valueSubNode, valueText, valuePosition, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "Integer", "smartArtIndex", "createSmartArtNode", valueSmartArtIndex);
+        }
+        if (needAssertResponse) {
+            assertResponse("Integer", "smartArtIndex", "createSmartArtNode");
+        }
+    }
+    /**
+     * Add SmartArt node
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void createSmartArtNodeInvalidSubNodeTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "createSmartArtNode", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "createSmartArtNode", "slideIndex");
+        Integer valueSmartArtIndex = (Integer)getTestValue("Integer", "createSmartArtNode", "smartArtIndex");
+        String valueSubNode = (String)getTestValue("String", "createSmartArtNode", "subNode");
+        String valueText = (String)getTestValue("String", "createSmartArtNode", "text");
+        Integer valuePosition = (Integer)getTestValue("Integer", "createSmartArtNode", "position");
+        String valuePassword = (String)getTestValue("String", "createSmartArtNode", "password");
+        String valueFolder = (String)getTestValue("String", "createSmartArtNode", "folder");
+        String valueStorage = (String)getTestValue("String", "createSmartArtNode", "storage");
+        try {
+            valueSubNode = (String)invalidizeTestValue("String", valueSubNode, "createSmartArtNode", "subNode");
+            initialize("createSmartArtNode", "subNode", "String", valueSubNode);
+            SmartArt response = api.createSmartArtNode(valueName, valueSlideIndex, valueSmartArtIndex, valueSubNode, valueText, valuePosition, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "String", "subNode", "createSmartArtNode", valueSubNode);
+        }
+        if (needAssertResponse) {
+            assertResponse("String", "subNode", "createSmartArtNode");
+        }
+    }
+    /**
+     * Add SmartArt node
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void createSmartArtNodeInvalidTextTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "createSmartArtNode", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "createSmartArtNode", "slideIndex");
+        Integer valueSmartArtIndex = (Integer)getTestValue("Integer", "createSmartArtNode", "smartArtIndex");
+        String valueSubNode = (String)getTestValue("String", "createSmartArtNode", "subNode");
+        String valueText = (String)getTestValue("String", "createSmartArtNode", "text");
+        Integer valuePosition = (Integer)getTestValue("Integer", "createSmartArtNode", "position");
+        String valuePassword = (String)getTestValue("String", "createSmartArtNode", "password");
+        String valueFolder = (String)getTestValue("String", "createSmartArtNode", "folder");
+        String valueStorage = (String)getTestValue("String", "createSmartArtNode", "storage");
+        try {
+            valueText = (String)invalidizeTestValue("String", valueText, "createSmartArtNode", "text");
+            initialize("createSmartArtNode", "text", "String", valueText);
+            SmartArt response = api.createSmartArtNode(valueName, valueSlideIndex, valueSmartArtIndex, valueSubNode, valueText, valuePosition, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "String", "text", "createSmartArtNode", valueText);
+        }
+        if (needAssertResponse) {
+            assertResponse("String", "text", "createSmartArtNode");
+        }
+    }
+    /**
+     * Add SmartArt node
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void createSmartArtNodeInvalidPositionTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "createSmartArtNode", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "createSmartArtNode", "slideIndex");
+        Integer valueSmartArtIndex = (Integer)getTestValue("Integer", "createSmartArtNode", "smartArtIndex");
+        String valueSubNode = (String)getTestValue("String", "createSmartArtNode", "subNode");
+        String valueText = (String)getTestValue("String", "createSmartArtNode", "text");
+        Integer valuePosition = (Integer)getTestValue("Integer", "createSmartArtNode", "position");
+        String valuePassword = (String)getTestValue("String", "createSmartArtNode", "password");
+        String valueFolder = (String)getTestValue("String", "createSmartArtNode", "folder");
+        String valueStorage = (String)getTestValue("String", "createSmartArtNode", "storage");
+        try {
+            valuePosition = (Integer)invalidizeTestValue("Integer", valuePosition, "createSmartArtNode", "position");
+            initialize("createSmartArtNode", "position", "Integer", valuePosition);
+            SmartArt response = api.createSmartArtNode(valueName, valueSlideIndex, valueSmartArtIndex, valueSubNode, valueText, valuePosition, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "Integer", "position", "createSmartArtNode", valuePosition);
+        }
+        if (needAssertResponse) {
+            assertResponse("Integer", "position", "createSmartArtNode");
+        }
+    }
+    /**
+     * Add SmartArt node
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void createSmartArtNodeInvalidPasswordTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "createSmartArtNode", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "createSmartArtNode", "slideIndex");
+        Integer valueSmartArtIndex = (Integer)getTestValue("Integer", "createSmartArtNode", "smartArtIndex");
+        String valueSubNode = (String)getTestValue("String", "createSmartArtNode", "subNode");
+        String valueText = (String)getTestValue("String", "createSmartArtNode", "text");
+        Integer valuePosition = (Integer)getTestValue("Integer", "createSmartArtNode", "position");
+        String valuePassword = (String)getTestValue("String", "createSmartArtNode", "password");
+        String valueFolder = (String)getTestValue("String", "createSmartArtNode", "folder");
+        String valueStorage = (String)getTestValue("String", "createSmartArtNode", "storage");
+        try {
+            valuePassword = (String)invalidizeTestValue("String", valuePassword, "createSmartArtNode", "password");
+            initialize("createSmartArtNode", "password", "String", valuePassword);
+            SmartArt response = api.createSmartArtNode(valueName, valueSlideIndex, valueSmartArtIndex, valueSubNode, valueText, valuePosition, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "String", "password", "createSmartArtNode", valuePassword);
+        }
+        if (needAssertResponse) {
+            assertResponse("String", "password", "createSmartArtNode");
+        }
+    }
+    /**
+     * Add SmartArt node
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void createSmartArtNodeInvalidFolderTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "createSmartArtNode", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "createSmartArtNode", "slideIndex");
+        Integer valueSmartArtIndex = (Integer)getTestValue("Integer", "createSmartArtNode", "smartArtIndex");
+        String valueSubNode = (String)getTestValue("String", "createSmartArtNode", "subNode");
+        String valueText = (String)getTestValue("String", "createSmartArtNode", "text");
+        Integer valuePosition = (Integer)getTestValue("Integer", "createSmartArtNode", "position");
+        String valuePassword = (String)getTestValue("String", "createSmartArtNode", "password");
+        String valueFolder = (String)getTestValue("String", "createSmartArtNode", "folder");
+        String valueStorage = (String)getTestValue("String", "createSmartArtNode", "storage");
+        try {
+            valueFolder = (String)invalidizeTestValue("String", valueFolder, "createSmartArtNode", "folder");
+            initialize("createSmartArtNode", "folder", "String", valueFolder);
+            SmartArt response = api.createSmartArtNode(valueName, valueSlideIndex, valueSmartArtIndex, valueSubNode, valueText, valuePosition, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "String", "folder", "createSmartArtNode", valueFolder);
+        }
+        if (needAssertResponse) {
+            assertResponse("String", "folder", "createSmartArtNode");
+        }
+    }
+    /**
+     * Add SmartArt node
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void createSmartArtNodeInvalidStorageTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "createSmartArtNode", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "createSmartArtNode", "slideIndex");
+        Integer valueSmartArtIndex = (Integer)getTestValue("Integer", "createSmartArtNode", "smartArtIndex");
+        String valueSubNode = (String)getTestValue("String", "createSmartArtNode", "subNode");
+        String valueText = (String)getTestValue("String", "createSmartArtNode", "text");
+        Integer valuePosition = (Integer)getTestValue("Integer", "createSmartArtNode", "position");
+        String valuePassword = (String)getTestValue("String", "createSmartArtNode", "password");
+        String valueFolder = (String)getTestValue("String", "createSmartArtNode", "folder");
+        String valueStorage = (String)getTestValue("String", "createSmartArtNode", "storage");
+        try {
+            valueStorage = (String)invalidizeTestValue("String", valueStorage, "createSmartArtNode", "storage");
+            initialize("createSmartArtNode", "storage", "String", valueStorage);
+            SmartArt response = api.createSmartArtNode(valueName, valueSlideIndex, valueSmartArtIndex, valueSubNode, valueText, valuePosition, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "String", "storage", "createSmartArtNode", valueStorage);
+        }
+        if (needAssertResponse) {
+            assertResponse("String", "storage", "createSmartArtNode");
         }
     }
     
@@ -17273,6 +17588,279 @@ public class SlidesApiTest extends ApiTest {
         }
         if (needAssertResponse) {
             assertResponse("String", "storage", "deleteSlides");
+        }
+    }
+    
+    /**
+     * Delete SmartArt node
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void deleteSmartArtNodeTest() throws ApiException, Exception {
+        initialize("deleteSmartArtNode", null, null, null);
+        SmartArt response = null;
+        String valueName = (String)getTestValue("String", "deleteSmartArtNode", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "deleteSmartArtNode", "slideIndex");
+        Integer valueSmartArtIndex = (Integer)getTestValue("Integer", "deleteSmartArtNode", "smartArtIndex");
+        Integer valueNodeIndex = (Integer)getTestValue("Integer", "deleteSmartArtNode", "nodeIndex");
+        String valueSubNode = (String)getTestValue("String", "deleteSmartArtNode", "subNode");
+        String valuePassword = (String)getTestValue("String", "deleteSmartArtNode", "password");
+        String valueFolder = (String)getTestValue("String", "deleteSmartArtNode", "folder");
+        String valueStorage = (String)getTestValue("String", "deleteSmartArtNode", "storage");
+        response = api.deleteSmartArtNode(valueName, valueSlideIndex, valueSmartArtIndex, valueNodeIndex, valueSubNode, valuePassword, valueFolder, valueStorage);
+        assertNotNull(response);
+    }
+
+    /**
+     * Delete SmartArt node
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void deleteSmartArtNodeInvalidNameTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "deleteSmartArtNode", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "deleteSmartArtNode", "slideIndex");
+        Integer valueSmartArtIndex = (Integer)getTestValue("Integer", "deleteSmartArtNode", "smartArtIndex");
+        Integer valueNodeIndex = (Integer)getTestValue("Integer", "deleteSmartArtNode", "nodeIndex");
+        String valueSubNode = (String)getTestValue("String", "deleteSmartArtNode", "subNode");
+        String valuePassword = (String)getTestValue("String", "deleteSmartArtNode", "password");
+        String valueFolder = (String)getTestValue("String", "deleteSmartArtNode", "folder");
+        String valueStorage = (String)getTestValue("String", "deleteSmartArtNode", "storage");
+        try {
+            valueName = (String)invalidizeTestValue("String", valueName, "deleteSmartArtNode", "name");
+            initialize("deleteSmartArtNode", "name", "String", valueName);
+            SmartArt response = api.deleteSmartArtNode(valueName, valueSlideIndex, valueSmartArtIndex, valueNodeIndex, valueSubNode, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "String", "name", "deleteSmartArtNode", valueName);
+        }
+        if (needAssertResponse) {
+            assertResponse("String", "name", "deleteSmartArtNode");
+        }
+    }
+    /**
+     * Delete SmartArt node
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void deleteSmartArtNodeInvalidSlideIndexTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "deleteSmartArtNode", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "deleteSmartArtNode", "slideIndex");
+        Integer valueSmartArtIndex = (Integer)getTestValue("Integer", "deleteSmartArtNode", "smartArtIndex");
+        Integer valueNodeIndex = (Integer)getTestValue("Integer", "deleteSmartArtNode", "nodeIndex");
+        String valueSubNode = (String)getTestValue("String", "deleteSmartArtNode", "subNode");
+        String valuePassword = (String)getTestValue("String", "deleteSmartArtNode", "password");
+        String valueFolder = (String)getTestValue("String", "deleteSmartArtNode", "folder");
+        String valueStorage = (String)getTestValue("String", "deleteSmartArtNode", "storage");
+        try {
+            valueSlideIndex = (Integer)invalidizeTestValue("Integer", valueSlideIndex, "deleteSmartArtNode", "slideIndex");
+            initialize("deleteSmartArtNode", "slideIndex", "Integer", valueSlideIndex);
+            SmartArt response = api.deleteSmartArtNode(valueName, valueSlideIndex, valueSmartArtIndex, valueNodeIndex, valueSubNode, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "Integer", "slideIndex", "deleteSmartArtNode", valueSlideIndex);
+        }
+        if (needAssertResponse) {
+            assertResponse("Integer", "slideIndex", "deleteSmartArtNode");
+        }
+    }
+    /**
+     * Delete SmartArt node
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void deleteSmartArtNodeInvalidSmartArtIndexTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "deleteSmartArtNode", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "deleteSmartArtNode", "slideIndex");
+        Integer valueSmartArtIndex = (Integer)getTestValue("Integer", "deleteSmartArtNode", "smartArtIndex");
+        Integer valueNodeIndex = (Integer)getTestValue("Integer", "deleteSmartArtNode", "nodeIndex");
+        String valueSubNode = (String)getTestValue("String", "deleteSmartArtNode", "subNode");
+        String valuePassword = (String)getTestValue("String", "deleteSmartArtNode", "password");
+        String valueFolder = (String)getTestValue("String", "deleteSmartArtNode", "folder");
+        String valueStorage = (String)getTestValue("String", "deleteSmartArtNode", "storage");
+        try {
+            valueSmartArtIndex = (Integer)invalidizeTestValue("Integer", valueSmartArtIndex, "deleteSmartArtNode", "smartArtIndex");
+            initialize("deleteSmartArtNode", "smartArtIndex", "Integer", valueSmartArtIndex);
+            SmartArt response = api.deleteSmartArtNode(valueName, valueSlideIndex, valueSmartArtIndex, valueNodeIndex, valueSubNode, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "Integer", "smartArtIndex", "deleteSmartArtNode", valueSmartArtIndex);
+        }
+        if (needAssertResponse) {
+            assertResponse("Integer", "smartArtIndex", "deleteSmartArtNode");
+        }
+    }
+    /**
+     * Delete SmartArt node
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void deleteSmartArtNodeInvalidNodeIndexTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "deleteSmartArtNode", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "deleteSmartArtNode", "slideIndex");
+        Integer valueSmartArtIndex = (Integer)getTestValue("Integer", "deleteSmartArtNode", "smartArtIndex");
+        Integer valueNodeIndex = (Integer)getTestValue("Integer", "deleteSmartArtNode", "nodeIndex");
+        String valueSubNode = (String)getTestValue("String", "deleteSmartArtNode", "subNode");
+        String valuePassword = (String)getTestValue("String", "deleteSmartArtNode", "password");
+        String valueFolder = (String)getTestValue("String", "deleteSmartArtNode", "folder");
+        String valueStorage = (String)getTestValue("String", "deleteSmartArtNode", "storage");
+        try {
+            valueNodeIndex = (Integer)invalidizeTestValue("Integer", valueNodeIndex, "deleteSmartArtNode", "nodeIndex");
+            initialize("deleteSmartArtNode", "nodeIndex", "Integer", valueNodeIndex);
+            SmartArt response = api.deleteSmartArtNode(valueName, valueSlideIndex, valueSmartArtIndex, valueNodeIndex, valueSubNode, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "Integer", "nodeIndex", "deleteSmartArtNode", valueNodeIndex);
+        }
+        if (needAssertResponse) {
+            assertResponse("Integer", "nodeIndex", "deleteSmartArtNode");
+        }
+    }
+    /**
+     * Delete SmartArt node
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void deleteSmartArtNodeInvalidSubNodeTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "deleteSmartArtNode", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "deleteSmartArtNode", "slideIndex");
+        Integer valueSmartArtIndex = (Integer)getTestValue("Integer", "deleteSmartArtNode", "smartArtIndex");
+        Integer valueNodeIndex = (Integer)getTestValue("Integer", "deleteSmartArtNode", "nodeIndex");
+        String valueSubNode = (String)getTestValue("String", "deleteSmartArtNode", "subNode");
+        String valuePassword = (String)getTestValue("String", "deleteSmartArtNode", "password");
+        String valueFolder = (String)getTestValue("String", "deleteSmartArtNode", "folder");
+        String valueStorage = (String)getTestValue("String", "deleteSmartArtNode", "storage");
+        try {
+            valueSubNode = (String)invalidizeTestValue("String", valueSubNode, "deleteSmartArtNode", "subNode");
+            initialize("deleteSmartArtNode", "subNode", "String", valueSubNode);
+            SmartArt response = api.deleteSmartArtNode(valueName, valueSlideIndex, valueSmartArtIndex, valueNodeIndex, valueSubNode, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "String", "subNode", "deleteSmartArtNode", valueSubNode);
+        }
+        if (needAssertResponse) {
+            assertResponse("String", "subNode", "deleteSmartArtNode");
+        }
+    }
+    /**
+     * Delete SmartArt node
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void deleteSmartArtNodeInvalidPasswordTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "deleteSmartArtNode", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "deleteSmartArtNode", "slideIndex");
+        Integer valueSmartArtIndex = (Integer)getTestValue("Integer", "deleteSmartArtNode", "smartArtIndex");
+        Integer valueNodeIndex = (Integer)getTestValue("Integer", "deleteSmartArtNode", "nodeIndex");
+        String valueSubNode = (String)getTestValue("String", "deleteSmartArtNode", "subNode");
+        String valuePassword = (String)getTestValue("String", "deleteSmartArtNode", "password");
+        String valueFolder = (String)getTestValue("String", "deleteSmartArtNode", "folder");
+        String valueStorage = (String)getTestValue("String", "deleteSmartArtNode", "storage");
+        try {
+            valuePassword = (String)invalidizeTestValue("String", valuePassword, "deleteSmartArtNode", "password");
+            initialize("deleteSmartArtNode", "password", "String", valuePassword);
+            SmartArt response = api.deleteSmartArtNode(valueName, valueSlideIndex, valueSmartArtIndex, valueNodeIndex, valueSubNode, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "String", "password", "deleteSmartArtNode", valuePassword);
+        }
+        if (needAssertResponse) {
+            assertResponse("String", "password", "deleteSmartArtNode");
+        }
+    }
+    /**
+     * Delete SmartArt node
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void deleteSmartArtNodeInvalidFolderTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "deleteSmartArtNode", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "deleteSmartArtNode", "slideIndex");
+        Integer valueSmartArtIndex = (Integer)getTestValue("Integer", "deleteSmartArtNode", "smartArtIndex");
+        Integer valueNodeIndex = (Integer)getTestValue("Integer", "deleteSmartArtNode", "nodeIndex");
+        String valueSubNode = (String)getTestValue("String", "deleteSmartArtNode", "subNode");
+        String valuePassword = (String)getTestValue("String", "deleteSmartArtNode", "password");
+        String valueFolder = (String)getTestValue("String", "deleteSmartArtNode", "folder");
+        String valueStorage = (String)getTestValue("String", "deleteSmartArtNode", "storage");
+        try {
+            valueFolder = (String)invalidizeTestValue("String", valueFolder, "deleteSmartArtNode", "folder");
+            initialize("deleteSmartArtNode", "folder", "String", valueFolder);
+            SmartArt response = api.deleteSmartArtNode(valueName, valueSlideIndex, valueSmartArtIndex, valueNodeIndex, valueSubNode, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "String", "folder", "deleteSmartArtNode", valueFolder);
+        }
+        if (needAssertResponse) {
+            assertResponse("String", "folder", "deleteSmartArtNode");
+        }
+    }
+    /**
+     * Delete SmartArt node
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void deleteSmartArtNodeInvalidStorageTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "deleteSmartArtNode", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "deleteSmartArtNode", "slideIndex");
+        Integer valueSmartArtIndex = (Integer)getTestValue("Integer", "deleteSmartArtNode", "smartArtIndex");
+        Integer valueNodeIndex = (Integer)getTestValue("Integer", "deleteSmartArtNode", "nodeIndex");
+        String valueSubNode = (String)getTestValue("String", "deleteSmartArtNode", "subNode");
+        String valuePassword = (String)getTestValue("String", "deleteSmartArtNode", "password");
+        String valueFolder = (String)getTestValue("String", "deleteSmartArtNode", "folder");
+        String valueStorage = (String)getTestValue("String", "deleteSmartArtNode", "storage");
+        try {
+            valueStorage = (String)invalidizeTestValue("String", valueStorage, "deleteSmartArtNode", "storage");
+            initialize("deleteSmartArtNode", "storage", "String", valueStorage);
+            SmartArt response = api.deleteSmartArtNode(valueName, valueSlideIndex, valueSmartArtIndex, valueNodeIndex, valueSubNode, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "String", "storage", "deleteSmartArtNode", valueStorage);
+        }
+        if (needAssertResponse) {
+            assertResponse("String", "storage", "deleteSmartArtNode");
         }
     }
     
@@ -44079,10 +44667,11 @@ public class SlidesApiTest extends ApiTest {
         Integer valueWidth = (Integer)getTestValue("Integer", "importShapesFromSvg", "width");
         Integer valueHeight = (Integer)getTestValue("Integer", "importShapesFromSvg", "height");
         List<Integer> valueShapes = (List<Integer>)getTestValue("List<Integer>", "importShapesFromSvg", "shapes");
+        Boolean valueGroup = (Boolean)getTestValue("Boolean", "importShapesFromSvg", "group");
         String valuePassword = (String)getTestValue("String", "importShapesFromSvg", "password");
         String valueFolder = (String)getTestValue("String", "importShapesFromSvg", "folder");
         String valueStorage = (String)getTestValue("String", "importShapesFromSvg", "storage");
-        response = api.importShapesFromSvg(valueName, valueSlideIndex, valueImage, valueX, valueY, valueWidth, valueHeight, valueShapes, valuePassword, valueFolder, valueStorage);
+        response = api.importShapesFromSvg(valueName, valueSlideIndex, valueImage, valueX, valueY, valueWidth, valueHeight, valueShapes, valueGroup, valuePassword, valueFolder, valueStorage);
         assertNotNull(response);
     }
 
@@ -44105,13 +44694,14 @@ public class SlidesApiTest extends ApiTest {
         Integer valueWidth = (Integer)getTestValue("Integer", "importShapesFromSvg", "width");
         Integer valueHeight = (Integer)getTestValue("Integer", "importShapesFromSvg", "height");
         List<Integer> valueShapes = (List<Integer>)getTestValue("List<Integer>", "importShapesFromSvg", "shapes");
+        Boolean valueGroup = (Boolean)getTestValue("Boolean", "importShapesFromSvg", "group");
         String valuePassword = (String)getTestValue("String", "importShapesFromSvg", "password");
         String valueFolder = (String)getTestValue("String", "importShapesFromSvg", "folder");
         String valueStorage = (String)getTestValue("String", "importShapesFromSvg", "storage");
         try {
             valueName = (String)invalidizeTestValue("String", valueName, "importShapesFromSvg", "name");
             initialize("importShapesFromSvg", "name", "String", valueName);
-            Shapes response = api.importShapesFromSvg(valueName, valueSlideIndex, valueImage, valueX, valueY, valueWidth, valueHeight, valueShapes, valuePassword, valueFolder, valueStorage);
+            Shapes response = api.importShapesFromSvg(valueName, valueSlideIndex, valueImage, valueX, valueY, valueWidth, valueHeight, valueShapes, valueGroup, valuePassword, valueFolder, valueStorage);
             needAssertResponse = true;
         } catch (ApiException ex) {
             assertException(ex, "String", "name", "importShapesFromSvg", valueName);
@@ -44139,13 +44729,14 @@ public class SlidesApiTest extends ApiTest {
         Integer valueWidth = (Integer)getTestValue("Integer", "importShapesFromSvg", "width");
         Integer valueHeight = (Integer)getTestValue("Integer", "importShapesFromSvg", "height");
         List<Integer> valueShapes = (List<Integer>)getTestValue("List<Integer>", "importShapesFromSvg", "shapes");
+        Boolean valueGroup = (Boolean)getTestValue("Boolean", "importShapesFromSvg", "group");
         String valuePassword = (String)getTestValue("String", "importShapesFromSvg", "password");
         String valueFolder = (String)getTestValue("String", "importShapesFromSvg", "folder");
         String valueStorage = (String)getTestValue("String", "importShapesFromSvg", "storage");
         try {
             valueSlideIndex = (Integer)invalidizeTestValue("Integer", valueSlideIndex, "importShapesFromSvg", "slideIndex");
             initialize("importShapesFromSvg", "slideIndex", "Integer", valueSlideIndex);
-            Shapes response = api.importShapesFromSvg(valueName, valueSlideIndex, valueImage, valueX, valueY, valueWidth, valueHeight, valueShapes, valuePassword, valueFolder, valueStorage);
+            Shapes response = api.importShapesFromSvg(valueName, valueSlideIndex, valueImage, valueX, valueY, valueWidth, valueHeight, valueShapes, valueGroup, valuePassword, valueFolder, valueStorage);
             needAssertResponse = true;
         } catch (ApiException ex) {
             assertException(ex, "Integer", "slideIndex", "importShapesFromSvg", valueSlideIndex);
@@ -44173,13 +44764,14 @@ public class SlidesApiTest extends ApiTest {
         Integer valueWidth = (Integer)getTestValue("Integer", "importShapesFromSvg", "width");
         Integer valueHeight = (Integer)getTestValue("Integer", "importShapesFromSvg", "height");
         List<Integer> valueShapes = (List<Integer>)getTestValue("List<Integer>", "importShapesFromSvg", "shapes");
+        Boolean valueGroup = (Boolean)getTestValue("Boolean", "importShapesFromSvg", "group");
         String valuePassword = (String)getTestValue("String", "importShapesFromSvg", "password");
         String valueFolder = (String)getTestValue("String", "importShapesFromSvg", "folder");
         String valueStorage = (String)getTestValue("String", "importShapesFromSvg", "storage");
         try {
             valueImage = (byte[])invalidizeTestValue("byte[]", valueImage, "importShapesFromSvg", "image");
             initialize("importShapesFromSvg", "image", "byte[]", valueImage);
-            Shapes response = api.importShapesFromSvg(valueName, valueSlideIndex, valueImage, valueX, valueY, valueWidth, valueHeight, valueShapes, valuePassword, valueFolder, valueStorage);
+            Shapes response = api.importShapesFromSvg(valueName, valueSlideIndex, valueImage, valueX, valueY, valueWidth, valueHeight, valueShapes, valueGroup, valuePassword, valueFolder, valueStorage);
             needAssertResponse = true;
         } catch (ApiException ex) {
             assertException(ex, "byte[]", "image", "importShapesFromSvg", valueImage);
@@ -44207,13 +44799,14 @@ public class SlidesApiTest extends ApiTest {
         Integer valueWidth = (Integer)getTestValue("Integer", "importShapesFromSvg", "width");
         Integer valueHeight = (Integer)getTestValue("Integer", "importShapesFromSvg", "height");
         List<Integer> valueShapes = (List<Integer>)getTestValue("List<Integer>", "importShapesFromSvg", "shapes");
+        Boolean valueGroup = (Boolean)getTestValue("Boolean", "importShapesFromSvg", "group");
         String valuePassword = (String)getTestValue("String", "importShapesFromSvg", "password");
         String valueFolder = (String)getTestValue("String", "importShapesFromSvg", "folder");
         String valueStorage = (String)getTestValue("String", "importShapesFromSvg", "storage");
         try {
             valueX = (Integer)invalidizeTestValue("Integer", valueX, "importShapesFromSvg", "x");
             initialize("importShapesFromSvg", "x", "Integer", valueX);
-            Shapes response = api.importShapesFromSvg(valueName, valueSlideIndex, valueImage, valueX, valueY, valueWidth, valueHeight, valueShapes, valuePassword, valueFolder, valueStorage);
+            Shapes response = api.importShapesFromSvg(valueName, valueSlideIndex, valueImage, valueX, valueY, valueWidth, valueHeight, valueShapes, valueGroup, valuePassword, valueFolder, valueStorage);
             needAssertResponse = true;
         } catch (ApiException ex) {
             assertException(ex, "Integer", "x", "importShapesFromSvg", valueX);
@@ -44241,13 +44834,14 @@ public class SlidesApiTest extends ApiTest {
         Integer valueWidth = (Integer)getTestValue("Integer", "importShapesFromSvg", "width");
         Integer valueHeight = (Integer)getTestValue("Integer", "importShapesFromSvg", "height");
         List<Integer> valueShapes = (List<Integer>)getTestValue("List<Integer>", "importShapesFromSvg", "shapes");
+        Boolean valueGroup = (Boolean)getTestValue("Boolean", "importShapesFromSvg", "group");
         String valuePassword = (String)getTestValue("String", "importShapesFromSvg", "password");
         String valueFolder = (String)getTestValue("String", "importShapesFromSvg", "folder");
         String valueStorage = (String)getTestValue("String", "importShapesFromSvg", "storage");
         try {
             valueY = (Integer)invalidizeTestValue("Integer", valueY, "importShapesFromSvg", "y");
             initialize("importShapesFromSvg", "y", "Integer", valueY);
-            Shapes response = api.importShapesFromSvg(valueName, valueSlideIndex, valueImage, valueX, valueY, valueWidth, valueHeight, valueShapes, valuePassword, valueFolder, valueStorage);
+            Shapes response = api.importShapesFromSvg(valueName, valueSlideIndex, valueImage, valueX, valueY, valueWidth, valueHeight, valueShapes, valueGroup, valuePassword, valueFolder, valueStorage);
             needAssertResponse = true;
         } catch (ApiException ex) {
             assertException(ex, "Integer", "y", "importShapesFromSvg", valueY);
@@ -44275,13 +44869,14 @@ public class SlidesApiTest extends ApiTest {
         Integer valueWidth = (Integer)getTestValue("Integer", "importShapesFromSvg", "width");
         Integer valueHeight = (Integer)getTestValue("Integer", "importShapesFromSvg", "height");
         List<Integer> valueShapes = (List<Integer>)getTestValue("List<Integer>", "importShapesFromSvg", "shapes");
+        Boolean valueGroup = (Boolean)getTestValue("Boolean", "importShapesFromSvg", "group");
         String valuePassword = (String)getTestValue("String", "importShapesFromSvg", "password");
         String valueFolder = (String)getTestValue("String", "importShapesFromSvg", "folder");
         String valueStorage = (String)getTestValue("String", "importShapesFromSvg", "storage");
         try {
             valueWidth = (Integer)invalidizeTestValue("Integer", valueWidth, "importShapesFromSvg", "width");
             initialize("importShapesFromSvg", "width", "Integer", valueWidth);
-            Shapes response = api.importShapesFromSvg(valueName, valueSlideIndex, valueImage, valueX, valueY, valueWidth, valueHeight, valueShapes, valuePassword, valueFolder, valueStorage);
+            Shapes response = api.importShapesFromSvg(valueName, valueSlideIndex, valueImage, valueX, valueY, valueWidth, valueHeight, valueShapes, valueGroup, valuePassword, valueFolder, valueStorage);
             needAssertResponse = true;
         } catch (ApiException ex) {
             assertException(ex, "Integer", "width", "importShapesFromSvg", valueWidth);
@@ -44309,13 +44904,14 @@ public class SlidesApiTest extends ApiTest {
         Integer valueWidth = (Integer)getTestValue("Integer", "importShapesFromSvg", "width");
         Integer valueHeight = (Integer)getTestValue("Integer", "importShapesFromSvg", "height");
         List<Integer> valueShapes = (List<Integer>)getTestValue("List<Integer>", "importShapesFromSvg", "shapes");
+        Boolean valueGroup = (Boolean)getTestValue("Boolean", "importShapesFromSvg", "group");
         String valuePassword = (String)getTestValue("String", "importShapesFromSvg", "password");
         String valueFolder = (String)getTestValue("String", "importShapesFromSvg", "folder");
         String valueStorage = (String)getTestValue("String", "importShapesFromSvg", "storage");
         try {
             valueHeight = (Integer)invalidizeTestValue("Integer", valueHeight, "importShapesFromSvg", "height");
             initialize("importShapesFromSvg", "height", "Integer", valueHeight);
-            Shapes response = api.importShapesFromSvg(valueName, valueSlideIndex, valueImage, valueX, valueY, valueWidth, valueHeight, valueShapes, valuePassword, valueFolder, valueStorage);
+            Shapes response = api.importShapesFromSvg(valueName, valueSlideIndex, valueImage, valueX, valueY, valueWidth, valueHeight, valueShapes, valueGroup, valuePassword, valueFolder, valueStorage);
             needAssertResponse = true;
         } catch (ApiException ex) {
             assertException(ex, "Integer", "height", "importShapesFromSvg", valueHeight);
@@ -44343,19 +44939,55 @@ public class SlidesApiTest extends ApiTest {
         Integer valueWidth = (Integer)getTestValue("Integer", "importShapesFromSvg", "width");
         Integer valueHeight = (Integer)getTestValue("Integer", "importShapesFromSvg", "height");
         List<Integer> valueShapes = (List<Integer>)getTestValue("List<Integer>", "importShapesFromSvg", "shapes");
+        Boolean valueGroup = (Boolean)getTestValue("Boolean", "importShapesFromSvg", "group");
         String valuePassword = (String)getTestValue("String", "importShapesFromSvg", "password");
         String valueFolder = (String)getTestValue("String", "importShapesFromSvg", "folder");
         String valueStorage = (String)getTestValue("String", "importShapesFromSvg", "storage");
         try {
             valueShapes = (List<Integer>)invalidizeTestValue("List<Integer>", valueShapes, "importShapesFromSvg", "shapes");
             initialize("importShapesFromSvg", "shapes", "List<Integer>", valueShapes);
-            Shapes response = api.importShapesFromSvg(valueName, valueSlideIndex, valueImage, valueX, valueY, valueWidth, valueHeight, valueShapes, valuePassword, valueFolder, valueStorage);
+            Shapes response = api.importShapesFromSvg(valueName, valueSlideIndex, valueImage, valueX, valueY, valueWidth, valueHeight, valueShapes, valueGroup, valuePassword, valueFolder, valueStorage);
             needAssertResponse = true;
         } catch (ApiException ex) {
             assertException(ex, "List<Integer>", "shapes", "importShapesFromSvg", valueShapes);
         }
         if (needAssertResponse) {
             assertResponse("List<Integer>", "shapes", "importShapesFromSvg");
+        }
+    }
+    /**
+     * Imports shapes from SVG file.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void importShapesFromSvgInvalidGroupTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "importShapesFromSvg", "name");
+        Integer valueSlideIndex = (Integer)getTestValue("Integer", "importShapesFromSvg", "slideIndex");
+        byte[] valueImage = (byte[])getTestValue("byte[]", "importShapesFromSvg", "image");
+        Integer valueX = (Integer)getTestValue("Integer", "importShapesFromSvg", "x");
+        Integer valueY = (Integer)getTestValue("Integer", "importShapesFromSvg", "y");
+        Integer valueWidth = (Integer)getTestValue("Integer", "importShapesFromSvg", "width");
+        Integer valueHeight = (Integer)getTestValue("Integer", "importShapesFromSvg", "height");
+        List<Integer> valueShapes = (List<Integer>)getTestValue("List<Integer>", "importShapesFromSvg", "shapes");
+        Boolean valueGroup = (Boolean)getTestValue("Boolean", "importShapesFromSvg", "group");
+        String valuePassword = (String)getTestValue("String", "importShapesFromSvg", "password");
+        String valueFolder = (String)getTestValue("String", "importShapesFromSvg", "folder");
+        String valueStorage = (String)getTestValue("String", "importShapesFromSvg", "storage");
+        try {
+            valueGroup = (Boolean)invalidizeTestValue("Boolean", valueGroup, "importShapesFromSvg", "group");
+            initialize("importShapesFromSvg", "group", "Boolean", valueGroup);
+            Shapes response = api.importShapesFromSvg(valueName, valueSlideIndex, valueImage, valueX, valueY, valueWidth, valueHeight, valueShapes, valueGroup, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "Boolean", "group", "importShapesFromSvg", valueGroup);
+        }
+        if (needAssertResponse) {
+            assertResponse("Boolean", "group", "importShapesFromSvg");
         }
     }
     /**
@@ -44377,13 +45009,14 @@ public class SlidesApiTest extends ApiTest {
         Integer valueWidth = (Integer)getTestValue("Integer", "importShapesFromSvg", "width");
         Integer valueHeight = (Integer)getTestValue("Integer", "importShapesFromSvg", "height");
         List<Integer> valueShapes = (List<Integer>)getTestValue("List<Integer>", "importShapesFromSvg", "shapes");
+        Boolean valueGroup = (Boolean)getTestValue("Boolean", "importShapesFromSvg", "group");
         String valuePassword = (String)getTestValue("String", "importShapesFromSvg", "password");
         String valueFolder = (String)getTestValue("String", "importShapesFromSvg", "folder");
         String valueStorage = (String)getTestValue("String", "importShapesFromSvg", "storage");
         try {
             valuePassword = (String)invalidizeTestValue("String", valuePassword, "importShapesFromSvg", "password");
             initialize("importShapesFromSvg", "password", "String", valuePassword);
-            Shapes response = api.importShapesFromSvg(valueName, valueSlideIndex, valueImage, valueX, valueY, valueWidth, valueHeight, valueShapes, valuePassword, valueFolder, valueStorage);
+            Shapes response = api.importShapesFromSvg(valueName, valueSlideIndex, valueImage, valueX, valueY, valueWidth, valueHeight, valueShapes, valueGroup, valuePassword, valueFolder, valueStorage);
             needAssertResponse = true;
         } catch (ApiException ex) {
             assertException(ex, "String", "password", "importShapesFromSvg", valuePassword);
@@ -44411,13 +45044,14 @@ public class SlidesApiTest extends ApiTest {
         Integer valueWidth = (Integer)getTestValue("Integer", "importShapesFromSvg", "width");
         Integer valueHeight = (Integer)getTestValue("Integer", "importShapesFromSvg", "height");
         List<Integer> valueShapes = (List<Integer>)getTestValue("List<Integer>", "importShapesFromSvg", "shapes");
+        Boolean valueGroup = (Boolean)getTestValue("Boolean", "importShapesFromSvg", "group");
         String valuePassword = (String)getTestValue("String", "importShapesFromSvg", "password");
         String valueFolder = (String)getTestValue("String", "importShapesFromSvg", "folder");
         String valueStorage = (String)getTestValue("String", "importShapesFromSvg", "storage");
         try {
             valueFolder = (String)invalidizeTestValue("String", valueFolder, "importShapesFromSvg", "folder");
             initialize("importShapesFromSvg", "folder", "String", valueFolder);
-            Shapes response = api.importShapesFromSvg(valueName, valueSlideIndex, valueImage, valueX, valueY, valueWidth, valueHeight, valueShapes, valuePassword, valueFolder, valueStorage);
+            Shapes response = api.importShapesFromSvg(valueName, valueSlideIndex, valueImage, valueX, valueY, valueWidth, valueHeight, valueShapes, valueGroup, valuePassword, valueFolder, valueStorage);
             needAssertResponse = true;
         } catch (ApiException ex) {
             assertException(ex, "String", "folder", "importShapesFromSvg", valueFolder);
@@ -44445,13 +45079,14 @@ public class SlidesApiTest extends ApiTest {
         Integer valueWidth = (Integer)getTestValue("Integer", "importShapesFromSvg", "width");
         Integer valueHeight = (Integer)getTestValue("Integer", "importShapesFromSvg", "height");
         List<Integer> valueShapes = (List<Integer>)getTestValue("List<Integer>", "importShapesFromSvg", "shapes");
+        Boolean valueGroup = (Boolean)getTestValue("Boolean", "importShapesFromSvg", "group");
         String valuePassword = (String)getTestValue("String", "importShapesFromSvg", "password");
         String valueFolder = (String)getTestValue("String", "importShapesFromSvg", "folder");
         String valueStorage = (String)getTestValue("String", "importShapesFromSvg", "storage");
         try {
             valueStorage = (String)invalidizeTestValue("String", valueStorage, "importShapesFromSvg", "storage");
             initialize("importShapesFromSvg", "storage", "String", valueStorage);
-            Shapes response = api.importShapesFromSvg(valueName, valueSlideIndex, valueImage, valueX, valueY, valueWidth, valueHeight, valueShapes, valuePassword, valueFolder, valueStorage);
+            Shapes response = api.importShapesFromSvg(valueName, valueSlideIndex, valueImage, valueX, valueY, valueWidth, valueHeight, valueShapes, valueGroup, valuePassword, valueFolder, valueStorage);
             needAssertResponse = true;
         } catch (ApiException ex) {
             assertException(ex, "String", "storage", "importShapesFromSvg", valueStorage);
@@ -46315,6 +46950,476 @@ public class SlidesApiTest extends ApiTest {
         }
         if (needAssertResponse) {
             assertResponse("String", "storage", "reorderSlides");
+        }
+    }
+    
+    /**
+     * Replaces specified font and returns presentation fonts info.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void replaceFontTest() throws ApiException, Exception {
+        initialize("replaceFont", null, null, null);
+        FontsData response = null;
+        String valueName = (String)getTestValue("String", "replaceFont", "name");
+        String valueSourceFont = (String)getTestValue("String", "replaceFont", "sourceFont");
+        String valueTargetFont = (String)getTestValue("String", "replaceFont", "targetFont");
+        Boolean valueEmbed = (Boolean)getTestValue("Boolean", "replaceFont", "embed");
+        String valuePassword = (String)getTestValue("String", "replaceFont", "password");
+        String valueFolder = (String)getTestValue("String", "replaceFont", "folder");
+        String valueStorage = (String)getTestValue("String", "replaceFont", "storage");
+        String valueFontsFolder = (String)getTestValue("String", "replaceFont", "fontsFolder");
+        response = api.replaceFont(valueName, valueSourceFont, valueTargetFont, valueEmbed, valuePassword, valueFolder, valueStorage, valueFontsFolder);
+        assertNotNull(response);
+    }
+
+    /**
+     * Replaces specified font and returns presentation fonts info.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void replaceFontInvalidNameTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "replaceFont", "name");
+        String valueSourceFont = (String)getTestValue("String", "replaceFont", "sourceFont");
+        String valueTargetFont = (String)getTestValue("String", "replaceFont", "targetFont");
+        Boolean valueEmbed = (Boolean)getTestValue("Boolean", "replaceFont", "embed");
+        String valuePassword = (String)getTestValue("String", "replaceFont", "password");
+        String valueFolder = (String)getTestValue("String", "replaceFont", "folder");
+        String valueStorage = (String)getTestValue("String", "replaceFont", "storage");
+        String valueFontsFolder = (String)getTestValue("String", "replaceFont", "fontsFolder");
+        try {
+            valueName = (String)invalidizeTestValue("String", valueName, "replaceFont", "name");
+            initialize("replaceFont", "name", "String", valueName);
+            FontsData response = api.replaceFont(valueName, valueSourceFont, valueTargetFont, valueEmbed, valuePassword, valueFolder, valueStorage, valueFontsFolder);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "String", "name", "replaceFont", valueName);
+        }
+        if (needAssertResponse) {
+            assertResponse("String", "name", "replaceFont");
+        }
+    }
+    /**
+     * Replaces specified font and returns presentation fonts info.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void replaceFontInvalidSourceFontTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "replaceFont", "name");
+        String valueSourceFont = (String)getTestValue("String", "replaceFont", "sourceFont");
+        String valueTargetFont = (String)getTestValue("String", "replaceFont", "targetFont");
+        Boolean valueEmbed = (Boolean)getTestValue("Boolean", "replaceFont", "embed");
+        String valuePassword = (String)getTestValue("String", "replaceFont", "password");
+        String valueFolder = (String)getTestValue("String", "replaceFont", "folder");
+        String valueStorage = (String)getTestValue("String", "replaceFont", "storage");
+        String valueFontsFolder = (String)getTestValue("String", "replaceFont", "fontsFolder");
+        try {
+            valueSourceFont = (String)invalidizeTestValue("String", valueSourceFont, "replaceFont", "sourceFont");
+            initialize("replaceFont", "sourceFont", "String", valueSourceFont);
+            FontsData response = api.replaceFont(valueName, valueSourceFont, valueTargetFont, valueEmbed, valuePassword, valueFolder, valueStorage, valueFontsFolder);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "String", "sourceFont", "replaceFont", valueSourceFont);
+        }
+        if (needAssertResponse) {
+            assertResponse("String", "sourceFont", "replaceFont");
+        }
+    }
+    /**
+     * Replaces specified font and returns presentation fonts info.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void replaceFontInvalidTargetFontTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "replaceFont", "name");
+        String valueSourceFont = (String)getTestValue("String", "replaceFont", "sourceFont");
+        String valueTargetFont = (String)getTestValue("String", "replaceFont", "targetFont");
+        Boolean valueEmbed = (Boolean)getTestValue("Boolean", "replaceFont", "embed");
+        String valuePassword = (String)getTestValue("String", "replaceFont", "password");
+        String valueFolder = (String)getTestValue("String", "replaceFont", "folder");
+        String valueStorage = (String)getTestValue("String", "replaceFont", "storage");
+        String valueFontsFolder = (String)getTestValue("String", "replaceFont", "fontsFolder");
+        try {
+            valueTargetFont = (String)invalidizeTestValue("String", valueTargetFont, "replaceFont", "targetFont");
+            initialize("replaceFont", "targetFont", "String", valueTargetFont);
+            FontsData response = api.replaceFont(valueName, valueSourceFont, valueTargetFont, valueEmbed, valuePassword, valueFolder, valueStorage, valueFontsFolder);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "String", "targetFont", "replaceFont", valueTargetFont);
+        }
+        if (needAssertResponse) {
+            assertResponse("String", "targetFont", "replaceFont");
+        }
+    }
+    /**
+     * Replaces specified font and returns presentation fonts info.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void replaceFontInvalidEmbedTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "replaceFont", "name");
+        String valueSourceFont = (String)getTestValue("String", "replaceFont", "sourceFont");
+        String valueTargetFont = (String)getTestValue("String", "replaceFont", "targetFont");
+        Boolean valueEmbed = (Boolean)getTestValue("Boolean", "replaceFont", "embed");
+        String valuePassword = (String)getTestValue("String", "replaceFont", "password");
+        String valueFolder = (String)getTestValue("String", "replaceFont", "folder");
+        String valueStorage = (String)getTestValue("String", "replaceFont", "storage");
+        String valueFontsFolder = (String)getTestValue("String", "replaceFont", "fontsFolder");
+        try {
+            valueEmbed = (Boolean)invalidizeTestValue("Boolean", valueEmbed, "replaceFont", "embed");
+            initialize("replaceFont", "embed", "Boolean", valueEmbed);
+            FontsData response = api.replaceFont(valueName, valueSourceFont, valueTargetFont, valueEmbed, valuePassword, valueFolder, valueStorage, valueFontsFolder);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "Boolean", "embed", "replaceFont", valueEmbed);
+        }
+        if (needAssertResponse) {
+            assertResponse("Boolean", "embed", "replaceFont");
+        }
+    }
+    /**
+     * Replaces specified font and returns presentation fonts info.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void replaceFontInvalidPasswordTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "replaceFont", "name");
+        String valueSourceFont = (String)getTestValue("String", "replaceFont", "sourceFont");
+        String valueTargetFont = (String)getTestValue("String", "replaceFont", "targetFont");
+        Boolean valueEmbed = (Boolean)getTestValue("Boolean", "replaceFont", "embed");
+        String valuePassword = (String)getTestValue("String", "replaceFont", "password");
+        String valueFolder = (String)getTestValue("String", "replaceFont", "folder");
+        String valueStorage = (String)getTestValue("String", "replaceFont", "storage");
+        String valueFontsFolder = (String)getTestValue("String", "replaceFont", "fontsFolder");
+        try {
+            valuePassword = (String)invalidizeTestValue("String", valuePassword, "replaceFont", "password");
+            initialize("replaceFont", "password", "String", valuePassword);
+            FontsData response = api.replaceFont(valueName, valueSourceFont, valueTargetFont, valueEmbed, valuePassword, valueFolder, valueStorage, valueFontsFolder);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "String", "password", "replaceFont", valuePassword);
+        }
+        if (needAssertResponse) {
+            assertResponse("String", "password", "replaceFont");
+        }
+    }
+    /**
+     * Replaces specified font and returns presentation fonts info.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void replaceFontInvalidFolderTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "replaceFont", "name");
+        String valueSourceFont = (String)getTestValue("String", "replaceFont", "sourceFont");
+        String valueTargetFont = (String)getTestValue("String", "replaceFont", "targetFont");
+        Boolean valueEmbed = (Boolean)getTestValue("Boolean", "replaceFont", "embed");
+        String valuePassword = (String)getTestValue("String", "replaceFont", "password");
+        String valueFolder = (String)getTestValue("String", "replaceFont", "folder");
+        String valueStorage = (String)getTestValue("String", "replaceFont", "storage");
+        String valueFontsFolder = (String)getTestValue("String", "replaceFont", "fontsFolder");
+        try {
+            valueFolder = (String)invalidizeTestValue("String", valueFolder, "replaceFont", "folder");
+            initialize("replaceFont", "folder", "String", valueFolder);
+            FontsData response = api.replaceFont(valueName, valueSourceFont, valueTargetFont, valueEmbed, valuePassword, valueFolder, valueStorage, valueFontsFolder);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "String", "folder", "replaceFont", valueFolder);
+        }
+        if (needAssertResponse) {
+            assertResponse("String", "folder", "replaceFont");
+        }
+    }
+    /**
+     * Replaces specified font and returns presentation fonts info.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void replaceFontInvalidStorageTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "replaceFont", "name");
+        String valueSourceFont = (String)getTestValue("String", "replaceFont", "sourceFont");
+        String valueTargetFont = (String)getTestValue("String", "replaceFont", "targetFont");
+        Boolean valueEmbed = (Boolean)getTestValue("Boolean", "replaceFont", "embed");
+        String valuePassword = (String)getTestValue("String", "replaceFont", "password");
+        String valueFolder = (String)getTestValue("String", "replaceFont", "folder");
+        String valueStorage = (String)getTestValue("String", "replaceFont", "storage");
+        String valueFontsFolder = (String)getTestValue("String", "replaceFont", "fontsFolder");
+        try {
+            valueStorage = (String)invalidizeTestValue("String", valueStorage, "replaceFont", "storage");
+            initialize("replaceFont", "storage", "String", valueStorage);
+            FontsData response = api.replaceFont(valueName, valueSourceFont, valueTargetFont, valueEmbed, valuePassword, valueFolder, valueStorage, valueFontsFolder);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "String", "storage", "replaceFont", valueStorage);
+        }
+        if (needAssertResponse) {
+            assertResponse("String", "storage", "replaceFont");
+        }
+    }
+    /**
+     * Replaces specified font and returns presentation fonts info.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void replaceFontInvalidFontsFolderTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "replaceFont", "name");
+        String valueSourceFont = (String)getTestValue("String", "replaceFont", "sourceFont");
+        String valueTargetFont = (String)getTestValue("String", "replaceFont", "targetFont");
+        Boolean valueEmbed = (Boolean)getTestValue("Boolean", "replaceFont", "embed");
+        String valuePassword = (String)getTestValue("String", "replaceFont", "password");
+        String valueFolder = (String)getTestValue("String", "replaceFont", "folder");
+        String valueStorage = (String)getTestValue("String", "replaceFont", "storage");
+        String valueFontsFolder = (String)getTestValue("String", "replaceFont", "fontsFolder");
+        try {
+            valueFontsFolder = (String)invalidizeTestValue("String", valueFontsFolder, "replaceFont", "fontsFolder");
+            initialize("replaceFont", "fontsFolder", "String", valueFontsFolder);
+            FontsData response = api.replaceFont(valueName, valueSourceFont, valueTargetFont, valueEmbed, valuePassword, valueFolder, valueStorage, valueFontsFolder);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "String", "fontsFolder", "replaceFont", valueFontsFolder);
+        }
+        if (needAssertResponse) {
+            assertResponse("String", "fontsFolder", "replaceFont");
+        }
+    }
+    
+    /**
+     * Replaces specified font and returns presentation.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void replaceFontOnlineTest() throws ApiException, Exception {
+        initialize("replaceFontOnline", null, null, null);
+        File response = null;
+        byte[] valueDocument = (byte[])getTestValue("byte[]", "replaceFontOnline", "document");
+        String valueSourceFont = (String)getTestValue("String", "replaceFontOnline", "sourceFont");
+        String valueTargetFont = (String)getTestValue("String", "replaceFontOnline", "targetFont");
+        Boolean valueEmbed = (Boolean)getTestValue("Boolean", "replaceFontOnline", "embed");
+        String valuePassword = (String)getTestValue("String", "replaceFontOnline", "password");
+        String valueFontsFolder = (String)getTestValue("String", "replaceFontOnline", "fontsFolder");
+        response = api.replaceFontOnline(valueDocument, valueSourceFont, valueTargetFont, valueEmbed, valuePassword, valueFontsFolder);
+        assertTrue(response.isFile());
+    }
+
+    /**
+     * Replaces specified font and returns presentation.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void replaceFontOnlineInvalidDocumentTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        byte[] valueDocument = (byte[])getTestValue("byte[]", "replaceFontOnline", "document");
+        String valueSourceFont = (String)getTestValue("String", "replaceFontOnline", "sourceFont");
+        String valueTargetFont = (String)getTestValue("String", "replaceFontOnline", "targetFont");
+        Boolean valueEmbed = (Boolean)getTestValue("Boolean", "replaceFontOnline", "embed");
+        String valuePassword = (String)getTestValue("String", "replaceFontOnline", "password");
+        String valueFontsFolder = (String)getTestValue("String", "replaceFontOnline", "fontsFolder");
+        try {
+            valueDocument = (byte[])invalidizeTestValue("byte[]", valueDocument, "replaceFontOnline", "document");
+            initialize("replaceFontOnline", "document", "byte[]", valueDocument);
+            File response = api.replaceFontOnline(valueDocument, valueSourceFont, valueTargetFont, valueEmbed, valuePassword, valueFontsFolder);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "byte[]", "document", "replaceFontOnline", valueDocument);
+        }
+        if (needAssertResponse) {
+            assertResponse("byte[]", "document", "replaceFontOnline");
+        }
+    }
+    /**
+     * Replaces specified font and returns presentation.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void replaceFontOnlineInvalidSourceFontTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        byte[] valueDocument = (byte[])getTestValue("byte[]", "replaceFontOnline", "document");
+        String valueSourceFont = (String)getTestValue("String", "replaceFontOnline", "sourceFont");
+        String valueTargetFont = (String)getTestValue("String", "replaceFontOnline", "targetFont");
+        Boolean valueEmbed = (Boolean)getTestValue("Boolean", "replaceFontOnline", "embed");
+        String valuePassword = (String)getTestValue("String", "replaceFontOnline", "password");
+        String valueFontsFolder = (String)getTestValue("String", "replaceFontOnline", "fontsFolder");
+        try {
+            valueSourceFont = (String)invalidizeTestValue("String", valueSourceFont, "replaceFontOnline", "sourceFont");
+            initialize("replaceFontOnline", "sourceFont", "String", valueSourceFont);
+            File response = api.replaceFontOnline(valueDocument, valueSourceFont, valueTargetFont, valueEmbed, valuePassword, valueFontsFolder);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "String", "sourceFont", "replaceFontOnline", valueSourceFont);
+        }
+        if (needAssertResponse) {
+            assertResponse("String", "sourceFont", "replaceFontOnline");
+        }
+    }
+    /**
+     * Replaces specified font and returns presentation.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void replaceFontOnlineInvalidTargetFontTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        byte[] valueDocument = (byte[])getTestValue("byte[]", "replaceFontOnline", "document");
+        String valueSourceFont = (String)getTestValue("String", "replaceFontOnline", "sourceFont");
+        String valueTargetFont = (String)getTestValue("String", "replaceFontOnline", "targetFont");
+        Boolean valueEmbed = (Boolean)getTestValue("Boolean", "replaceFontOnline", "embed");
+        String valuePassword = (String)getTestValue("String", "replaceFontOnline", "password");
+        String valueFontsFolder = (String)getTestValue("String", "replaceFontOnline", "fontsFolder");
+        try {
+            valueTargetFont = (String)invalidizeTestValue("String", valueTargetFont, "replaceFontOnline", "targetFont");
+            initialize("replaceFontOnline", "targetFont", "String", valueTargetFont);
+            File response = api.replaceFontOnline(valueDocument, valueSourceFont, valueTargetFont, valueEmbed, valuePassword, valueFontsFolder);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "String", "targetFont", "replaceFontOnline", valueTargetFont);
+        }
+        if (needAssertResponse) {
+            assertResponse("String", "targetFont", "replaceFontOnline");
+        }
+    }
+    /**
+     * Replaces specified font and returns presentation.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void replaceFontOnlineInvalidEmbedTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        byte[] valueDocument = (byte[])getTestValue("byte[]", "replaceFontOnline", "document");
+        String valueSourceFont = (String)getTestValue("String", "replaceFontOnline", "sourceFont");
+        String valueTargetFont = (String)getTestValue("String", "replaceFontOnline", "targetFont");
+        Boolean valueEmbed = (Boolean)getTestValue("Boolean", "replaceFontOnline", "embed");
+        String valuePassword = (String)getTestValue("String", "replaceFontOnline", "password");
+        String valueFontsFolder = (String)getTestValue("String", "replaceFontOnline", "fontsFolder");
+        try {
+            valueEmbed = (Boolean)invalidizeTestValue("Boolean", valueEmbed, "replaceFontOnline", "embed");
+            initialize("replaceFontOnline", "embed", "Boolean", valueEmbed);
+            File response = api.replaceFontOnline(valueDocument, valueSourceFont, valueTargetFont, valueEmbed, valuePassword, valueFontsFolder);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "Boolean", "embed", "replaceFontOnline", valueEmbed);
+        }
+        if (needAssertResponse) {
+            assertResponse("Boolean", "embed", "replaceFontOnline");
+        }
+    }
+    /**
+     * Replaces specified font and returns presentation.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void replaceFontOnlineInvalidPasswordTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        byte[] valueDocument = (byte[])getTestValue("byte[]", "replaceFontOnline", "document");
+        String valueSourceFont = (String)getTestValue("String", "replaceFontOnline", "sourceFont");
+        String valueTargetFont = (String)getTestValue("String", "replaceFontOnline", "targetFont");
+        Boolean valueEmbed = (Boolean)getTestValue("Boolean", "replaceFontOnline", "embed");
+        String valuePassword = (String)getTestValue("String", "replaceFontOnline", "password");
+        String valueFontsFolder = (String)getTestValue("String", "replaceFontOnline", "fontsFolder");
+        try {
+            valuePassword = (String)invalidizeTestValue("String", valuePassword, "replaceFontOnline", "password");
+            initialize("replaceFontOnline", "password", "String", valuePassword);
+            File response = api.replaceFontOnline(valueDocument, valueSourceFont, valueTargetFont, valueEmbed, valuePassword, valueFontsFolder);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "String", "password", "replaceFontOnline", valuePassword);
+        }
+        if (needAssertResponse) {
+            assertResponse("String", "password", "replaceFontOnline");
+        }
+    }
+    /**
+     * Replaces specified font and returns presentation.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void replaceFontOnlineInvalidFontsFolderTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        byte[] valueDocument = (byte[])getTestValue("byte[]", "replaceFontOnline", "document");
+        String valueSourceFont = (String)getTestValue("String", "replaceFontOnline", "sourceFont");
+        String valueTargetFont = (String)getTestValue("String", "replaceFontOnline", "targetFont");
+        Boolean valueEmbed = (Boolean)getTestValue("Boolean", "replaceFontOnline", "embed");
+        String valuePassword = (String)getTestValue("String", "replaceFontOnline", "password");
+        String valueFontsFolder = (String)getTestValue("String", "replaceFontOnline", "fontsFolder");
+        try {
+            valueFontsFolder = (String)invalidizeTestValue("String", valueFontsFolder, "replaceFontOnline", "fontsFolder");
+            initialize("replaceFontOnline", "fontsFolder", "String", valueFontsFolder);
+            File response = api.replaceFontOnline(valueDocument, valueSourceFont, valueTargetFont, valueEmbed, valuePassword, valueFontsFolder);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "String", "fontsFolder", "replaceFontOnline", valueFontsFolder);
+        }
+        if (needAssertResponse) {
+            assertResponse("String", "fontsFolder", "replaceFontOnline");
         }
     }
     
@@ -53230,7 +54335,8 @@ public class SlidesApiTest extends ApiTest {
         String valuePassword = (String)getTestValue("String", "setEmbeddedFont", "password");
         String valueFolder = (String)getTestValue("String", "setEmbeddedFont", "folder");
         String valueStorage = (String)getTestValue("String", "setEmbeddedFont", "storage");
-        response = api.setEmbeddedFont(valueName, valueFontName, valueOnlyUsed, valuePassword, valueFolder, valueStorage);
+        String valueFontsFolder = (String)getTestValue("String", "setEmbeddedFont", "fontsFolder");
+        response = api.setEmbeddedFont(valueName, valueFontName, valueOnlyUsed, valuePassword, valueFolder, valueStorage, valueFontsFolder);
         assertNotNull(response);
     }
 
@@ -53251,10 +54357,11 @@ public class SlidesApiTest extends ApiTest {
         String valuePassword = (String)getTestValue("String", "setEmbeddedFont", "password");
         String valueFolder = (String)getTestValue("String", "setEmbeddedFont", "folder");
         String valueStorage = (String)getTestValue("String", "setEmbeddedFont", "storage");
+        String valueFontsFolder = (String)getTestValue("String", "setEmbeddedFont", "fontsFolder");
         try {
             valueName = (String)invalidizeTestValue("String", valueName, "setEmbeddedFont", "name");
             initialize("setEmbeddedFont", "name", "String", valueName);
-            FontsData response = api.setEmbeddedFont(valueName, valueFontName, valueOnlyUsed, valuePassword, valueFolder, valueStorage);
+            FontsData response = api.setEmbeddedFont(valueName, valueFontName, valueOnlyUsed, valuePassword, valueFolder, valueStorage, valueFontsFolder);
             needAssertResponse = true;
         } catch (ApiException ex) {
             assertException(ex, "String", "name", "setEmbeddedFont", valueName);
@@ -53280,10 +54387,11 @@ public class SlidesApiTest extends ApiTest {
         String valuePassword = (String)getTestValue("String", "setEmbeddedFont", "password");
         String valueFolder = (String)getTestValue("String", "setEmbeddedFont", "folder");
         String valueStorage = (String)getTestValue("String", "setEmbeddedFont", "storage");
+        String valueFontsFolder = (String)getTestValue("String", "setEmbeddedFont", "fontsFolder");
         try {
             valueFontName = (String)invalidizeTestValue("String", valueFontName, "setEmbeddedFont", "fontName");
             initialize("setEmbeddedFont", "fontName", "String", valueFontName);
-            FontsData response = api.setEmbeddedFont(valueName, valueFontName, valueOnlyUsed, valuePassword, valueFolder, valueStorage);
+            FontsData response = api.setEmbeddedFont(valueName, valueFontName, valueOnlyUsed, valuePassword, valueFolder, valueStorage, valueFontsFolder);
             needAssertResponse = true;
         } catch (ApiException ex) {
             assertException(ex, "String", "fontName", "setEmbeddedFont", valueFontName);
@@ -53309,10 +54417,11 @@ public class SlidesApiTest extends ApiTest {
         String valuePassword = (String)getTestValue("String", "setEmbeddedFont", "password");
         String valueFolder = (String)getTestValue("String", "setEmbeddedFont", "folder");
         String valueStorage = (String)getTestValue("String", "setEmbeddedFont", "storage");
+        String valueFontsFolder = (String)getTestValue("String", "setEmbeddedFont", "fontsFolder");
         try {
             valueOnlyUsed = (Boolean)invalidizeTestValue("Boolean", valueOnlyUsed, "setEmbeddedFont", "onlyUsed");
             initialize("setEmbeddedFont", "onlyUsed", "Boolean", valueOnlyUsed);
-            FontsData response = api.setEmbeddedFont(valueName, valueFontName, valueOnlyUsed, valuePassword, valueFolder, valueStorage);
+            FontsData response = api.setEmbeddedFont(valueName, valueFontName, valueOnlyUsed, valuePassword, valueFolder, valueStorage, valueFontsFolder);
             needAssertResponse = true;
         } catch (ApiException ex) {
             assertException(ex, "Boolean", "onlyUsed", "setEmbeddedFont", valueOnlyUsed);
@@ -53338,10 +54447,11 @@ public class SlidesApiTest extends ApiTest {
         String valuePassword = (String)getTestValue("String", "setEmbeddedFont", "password");
         String valueFolder = (String)getTestValue("String", "setEmbeddedFont", "folder");
         String valueStorage = (String)getTestValue("String", "setEmbeddedFont", "storage");
+        String valueFontsFolder = (String)getTestValue("String", "setEmbeddedFont", "fontsFolder");
         try {
             valuePassword = (String)invalidizeTestValue("String", valuePassword, "setEmbeddedFont", "password");
             initialize("setEmbeddedFont", "password", "String", valuePassword);
-            FontsData response = api.setEmbeddedFont(valueName, valueFontName, valueOnlyUsed, valuePassword, valueFolder, valueStorage);
+            FontsData response = api.setEmbeddedFont(valueName, valueFontName, valueOnlyUsed, valuePassword, valueFolder, valueStorage, valueFontsFolder);
             needAssertResponse = true;
         } catch (ApiException ex) {
             assertException(ex, "String", "password", "setEmbeddedFont", valuePassword);
@@ -53367,10 +54477,11 @@ public class SlidesApiTest extends ApiTest {
         String valuePassword = (String)getTestValue("String", "setEmbeddedFont", "password");
         String valueFolder = (String)getTestValue("String", "setEmbeddedFont", "folder");
         String valueStorage = (String)getTestValue("String", "setEmbeddedFont", "storage");
+        String valueFontsFolder = (String)getTestValue("String", "setEmbeddedFont", "fontsFolder");
         try {
             valueFolder = (String)invalidizeTestValue("String", valueFolder, "setEmbeddedFont", "folder");
             initialize("setEmbeddedFont", "folder", "String", valueFolder);
-            FontsData response = api.setEmbeddedFont(valueName, valueFontName, valueOnlyUsed, valuePassword, valueFolder, valueStorage);
+            FontsData response = api.setEmbeddedFont(valueName, valueFontName, valueOnlyUsed, valuePassword, valueFolder, valueStorage, valueFontsFolder);
             needAssertResponse = true;
         } catch (ApiException ex) {
             assertException(ex, "String", "folder", "setEmbeddedFont", valueFolder);
@@ -53396,16 +54507,373 @@ public class SlidesApiTest extends ApiTest {
         String valuePassword = (String)getTestValue("String", "setEmbeddedFont", "password");
         String valueFolder = (String)getTestValue("String", "setEmbeddedFont", "folder");
         String valueStorage = (String)getTestValue("String", "setEmbeddedFont", "storage");
+        String valueFontsFolder = (String)getTestValue("String", "setEmbeddedFont", "fontsFolder");
         try {
             valueStorage = (String)invalidizeTestValue("String", valueStorage, "setEmbeddedFont", "storage");
             initialize("setEmbeddedFont", "storage", "String", valueStorage);
-            FontsData response = api.setEmbeddedFont(valueName, valueFontName, valueOnlyUsed, valuePassword, valueFolder, valueStorage);
+            FontsData response = api.setEmbeddedFont(valueName, valueFontName, valueOnlyUsed, valuePassword, valueFolder, valueStorage, valueFontsFolder);
             needAssertResponse = true;
         } catch (ApiException ex) {
             assertException(ex, "String", "storage", "setEmbeddedFont", valueStorage);
         }
         if (needAssertResponse) {
             assertResponse("String", "storage", "setEmbeddedFont");
+        }
+    }
+    /**
+     * Embeds specified font and returns presentation fonts info.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void setEmbeddedFontInvalidFontsFolderTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "setEmbeddedFont", "name");
+        String valueFontName = (String)getTestValue("String", "setEmbeddedFont", "fontName");
+        Boolean valueOnlyUsed = (Boolean)getTestValue("Boolean", "setEmbeddedFont", "onlyUsed");
+        String valuePassword = (String)getTestValue("String", "setEmbeddedFont", "password");
+        String valueFolder = (String)getTestValue("String", "setEmbeddedFont", "folder");
+        String valueStorage = (String)getTestValue("String", "setEmbeddedFont", "storage");
+        String valueFontsFolder = (String)getTestValue("String", "setEmbeddedFont", "fontsFolder");
+        try {
+            valueFontsFolder = (String)invalidizeTestValue("String", valueFontsFolder, "setEmbeddedFont", "fontsFolder");
+            initialize("setEmbeddedFont", "fontsFolder", "String", valueFontsFolder);
+            FontsData response = api.setEmbeddedFont(valueName, valueFontName, valueOnlyUsed, valuePassword, valueFolder, valueStorage, valueFontsFolder);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "String", "fontsFolder", "setEmbeddedFont", valueFontsFolder);
+        }
+        if (needAssertResponse) {
+            assertResponse("String", "fontsFolder", "setEmbeddedFont");
+        }
+    }
+    
+    /**
+     * Embeds font from request and returns presentation fonts info.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void setEmbeddedFontFromRequestTest() throws ApiException, Exception {
+        initialize("setEmbeddedFontFromRequest", null, null, null);
+        FontsData response = null;
+        byte[] valueFont = (byte[])getTestValue("byte[]", "setEmbeddedFontFromRequest", "font");
+        String valueName = (String)getTestValue("String", "setEmbeddedFontFromRequest", "name");
+        Boolean valueOnlyUsed = (Boolean)getTestValue("Boolean", "setEmbeddedFontFromRequest", "onlyUsed");
+        String valuePassword = (String)getTestValue("String", "setEmbeddedFontFromRequest", "password");
+        String valueFolder = (String)getTestValue("String", "setEmbeddedFontFromRequest", "folder");
+        String valueStorage = (String)getTestValue("String", "setEmbeddedFontFromRequest", "storage");
+        response = api.setEmbeddedFontFromRequest(valueFont, valueName, valueOnlyUsed, valuePassword, valueFolder, valueStorage);
+        assertNotNull(response);
+    }
+
+    /**
+     * Embeds font from request and returns presentation fonts info.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void setEmbeddedFontFromRequestInvalidFontTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        byte[] valueFont = (byte[])getTestValue("byte[]", "setEmbeddedFontFromRequest", "font");
+        String valueName = (String)getTestValue("String", "setEmbeddedFontFromRequest", "name");
+        Boolean valueOnlyUsed = (Boolean)getTestValue("Boolean", "setEmbeddedFontFromRequest", "onlyUsed");
+        String valuePassword = (String)getTestValue("String", "setEmbeddedFontFromRequest", "password");
+        String valueFolder = (String)getTestValue("String", "setEmbeddedFontFromRequest", "folder");
+        String valueStorage = (String)getTestValue("String", "setEmbeddedFontFromRequest", "storage");
+        try {
+            valueFont = (byte[])invalidizeTestValue("byte[]", valueFont, "setEmbeddedFontFromRequest", "font");
+            initialize("setEmbeddedFontFromRequest", "font", "byte[]", valueFont);
+            FontsData response = api.setEmbeddedFontFromRequest(valueFont, valueName, valueOnlyUsed, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "byte[]", "font", "setEmbeddedFontFromRequest", valueFont);
+        }
+        if (needAssertResponse) {
+            assertResponse("byte[]", "font", "setEmbeddedFontFromRequest");
+        }
+    }
+    /**
+     * Embeds font from request and returns presentation fonts info.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void setEmbeddedFontFromRequestInvalidNameTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        byte[] valueFont = (byte[])getTestValue("byte[]", "setEmbeddedFontFromRequest", "font");
+        String valueName = (String)getTestValue("String", "setEmbeddedFontFromRequest", "name");
+        Boolean valueOnlyUsed = (Boolean)getTestValue("Boolean", "setEmbeddedFontFromRequest", "onlyUsed");
+        String valuePassword = (String)getTestValue("String", "setEmbeddedFontFromRequest", "password");
+        String valueFolder = (String)getTestValue("String", "setEmbeddedFontFromRequest", "folder");
+        String valueStorage = (String)getTestValue("String", "setEmbeddedFontFromRequest", "storage");
+        try {
+            valueName = (String)invalidizeTestValue("String", valueName, "setEmbeddedFontFromRequest", "name");
+            initialize("setEmbeddedFontFromRequest", "name", "String", valueName);
+            FontsData response = api.setEmbeddedFontFromRequest(valueFont, valueName, valueOnlyUsed, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "String", "name", "setEmbeddedFontFromRequest", valueName);
+        }
+        if (needAssertResponse) {
+            assertResponse("String", "name", "setEmbeddedFontFromRequest");
+        }
+    }
+    /**
+     * Embeds font from request and returns presentation fonts info.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void setEmbeddedFontFromRequestInvalidOnlyUsedTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        byte[] valueFont = (byte[])getTestValue("byte[]", "setEmbeddedFontFromRequest", "font");
+        String valueName = (String)getTestValue("String", "setEmbeddedFontFromRequest", "name");
+        Boolean valueOnlyUsed = (Boolean)getTestValue("Boolean", "setEmbeddedFontFromRequest", "onlyUsed");
+        String valuePassword = (String)getTestValue("String", "setEmbeddedFontFromRequest", "password");
+        String valueFolder = (String)getTestValue("String", "setEmbeddedFontFromRequest", "folder");
+        String valueStorage = (String)getTestValue("String", "setEmbeddedFontFromRequest", "storage");
+        try {
+            valueOnlyUsed = (Boolean)invalidizeTestValue("Boolean", valueOnlyUsed, "setEmbeddedFontFromRequest", "onlyUsed");
+            initialize("setEmbeddedFontFromRequest", "onlyUsed", "Boolean", valueOnlyUsed);
+            FontsData response = api.setEmbeddedFontFromRequest(valueFont, valueName, valueOnlyUsed, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "Boolean", "onlyUsed", "setEmbeddedFontFromRequest", valueOnlyUsed);
+        }
+        if (needAssertResponse) {
+            assertResponse("Boolean", "onlyUsed", "setEmbeddedFontFromRequest");
+        }
+    }
+    /**
+     * Embeds font from request and returns presentation fonts info.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void setEmbeddedFontFromRequestInvalidPasswordTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        byte[] valueFont = (byte[])getTestValue("byte[]", "setEmbeddedFontFromRequest", "font");
+        String valueName = (String)getTestValue("String", "setEmbeddedFontFromRequest", "name");
+        Boolean valueOnlyUsed = (Boolean)getTestValue("Boolean", "setEmbeddedFontFromRequest", "onlyUsed");
+        String valuePassword = (String)getTestValue("String", "setEmbeddedFontFromRequest", "password");
+        String valueFolder = (String)getTestValue("String", "setEmbeddedFontFromRequest", "folder");
+        String valueStorage = (String)getTestValue("String", "setEmbeddedFontFromRequest", "storage");
+        try {
+            valuePassword = (String)invalidizeTestValue("String", valuePassword, "setEmbeddedFontFromRequest", "password");
+            initialize("setEmbeddedFontFromRequest", "password", "String", valuePassword);
+            FontsData response = api.setEmbeddedFontFromRequest(valueFont, valueName, valueOnlyUsed, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "String", "password", "setEmbeddedFontFromRequest", valuePassword);
+        }
+        if (needAssertResponse) {
+            assertResponse("String", "password", "setEmbeddedFontFromRequest");
+        }
+    }
+    /**
+     * Embeds font from request and returns presentation fonts info.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void setEmbeddedFontFromRequestInvalidFolderTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        byte[] valueFont = (byte[])getTestValue("byte[]", "setEmbeddedFontFromRequest", "font");
+        String valueName = (String)getTestValue("String", "setEmbeddedFontFromRequest", "name");
+        Boolean valueOnlyUsed = (Boolean)getTestValue("Boolean", "setEmbeddedFontFromRequest", "onlyUsed");
+        String valuePassword = (String)getTestValue("String", "setEmbeddedFontFromRequest", "password");
+        String valueFolder = (String)getTestValue("String", "setEmbeddedFontFromRequest", "folder");
+        String valueStorage = (String)getTestValue("String", "setEmbeddedFontFromRequest", "storage");
+        try {
+            valueFolder = (String)invalidizeTestValue("String", valueFolder, "setEmbeddedFontFromRequest", "folder");
+            initialize("setEmbeddedFontFromRequest", "folder", "String", valueFolder);
+            FontsData response = api.setEmbeddedFontFromRequest(valueFont, valueName, valueOnlyUsed, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "String", "folder", "setEmbeddedFontFromRequest", valueFolder);
+        }
+        if (needAssertResponse) {
+            assertResponse("String", "folder", "setEmbeddedFontFromRequest");
+        }
+    }
+    /**
+     * Embeds font from request and returns presentation fonts info.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void setEmbeddedFontFromRequestInvalidStorageTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        byte[] valueFont = (byte[])getTestValue("byte[]", "setEmbeddedFontFromRequest", "font");
+        String valueName = (String)getTestValue("String", "setEmbeddedFontFromRequest", "name");
+        Boolean valueOnlyUsed = (Boolean)getTestValue("Boolean", "setEmbeddedFontFromRequest", "onlyUsed");
+        String valuePassword = (String)getTestValue("String", "setEmbeddedFontFromRequest", "password");
+        String valueFolder = (String)getTestValue("String", "setEmbeddedFontFromRequest", "folder");
+        String valueStorage = (String)getTestValue("String", "setEmbeddedFontFromRequest", "storage");
+        try {
+            valueStorage = (String)invalidizeTestValue("String", valueStorage, "setEmbeddedFontFromRequest", "storage");
+            initialize("setEmbeddedFontFromRequest", "storage", "String", valueStorage);
+            FontsData response = api.setEmbeddedFontFromRequest(valueFont, valueName, valueOnlyUsed, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "String", "storage", "setEmbeddedFontFromRequest", valueStorage);
+        }
+        if (needAssertResponse) {
+            assertResponse("String", "storage", "setEmbeddedFontFromRequest");
+        }
+    }
+    
+    /**
+     * Embeds font from request and returns presentation.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void setEmbeddedFontFromRequestOnlineTest() throws ApiException, Exception {
+        initialize("setEmbeddedFontFromRequestOnline", null, null, null);
+        File response = null;
+        byte[] valueDocument = (byte[])getTestValue("byte[]", "setEmbeddedFontFromRequestOnline", "document");
+        byte[] valueFont = (byte[])getTestValue("byte[]", "setEmbeddedFontFromRequestOnline", "font");
+        Boolean valueOnlyUsed = (Boolean)getTestValue("Boolean", "setEmbeddedFontFromRequestOnline", "onlyUsed");
+        String valuePassword = (String)getTestValue("String", "setEmbeddedFontFromRequestOnline", "password");
+        response = api.setEmbeddedFontFromRequestOnline(valueDocument, valueFont, valueOnlyUsed, valuePassword);
+        assertTrue(response.isFile());
+    }
+
+    /**
+     * Embeds font from request and returns presentation.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void setEmbeddedFontFromRequestOnlineInvalidDocumentTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        byte[] valueDocument = (byte[])getTestValue("byte[]", "setEmbeddedFontFromRequestOnline", "document");
+        byte[] valueFont = (byte[])getTestValue("byte[]", "setEmbeddedFontFromRequestOnline", "font");
+        Boolean valueOnlyUsed = (Boolean)getTestValue("Boolean", "setEmbeddedFontFromRequestOnline", "onlyUsed");
+        String valuePassword = (String)getTestValue("String", "setEmbeddedFontFromRequestOnline", "password");
+        try {
+            valueDocument = (byte[])invalidizeTestValue("byte[]", valueDocument, "setEmbeddedFontFromRequestOnline", "document");
+            initialize("setEmbeddedFontFromRequestOnline", "document", "byte[]", valueDocument);
+            File response = api.setEmbeddedFontFromRequestOnline(valueDocument, valueFont, valueOnlyUsed, valuePassword);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "byte[]", "document", "setEmbeddedFontFromRequestOnline", valueDocument);
+        }
+        if (needAssertResponse) {
+            assertResponse("byte[]", "document", "setEmbeddedFontFromRequestOnline");
+        }
+    }
+    /**
+     * Embeds font from request and returns presentation.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void setEmbeddedFontFromRequestOnlineInvalidFontTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        byte[] valueDocument = (byte[])getTestValue("byte[]", "setEmbeddedFontFromRequestOnline", "document");
+        byte[] valueFont = (byte[])getTestValue("byte[]", "setEmbeddedFontFromRequestOnline", "font");
+        Boolean valueOnlyUsed = (Boolean)getTestValue("Boolean", "setEmbeddedFontFromRequestOnline", "onlyUsed");
+        String valuePassword = (String)getTestValue("String", "setEmbeddedFontFromRequestOnline", "password");
+        try {
+            valueFont = (byte[])invalidizeTestValue("byte[]", valueFont, "setEmbeddedFontFromRequestOnline", "font");
+            initialize("setEmbeddedFontFromRequestOnline", "font", "byte[]", valueFont);
+            File response = api.setEmbeddedFontFromRequestOnline(valueDocument, valueFont, valueOnlyUsed, valuePassword);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "byte[]", "font", "setEmbeddedFontFromRequestOnline", valueFont);
+        }
+        if (needAssertResponse) {
+            assertResponse("byte[]", "font", "setEmbeddedFontFromRequestOnline");
+        }
+    }
+    /**
+     * Embeds font from request and returns presentation.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void setEmbeddedFontFromRequestOnlineInvalidOnlyUsedTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        byte[] valueDocument = (byte[])getTestValue("byte[]", "setEmbeddedFontFromRequestOnline", "document");
+        byte[] valueFont = (byte[])getTestValue("byte[]", "setEmbeddedFontFromRequestOnline", "font");
+        Boolean valueOnlyUsed = (Boolean)getTestValue("Boolean", "setEmbeddedFontFromRequestOnline", "onlyUsed");
+        String valuePassword = (String)getTestValue("String", "setEmbeddedFontFromRequestOnline", "password");
+        try {
+            valueOnlyUsed = (Boolean)invalidizeTestValue("Boolean", valueOnlyUsed, "setEmbeddedFontFromRequestOnline", "onlyUsed");
+            initialize("setEmbeddedFontFromRequestOnline", "onlyUsed", "Boolean", valueOnlyUsed);
+            File response = api.setEmbeddedFontFromRequestOnline(valueDocument, valueFont, valueOnlyUsed, valuePassword);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "Boolean", "onlyUsed", "setEmbeddedFontFromRequestOnline", valueOnlyUsed);
+        }
+        if (needAssertResponse) {
+            assertResponse("Boolean", "onlyUsed", "setEmbeddedFontFromRequestOnline");
+        }
+    }
+    /**
+     * Embeds font from request and returns presentation.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void setEmbeddedFontFromRequestOnlineInvalidPasswordTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        byte[] valueDocument = (byte[])getTestValue("byte[]", "setEmbeddedFontFromRequestOnline", "document");
+        byte[] valueFont = (byte[])getTestValue("byte[]", "setEmbeddedFontFromRequestOnline", "font");
+        Boolean valueOnlyUsed = (Boolean)getTestValue("Boolean", "setEmbeddedFontFromRequestOnline", "onlyUsed");
+        String valuePassword = (String)getTestValue("String", "setEmbeddedFontFromRequestOnline", "password");
+        try {
+            valuePassword = (String)invalidizeTestValue("String", valuePassword, "setEmbeddedFontFromRequestOnline", "password");
+            initialize("setEmbeddedFontFromRequestOnline", "password", "String", valuePassword);
+            File response = api.setEmbeddedFontFromRequestOnline(valueDocument, valueFont, valueOnlyUsed, valuePassword);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "String", "password", "setEmbeddedFontFromRequestOnline", valuePassword);
+        }
+        if (needAssertResponse) {
+            assertResponse("String", "password", "setEmbeddedFontFromRequestOnline");
         }
     }
     
@@ -53425,7 +54893,8 @@ public class SlidesApiTest extends ApiTest {
         String valueFontName = (String)getTestValue("String", "setEmbeddedFontOnline", "fontName");
         Boolean valueOnlyUsed = (Boolean)getTestValue("Boolean", "setEmbeddedFontOnline", "onlyUsed");
         String valuePassword = (String)getTestValue("String", "setEmbeddedFontOnline", "password");
-        response = api.setEmbeddedFontOnline(valueDocument, valueFontName, valueOnlyUsed, valuePassword);
+        String valueFontsFolder = (String)getTestValue("String", "setEmbeddedFontOnline", "fontsFolder");
+        response = api.setEmbeddedFontOnline(valueDocument, valueFontName, valueOnlyUsed, valuePassword, valueFontsFolder);
         assertTrue(response.isFile());
     }
 
@@ -53444,10 +54913,11 @@ public class SlidesApiTest extends ApiTest {
         String valueFontName = (String)getTestValue("String", "setEmbeddedFontOnline", "fontName");
         Boolean valueOnlyUsed = (Boolean)getTestValue("Boolean", "setEmbeddedFontOnline", "onlyUsed");
         String valuePassword = (String)getTestValue("String", "setEmbeddedFontOnline", "password");
+        String valueFontsFolder = (String)getTestValue("String", "setEmbeddedFontOnline", "fontsFolder");
         try {
             valueDocument = (byte[])invalidizeTestValue("byte[]", valueDocument, "setEmbeddedFontOnline", "document");
             initialize("setEmbeddedFontOnline", "document", "byte[]", valueDocument);
-            File response = api.setEmbeddedFontOnline(valueDocument, valueFontName, valueOnlyUsed, valuePassword);
+            File response = api.setEmbeddedFontOnline(valueDocument, valueFontName, valueOnlyUsed, valuePassword, valueFontsFolder);
             needAssertResponse = true;
         } catch (ApiException ex) {
             assertException(ex, "byte[]", "document", "setEmbeddedFontOnline", valueDocument);
@@ -53471,10 +54941,11 @@ public class SlidesApiTest extends ApiTest {
         String valueFontName = (String)getTestValue("String", "setEmbeddedFontOnline", "fontName");
         Boolean valueOnlyUsed = (Boolean)getTestValue("Boolean", "setEmbeddedFontOnline", "onlyUsed");
         String valuePassword = (String)getTestValue("String", "setEmbeddedFontOnline", "password");
+        String valueFontsFolder = (String)getTestValue("String", "setEmbeddedFontOnline", "fontsFolder");
         try {
             valueFontName = (String)invalidizeTestValue("String", valueFontName, "setEmbeddedFontOnline", "fontName");
             initialize("setEmbeddedFontOnline", "fontName", "String", valueFontName);
-            File response = api.setEmbeddedFontOnline(valueDocument, valueFontName, valueOnlyUsed, valuePassword);
+            File response = api.setEmbeddedFontOnline(valueDocument, valueFontName, valueOnlyUsed, valuePassword, valueFontsFolder);
             needAssertResponse = true;
         } catch (ApiException ex) {
             assertException(ex, "String", "fontName", "setEmbeddedFontOnline", valueFontName);
@@ -53498,10 +54969,11 @@ public class SlidesApiTest extends ApiTest {
         String valueFontName = (String)getTestValue("String", "setEmbeddedFontOnline", "fontName");
         Boolean valueOnlyUsed = (Boolean)getTestValue("Boolean", "setEmbeddedFontOnline", "onlyUsed");
         String valuePassword = (String)getTestValue("String", "setEmbeddedFontOnline", "password");
+        String valueFontsFolder = (String)getTestValue("String", "setEmbeddedFontOnline", "fontsFolder");
         try {
             valueOnlyUsed = (Boolean)invalidizeTestValue("Boolean", valueOnlyUsed, "setEmbeddedFontOnline", "onlyUsed");
             initialize("setEmbeddedFontOnline", "onlyUsed", "Boolean", valueOnlyUsed);
-            File response = api.setEmbeddedFontOnline(valueDocument, valueFontName, valueOnlyUsed, valuePassword);
+            File response = api.setEmbeddedFontOnline(valueDocument, valueFontName, valueOnlyUsed, valuePassword, valueFontsFolder);
             needAssertResponse = true;
         } catch (ApiException ex) {
             assertException(ex, "Boolean", "onlyUsed", "setEmbeddedFontOnline", valueOnlyUsed);
@@ -53525,16 +54997,45 @@ public class SlidesApiTest extends ApiTest {
         String valueFontName = (String)getTestValue("String", "setEmbeddedFontOnline", "fontName");
         Boolean valueOnlyUsed = (Boolean)getTestValue("Boolean", "setEmbeddedFontOnline", "onlyUsed");
         String valuePassword = (String)getTestValue("String", "setEmbeddedFontOnline", "password");
+        String valueFontsFolder = (String)getTestValue("String", "setEmbeddedFontOnline", "fontsFolder");
         try {
             valuePassword = (String)invalidizeTestValue("String", valuePassword, "setEmbeddedFontOnline", "password");
             initialize("setEmbeddedFontOnline", "password", "String", valuePassword);
-            File response = api.setEmbeddedFontOnline(valueDocument, valueFontName, valueOnlyUsed, valuePassword);
+            File response = api.setEmbeddedFontOnline(valueDocument, valueFontName, valueOnlyUsed, valuePassword, valueFontsFolder);
             needAssertResponse = true;
         } catch (ApiException ex) {
             assertException(ex, "String", "password", "setEmbeddedFontOnline", valuePassword);
         }
         if (needAssertResponse) {
             assertResponse("String", "password", "setEmbeddedFontOnline");
+        }
+    }
+    /**
+     * Embeds specified font and returns presentation.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void setEmbeddedFontOnlineInvalidFontsFolderTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        byte[] valueDocument = (byte[])getTestValue("byte[]", "setEmbeddedFontOnline", "document");
+        String valueFontName = (String)getTestValue("String", "setEmbeddedFontOnline", "fontName");
+        Boolean valueOnlyUsed = (Boolean)getTestValue("Boolean", "setEmbeddedFontOnline", "onlyUsed");
+        String valuePassword = (String)getTestValue("String", "setEmbeddedFontOnline", "password");
+        String valueFontsFolder = (String)getTestValue("String", "setEmbeddedFontOnline", "fontsFolder");
+        try {
+            valueFontsFolder = (String)invalidizeTestValue("String", valueFontsFolder, "setEmbeddedFontOnline", "fontsFolder");
+            initialize("setEmbeddedFontOnline", "fontsFolder", "String", valueFontsFolder);
+            File response = api.setEmbeddedFontOnline(valueDocument, valueFontName, valueOnlyUsed, valuePassword, valueFontsFolder);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "String", "fontsFolder", "setEmbeddedFontOnline", valueFontsFolder);
+        }
+        if (needAssertResponse) {
+            assertResponse("String", "fontsFolder", "setEmbeddedFontOnline");
         }
     }
     

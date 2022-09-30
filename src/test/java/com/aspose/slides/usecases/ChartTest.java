@@ -550,6 +550,39 @@ public class ChartTest extends ApiTest {
         assertEquals(response.getFillFormat().getType(), FillFormat.TypeEnum.SOLID);
     }
 
+    @Test
+    public void updateDataPointFormat() throws ApiException {
+        initialize(null, null, null, null);
+        int slideIndex = 8;
+        int shapeIndex = 2;
+
+        OneValueChartDataPoint dto = new OneValueChartDataPoint();
+        dto.setValue(40.0);
+        SolidFill fillFormat = new SolidFill();
+        fillFormat.setColor(c_color);
+        LineFormat lineFormat = new LineFormat();
+        SolidFill lineFillFormat = new SolidFill();
+        lineFillFormat.setColor(c_color);
+        lineFormat.setFillFormat(lineFillFormat);
+        EffectFormat effectFormat = new EffectFormat();
+        BlurEffect blur = new BlurEffect();
+        blur.setGrow(true);
+        blur.setRadius(5.0);
+        effectFormat.setBlur(blur);
+
+        dto.setFillFormat(fillFormat);
+        dto.setLineFormat(lineFormat);
+        dto.setEffectFormat(effectFormat);
+
+        Chart chart = api.updateChartDataPoint(c_fileName, slideIndex, shapeIndex, c_seriesIndex, c_dataPointIndex, dto,
+                c_password, c_folderName,null);
+        OneValueSeries series = (OneValueSeries)chart.getSeries().get(c_seriesIndex - 1);
+        OneValueChartDataPoint dataPoint = series.getDataPoints().get(c_dataPointIndex - 1);
+        assertEquals(dataPoint.getFillFormat().getType(), FillFormat.TypeEnum.SOLID);
+        assertEquals(dataPoint.getLineFormat().getFillFormat().getType(), FillFormat.TypeEnum.SOLID);
+        assertNotNull(dataPoint.getEffectFormat().getBlur());
+    }
+
     private static final String c_color = "#77CEF9";
     private static final String c_folderName = "TempSlidesSDK";
     private static final String c_fileName = "test.pptx";
@@ -558,6 +591,7 @@ public class ChartTest extends ApiTest {
     private static final int c_shapeIndex = 1;
     private static final int c_seriesIndex = 2;
     private static final int c_categoryIndex = 2;
+    private static final int c_dataPointIndex = 2;
     private static final int c_seriesCount = 3;
     private static final int c_categoryCount = 4;
     private static final int c_seriesGroupIndex = 1;

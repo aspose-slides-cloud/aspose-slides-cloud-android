@@ -30,6 +30,7 @@ package com.aspose.slides.model;
 import java.util.Objects;
 import com.aspose.slides.model.ExportOptions;
 import com.aspose.slides.model.FontFallbackRule;
+import com.aspose.slides.model.FontSubstRule;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;

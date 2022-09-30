@@ -28,11 +28,6 @@
 package com.aspose.slides.model;
 
 import java.util.Objects;
-import com.aspose.slides.model.DataPoint;
-import com.aspose.slides.model.EffectFormat;
-import com.aspose.slides.model.FillFormat;
-import com.aspose.slides.model.LineFormat;
-import com.aspose.slides.model.ThreeDFormat;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -46,76 +41,76 @@ import java.util.Hashtable;
 import java.util.Map;
 
 /**
- * One value chart data point.
+ * Represents font substitution rule.
  */
-@ApiModel(description = "One value chart data point.")
-public class OneValueChartDataPoint extends DataPoint {
-  @SerializedName(value = "value", alternate = { "Value" })
-  private Double value;
+@ApiModel(description = "Represents font substitution rule.")
+public class FontSubstRule {
+  @SerializedName(value = "sourceFont", alternate = { "SourceFont" })
+  private String sourceFont;
 
-  @SerializedName(value = "setAsTotal", alternate = { "SetAsTotal" })
-  private Boolean setAsTotal;
+  @SerializedName(value = "targetFont", alternate = { "TargetFont" })
+  private String targetFont;
 
-  @SerializedName(value = "invertIfNegative", alternate = { "InvertIfNegative" })
-  private Boolean invertIfNegative;
+  @SerializedName(value = "notFoundOnly", alternate = { "NotFoundOnly" })
+  private Boolean notFoundOnly;
 
 
-  public OneValueChartDataPoint() {
+  public FontSubstRule() {
     super();
   }
 
-  public OneValueChartDataPoint value(Double value) {
-    this.value = value;
+  public FontSubstRule sourceFont(String sourceFont) {
+    this.sourceFont = sourceFont;
     return this;
   }
 
    /**
-   * Value.
-   * @return value
+   * Font to substitute.
+   * @return sourceFont
   **/
-  @ApiModelProperty(required = true, value = "Value.")
-  public Double getValue() {
-    return value;
+  @ApiModelProperty(value = "Font to substitute.")
+  public String getSourceFont() {
+    return sourceFont;
   }
 
-  public void setValue(Double value) {
-    this.value = value;
+  public void setSourceFont(String sourceFont) {
+    this.sourceFont = sourceFont;
   }
 
-  public OneValueChartDataPoint setAsTotal(Boolean setAsTotal) {
-    this.setAsTotal = setAsTotal;
+  public FontSubstRule targetFont(String targetFont) {
+    this.targetFont = targetFont;
     return this;
   }
 
    /**
-   * SetAsTotal. Applied to Waterfall data points only.
-   * @return setAsTotal
+   * Substitution font.
+   * @return targetFont
   **/
-  @ApiModelProperty(value = "SetAsTotal. Applied to Waterfall data points only.")
-  public Boolean isSetAsTotal() {
-    return setAsTotal;
+  @ApiModelProperty(value = "Substitution font.")
+  public String getTargetFont() {
+    return targetFont;
   }
 
-  public void setSetAsTotal(Boolean setAsTotal) {
-    this.setAsTotal = setAsTotal;
+  public void setTargetFont(String targetFont) {
+    this.targetFont = targetFont;
   }
 
-  public OneValueChartDataPoint invertIfNegative(Boolean invertIfNegative) {
-    this.invertIfNegative = invertIfNegative;
+  public FontSubstRule notFoundOnly(Boolean notFoundOnly) {
+    this.notFoundOnly = notFoundOnly;
     return this;
   }
 
    /**
-   * True if the data point shall invert its colors if the value is negative. Applies to bar, column and bubble series.
-   * @return invertIfNegative
+   * Substitute when font is not found. Default: true.
+   * @return notFoundOnly
   **/
-  @ApiModelProperty(value = "True if the data point shall invert its colors if the value is negative. Applies to bar, column and bubble series.")
-  public Boolean isInvertIfNegative() {
-    return invertIfNegative;
+  @ApiModelProperty(value = "Substitute when font is not found. Default: true.")
+  public Boolean isNotFoundOnly() {
+    return notFoundOnly;
   }
 
-  public void setInvertIfNegative(Boolean invertIfNegative) {
-    this.invertIfNegative = invertIfNegative;
+  public void setNotFoundOnly(Boolean notFoundOnly) {
+    this.notFoundOnly = notFoundOnly;
   }
 
 
@@ -127,24 +122,24 @@ public class OneValueChartDataPoint extends DataPoint {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    OneValueChartDataPoint oneValueChartDataPoint = (OneValueChartDataPoint) o;
-    return true && Objects.equals(this.value, oneValueChartDataPoint.value) && Objects.equals(this.setAsTotal, oneValueChartDataPoint.setAsTotal) && Objects.equals(this.invertIfNegative, oneValueChartDataPoint.invertIfNegative) && super.equals(o);
+    FontSubstRule fontSubstRule = (FontSubstRule) o;
+    return true && Objects.equals(this.sourceFont, fontSubstRule.sourceFont) && Objects.equals(this.targetFont, fontSubstRule.targetFont) && Objects.equals(this.notFoundOnly, fontSubstRule.notFoundOnly);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(value, setAsTotal, invertIfNegative, super.hashCode());
+    return Objects.hash(sourceFont, targetFont, notFoundOnly);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class OneValueChartDataPoint {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
-    sb.append("    value: ").append(toIndentedString(value)).append("\n");
-    sb.append("    setAsTotal: ").append(toIndentedString(setAsTotal)).append("\n");
-    sb.append("    invertIfNegative: ").append(toIndentedString(invertIfNegative)).append("\n");
+    sb.append("class FontSubstRule {\n");
+    
+    sb.append("    sourceFont: ").append(toIndentedString(sourceFont)).append("\n");
+    sb.append("    targetFont: ").append(toIndentedString(targetFont)).append("\n");
+    sb.append("    notFoundOnly: ").append(toIndentedString(notFoundOnly)).append("\n");
     sb.append("}");
     return sb.toString();
   }

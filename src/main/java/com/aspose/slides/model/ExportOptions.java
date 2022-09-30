@@ -29,6 +29,7 @@ package com.aspose.slides.model;
 
 import java.util.Objects;
 import com.aspose.slides.model.FontFallbackRule;
+import com.aspose.slides.model.FontSubstRule;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -53,6 +54,9 @@ public class ExportOptions {
 
   @SerializedName(value = "fontFallbackRules", alternate = { "FontFallbackRules" })
   private List<FontFallbackRule> fontFallbackRules = null;
+
+  @SerializedName(value = "fontSubstRules", alternate = { "FontSubstRules" })
+  private List<FontSubstRule> fontSubstRules = null;
 
   @SerializedName(value = "format", alternate = { "Format" })
   private String format;
@@ -106,6 +110,32 @@ public class ExportOptions {
     this.fontFallbackRules = fontFallbackRules;
   }
 
+  public ExportOptions fontSubstRules(List<FontSubstRule> fontSubstRules) {
+    this.fontSubstRules = fontSubstRules;
+    return this;
+  }
+
+  public ExportOptions addFontSubstRulesItem(FontSubstRule fontSubstRulesItem) {
+    if (this.fontSubstRules == null) {
+      this.fontSubstRules = new ArrayList<FontSubstRule>();
+    }
+    this.fontSubstRules.add(fontSubstRulesItem);
+    return this;
+  }
+
+   /**
+   * Gets of sets list of font substitution rules.
+   * @return fontSubstRules
+  **/
+  @ApiModelProperty(value = "Gets of sets list of font substitution rules.")
+  public List<FontSubstRule> getFontSubstRules() {
+    return fontSubstRules;
+  }
+
+  public void setFontSubstRules(List<FontSubstRule> fontSubstRules) {
+    this.fontSubstRules = fontSubstRules;
+  }
+
    /**
    * Get format
    * @return format
@@ -129,12 +159,12 @@ public class ExportOptions {
       return false;
     }
     ExportOptions exportOptions = (ExportOptions) o;
-    return true && Objects.equals(this.defaultRegularFont, exportOptions.defaultRegularFont) && Objects.equals(this.fontFallbackRules, exportOptions.fontFallbackRules) && Objects.equals(this.format, exportOptions.format);
+    return true && Objects.equals(this.defaultRegularFont, exportOptions.defaultRegularFont) && Objects.equals(this.fontFallbackRules, exportOptions.fontFallbackRules) && Objects.equals(this.fontSubstRules, exportOptions.fontSubstRules) && Objects.equals(this.format, exportOptions.format);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(defaultRegularFont, fontFallbackRules, format);
+    return Objects.hash(defaultRegularFont, fontFallbackRules, fontSubstRules, format);
   }
 
 
@@ -145,6 +175,7 @@ public class ExportOptions {
     
     sb.append("    defaultRegularFont: ").append(toIndentedString(defaultRegularFont)).append("\n");
     sb.append("    fontFallbackRules: ").append(toIndentedString(fontFallbackRules)).append("\n");
+    sb.append("    fontSubstRules: ").append(toIndentedString(fontSubstRules)).append("\n");
     sb.append("    format: ").append(toIndentedString(format)).append("\n");
     sb.append("}");
     return sb.toString();

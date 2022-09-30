@@ -103,6 +103,7 @@ import com.aspose.slides.model.SlideComments;
 import com.aspose.slides.model.SlideProperties;
 import com.aspose.slides.model.SlideReplaceResult;
 import com.aspose.slides.model.Slides;
+import com.aspose.slides.model.SmartArt;
 import com.aspose.slides.model.SplitDocumentResult;
 import com.aspose.slides.model.StorageExist;
 import com.aspose.slides.model.TextBounds;
@@ -4635,6 +4636,168 @@ public class SlidesApi {
         return call;
     }
     /**
+     * Build call for createSmartArtNode
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param smartArtIndex Index of the object on the slide among the same type of objects. (required)
+     * @param subNode Sub-node path (e.g. \"3\", \"3/nodes/2). 
+     * @param text Node text. 
+     * @param position Position to insert a new node. 
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call createSmartArtNodeCall(String name, Integer slideIndex, Integer smartArtIndex, String subNode, String text, Integer position, String password, String folder, String storage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        // verify the required parameter 'name' is set
+        if (name == null) {
+            throw new ApiException("Missing the required parameter 'name' when calling createSmartArtNode(Async)");
+        }
+        // verify the required parameter 'slideIndex' is set
+        if (slideIndex == null) {
+            throw new ApiException("Missing the required parameter 'slideIndex' when calling createSmartArtNode(Async)");
+        }
+        // verify the required parameter 'smartArtIndex' is set
+        if (smartArtIndex == null) {
+            throw new ApiException("Missing the required parameter 'smartArtIndex' when calling createSmartArtNode(Async)");
+        }
+        Object postBody = null;
+
+        // create path and map variables
+        String methodPath = "/slides/{name}/slides/{slideIndex}/SmartArts/{smartArtIndex}/nodes"
+            .replaceAll("\\{" + "name" + "\\}", apiClient.objectToString(name)).replaceAll("\\{" + "slideIndex" + "\\}", apiClient.objectToString(slideIndex)).replaceAll("\\{" + "smartArtIndex" + "\\}", apiClient.objectToString(smartArtIndex));
+
+        List<Pair> queryParams = new ArrayList<Pair>();
+        apiClient.addQueryParameter(queryParams, "subNode", subNode);
+        apiClient.addQueryParameter(queryParams, "text", text);
+        apiClient.addQueryParameter(queryParams, "position", position);
+        apiClient.addQueryParameter(queryParams, "folder", folder);
+        apiClient.addQueryParameter(queryParams, "storage", storage);
+
+        Map<String, String> headerParams = new HashMap<String, String>();
+        if (password != null)
+        headerParams.put("password", apiClient.parameterToString(password));
+
+        Map<String, Object> formParams = new LinkedHashMap<String, Object>();
+
+        final String[] accepts = {
+            "application/json"
+        };
+        final String accept = apiClient.selectHeaderAccept(accepts);
+        if (accept != null) headerParams.put("Accept", accept);
+
+        final String[] contentTypes = {
+            "application/json"
+        };
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
+        headerParams.put("Content-Type", contentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+        return apiClient.buildCall(methodPath, "POST", queryParams, postBody, headerParams, formParams, progressRequestListener);
+    }
+
+    /**
+     * Add SmartArt node
+     * 
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param smartArtIndex Index of the object on the slide among the same type of objects. (required)
+     * @param subNode Sub-node path (e.g. \"3\", \"3/nodes/2). 
+     * @param text Node text. 
+     * @param position Position to insert a new node. 
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @return SmartArt
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public SmartArt createSmartArtNode(String name, Integer slideIndex, Integer smartArtIndex, String subNode, String text, Integer position, String password, String folder, String storage) throws ApiException {
+        try {
+            ApiResponse<SmartArt> resp = createSmartArtNodeWithHttpInfo(name, slideIndex, smartArtIndex, subNode, text, position, password, folder, storage);
+            return resp.getData();
+        } catch (NeedRepeatRequestException e) {
+            ApiResponse<SmartArt> resp = createSmartArtNodeWithHttpInfo(name, slideIndex, smartArtIndex, subNode, text, position, password, folder, storage);
+            return resp.getData();
+        }
+    }
+
+    /**
+     * Add SmartArt node
+     * 
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param smartArtIndex Index of the object on the slide among the same type of objects. (required)
+     * @param subNode Sub-node path (e.g. \"3\", \"3/nodes/2). 
+     * @param text Node text. 
+     * @param position Position to insert a new node. 
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @return ApiResponse&lt;SmartArt&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<SmartArt> createSmartArtNodeWithHttpInfo(String name, Integer slideIndex, Integer smartArtIndex, String subNode, String text, Integer position, String password, String folder, String storage) throws ApiException {
+        com.squareup.okhttp.Call call = createSmartArtNodeCall(name, slideIndex, smartArtIndex, subNode, text, position, password, folder, storage, null, null);
+        Type returnType = new TypeToken<SmartArt>(){}.getType();
+        return apiClient.execute(call, returnType);
+    }
+
+    /**
+     * Add SmartArt node (asynchronously)
+     * 
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param smartArtIndex Index of the object on the slide among the same type of objects. (required)
+     * @param subNode Sub-node path (e.g. \"3\", \"3/nodes/2). 
+     * @param text Node text. 
+     * @param position Position to insert a new node. 
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call createSmartArtNodeAsync(String name, Integer slideIndex, Integer smartArtIndex, String subNode, String text, Integer position, String password, String folder, String storage, final ApiCallback<SmartArt> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = createSmartArtNodeCall(name, slideIndex, smartArtIndex, subNode, text, position, password, folder, storage, progressListener, progressRequestListener);
+        Type returnType = new TypeToken<SmartArt>(){}.getType();
+        apiClient.executeAsync(call, returnType, callback);
+        return call;
+    }
+    /**
      * Build call for createSpecialSlideAnimationEffect
      * @param name Document name. (required)
      * @param slideIndex Parent slide index. (required)
@@ -9070,7 +9233,7 @@ public class SlidesApi {
     /**
      * Build call for deleteEmbeddedFontOnline
      * @param document Document data. (required)
-     * @param fontName Document name. (required)
+     * @param fontName Font name. (required)
      * @param password Document password. 
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
@@ -9132,7 +9295,7 @@ public class SlidesApi {
      * Removes specified embedded font and returns presentation.
      * 
      * @param document Document data. (required)
-     * @param fontName Document name. (required)
+     * @param fontName Font name. (required)
      * @param password Document password. 
      * @return File
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -9151,7 +9314,7 @@ public class SlidesApi {
      * Removes specified embedded font and returns presentation.
      * 
      * @param document Document data. (required)
-     * @param fontName Document name. (required)
+     * @param fontName Font name. (required)
      * @param password Document password. 
      * @return ApiResponse&lt;File&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -9166,7 +9329,7 @@ public class SlidesApi {
      * Removes specified embedded font and returns presentation. (asynchronously)
      * 
      * @param document Document data. (required)
-     * @param fontName Document name. (required)
+     * @param fontName Font name. (required)
      * @param password Document password. 
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
@@ -11587,6 +11750,166 @@ public class SlidesApi {
 
         com.squareup.okhttp.Call call = deleteSlidesCall(name, slides, password, folder, storage, progressListener, progressRequestListener);
         Type returnType = new TypeToken<Slides>(){}.getType();
+        apiClient.executeAsync(call, returnType, callback);
+        return call;
+    }
+    /**
+     * Build call for deleteSmartArtNode
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param smartArtIndex Index of the object on the slide among the same type of objects. (required)
+     * @param nodeIndex Root level node index. (required)
+     * @param subNode Sub-node path (e.g. \"3\", \"3/nodes/2). 
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call deleteSmartArtNodeCall(String name, Integer slideIndex, Integer smartArtIndex, Integer nodeIndex, String subNode, String password, String folder, String storage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        // verify the required parameter 'name' is set
+        if (name == null) {
+            throw new ApiException("Missing the required parameter 'name' when calling deleteSmartArtNode(Async)");
+        }
+        // verify the required parameter 'slideIndex' is set
+        if (slideIndex == null) {
+            throw new ApiException("Missing the required parameter 'slideIndex' when calling deleteSmartArtNode(Async)");
+        }
+        // verify the required parameter 'smartArtIndex' is set
+        if (smartArtIndex == null) {
+            throw new ApiException("Missing the required parameter 'smartArtIndex' when calling deleteSmartArtNode(Async)");
+        }
+        // verify the required parameter 'nodeIndex' is set
+        if (nodeIndex == null) {
+            throw new ApiException("Missing the required parameter 'nodeIndex' when calling deleteSmartArtNode(Async)");
+        }
+        Object postBody = null;
+
+        // create path and map variables
+        String methodPath = "/slides/{name}/slides/{slideIndex}/SmartArts/{smartArtIndex}/nodes/{nodeIndex}"
+            .replaceAll("\\{" + "name" + "\\}", apiClient.objectToString(name)).replaceAll("\\{" + "slideIndex" + "\\}", apiClient.objectToString(slideIndex)).replaceAll("\\{" + "smartArtIndex" + "\\}", apiClient.objectToString(smartArtIndex)).replaceAll("\\{" + "nodeIndex" + "\\}", apiClient.objectToString(nodeIndex));
+
+        List<Pair> queryParams = new ArrayList<Pair>();
+        apiClient.addQueryParameter(queryParams, "subNode", subNode);
+        apiClient.addQueryParameter(queryParams, "folder", folder);
+        apiClient.addQueryParameter(queryParams, "storage", storage);
+
+        Map<String, String> headerParams = new HashMap<String, String>();
+        if (password != null)
+        headerParams.put("password", apiClient.parameterToString(password));
+
+        Map<String, Object> formParams = new LinkedHashMap<String, Object>();
+
+        final String[] accepts = {
+            "application/json"
+        };
+        final String accept = apiClient.selectHeaderAccept(accepts);
+        if (accept != null) headerParams.put("Accept", accept);
+
+        final String[] contentTypes = {
+            "application/json"
+        };
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
+        headerParams.put("Content-Type", contentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+        return apiClient.buildCall(methodPath, "DELETE", queryParams, postBody, headerParams, formParams, progressRequestListener);
+    }
+
+    /**
+     * Delete SmartArt node
+     * 
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param smartArtIndex Index of the object on the slide among the same type of objects. (required)
+     * @param nodeIndex Root level node index. (required)
+     * @param subNode Sub-node path (e.g. \"3\", \"3/nodes/2). 
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @return SmartArt
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public SmartArt deleteSmartArtNode(String name, Integer slideIndex, Integer smartArtIndex, Integer nodeIndex, String subNode, String password, String folder, String storage) throws ApiException {
+        try {
+            ApiResponse<SmartArt> resp = deleteSmartArtNodeWithHttpInfo(name, slideIndex, smartArtIndex, nodeIndex, subNode, password, folder, storage);
+            return resp.getData();
+        } catch (NeedRepeatRequestException e) {
+            ApiResponse<SmartArt> resp = deleteSmartArtNodeWithHttpInfo(name, slideIndex, smartArtIndex, nodeIndex, subNode, password, folder, storage);
+            return resp.getData();
+        }
+    }
+
+    /**
+     * Delete SmartArt node
+     * 
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param smartArtIndex Index of the object on the slide among the same type of objects. (required)
+     * @param nodeIndex Root level node index. (required)
+     * @param subNode Sub-node path (e.g. \"3\", \"3/nodes/2). 
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @return ApiResponse&lt;SmartArt&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<SmartArt> deleteSmartArtNodeWithHttpInfo(String name, Integer slideIndex, Integer smartArtIndex, Integer nodeIndex, String subNode, String password, String folder, String storage) throws ApiException {
+        com.squareup.okhttp.Call call = deleteSmartArtNodeCall(name, slideIndex, smartArtIndex, nodeIndex, subNode, password, folder, storage, null, null);
+        Type returnType = new TypeToken<SmartArt>(){}.getType();
+        return apiClient.execute(call, returnType);
+    }
+
+    /**
+     * Delete SmartArt node (asynchronously)
+     * 
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param smartArtIndex Index of the object on the slide among the same type of objects. (required)
+     * @param nodeIndex Root level node index. (required)
+     * @param subNode Sub-node path (e.g. \"3\", \"3/nodes/2). 
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call deleteSmartArtNodeAsync(String name, Integer slideIndex, Integer smartArtIndex, Integer nodeIndex, String subNode, String password, String folder, String storage, final ApiCallback<SmartArt> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = deleteSmartArtNodeCall(name, slideIndex, smartArtIndex, nodeIndex, subNode, password, folder, storage, progressListener, progressRequestListener);
+        Type returnType = new TypeToken<SmartArt>(){}.getType();
         apiClient.executeAsync(call, returnType, callback);
         return call;
     }
@@ -17395,8 +17718,8 @@ public class SlidesApi {
      * @param name Document name. (required)
      * @param slideIndex Slide index. (required)
      * @param format Output file format. (required)
-     * @param width Output file width. 
-     * @param height Output file height. 
+     * @param width The width of the slide representation in the output format. 
+     * @param height The height of the slide representation in the output format 
      * @param password Document password. 
      * @param folder Document folder. 
      * @param storage Document storage. 
@@ -17470,8 +17793,8 @@ public class SlidesApi {
      * @param name Document name. (required)
      * @param slideIndex Slide index. (required)
      * @param format Output file format. (required)
-     * @param width Output file width. 
-     * @param height Output file height. 
+     * @param width The width of the slide representation in the output format. 
+     * @param height The height of the slide representation in the output format 
      * @param password Document password. 
      * @param folder Document folder. 
      * @param storage Document storage. 
@@ -17495,8 +17818,8 @@ public class SlidesApi {
      * @param name Document name. (required)
      * @param slideIndex Slide index. (required)
      * @param format Output file format. (required)
-     * @param width Output file width. 
-     * @param height Output file height. 
+     * @param width The width of the slide representation in the output format. 
+     * @param height The height of the slide representation in the output format 
      * @param password Document password. 
      * @param folder Document folder. 
      * @param storage Document storage. 
@@ -17516,8 +17839,8 @@ public class SlidesApi {
      * @param name Document name. (required)
      * @param slideIndex Slide index. (required)
      * @param format Output file format. (required)
-     * @param width Output file width. 
-     * @param height Output file height. 
+     * @param width The width of the slide representation in the output format. 
+     * @param height The height of the slide representation in the output format 
      * @param password Document password. 
      * @param folder Document folder. 
      * @param storage Document storage. 
@@ -17557,8 +17880,8 @@ public class SlidesApi {
      * @param document Document data. (required)
      * @param slideIndex Slide index. (required)
      * @param format Output file format. (required)
-     * @param width Output file width. 
-     * @param height Output file height. 
+     * @param width The width of the slide representation in the output format. 
+     * @param height The height of the slide representation in the output format. 
      * @param password Document password. 
      * @param fontsFolder Storage folder containing custom fonts to be used with the document. 
      * @param progressListener Progress listener
@@ -17630,8 +17953,8 @@ public class SlidesApi {
      * @param document Document data. (required)
      * @param slideIndex Slide index. (required)
      * @param format Output file format. (required)
-     * @param width Output file width. 
-     * @param height Output file height. 
+     * @param width The width of the slide representation in the output format. 
+     * @param height The height of the slide representation in the output format. 
      * @param password Document password. 
      * @param fontsFolder Storage folder containing custom fonts to be used with the document. 
      * @return File
@@ -17653,8 +17976,8 @@ public class SlidesApi {
      * @param document Document data. (required)
      * @param slideIndex Slide index. (required)
      * @param format Output file format. (required)
-     * @param width Output file width. 
-     * @param height Output file height. 
+     * @param width The width of the slide representation in the output format. 
+     * @param height The height of the slide representation in the output format. 
      * @param password Document password. 
      * @param fontsFolder Storage folder containing custom fonts to be used with the document. 
      * @return ApiResponse&lt;File&gt;
@@ -17672,8 +17995,8 @@ public class SlidesApi {
      * @param document Document data. (required)
      * @param slideIndex Slide index. (required)
      * @param format Output file format. (required)
-     * @param width Output file width. 
-     * @param height Output file height. 
+     * @param width The width of the slide representation in the output format. 
+     * @param height The height of the slide representation in the output format. 
      * @param password Document password. 
      * @param fontsFolder Storage folder containing custom fonts to be used with the document. 
      * @param callback The callback to be executed when the API call finishes
@@ -29749,6 +30072,7 @@ public class SlidesApi {
      * @param width The width of the imported group of shapes (default is SVG image width). 
      * @param height The height of the imported group of shapes (default is SVG image width). 
      * @param shapes Indexes of shapes to import. All shapes are imported if not specified. 
+     * @param group If true, the set of shapes will be imported as a one group shape. 
      * @param password Document password. 
      * @param folder Presentation folder. 
      * @param storage Presentation storage. 
@@ -29757,7 +30081,7 @@ public class SlidesApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call importShapesFromSvgCall(String name, Integer slideIndex, byte[] image, Integer x, Integer y, Integer width, Integer height, List<Integer> shapes, String password, String folder, String storage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call importShapesFromSvgCall(String name, Integer slideIndex, byte[] image, Integer x, Integer y, Integer width, Integer height, List<Integer> shapes, Boolean group, String password, String folder, String storage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         // verify the required parameter 'name' is set
         if (name == null) {
             throw new ApiException("Missing the required parameter 'name' when calling importShapesFromSvg(Async)");
@@ -29778,6 +30102,7 @@ public class SlidesApi {
         apiClient.addQueryParameter(queryParams, "width", width);
         apiClient.addQueryParameter(queryParams, "height", height);
         apiClient.addQueryParameter(queryParams, "shapes", shapes);
+        apiClient.addQueryParameter(queryParams, "group", group);
         apiClient.addQueryParameter(queryParams, "folder", folder);
         apiClient.addQueryParameter(queryParams, "storage", storage);
 
@@ -29826,18 +30151,19 @@ public class SlidesApi {
      * @param width The width of the imported group of shapes (default is SVG image width). 
      * @param height The height of the imported group of shapes (default is SVG image width). 
      * @param shapes Indexes of shapes to import. All shapes are imported if not specified. 
+     * @param group If true, the set of shapes will be imported as a one group shape. 
      * @param password Document password. 
      * @param folder Presentation folder. 
      * @param storage Presentation storage. 
      * @return Shapes
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public Shapes importShapesFromSvg(String name, Integer slideIndex, byte[] image, Integer x, Integer y, Integer width, Integer height, List<Integer> shapes, String password, String folder, String storage) throws ApiException {
+    public Shapes importShapesFromSvg(String name, Integer slideIndex, byte[] image, Integer x, Integer y, Integer width, Integer height, List<Integer> shapes, Boolean group, String password, String folder, String storage) throws ApiException {
         try {
-            ApiResponse<Shapes> resp = importShapesFromSvgWithHttpInfo(name, slideIndex, image, x, y, width, height, shapes, password, folder, storage);
+            ApiResponse<Shapes> resp = importShapesFromSvgWithHttpInfo(name, slideIndex, image, x, y, width, height, shapes, group, password, folder, storage);
             return resp.getData();
         } catch (NeedRepeatRequestException e) {
-            ApiResponse<Shapes> resp = importShapesFromSvgWithHttpInfo(name, slideIndex, image, x, y, width, height, shapes, password, folder, storage);
+            ApiResponse<Shapes> resp = importShapesFromSvgWithHttpInfo(name, slideIndex, image, x, y, width, height, shapes, group, password, folder, storage);
             return resp.getData();
         }
     }
@@ -29853,14 +30179,15 @@ public class SlidesApi {
      * @param width The width of the imported group of shapes (default is SVG image width). 
      * @param height The height of the imported group of shapes (default is SVG image width). 
      * @param shapes Indexes of shapes to import. All shapes are imported if not specified. 
+     * @param group If true, the set of shapes will be imported as a one group shape. 
      * @param password Document password. 
      * @param folder Presentation folder. 
      * @param storage Presentation storage. 
      * @return ApiResponse&lt;Shapes&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Shapes> importShapesFromSvgWithHttpInfo(String name, Integer slideIndex, byte[] image, Integer x, Integer y, Integer width, Integer height, List<Integer> shapes, String password, String folder, String storage) throws ApiException {
-        com.squareup.okhttp.Call call = importShapesFromSvgCall(name, slideIndex, image, x, y, width, height, shapes, password, folder, storage, null, null);
+    public ApiResponse<Shapes> importShapesFromSvgWithHttpInfo(String name, Integer slideIndex, byte[] image, Integer x, Integer y, Integer width, Integer height, List<Integer> shapes, Boolean group, String password, String folder, String storage) throws ApiException {
+        com.squareup.okhttp.Call call = importShapesFromSvgCall(name, slideIndex, image, x, y, width, height, shapes, group, password, folder, storage, null, null);
         Type returnType = new TypeToken<Shapes>(){}.getType();
         return apiClient.execute(call, returnType);
     }
@@ -29876,6 +30203,7 @@ public class SlidesApi {
      * @param width The width of the imported group of shapes (default is SVG image width). 
      * @param height The height of the imported group of shapes (default is SVG image width). 
      * @param shapes Indexes of shapes to import. All shapes are imported if not specified. 
+     * @param group If true, the set of shapes will be imported as a one group shape. 
      * @param password Document password. 
      * @param folder Presentation folder. 
      * @param storage Presentation storage. 
@@ -29883,7 +30211,7 @@ public class SlidesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call importShapesFromSvgAsync(String name, Integer slideIndex, byte[] image, Integer x, Integer y, Integer width, Integer height, List<Integer> shapes, String password, String folder, String storage, final ApiCallback<Shapes> callback) throws ApiException {
+    public com.squareup.okhttp.Call importShapesFromSvgAsync(String name, Integer slideIndex, byte[] image, Integer x, Integer y, Integer width, Integer height, List<Integer> shapes, Boolean group, String password, String folder, String storage, final ApiCallback<Shapes> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -29904,7 +30232,7 @@ public class SlidesApi {
             };
         }
 
-        com.squareup.okhttp.Call call = importShapesFromSvgCall(name, slideIndex, image, x, y, width, height, shapes, password, folder, storage, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = importShapesFromSvgCall(name, slideIndex, image, x, y, width, height, shapes, group, password, folder, storage, progressListener, progressRequestListener);
         Type returnType = new TypeToken<Shapes>(){}.getType();
         apiClient.executeAsync(call, returnType, callback);
         return call;
@@ -31647,6 +31975,312 @@ public class SlidesApi {
 
         com.squareup.okhttp.Call call = reorderSlidesCall(name, oldPositions, newPositions, password, folder, storage, progressListener, progressRequestListener);
         Type returnType = new TypeToken<Slides>(){}.getType();
+        apiClient.executeAsync(call, returnType, callback);
+        return call;
+    }
+    /**
+     * Build call for replaceFont
+     * @param name Document name. (required)
+     * @param sourceFont Source font name. (required)
+     * @param targetFont Target font name. (required)
+     * @param embed Embed target font. 
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @param fontsFolder Custom fonts folder. 
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call replaceFontCall(String name, String sourceFont, String targetFont, Boolean embed, String password, String folder, String storage, String fontsFolder, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        // verify the required parameter 'name' is set
+        if (name == null) {
+            throw new ApiException("Missing the required parameter 'name' when calling replaceFont(Async)");
+        }
+        // verify the required parameter 'sourceFont' is set
+        if (sourceFont == null) {
+            throw new ApiException("Missing the required parameter 'sourceFont' when calling replaceFont(Async)");
+        }
+        // verify the required parameter 'targetFont' is set
+        if (targetFont == null) {
+            throw new ApiException("Missing the required parameter 'targetFont' when calling replaceFont(Async)");
+        }
+        Object postBody = null;
+
+        // create path and map variables
+        String methodPath = "/slides/{name}/fonts/{sourceFont}/replace/{targetFont}"
+            .replaceAll("\\{" + "name" + "\\}", apiClient.objectToString(name)).replaceAll("\\{" + "sourceFont" + "\\}", apiClient.objectToString(sourceFont)).replaceAll("\\{" + "targetFont" + "\\}", apiClient.objectToString(targetFont));
+
+        List<Pair> queryParams = new ArrayList<Pair>();
+        apiClient.addQueryParameter(queryParams, "embed", embed);
+        apiClient.addQueryParameter(queryParams, "folder", folder);
+        apiClient.addQueryParameter(queryParams, "storage", storage);
+        apiClient.addQueryParameter(queryParams, "fontsFolder", fontsFolder);
+
+        Map<String, String> headerParams = new HashMap<String, String>();
+        if (password != null)
+        headerParams.put("password", apiClient.parameterToString(password));
+
+        Map<String, Object> formParams = new LinkedHashMap<String, Object>();
+
+        final String[] accepts = {
+            "application/json"
+        };
+        final String accept = apiClient.selectHeaderAccept(accepts);
+        if (accept != null) headerParams.put("Accept", accept);
+
+        final String[] contentTypes = {
+            "application/json"
+        };
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
+        headerParams.put("Content-Type", contentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+        return apiClient.buildCall(methodPath, "POST", queryParams, postBody, headerParams, formParams, progressRequestListener);
+    }
+
+    /**
+     * Replaces specified font and returns presentation fonts info.
+     * 
+     * @param name Document name. (required)
+     * @param sourceFont Source font name. (required)
+     * @param targetFont Target font name. (required)
+     * @param embed Embed target font. 
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @param fontsFolder Custom fonts folder. 
+     * @return FontsData
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public FontsData replaceFont(String name, String sourceFont, String targetFont, Boolean embed, String password, String folder, String storage, String fontsFolder) throws ApiException {
+        try {
+            ApiResponse<FontsData> resp = replaceFontWithHttpInfo(name, sourceFont, targetFont, embed, password, folder, storage, fontsFolder);
+            return resp.getData();
+        } catch (NeedRepeatRequestException e) {
+            ApiResponse<FontsData> resp = replaceFontWithHttpInfo(name, sourceFont, targetFont, embed, password, folder, storage, fontsFolder);
+            return resp.getData();
+        }
+    }
+
+    /**
+     * Replaces specified font and returns presentation fonts info.
+     * 
+     * @param name Document name. (required)
+     * @param sourceFont Source font name. (required)
+     * @param targetFont Target font name. (required)
+     * @param embed Embed target font. 
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @param fontsFolder Custom fonts folder. 
+     * @return ApiResponse&lt;FontsData&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<FontsData> replaceFontWithHttpInfo(String name, String sourceFont, String targetFont, Boolean embed, String password, String folder, String storage, String fontsFolder) throws ApiException {
+        com.squareup.okhttp.Call call = replaceFontCall(name, sourceFont, targetFont, embed, password, folder, storage, fontsFolder, null, null);
+        Type returnType = new TypeToken<FontsData>(){}.getType();
+        return apiClient.execute(call, returnType);
+    }
+
+    /**
+     * Replaces specified font and returns presentation fonts info. (asynchronously)
+     * 
+     * @param name Document name. (required)
+     * @param sourceFont Source font name. (required)
+     * @param targetFont Target font name. (required)
+     * @param embed Embed target font. 
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @param fontsFolder Custom fonts folder. 
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call replaceFontAsync(String name, String sourceFont, String targetFont, Boolean embed, String password, String folder, String storage, String fontsFolder, final ApiCallback<FontsData> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = replaceFontCall(name, sourceFont, targetFont, embed, password, folder, storage, fontsFolder, progressListener, progressRequestListener);
+        Type returnType = new TypeToken<FontsData>(){}.getType();
+        apiClient.executeAsync(call, returnType, callback);
+        return call;
+    }
+    /**
+     * Build call for replaceFontOnline
+     * @param document Document data. (required)
+     * @param sourceFont Source font name. (required)
+     * @param targetFont Target font name. (required)
+     * @param embed Embed target font. 
+     * @param password Document password. 
+     * @param fontsFolder Custom fonts folder. 
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call replaceFontOnlineCall(byte[] document, String sourceFont, String targetFont, Boolean embed, String password, String fontsFolder, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        // verify the required parameter 'document' is set
+        if (document == null) {
+            throw new ApiException("Missing the required parameter 'document' when calling replaceFontOnline(Async)");
+        }
+        // verify the required parameter 'sourceFont' is set
+        if (sourceFont == null) {
+            throw new ApiException("Missing the required parameter 'sourceFont' when calling replaceFontOnline(Async)");
+        }
+        // verify the required parameter 'targetFont' is set
+        if (targetFont == null) {
+            throw new ApiException("Missing the required parameter 'targetFont' when calling replaceFontOnline(Async)");
+        }
+        Object postBody = null;
+
+        // create path and map variables
+        String methodPath = "/slides/fonts/{sourceFont}/replace/{targetFont}"
+            .replaceAll("\\{" + "sourceFont" + "\\}", apiClient.objectToString(sourceFont)).replaceAll("\\{" + "targetFont" + "\\}", apiClient.objectToString(targetFont));
+
+        List<Pair> queryParams = new ArrayList<Pair>();
+        apiClient.addQueryParameter(queryParams, "embed", embed);
+        apiClient.addQueryParameter(queryParams, "fontsFolder", fontsFolder);
+
+        Map<String, String> headerParams = new HashMap<String, String>();
+        if (password != null)
+        headerParams.put("password", apiClient.parameterToString(password));
+
+        Map<String, Object> formParams = new LinkedHashMap<String, Object>();
+        if (document != null)
+        formParams.put("document", document);
+
+        final String[] accepts = {
+            "multipart/form-data"
+        };
+        final String accept = apiClient.selectHeaderAccept(accepts);
+        if (accept != null) headerParams.put("Accept", accept);
+
+        final String[] contentTypes = {
+            "multipart/form-data"
+        };
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
+        headerParams.put("Content-Type", contentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+        return apiClient.buildCall(methodPath, "POST", queryParams, postBody, headerParams, formParams, progressRequestListener);
+    }
+
+    /**
+     * Replaces specified font and returns presentation.
+     * 
+     * @param document Document data. (required)
+     * @param sourceFont Source font name. (required)
+     * @param targetFont Target font name. (required)
+     * @param embed Embed target font. 
+     * @param password Document password. 
+     * @param fontsFolder Custom fonts folder. 
+     * @return File
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public File replaceFontOnline(byte[] document, String sourceFont, String targetFont, Boolean embed, String password, String fontsFolder) throws ApiException {
+        try {
+            ApiResponse<File> resp = replaceFontOnlineWithHttpInfo(document, sourceFont, targetFont, embed, password, fontsFolder);
+            return resp.getData();
+        } catch (NeedRepeatRequestException e) {
+            ApiResponse<File> resp = replaceFontOnlineWithHttpInfo(document, sourceFont, targetFont, embed, password, fontsFolder);
+            return resp.getData();
+        }
+    }
+
+    /**
+     * Replaces specified font and returns presentation.
+     * 
+     * @param document Document data. (required)
+     * @param sourceFont Source font name. (required)
+     * @param targetFont Target font name. (required)
+     * @param embed Embed target font. 
+     * @param password Document password. 
+     * @param fontsFolder Custom fonts folder. 
+     * @return ApiResponse&lt;File&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<File> replaceFontOnlineWithHttpInfo(byte[] document, String sourceFont, String targetFont, Boolean embed, String password, String fontsFolder) throws ApiException {
+        com.squareup.okhttp.Call call = replaceFontOnlineCall(document, sourceFont, targetFont, embed, password, fontsFolder, null, null);
+        Type returnType = new TypeToken<File>(){}.getType();
+        return apiClient.execute(call, returnType);
+    }
+
+    /**
+     * Replaces specified font and returns presentation. (asynchronously)
+     * 
+     * @param document Document data. (required)
+     * @param sourceFont Source font name. (required)
+     * @param targetFont Target font name. (required)
+     * @param embed Embed target font. 
+     * @param password Document password. 
+     * @param fontsFolder Custom fonts folder. 
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call replaceFontOnlineAsync(byte[] document, String sourceFont, String targetFont, Boolean embed, String password, String fontsFolder, final ApiCallback<File> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = replaceFontOnlineCall(document, sourceFont, targetFont, embed, password, fontsFolder, progressListener, progressRequestListener);
+        Type returnType = new TypeToken<File>(){}.getType();
         apiClient.executeAsync(call, returnType, callback);
         return call;
     }
@@ -35247,17 +35881,18 @@ public class SlidesApi {
     /**
      * Build call for setEmbeddedFont
      * @param name Document name. (required)
-     * @param fontName Document name. (required)
+     * @param fontName Font name. (required)
      * @param onlyUsed Only used characters will be embedded. 
      * @param password Document password. 
      * @param folder Document folder. 
      * @param storage Document storage. 
+     * @param fontsFolder Custom fonts folder. 
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call setEmbeddedFontCall(String name, String fontName, Boolean onlyUsed, String password, String folder, String storage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call setEmbeddedFontCall(String name, String fontName, Boolean onlyUsed, String password, String folder, String storage, String fontsFolder, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         // verify the required parameter 'name' is set
         if (name == null) {
             throw new ApiException("Missing the required parameter 'name' when calling setEmbeddedFont(Async)");
@@ -35276,6 +35911,7 @@ public class SlidesApi {
         apiClient.addQueryParameter(queryParams, "onlyUsed", onlyUsed);
         apiClient.addQueryParameter(queryParams, "folder", folder);
         apiClient.addQueryParameter(queryParams, "storage", storage);
+        apiClient.addQueryParameter(queryParams, "fontsFolder", fontsFolder);
 
         Map<String, String> headerParams = new HashMap<String, String>();
         if (password != null)
@@ -35313,20 +35949,21 @@ public class SlidesApi {
      * Embeds specified font and returns presentation fonts info.
      * 
      * @param name Document name. (required)
-     * @param fontName Document name. (required)
+     * @param fontName Font name. (required)
      * @param onlyUsed Only used characters will be embedded. 
      * @param password Document password. 
      * @param folder Document folder. 
      * @param storage Document storage. 
+     * @param fontsFolder Custom fonts folder. 
      * @return FontsData
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public FontsData setEmbeddedFont(String name, String fontName, Boolean onlyUsed, String password, String folder, String storage) throws ApiException {
+    public FontsData setEmbeddedFont(String name, String fontName, Boolean onlyUsed, String password, String folder, String storage, String fontsFolder) throws ApiException {
         try {
-            ApiResponse<FontsData> resp = setEmbeddedFontWithHttpInfo(name, fontName, onlyUsed, password, folder, storage);
+            ApiResponse<FontsData> resp = setEmbeddedFontWithHttpInfo(name, fontName, onlyUsed, password, folder, storage, fontsFolder);
             return resp.getData();
         } catch (NeedRepeatRequestException e) {
-            ApiResponse<FontsData> resp = setEmbeddedFontWithHttpInfo(name, fontName, onlyUsed, password, folder, storage);
+            ApiResponse<FontsData> resp = setEmbeddedFontWithHttpInfo(name, fontName, onlyUsed, password, folder, storage, fontsFolder);
             return resp.getData();
         }
     }
@@ -35335,16 +35972,17 @@ public class SlidesApi {
      * Embeds specified font and returns presentation fonts info.
      * 
      * @param name Document name. (required)
-     * @param fontName Document name. (required)
+     * @param fontName Font name. (required)
      * @param onlyUsed Only used characters will be embedded. 
      * @param password Document password. 
      * @param folder Document folder. 
      * @param storage Document storage. 
+     * @param fontsFolder Custom fonts folder. 
      * @return ApiResponse&lt;FontsData&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<FontsData> setEmbeddedFontWithHttpInfo(String name, String fontName, Boolean onlyUsed, String password, String folder, String storage) throws ApiException {
-        com.squareup.okhttp.Call call = setEmbeddedFontCall(name, fontName, onlyUsed, password, folder, storage, null, null);
+    public ApiResponse<FontsData> setEmbeddedFontWithHttpInfo(String name, String fontName, Boolean onlyUsed, String password, String folder, String storage, String fontsFolder) throws ApiException {
+        com.squareup.okhttp.Call call = setEmbeddedFontCall(name, fontName, onlyUsed, password, folder, storage, fontsFolder, null, null);
         Type returnType = new TypeToken<FontsData>(){}.getType();
         return apiClient.execute(call, returnType);
     }
@@ -35353,16 +35991,17 @@ public class SlidesApi {
      * Embeds specified font and returns presentation fonts info. (asynchronously)
      * 
      * @param name Document name. (required)
-     * @param fontName Document name. (required)
+     * @param fontName Font name. (required)
      * @param onlyUsed Only used characters will be embedded. 
      * @param password Document password. 
      * @param folder Document folder. 
      * @param storage Document storage. 
+     * @param fontsFolder Custom fonts folder. 
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call setEmbeddedFontAsync(String name, String fontName, Boolean onlyUsed, String password, String folder, String storage, final ApiCallback<FontsData> callback) throws ApiException {
+    public com.squareup.okhttp.Call setEmbeddedFontAsync(String name, String fontName, Boolean onlyUsed, String password, String folder, String storage, String fontsFolder, final ApiCallback<FontsData> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -35383,8 +36022,292 @@ public class SlidesApi {
             };
         }
 
-        com.squareup.okhttp.Call call = setEmbeddedFontCall(name, fontName, onlyUsed, password, folder, storage, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = setEmbeddedFontCall(name, fontName, onlyUsed, password, folder, storage, fontsFolder, progressListener, progressRequestListener);
         Type returnType = new TypeToken<FontsData>(){}.getType();
+        apiClient.executeAsync(call, returnType, callback);
+        return call;
+    }
+    /**
+     * Build call for setEmbeddedFontFromRequest
+     * @param font Font data. (required)
+     * @param name Document name. (required)
+     * @param onlyUsed Only used characters will be embedded. 
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call setEmbeddedFontFromRequestCall(byte[] font, String name, Boolean onlyUsed, String password, String folder, String storage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        // verify the required parameter 'font' is set
+        if (font == null) {
+            throw new ApiException("Missing the required parameter 'font' when calling setEmbeddedFontFromRequest(Async)");
+        }
+        // verify the required parameter 'name' is set
+        if (name == null) {
+            throw new ApiException("Missing the required parameter 'name' when calling setEmbeddedFontFromRequest(Async)");
+        }
+        Object postBody = null;
+
+        // create path and map variables
+        String methodPath = "/slides/{name}/fonts/embedded"
+            .replaceAll("\\{" + "name" + "\\}", apiClient.objectToString(name));
+
+        List<Pair> queryParams = new ArrayList<Pair>();
+        apiClient.addQueryParameter(queryParams, "onlyUsed", onlyUsed);
+        apiClient.addQueryParameter(queryParams, "folder", folder);
+        apiClient.addQueryParameter(queryParams, "storage", storage);
+
+        Map<String, String> headerParams = new HashMap<String, String>();
+        if (password != null)
+        headerParams.put("password", apiClient.parameterToString(password));
+
+        Map<String, Object> formParams = new LinkedHashMap<String, Object>();
+        if (font != null)
+        formParams.put("font", font);
+
+        final String[] accepts = {
+            "application/json"
+        };
+        final String accept = apiClient.selectHeaderAccept(accepts);
+        if (accept != null) headerParams.put("Accept", accept);
+
+        final String[] contentTypes = {
+            "multipart/form-data"
+        };
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
+        headerParams.put("Content-Type", contentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+        return apiClient.buildCall(methodPath, "POST", queryParams, postBody, headerParams, formParams, progressRequestListener);
+    }
+
+    /**
+     * Embeds font from request and returns presentation fonts info.
+     * 
+     * @param font Font data. (required)
+     * @param name Document name. (required)
+     * @param onlyUsed Only used characters will be embedded. 
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @return FontsData
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public FontsData setEmbeddedFontFromRequest(byte[] font, String name, Boolean onlyUsed, String password, String folder, String storage) throws ApiException {
+        try {
+            ApiResponse<FontsData> resp = setEmbeddedFontFromRequestWithHttpInfo(font, name, onlyUsed, password, folder, storage);
+            return resp.getData();
+        } catch (NeedRepeatRequestException e) {
+            ApiResponse<FontsData> resp = setEmbeddedFontFromRequestWithHttpInfo(font, name, onlyUsed, password, folder, storage);
+            return resp.getData();
+        }
+    }
+
+    /**
+     * Embeds font from request and returns presentation fonts info.
+     * 
+     * @param font Font data. (required)
+     * @param name Document name. (required)
+     * @param onlyUsed Only used characters will be embedded. 
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @return ApiResponse&lt;FontsData&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<FontsData> setEmbeddedFontFromRequestWithHttpInfo(byte[] font, String name, Boolean onlyUsed, String password, String folder, String storage) throws ApiException {
+        com.squareup.okhttp.Call call = setEmbeddedFontFromRequestCall(font, name, onlyUsed, password, folder, storage, null, null);
+        Type returnType = new TypeToken<FontsData>(){}.getType();
+        return apiClient.execute(call, returnType);
+    }
+
+    /**
+     * Embeds font from request and returns presentation fonts info. (asynchronously)
+     * 
+     * @param font Font data. (required)
+     * @param name Document name. (required)
+     * @param onlyUsed Only used characters will be embedded. 
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call setEmbeddedFontFromRequestAsync(byte[] font, String name, Boolean onlyUsed, String password, String folder, String storage, final ApiCallback<FontsData> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = setEmbeddedFontFromRequestCall(font, name, onlyUsed, password, folder, storage, progressListener, progressRequestListener);
+        Type returnType = new TypeToken<FontsData>(){}.getType();
+        apiClient.executeAsync(call, returnType, callback);
+        return call;
+    }
+    /**
+     * Build call for setEmbeddedFontFromRequestOnline
+     * @param document Document data. (required)
+     * @param font Font data. (required)
+     * @param onlyUsed Only used characters will be embedded. 
+     * @param password Document password. 
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call setEmbeddedFontFromRequestOnlineCall(byte[] document, byte[] font, Boolean onlyUsed, String password, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        // verify the required parameter 'document' is set
+        if (document == null) {
+            throw new ApiException("Missing the required parameter 'document' when calling setEmbeddedFontFromRequestOnline(Async)");
+        }
+        // verify the required parameter 'font' is set
+        if (font == null) {
+            throw new ApiException("Missing the required parameter 'font' when calling setEmbeddedFontFromRequestOnline(Async)");
+        }
+        Object postBody = null;
+
+        // create path and map variables
+        String methodPath = "/slides/fonts/embedded"
+            ;
+
+        List<Pair> queryParams = new ArrayList<Pair>();
+        apiClient.addQueryParameter(queryParams, "onlyUsed", onlyUsed);
+
+        Map<String, String> headerParams = new HashMap<String, String>();
+        if (password != null)
+        headerParams.put("password", apiClient.parameterToString(password));
+
+        Map<String, Object> formParams = new LinkedHashMap<String, Object>();
+        if (document != null)
+        formParams.put("document", document);
+        if (font != null)
+        formParams.put("font", font);
+
+        final String[] accepts = {
+            "multipart/form-data"
+        };
+        final String accept = apiClient.selectHeaderAccept(accepts);
+        if (accept != null) headerParams.put("Accept", accept);
+
+        final String[] contentTypes = {
+            "multipart/form-data"
+        };
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
+        headerParams.put("Content-Type", contentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+        return apiClient.buildCall(methodPath, "POST", queryParams, postBody, headerParams, formParams, progressRequestListener);
+    }
+
+    /**
+     * Embeds font from request and returns presentation.
+     * 
+     * @param document Document data. (required)
+     * @param font Font data. (required)
+     * @param onlyUsed Only used characters will be embedded. 
+     * @param password Document password. 
+     * @return File
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public File setEmbeddedFontFromRequestOnline(byte[] document, byte[] font, Boolean onlyUsed, String password) throws ApiException {
+        try {
+            ApiResponse<File> resp = setEmbeddedFontFromRequestOnlineWithHttpInfo(document, font, onlyUsed, password);
+            return resp.getData();
+        } catch (NeedRepeatRequestException e) {
+            ApiResponse<File> resp = setEmbeddedFontFromRequestOnlineWithHttpInfo(document, font, onlyUsed, password);
+            return resp.getData();
+        }
+    }
+
+    /**
+     * Embeds font from request and returns presentation.
+     * 
+     * @param document Document data. (required)
+     * @param font Font data. (required)
+     * @param onlyUsed Only used characters will be embedded. 
+     * @param password Document password. 
+     * @return ApiResponse&lt;File&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<File> setEmbeddedFontFromRequestOnlineWithHttpInfo(byte[] document, byte[] font, Boolean onlyUsed, String password) throws ApiException {
+        com.squareup.okhttp.Call call = setEmbeddedFontFromRequestOnlineCall(document, font, onlyUsed, password, null, null);
+        Type returnType = new TypeToken<File>(){}.getType();
+        return apiClient.execute(call, returnType);
+    }
+
+    /**
+     * Embeds font from request and returns presentation. (asynchronously)
+     * 
+     * @param document Document data. (required)
+     * @param font Font data. (required)
+     * @param onlyUsed Only used characters will be embedded. 
+     * @param password Document password. 
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call setEmbeddedFontFromRequestOnlineAsync(byte[] document, byte[] font, Boolean onlyUsed, String password, final ApiCallback<File> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = setEmbeddedFontFromRequestOnlineCall(document, font, onlyUsed, password, progressListener, progressRequestListener);
+        Type returnType = new TypeToken<File>(){}.getType();
         apiClient.executeAsync(call, returnType, callback);
         return call;
     }
@@ -35394,12 +36317,13 @@ public class SlidesApi {
      * @param fontName Font name. (required)
      * @param onlyUsed Only used characters will be embedded. 
      * @param password Document password. 
+     * @param fontsFolder Custom fonts folder. 
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call setEmbeddedFontOnlineCall(byte[] document, String fontName, Boolean onlyUsed, String password, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call setEmbeddedFontOnlineCall(byte[] document, String fontName, Boolean onlyUsed, String password, String fontsFolder, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         // verify the required parameter 'document' is set
         if (document == null) {
             throw new ApiException("Missing the required parameter 'document' when calling setEmbeddedFontOnline(Async)");
@@ -35416,6 +36340,7 @@ public class SlidesApi {
 
         List<Pair> queryParams = new ArrayList<Pair>();
         apiClient.addQueryParameter(queryParams, "onlyUsed", onlyUsed);
+        apiClient.addQueryParameter(queryParams, "fontsFolder", fontsFolder);
 
         Map<String, String> headerParams = new HashMap<String, String>();
         if (password != null)
@@ -35458,15 +36383,16 @@ public class SlidesApi {
      * @param fontName Font name. (required)
      * @param onlyUsed Only used characters will be embedded. 
      * @param password Document password. 
+     * @param fontsFolder Custom fonts folder. 
      * @return File
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public File setEmbeddedFontOnline(byte[] document, String fontName, Boolean onlyUsed, String password) throws ApiException {
+    public File setEmbeddedFontOnline(byte[] document, String fontName, Boolean onlyUsed, String password, String fontsFolder) throws ApiException {
         try {
-            ApiResponse<File> resp = setEmbeddedFontOnlineWithHttpInfo(document, fontName, onlyUsed, password);
+            ApiResponse<File> resp = setEmbeddedFontOnlineWithHttpInfo(document, fontName, onlyUsed, password, fontsFolder);
             return resp.getData();
         } catch (NeedRepeatRequestException e) {
-            ApiResponse<File> resp = setEmbeddedFontOnlineWithHttpInfo(document, fontName, onlyUsed, password);
+            ApiResponse<File> resp = setEmbeddedFontOnlineWithHttpInfo(document, fontName, onlyUsed, password, fontsFolder);
             return resp.getData();
         }
     }
@@ -35478,11 +36404,12 @@ public class SlidesApi {
      * @param fontName Font name. (required)
      * @param onlyUsed Only used characters will be embedded. 
      * @param password Document password. 
+     * @param fontsFolder Custom fonts folder. 
      * @return ApiResponse&lt;File&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<File> setEmbeddedFontOnlineWithHttpInfo(byte[] document, String fontName, Boolean onlyUsed, String password) throws ApiException {
-        com.squareup.okhttp.Call call = setEmbeddedFontOnlineCall(document, fontName, onlyUsed, password, null, null);
+    public ApiResponse<File> setEmbeddedFontOnlineWithHttpInfo(byte[] document, String fontName, Boolean onlyUsed, String password, String fontsFolder) throws ApiException {
+        com.squareup.okhttp.Call call = setEmbeddedFontOnlineCall(document, fontName, onlyUsed, password, fontsFolder, null, null);
         Type returnType = new TypeToken<File>(){}.getType();
         return apiClient.execute(call, returnType);
     }
@@ -35494,11 +36421,12 @@ public class SlidesApi {
      * @param fontName Font name. (required)
      * @param onlyUsed Only used characters will be embedded. 
      * @param password Document password. 
+     * @param fontsFolder Custom fonts folder. 
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call setEmbeddedFontOnlineAsync(byte[] document, String fontName, Boolean onlyUsed, String password, final ApiCallback<File> callback) throws ApiException {
+    public com.squareup.okhttp.Call setEmbeddedFontOnlineAsync(byte[] document, String fontName, Boolean onlyUsed, String password, String fontsFolder, final ApiCallback<File> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -35519,7 +36447,7 @@ public class SlidesApi {
             };
         }
 
-        com.squareup.okhttp.Call call = setEmbeddedFontOnlineCall(document, fontName, onlyUsed, password, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = setEmbeddedFontOnlineCall(document, fontName, onlyUsed, password, fontsFolder, progressListener, progressRequestListener);
         Type returnType = new TypeToken<File>(){}.getType();
         apiClient.executeAsync(call, returnType, callback);
         return call;
