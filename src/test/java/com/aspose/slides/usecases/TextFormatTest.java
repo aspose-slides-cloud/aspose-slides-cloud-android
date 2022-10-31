@@ -64,7 +64,7 @@ public class TextFormatTest extends ApiTest {
 
         dto.setTextFrameFormat(textFrameFormat);
 
-        ShapeBase shape = api.createShape(c_fileName, c_slideIndex, dto, null, null, c_password, c_folderName, null);
+        ShapeBase shape = api.createShape(c_fileName, c_slideIndex, dto, null, null, c_password, c_folderName, null, null);
         assertTrue(shape instanceof Shape);
     }
 

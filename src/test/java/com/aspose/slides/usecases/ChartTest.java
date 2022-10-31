@@ -46,7 +46,7 @@ public class ChartTest extends ApiTest {
     @Test
     public void chartGetTest() throws ApiException, IOException {
         initialize(null, null, null, null);
-        Chart chart = (Chart)api.getShape(c_fileName, c_slideIndex, c_shapeIndex, c_password, c_folderName, null);
+        Chart chart = (Chart)api.getShape(c_fileName, c_slideIndex, c_shapeIndex, c_password, c_folderName, null, null);
         assertNotNull(chart);
         assertEquals(c_seriesCount, chart.getSeries().size());
         assertEquals(c_categoryCount, chart.getCategories().size());
@@ -100,7 +100,8 @@ public class ChartTest extends ApiTest {
         series2.setDataPoints(dataPoints2);
         seriesList.add(series2);
         dto.setSeries(seriesList);
-        Chart chart = (Chart)api.createShape(c_fileName, c_slideIndex, dto, null, null, c_password, c_folderName, null);
+        Chart chart = (Chart)api.createShape(c_fileName, c_slideIndex, dto, null, null, c_password,
+                c_folderName, null, null);
         assertNotNull(chart);
         assertEquals(2, chart.getSeries().size());
         assertEquals(3, chart.getCategories().size());
@@ -154,7 +155,7 @@ public class ChartTest extends ApiTest {
         series2.setDataPoints(dataPoints2);
         seriesList.add(series2);
         dto.setSeries(seriesList);
-        Chart chart = (Chart)api.updateShape(c_fileName, c_slideIndex, c_shapeIndex, dto, c_password, c_folderName, null);
+        Chart chart = (Chart)api.updateShape(c_fileName, c_slideIndex, c_shapeIndex, dto, c_password, c_folderName, null, null);
         assertNotNull(chart);
         assertEquals(2, chart.getSeries().size());
         assertEquals(3, chart.getCategories().size());
@@ -370,7 +371,8 @@ public class ChartTest extends ApiTest {
         series.setDataPoints(dataPoints);
         seriesList.add(series);
         dto.setSeries(seriesList);
-        Chart chart = (Chart)api.createShape(c_fileName, c_slideIndex, dto, null, null, c_password, c_folderName, null);
+        Chart chart = (Chart)api.createShape(c_fileName, c_slideIndex, dto, null, null, c_password, c_folderName,
+                null, null);
         assertNotNull(chart);
         assertEquals(1, chart.getSeries().size());
         assertEquals(4, chart.getCategories().size());
@@ -431,7 +433,7 @@ public class ChartTest extends ApiTest {
         dto.setSeries(seriesList);
         dto.setCategories(categoryList);
 
-        Chart chart = (Chart)api.createShape(c_fileName, c_slideIndex, dto, null, null, c_password, c_folderName, null);
+        Chart chart = (Chart)api.createShape(c_fileName, c_slideIndex, dto, null, null, c_password, c_folderName, null, null);
 
         assertEquals(Chart.ChartTypeEnum.CLUSTEREDCOLUMN, chart.getChartType());
         assertEquals(1, chart.getSeries().size());
@@ -445,7 +447,7 @@ public class ChartTest extends ApiTest {
         Legend legend = new Legend();
         legend.setHasLegend(false);
         api.setChartLegend(c_fileName, c_slideIndex, c_shapeIndex, legend, c_password, c_folderName, null);
-        Chart chart = (Chart)api.getShape(c_fileName, c_slideIndex, c_shapeIndex, c_password, c_folderName, null);
+        Chart chart = (Chart)api.getShape(c_fileName, c_slideIndex, c_shapeIndex, c_password, c_folderName, null, null);
         assertFalse(chart.getLegend().isHasLegend());
     }
 
@@ -487,7 +489,7 @@ public class ChartTest extends ApiTest {
         api.setChartAxis(c_fileName, c_slideIndex, c_shapeIndex, AxisType.HORIZONTALAXIS, horizontalAxis, c_password, c_folderName, null);
         api.setChartAxis(c_fileName, c_slideIndex, c_shapeIndex, AxisType.VERTICALAXIS, verticalAxis, c_password, c_folderName, null);
 
-        Chart chart = (Chart)api.getShape(c_fileName, c_slideIndex, c_shapeIndex, c_password, c_folderName, null);
+        Chart chart = (Chart)api.getShape(c_fileName, c_slideIndex, c_shapeIndex, c_password, c_folderName, null, null);
         assertTrue(chart.getAxes().getHorizontalAxis().getMajorGridLinesFormat().getLineFormat().getFillFormat() instanceof NoFill);
         assertTrue(chart.getAxes().getHorizontalAxis().getMinorGridLinesFormat().getLineFormat().getFillFormat() instanceof SolidFill);
         assertTrue(chart.getAxes().getVerticalAxis().getMajorGridLinesFormat().getLineFormat().getFillFormat() instanceof GradientFill);
@@ -497,7 +499,7 @@ public class ChartTest extends ApiTest {
     @Test
     public void chartSeriesGroupsTest() throws ApiException, IOException {
         initialize(null, null, null, null);
-        Chart chart = (Chart)api.getShape(c_fileName, c_slideIndex, c_shapeIndex, c_password, c_folderName, null);
+        Chart chart = (Chart)api.getShape(c_fileName, c_slideIndex, c_shapeIndex, c_password, c_folderName, null, null);
         assertEquals(1, chart.getSeriesGroups().size());
         ChartSeriesGroup seriesGroup = chart.getSeriesGroups().get(0);
         seriesGroup.setOverlap(10);

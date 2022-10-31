@@ -45,8 +45,8 @@ public class MathTest extends ApiTest {
     @Test
     public void mathGetTest() throws ApiException, IOException {
         initialize(null, null, null, null);
-        Portion portion = api.getPortion(
-                c_fileName, c_slideIndex, c_shapeIndex, c_paragraphIndex, c_portionIndex, c_password, c_folderName, null);
+        Portion portion = api.getPortion(c_fileName, c_slideIndex, c_shapeIndex, c_paragraphIndex, c_portionIndex,
+                c_password, c_folderName, null, null);
         assertNotNull(portion.getMathParagraph());
         assertNotNull(portion.getMathParagraph().getMathBlockList());
         assertEquals(1, portion.getMathParagraph().getMathBlockList().size());
@@ -58,8 +58,8 @@ public class MathTest extends ApiTest {
     @Test
     public void mathGetNullTest() throws ApiException, IOException {
         initialize(null, null, null, null);
-        Portion portion = api.getPortion(
-                c_fileName, c_slideIndex, c_notMathShapeIndex, c_paragraphIndex, c_portionIndex, c_password, c_folderName, null);
+        Portion portion = api.getPortion(c_fileName, c_slideIndex, c_notMathShapeIndex, c_paragraphIndex, c_portionIndex,
+                c_password, c_folderName, null, null);
         assertNull(portion.getMathParagraph());
     }
 
@@ -99,7 +99,8 @@ public class MathTest extends ApiTest {
         mathBlocks.add(blockElement);
         mathParagraph.setMathBlockList(mathBlocks);
         dto.setMathParagraph(mathParagraph);
-        Portion portion = api.createPortion(c_fileName, 1, 1, c_paragraphIndex, dto, null, c_password, c_folderName, null);
+        Portion portion = api.createPortion(c_fileName, 1, 1, c_paragraphIndex, dto, null,
+                c_password, c_folderName, null, null);
         assertNotNull(portion.getMathParagraph());
         assertNotNull(portion.getMathParagraph().getMathBlockList());
         assertEquals(1, portion.getMathParagraph().getMathBlockList().size());
@@ -144,8 +145,8 @@ public class MathTest extends ApiTest {
         mathBlocks.add(blockElement);
         mathParagraph.setMathBlockList(mathBlocks);
         dto.setMathParagraph(mathParagraph);
-        Portion portion = api.updatePortion(
-            c_fileName, c_slideIndex, c_shapeIndex, c_paragraphIndex, c_portionIndex, dto, c_password, c_folderName, null);
+        Portion portion = api.updatePortion(c_fileName, c_slideIndex, c_shapeIndex, c_paragraphIndex, c_portionIndex,
+                dto, c_password, c_folderName, null, null);
         assertNotNull(portion.getMathParagraph());
         assertNotNull(portion.getMathParagraph().getMathBlockList());
         assertEquals(1, portion.getMathParagraph().getMathBlockList().size());

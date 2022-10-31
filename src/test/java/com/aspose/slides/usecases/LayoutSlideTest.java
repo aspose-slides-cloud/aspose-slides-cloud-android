@@ -65,7 +65,7 @@ public class LayoutSlideTest extends ApiTest {
     public void layoutSlideShapesTest() throws ApiException, IOException {
         initialize(null, null, null, null);
         Shapes shapes = api.getSpecialSlideShapes(
-            c_fileName, c_slideIndex, SpecialSlideType.LAYOUTSLIDE, c_password, c_folderName, null);
+            c_fileName, c_slideIndex, SpecialSlideType.LAYOUTSLIDE, c_password, c_folderName, null, null);
         assertEquals(c_shapeCount, shapes.getShapesLinks().size());
 
         Shape dto = new Shape();
@@ -75,22 +75,25 @@ public class LayoutSlideTest extends ApiTest {
         dto.setHeight(200.0);
         dto.setShapeType(GeometryShape.ShapeTypeEnum.RECTANGLE);
         dto.setText("New shape");
-        Shape shape = (Shape)api.createSpecialSlideShape(
-            c_fileName, c_slideIndex, SpecialSlideType.LAYOUTSLIDE, dto, null, null, c_password, c_folderName, null);
+        Shape shape = (Shape)api.createSpecialSlideShape(c_fileName, c_slideIndex, SpecialSlideType.LAYOUTSLIDE, dto,
+                null, null, c_password, c_folderName, null, null);
         assertEquals(dto.getText(), shape.getText());
-        shapes = api.getSpecialSlideShapes(c_fileName, c_slideIndex, SpecialSlideType.LAYOUTSLIDE, c_password, c_folderName, null);
+        shapes = api.getSpecialSlideShapes(c_fileName, c_slideIndex, SpecialSlideType.LAYOUTSLIDE, c_password,
+                c_folderName, null, null);
         assertEquals(c_shapeCount + 1, shapes.getShapesLinks().size());
 
         dto.setText("Updated shape");
-        shape = (Shape)api.updateSpecialSlideShape(
-            c_fileName, c_slideIndex, SpecialSlideType.LAYOUTSLIDE, c_shapeCount + 1, dto, c_password, c_folderName, null);
+        shape = (Shape)api.updateSpecialSlideShape(c_fileName, c_slideIndex, SpecialSlideType.LAYOUTSLIDE,
+                c_shapeCount + 1, dto, c_password, c_folderName, null, null);
         assertEquals(dto.getText(), shape.getText());
-        shapes = api.getSpecialSlideShapes(c_fileName, c_slideIndex, SpecialSlideType.LAYOUTSLIDE, c_password, c_folderName, null);
+        shapes = api.getSpecialSlideShapes(c_fileName, c_slideIndex, SpecialSlideType.LAYOUTSLIDE, c_password,
+                c_folderName, null, null);
         assertEquals(c_shapeCount + 1, shapes.getShapesLinks().size());
 
-        api.deleteSpecialSlideShape(
-            c_fileName, c_slideIndex, SpecialSlideType.LAYOUTSLIDE, c_shapeCount + 1, c_password, c_folderName, null);
-        shapes = api.getSpecialSlideShapes(c_fileName, c_slideIndex, SpecialSlideType.LAYOUTSLIDE, c_password, c_folderName, null);
+        api.deleteSpecialSlideShape(c_fileName, c_slideIndex, SpecialSlideType.LAYOUTSLIDE, c_shapeCount + 1,
+                c_password, c_folderName, null, null);
+        shapes = api.getSpecialSlideShapes(c_fileName, c_slideIndex, SpecialSlideType.LAYOUTSLIDE, c_password,
+                c_folderName, null, null);
         assertEquals(c_shapeCount, shapes.getShapesLinks().size());
     }
 
@@ -98,7 +101,7 @@ public class LayoutSlideTest extends ApiTest {
     public void layoutSlideParagraphsTest() throws ApiException, IOException {
         initialize(null, null, null, null);
         Paragraphs paragraphs = api.getSpecialSlideParagraphs(
-            c_fileName, c_slideIndex, SpecialSlideType.LAYOUTSLIDE, c_shapeIndex, c_password, c_folderName, null);
+            c_fileName, c_slideIndex, SpecialSlideType.LAYOUTSLIDE, c_shapeIndex, c_password, c_folderName, null, null);
         assertEquals(c_paragraphCount, paragraphs.getParagraphLinks().size());
 
         Paragraph dto = new Paragraph();
@@ -108,34 +111,34 @@ public class LayoutSlideTest extends ApiTest {
         portion.setText("New paragraph");
         portions.add(portion);
         dto.setPortionList(portions);
-        Paragraph paragraph = api.createSpecialSlideParagraph(
-            c_fileName, c_slideIndex, SpecialSlideType.LAYOUTSLIDE, c_shapeIndex, dto, null, c_password, c_folderName, null);
+        Paragraph paragraph = api.createSpecialSlideParagraph(c_fileName, c_slideIndex, SpecialSlideType.LAYOUTSLIDE,
+                c_shapeIndex, dto, null, c_password, c_folderName, null, null);
         assertEquals(dto.getAlignment(), paragraph.getAlignment());
-        paragraphs = api.getSpecialSlideParagraphs(
-            c_fileName, c_slideIndex, SpecialSlideType.LAYOUTSLIDE, c_shapeIndex, c_password, c_folderName, null);
+        paragraphs = api.getSpecialSlideParagraphs(c_fileName, c_slideIndex, SpecialSlideType.LAYOUTSLIDE, c_shapeIndex,
+                c_password, c_folderName, null, null);
         assertEquals(c_paragraphCount + 1, paragraphs.getParagraphLinks().size());
 
         dto = new Paragraph();
         dto.setAlignment(Paragraph.AlignmentEnum.CENTER);
-        paragraph = api.updateSpecialSlideParagraph(
-            c_fileName, c_slideIndex, SpecialSlideType.LAYOUTSLIDE, c_shapeIndex, c_paragraphCount + 1, dto, c_password, c_folderName, null);
+        paragraph = api.updateSpecialSlideParagraph(c_fileName, c_slideIndex, SpecialSlideType.LAYOUTSLIDE, c_shapeIndex,
+                c_paragraphCount + 1, dto, c_password, c_folderName, null, null);
         assertEquals(dto.getAlignment(), paragraph.getAlignment());
-        paragraphs = api.getSpecialSlideParagraphs(
-            c_fileName, c_slideIndex, SpecialSlideType.LAYOUTSLIDE, c_shapeIndex, c_password, c_folderName, null);
+        paragraphs = api.getSpecialSlideParagraphs(c_fileName, c_slideIndex, SpecialSlideType.LAYOUTSLIDE, c_shapeIndex,
+                c_password, c_folderName, null, null);
         assertEquals(c_paragraphCount + 1, paragraphs.getParagraphLinks().size());
 
-        api.deleteSpecialSlideParagraph(
-            c_fileName, c_slideIndex, SpecialSlideType.LAYOUTSLIDE, c_shapeIndex, c_paragraphCount + 1, c_password, c_folderName, null);
-        paragraphs = api.getSpecialSlideParagraphs(
-            c_fileName, c_slideIndex, SpecialSlideType.LAYOUTSLIDE, c_shapeIndex, c_password, c_folderName, null);
+        api.deleteSpecialSlideParagraph(c_fileName, c_slideIndex, SpecialSlideType.LAYOUTSLIDE, c_shapeIndex,
+                c_paragraphCount + 1, c_password, c_folderName, null, null);
+        paragraphs = api.getSpecialSlideParagraphs(c_fileName, c_slideIndex, SpecialSlideType.LAYOUTSLIDE, c_shapeIndex,
+                c_password, c_folderName, null, null);
         assertEquals(c_paragraphCount, paragraphs.getParagraphLinks().size());
     }
 
     @Test
     public void layoutSlidePortionsTest() throws ApiException, IOException {
         initialize(null, null, null, null);
-        Portions portions = api.getSpecialSlidePortions(
-            c_fileName, c_slideIndex, SpecialSlideType.LAYOUTSLIDE, c_shapeIndex, c_paragraphIndex, c_password, c_folderName, null);
+        Portions portions = api.getSpecialSlidePortions(c_fileName, c_slideIndex, SpecialSlideType.LAYOUTSLIDE, c_shapeIndex,
+                c_paragraphIndex, c_password, c_folderName, null, null);
         assertEquals(c_portionCount, portions.getItems().size());
 
         Portion dto = new Portion();
@@ -151,11 +154,12 @@ public class LayoutSlideTest extends ApiTest {
             null,
             c_password,
             c_folderName,
+            null,
             null);
         assertEquals(dto.getFontBold(), portion.getFontBold());
         assertEquals(dto.getText(), portion.getText());
-        portions = api.getSpecialSlidePortions(
-            c_fileName, c_slideIndex, SpecialSlideType.LAYOUTSLIDE, c_shapeIndex, c_paragraphIndex, c_password, c_folderName, null);
+        portions = api.getSpecialSlidePortions(c_fileName, c_slideIndex, SpecialSlideType.LAYOUTSLIDE, c_shapeIndex,
+                c_paragraphIndex, c_password, c_folderName, null, null);
         assertEquals(c_portionCount + 1, portions.getItems().size());
 
         Portion dto2 = new Portion();
@@ -171,12 +175,13 @@ public class LayoutSlideTest extends ApiTest {
             dto2,
             c_password,
             c_folderName,
+            null,
             null);
         assertEquals(dto.getFontBold(), portion.getFontBold());
         assertEquals(dto2.getFontHeight(), portion.getFontHeight());
         assertEquals(dto2.getText(), portion.getText());
-        portions = api.getSpecialSlidePortions(
-            c_fileName, c_slideIndex, SpecialSlideType.LAYOUTSLIDE, c_shapeIndex, c_paragraphIndex, c_password, c_folderName, null);
+        portions = api.getSpecialSlidePortions(c_fileName, c_slideIndex, SpecialSlideType.LAYOUTSLIDE, c_shapeIndex,
+                c_paragraphIndex, c_password, c_folderName, null, null);
         assertEquals(c_portionCount + 1, portions.getItems().size());
 
         api.deleteSpecialSlidePortion(
@@ -188,9 +193,10 @@ public class LayoutSlideTest extends ApiTest {
             c_portionCount + 1,
             c_password,
             c_folderName,
+            null,
             null);
-        portions = api.getSpecialSlidePortions(
-            c_fileName, c_slideIndex, SpecialSlideType.LAYOUTSLIDE, c_shapeIndex, c_paragraphIndex, c_password, c_folderName, null);
+        portions = api.getSpecialSlidePortions(c_fileName, c_slideIndex, SpecialSlideType.LAYOUTSLIDE, c_shapeIndex,
+                c_paragraphIndex, c_password, c_folderName, null, null);
         assertEquals(c_portionCount, portions.getItems().size());
     }
 

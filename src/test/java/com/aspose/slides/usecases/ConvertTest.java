@@ -182,16 +182,18 @@ public class ConvertTest extends ApiTest {
     @Test
     public void convertShapePostFromStorageTest() throws ApiException, IOException {
         initialize(null, null, null, null);
-        File converted = api.downloadShape(c_fileName, c_slideIndex, c_shapeIndex, c_shapeFormat, null, null, null, null, c_password, c_folderName, null, null);
+        File converted = api.downloadShape(c_fileName, c_slideIndex, c_shapeIndex, c_shapeFormat,
+                null, null, null, null, c_password, c_folderName, null, null, null);
         assertNotNull(converted);
         assertTrue(converted.length() > 0);
         assertTrue(converted.canRead());
     }
 
     @Test
-    public void convertSubshapePostFromStorageTest() throws ApiException, IOException {
+    public void convertSubShapePostFromStorageTest() throws ApiException, IOException {
         initialize(null, null, null, null);
-        File converted = api.downloadSubshape(c_fileName, c_slideIndex, "4/shapes",1, c_shapeFormat, null, null, null, null, c_password, c_folderName, null, null);
+        File converted = api.downloadShape(c_fileName, c_slideIndex, 4, c_shapeFormat, null, null,
+                null, null, c_password, c_folderName, null, null, "1");
         assertNotNull(converted);
         assertTrue(converted.length() > 0);
         assertTrue(converted.canRead());
@@ -200,15 +202,17 @@ public class ConvertTest extends ApiTest {
     @Test
     public void convertShapePutFromStorageTest() throws ApiException, IOException {
         initialize(null, null, null, null);
-        api.saveShape(c_fileName, c_slideIndex, c_shapeIndex, c_shapeFormat, c_outPath, null, null, null, null, c_password, c_folderName, null, null);
+        api.saveShape(c_fileName, c_slideIndex, c_shapeIndex, c_shapeFormat, c_outPath, null, null, null,
+                null, c_password, c_folderName, null, null, null);
         ObjectExist exists = api.objectExists(c_outPath, null, null);
         assertTrue(exists.isExists());
     }
 
     @Test
-    public void convertSubshapePutFromStorageTest() throws ApiException, IOException {
+    public void convertSubShapePutFromStorageTest() throws ApiException, IOException {
         initialize(null, null, null, null);
-        api.saveSubshape(c_fileName, c_slideIndex, "4/shapes", 1, c_shapeFormat, c_outPath, null, null, null, null, c_password, c_folderName, null, null);
+        api.saveShape(c_fileName, c_slideIndex, 4, c_shapeFormat, c_outPath, null, null, null,
+                null, c_password, c_folderName, null, null, "1");
         ObjectExist exists = api.objectExists(c_outPath, null, null);
         assertTrue(exists.isExists());
     }

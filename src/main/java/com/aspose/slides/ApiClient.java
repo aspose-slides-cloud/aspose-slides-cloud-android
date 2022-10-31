@@ -660,26 +660,22 @@ public class ApiClient {
      * @throws ApiException If fail to serialize the given object
      */
     public RequestBody serialize(Object obj, String contentType, List<FileInfo> files) throws ApiException {
-        if (files != null && files.size() > 0) {
+        if ((files != null && files.size() > 0) || obj instanceof byte[] || obj instanceof File) {
             Map<String, Object> parts = new LinkedHashMap<String, Object>();
             if (obj != null) {
                 parts.put("data", obj);
             }
-            int i = 0;
-            for (FileInfo file : files) {
-                String name = file.getName();
-                if (name == null) {
-                    name = "file" + (++i);
+            if (files != null) {
+                int i = 0;
+                for (FileInfo file : files) {
+                    String name = file.getName();
+                    if (name == null) {
+                        name = "file" + (++i);
+                    }
+                    parts.put(name, file);
                 }
-                parts.put(name, file);
             }
             return buildRequestBodyMultipart(parts);
-        } else if (obj instanceof byte[]) {
-            // Binary (byte array) body parameter support.
-            return RequestBody.create(MediaType.parse("application/json"), (byte[]) obj);
-        } else if (obj instanceof File) {
-            // File body parameter support.
-            return RequestBody.create(MediaType.parse("application/json"), (File) obj);
         } else if (obj instanceof String) {
             // Binary (byte array) body parameter support.
             return RequestBody.create(MediaType.parse("application/json"), (String) obj);

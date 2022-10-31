@@ -41,7 +41,7 @@ public class HyperlinkTest extends ApiTest {
     @Test
     public void hyperlinkGetShapeTest() throws ApiException, IOException {
         initialize(null, null, null, null);
-        ShapeBase shape = api.getShape(c_fileName, c_slideIndex, c_shapeIndex, c_password, c_folderName, null);
+        ShapeBase shape = api.getShape(c_fileName, c_slideIndex, c_shapeIndex, c_password, c_folderName, null, null);
         assertNotNull(shape.getHyperlinkClick());
         assertEquals(Hyperlink.ActionTypeEnum.HYPERLINK, shape.getHyperlinkClick().getActionType());
         assertNull(shape.getHyperlinkMouseOver());
@@ -50,7 +50,8 @@ public class HyperlinkTest extends ApiTest {
     @Test
     public void hyperlinkGetPortionTest() throws ApiException, IOException {
         initialize(null, null, null, null);
-        Portion portion = api.getPortion(c_fileName, c_slideIndex, c_hoverShapeIndex, c_paragraphIndex, c_portionIndex, c_password, c_folderName, null);
+        Portion portion = api.getPortion(c_fileName, c_slideIndex, c_hoverShapeIndex, c_paragraphIndex, c_portionIndex,
+                c_password, c_folderName, null, null);
         assertNull(portion.getHyperlinkClick());
         assertNotNull(portion.getHyperlinkMouseOver());
         assertEquals(Hyperlink.ActionTypeEnum.JUMPLASTSLIDE, portion.getHyperlinkMouseOver().getActionType());
@@ -66,7 +67,8 @@ public class HyperlinkTest extends ApiTest {
         hyperlink.setActionType(Hyperlink.ActionTypeEnum.HYPERLINK);
         hyperlink.setExternalUrl("https://docs.aspose.cloud/slides");
         shape.setHyperlinkClick(hyperlink);
-        Shape updatedShape = (Shape)api.updateShape(c_fileName, slideIndex, shapeIndex, shape, c_password, c_folderName, null);
+        Shape updatedShape = (Shape)api.updateShape(c_fileName, slideIndex, shapeIndex, shape, c_password, c_folderName,
+                null, null);
         assertNotNull(updatedShape.getHyperlinkClick());
         assertEquals(shape.getHyperlinkClick().getExternalUrl(), updatedShape.getHyperlinkClick().getExternalUrl());
     }
@@ -81,8 +83,8 @@ public class HyperlinkTest extends ApiTest {
         Hyperlink link = new Hyperlink();
         link.setActionType(Hyperlink.ActionTypeEnum.JUMPLASTSLIDE);
         dto.setHyperlinkMouseOver(link);
-        Portion updatedPortion = api.createPortion(
-            c_fileName, slideIndex, shapeIndex, c_paragraphIndex, dto, null, c_password, c_folderName, null);
+        Portion updatedPortion = api.createPortion( c_fileName, slideIndex, shapeIndex, c_paragraphIndex, dto, null,
+                c_password, c_folderName,null, null);
         assertNotNull(updatedPortion.getHyperlinkMouseOver());
         assertEquals(dto.getHyperlinkMouseOver().getActionType(), updatedPortion.getHyperlinkMouseOver().getActionType());
     }
@@ -94,7 +96,8 @@ public class HyperlinkTest extends ApiTest {
         Hyperlink hyperlink = new Hyperlink();
         hyperlink.setIsDisabled(true);
         shape.setHyperlinkClick(hyperlink);
-        ShapeBase updatedShape = api.updateShape(c_fileName, c_slideIndex, c_shapeIndex, shape, c_password, c_folderName, null);
+        ShapeBase updatedShape = api.updateShape(c_fileName, c_slideIndex, c_shapeIndex, shape, c_password, c_folderName,
+                null, null);
         assertNull(updatedShape.getHyperlinkClick());
     }
 

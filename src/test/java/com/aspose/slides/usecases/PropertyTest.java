@@ -210,6 +210,28 @@ public class PropertyTest extends ApiTest {
         Assert.assertNotNull(protectionProperties.getReadPassword());
     }
 
+    @Test
+    public void getSlideShowPropertiesTest() throws ApiException, IOException {
+        initialize(null, null, null, null);
+        SlideShowProperties response = api.getSlideShowProperties(c_fileName, c_password, c_folderName, null);
+        assertTrue(response.isShowAnimation());
+        assertTrue(response.isShowNarration());
+    }
+
+    @Test
+    public void setSlideShowPropertiesTest() throws ApiException, IOException {
+        initialize(null, null, null, null);
+        SlideShowProperties dto = new SlideShowProperties();
+        dto.setLoop(true);
+        dto.setUseTimings(true);
+        dto.slideShowType(SlideShowProperties.SlideShowTypeEnum.PRESENTEDBYSPEAKER);
+
+        SlideShowProperties response = api.setSlideShowProperties(c_fileName, dto, c_password, c_folderName, null);
+        assertEquals(dto.isLoop(), response.isLoop());
+        assertEquals(dto.isUseTimings(), response.isUseTimings());
+        assertEquals(dto.getSlideShowType(), response.getSlideShowType());
+    }
+
     private final String c_folderName = "TempSlidesSDK";
     private final String c_fileName = "test.pptx";
     private final String c_password = "password";

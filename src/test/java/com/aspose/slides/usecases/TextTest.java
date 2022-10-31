@@ -91,7 +91,7 @@ public class TextTest extends ApiTest {
 
         final int shapeIndex = 1, slideIndex = 6, paragraphIndex = 1;
         api.highlightShapeText(c_fileName, slideIndex, shapeIndex, c_textToHighlight, c_highlightColor, null, false, c_password, c_folderName, null);
-        Paragraph para = api.getParagraph(c_fileName, slideIndex, shapeIndex, paragraphIndex, c_password, c_folderName, null);
+        Paragraph para = api.getParagraph(c_fileName, slideIndex, shapeIndex, paragraphIndex, c_password, c_folderName, null, null);
         assertNotEquals(para.getPortionList().get(0).getText(), c_textToHighlight);
         assertNotEquals(para.getPortionList().get(0).getHighlightColor(), c_highlightColor);
         assertEquals(para.getPortionList().get(1).getText(), c_textToHighlight);
@@ -104,7 +104,7 @@ public class TextTest extends ApiTest {
 
         final int shapeIndex = 1, slideIndex = 6, paragraphIndex = 1;
         api.highlightShapeRegex(c_fileName, slideIndex, shapeIndex, c_highlightRegex, c_highlightColor, null, false, c_password, c_folderName, null);
-        Paragraph para = api.getParagraph(c_fileName, slideIndex, shapeIndex, paragraphIndex, c_password, c_folderName, null);
+        Paragraph para = api.getParagraph(c_fileName, slideIndex, shapeIndex, paragraphIndex, c_password, c_folderName, null, null);
         assertNotEquals(para.getPortionList().get(0).getText(), c_textToHighlight);
         assertNotEquals(para.getPortionList().get(0).getHighlightColor(), c_highlightColor);
         assertEquals(para.getPortionList().get(1).getText(), c_textToHighlight);

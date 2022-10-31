@@ -22,28 +22,32 @@ public class PortionTest extends ApiTest {
     @Test
     public void getPortionsTest() throws ApiException, IOException {
         initialize(null, null, null, null);
-        Portions response = api.getPortions(c_fileName, c_slideIndex, c_shapeIndex, c_paragraphIndex, c_password, c_folderName, null);
+        Portions response = api.getPortions(c_fileName, c_slideIndex, c_shapeIndex, c_paragraphIndex, c_password,
+                c_folderName, null, null);
         assertEquals(2, response.getItems().size());
     }
 
     @Test
-    public void getSubshapePortionsTest() throws ApiException, IOException {
+    public void getSubShapePortionsTest() throws ApiException, IOException {
         initialize(null, null, null, null);
-        Portions response = api.getSubshapePortions(c_fileName, c_slideIndex, c_shapePath, 1, c_paragraphIndex, c_password, c_folderName, null);
+        Portions response = api.getPortions(c_fileName, c_slideIndex, 3, c_paragraphIndex, c_password, c_folderName,
+                null, "1");
         assertEquals(2, response.getItems().size());
     }
 
     @Test
     public void getPortionTest() throws ApiException, IOException {
         initialize(null, null, null, null);
-        Portion response = api.getPortion(c_fileName, c_slideIndex, c_shapeIndex, c_paragraphIndex, c_portionIndex, c_password, c_folderName, null);
+        Portion response = api.getPortion(c_fileName, c_slideIndex, c_shapeIndex, c_paragraphIndex, c_portionIndex,
+                c_password, c_folderName, null, null);
         assertTrue(response.getText().contains(c_portionText));
     }
 
     @Test
-    public void getSubshapePortionTest() throws ApiException, IOException {
+    public void getSubShapePortionTest() throws ApiException, IOException {
         initialize(null, null, null, null);
-        Portion response = api.getSubshapePortion(c_fileName, c_slideIndex, c_shapePath, 1, c_paragraphIndex, c_portionIndex, c_password, c_folderName, null);
+        Portion response = api.getPortion(c_fileName, c_slideIndex, 3, c_paragraphIndex, c_portionIndex, c_password,
+                c_folderName, null, "1");
         assertTrue(response.getText().contains(c_portionText));
     }
 
@@ -60,7 +64,8 @@ public class PortionTest extends ApiTest {
         fillFormat.setColor(c_fontColor);
         dto.setFillFormat(fillFormat);
 
-        Portion response = api.createPortion(c_fileName, c_slideIndex, c_shapeIndex, 1, dto, null, c_password, c_folderName, null);
+        Portion response = api.createPortion(c_fileName, c_slideIndex, c_shapeIndex, 1, dto, null,
+                c_password, c_folderName, null, null);
         assertEquals(dto.getText(), response.getText());
         assertEquals(dto.getFontBold(), response.getFontBold());
         assertEquals(dto.getFontHeight(), response.getFontHeight());
@@ -69,7 +74,7 @@ public class PortionTest extends ApiTest {
     }
 
     @Test
-    public void createSubshapePortionTest() throws ApiException, IOException {
+    public void createSubShapePortionTest() throws ApiException, IOException {
         initialize(null, null, null, null);
 
         Portion dto = new Portion();
@@ -81,7 +86,8 @@ public class PortionTest extends ApiTest {
         fillFormat.setColor(c_fontColor);
         dto.setFillFormat(fillFormat);
 
-        Portion response = api.createSubshapePortion(c_fileName, c_slideIndex, c_shapePath, c_shapeIndex, 1, dto, null, c_password, c_folderName, null);
+        Portion response = api.createPortion(c_fileName, c_slideIndex, 3, 1, dto, null,
+                c_password, c_folderName, null, "2");
         assertEquals(dto.getText(), response.getText());
         assertEquals(dto.getFontBold(), response.getFontBold());
         assertEquals(dto.getFontHeight(), response.getFontHeight());
@@ -102,7 +108,8 @@ public class PortionTest extends ApiTest {
         fillFormat.setColor(c_fontColor);
         dto.setFillFormat(fillFormat);
 
-        Portion response = api.updatePortion(c_fileName, c_slideIndex, c_shapeIndex, 1, 1, dto, c_password, c_folderName, null);
+        Portion response = api.updatePortion(c_fileName, c_slideIndex, c_shapeIndex, 1, 1, dto, c_password,
+                c_folderName, null, null);
         assertEquals(dto.getText(), response.getText());
         assertEquals(dto.getFontBold(), response.getFontBold());
         assertEquals(dto.getFontHeight(), response.getFontHeight());
@@ -111,7 +118,7 @@ public class PortionTest extends ApiTest {
     }
 
     @Test
-    public void updateSubshapePortionTest() throws ApiException, IOException {
+    public void updateSubShapePortionTest() throws ApiException, IOException {
         initialize(null, null, null, null);
 
         Portion dto = new Portion();
@@ -123,7 +130,8 @@ public class PortionTest extends ApiTest {
         fillFormat.setColor(c_fontColor);
         dto.setFillFormat(fillFormat);
 
-        Portion response = api.updateSubshapePortion(c_fileName, c_slideIndex, c_shapePath, c_shapeIndex, 1, 1, dto, c_password, c_folderName, null);
+        Portion response = api.updatePortion(c_fileName, c_slideIndex, 3, 1, 1, dto, c_password,
+                c_folderName, null, "2");
         assertEquals(dto.getText(), response.getText());
         assertEquals(dto.getFontBold(), response.getFontBold());
         assertEquals(dto.getFontHeight(), response.getFontHeight());
@@ -135,30 +143,34 @@ public class PortionTest extends ApiTest {
     public void deletePortionsTest() throws ApiException, IOException {
         initialize(null, null, null, null);
 
-        Portions response = api.deletePortions(c_fileName, c_slideIndex, c_shapeIndex, c_paragraphIndex, null, c_password, c_folderName, null);
+        Portions response = api.deletePortions(c_fileName, c_slideIndex, c_shapeIndex, c_paragraphIndex, null,
+                c_password, c_folderName, null, null);
         assertEquals(0, response.getItems().size());
     }
 
     @Test
     public void deletePortionsIndexesTest() throws ApiException, IOException {
         initialize(null, null, null, null);
-        Portions response = api.deletePortions(c_fileName, c_slideIndex, c_shapeIndex, c_paragraphIndex, new ArrayList<Integer>(Arrays.asList(1)), c_password, c_folderName, null);
+        Portions response = api.deletePortions(c_fileName, c_slideIndex, c_shapeIndex, c_paragraphIndex,
+                new ArrayList<Integer>(Arrays.asList(1)), c_password, c_folderName, null, null);
         assertEquals(1, response.getItems().size());
     }
 
     @Test
-    public void deleteSubshapePortionsTest() throws ApiException, IOException {
+    public void deleteSubShapePortionsTest() throws ApiException, IOException {
         initialize(null, null, null, null);
 
-        Portions response = api.deleteSubshapePortions(c_fileName, c_slideIndex, c_shapePath, 1, c_paragraphIndex, null, c_password, c_folderName, null);
+        Portions response = api.deletePortions(c_fileName, c_slideIndex, 3, c_paragraphIndex, null, c_password,
+                c_folderName, null, "1");
         assertEquals(0, response.getItems().size());
     }
 
     @Test
-    public void deleteSubshapePortionsIndexesTest() throws ApiException, IOException {
+    public void deleteSubShapePortionsIndexesTest() throws ApiException, IOException {
         initialize(null, null, null, null);
 
-        Portions response = api.deleteSubshapePortions(c_fileName, c_slideIndex, c_shapePath, 1, c_paragraphIndex, new ArrayList<Integer>(Arrays.asList(1)), c_password, c_folderName, null);
+        Portions response = api.deletePortions(c_fileName, c_slideIndex, 3, c_paragraphIndex,
+                new ArrayList<Integer>(Arrays.asList(1)), c_password, c_folderName, null, "1");
         assertEquals(1, response.getItems().size());
     }
 
@@ -166,22 +178,25 @@ public class PortionTest extends ApiTest {
     public void deletePortionTest() throws ApiException, IOException {
         initialize(null, null, null, null);
 
-        Portions response = api.deletePortion(c_fileName, c_slideIndex, c_shapeIndex, c_paragraphIndex, c_portionIndex, c_password, c_folderName, null);
+        Portions response = api.deletePortion(c_fileName, c_slideIndex, c_shapeIndex, c_paragraphIndex, c_portionIndex,
+                c_password, c_folderName, null, null);
         assertEquals(1, response.getItems().size());
     }
 
     @Test
-    public void deleteSubshapePortionTest() throws ApiException, IOException {
+    public void deleteSubShapePortionTest() throws ApiException, IOException {
         initialize(null, null, null, null);
 
-        Portions response = api.deleteSubshapePortion(c_fileName, c_slideIndex, c_shapePath, 1, c_paragraphIndex, c_portionIndex, c_password, c_folderName, null);
+        Portions response = api.deletePortion(c_fileName, c_slideIndex, 3, c_paragraphIndex, c_portionIndex, c_password,
+                c_folderName, null, "1");
         assertEquals(1, response.getItems().size());
     }
 
     @Test
     public void getPortionRectTest() throws ApiException, IOException {
         initialize(null, null, null, null);
-        TextBounds response = api.getPortionRectangle(c_fileName, c_slideIndex, c_shapeIndex, c_paragraphIndex, c_portionIndex, c_password, c_folderName, null);
+        TextBounds response = api.getPortionRectangle(c_fileName, c_slideIndex, c_shapeIndex, c_paragraphIndex,
+                c_portionIndex, c_password, c_folderName, null);
         assertNotNull(response);
         assertTrue(response.getX() > 0);
         assertTrue(response.getY() > 0);
@@ -193,15 +208,15 @@ public class PortionTest extends ApiTest {
     public void getPortionEffectiveTest() throws ApiException, IOException {
         initialize(null, null, null, null);
         Portion response = api.getPortionEffective(c_fileName, c_slideIndex, c_shapeIndex, c_paragraphIndex,
-                c_portionIndex, c_password, c_folderName, null);
+                c_portionIndex, c_password, c_folderName, null, null);
         assertEquals((Double)18.0, response.getFontHeight());
     }
 
     @Test
     public void getSubshapePortionEffectiveTest() throws ApiException, IOException {
         initialize(null, null, null, null);
-        Portion response = api.getSubshapePortionEffective(c_fileName, c_slideIndex, c_shapePath, 1,
-                c_paragraphIndex, c_portionIndex, c_password, c_folderName, null);
+        Portion response = api.getPortionEffective(c_fileName, c_slideIndex, 3,
+                c_paragraphIndex, c_portionIndex, c_password, c_folderName, null, "1");
         assertEquals((Double)18.0, response.getFontHeight());
     }
 
@@ -215,6 +230,5 @@ public class PortionTest extends ApiTest {
     private final String c_portionText = "portion 1";
     private final String c_newPortionText = "new portion text";
     private final String c_fontColor = "#FFF5FF8A";
-    private final String c_shapePath = "3/shapes";
     private final String c_fontName = "Arial";
 }

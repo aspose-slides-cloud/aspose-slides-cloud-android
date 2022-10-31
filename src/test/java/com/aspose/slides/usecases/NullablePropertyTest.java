@@ -89,8 +89,8 @@ public class NullablePropertyTest extends ApiTest {
         testAxis.setMaxValue(max1);
         testAxes.setHorizontalAxis(testAxis);
         testDto.setAxes(testAxes);
-        api.createShape(fileName, 1, testDto, null, null, password, folderName, null);
-        ShapeBase result = api.getShape(fileName, 1, 5, password, folderName, null);
+        api.createShape(fileName, 1, testDto, null, null, password, folderName, null, null);
+        ShapeBase result = api.getShape(fileName, 1, 5, password, folderName, null, null);
         assertTrue(((Chart)result).getAxes().getHorizontalAxis().getMinValue() == min1);
         assertTrue(((Chart)result).getAxes().getHorizontalAxis().getMaxValue() == max1);
 
@@ -100,18 +100,18 @@ public class NullablePropertyTest extends ApiTest {
         testAxis.setMinValue(min2);
         testAxes.setHorizontalAxis(testAxis);
         testDto.setAxes(testAxes);
-        api.updateShape(fileName, 1, 5, testDto, password, folderName, null);
+        api.updateShape(fileName, 1, 5, testDto, password, folderName, null, null);
 
-        result = api.getShape(fileName, 1, 5, password, folderName, null);
+        result = api.getShape(fileName, 1, 5, password, folderName, null, null);
         assertTrue(((Chart)result).getAxes().getHorizontalAxis().getMinValue() == min2);
         assertTrue(((Chart)result).getAxes().getHorizontalAxis().getMaxValue() == max1);
 
         testAxis = new Axis();
         testAxis.setMaxValue(max2);
         testAxes.setHorizontalAxis(testAxis);
-        api.updateShape(fileName, 1, 5, testDto, password, folderName, null);
+        api.updateShape(fileName, 1, 5, testDto, password, folderName, null, null);
 
-        result = api.getShape(fileName, 1, 5, password, folderName, null);
+        result = api.getShape(fileName, 1, 5, password, folderName, null, null);
         assertTrue(((Chart)result).getAxes().getHorizontalAxis().getMinValue() == min2);
         assertTrue(((Chart)result).getAxes().getHorizontalAxis().getMaxValue() == max2);
     }

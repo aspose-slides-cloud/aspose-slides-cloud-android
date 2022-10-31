@@ -741,6 +741,12 @@ public class Effect {
   @SerializedName(value = "triggerDelayTime", alternate = { "TriggerDelayTime" })
   private Double triggerDelayTime;
 
+  @SerializedName(value = "repeatUntilEndSlide", alternate = { "RepeatUntilEndSlide" })
+  private Boolean repeatUntilEndSlide;
+
+  @SerializedName(value = "repeatUntilNextClick", alternate = { "RepeatUntilNextClick" })
+  private Boolean repeatUntilNextClick;
+
 
   public Effect() {
     super();
@@ -1016,6 +1022,42 @@ public class Effect {
     this.triggerDelayTime = triggerDelayTime;
   }
 
+  public Effect repeatUntilEndSlide(Boolean repeatUntilEndSlide) {
+    this.repeatUntilEndSlide = repeatUntilEndSlide;
+    return this;
+  }
+
+   /**
+   * Specifies if the effect will repeat until the end of slide.
+   * @return repeatUntilEndSlide
+  **/
+  @ApiModelProperty(value = "Specifies if the effect will repeat until the end of slide.")
+  public Boolean isRepeatUntilEndSlide() {
+    return repeatUntilEndSlide;
+  }
+
+  public void setRepeatUntilEndSlide(Boolean repeatUntilEndSlide) {
+    this.repeatUntilEndSlide = repeatUntilEndSlide;
+  }
+
+  public Effect repeatUntilNextClick(Boolean repeatUntilNextClick) {
+    this.repeatUntilNextClick = repeatUntilNextClick;
+    return this;
+  }
+
+   /**
+   * Specifies if the effect will repeat until the next click.
+   * @return repeatUntilNextClick
+  **/
+  @ApiModelProperty(value = "Specifies if the effect will repeat until the next click.")
+  public Boolean isRepeatUntilNextClick() {
+    return repeatUntilNextClick;
+  }
+
+  public void setRepeatUntilNextClick(Boolean repeatUntilNextClick) {
+    this.repeatUntilNextClick = repeatUntilNextClick;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -1026,12 +1068,12 @@ public class Effect {
       return false;
     }
     Effect effect = (Effect) o;
-    return true && Objects.equals(this.type, effect.type) && Objects.equals(this.subtype, effect.subtype) && Objects.equals(this.presetClassType, effect.presetClassType) && Objects.equals(this.shapeIndex, effect.shapeIndex) && Objects.equals(this.paragraphIndex, effect.paragraphIndex) && Objects.equals(this.triggerType, effect.triggerType) && Objects.equals(this.accelerate, effect.accelerate) && Objects.equals(this.autoReverse, effect.autoReverse) && Objects.equals(this.decelerate, effect.decelerate) && Objects.equals(this.duration, effect.duration) && Objects.equals(this.repeatCount, effect.repeatCount) && Objects.equals(this.repeatDuration, effect.repeatDuration) && Objects.equals(this.restart, effect.restart) && Objects.equals(this.speed, effect.speed) && Objects.equals(this.triggerDelayTime, effect.triggerDelayTime);
+    return true && Objects.equals(this.type, effect.type) && Objects.equals(this.subtype, effect.subtype) && Objects.equals(this.presetClassType, effect.presetClassType) && Objects.equals(this.shapeIndex, effect.shapeIndex) && Objects.equals(this.paragraphIndex, effect.paragraphIndex) && Objects.equals(this.triggerType, effect.triggerType) && Objects.equals(this.accelerate, effect.accelerate) && Objects.equals(this.autoReverse, effect.autoReverse) && Objects.equals(this.decelerate, effect.decelerate) && Objects.equals(this.duration, effect.duration) && Objects.equals(this.repeatCount, effect.repeatCount) && Objects.equals(this.repeatDuration, effect.repeatDuration) && Objects.equals(this.restart, effect.restart) && Objects.equals(this.speed, effect.speed) && Objects.equals(this.triggerDelayTime, effect.triggerDelayTime) && Objects.equals(this.repeatUntilEndSlide, effect.repeatUntilEndSlide) && Objects.equals(this.repeatUntilNextClick, effect.repeatUntilNextClick);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, subtype, presetClassType, shapeIndex, paragraphIndex, triggerType, accelerate, autoReverse, decelerate, duration, repeatCount, repeatDuration, restart, speed, triggerDelayTime);
+    return Objects.hash(type, subtype, presetClassType, shapeIndex, paragraphIndex, triggerType, accelerate, autoReverse, decelerate, duration, repeatCount, repeatDuration, restart, speed, triggerDelayTime, repeatUntilEndSlide, repeatUntilNextClick);
   }
 
 
@@ -1055,6 +1097,8 @@ public class Effect {
     sb.append("    restart: ").append(toIndentedString(restart)).append("\n");
     sb.append("    speed: ").append(toIndentedString(speed)).append("\n");
     sb.append("    triggerDelayTime: ").append(toIndentedString(triggerDelayTime)).append("\n");
+    sb.append("    repeatUntilEndSlide: ").append(toIndentedString(repeatUntilEndSlide)).append("\n");
+    sb.append("    repeatUntilNextClick: ").append(toIndentedString(repeatUntilNextClick)).append("\n");
     sb.append("}");
     return sb.toString();
   }
