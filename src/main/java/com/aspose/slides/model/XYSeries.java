@@ -28,6 +28,7 @@
 package com.aspose.slides.model;
 
 import java.util.Objects;
+import com.aspose.slides.model.DataSource;
 import com.aspose.slides.model.EffectFormat;
 import com.aspose.slides.model.FillFormat;
 import com.aspose.slides.model.LineFormat;
@@ -55,6 +56,12 @@ public class XYSeries extends Series {
 
   @SerializedName(value = "numberFormatOfXValues", alternate = { "NumberFormatOfXValues" })
   private String numberFormatOfXValues;
+
+  @SerializedName(value = "dataSourceForXValues", alternate = { "DataSourceForXValues" })
+  private DataSource dataSourceForXValues;
+
+  @SerializedName(value = "dataSourceForYValues", alternate = { "DataSourceForYValues" })
+  private DataSource dataSourceForYValues;
 
 
   public XYSeries() {
@@ -97,6 +104,42 @@ public class XYSeries extends Series {
     this.numberFormatOfXValues = numberFormatOfXValues;
   }
 
+  public XYSeries dataSourceForXValues(DataSource dataSourceForXValues) {
+    this.dataSourceForXValues = dataSourceForXValues;
+    return this;
+  }
+
+   /**
+   * Data source type for X Values.
+   * @return dataSourceForXValues
+  **/
+  @ApiModelProperty(value = "Data source type for X Values.")
+  public DataSource getDataSourceForXValues() {
+    return dataSourceForXValues;
+  }
+
+  public void setDataSourceForXValues(DataSource dataSourceForXValues) {
+    this.dataSourceForXValues = dataSourceForXValues;
+  }
+
+  public XYSeries dataSourceForYValues(DataSource dataSourceForYValues) {
+    this.dataSourceForYValues = dataSourceForYValues;
+    return this;
+  }
+
+   /**
+   * Data source type for Y Values.
+   * @return dataSourceForYValues
+  **/
+  @ApiModelProperty(value = "Data source type for Y Values.")
+  public DataSource getDataSourceForYValues() {
+    return dataSourceForYValues;
+  }
+
+  public void setDataSourceForYValues(DataSource dataSourceForYValues) {
+    this.dataSourceForYValues = dataSourceForYValues;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -107,12 +150,12 @@ public class XYSeries extends Series {
       return false;
     }
     XYSeries xySeries = (XYSeries) o;
-    return true && Objects.equals(this.numberFormatOfYValues, xySeries.numberFormatOfYValues) && Objects.equals(this.numberFormatOfXValues, xySeries.numberFormatOfXValues) && super.equals(o);
+    return true && Objects.equals(this.numberFormatOfYValues, xySeries.numberFormatOfYValues) && Objects.equals(this.numberFormatOfXValues, xySeries.numberFormatOfXValues) && Objects.equals(this.dataSourceForXValues, xySeries.dataSourceForXValues) && Objects.equals(this.dataSourceForYValues, xySeries.dataSourceForYValues) && super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(numberFormatOfYValues, numberFormatOfXValues, super.hashCode());
+    return Objects.hash(numberFormatOfYValues, numberFormatOfXValues, dataSourceForXValues, dataSourceForYValues, super.hashCode());
   }
 
 
@@ -123,6 +166,8 @@ public class XYSeries extends Series {
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    numberFormatOfYValues: ").append(toIndentedString(numberFormatOfYValues)).append("\n");
     sb.append("    numberFormatOfXValues: ").append(toIndentedString(numberFormatOfXValues)).append("\n");
+    sb.append("    dataSourceForXValues: ").append(toIndentedString(dataSourceForXValues)).append("\n");
+    sb.append("    dataSourceForYValues: ").append(toIndentedString(dataSourceForYValues)).append("\n");
     sb.append("}");
     return sb.toString();
   }

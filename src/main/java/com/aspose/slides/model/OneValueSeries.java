@@ -28,6 +28,7 @@
 package com.aspose.slides.model;
 
 import java.util.Objects;
+import com.aspose.slides.model.DataSource;
 import com.aspose.slides.model.EffectFormat;
 import com.aspose.slides.model.FillFormat;
 import com.aspose.slides.model.LineFormat;
@@ -58,6 +59,9 @@ public class OneValueSeries extends Series {
 
   @SerializedName(value = "numberFormatOfValues", alternate = { "NumberFormatOfValues" })
   private String numberFormatOfValues;
+
+  @SerializedName(value = "dataSourceForValues", alternate = { "DataSourceForValues" })
+  private DataSource dataSourceForValues;
 
   @SerializedName(value = "showConnectorLines", alternate = { "ShowConnectorLines" })
   private Boolean showConnectorLines;
@@ -172,6 +176,24 @@ public class OneValueSeries extends Series {
 
   public void setNumberFormatOfValues(String numberFormatOfValues) {
     this.numberFormatOfValues = numberFormatOfValues;
+  }
+
+  public OneValueSeries dataSourceForValues(DataSource dataSourceForValues) {
+    this.dataSourceForValues = dataSourceForValues;
+    return this;
+  }
+
+   /**
+   * Data source type for values.
+   * @return dataSourceForValues
+  **/
+  @ApiModelProperty(value = "Data source type for values.")
+  public DataSource getDataSourceForValues() {
+    return dataSourceForValues;
+  }
+
+  public void setDataSourceForValues(DataSource dataSourceForValues) {
+    this.dataSourceForValues = dataSourceForValues;
   }
 
   public OneValueSeries showConnectorLines(Boolean showConnectorLines) {
@@ -292,12 +314,12 @@ public class OneValueSeries extends Series {
       return false;
     }
     OneValueSeries oneValueSeries = (OneValueSeries) o;
-    return true && Objects.equals(this.dataPoints, oneValueSeries.dataPoints) && Objects.equals(this.numberFormatOfValues, oneValueSeries.numberFormatOfValues) && Objects.equals(this.showConnectorLines, oneValueSeries.showConnectorLines) && Objects.equals(this.quartileMethod, oneValueSeries.quartileMethod) && Objects.equals(this.showInnerPoints, oneValueSeries.showInnerPoints) && Objects.equals(this.showMeanLine, oneValueSeries.showMeanLine) && Objects.equals(this.showMeanMarkers, oneValueSeries.showMeanMarkers) && Objects.equals(this.showOutlierPoints, oneValueSeries.showOutlierPoints) && super.equals(o);
+    return true && Objects.equals(this.dataPoints, oneValueSeries.dataPoints) && Objects.equals(this.numberFormatOfValues, oneValueSeries.numberFormatOfValues) && Objects.equals(this.dataSourceForValues, oneValueSeries.dataSourceForValues) && Objects.equals(this.showConnectorLines, oneValueSeries.showConnectorLines) && Objects.equals(this.quartileMethod, oneValueSeries.quartileMethod) && Objects.equals(this.showInnerPoints, oneValueSeries.showInnerPoints) && Objects.equals(this.showMeanLine, oneValueSeries.showMeanLine) && Objects.equals(this.showMeanMarkers, oneValueSeries.showMeanMarkers) && Objects.equals(this.showOutlierPoints, oneValueSeries.showOutlierPoints) && super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(dataPoints, numberFormatOfValues, showConnectorLines, quartileMethod, showInnerPoints, showMeanLine, showMeanMarkers, showOutlierPoints, super.hashCode());
+    return Objects.hash(dataPoints, numberFormatOfValues, dataSourceForValues, showConnectorLines, quartileMethod, showInnerPoints, showMeanLine, showMeanMarkers, showOutlierPoints, super.hashCode());
   }
 
 
@@ -308,6 +330,7 @@ public class OneValueSeries extends Series {
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    dataPoints: ").append(toIndentedString(dataPoints)).append("\n");
     sb.append("    numberFormatOfValues: ").append(toIndentedString(numberFormatOfValues)).append("\n");
+    sb.append("    dataSourceForValues: ").append(toIndentedString(dataSourceForValues)).append("\n");
     sb.append("    showConnectorLines: ").append(toIndentedString(showConnectorLines)).append("\n");
     sb.append("    quartileMethod: ").append(toIndentedString(quartileMethod)).append("\n");
     sb.append("    showInnerPoints: ").append(toIndentedString(showInnerPoints)).append("\n");

@@ -77,19 +77,6 @@ public class ResourceBase {
     this.selfUri = selfUri;
   }
 
-  public ResourceBase alternateLinks(List<ResourceUri> alternateLinks) {
-    this.alternateLinks = alternateLinks;
-    return this;
-  }
-
-  public ResourceBase addAlternateLinksItem(ResourceUri alternateLinksItem) {
-    if (this.alternateLinks == null) {
-      this.alternateLinks = new ArrayList<ResourceUri>();
-    }
-    this.alternateLinks.add(alternateLinksItem);
-    return this;
-  }
-
    /**
    * List of alternate links.
    * @return alternateLinks
@@ -99,7 +86,7 @@ public class ResourceBase {
     return alternateLinks;
   }
 
-  public void setAlternateLinks(List<ResourceUri> alternateLinks) {
+  protected void setAlternateLinks(List<ResourceUri> alternateLinks) {
     this.alternateLinks = alternateLinks;
   }
 

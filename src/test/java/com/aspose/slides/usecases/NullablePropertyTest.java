@@ -66,6 +66,16 @@ public class NullablePropertyTest extends ApiTest {
         testTitle.setHasTitle(true);
         testTitle.setText("MyTitle");
         testDto.setTitle(testTitle);
+
+        ChartCategory category1 = new ChartCategory();
+        category1.setValue("Category1");
+        ChartCategory category2 = new ChartCategory();
+        category2.setValue("Category2");
+        List<ChartCategory> categories = new ArrayList<ChartCategory>();
+        categories.add(category1);
+        categories.add(category2);
+        testDto.setCategories(categories);
+
         OneValueSeries testSeries = new OneValueSeries();
         testSeries.setType(OneValueSeries.TypeEnum.CLUSTEREDCOLUMN);
         testSeries.setName("Series1");
@@ -80,7 +90,6 @@ public class NullablePropertyTest extends ApiTest {
         List<Series> series = new ArrayList<Series>();
         series.add(testSeries);
         testDto.setSeries(series);
-        testDto.setCategories(null);
         Axes testAxes = new Axes();
         Axis testAxis = new Axis();
         testAxis.setIsAutomaticMinValue(false);

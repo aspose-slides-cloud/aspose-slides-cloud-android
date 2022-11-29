@@ -87,11 +87,6 @@ public class Shape extends GeometryShape {
     this.text = text;
   }
 
-  public Shape paragraphs(ResourceUri paragraphs) {
-    this.paragraphs = paragraphs;
-    return this;
-  }
-
    /**
    * Get or sets list to paragraphs list
    * @return paragraphs
@@ -101,7 +96,7 @@ public class Shape extends GeometryShape {
     return paragraphs;
   }
 
-  public void setParagraphs(ResourceUri paragraphs) {
+  protected void setParagraphs(ResourceUri paragraphs) {
     this.paragraphs = paragraphs;
   }
 

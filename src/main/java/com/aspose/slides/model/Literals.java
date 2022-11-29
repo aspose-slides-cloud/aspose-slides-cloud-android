@@ -29,12 +29,6 @@ package com.aspose.slides.model;
 
 import java.util.Objects;
 import com.aspose.slides.model.DataSource;
-import com.aspose.slides.model.EffectFormat;
-import com.aspose.slides.model.FillFormat;
-import com.aspose.slides.model.LineFormat;
-import com.aspose.slides.model.ScatterChartDataPoint;
-import com.aspose.slides.model.SeriesMarker;
-import com.aspose.slides.model.XYSeries;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -44,49 +38,18 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Map;
 
 /**
- * A scatter series
+ * Represents string or double literals data source.
  */
-@ApiModel(description = "A scatter series")
-public class ScatterSeries extends XYSeries {
-  @SerializedName(value = "dataPoints", alternate = { "DataPoints" })
-  private List<ScatterChartDataPoint> dataPoints = null;
+@ApiModel(description = "Represents string or double literals data source.")
+public class Literals extends DataSource {
 
-
-  public ScatterSeries() {
+  public Literals() {
     super();
-    setDataPointType(DataPointTypeEnum.SCATTER);
-  }
-
-  public ScatterSeries dataPoints(List<ScatterChartDataPoint> dataPoints) {
-    this.dataPoints = dataPoints;
-    return this;
-  }
-
-  public ScatterSeries addDataPointsItem(ScatterChartDataPoint dataPointsItem) {
-    if (this.dataPoints == null) {
-      this.dataPoints = new ArrayList<ScatterChartDataPoint>();
-    }
-    this.dataPoints.add(dataPointsItem);
-    return this;
-  }
-
-   /**
-   * Gets or sets the values.
-   * @return dataPoints
-  **/
-  @ApiModelProperty(value = "Gets or sets the values.")
-  public List<ScatterChartDataPoint> getDataPoints() {
-    return dataPoints;
-  }
-
-  public void setDataPoints(List<ScatterChartDataPoint> dataPoints) {
-    this.dataPoints = dataPoints;
+    setType(TypeEnum.LITERALS);
   }
 
 
@@ -98,22 +61,21 @@ public class ScatterSeries extends XYSeries {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ScatterSeries scatterSeries = (ScatterSeries) o;
-    return true && Objects.equals(this.dataPoints, scatterSeries.dataPoints) && super.equals(o);
+    Literals literals = (Literals) o;
+    return true && super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(dataPoints, super.hashCode());
+    return Objects.hash(super.hashCode());
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ScatterSeries {\n");
+    sb.append("class Literals {\n");
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
-    sb.append("    dataPoints: ").append(toIndentedString(dataPoints)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -134,6 +96,6 @@ public class ScatterSeries extends XYSeries {
   private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
 
   static {
-      typeDeterminers.put("DataPointType", DataPointTypeEnum.SCATTER);
+      typeDeterminers.put("Type", TypeEnum.LITERALS);
   }
 }

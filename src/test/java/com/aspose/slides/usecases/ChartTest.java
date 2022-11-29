@@ -53,7 +53,7 @@ public class ChartTest extends ApiTest {
     }
 
     @Test
-    public void chartCreateTest() throws ApiException, IOException {
+    public void chartCreateAutoDataSourceTest() throws ApiException, IOException {
         initialize(null, null, null, null);
         Chart dto = new Chart();
         dto.setChartType(Chart.ChartTypeEnum.CLUSTEREDCOLUMN);
@@ -86,6 +86,167 @@ public class ChartTest extends ApiTest {
         series1.setDataPoints(dataPoints1);
         seriesList.add(series1);
         OneValueSeries series2 = new OneValueSeries();
+        series2.setName("Series2");
+        List<OneValueChartDataPoint> dataPoints2 = new ArrayList<OneValueChartDataPoint>();
+        OneValueChartDataPoint dataPoint21 = new OneValueChartDataPoint();
+        dataPoint21.setValue(55.0);
+        dataPoints2.add(dataPoint21);
+        OneValueChartDataPoint dataPoint22 = new OneValueChartDataPoint();
+        dataPoint22.setValue(35.0);
+        dataPoints2.add(dataPoint22);
+        OneValueChartDataPoint dataPoint23 = new OneValueChartDataPoint();
+        dataPoint23.setValue(90.0);
+        dataPoints2.add(dataPoint23);
+        series2.setDataPoints(dataPoints2);
+        seriesList.add(series2);
+        dto.setSeries(seriesList);
+        Chart chart = (Chart)api.createShape(c_fileName, c_slideIndex, dto, null, null, c_password,
+                c_folderName, null, null);
+        assertNotNull(chart);
+        assertEquals(2, chart.getSeries().size());
+        assertEquals(3, chart.getCategories().size());
+    }
+
+    @Test
+    public void chartCreateWorkbookTest() throws ApiException, IOException {
+        initialize(null, null, null, null);
+        Chart dto = new Chart();
+        dto.setChartType(Chart.ChartTypeEnum.CLUSTEREDCOLUMN);
+        dto.setWidth(400.0);
+        dto.setHeight(300.0);
+
+        Workbook dataSourceForCategories = new Workbook();
+        dataSourceForCategories.setWorksheetIndex(0);
+        dataSourceForCategories.setColumnIndex(0);
+        dataSourceForCategories.setRowIndex(1);
+        dto.setDataSourceForCategories(dataSourceForCategories);
+
+        ChartCategory category1 = new ChartCategory();
+        category1.setValue("Category1");
+        ChartCategory category2 = new ChartCategory();
+        category2.setValue("Category2");
+        ChartCategory category3 = new ChartCategory();
+        category3.setValue("Category3");
+        List<ChartCategory> categories = new ArrayList<ChartCategory>();
+        categories.add(category1);
+        categories.add(category2);
+        categories.add(category3);
+        dto.setCategories(categories);
+        List<Series> seriesList = new ArrayList<Series>();
+
+        OneValueSeries series1 = new OneValueSeries();
+        Workbook dataSourceForSeries1Name = new Workbook();
+        dataSourceForSeries1Name.setWorksheetIndex(0);
+        dataSourceForSeries1Name.setColumnIndex(1);
+        dataSourceForSeries1Name.setRowIndex(0);
+        series1.setDataSourceForSeriesName(dataSourceForSeries1Name);
+
+        Workbook dataSourceForSeries1Values = new Workbook();
+        dataSourceForSeries1Values.setWorksheetIndex(0);
+        dataSourceForSeries1Values.setColumnIndex(1);
+        dataSourceForSeries1Values.setRowIndex(1);
+        series1.setDataSourceForSeriesName(dataSourceForSeries1Values);
+
+        series1.setName("Series1");
+        List<OneValueChartDataPoint> dataPoints1 = new ArrayList<OneValueChartDataPoint>();
+        OneValueChartDataPoint dataPoint11 = new OneValueChartDataPoint();
+        dataPoint11.setValue(40.0);
+        dataPoints1.add(dataPoint11);
+        OneValueChartDataPoint dataPoint12 = new OneValueChartDataPoint();
+        dataPoint12.setValue(50.0);
+        dataPoints1.add(dataPoint12);
+        OneValueChartDataPoint dataPoint13 = new OneValueChartDataPoint();
+        dataPoint13.setValue(70.0);
+        dataPoints1.add(dataPoint13);
+        series1.setDataPoints(dataPoints1);
+        seriesList.add(series1);
+
+        OneValueSeries series2 = new OneValueSeries();
+        Workbook dataSourceForSeries2Name = new Workbook();
+        dataSourceForSeries2Name.setWorksheetIndex(0);
+        dataSourceForSeries2Name.setColumnIndex(2);
+        dataSourceForSeries2Name.setRowIndex(0);
+        series2.setDataSourceForSeriesName(dataSourceForSeries2Name);
+
+        Workbook dataSourceForSeries2Values = new Workbook();
+        dataSourceForSeries2Values.setWorksheetIndex(0);
+        dataSourceForSeries2Values.setColumnIndex(2);
+        dataSourceForSeries2Values.setRowIndex(1);
+        series2.setDataSourceForSeriesName(dataSourceForSeries2Values);
+
+        series2.setName("Series2");
+        List<OneValueChartDataPoint> dataPoints2 = new ArrayList<OneValueChartDataPoint>();
+        OneValueChartDataPoint dataPoint21 = new OneValueChartDataPoint();
+        dataPoint21.setValue(55.0);
+        dataPoints2.add(dataPoint21);
+        OneValueChartDataPoint dataPoint22 = new OneValueChartDataPoint();
+        dataPoint22.setValue(35.0);
+        dataPoints2.add(dataPoint22);
+        OneValueChartDataPoint dataPoint23 = new OneValueChartDataPoint();
+        dataPoint23.setValue(90.0);
+        dataPoints2.add(dataPoint23);
+        series2.setDataPoints(dataPoints2);
+        seriesList.add(series2);
+        dto.setSeries(seriesList);
+        Chart chart = (Chart)api.createShape(c_fileName, c_slideIndex, dto, null, null, c_password,
+                c_folderName, null, null);
+        assertNotNull(chart);
+        assertEquals(2, chart.getSeries().size());
+        assertEquals(3, chart.getCategories().size());
+    }
+
+    @Test
+    public void chartCreateLiteralsTest() throws ApiException, IOException {
+        initialize(null, null, null, null);
+        Chart dto = new Chart();
+        dto.setChartType(Chart.ChartTypeEnum.CLUSTEREDCOLUMN);
+        dto.setWidth(400.0);
+        dto.setHeight(300.0);
+
+        Literals dataSourceForCategories = new Literals();
+        dto.setDataSourceForCategories(dataSourceForCategories);
+
+        ChartCategory category1 = new ChartCategory();
+        category1.setValue("Category1");
+        ChartCategory category2 = new ChartCategory();
+        category2.setValue("Category2");
+        ChartCategory category3 = new ChartCategory();
+        category3.setValue("Category3");
+        List<ChartCategory> categories = new ArrayList<ChartCategory>();
+        categories.add(category1);
+        categories.add(category2);
+        categories.add(category3);
+        dto.setCategories(categories);
+        List<Series> seriesList = new ArrayList<Series>();
+
+        OneValueSeries series1 = new OneValueSeries();
+        Literals dataSourceForSeries1Name = new Literals();
+        series1.setDataSourceForSeriesName(dataSourceForSeries1Name);
+
+        Literals dataSourceForSeries1Values = new Literals();
+        series1.setDataSourceForSeriesName(dataSourceForSeries1Values);
+
+        series1.setName("Series1");
+        List<OneValueChartDataPoint> dataPoints1 = new ArrayList<OneValueChartDataPoint>();
+        OneValueChartDataPoint dataPoint11 = new OneValueChartDataPoint();
+        dataPoint11.setValue(40.0);
+        dataPoints1.add(dataPoint11);
+        OneValueChartDataPoint dataPoint12 = new OneValueChartDataPoint();
+        dataPoint12.setValue(50.0);
+        dataPoints1.add(dataPoint12);
+        OneValueChartDataPoint dataPoint13 = new OneValueChartDataPoint();
+        dataPoint13.setValue(70.0);
+        dataPoints1.add(dataPoint13);
+        series1.setDataPoints(dataPoints1);
+        seriesList.add(series1);
+
+        OneValueSeries series2 = new OneValueSeries();
+        Literals dataSourceForSeries2Name = new Literals();
+        series2.setDataSourceForSeriesName(dataSourceForSeries2Name);
+
+        Literals dataSourceForSeries2Values = new Literals();
+        series2.setDataSourceForSeriesName(dataSourceForSeries2Values);
+
         series2.setName("Series2");
         List<OneValueChartDataPoint> dataPoints2 = new ArrayList<OneValueChartDataPoint>();
         OneValueChartDataPoint dataPoint21 = new OneValueChartDataPoint();
@@ -583,6 +744,68 @@ public class ChartTest extends ApiTest {
         assertEquals(dataPoint.getFillFormat().getType(), FillFormat.TypeEnum.SOLID);
         assertEquals(dataPoint.getLineFormat().getFillFormat().getType(), FillFormat.TypeEnum.SOLID);
         assertNotNull(dataPoint.getEffectFormat().getBlur());
+    }
+
+    @Test
+    public void chartFormulasTest() throws ApiException, IOException {
+        initialize(null, null, null, null);
+        Chart dto = new Chart();
+        dto.setChartType(Chart.ChartTypeEnum.CLUSTEREDCOLUMN);
+        dto.setWidth(400.0);
+        dto.setHeight(300.0);
+
+        Workbook dataSourceForCategories = new Workbook();
+        dataSourceForCategories.setWorksheetIndex(0);
+        dataSourceForCategories.setColumnIndex(0);
+        dataSourceForCategories.setRowIndex(1);
+        dto.setDataSourceForCategories(dataSourceForCategories);
+
+        ChartCategory category1 = new ChartCategory();
+        category1.setValue("Category1");
+        ChartCategory category2 = new ChartCategory();
+        category2.setValue("Category2");
+        ChartCategory category3 = new ChartCategory();
+        category3.setValue("Category3");
+        List<ChartCategory> categories = new ArrayList<ChartCategory>();
+        categories.add(category1);
+        categories.add(category2);
+        categories.add(category3);
+        dto.setCategories(categories);
+        List<Series> seriesList = new ArrayList<Series>();
+
+        OneValueSeries series1 = new OneValueSeries();
+        Workbook dataSourceForSeries1Name = new Workbook();
+        dataSourceForSeries1Name.setWorksheetIndex(0);
+        dataSourceForSeries1Name.setColumnIndex(1);
+        dataSourceForSeries1Name.setRowIndex(0);
+        series1.setDataSourceForSeriesName(dataSourceForSeries1Name);
+
+        Workbook dataSourceForSeries1Values = new Workbook();
+        dataSourceForSeries1Values.setWorksheetIndex(0);
+        dataSourceForSeries1Values.setColumnIndex(1);
+        dataSourceForSeries1Values.setRowIndex(1);
+        series1.setDataSourceForSeriesName(dataSourceForSeries1Values);
+
+        series1.setName("Series1");
+        List<OneValueChartDataPoint> dataPoints1 = new ArrayList<OneValueChartDataPoint>();
+        OneValueChartDataPoint dataPoint11 = new OneValueChartDataPoint();
+        dataPoint11.setValue(40.0);
+        dataPoints1.add(dataPoint11);
+        OneValueChartDataPoint dataPoint12 = new OneValueChartDataPoint();
+        dataPoint12.setValue(50.0);
+        dataPoints1.add(dataPoint12);
+        OneValueChartDataPoint dataPoint13 = new OneValueChartDataPoint();
+        dataPoint13.setValue(0.0);
+        dataPoint13.setValueFormula("SUM(B2:B3)");
+        dataPoints1.add(dataPoint13);
+        series1.setDataPoints(dataPoints1);
+        seriesList.add(series1);
+
+        dto.setSeries(seriesList);
+        Chart chart = (Chart) api.createShape(c_fileName, c_slideIndex, dto, null, null, c_password,
+                c_folderName, null, null);
+
+        assertEquals(90.0, ((OneValueSeries)chart.getSeries().get(0)).getDataPoints().get(2).getValue().doubleValue(), 0);
     }
 
     private static final String c_color = "#77CEF9";

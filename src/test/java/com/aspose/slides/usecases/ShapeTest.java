@@ -261,12 +261,16 @@ public class ShapeTest extends ApiTest {
         assertTrue(shape instanceof SmartArt);
     }
 
-    @Test //See ChartTests for non-empty chart examples
+    @Test
     public void chartEmptyTest() throws ApiException, IOException {
         initialize(null, null, null, null);
-        ShapeBase shape = api.createShape(c_fileName, c_slideIndex, new Chart(), null, null,
+        try {
+            //Cannot create a chart without series
+            ShapeBase shape = api.createShape(c_fileName, c_slideIndex, new Chart(), null, null,
                 c_password, c_folderName, null, null);
-        assertTrue(shape instanceof Chart);
+        } catch (Exception ex) {
+            assertTrue(ex instanceof ApiException);
+        }
     }
 
     @Test

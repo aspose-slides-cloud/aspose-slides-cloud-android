@@ -180,6 +180,12 @@ public class SvgExportOptions extends ExportOptions {
   @SerializedName(value = "externalFontsHandling", alternate = { "ExternalFontsHandling" })
   private ExternalFontsHandlingEnum externalFontsHandling;
 
+  @SerializedName(value = "useFrameSize", alternate = { "UseFrameSize" })
+  private Boolean useFrameSize;
+
+  @SerializedName(value = "useFrameRotation", alternate = { "UseFrameRotation" })
+  private Boolean useFrameRotation;
+
 
   public SvgExportOptions() {
     super();
@@ -348,6 +354,42 @@ public class SvgExportOptions extends ExportOptions {
     this.externalFontsHandling = externalFontsHandling;
   }
 
+  public SvgExportOptions useFrameSize(Boolean useFrameSize) {
+    this.useFrameSize = useFrameSize;
+    return this;
+  }
+
+   /**
+   * Determines whether the text frame will be included in a rendering area or not.
+   * @return useFrameSize
+  **/
+  @ApiModelProperty(value = "Determines whether the text frame will be included in a rendering area or not.")
+  public Boolean isUseFrameSize() {
+    return useFrameSize;
+  }
+
+  public void setUseFrameSize(Boolean useFrameSize) {
+    this.useFrameSize = useFrameSize;
+  }
+
+  public SvgExportOptions useFrameRotation(Boolean useFrameRotation) {
+    this.useFrameRotation = useFrameRotation;
+    return this;
+  }
+
+   /**
+   * Determines whether to perform the specified rotation of the shape when rendering or not.
+   * @return useFrameRotation
+  **/
+  @ApiModelProperty(value = "Determines whether to perform the specified rotation of the shape when rendering or not.")
+  public Boolean isUseFrameRotation() {
+    return useFrameRotation;
+  }
+
+  public void setUseFrameRotation(Boolean useFrameRotation) {
+    this.useFrameRotation = useFrameRotation;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -358,12 +400,12 @@ public class SvgExportOptions extends ExportOptions {
       return false;
     }
     SvgExportOptions svgExportOptions = (SvgExportOptions) o;
-    return true && Objects.equals(this.vectorizeText, svgExportOptions.vectorizeText) && Objects.equals(this.metafileRasterizationDpi, svgExportOptions.metafileRasterizationDpi) && Objects.equals(this.disable3DText, svgExportOptions.disable3DText) && Objects.equals(this.disableGradientSplit, svgExportOptions.disableGradientSplit) && Objects.equals(this.disableLineEndCropping, svgExportOptions.disableLineEndCropping) && Objects.equals(this.jpegQuality, svgExportOptions.jpegQuality) && Objects.equals(this.picturesCompression, svgExportOptions.picturesCompression) && Objects.equals(this.deletePicturesCroppedAreas, svgExportOptions.deletePicturesCroppedAreas) && Objects.equals(this.externalFontsHandling, svgExportOptions.externalFontsHandling) && super.equals(o);
+    return true && Objects.equals(this.vectorizeText, svgExportOptions.vectorizeText) && Objects.equals(this.metafileRasterizationDpi, svgExportOptions.metafileRasterizationDpi) && Objects.equals(this.disable3DText, svgExportOptions.disable3DText) && Objects.equals(this.disableGradientSplit, svgExportOptions.disableGradientSplit) && Objects.equals(this.disableLineEndCropping, svgExportOptions.disableLineEndCropping) && Objects.equals(this.jpegQuality, svgExportOptions.jpegQuality) && Objects.equals(this.picturesCompression, svgExportOptions.picturesCompression) && Objects.equals(this.deletePicturesCroppedAreas, svgExportOptions.deletePicturesCroppedAreas) && Objects.equals(this.externalFontsHandling, svgExportOptions.externalFontsHandling) && Objects.equals(this.useFrameSize, svgExportOptions.useFrameSize) && Objects.equals(this.useFrameRotation, svgExportOptions.useFrameRotation) && super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(vectorizeText, metafileRasterizationDpi, disable3DText, disableGradientSplit, disableLineEndCropping, jpegQuality, picturesCompression, deletePicturesCroppedAreas, externalFontsHandling, super.hashCode());
+    return Objects.hash(vectorizeText, metafileRasterizationDpi, disable3DText, disableGradientSplit, disableLineEndCropping, jpegQuality, picturesCompression, deletePicturesCroppedAreas, externalFontsHandling, useFrameSize, useFrameRotation, super.hashCode());
   }
 
 
@@ -381,6 +423,8 @@ public class SvgExportOptions extends ExportOptions {
     sb.append("    picturesCompression: ").append(toIndentedString(picturesCompression)).append("\n");
     sb.append("    deletePicturesCroppedAreas: ").append(toIndentedString(deletePicturesCroppedAreas)).append("\n");
     sb.append("    externalFontsHandling: ").append(toIndentedString(externalFontsHandling)).append("\n");
+    sb.append("    useFrameSize: ").append(toIndentedString(useFrameSize)).append("\n");
+    sb.append("    useFrameRotation: ").append(toIndentedString(useFrameRotation)).append("\n");
     sb.append("}");
     return sb.toString();
   }

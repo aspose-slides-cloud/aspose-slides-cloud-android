@@ -122,6 +122,17 @@ public class Configuration {
         timeout = value;
     }
     
+    @SerializedName("AllowInsecureRequests")
+    private Boolean allowInsecureRequests = false;
+
+    public Boolean getAllowInsecureRequests() {
+        return allowInsecureRequests;
+    }
+
+    public void setAllowInsecureRequests(Boolean value) {
+        allowInsecureRequests = value;
+    }
+    
     private Map<String, String> customHeaders = new HashMap<String, String>();
 
     public Map<String, String> getCustomHeaders() {

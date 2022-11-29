@@ -29,6 +29,7 @@ package com.aspose.slides.model;
 
 import java.util.Objects;
 import com.aspose.slides.model.BubbleChartDataPoint;
+import com.aspose.slides.model.DataSource;
 import com.aspose.slides.model.EffectFormat;
 import com.aspose.slides.model.FillFormat;
 import com.aspose.slides.model.LineFormat;
@@ -58,6 +59,9 @@ public class BubbleSeries extends XYSeries {
 
   @SerializedName(value = "numberFormatOfBubbleSizes", alternate = { "NumberFormatOfBubbleSizes" })
   private String numberFormatOfBubbleSizes;
+
+  @SerializedName(value = "dataSourceForBubbleSizeValues", alternate = { "DataSourceForBubbleSizeValues" })
+  private DataSource dataSourceForBubbleSizeValues;
 
 
   public BubbleSeries() {
@@ -109,6 +113,24 @@ public class BubbleSeries extends XYSeries {
     this.numberFormatOfBubbleSizes = numberFormatOfBubbleSizes;
   }
 
+  public BubbleSeries dataSourceForBubbleSizeValues(DataSource dataSourceForBubbleSizeValues) {
+    this.dataSourceForBubbleSizeValues = dataSourceForBubbleSizeValues;
+    return this;
+  }
+
+   /**
+   * Data source type for Bubble size values.
+   * @return dataSourceForBubbleSizeValues
+  **/
+  @ApiModelProperty(value = "Data source type for Bubble size values.")
+  public DataSource getDataSourceForBubbleSizeValues() {
+    return dataSourceForBubbleSizeValues;
+  }
+
+  public void setDataSourceForBubbleSizeValues(DataSource dataSourceForBubbleSizeValues) {
+    this.dataSourceForBubbleSizeValues = dataSourceForBubbleSizeValues;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -119,12 +141,12 @@ public class BubbleSeries extends XYSeries {
       return false;
     }
     BubbleSeries bubbleSeries = (BubbleSeries) o;
-    return true && Objects.equals(this.dataPoints, bubbleSeries.dataPoints) && Objects.equals(this.numberFormatOfBubbleSizes, bubbleSeries.numberFormatOfBubbleSizes) && super.equals(o);
+    return true && Objects.equals(this.dataPoints, bubbleSeries.dataPoints) && Objects.equals(this.numberFormatOfBubbleSizes, bubbleSeries.numberFormatOfBubbleSizes) && Objects.equals(this.dataSourceForBubbleSizeValues, bubbleSeries.dataSourceForBubbleSizeValues) && super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(dataPoints, numberFormatOfBubbleSizes, super.hashCode());
+    return Objects.hash(dataPoints, numberFormatOfBubbleSizes, dataSourceForBubbleSizeValues, super.hashCode());
   }
 
 
@@ -135,6 +157,7 @@ public class BubbleSeries extends XYSeries {
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    dataPoints: ").append(toIndentedString(dataPoints)).append("\n");
     sb.append("    numberFormatOfBubbleSizes: ").append(toIndentedString(numberFormatOfBubbleSizes)).append("\n");
+    sb.append("    dataSourceForBubbleSizeValues: ").append(toIndentedString(dataSourceForBubbleSizeValues)).append("\n");
     sb.append("}");
     return sb.toString();
   }

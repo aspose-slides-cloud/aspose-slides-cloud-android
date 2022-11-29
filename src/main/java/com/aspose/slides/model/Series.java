@@ -28,6 +28,7 @@
 package com.aspose.slides.model;
 
 import java.util.Objects;
+import com.aspose.slides.model.DataSource;
 import com.aspose.slides.model.EffectFormat;
 import com.aspose.slides.model.FillFormat;
 import com.aspose.slides.model.LineFormat;
@@ -262,6 +263,9 @@ public class Series {
   @SerializedName(value = "name", alternate = { "Name" })
   private String name;
 
+  @SerializedName(value = "dataSourceForSeriesName", alternate = { "DataSourceForSeriesName" })
+  private DataSource dataSourceForSeriesName;
+
   @SerializedName(value = "isColorVaried", alternate = { "IsColorVaried" })
   private Boolean isColorVaried;
 
@@ -386,6 +390,24 @@ public class Series {
 
   public void setName(String name) {
     this.name = name;
+  }
+
+  public Series dataSourceForSeriesName(DataSource dataSourceForSeriesName) {
+    this.dataSourceForSeriesName = dataSourceForSeriesName;
+    return this;
+  }
+
+   /**
+   * Series name data source.
+   * @return dataSourceForSeriesName
+  **/
+  @ApiModelProperty(value = "Series name data source.")
+  public DataSource getDataSourceForSeriesName() {
+    return dataSourceForSeriesName;
+  }
+
+  public void setDataSourceForSeriesName(DataSource dataSourceForSeriesName) {
+    this.dataSourceForSeriesName = dataSourceForSeriesName;
   }
 
   public Series isColorVaried(Boolean isColorVaried) {
@@ -609,12 +631,12 @@ public class Series {
       return false;
     }
     Series series = (Series) o;
-    return true && Objects.equals(this.type, series.type) && Objects.equals(this.name, series.name) && Objects.equals(this.isColorVaried, series.isColorVaried) && Objects.equals(this.invertedSolidFillColor, series.invertedSolidFillColor) && Objects.equals(this.smooth, series.smooth) && Objects.equals(this.plotOnSecondAxis, series.plotOnSecondAxis) && Objects.equals(this.order, series.order) && Objects.equals(this.invertIfNegative, series.invertIfNegative) && Objects.equals(this.explosion, series.explosion) && Objects.equals(this.marker, series.marker) && Objects.equals(this.fillFormat, series.fillFormat) && Objects.equals(this.effectFormat, series.effectFormat) && Objects.equals(this.lineFormat, series.lineFormat) && Objects.equals(this.dataPointType, series.dataPointType);
+    return true && Objects.equals(this.type, series.type) && Objects.equals(this.name, series.name) && Objects.equals(this.dataSourceForSeriesName, series.dataSourceForSeriesName) && Objects.equals(this.isColorVaried, series.isColorVaried) && Objects.equals(this.invertedSolidFillColor, series.invertedSolidFillColor) && Objects.equals(this.smooth, series.smooth) && Objects.equals(this.plotOnSecondAxis, series.plotOnSecondAxis) && Objects.equals(this.order, series.order) && Objects.equals(this.invertIfNegative, series.invertIfNegative) && Objects.equals(this.explosion, series.explosion) && Objects.equals(this.marker, series.marker) && Objects.equals(this.fillFormat, series.fillFormat) && Objects.equals(this.effectFormat, series.effectFormat) && Objects.equals(this.lineFormat, series.lineFormat) && Objects.equals(this.dataPointType, series.dataPointType);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, name, isColorVaried, invertedSolidFillColor, smooth, plotOnSecondAxis, order, invertIfNegative, explosion, marker, fillFormat, effectFormat, lineFormat, dataPointType);
+    return Objects.hash(type, name, dataSourceForSeriesName, isColorVaried, invertedSolidFillColor, smooth, plotOnSecondAxis, order, invertIfNegative, explosion, marker, fillFormat, effectFormat, lineFormat, dataPointType);
   }
 
 
@@ -625,6 +647,7 @@ public class Series {
     
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    dataSourceForSeriesName: ").append(toIndentedString(dataSourceForSeriesName)).append("\n");
     sb.append("    isColorVaried: ").append(toIndentedString(isColorVaried)).append("\n");
     sb.append("    invertedSolidFillColor: ").append(toIndentedString(invertedSolidFillColor)).append("\n");
     sb.append("    smooth: ").append(toIndentedString(smooth)).append("\n");

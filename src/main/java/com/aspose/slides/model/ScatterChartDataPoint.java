@@ -56,6 +56,12 @@ public class ScatterChartDataPoint extends DataPoint {
   @SerializedName(value = "yvalue", alternate = { "YValue" })
   private Double yvalue;
 
+  @SerializedName(value = "xvalueFormula", alternate = { "XValueFormula" })
+  private String xvalueFormula;
+
+  @SerializedName(value = "yvalueFormula", alternate = { "YValueFormula" })
+  private String yvalueFormula;
+
 
   public ScatterChartDataPoint() {
     super();
@@ -97,6 +103,42 @@ public class ScatterChartDataPoint extends DataPoint {
     this.yvalue = yvalue;
   }
 
+  public ScatterChartDataPoint xvalueFormula(String xvalueFormula) {
+    this.xvalueFormula = xvalueFormula;
+    return this;
+  }
+
+   /**
+   * Spreadsheet formula in A1-style.
+   * @return xvalueFormula
+  **/
+  @ApiModelProperty(value = "Spreadsheet formula in A1-style.")
+  public String getXvalueFormula() {
+    return xvalueFormula;
+  }
+
+  public void setXvalueFormula(String xvalueFormula) {
+    this.xvalueFormula = xvalueFormula;
+  }
+
+  public ScatterChartDataPoint yvalueFormula(String yvalueFormula) {
+    this.yvalueFormula = yvalueFormula;
+    return this;
+  }
+
+   /**
+   * Spreadsheet formula in A1-style.
+   * @return yvalueFormula
+  **/
+  @ApiModelProperty(value = "Spreadsheet formula in A1-style.")
+  public String getYvalueFormula() {
+    return yvalueFormula;
+  }
+
+  public void setYvalueFormula(String yvalueFormula) {
+    this.yvalueFormula = yvalueFormula;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -107,12 +149,12 @@ public class ScatterChartDataPoint extends DataPoint {
       return false;
     }
     ScatterChartDataPoint scatterChartDataPoint = (ScatterChartDataPoint) o;
-    return true && Objects.equals(this.xvalue, scatterChartDataPoint.xvalue) && Objects.equals(this.yvalue, scatterChartDataPoint.yvalue) && super.equals(o);
+    return true && Objects.equals(this.xvalue, scatterChartDataPoint.xvalue) && Objects.equals(this.yvalue, scatterChartDataPoint.yvalue) && Objects.equals(this.xvalueFormula, scatterChartDataPoint.xvalueFormula) && Objects.equals(this.yvalueFormula, scatterChartDataPoint.yvalueFormula) && super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(xvalue, yvalue, super.hashCode());
+    return Objects.hash(xvalue, yvalue, xvalueFormula, yvalueFormula, super.hashCode());
   }
 
 
@@ -123,6 +165,8 @@ public class ScatterChartDataPoint extends DataPoint {
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    xvalue: ").append(toIndentedString(xvalue)).append("\n");
     sb.append("    yvalue: ").append(toIndentedString(yvalue)).append("\n");
+    sb.append("    xvalueFormula: ").append(toIndentedString(xvalueFormula)).append("\n");
+    sb.append("    yvalueFormula: ").append(toIndentedString(yvalueFormula)).append("\n");
     sb.append("}");
     return sb.toString();
   }

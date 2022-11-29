@@ -28,13 +28,6 @@
 package com.aspose.slides.model;
 
 import java.util.Objects;
-import com.aspose.slides.model.DataSource;
-import com.aspose.slides.model.EffectFormat;
-import com.aspose.slides.model.FillFormat;
-import com.aspose.slides.model.LineFormat;
-import com.aspose.slides.model.ScatterChartDataPoint;
-import com.aspose.slides.model.SeriesMarker;
-import com.aspose.slides.model.XYSeries;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -44,49 +37,80 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Map;
 
 /**
- * A scatter series
+ * Data source for chart values.
  */
-@ApiModel(description = "A scatter series")
-public class ScatterSeries extends XYSeries {
-  @SerializedName(value = "dataPoints", alternate = { "DataPoints" })
-  private List<ScatterChartDataPoint> dataPoints = null;
+@ApiModel(description = "Data source for chart values.")
+public class DataSource {
+  /**
+   * Gets or Sets type
+   */
+  @JsonAdapter(TypeEnum.Adapter.class)
+  public enum TypeEnum {
+    WORKBOOK("Workbook"),
+    
+    LITERALS("Literals");
 
+    private String value;
 
-  public ScatterSeries() {
-    super();
-    setDataPointType(DataPointTypeEnum.SCATTER);
-  }
-
-  public ScatterSeries dataPoints(List<ScatterChartDataPoint> dataPoints) {
-    this.dataPoints = dataPoints;
-    return this;
-  }
-
-  public ScatterSeries addDataPointsItem(ScatterChartDataPoint dataPointsItem) {
-    if (this.dataPoints == null) {
-      this.dataPoints = new ArrayList<ScatterChartDataPoint>();
+    TypeEnum(String value) {
+      this.value = value;
     }
-    this.dataPoints.add(dataPointsItem);
-    return this;
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static TypeEnum fromValue(String text) {
+      for (TypeEnum b : TypeEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<TypeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final TypeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public TypeEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return TypeEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
+  @SerializedName(value = "type", alternate = { "Type" })
+  private TypeEnum type;
+
+
+  public DataSource() {
+    super();
   }
 
    /**
-   * Gets or sets the values.
-   * @return dataPoints
+   * Get type
+   * @return type
   **/
-  @ApiModelProperty(value = "Gets or sets the values.")
-  public List<ScatterChartDataPoint> getDataPoints() {
-    return dataPoints;
+  @ApiModelProperty(value = "")
+  public TypeEnum getType() {
+    return type;
   }
 
-  public void setDataPoints(List<ScatterChartDataPoint> dataPoints) {
-    this.dataPoints = dataPoints;
+  protected void setType(TypeEnum type) {
+    this.type = type;
   }
 
 
@@ -98,22 +122,22 @@ public class ScatterSeries extends XYSeries {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ScatterSeries scatterSeries = (ScatterSeries) o;
-    return true && Objects.equals(this.dataPoints, scatterSeries.dataPoints) && super.equals(o);
+    DataSource dataSource = (DataSource) o;
+    return true && Objects.equals(this.type, dataSource.type);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(dataPoints, super.hashCode());
+    return Objects.hash(type);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ScatterSeries {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
-    sb.append("    dataPoints: ").append(toIndentedString(dataPoints)).append("\n");
+    sb.append("class DataSource {\n");
+    
+    sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -133,7 +157,4 @@ public class ScatterSeries extends XYSeries {
 
   private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
 
-  static {
-      typeDeterminers.put("DataPointType", DataPointTypeEnum.SCATTER);
-  }
 }

@@ -23959,7 +23959,7 @@ public class SlidesApi {
     }
 
     /**
-     * Read presentation document properties.
+     * Read presentation view properties.
      * 
      * @param name Document name. (required)
      * @param password Document password. 
@@ -23979,7 +23979,7 @@ public class SlidesApi {
     }
 
     /**
-     * Read presentation document properties.
+     * Read presentation view properties.
      * 
      * @param name Document name. (required)
      * @param password Document password. 
@@ -23995,7 +23995,7 @@ public class SlidesApi {
     }
 
     /**
-     * Read presentation document properties. (asynchronously)
+     * Read presentation view properties. (asynchronously)
      * 
      * @param name Document name. (required)
      * @param password Document password. 
@@ -32167,7 +32167,7 @@ public class SlidesApi {
     }
 
     /**
-     * Update presentation document properties.
+     * Update presentation view properties.
      * 
      * @param name Document name. (required)
      * @param dto The view properties data. (required)
@@ -32188,7 +32188,7 @@ public class SlidesApi {
     }
 
     /**
-     * Update presentation document properties.
+     * Update presentation view properties.
      * 
      * @param name Document name. (required)
      * @param dto The view properties data. (required)
@@ -32205,7 +32205,7 @@ public class SlidesApi {
     }
 
     /**
-     * Update presentation document properties. (asynchronously)
+     * Update presentation view properties. (asynchronously)
      * 
      * @param name Document name. (required)
      * @param dto The view properties data. (required)

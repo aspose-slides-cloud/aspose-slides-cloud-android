@@ -177,6 +177,7 @@ public class ApiTest {
             else if (rule.getAction() == FileAction.Delete)
             {
                 api.deleteFile(path, null, null);
+                api.deleteFolder(path, null, null);
             }
         }
     }

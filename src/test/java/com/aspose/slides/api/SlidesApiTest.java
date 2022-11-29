@@ -34212,7 +34212,7 @@ public class SlidesApiTest extends ApiTest {
     }
     
     /**
-     * Read presentation document properties.
+     * Read presentation view properties.
      *
      * 
      *
@@ -34232,7 +34232,7 @@ public class SlidesApiTest extends ApiTest {
     }
 
     /**
-     * Read presentation document properties.
+     * Read presentation view properties.
      *
      * 
      *
@@ -34259,7 +34259,7 @@ public class SlidesApiTest extends ApiTest {
         }
     }
     /**
-     * Read presentation document properties.
+     * Read presentation view properties.
      *
      * 
      *
@@ -34286,7 +34286,7 @@ public class SlidesApiTest extends ApiTest {
         }
     }
     /**
-     * Read presentation document properties.
+     * Read presentation view properties.
      *
      * 
      *
@@ -34313,7 +34313,7 @@ public class SlidesApiTest extends ApiTest {
         }
     }
     /**
-     * Read presentation document properties.
+     * Read presentation view properties.
      *
      * 
      *
@@ -46496,7 +46496,7 @@ public class SlidesApiTest extends ApiTest {
     }
     
     /**
-     * Update presentation document properties.
+     * Update presentation view properties.
      *
      * 
      *
@@ -46517,7 +46517,7 @@ public class SlidesApiTest extends ApiTest {
     }
 
     /**
-     * Update presentation document properties.
+     * Update presentation view properties.
      *
      * 
      *
@@ -46545,7 +46545,7 @@ public class SlidesApiTest extends ApiTest {
         }
     }
     /**
-     * Update presentation document properties.
+     * Update presentation view properties.
      *
      * 
      *
@@ -46573,7 +46573,7 @@ public class SlidesApiTest extends ApiTest {
         }
     }
     /**
-     * Update presentation document properties.
+     * Update presentation view properties.
      *
      * 
      *
@@ -46601,7 +46601,7 @@ public class SlidesApiTest extends ApiTest {
         }
     }
     /**
-     * Update presentation document properties.
+     * Update presentation view properties.
      *
      * 
      *
@@ -46629,7 +46629,7 @@ public class SlidesApiTest extends ApiTest {
         }
     }
     /**
-     * Update presentation document properties.
+     * Update presentation view properties.
      *
      * 
      *

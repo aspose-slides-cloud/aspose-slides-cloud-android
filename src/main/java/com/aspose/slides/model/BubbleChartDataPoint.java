@@ -53,6 +53,9 @@ public class BubbleChartDataPoint extends ScatterChartDataPoint {
   @SerializedName(value = "bubbleSize", alternate = { "BubbleSize" })
   private Double bubbleSize;
 
+  @SerializedName(value = "bubbleSizeFormula", alternate = { "BubbleSizeFormula" })
+  private String bubbleSizeFormula;
+
 
   public BubbleChartDataPoint() {
     super();
@@ -76,6 +79,24 @@ public class BubbleChartDataPoint extends ScatterChartDataPoint {
     this.bubbleSize = bubbleSize;
   }
 
+  public BubbleChartDataPoint bubbleSizeFormula(String bubbleSizeFormula) {
+    this.bubbleSizeFormula = bubbleSizeFormula;
+    return this;
+  }
+
+   /**
+   * Spreadsheet formula in A1-style.
+   * @return bubbleSizeFormula
+  **/
+  @ApiModelProperty(value = "Spreadsheet formula in A1-style.")
+  public String getBubbleSizeFormula() {
+    return bubbleSizeFormula;
+  }
+
+  public void setBubbleSizeFormula(String bubbleSizeFormula) {
+    this.bubbleSizeFormula = bubbleSizeFormula;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -86,12 +107,12 @@ public class BubbleChartDataPoint extends ScatterChartDataPoint {
       return false;
     }
     BubbleChartDataPoint bubbleChartDataPoint = (BubbleChartDataPoint) o;
-    return true && Objects.equals(this.bubbleSize, bubbleChartDataPoint.bubbleSize) && super.equals(o);
+    return true && Objects.equals(this.bubbleSize, bubbleChartDataPoint.bubbleSize) && Objects.equals(this.bubbleSizeFormula, bubbleChartDataPoint.bubbleSizeFormula) && super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(bubbleSize, super.hashCode());
+    return Objects.hash(bubbleSize, bubbleSizeFormula, super.hashCode());
   }
 
 
@@ -101,6 +122,7 @@ public class BubbleChartDataPoint extends ScatterChartDataPoint {
     sb.append("class BubbleChartDataPoint {\n");
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    bubbleSize: ").append(toIndentedString(bubbleSize)).append("\n");
+    sb.append("    bubbleSizeFormula: ").append(toIndentedString(bubbleSizeFormula)).append("\n");
     sb.append("}");
     return sb.toString();
   }

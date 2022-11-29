@@ -94,6 +94,7 @@ public class ApiClient {
             new JWTAuth(configuration),
             configuration.getDebug(),
             configuration.getTimeout(),
+            configuration.getAllowInsecureRequests(),
             configuration.getCustomHeaders());
     }
 
@@ -101,13 +102,13 @@ public class ApiClient {
      * Constructor for ApiClient
      */
     public ApiClient(String baseUrl, Authentication authentication) {
-        this(baseUrl, authentication, false, 0, null);
+        this(baseUrl, authentication, false, 0, false, null);
     }
 
     /*
      * Constructor for ApiClient
      */
-    private ApiClient(String baseUrl, Authentication authentication, Boolean debugging, Integer timeout, Map<String, String> customHeaders) {
+    private ApiClient(String baseUrl, Authentication authentication, Boolean debugging, Integer timeout, Boolean allowInsecureRequests, Map<String, String> customHeaders) {
         this.baseUrl = baseUrl;
         this.authentication = authentication;
         httpClient = new OkHttpClient();
@@ -118,7 +119,7 @@ public class ApiClient {
         httpClient.setReadTimeout(1, TimeUnit.MINUTES);
         httpClient.setWriteTimeout(1, TimeUnit.MINUTES);
         setDebugging(debugging);
-        verifyingSsl = true;
+        setVerifyingSsl(!allowInsecureRequests);
         json = new JSON();
 
         addDefaultHeader("x-aspose-client", "java sdk v" + getVersion());

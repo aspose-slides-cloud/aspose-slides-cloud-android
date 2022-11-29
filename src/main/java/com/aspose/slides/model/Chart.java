@@ -33,6 +33,7 @@ import com.aspose.slides.model.ChartCategory;
 import com.aspose.slides.model.ChartSeriesGroup;
 import com.aspose.slides.model.ChartTitle;
 import com.aspose.slides.model.ChartWall;
+import com.aspose.slides.model.DataSource;
 import com.aspose.slides.model.EffectFormat;
 import com.aspose.slides.model.FillFormat;
 import com.aspose.slides.model.Hyperlink;
@@ -281,6 +282,9 @@ public class Chart extends ShapeBase {
   @SerializedName(value = "categories", alternate = { "Categories" })
   private List<ChartCategory> categories = null;
 
+  @SerializedName(value = "dataSourceForCategories", alternate = { "DataSourceForCategories" })
+  private DataSource dataSourceForCategories;
+
   @SerializedName(value = "title", alternate = { "Title" })
   private ChartTitle title;
 
@@ -400,6 +404,24 @@ public class Chart extends ShapeBase {
 
   public void setCategories(List<ChartCategory> categories) {
     this.categories = categories;
+  }
+
+  public Chart dataSourceForCategories(DataSource dataSourceForCategories) {
+    this.dataSourceForCategories = dataSourceForCategories;
+    return this;
+  }
+
+   /**
+   * Data source type for categories.
+   * @return dataSourceForCategories
+  **/
+  @ApiModelProperty(value = "Data source type for categories.")
+  public DataSource getDataSourceForCategories() {
+    return dataSourceForCategories;
+  }
+
+  public void setDataSourceForCategories(DataSource dataSourceForCategories) {
+    this.dataSourceForCategories = dataSourceForCategories;
   }
 
   public Chart title(ChartTitle title) {
@@ -582,12 +604,12 @@ public class Chart extends ShapeBase {
       return false;
     }
     Chart chart = (Chart) o;
-    return true && Objects.equals(this.chartType, chart.chartType) && Objects.equals(this.showDataLabelsOverMaximum, chart.showDataLabelsOverMaximum) && Objects.equals(this.series, chart.series) && Objects.equals(this.categories, chart.categories) && Objects.equals(this.title, chart.title) && Objects.equals(this.backWall, chart.backWall) && Objects.equals(this.sideWall, chart.sideWall) && Objects.equals(this.floor, chart.floor) && Objects.equals(this.legend, chart.legend) && Objects.equals(this.axes, chart.axes) && Objects.equals(this.plotArea, chart.plotArea) && Objects.equals(this.hasRoundedCorners, chart.hasRoundedCorners) && Objects.equals(this.seriesGroups, chart.seriesGroups) && super.equals(o);
+    return true && Objects.equals(this.chartType, chart.chartType) && Objects.equals(this.showDataLabelsOverMaximum, chart.showDataLabelsOverMaximum) && Objects.equals(this.series, chart.series) && Objects.equals(this.categories, chart.categories) && Objects.equals(this.dataSourceForCategories, chart.dataSourceForCategories) && Objects.equals(this.title, chart.title) && Objects.equals(this.backWall, chart.backWall) && Objects.equals(this.sideWall, chart.sideWall) && Objects.equals(this.floor, chart.floor) && Objects.equals(this.legend, chart.legend) && Objects.equals(this.axes, chart.axes) && Objects.equals(this.plotArea, chart.plotArea) && Objects.equals(this.hasRoundedCorners, chart.hasRoundedCorners) && Objects.equals(this.seriesGroups, chart.seriesGroups) && super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(chartType, showDataLabelsOverMaximum, series, categories, title, backWall, sideWall, floor, legend, axes, plotArea, hasRoundedCorners, seriesGroups, super.hashCode());
+    return Objects.hash(chartType, showDataLabelsOverMaximum, series, categories, dataSourceForCategories, title, backWall, sideWall, floor, legend, axes, plotArea, hasRoundedCorners, seriesGroups, super.hashCode());
   }
 
 
@@ -600,6 +622,7 @@ public class Chart extends ShapeBase {
     sb.append("    showDataLabelsOverMaximum: ").append(toIndentedString(showDataLabelsOverMaximum)).append("\n");
     sb.append("    series: ").append(toIndentedString(series)).append("\n");
     sb.append("    categories: ").append(toIndentedString(categories)).append("\n");
+    sb.append("    dataSourceForCategories: ").append(toIndentedString(dataSourceForCategories)).append("\n");
     sb.append("    title: ").append(toIndentedString(title)).append("\n");
     sb.append("    backWall: ").append(toIndentedString(backWall)).append("\n");
     sb.append("    sideWall: ").append(toIndentedString(sideWall)).append("\n");

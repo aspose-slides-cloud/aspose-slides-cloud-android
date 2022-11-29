@@ -53,6 +53,9 @@ public class OneValueChartDataPoint extends DataPoint {
   @SerializedName(value = "value", alternate = { "Value" })
   private Double value;
 
+  @SerializedName(value = "valueFormula", alternate = { "ValueFormula" })
+  private String valueFormula;
+
   @SerializedName(value = "setAsTotal", alternate = { "SetAsTotal" })
   private Boolean setAsTotal;
 
@@ -80,6 +83,24 @@ public class OneValueChartDataPoint extends DataPoint {
 
   public void setValue(Double value) {
     this.value = value;
+  }
+
+  public OneValueChartDataPoint valueFormula(String valueFormula) {
+    this.valueFormula = valueFormula;
+    return this;
+  }
+
+   /**
+   * Spreadsheet formula in A1-style.
+   * @return valueFormula
+  **/
+  @ApiModelProperty(value = "Spreadsheet formula in A1-style.")
+  public String getValueFormula() {
+    return valueFormula;
+  }
+
+  public void setValueFormula(String valueFormula) {
+    this.valueFormula = valueFormula;
   }
 
   public OneValueChartDataPoint setAsTotal(Boolean setAsTotal) {
@@ -128,12 +149,12 @@ public class OneValueChartDataPoint extends DataPoint {
       return false;
     }
     OneValueChartDataPoint oneValueChartDataPoint = (OneValueChartDataPoint) o;
-    return true && Objects.equals(this.value, oneValueChartDataPoint.value) && Objects.equals(this.setAsTotal, oneValueChartDataPoint.setAsTotal) && Objects.equals(this.invertIfNegative, oneValueChartDataPoint.invertIfNegative) && super.equals(o);
+    return true && Objects.equals(this.value, oneValueChartDataPoint.value) && Objects.equals(this.valueFormula, oneValueChartDataPoint.valueFormula) && Objects.equals(this.setAsTotal, oneValueChartDataPoint.setAsTotal) && Objects.equals(this.invertIfNegative, oneValueChartDataPoint.invertIfNegative) && super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(value, setAsTotal, invertIfNegative, super.hashCode());
+    return Objects.hash(value, valueFormula, setAsTotal, invertIfNegative, super.hashCode());
   }
 
 
@@ -143,6 +164,7 @@ public class OneValueChartDataPoint extends DataPoint {
     sb.append("class OneValueChartDataPoint {\n");
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    value: ").append(toIndentedString(value)).append("\n");
+    sb.append("    valueFormula: ").append(toIndentedString(valueFormula)).append("\n");
     sb.append("    setAsTotal: ").append(toIndentedString(setAsTotal)).append("\n");
     sb.append("    invertIfNegative: ").append(toIndentedString(invertIfNegative)).append("\n");
     sb.append("}");
