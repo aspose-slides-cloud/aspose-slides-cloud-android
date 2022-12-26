@@ -59,6 +59,7 @@ public class BubbleChartDataPoint extends ScatterChartDataPoint {
 
   public BubbleChartDataPoint() {
     super();
+    setType(TypeEnum.BUBBLE);
   }
 
   public BubbleChartDataPoint bubbleSize(Double bubbleSize) {
@@ -70,7 +71,7 @@ public class BubbleChartDataPoint extends ScatterChartDataPoint {
    * Bubble size.
    * @return bubbleSize
   **/
-  @ApiModelProperty(required = true, value = "Bubble size.")
+  @ApiModelProperty(value = "Bubble size.")
   public Double getBubbleSize() {
     return bubbleSize;
   }
@@ -142,4 +143,7 @@ public class BubbleChartDataPoint extends ScatterChartDataPoint {
 
   private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
 
+  static {
+      typeDeterminers.put("Type", TypeEnum.BUBBLE);
+  }
 }

@@ -116,9 +116,9 @@ public class ChartTest extends ApiTest {
         dto.setHeight(300.0);
 
         Workbook dataSourceForCategories = new Workbook();
-        dataSourceForCategories.setWorksheetIndex(0);
-        dataSourceForCategories.setColumnIndex(0);
-        dataSourceForCategories.setRowIndex(1);
+        dataSourceForCategories.setWorksheetIndex(1);
+        dataSourceForCategories.setColumnIndex(1);
+        dataSourceForCategories.setRowIndex(2);
         dto.setDataSourceForCategories(dataSourceForCategories);
 
         ChartCategory category1 = new ChartCategory();
@@ -136,15 +136,15 @@ public class ChartTest extends ApiTest {
 
         OneValueSeries series1 = new OneValueSeries();
         Workbook dataSourceForSeries1Name = new Workbook();
-        dataSourceForSeries1Name.setWorksheetIndex(0);
-        dataSourceForSeries1Name.setColumnIndex(1);
-        dataSourceForSeries1Name.setRowIndex(0);
+        dataSourceForSeries1Name.setWorksheetIndex(1);
+        dataSourceForSeries1Name.setColumnIndex(2);
+        dataSourceForSeries1Name.setRowIndex(1);
         series1.setDataSourceForSeriesName(dataSourceForSeries1Name);
 
         Workbook dataSourceForSeries1Values = new Workbook();
-        dataSourceForSeries1Values.setWorksheetIndex(0);
-        dataSourceForSeries1Values.setColumnIndex(1);
-        dataSourceForSeries1Values.setRowIndex(1);
+        dataSourceForSeries1Values.setWorksheetIndex(1);
+        dataSourceForSeries1Values.setColumnIndex(2);
+        dataSourceForSeries1Values.setRowIndex(2);
         series1.setDataSourceForSeriesName(dataSourceForSeries1Values);
 
         series1.setName("Series1");
@@ -163,15 +163,15 @@ public class ChartTest extends ApiTest {
 
         OneValueSeries series2 = new OneValueSeries();
         Workbook dataSourceForSeries2Name = new Workbook();
-        dataSourceForSeries2Name.setWorksheetIndex(0);
-        dataSourceForSeries2Name.setColumnIndex(2);
-        dataSourceForSeries2Name.setRowIndex(0);
+        dataSourceForSeries2Name.setWorksheetIndex(1);
+        dataSourceForSeries2Name.setColumnIndex(3);
+        dataSourceForSeries2Name.setRowIndex(1);
         series2.setDataSourceForSeriesName(dataSourceForSeries2Name);
 
         Workbook dataSourceForSeries2Values = new Workbook();
-        dataSourceForSeries2Values.setWorksheetIndex(0);
-        dataSourceForSeries2Values.setColumnIndex(2);
-        dataSourceForSeries2Values.setRowIndex(1);
+        dataSourceForSeries2Values.setWorksheetIndex(1);
+        dataSourceForSeries2Values.setColumnIndex(3);
+        dataSourceForSeries2Values.setRowIndex(2);
         series2.setDataSourceForSeriesName(dataSourceForSeries2Values);
 
         series2.setName("Series2");
@@ -755,9 +755,9 @@ public class ChartTest extends ApiTest {
         dto.setHeight(300.0);
 
         Workbook dataSourceForCategories = new Workbook();
-        dataSourceForCategories.setWorksheetIndex(0);
-        dataSourceForCategories.setColumnIndex(0);
-        dataSourceForCategories.setRowIndex(1);
+        dataSourceForCategories.setWorksheetIndex(1);
+        dataSourceForCategories.setColumnIndex(1);
+        dataSourceForCategories.setRowIndex(2);
         dto.setDataSourceForCategories(dataSourceForCategories);
 
         ChartCategory category1 = new ChartCategory();
@@ -775,15 +775,15 @@ public class ChartTest extends ApiTest {
 
         OneValueSeries series1 = new OneValueSeries();
         Workbook dataSourceForSeries1Name = new Workbook();
-        dataSourceForSeries1Name.setWorksheetIndex(0);
-        dataSourceForSeries1Name.setColumnIndex(1);
-        dataSourceForSeries1Name.setRowIndex(0);
+        dataSourceForSeries1Name.setWorksheetIndex(1);
+        dataSourceForSeries1Name.setColumnIndex(2);
+        dataSourceForSeries1Name.setRowIndex(1);
         series1.setDataSourceForSeriesName(dataSourceForSeries1Name);
 
         Workbook dataSourceForSeries1Values = new Workbook();
-        dataSourceForSeries1Values.setWorksheetIndex(0);
-        dataSourceForSeries1Values.setColumnIndex(1);
-        dataSourceForSeries1Values.setRowIndex(1);
+        dataSourceForSeries1Values.setWorksheetIndex(1);
+        dataSourceForSeries1Values.setColumnIndex(2);
+        dataSourceForSeries1Values.setRowIndex(2);
         series1.setDataSourceForSeriesName(dataSourceForSeries1Values);
 
         series1.setName("Series1");
@@ -795,7 +795,6 @@ public class ChartTest extends ApiTest {
         dataPoint12.setValue(50.0);
         dataPoints1.add(dataPoint12);
         OneValueChartDataPoint dataPoint13 = new OneValueChartDataPoint();
-        dataPoint13.setValue(0.0);
         dataPoint13.setValueFormula("SUM(B2:B3)");
         dataPoints1.add(dataPoint13);
         series1.setDataPoints(dataPoints1);

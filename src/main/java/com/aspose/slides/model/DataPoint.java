@@ -61,6 +61,58 @@ public class DataPoint {
   @SerializedName(value = "lineFormat", alternate = { "LineFormat" })
   private LineFormat lineFormat;
 
+  /**
+   * Gets or Sets type
+   */
+  @JsonAdapter(TypeEnum.Adapter.class)
+  public enum TypeEnum {
+    ONEVALUE("OneValue"),
+    
+    SCATTER("Scatter"),
+    
+    BUBBLE("Bubble");
+
+    private String value;
+
+    TypeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static TypeEnum fromValue(String text) {
+      for (TypeEnum b : TypeEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<TypeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final TypeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public TypeEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return TypeEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
+  @SerializedName(value = "type", alternate = { "Type" })
+  private TypeEnum type;
+
 
   public DataPoint() {
     super();
@@ -138,6 +190,19 @@ public class DataPoint {
     this.lineFormat = lineFormat;
   }
 
+   /**
+   * Get type
+   * @return type
+  **/
+  @ApiModelProperty(value = "")
+  public TypeEnum getType() {
+    return type;
+  }
+
+  protected void setType(TypeEnum type) {
+    this.type = type;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -148,12 +213,12 @@ public class DataPoint {
       return false;
     }
     DataPoint dataPoint = (DataPoint) o;
-    return true && Objects.equals(this.fillFormat, dataPoint.fillFormat) && Objects.equals(this.effectFormat, dataPoint.effectFormat) && Objects.equals(this.threeDFormat, dataPoint.threeDFormat) && Objects.equals(this.lineFormat, dataPoint.lineFormat);
+    return true && Objects.equals(this.fillFormat, dataPoint.fillFormat) && Objects.equals(this.effectFormat, dataPoint.effectFormat) && Objects.equals(this.threeDFormat, dataPoint.threeDFormat) && Objects.equals(this.lineFormat, dataPoint.lineFormat) && Objects.equals(this.type, dataPoint.type);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(fillFormat, effectFormat, threeDFormat, lineFormat);
+    return Objects.hash(fillFormat, effectFormat, threeDFormat, lineFormat, type);
   }
 
 
@@ -166,6 +231,7 @@ public class DataPoint {
     sb.append("    effectFormat: ").append(toIndentedString(effectFormat)).append("\n");
     sb.append("    threeDFormat: ").append(toIndentedString(threeDFormat)).append("\n");
     sb.append("    lineFormat: ").append(toIndentedString(lineFormat)).append("\n");
+    sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("}");
     return sb.toString();
   }

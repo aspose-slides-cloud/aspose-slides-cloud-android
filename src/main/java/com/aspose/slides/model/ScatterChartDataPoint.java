@@ -65,6 +65,7 @@ public class ScatterChartDataPoint extends DataPoint {
 
   public ScatterChartDataPoint() {
     super();
+    setType(TypeEnum.SCATTER);
   }
 
   public ScatterChartDataPoint xvalue(Double xvalue) {
@@ -76,7 +77,7 @@ public class ScatterChartDataPoint extends DataPoint {
    * X-value
    * @return xvalue
   **/
-  @ApiModelProperty(required = true, value = "X-value")
+  @ApiModelProperty(value = "X-value")
   public Double getXvalue() {
     return xvalue;
   }
@@ -94,7 +95,7 @@ public class ScatterChartDataPoint extends DataPoint {
    * Y-value
    * @return yvalue
   **/
-  @ApiModelProperty(required = true, value = "Y-value")
+  @ApiModelProperty(value = "Y-value")
   public Double getYvalue() {
     return yvalue;
   }
@@ -186,4 +187,7 @@ public class ScatterChartDataPoint extends DataPoint {
 
   private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
 
+  static {
+      typeDeterminers.put("Type", TypeEnum.SCATTER);
+  }
 }

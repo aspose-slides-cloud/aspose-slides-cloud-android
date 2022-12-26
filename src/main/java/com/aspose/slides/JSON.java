@@ -100,6 +100,7 @@ public class JSON {
         registerType(com.aspose.slides.model.ImageTransformEffect.class, com.aspose.slides.model.BlurImageEffect.class, "type", com.aspose.slides.model.ImageTransformEffect.TypeEnum.BLUR.getValue(), typeAdapters, valueMap);
         registerType(com.aspose.slides.model.MathElement.class, com.aspose.slides.model.BorderBoxElement.class, "type", com.aspose.slides.model.MathElement.TypeEnum.BORDERBOX.getValue(), typeAdapters, valueMap);
         registerType(com.aspose.slides.model.MathElement.class, com.aspose.slides.model.BoxElement.class, "type", com.aspose.slides.model.MathElement.TypeEnum.BOX.getValue(), typeAdapters, valueMap);
+        registerType(com.aspose.slides.model.ScatterChartDataPoint.class, com.aspose.slides.model.BubbleChartDataPoint.class, "type", com.aspose.slides.model.ScatterChartDataPoint.TypeEnum.BUBBLE.getValue(), typeAdapters, valueMap);
         registerType(com.aspose.slides.model.XYSeries.class, com.aspose.slides.model.BubbleSeries.class, "dataPointType", com.aspose.slides.model.XYSeries.DataPointTypeEnum.BUBBLE.getValue(), typeAdapters, valueMap);
         registerType(com.aspose.slides.model.ShapeBase.class, com.aspose.slides.model.Chart.class, "type", com.aspose.slides.model.ShapeBase.TypeEnum.CHART.getValue(), typeAdapters, valueMap);
         registerType(com.aspose.slides.model.PathSegment.class, com.aspose.slides.model.ClosePathSegment.class, "type", com.aspose.slides.model.PathSegment.TypeEnum.CLOSE.getValue(), typeAdapters, valueMap);
@@ -129,6 +130,7 @@ public class JSON {
         registerType(com.aspose.slides.model.MathElement.class, com.aspose.slides.model.NaryOperatorElement.class, "type", com.aspose.slides.model.MathElement.TypeEnum.NARYOPERATOR.getValue(), typeAdapters, valueMap);
         registerType(com.aspose.slides.model.FillFormat.class, com.aspose.slides.model.NoFill.class, "type", com.aspose.slides.model.FillFormat.TypeEnum.NOFILL.getValue(), typeAdapters, valueMap);
         registerType(com.aspose.slides.model.ShapeBase.class, com.aspose.slides.model.OleObjectFrame.class, "type", com.aspose.slides.model.ShapeBase.TypeEnum.OLEOBJECTFRAME.getValue(), typeAdapters, valueMap);
+        registerType(com.aspose.slides.model.DataPoint.class, com.aspose.slides.model.OneValueChartDataPoint.class, "type", com.aspose.slides.model.DataPoint.TypeEnum.ONEVALUE.getValue(), typeAdapters, valueMap);
         registerType(com.aspose.slides.model.Series.class, com.aspose.slides.model.OneValueSeries.class, "dataPointType", com.aspose.slides.model.Series.DataPointTypeEnum.ONEVALUE.getValue(), typeAdapters, valueMap);
         registerType(com.aspose.slides.model.InputFile.class, com.aspose.slides.model.PathInputFile.class, "type", com.aspose.slides.model.InputFile.TypeEnum.PATH.getValue(), typeAdapters, valueMap);
         registerType(com.aspose.slides.model.OutputFile.class, com.aspose.slides.model.PathOutputFile.class, "type", com.aspose.slides.model.OutputFile.TypeEnum.PATH.getValue(), typeAdapters, valueMap);
@@ -148,6 +150,7 @@ public class JSON {
         registerType(com.aspose.slides.model.Task.class, com.aspose.slides.model.Save.class, "type", com.aspose.slides.model.Task.TypeEnum.SAVE.getValue(), typeAdapters, valueMap);
         registerType(com.aspose.slides.model.Task.class, com.aspose.slides.model.SaveShape.class, "type", com.aspose.slides.model.Task.TypeEnum.SAVESHAPE.getValue(), typeAdapters, valueMap);
         registerType(com.aspose.slides.model.Task.class, com.aspose.slides.model.SaveSlide.class, "type", com.aspose.slides.model.Task.TypeEnum.SAVESLIDE.getValue(), typeAdapters, valueMap);
+        registerType(com.aspose.slides.model.DataPoint.class, com.aspose.slides.model.ScatterChartDataPoint.class, "type", com.aspose.slides.model.DataPoint.TypeEnum.SCATTER.getValue(), typeAdapters, valueMap);
         registerType(com.aspose.slides.model.XYSeries.class, com.aspose.slides.model.ScatterSeries.class, "dataPointType", com.aspose.slides.model.XYSeries.DataPointTypeEnum.SCATTER.getValue(), typeAdapters, valueMap);
         registerType(com.aspose.slides.model.ZoomObject.class, com.aspose.slides.model.SectionZoomFrame.class, "type", com.aspose.slides.model.ZoomObject.TypeEnum.SECTIONZOOMFRAME.getValue(), typeAdapters, valueMap);
         registerType(com.aspose.slides.model.GeometryShape.class, com.aspose.slides.model.Shape.class, "type", com.aspose.slides.model.GeometryShape.TypeEnum.SHAPE.getValue(), typeAdapters, valueMap);
@@ -187,6 +190,8 @@ public class JSON {
             if (!typeAdapters.containsKey(subclassName)) {
                 typeAdapters.put(subclassName, RuntimeTypeAdapterFactory.of(subclass, propertyName));
                 valueMap.put(subclassName, new HashMap<String, String>());
+            }
+            if (!valueMap.get(subclassName).containsKey(propertyValue)) {
                 valueMap.get(subclassName).put(propertyValue, null);
                 typeAdapters.get(subclassName).registerSubtype(subclass, propertyValue);
             }

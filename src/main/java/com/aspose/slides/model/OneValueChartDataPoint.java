@@ -65,6 +65,7 @@ public class OneValueChartDataPoint extends DataPoint {
 
   public OneValueChartDataPoint() {
     super();
+    setType(TypeEnum.ONEVALUE);
   }
 
   public OneValueChartDataPoint value(Double value) {
@@ -76,7 +77,7 @@ public class OneValueChartDataPoint extends DataPoint {
    * Value.
    * @return value
   **/
-  @ApiModelProperty(required = true, value = "Value.")
+  @ApiModelProperty(value = "Value.")
   public Double getValue() {
     return value;
   }
@@ -186,4 +187,7 @@ public class OneValueChartDataPoint extends DataPoint {
 
   private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
 
+  static {
+      typeDeterminers.put("Type", TypeEnum.ONEVALUE);
+  }
 }
