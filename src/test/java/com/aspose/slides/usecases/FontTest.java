@@ -99,6 +99,32 @@ public class FontTest extends ApiTest {
     }
 
     @Test
+    public void fontEmbeddedCompressTest() throws ApiException, IOException {
+        initialize(null, null, null, null);
+        api.copyFile(tempFolderName + "/" + c_fileName, c_folderName + "/" + c_fileName, null, null, null);
+        FontsData response = api.setEmbeddedFont(c_fileName, c_fontName, false, c_password, c_folderName, null, null);
+        assertEquals(true, response.getList().get(2).isIsEmbedded());
+        //In a real world example, you would rather get the same result by calling SetEmbeddedFont with onlyUsed = true
+        api.compressEmbeddedFonts(c_fileName, c_password, c_folderName, null);
+    }
+
+    @Test
+    public void fontEmbeddedCompressOnlineTest() throws ApiException, IOException {
+        initialize(null, null, null, null);
+        byte[] file = Files.readAllBytes(Paths.get(testDataFolderName + "/" + c_fileName));
+        File responseEmbedded = api.setEmbeddedFontOnline(file, c_fontName, false, c_password, null);
+        assertTrue(file.length < responseEmbedded.length());
+
+        FileInputStream fl = new FileInputStream(responseEmbedded);
+        byte[] arr = new byte[(int)responseEmbedded.length()];
+        fl.read(arr);
+        fl.close();
+        //In a real world example, you would rather get the same result by calling SetEmbeddedFontOnline with onlyUsed = true
+        File responseCompressed = api.compressEmbeddedFontsOnline(arr, c_password);
+        assertTrue(responseCompressed.length() < responseEmbedded.length());
+    }
+
+    @Test
     public void fontEmbeddedDeleteTest() throws ApiException, IOException {
         initialize(null, null, null, null);
         api.copyFile(tempFolderName + "/" + c_fileName, c_folderName + "/" + c_fileName, null, null, null);

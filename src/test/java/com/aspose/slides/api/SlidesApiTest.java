@@ -792,6 +792,203 @@ public class SlidesApiTest extends ApiTest {
     }
     
     /**
+     * Compresses embedded fonts by removing unused characters.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void compressEmbeddedFontsTest() throws ApiException, Exception {
+        initialize("compressEmbeddedFonts", null, null, null);
+        ;
+        String valueName = (String)getTestValue("String", "compressEmbeddedFonts", "name");
+        String valuePassword = (String)getTestValue("String", "compressEmbeddedFonts", "password");
+        String valueFolder = (String)getTestValue("String", "compressEmbeddedFonts", "folder");
+        String valueStorage = (String)getTestValue("String", "compressEmbeddedFonts", "storage");
+        api.compressEmbeddedFonts(valueName, valuePassword, valueFolder, valueStorage);
+    }
+
+    /**
+     * Compresses embedded fonts by removing unused characters.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void compressEmbeddedFontsInvalidNameTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "compressEmbeddedFonts", "name");
+        String valuePassword = (String)getTestValue("String", "compressEmbeddedFonts", "password");
+        String valueFolder = (String)getTestValue("String", "compressEmbeddedFonts", "folder");
+        String valueStorage = (String)getTestValue("String", "compressEmbeddedFonts", "storage");
+        try {
+            valueName = (String)invalidizeTestValue("String", valueName, "compressEmbeddedFonts", "name");
+            initialize("compressEmbeddedFonts", "name", "String", valueName);
+            api.compressEmbeddedFonts(valueName, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "String", "name", "compressEmbeddedFonts", valueName);
+        }
+        if (needAssertResponse) {
+            assertResponse("String", "name", "compressEmbeddedFonts");
+        }
+    }
+    /**
+     * Compresses embedded fonts by removing unused characters.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void compressEmbeddedFontsInvalidPasswordTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "compressEmbeddedFonts", "name");
+        String valuePassword = (String)getTestValue("String", "compressEmbeddedFonts", "password");
+        String valueFolder = (String)getTestValue("String", "compressEmbeddedFonts", "folder");
+        String valueStorage = (String)getTestValue("String", "compressEmbeddedFonts", "storage");
+        try {
+            valuePassword = (String)invalidizeTestValue("String", valuePassword, "compressEmbeddedFonts", "password");
+            initialize("compressEmbeddedFonts", "password", "String", valuePassword);
+            api.compressEmbeddedFonts(valueName, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "String", "password", "compressEmbeddedFonts", valuePassword);
+        }
+        if (needAssertResponse) {
+            assertResponse("String", "password", "compressEmbeddedFonts");
+        }
+    }
+    /**
+     * Compresses embedded fonts by removing unused characters.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void compressEmbeddedFontsInvalidFolderTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "compressEmbeddedFonts", "name");
+        String valuePassword = (String)getTestValue("String", "compressEmbeddedFonts", "password");
+        String valueFolder = (String)getTestValue("String", "compressEmbeddedFonts", "folder");
+        String valueStorage = (String)getTestValue("String", "compressEmbeddedFonts", "storage");
+        try {
+            valueFolder = (String)invalidizeTestValue("String", valueFolder, "compressEmbeddedFonts", "folder");
+            initialize("compressEmbeddedFonts", "folder", "String", valueFolder);
+            api.compressEmbeddedFonts(valueName, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "String", "folder", "compressEmbeddedFonts", valueFolder);
+        }
+        if (needAssertResponse) {
+            assertResponse("String", "folder", "compressEmbeddedFonts");
+        }
+    }
+    /**
+     * Compresses embedded fonts by removing unused characters.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void compressEmbeddedFontsInvalidStorageTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        String valueName = (String)getTestValue("String", "compressEmbeddedFonts", "name");
+        String valuePassword = (String)getTestValue("String", "compressEmbeddedFonts", "password");
+        String valueFolder = (String)getTestValue("String", "compressEmbeddedFonts", "folder");
+        String valueStorage = (String)getTestValue("String", "compressEmbeddedFonts", "storage");
+        try {
+            valueStorage = (String)invalidizeTestValue("String", valueStorage, "compressEmbeddedFonts", "storage");
+            initialize("compressEmbeddedFonts", "storage", "String", valueStorage);
+            api.compressEmbeddedFonts(valueName, valuePassword, valueFolder, valueStorage);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "String", "storage", "compressEmbeddedFonts", valueStorage);
+        }
+        if (needAssertResponse) {
+            assertResponse("String", "storage", "compressEmbeddedFonts");
+        }
+    }
+    
+    /**
+     * Compresses embedded fonts by removing unused characters.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void compressEmbeddedFontsOnlineTest() throws ApiException, Exception {
+        initialize("compressEmbeddedFontsOnline", null, null, null);
+        File response = null;
+        byte[] valueDocument = (byte[])getTestValue("byte[]", "compressEmbeddedFontsOnline", "document");
+        String valuePassword = (String)getTestValue("String", "compressEmbeddedFontsOnline", "password");
+        response = api.compressEmbeddedFontsOnline(valueDocument, valuePassword);
+        assertTrue(response.isFile());
+    }
+
+    /**
+     * Compresses embedded fonts by removing unused characters.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void compressEmbeddedFontsOnlineInvalidDocumentTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        byte[] valueDocument = (byte[])getTestValue("byte[]", "compressEmbeddedFontsOnline", "document");
+        String valuePassword = (String)getTestValue("String", "compressEmbeddedFontsOnline", "password");
+        try {
+            valueDocument = (byte[])invalidizeTestValue("byte[]", valueDocument, "compressEmbeddedFontsOnline", "document");
+            initialize("compressEmbeddedFontsOnline", "document", "byte[]", valueDocument);
+            File response = api.compressEmbeddedFontsOnline(valueDocument, valuePassword);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "byte[]", "document", "compressEmbeddedFontsOnline", valueDocument);
+        }
+        if (needAssertResponse) {
+            assertResponse("byte[]", "document", "compressEmbeddedFontsOnline");
+        }
+    }
+    /**
+     * Compresses embedded fonts by removing unused characters.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void compressEmbeddedFontsOnlineInvalidPasswordTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        byte[] valueDocument = (byte[])getTestValue("byte[]", "compressEmbeddedFontsOnline", "document");
+        String valuePassword = (String)getTestValue("String", "compressEmbeddedFontsOnline", "password");
+        try {
+            valuePassword = (String)invalidizeTestValue("String", valuePassword, "compressEmbeddedFontsOnline", "password");
+            initialize("compressEmbeddedFontsOnline", "password", "String", valuePassword);
+            File response = api.compressEmbeddedFontsOnline(valueDocument, valuePassword);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "String", "password", "compressEmbeddedFontsOnline", valuePassword);
+        }
+        if (needAssertResponse) {
+            assertResponse("String", "password", "compressEmbeddedFontsOnline");
+        }
+    }
+    
+    /**
      * Convert presentation from request content to format specified.
      *
      * 

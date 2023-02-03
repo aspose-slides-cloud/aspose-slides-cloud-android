@@ -462,6 +462,256 @@ public class SlidesApi {
         return call;
     }
     /**
+     * Build call for compressEmbeddedFonts
+     * @param name Document name. (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call compressEmbeddedFontsCall(String name, String password, String folder, String storage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        // verify the required parameter 'name' is set
+        if (name == null) {
+            throw new ApiException("Missing the required parameter 'name' when calling compressEmbeddedFonts(Async)");
+        }
+        Object postBody = null;
+
+        // create path and map variables
+        String methodPath = "/slides/{name}/fonts/embedded/compress"
+            .replaceAll("\\{" + "name" + "\\}", apiClient.objectToString(name));
+
+        List<Pair> queryParams = new ArrayList<Pair>();
+        apiClient.addQueryParameter(queryParams, "folder", folder);
+        apiClient.addQueryParameter(queryParams, "storage", storage);
+
+        Map<String, String> headerParams = new HashMap<String, String>();
+        if (password != null)
+        headerParams.put("password", apiClient.parameterToString(password));
+
+        Map<String, Object> formParams = new LinkedHashMap<String, Object>();
+
+        final String[] accepts = {
+            "application/json"
+        };
+        final String accept = apiClient.selectHeaderAccept(accepts);
+        if (accept != null) headerParams.put("Accept", accept);
+
+        final String[] contentTypes = {
+            "application/json"
+        };
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
+        headerParams.put("Content-Type", contentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+        return apiClient.buildCall(methodPath, "POST", queryParams, postBody, headerParams, formParams, progressRequestListener);
+    }
+
+    /**
+     * Compresses embedded fonts by removing unused characters.
+     * 
+     * @param name Document name. (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public void compressEmbeddedFonts(String name, String password, String folder, String storage) throws ApiException {
+        try {
+            compressEmbeddedFontsWithHttpInfo(name, password, folder, storage);
+        } catch (NeedRepeatRequestException e) {
+            compressEmbeddedFontsWithHttpInfo(name, password, folder, storage);
+        }
+    }
+
+    /**
+     * Compresses embedded fonts by removing unused characters.
+     * 
+     * @param name Document name. (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @return ApiResponse&lt;Void&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<Void> compressEmbeddedFontsWithHttpInfo(String name, String password, String folder, String storage) throws ApiException {
+        com.squareup.okhttp.Call call = compressEmbeddedFontsCall(name, password, folder, storage, null, null);
+        return apiClient.execute(call);
+    }
+
+    /**
+     * Compresses embedded fonts by removing unused characters. (asynchronously)
+     * 
+     * @param name Document name. (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call compressEmbeddedFontsAsync(String name, String password, String folder, String storage, final ApiCallback<Void> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = compressEmbeddedFontsCall(name, password, folder, storage, progressListener, progressRequestListener);
+        apiClient.executeAsync(call, callback);
+        return call;
+    }
+    /**
+     * Build call for compressEmbeddedFontsOnline
+     * @param document Document data. (required)
+     * @param password Document password. 
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call compressEmbeddedFontsOnlineCall(byte[] document, String password, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        // verify the required parameter 'document' is set
+        if (document == null) {
+            throw new ApiException("Missing the required parameter 'document' when calling compressEmbeddedFontsOnline(Async)");
+        }
+        Object postBody = null;
+
+        // create path and map variables
+        String methodPath = "/slides/fonts/embedded/compress"
+            ;
+
+        List<Pair> queryParams = new ArrayList<Pair>();
+
+        Map<String, String> headerParams = new HashMap<String, String>();
+        if (password != null)
+        headerParams.put("password", apiClient.parameterToString(password));
+
+        Map<String, Object> formParams = new LinkedHashMap<String, Object>();
+        if (document != null)
+        formParams.put("document", document);
+
+        final String[] accepts = {
+            "multipart/form-data"
+        };
+        final String accept = apiClient.selectHeaderAccept(accepts);
+        if (accept != null) headerParams.put("Accept", accept);
+
+        final String[] contentTypes = {
+            "multipart/form-data"
+        };
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
+        headerParams.put("Content-Type", contentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+        return apiClient.buildCall(methodPath, "POST", queryParams, postBody, headerParams, formParams, progressRequestListener);
+    }
+
+    /**
+     * Compresses embedded fonts by removing unused characters.
+     * 
+     * @param document Document data. (required)
+     * @param password Document password. 
+     * @return File
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public File compressEmbeddedFontsOnline(byte[] document, String password) throws ApiException {
+        try {
+            ApiResponse<File> resp = compressEmbeddedFontsOnlineWithHttpInfo(document, password);
+            return resp.getData();
+        } catch (NeedRepeatRequestException e) {
+            ApiResponse<File> resp = compressEmbeddedFontsOnlineWithHttpInfo(document, password);
+            return resp.getData();
+        }
+    }
+
+    /**
+     * Compresses embedded fonts by removing unused characters.
+     * 
+     * @param document Document data. (required)
+     * @param password Document password. 
+     * @return ApiResponse&lt;File&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<File> compressEmbeddedFontsOnlineWithHttpInfo(byte[] document, String password) throws ApiException {
+        com.squareup.okhttp.Call call = compressEmbeddedFontsOnlineCall(document, password, null, null);
+        Type returnType = new TypeToken<File>(){}.getType();
+        return apiClient.execute(call, returnType);
+    }
+
+    /**
+     * Compresses embedded fonts by removing unused characters. (asynchronously)
+     * 
+     * @param document Document data. (required)
+     * @param password Document password. 
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call compressEmbeddedFontsOnlineAsync(byte[] document, String password, final ApiCallback<File> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = compressEmbeddedFontsOnlineCall(document, password, progressListener, progressRequestListener);
+        Type returnType = new TypeToken<File>(){}.getType();
+        apiClient.executeAsync(call, returnType, callback);
+        return call;
+    }
+    /**
      * Build call for convert
      * @param document Document data. (required)
      * @param format Export format. (required)
