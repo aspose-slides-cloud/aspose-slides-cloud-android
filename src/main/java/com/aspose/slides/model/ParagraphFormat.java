@@ -29,10 +29,7 @@ package com.aspose.slides.model;
 
 import java.util.Objects;
 import com.aspose.slides.model.FillFormat;
-import com.aspose.slides.model.Portion;
 import com.aspose.slides.model.PortionFormat;
-import com.aspose.slides.model.ResourceBase;
-import com.aspose.slides.model.ResourceUri;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -42,33 +39,16 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Map;
 
 /**
- * Represents paragraph resource
+ * Paragraph formatting properties.
  */
-@ApiModel(description = "Represents paragraph resource")
-public class Paragraph extends ResourceBase {
-  @SerializedName(value = "marginLeft", alternate = { "MarginLeft" })
-  private Double marginLeft;
-
-  @SerializedName(value = "marginRight", alternate = { "MarginRight" })
-  private Double marginRight;
-
-  @SerializedName(value = "spaceBefore", alternate = { "SpaceBefore" })
-  private Double spaceBefore;
-
-  @SerializedName(value = "spaceAfter", alternate = { "SpaceAfter" })
-  private Double spaceAfter;
-
-  @SerializedName(value = "spaceWithin", alternate = { "SpaceWithin" })
-  private Double spaceWithin;
-
-  @SerializedName(value = "indent", alternate = { "Indent" })
-  private Double indent;
+@ApiModel(description = "Paragraph formatting properties.")
+public class ParagraphFormat {
+  @SerializedName(value = "depth", alternate = { "Depth" })
+  private Integer depth;
 
   /**
    * Text alignment.
@@ -130,6 +110,21 @@ public class Paragraph extends ResourceBase {
   @SerializedName(value = "alignment", alternate = { "Alignment" })
   private AlignmentEnum alignment;
 
+  @SerializedName(value = "marginLeft", alternate = { "MarginLeft" })
+  private Double marginLeft;
+
+  @SerializedName(value = "marginRight", alternate = { "MarginRight" })
+  private Double marginRight;
+
+  @SerializedName(value = "spaceBefore", alternate = { "SpaceBefore" })
+  private Double spaceBefore;
+
+  @SerializedName(value = "spaceAfter", alternate = { "SpaceAfter" })
+  private Double spaceAfter;
+
+  @SerializedName(value = "spaceWithin", alternate = { "SpaceWithin" })
+  private Double spaceWithin;
+
   /**
    * Font alignment.
    */
@@ -188,17 +183,14 @@ public class Paragraph extends ResourceBase {
   @SerializedName(value = "fontAlignment", alternate = { "FontAlignment" })
   private FontAlignmentEnum fontAlignment;
 
-  @SerializedName(value = "defaultTabSize", alternate = { "DefaultTabSize" })
-  private Double defaultTabSize;
-
-  @SerializedName(value = "depth", alternate = { "Depth" })
-  private Integer depth;
+  @SerializedName(value = "indent", alternate = { "Indent" })
+  private Double indent;
 
   /**
-   * True if hanging punctuation is used with the paragraph.
+   * Determines whether the Right to Left writing is used in a paragraph. No inheritance applied.
    */
-  @JsonAdapter(HangingPunctuationEnum.Adapter.class)
-  public enum HangingPunctuationEnum {
+  @JsonAdapter(RightToLeftEnum.Adapter.class)
+  public enum RightToLeftEnum {
     FALSE("False"),
     
     TRUE("True"),
@@ -207,7 +199,7 @@ public class Paragraph extends ResourceBase {
 
     private String value;
 
-    HangingPunctuationEnum(String value) {
+    RightToLeftEnum(String value) {
       this.value = value;
     }
 
@@ -220,8 +212,8 @@ public class Paragraph extends ResourceBase {
       return String.valueOf(value);
     }
 
-    public static HangingPunctuationEnum fromValue(String text) {
-      for (HangingPunctuationEnum b : HangingPunctuationEnum.values()) {
+    public static RightToLeftEnum fromValue(String text) {
+      for (RightToLeftEnum b : RightToLeftEnum.values()) {
         if (String.valueOf(b.value).equals(text)) {
           return b;
         }
@@ -229,25 +221,25 @@ public class Paragraph extends ResourceBase {
       return null;
     }
 
-    public static class Adapter extends TypeAdapter<HangingPunctuationEnum> {
+    public static class Adapter extends TypeAdapter<RightToLeftEnum> {
       @Override
-      public void write(final JsonWriter jsonWriter, final HangingPunctuationEnum enumeration) throws IOException {
+      public void write(final JsonWriter jsonWriter, final RightToLeftEnum enumeration) throws IOException {
         jsonWriter.value(enumeration.getValue());
       }
 
       @Override
-      public HangingPunctuationEnum read(final JsonReader jsonReader) throws IOException {
+      public RightToLeftEnum read(final JsonReader jsonReader) throws IOException {
         String value = jsonReader.nextString();
-        return HangingPunctuationEnum.fromValue(String.valueOf(value));
+        return RightToLeftEnum.fromValue(String.valueOf(value));
       }
     }
   }
 
-  @SerializedName(value = "hangingPunctuation", alternate = { "HangingPunctuation" })
-  private HangingPunctuationEnum hangingPunctuation;
+  @SerializedName(value = "rightToLeft", alternate = { "RightToLeft" })
+  private RightToLeftEnum rightToLeft;
 
   /**
-   * True if East Asian line break is used with the paragraph.
+   * Determines whether the East Asian line break is used in a paragraph. No inheritance applied.
    */
   @JsonAdapter(EastAsianLineBreakEnum.Adapter.class)
   public enum EastAsianLineBreakEnum {
@@ -299,7 +291,7 @@ public class Paragraph extends ResourceBase {
   private EastAsianLineBreakEnum eastAsianLineBreak;
 
   /**
-   * True if Latin line break is used with the paragraph.
+   * Determines whether the Latin line break is used in a paragraph. No inheritance applied.
    */
   @JsonAdapter(LatinLineBreakEnum.Adapter.class)
   public enum LatinLineBreakEnum {
@@ -351,10 +343,10 @@ public class Paragraph extends ResourceBase {
   private LatinLineBreakEnum latinLineBreak;
 
   /**
-   * True if right to left direction is used with the paragraph.
+   * Determines whether the hanging punctuation is used in a paragraph. No inheritance applied.
    */
-  @JsonAdapter(RightToLeftEnum.Adapter.class)
-  public enum RightToLeftEnum {
+  @JsonAdapter(HangingPunctuationEnum.Adapter.class)
+  public enum HangingPunctuationEnum {
     FALSE("False"),
     
     TRUE("True"),
@@ -363,7 +355,7 @@ public class Paragraph extends ResourceBase {
 
     private String value;
 
-    RightToLeftEnum(String value) {
+    HangingPunctuationEnum(String value) {
       this.value = value;
     }
 
@@ -376,8 +368,8 @@ public class Paragraph extends ResourceBase {
       return String.valueOf(value);
     }
 
-    public static RightToLeftEnum fromValue(String text) {
-      for (RightToLeftEnum b : RightToLeftEnum.values()) {
+    public static HangingPunctuationEnum fromValue(String text) {
+      for (HangingPunctuationEnum b : HangingPunctuationEnum.values()) {
         if (String.valueOf(b.value).equals(text)) {
           return b;
         }
@@ -385,25 +377,25 @@ public class Paragraph extends ResourceBase {
       return null;
     }
 
-    public static class Adapter extends TypeAdapter<RightToLeftEnum> {
+    public static class Adapter extends TypeAdapter<HangingPunctuationEnum> {
       @Override
-      public void write(final JsonWriter jsonWriter, final RightToLeftEnum enumeration) throws IOException {
+      public void write(final JsonWriter jsonWriter, final HangingPunctuationEnum enumeration) throws IOException {
         jsonWriter.value(enumeration.getValue());
       }
 
       @Override
-      public RightToLeftEnum read(final JsonReader jsonReader) throws IOException {
+      public HangingPunctuationEnum read(final JsonReader jsonReader) throws IOException {
         String value = jsonReader.nextString();
-        return RightToLeftEnum.fromValue(String.valueOf(value));
+        return HangingPunctuationEnum.fromValue(String.valueOf(value));
       }
     }
   }
 
-  @SerializedName(value = "rightToLeft", alternate = { "RightToLeft" })
-  private RightToLeftEnum rightToLeft;
+  @SerializedName(value = "hangingPunctuation", alternate = { "HangingPunctuation" })
+  private HangingPunctuationEnum hangingPunctuation;
 
-  @SerializedName(value = "portionList", alternate = { "PortionList" })
-  private List<Portion> portionList = null;
+  @SerializedName(value = "defaultTabSize", alternate = { "DefaultTabSize" })
+  private Double defaultTabSize;
 
   @SerializedName(value = "defaultPortionFormat", alternate = { "DefaultPortionFormat" })
   private PortionFormat defaultPortionFormat;
@@ -607,173 +599,11 @@ public class Paragraph extends ResourceBase {
   private FillFormat bulletFillFormat;
 
 
-  public Paragraph() {
+  public ParagraphFormat() {
     super();
   }
 
-  public Paragraph marginLeft(Double marginLeft) {
-    this.marginLeft = marginLeft;
-    return this;
-  }
-
-   /**
-   * Left margin.
-   * @return marginLeft
-  **/
-  @ApiModelProperty(value = "Left margin.")
-  public Double getMarginLeft() {
-    return marginLeft;
-  }
-
-  public void setMarginLeft(Double marginLeft) {
-    this.marginLeft = marginLeft;
-  }
-
-  public Paragraph marginRight(Double marginRight) {
-    this.marginRight = marginRight;
-    return this;
-  }
-
-   /**
-   * Right margin.
-   * @return marginRight
-  **/
-  @ApiModelProperty(value = "Right margin.")
-  public Double getMarginRight() {
-    return marginRight;
-  }
-
-  public void setMarginRight(Double marginRight) {
-    this.marginRight = marginRight;
-  }
-
-  public Paragraph spaceBefore(Double spaceBefore) {
-    this.spaceBefore = spaceBefore;
-    return this;
-  }
-
-   /**
-   * Left spacing.
-   * @return spaceBefore
-  **/
-  @ApiModelProperty(value = "Left spacing.")
-  public Double getSpaceBefore() {
-    return spaceBefore;
-  }
-
-  public void setSpaceBefore(Double spaceBefore) {
-    this.spaceBefore = spaceBefore;
-  }
-
-  public Paragraph spaceAfter(Double spaceAfter) {
-    this.spaceAfter = spaceAfter;
-    return this;
-  }
-
-   /**
-   * Right spacing.
-   * @return spaceAfter
-  **/
-  @ApiModelProperty(value = "Right spacing.")
-  public Double getSpaceAfter() {
-    return spaceAfter;
-  }
-
-  public void setSpaceAfter(Double spaceAfter) {
-    this.spaceAfter = spaceAfter;
-  }
-
-  public Paragraph spaceWithin(Double spaceWithin) {
-    this.spaceWithin = spaceWithin;
-    return this;
-  }
-
-   /**
-   * Spacing between lines.
-   * @return spaceWithin
-  **/
-  @ApiModelProperty(value = "Spacing between lines.")
-  public Double getSpaceWithin() {
-    return spaceWithin;
-  }
-
-  public void setSpaceWithin(Double spaceWithin) {
-    this.spaceWithin = spaceWithin;
-  }
-
-  public Paragraph indent(Double indent) {
-    this.indent = indent;
-    return this;
-  }
-
-   /**
-   * First line indent.
-   * @return indent
-  **/
-  @ApiModelProperty(value = "First line indent.")
-  public Double getIndent() {
-    return indent;
-  }
-
-  public void setIndent(Double indent) {
-    this.indent = indent;
-  }
-
-  public Paragraph alignment(AlignmentEnum alignment) {
-    this.alignment = alignment;
-    return this;
-  }
-
-   /**
-   * Text alignment.
-   * @return alignment
-  **/
-  @ApiModelProperty(value = "Text alignment.")
-  public AlignmentEnum getAlignment() {
-    return alignment;
-  }
-
-  public void setAlignment(AlignmentEnum alignment) {
-    this.alignment = alignment;
-  }
-
-  public Paragraph fontAlignment(FontAlignmentEnum fontAlignment) {
-    this.fontAlignment = fontAlignment;
-    return this;
-  }
-
-   /**
-   * Font alignment.
-   * @return fontAlignment
-  **/
-  @ApiModelProperty(value = "Font alignment.")
-  public FontAlignmentEnum getFontAlignment() {
-    return fontAlignment;
-  }
-
-  public void setFontAlignment(FontAlignmentEnum fontAlignment) {
-    this.fontAlignment = fontAlignment;
-  }
-
-  public Paragraph defaultTabSize(Double defaultTabSize) {
-    this.defaultTabSize = defaultTabSize;
-    return this;
-  }
-
-   /**
-   * Default tabulation size.
-   * @return defaultTabSize
-  **/
-  @ApiModelProperty(value = "Default tabulation size.")
-  public Double getDefaultTabSize() {
-    return defaultTabSize;
-  }
-
-  public void setDefaultTabSize(Double defaultTabSize) {
-    this.defaultTabSize = defaultTabSize;
-  }
-
-  public Paragraph depth(Integer depth) {
+  public ParagraphFormat depth(Integer depth) {
     this.depth = depth;
     return this;
   }
@@ -791,70 +621,160 @@ public class Paragraph extends ResourceBase {
     this.depth = depth;
   }
 
-  public Paragraph hangingPunctuation(HangingPunctuationEnum hangingPunctuation) {
-    this.hangingPunctuation = hangingPunctuation;
+  public ParagraphFormat alignment(AlignmentEnum alignment) {
+    this.alignment = alignment;
     return this;
   }
 
    /**
-   * True if hanging punctuation is used with the paragraph.
-   * @return hangingPunctuation
+   * Text alignment.
+   * @return alignment
   **/
-  @ApiModelProperty(value = "True if hanging punctuation is used with the paragraph.")
-  public HangingPunctuationEnum getHangingPunctuation() {
-    return hangingPunctuation;
+  @ApiModelProperty(value = "Text alignment.")
+  public AlignmentEnum getAlignment() {
+    return alignment;
   }
 
-  public void setHangingPunctuation(HangingPunctuationEnum hangingPunctuation) {
-    this.hangingPunctuation = hangingPunctuation;
+  public void setAlignment(AlignmentEnum alignment) {
+    this.alignment = alignment;
   }
 
-  public Paragraph eastAsianLineBreak(EastAsianLineBreakEnum eastAsianLineBreak) {
-    this.eastAsianLineBreak = eastAsianLineBreak;
+  public ParagraphFormat marginLeft(Double marginLeft) {
+    this.marginLeft = marginLeft;
     return this;
   }
 
    /**
-   * True if East Asian line break is used with the paragraph.
-   * @return eastAsianLineBreak
+   * Left margin.
+   * @return marginLeft
   **/
-  @ApiModelProperty(value = "True if East Asian line break is used with the paragraph.")
-  public EastAsianLineBreakEnum getEastAsianLineBreak() {
-    return eastAsianLineBreak;
+  @ApiModelProperty(value = "Left margin.")
+  public Double getMarginLeft() {
+    return marginLeft;
   }
 
-  public void setEastAsianLineBreak(EastAsianLineBreakEnum eastAsianLineBreak) {
-    this.eastAsianLineBreak = eastAsianLineBreak;
+  public void setMarginLeft(Double marginLeft) {
+    this.marginLeft = marginLeft;
   }
 
-  public Paragraph latinLineBreak(LatinLineBreakEnum latinLineBreak) {
-    this.latinLineBreak = latinLineBreak;
+  public ParagraphFormat marginRight(Double marginRight) {
+    this.marginRight = marginRight;
     return this;
   }
 
    /**
-   * True if Latin line break is used with the paragraph.
-   * @return latinLineBreak
+   * Right margin.
+   * @return marginRight
   **/
-  @ApiModelProperty(value = "True if Latin line break is used with the paragraph.")
-  public LatinLineBreakEnum getLatinLineBreak() {
-    return latinLineBreak;
+  @ApiModelProperty(value = "Right margin.")
+  public Double getMarginRight() {
+    return marginRight;
   }
 
-  public void setLatinLineBreak(LatinLineBreakEnum latinLineBreak) {
-    this.latinLineBreak = latinLineBreak;
+  public void setMarginRight(Double marginRight) {
+    this.marginRight = marginRight;
   }
 
-  public Paragraph rightToLeft(RightToLeftEnum rightToLeft) {
+  public ParagraphFormat spaceBefore(Double spaceBefore) {
+    this.spaceBefore = spaceBefore;
+    return this;
+  }
+
+   /**
+   * Left spacing.
+   * @return spaceBefore
+  **/
+  @ApiModelProperty(value = "Left spacing.")
+  public Double getSpaceBefore() {
+    return spaceBefore;
+  }
+
+  public void setSpaceBefore(Double spaceBefore) {
+    this.spaceBefore = spaceBefore;
+  }
+
+  public ParagraphFormat spaceAfter(Double spaceAfter) {
+    this.spaceAfter = spaceAfter;
+    return this;
+  }
+
+   /**
+   * Right spacing.
+   * @return spaceAfter
+  **/
+  @ApiModelProperty(value = "Right spacing.")
+  public Double getSpaceAfter() {
+    return spaceAfter;
+  }
+
+  public void setSpaceAfter(Double spaceAfter) {
+    this.spaceAfter = spaceAfter;
+  }
+
+  public ParagraphFormat spaceWithin(Double spaceWithin) {
+    this.spaceWithin = spaceWithin;
+    return this;
+  }
+
+   /**
+   * Spacing between lines.
+   * @return spaceWithin
+  **/
+  @ApiModelProperty(value = "Spacing between lines.")
+  public Double getSpaceWithin() {
+    return spaceWithin;
+  }
+
+  public void setSpaceWithin(Double spaceWithin) {
+    this.spaceWithin = spaceWithin;
+  }
+
+  public ParagraphFormat fontAlignment(FontAlignmentEnum fontAlignment) {
+    this.fontAlignment = fontAlignment;
+    return this;
+  }
+
+   /**
+   * Font alignment.
+   * @return fontAlignment
+  **/
+  @ApiModelProperty(value = "Font alignment.")
+  public FontAlignmentEnum getFontAlignment() {
+    return fontAlignment;
+  }
+
+  public void setFontAlignment(FontAlignmentEnum fontAlignment) {
+    this.fontAlignment = fontAlignment;
+  }
+
+  public ParagraphFormat indent(Double indent) {
+    this.indent = indent;
+    return this;
+  }
+
+   /**
+   * First line indent.
+   * @return indent
+  **/
+  @ApiModelProperty(value = "First line indent.")
+  public Double getIndent() {
+    return indent;
+  }
+
+  public void setIndent(Double indent) {
+    this.indent = indent;
+  }
+
+  public ParagraphFormat rightToLeft(RightToLeftEnum rightToLeft) {
     this.rightToLeft = rightToLeft;
     return this;
   }
 
    /**
-   * True if right to left direction is used with the paragraph.
+   * Determines whether the Right to Left writing is used in a paragraph. No inheritance applied.
    * @return rightToLeft
   **/
-  @ApiModelProperty(value = "True if right to left direction is used with the paragraph.")
+  @ApiModelProperty(value = "Determines whether the Right to Left writing is used in a paragraph. No inheritance applied.")
   public RightToLeftEnum getRightToLeft() {
     return rightToLeft;
   }
@@ -863,33 +783,79 @@ public class Paragraph extends ResourceBase {
     this.rightToLeft = rightToLeft;
   }
 
-  public Paragraph portionList(List<Portion> portionList) {
-    this.portionList = portionList;
-    return this;
-  }
-
-  public Paragraph addPortionListItem(Portion portionListItem) {
-    if (this.portionList == null) {
-      this.portionList = new ArrayList<Portion>();
-    }
-    this.portionList.add(portionListItem);
+  public ParagraphFormat eastAsianLineBreak(EastAsianLineBreakEnum eastAsianLineBreak) {
+    this.eastAsianLineBreak = eastAsianLineBreak;
     return this;
   }
 
    /**
-   * List of portion links.
-   * @return portionList
+   * Determines whether the East Asian line break is used in a paragraph. No inheritance applied.
+   * @return eastAsianLineBreak
   **/
-  @ApiModelProperty(value = "List of portion links.")
-  public List<Portion> getPortionList() {
-    return portionList;
+  @ApiModelProperty(value = "Determines whether the East Asian line break is used in a paragraph. No inheritance applied.")
+  public EastAsianLineBreakEnum getEastAsianLineBreak() {
+    return eastAsianLineBreak;
   }
 
-  public void setPortionList(List<Portion> portionList) {
-    this.portionList = portionList;
+  public void setEastAsianLineBreak(EastAsianLineBreakEnum eastAsianLineBreak) {
+    this.eastAsianLineBreak = eastAsianLineBreak;
   }
 
-  public Paragraph defaultPortionFormat(PortionFormat defaultPortionFormat) {
+  public ParagraphFormat latinLineBreak(LatinLineBreakEnum latinLineBreak) {
+    this.latinLineBreak = latinLineBreak;
+    return this;
+  }
+
+   /**
+   * Determines whether the Latin line break is used in a paragraph. No inheritance applied.
+   * @return latinLineBreak
+  **/
+  @ApiModelProperty(value = "Determines whether the Latin line break is used in a paragraph. No inheritance applied.")
+  public LatinLineBreakEnum getLatinLineBreak() {
+    return latinLineBreak;
+  }
+
+  public void setLatinLineBreak(LatinLineBreakEnum latinLineBreak) {
+    this.latinLineBreak = latinLineBreak;
+  }
+
+  public ParagraphFormat hangingPunctuation(HangingPunctuationEnum hangingPunctuation) {
+    this.hangingPunctuation = hangingPunctuation;
+    return this;
+  }
+
+   /**
+   * Determines whether the hanging punctuation is used in a paragraph. No inheritance applied.
+   * @return hangingPunctuation
+  **/
+  @ApiModelProperty(value = "Determines whether the hanging punctuation is used in a paragraph. No inheritance applied.")
+  public HangingPunctuationEnum getHangingPunctuation() {
+    return hangingPunctuation;
+  }
+
+  public void setHangingPunctuation(HangingPunctuationEnum hangingPunctuation) {
+    this.hangingPunctuation = hangingPunctuation;
+  }
+
+  public ParagraphFormat defaultTabSize(Double defaultTabSize) {
+    this.defaultTabSize = defaultTabSize;
+    return this;
+  }
+
+   /**
+   * Returns or sets default tabulation size with no inheritance.
+   * @return defaultTabSize
+  **/
+  @ApiModelProperty(value = "Returns or sets default tabulation size with no inheritance.")
+  public Double getDefaultTabSize() {
+    return defaultTabSize;
+  }
+
+  public void setDefaultTabSize(Double defaultTabSize) {
+    this.defaultTabSize = defaultTabSize;
+  }
+
+  public ParagraphFormat defaultPortionFormat(PortionFormat defaultPortionFormat) {
     this.defaultPortionFormat = defaultPortionFormat;
     return this;
   }
@@ -907,7 +873,7 @@ public class Paragraph extends ResourceBase {
     this.defaultPortionFormat = defaultPortionFormat;
   }
 
-  public Paragraph bulletChar(String bulletChar) {
+  public ParagraphFormat bulletChar(String bulletChar) {
     this.bulletChar = bulletChar;
     return this;
   }
@@ -925,7 +891,7 @@ public class Paragraph extends ResourceBase {
     this.bulletChar = bulletChar;
   }
 
-  public Paragraph bulletHeight(Double bulletHeight) {
+  public ParagraphFormat bulletHeight(Double bulletHeight) {
     this.bulletHeight = bulletHeight;
     return this;
   }
@@ -943,7 +909,7 @@ public class Paragraph extends ResourceBase {
     this.bulletHeight = bulletHeight;
   }
 
-  public Paragraph bulletType(BulletTypeEnum bulletType) {
+  public ParagraphFormat bulletType(BulletTypeEnum bulletType) {
     this.bulletType = bulletType;
     return this;
   }
@@ -961,7 +927,7 @@ public class Paragraph extends ResourceBase {
     this.bulletType = bulletType;
   }
 
-  public Paragraph numberedBulletStartWith(Integer numberedBulletStartWith) {
+  public ParagraphFormat numberedBulletStartWith(Integer numberedBulletStartWith) {
     this.numberedBulletStartWith = numberedBulletStartWith;
     return this;
   }
@@ -979,7 +945,7 @@ public class Paragraph extends ResourceBase {
     this.numberedBulletStartWith = numberedBulletStartWith;
   }
 
-  public Paragraph numberedBulletStyle(NumberedBulletStyleEnum numberedBulletStyle) {
+  public ParagraphFormat numberedBulletStyle(NumberedBulletStyleEnum numberedBulletStyle) {
     this.numberedBulletStyle = numberedBulletStyle;
     return this;
   }
@@ -997,7 +963,7 @@ public class Paragraph extends ResourceBase {
     this.numberedBulletStyle = numberedBulletStyle;
   }
 
-  public Paragraph bulletFillFormat(FillFormat bulletFillFormat) {
+  public ParagraphFormat bulletFillFormat(FillFormat bulletFillFormat) {
     this.bulletFillFormat = bulletFillFormat;
     return this;
   }
@@ -1024,36 +990,35 @@ public class Paragraph extends ResourceBase {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Paragraph paragraph = (Paragraph) o;
-    return true && Objects.equals(this.marginLeft, paragraph.marginLeft) && Objects.equals(this.marginRight, paragraph.marginRight) && Objects.equals(this.spaceBefore, paragraph.spaceBefore) && Objects.equals(this.spaceAfter, paragraph.spaceAfter) && Objects.equals(this.spaceWithin, paragraph.spaceWithin) && Objects.equals(this.indent, paragraph.indent) && Objects.equals(this.alignment, paragraph.alignment) && Objects.equals(this.fontAlignment, paragraph.fontAlignment) && Objects.equals(this.defaultTabSize, paragraph.defaultTabSize) && Objects.equals(this.depth, paragraph.depth) && Objects.equals(this.hangingPunctuation, paragraph.hangingPunctuation) && Objects.equals(this.eastAsianLineBreak, paragraph.eastAsianLineBreak) && Objects.equals(this.latinLineBreak, paragraph.latinLineBreak) && Objects.equals(this.rightToLeft, paragraph.rightToLeft) && Objects.equals(this.portionList, paragraph.portionList) && Objects.equals(this.defaultPortionFormat, paragraph.defaultPortionFormat) && Objects.equals(this.bulletChar, paragraph.bulletChar) && Objects.equals(this.bulletHeight, paragraph.bulletHeight) && Objects.equals(this.bulletType, paragraph.bulletType) && Objects.equals(this.numberedBulletStartWith, paragraph.numberedBulletStartWith) && Objects.equals(this.numberedBulletStyle, paragraph.numberedBulletStyle) && Objects.equals(this.bulletFillFormat, paragraph.bulletFillFormat) && super.equals(o);
+    ParagraphFormat paragraphFormat = (ParagraphFormat) o;
+    return true && Objects.equals(this.depth, paragraphFormat.depth) && Objects.equals(this.alignment, paragraphFormat.alignment) && Objects.equals(this.marginLeft, paragraphFormat.marginLeft) && Objects.equals(this.marginRight, paragraphFormat.marginRight) && Objects.equals(this.spaceBefore, paragraphFormat.spaceBefore) && Objects.equals(this.spaceAfter, paragraphFormat.spaceAfter) && Objects.equals(this.spaceWithin, paragraphFormat.spaceWithin) && Objects.equals(this.fontAlignment, paragraphFormat.fontAlignment) && Objects.equals(this.indent, paragraphFormat.indent) && Objects.equals(this.rightToLeft, paragraphFormat.rightToLeft) && Objects.equals(this.eastAsianLineBreak, paragraphFormat.eastAsianLineBreak) && Objects.equals(this.latinLineBreak, paragraphFormat.latinLineBreak) && Objects.equals(this.hangingPunctuation, paragraphFormat.hangingPunctuation) && Objects.equals(this.defaultTabSize, paragraphFormat.defaultTabSize) && Objects.equals(this.defaultPortionFormat, paragraphFormat.defaultPortionFormat) && Objects.equals(this.bulletChar, paragraphFormat.bulletChar) && Objects.equals(this.bulletHeight, paragraphFormat.bulletHeight) && Objects.equals(this.bulletType, paragraphFormat.bulletType) && Objects.equals(this.numberedBulletStartWith, paragraphFormat.numberedBulletStartWith) && Objects.equals(this.numberedBulletStyle, paragraphFormat.numberedBulletStyle) && Objects.equals(this.bulletFillFormat, paragraphFormat.bulletFillFormat);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(marginLeft, marginRight, spaceBefore, spaceAfter, spaceWithin, indent, alignment, fontAlignment, defaultTabSize, depth, hangingPunctuation, eastAsianLineBreak, latinLineBreak, rightToLeft, portionList, defaultPortionFormat, bulletChar, bulletHeight, bulletType, numberedBulletStartWith, numberedBulletStyle, bulletFillFormat, super.hashCode());
+    return Objects.hash(depth, alignment, marginLeft, marginRight, spaceBefore, spaceAfter, spaceWithin, fontAlignment, indent, rightToLeft, eastAsianLineBreak, latinLineBreak, hangingPunctuation, defaultTabSize, defaultPortionFormat, bulletChar, bulletHeight, bulletType, numberedBulletStartWith, numberedBulletStyle, bulletFillFormat);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Paragraph {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
+    sb.append("class ParagraphFormat {\n");
+    
+    sb.append("    depth: ").append(toIndentedString(depth)).append("\n");
+    sb.append("    alignment: ").append(toIndentedString(alignment)).append("\n");
     sb.append("    marginLeft: ").append(toIndentedString(marginLeft)).append("\n");
     sb.append("    marginRight: ").append(toIndentedString(marginRight)).append("\n");
     sb.append("    spaceBefore: ").append(toIndentedString(spaceBefore)).append("\n");
     sb.append("    spaceAfter: ").append(toIndentedString(spaceAfter)).append("\n");
     sb.append("    spaceWithin: ").append(toIndentedString(spaceWithin)).append("\n");
-    sb.append("    indent: ").append(toIndentedString(indent)).append("\n");
-    sb.append("    alignment: ").append(toIndentedString(alignment)).append("\n");
     sb.append("    fontAlignment: ").append(toIndentedString(fontAlignment)).append("\n");
-    sb.append("    defaultTabSize: ").append(toIndentedString(defaultTabSize)).append("\n");
-    sb.append("    depth: ").append(toIndentedString(depth)).append("\n");
-    sb.append("    hangingPunctuation: ").append(toIndentedString(hangingPunctuation)).append("\n");
+    sb.append("    indent: ").append(toIndentedString(indent)).append("\n");
+    sb.append("    rightToLeft: ").append(toIndentedString(rightToLeft)).append("\n");
     sb.append("    eastAsianLineBreak: ").append(toIndentedString(eastAsianLineBreak)).append("\n");
     sb.append("    latinLineBreak: ").append(toIndentedString(latinLineBreak)).append("\n");
-    sb.append("    rightToLeft: ").append(toIndentedString(rightToLeft)).append("\n");
-    sb.append("    portionList: ").append(toIndentedString(portionList)).append("\n");
+    sb.append("    hangingPunctuation: ").append(toIndentedString(hangingPunctuation)).append("\n");
+    sb.append("    defaultTabSize: ").append(toIndentedString(defaultTabSize)).append("\n");
     sb.append("    defaultPortionFormat: ").append(toIndentedString(defaultPortionFormat)).append("\n");
     sb.append("    bulletChar: ").append(toIndentedString(bulletChar)).append("\n");
     sb.append("    bulletHeight: ").append(toIndentedString(bulletHeight)).append("\n");

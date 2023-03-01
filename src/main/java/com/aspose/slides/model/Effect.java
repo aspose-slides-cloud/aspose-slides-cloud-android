@@ -747,6 +747,9 @@ public class Effect {
   @SerializedName(value = "repeatUntilNextClick", alternate = { "RepeatUntilNextClick" })
   private Boolean repeatUntilNextClick;
 
+  @SerializedName(value = "stopPreviousSound", alternate = { "StopPreviousSound" })
+  private Boolean stopPreviousSound;
+
 
   public Effect() {
     super();
@@ -1058,6 +1061,24 @@ public class Effect {
     this.repeatUntilNextClick = repeatUntilNextClick;
   }
 
+  public Effect stopPreviousSound(Boolean stopPreviousSound) {
+    this.stopPreviousSound = stopPreviousSound;
+    return this;
+  }
+
+   /**
+   * This attribute specifies if the animation effect stops the previous sound.
+   * @return stopPreviousSound
+  **/
+  @ApiModelProperty(value = "This attribute specifies if the animation effect stops the previous sound.")
+  public Boolean isStopPreviousSound() {
+    return stopPreviousSound;
+  }
+
+  public void setStopPreviousSound(Boolean stopPreviousSound) {
+    this.stopPreviousSound = stopPreviousSound;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -1068,12 +1089,12 @@ public class Effect {
       return false;
     }
     Effect effect = (Effect) o;
-    return true && Objects.equals(this.type, effect.type) && Objects.equals(this.subtype, effect.subtype) && Objects.equals(this.presetClassType, effect.presetClassType) && Objects.equals(this.shapeIndex, effect.shapeIndex) && Objects.equals(this.paragraphIndex, effect.paragraphIndex) && Objects.equals(this.triggerType, effect.triggerType) && Objects.equals(this.accelerate, effect.accelerate) && Objects.equals(this.autoReverse, effect.autoReverse) && Objects.equals(this.decelerate, effect.decelerate) && Objects.equals(this.duration, effect.duration) && Objects.equals(this.repeatCount, effect.repeatCount) && Objects.equals(this.repeatDuration, effect.repeatDuration) && Objects.equals(this.restart, effect.restart) && Objects.equals(this.speed, effect.speed) && Objects.equals(this.triggerDelayTime, effect.triggerDelayTime) && Objects.equals(this.repeatUntilEndSlide, effect.repeatUntilEndSlide) && Objects.equals(this.repeatUntilNextClick, effect.repeatUntilNextClick);
+    return true && Objects.equals(this.type, effect.type) && Objects.equals(this.subtype, effect.subtype) && Objects.equals(this.presetClassType, effect.presetClassType) && Objects.equals(this.shapeIndex, effect.shapeIndex) && Objects.equals(this.paragraphIndex, effect.paragraphIndex) && Objects.equals(this.triggerType, effect.triggerType) && Objects.equals(this.accelerate, effect.accelerate) && Objects.equals(this.autoReverse, effect.autoReverse) && Objects.equals(this.decelerate, effect.decelerate) && Objects.equals(this.duration, effect.duration) && Objects.equals(this.repeatCount, effect.repeatCount) && Objects.equals(this.repeatDuration, effect.repeatDuration) && Objects.equals(this.restart, effect.restart) && Objects.equals(this.speed, effect.speed) && Objects.equals(this.triggerDelayTime, effect.triggerDelayTime) && Objects.equals(this.repeatUntilEndSlide, effect.repeatUntilEndSlide) && Objects.equals(this.repeatUntilNextClick, effect.repeatUntilNextClick) && Objects.equals(this.stopPreviousSound, effect.stopPreviousSound);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, subtype, presetClassType, shapeIndex, paragraphIndex, triggerType, accelerate, autoReverse, decelerate, duration, repeatCount, repeatDuration, restart, speed, triggerDelayTime, repeatUntilEndSlide, repeatUntilNextClick);
+    return Objects.hash(type, subtype, presetClassType, shapeIndex, paragraphIndex, triggerType, accelerate, autoReverse, decelerate, duration, repeatCount, repeatDuration, restart, speed, triggerDelayTime, repeatUntilEndSlide, repeatUntilNextClick, stopPreviousSound);
   }
 
 
@@ -1099,6 +1120,7 @@ public class Effect {
     sb.append("    triggerDelayTime: ").append(toIndentedString(triggerDelayTime)).append("\n");
     sb.append("    repeatUntilEndSlide: ").append(toIndentedString(repeatUntilEndSlide)).append("\n");
     sb.append("    repeatUntilNextClick: ").append(toIndentedString(repeatUntilNextClick)).append("\n");
+    sb.append("    stopPreviousSound: ").append(toIndentedString(stopPreviousSound)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -29,6 +29,7 @@ import com.aspose.slides.ApiException;
 import com.aspose.slides.ApiTest;
 import com.aspose.slides.model.*;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -748,7 +749,7 @@ public class ShapeTest extends ApiTest {
     }
 
     @Test
-    public void CreateSmartArtNode() throws ApiException, IOException {
+    public void CreateSmartArtNodeTest() throws ApiException, IOException {
         initialize(null, null, null, null);
         int slideIndex = 7;
         String newNodeText = "New root node";
@@ -759,7 +760,7 @@ public class ShapeTest extends ApiTest {
     }
 
     @Test
-    public void CreateSmartArtSubNode() throws ApiException, IOException {
+    public void CreateSmartArtSubNodeTest() throws ApiException, IOException {
         initialize(null, null, null, null);
         int slideIndex = 7;
         String newSubNodeText = "New sub-node";
@@ -772,7 +773,7 @@ public class ShapeTest extends ApiTest {
     }
 
     @Test
-    public void CreateSmartArtSubSubNode() throws ApiException, IOException {
+    public void CreateSmartArtSubSubNodeTest() throws ApiException, IOException {
         initialize(null, null, null, null);
         int slideIndex = 7;
         String newSubNodeText = "New sub-sub-node";
@@ -784,7 +785,7 @@ public class ShapeTest extends ApiTest {
     }
 
     @Test
-    public void DeleteSmartArtNode() throws ApiException, IOException {
+    public void DeleteSmartArtNodeTest() throws ApiException, IOException {
         int slideIndex = 7;
         int smartArtIndex = 2;
         int nodeIndex = 1;
@@ -794,7 +795,7 @@ public class ShapeTest extends ApiTest {
     }
 
     @Test
-    public void DeleteSmartArtSubNode() throws ApiException, IOException {
+    public void DeleteSmartArtSubNodeTest() throws ApiException, IOException {
         int slideIndex = 7;
         int nodeIndex = 1;
         String subNodePath = "2";
@@ -802,6 +803,22 @@ public class ShapeTest extends ApiTest {
                 c_password, c_folderName, null);
         assertEquals(response.getNodes().get(0).getNodes().size(), 3);
     }
+
+    @Test
+    public void downloadShapeFromDtoTest() throws ApiException, IOException {
+        initialize(null, null, null, null);
+        Shape dto = new Shape();
+        dto.setShapeType(GeometryShape.ShapeTypeEnum.RECTANGLE);
+        dto.setWidth(400.0);
+        dto.setHeight(200.0);
+        dto.setText("New shape");
+
+        File result = api.downloadShapeFromDto(ShapeExportFormat.PNG, dto);
+        assertNotNull(result);
+        assertTrue(result.length() > 0);
+        assertTrue(result.canRead());
+    }
+
 
     private final String c_svgFile = "shapes.svg";
     private final String c_folderName = "TempSlidesSDK";

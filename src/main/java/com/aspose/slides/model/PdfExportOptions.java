@@ -111,11 +111,25 @@ public class PdfExportOptions extends ExportOptions {
   public enum ComplianceEnum {
     PDF15("Pdf15"),
     
+    PDF16("Pdf16"),
+    
+    PDF17("Pdf17"),
+    
     PDFA1B("PdfA1b"),
     
     PDFA1A("PdfA1a"),
     
-    PDFUA("PdfUa");
+    PDFA2B("PdfA2b"),
+    
+    PDFA2A("PdfA2a"),
+    
+    PDFA3B("PdfA3b"),
+    
+    PDFA3A("PdfA3a"),
+    
+    PDFUA("PdfUa"),
+    
+    PDFA2U("PdfA2u");
 
     private String value;
 

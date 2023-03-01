@@ -197,6 +197,9 @@ public class Hyperlink {
   @SerializedName(value = "colorSource", alternate = { "ColorSource" })
   private ColorSourceEnum colorSource;
 
+  @SerializedName(value = "soundBase64", alternate = { "SoundBase64" })
+  private String soundBase64;
+
 
   public Hyperlink() {
     super();
@@ -382,6 +385,24 @@ public class Hyperlink {
     this.colorSource = colorSource;
   }
 
+  public Hyperlink soundBase64(String soundBase64) {
+    this.soundBase64 = soundBase64;
+    return this;
+  }
+
+   /**
+   * Audio data encoded in base64. Represents the playing sound of the hyperlink. 
+   * @return soundBase64
+  **/
+  @ApiModelProperty(value = "Audio data encoded in base64. Represents the playing sound of the hyperlink. ")
+  public String getSoundBase64() {
+    return soundBase64;
+  }
+
+  public void setSoundBase64(String soundBase64) {
+    this.soundBase64 = soundBase64;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -392,12 +413,12 @@ public class Hyperlink {
       return false;
     }
     Hyperlink hyperlink = (Hyperlink) o;
-    return true && Objects.equals(this.isDisabled, hyperlink.isDisabled) && Objects.equals(this.actionType, hyperlink.actionType) && Objects.equals(this.externalUrl, hyperlink.externalUrl) && Objects.equals(this.targetSlideIndex, hyperlink.targetSlideIndex) && Objects.equals(this.targetFrame, hyperlink.targetFrame) && Objects.equals(this.tooltip, hyperlink.tooltip) && Objects.equals(this.history, hyperlink.history) && Objects.equals(this.highlightClick, hyperlink.highlightClick) && Objects.equals(this.stopSoundOnClick, hyperlink.stopSoundOnClick) && Objects.equals(this.colorSource, hyperlink.colorSource);
+    return true && Objects.equals(this.isDisabled, hyperlink.isDisabled) && Objects.equals(this.actionType, hyperlink.actionType) && Objects.equals(this.externalUrl, hyperlink.externalUrl) && Objects.equals(this.targetSlideIndex, hyperlink.targetSlideIndex) && Objects.equals(this.targetFrame, hyperlink.targetFrame) && Objects.equals(this.tooltip, hyperlink.tooltip) && Objects.equals(this.history, hyperlink.history) && Objects.equals(this.highlightClick, hyperlink.highlightClick) && Objects.equals(this.stopSoundOnClick, hyperlink.stopSoundOnClick) && Objects.equals(this.colorSource, hyperlink.colorSource) && Objects.equals(this.soundBase64, hyperlink.soundBase64);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(isDisabled, actionType, externalUrl, targetSlideIndex, targetFrame, tooltip, history, highlightClick, stopSoundOnClick, colorSource);
+    return Objects.hash(isDisabled, actionType, externalUrl, targetSlideIndex, targetFrame, tooltip, history, highlightClick, stopSoundOnClick, colorSource, soundBase64);
   }
 
 
@@ -416,6 +437,7 @@ public class Hyperlink {
     sb.append("    highlightClick: ").append(toIndentedString(highlightClick)).append("\n");
     sb.append("    stopSoundOnClick: ").append(toIndentedString(stopSoundOnClick)).append("\n");
     sb.append("    colorSource: ").append(toIndentedString(colorSource)).append("\n");
+    sb.append("    soundBase64: ").append(toIndentedString(soundBase64)).append("\n");
     sb.append("}");
     return sb.toString();
   }

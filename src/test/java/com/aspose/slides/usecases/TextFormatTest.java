@@ -51,9 +51,9 @@ public class TextFormatTest extends ApiTest {
         threeDFormat.setBevelTop(topBevel);
         threeDFormat.setCamera(camera);
         threeDFormat.setLightRig(lightRig);
-        threeDFormat.setExtrusionColor("#FF008000");
+        threeDFormat.setExtrusionColor("#FF0000");
         threeDFormat.setExtrusionHeight(6.0);
-        threeDFormat.setContourColor("#FF25353D");
+        threeDFormat.setContourColor("#FF0000");
         threeDFormat.setContourWidth(1.5);
         threeDFormat.setDepth(3.0);
         threeDFormat.setMaterial(ThreeDFormat.MaterialEnum.PLASTIC);
@@ -61,6 +61,37 @@ public class TextFormatTest extends ApiTest {
         TextFrameFormat textFrameFormat = new TextFrameFormat();
         textFrameFormat.setTransform(TextFrameFormat.TransformEnum.ARCHUPPOUR);
         textFrameFormat.setThreeDFormat(threeDFormat);
+
+        dto.setTextFrameFormat(textFrameFormat);
+
+        ShapeBase shape = api.createShape(c_fileName, c_slideIndex, dto, null, null, c_password, c_folderName, null, null);
+        assertTrue(shape instanceof Shape);
+    }
+
+    @Test
+    public void textFrameFormatTest() throws ApiException, IOException {
+        initialize(null, null, null, null);
+
+        Shape dto = new Shape();
+        dto.setShapeType(GeometryShape.ShapeTypeEnum.RECTANGLE);
+        dto.setX(100.0);
+        dto.setY(100.0);
+        dto.setWidth(100.0);
+        dto.setHeight(100.0);
+        dto.setText("Sample text");
+
+        TextFrameFormat textFrameFormat = new TextFrameFormat();
+        textFrameFormat.setMarginLeft(2.0);
+        textFrameFormat.setMarginRight(2.0);
+        textFrameFormat.setMarginTop(2.0);
+        textFrameFormat.setMarginBottom(2.0);
+        textFrameFormat.setCenterText(TextFrameFormat.CenterTextEnum.TRUE);
+
+        ParagraphFormat defaultParagraphFormat = new ParagraphFormat();
+        SolidFill fillFormat = new SolidFill();
+        fillFormat.setColor("#FF0000");
+        defaultParagraphFormat.bulletFillFormat(fillFormat);
+        textFrameFormat.defaultParagraphFormat(defaultParagraphFormat);
 
         dto.setTextFrameFormat(textFrameFormat);
 

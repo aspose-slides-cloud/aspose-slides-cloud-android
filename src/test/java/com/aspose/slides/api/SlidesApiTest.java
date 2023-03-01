@@ -22893,6 +22893,75 @@ public class SlidesApiTest extends ApiTest {
     }
     
     /**
+     * Creates the shape from the DTO and returns the result in the specified format.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void downloadShapeFromDtoTest() throws ApiException, Exception {
+        initialize("downloadShapeFromDto", null, null, null);
+        File response = null;
+        ShapeExportFormat valueFormat = (ShapeExportFormat)getTestValue("ShapeExportFormat", "downloadShapeFromDto", "format");
+        ShapeBase valueDto = (ShapeBase)getTestValue("ShapeBase", "downloadShapeFromDto", "dto");
+        response = api.downloadShapeFromDto(valueFormat, valueDto);
+        assertTrue(response.isFile());
+    }
+
+    /**
+     * Creates the shape from the DTO and returns the result in the specified format.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void downloadShapeFromDtoInvalidFormatTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        ShapeExportFormat valueFormat = (ShapeExportFormat)getTestValue("ShapeExportFormat", "downloadShapeFromDto", "format");
+        ShapeBase valueDto = (ShapeBase)getTestValue("ShapeBase", "downloadShapeFromDto", "dto");
+        try {
+            valueFormat = (ShapeExportFormat)invalidizeTestValue("ShapeExportFormat", valueFormat, "downloadShapeFromDto", "format");
+            initialize("downloadShapeFromDto", "format", "ShapeExportFormat", valueFormat);
+            File response = api.downloadShapeFromDto(valueFormat, valueDto);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "ShapeExportFormat", "format", "downloadShapeFromDto", valueFormat);
+        }
+        if (needAssertResponse) {
+            assertResponse("ShapeExportFormat", "format", "downloadShapeFromDto");
+        }
+    }
+    /**
+     * Creates the shape from the DTO and returns the result in the specified format.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void downloadShapeFromDtoInvalidDtoTest() throws ApiException {
+        Boolean needAssertResponse = false;
+        ShapeExportFormat valueFormat = (ShapeExportFormat)getTestValue("ShapeExportFormat", "downloadShapeFromDto", "format");
+        ShapeBase valueDto = (ShapeBase)getTestValue("ShapeBase", "downloadShapeFromDto", "dto");
+        try {
+            valueDto = (ShapeBase)invalidizeTestValue("ShapeBase", valueDto, "downloadShapeFromDto", "dto");
+            initialize("downloadShapeFromDto", "dto", "ShapeBase", valueDto);
+            File response = api.downloadShapeFromDto(valueFormat, valueDto);
+            needAssertResponse = true;
+        } catch (ApiException ex) {
+            assertException(ex, "ShapeBase", "dto", "downloadShapeFromDto", valueDto);
+        }
+        if (needAssertResponse) {
+            assertResponse("ShapeBase", "dto", "downloadShapeFromDto");
+        }
+    }
+    
+    /**
      * Render shape to specified picture format.
      *
      * 
