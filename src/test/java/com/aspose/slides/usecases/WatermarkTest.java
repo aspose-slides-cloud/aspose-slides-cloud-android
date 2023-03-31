@@ -47,111 +47,108 @@ import org.junit.Test;
 public class WatermarkTest extends ApiTest {
     @Test
     public void watermarkTextStorageTest() throws ApiException, IOException {
-        initialize(null, null, null, null);
-        int shapeCount = api.getShapes(c_fileName, c_slideIndex, c_password, c_folderName, null, null, null).getShapesLinks().size();
-        api.createWatermark(c_fileName, null, null, c_watermarkText, null, null, c_password, c_folderName, null);
-        assertEquals(shapeCount + 1, api.getShapes(c_fileName, c_slideIndex, c_password, c_folderName, null, null, null).getShapesLinks().size());
-        assertEquals(c_watermarkText, ((Shape)api.getShape(c_fileName, c_slideIndex, shapeCount + 1, c_password, c_folderName, null, null)).getText());
-        assertEquals(c_watermarkName, ((Shape)api.getShape(c_fileName, c_slideIndex, shapeCount + 1, c_password, c_folderName, null, null)).getName());
+        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        int shapeCount = api.getShapes(fileName, c_slideIndex, password, folderName, null, null, null).getShapesLinks().size();
+        api.createWatermark(fileName, null, null, c_watermarkText, null, null, password, folderName, null);
+        assertEquals(shapeCount + 1, api.getShapes(fileName, c_slideIndex, password, folderName, null, null, null).getShapesLinks().size());
+        assertEquals(c_watermarkText, ((Shape)api.getShape(fileName, c_slideIndex, shapeCount + 1, password, folderName, null, null)).getText());
+        assertEquals(c_watermarkName, ((Shape)api.getShape(fileName, c_slideIndex, shapeCount + 1, password, folderName, null, null)).getName());
 
-        api.deleteWatermark(c_fileName, null, c_password, c_folderName, null);
-        assertEquals(shapeCount, api.getShapes(c_fileName, c_slideIndex, c_password, c_folderName, null, null, null).getShapesLinks().size());
+        api.deleteWatermark(fileName, null, password, folderName, null);
+        assertEquals(shapeCount, api.getShapes(fileName, c_slideIndex, password, folderName, null, null, null).getShapesLinks().size());
     }
 
     @Test
     public void watermarkDtoStorageTest() throws ApiException, IOException {
-        initialize(null, null, null, null);
-        int shapeCount = api.getShapes(c_fileName, c_slideIndex, c_password, c_folderName, null, null, null).getShapesLinks().size();
+        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        int shapeCount = api.getShapes(fileName, c_slideIndex, password, folderName, null, null, null).getShapesLinks().size();
         Shape dto = new Shape();
         dto.setText(c_watermarkText);
-        api.createWatermark(c_fileName, dto, null, null, null, null, c_password, c_folderName, null);
-        assertEquals(shapeCount + 1, api.getShapes(c_fileName, c_slideIndex, c_password, c_folderName, null, null, null).getShapesLinks().size());
-        assertEquals(c_watermarkText, ((Shape)api.getShape(c_fileName, c_slideIndex, shapeCount + 1, c_password, c_folderName, null, null)).getText());
-        assertEquals(c_watermarkName, ((Shape)api.getShape(c_fileName, c_slideIndex, shapeCount + 1, c_password, c_folderName, null, null)).getName());
+        api.createWatermark(fileName, dto, null, null, null, null, password, folderName, null);
+        assertEquals(shapeCount + 1, api.getShapes(fileName, c_slideIndex, password, folderName, null, null, null).getShapesLinks().size());
+        assertEquals(c_watermarkText, ((Shape)api.getShape(fileName, c_slideIndex, shapeCount + 1, password, folderName, null, null)).getText());
+        assertEquals(c_watermarkName, ((Shape)api.getShape(fileName, c_slideIndex, shapeCount + 1, password, folderName, null, null)).getName());
 
-        api.deleteWatermark(c_fileName, null, c_password, c_folderName, null);
-        assertEquals(shapeCount, api.getShapes(c_fileName, c_slideIndex, c_password, c_folderName, null, null, null).getShapesLinks().size());
+        api.deleteWatermark(fileName, null, password, folderName, null);
+        assertEquals(shapeCount, api.getShapes(fileName, c_slideIndex, password, folderName, null, null, null).getShapesLinks().size());
     }
 
     @Test
     public void watermarkImageStorageTest() throws ApiException, IOException {
-        initialize(null, null, null, null);
-        int shapeCount = api.getShapes(c_fileName, c_slideIndex, c_password, c_folderName, null, null, null).getShapesLinks().size();
+        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        int shapeCount = api.getShapes(fileName, c_slideIndex, password, folderName, null, null, null).getShapesLinks().size();
         byte[] watermarkFile = Files.readAllBytes(Paths.get(testDataFolderName + "/" + c_watermarkFileName));
-        api.createImageWatermark(c_fileName, watermarkFile, null, c_password, c_folderName, null);
-        assertEquals(shapeCount + 1, api.getShapes(c_fileName, c_slideIndex, c_password, c_folderName, null, null, null).getShapesLinks().size());
-        assertEquals(c_watermarkName, ((Shape)api.getShape(c_fileName, c_slideIndex, shapeCount + 1, c_password, c_folderName, null, null)).getName());
+        api.createImageWatermark(fileName, watermarkFile, null, password, folderName, null);
+        assertEquals(shapeCount + 1, api.getShapes(fileName, c_slideIndex, password, folderName, null, null, null).getShapesLinks().size());
+        assertEquals(c_watermarkName, ((Shape)api.getShape(fileName, c_slideIndex, shapeCount + 1, password, folderName, null, null)).getName());
 
-        api.deleteWatermark(c_fileName, null, c_password, c_folderName, null);
-        assertEquals(shapeCount, api.getShapes(c_fileName, c_slideIndex, c_password, c_folderName, null, null, null).getShapesLinks().size());
+        api.deleteWatermark(fileName, null, password, folderName, null);
+        assertEquals(shapeCount, api.getShapes(fileName, c_slideIndex, password, folderName, null, null, null).getShapesLinks().size());
     }
 
     @Test
     public void watermarkImageDtoStorageTest() throws ApiException, IOException {
-        initialize(null, null, null, null);
-        int shapeCount = api.getShapes(c_fileName, c_slideIndex, c_password, c_folderName, null, null, null).getShapesLinks().size();
+        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        int shapeCount = api.getShapes(fileName, c_slideIndex, password, folderName, null, null, null).getShapesLinks().size();
         byte[] watermarkFile = Files.readAllBytes(Paths.get(testDataFolderName + "/" + c_watermarkFileName));
         String base64Data = new String(Base64.getEncoder().encode(watermarkFile));
         PictureFrame pictureFrame = new PictureFrame();
         PictureFill fillFormat = new PictureFill();
         fillFormat.setBase64Data(base64Data);
         pictureFrame.setFillFormat(fillFormat);
-        api.createImageWatermark(c_fileName, watermarkFile, null, c_password, c_folderName, null);
-        assertEquals(shapeCount + 1, api.getShapes(c_fileName, c_slideIndex, c_password, c_folderName, null, null, null).getShapesLinks().size());
-        assertEquals(c_watermarkName, ((Shape)api.getShape(c_fileName, c_slideIndex, shapeCount + 1, c_password, c_folderName, null, null)).getName());
+        api.createImageWatermark(fileName, watermarkFile, null, password, folderName, null);
+        assertEquals(shapeCount + 1, api.getShapes(fileName, c_slideIndex, password, folderName, null, null, null).getShapesLinks().size());
+        assertEquals(c_watermarkName, ((Shape)api.getShape(fileName, c_slideIndex, shapeCount + 1, password, folderName, null, null)).getName());
 
-        api.deleteWatermark(c_fileName, null, c_password, c_folderName, null);
-        assertEquals(shapeCount, api.getShapes(c_fileName, c_slideIndex, c_password, c_folderName, null, null, null).getShapesLinks().size());
+        api.deleteWatermark(fileName, null, password, folderName, null);
+        assertEquals(shapeCount, api.getShapes(fileName, c_slideIndex, password, folderName, null, null, null).getShapesLinks().size());
     }
 
     @Test
     public void watermarkTextRequestTest() throws ApiException, IOException {
-        byte[] document = Files.readAllBytes(Paths.get(testDataFolderName + "/" + c_fileName));
-        File documentWithWatermarks = api.createWatermarkOnline(document, null, null, c_watermarkText, null, null, c_password);
-        File documentWithNoWatermarks = api.deleteWatermarkOnline(FileUtils.readFileToByteArray(documentWithWatermarks), null, c_password);
+        byte[] document = Files.readAllBytes(Paths.get(testDataFolderName + "/" + fileName));
+        File documentWithWatermarks = api.createWatermarkOnline(document, null, null, c_watermarkText, null, null, password);
+        File documentWithNoWatermarks = api.deleteWatermarkOnline(FileUtils.readFileToByteArray(documentWithWatermarks), null, password);
         assertNotEquals(document.length, documentWithWatermarks.length());
         assertTrue(documentWithNoWatermarks.length() < documentWithWatermarks.length());
     }
 
     @Test
     public void watermarkTextDtoRequestTest() throws ApiException, IOException {
-        byte[] document = Files.readAllBytes(Paths.get(testDataFolderName + "/" + c_fileName));
+        byte[] document = Files.readAllBytes(Paths.get(testDataFolderName + "/" + fileName));
         Shape dto = new Shape();
         dto.setText(c_watermarkText);
-        File documentWithWatermarks = api.createWatermarkOnline(document, dto, null, null, null, null, c_password);
-        File documentWithNoWatermarks = api.deleteWatermarkOnline(FileUtils.readFileToByteArray(documentWithWatermarks), null, c_password);
+        File documentWithWatermarks = api.createWatermarkOnline(document, dto, null, null, null, null, password);
+        File documentWithNoWatermarks = api.deleteWatermarkOnline(FileUtils.readFileToByteArray(documentWithWatermarks), null, password);
         assertNotEquals(document.length, documentWithWatermarks.length());
         assertTrue(documentWithNoWatermarks.length() < documentWithWatermarks.length());
     }
 
     @Test
     public void watermarkImageRequestTest() throws ApiException, IOException {
-        byte[] document = Files.readAllBytes(Paths.get(testDataFolderName + "/" + c_fileName));
+        byte[] document = Files.readAllBytes(Paths.get(testDataFolderName + "/" + fileName));
         byte[] watermarkFile = Files.readAllBytes(Paths.get(testDataFolderName + "/" + c_watermarkFileName));
-        File documentWithWatermarks = api.createImageWatermarkOnline(document, watermarkFile, null, c_password);
-        File documentWithNoWatermarks = api.deleteWatermarkOnline(FileUtils.readFileToByteArray(documentWithWatermarks), null, c_password);
+        File documentWithWatermarks = api.createImageWatermarkOnline(document, watermarkFile, null, password);
+        File documentWithNoWatermarks = api.deleteWatermarkOnline(FileUtils.readFileToByteArray(documentWithWatermarks), null, password);
         assertNotEquals(document.length, documentWithWatermarks.length());
         assertTrue(documentWithNoWatermarks.length() < documentWithWatermarks.length());
     }
 
     @Test
     public void watermarkImageDtoRequestTest() throws ApiException, IOException {
-        byte[] document = Files.readAllBytes(Paths.get(testDataFolderName + "/" + c_fileName));
+        byte[] document = Files.readAllBytes(Paths.get(testDataFolderName + "/" + fileName));
         byte[] watermarkFile = Files.readAllBytes(Paths.get(testDataFolderName + "/" + c_watermarkFileName));
         String base64Data = new String(Base64.getEncoder().encode(watermarkFile));
         PictureFrame pictureFrame = new PictureFrame();
         PictureFill fillFormat = new PictureFill();
         fillFormat.setBase64Data(base64Data);
         pictureFrame.setFillFormat(fillFormat);
-        File documentWithWatermarks = api.createImageWatermarkOnline(document, null, pictureFrame, c_password);
-        File documentWithNoWatermarks = api.deleteWatermarkOnline(FileUtils.readFileToByteArray(documentWithWatermarks), null, c_password);
+        File documentWithWatermarks = api.createImageWatermarkOnline(document, null, pictureFrame, password);
+        File documentWithNoWatermarks = api.deleteWatermarkOnline(FileUtils.readFileToByteArray(documentWithWatermarks), null, password);
         assertNotEquals(document.length, documentWithWatermarks.length());
         assertTrue(documentWithNoWatermarks.length() < documentWithWatermarks.length());
     }
 
-    private final String c_folderName = "TempSlidesSDK";
-    private final String c_fileName = "test.pptx";
-    private final String c_password = "password";
     private final String c_watermarkName = "watermark";
     private final String c_watermarkText = "watermarkText";
     private final String c_watermarkFileName = "watermark.png";

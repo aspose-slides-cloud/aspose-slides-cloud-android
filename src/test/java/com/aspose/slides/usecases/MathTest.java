@@ -44,9 +44,9 @@ import org.junit.Test;
 public class MathTest extends ApiTest {
     @Test
     public void mathGetTest() throws ApiException, IOException {
-        initialize(null, null, null, null);
-        Portion portion = api.getPortion(c_fileName, c_slideIndex, c_shapeIndex, c_paragraphIndex, c_portionIndex,
-                c_password, c_folderName, null, null);
+        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        Portion portion = api.getPortion(fileName, c_slideIndex, c_shapeIndex, c_paragraphIndex, c_portionIndex,
+                password, folderName, null, null);
         assertNotNull(portion.getMathParagraph());
         assertNotNull(portion.getMathParagraph().getMathBlockList());
         assertEquals(1, portion.getMathParagraph().getMathBlockList().size());
@@ -57,15 +57,15 @@ public class MathTest extends ApiTest {
 
     @Test
     public void mathGetNullTest() throws ApiException, IOException {
-        initialize(null, null, null, null);
-        Portion portion = api.getPortion(c_fileName, c_slideIndex, c_notMathShapeIndex, c_paragraphIndex, c_portionIndex,
-                c_password, c_folderName, null, null);
+        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        Portion portion = api.getPortion(fileName, c_slideIndex, c_notMathShapeIndex, c_paragraphIndex, c_portionIndex,
+                password, folderName, null, null);
         assertNull(portion.getMathParagraph());
     }
 
     @Test
     public void mathCreateTest() throws ApiException, IOException {
-        initialize(null, null, null, null);
+        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         Portion dto = new Portion();
         MathParagraph mathParagraph = new MathParagraph();
         List<BlockElement> mathBlocks = new ArrayList<BlockElement>();
@@ -99,8 +99,7 @@ public class MathTest extends ApiTest {
         mathBlocks.add(blockElement);
         mathParagraph.setMathBlockList(mathBlocks);
         dto.setMathParagraph(mathParagraph);
-        Portion portion = api.createPortion(c_fileName, 1, 1, c_paragraphIndex, dto, null,
-                c_password, c_folderName, null, null);
+        Portion portion = api.createPortion(fileName, 1, 1, c_paragraphIndex, dto, null, password, folderName, null, null);
         assertNotNull(portion.getMathParagraph());
         assertNotNull(portion.getMathParagraph().getMathBlockList());
         assertEquals(1, portion.getMathParagraph().getMathBlockList().size());
@@ -111,7 +110,7 @@ public class MathTest extends ApiTest {
 
     @Test
     public void mathUpdateTest() throws ApiException, IOException {
-        initialize(null, null, null, null);
+        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         Portion dto = new Portion();
         MathParagraph mathParagraph = new MathParagraph();
         List<BlockElement> mathBlocks = new ArrayList<BlockElement>();
@@ -145,8 +144,8 @@ public class MathTest extends ApiTest {
         mathBlocks.add(blockElement);
         mathParagraph.setMathBlockList(mathBlocks);
         dto.setMathParagraph(mathParagraph);
-        Portion portion = api.updatePortion(c_fileName, c_slideIndex, c_shapeIndex, c_paragraphIndex, c_portionIndex,
-                dto, c_password, c_folderName, null, null);
+        Portion portion = api.updatePortion(fileName, c_slideIndex, c_shapeIndex, c_paragraphIndex, c_portionIndex,
+                dto, password, folderName, null, null);
         assertNotNull(portion.getMathParagraph());
         assertNotNull(portion.getMathParagraph().getMathBlockList());
         assertEquals(1, portion.getMathParagraph().getMathBlockList().size());
@@ -157,9 +156,9 @@ public class MathTest extends ApiTest {
 
     @Test
     public void mathDownloadTest() throws ApiException, IOException {
-        initialize(null, null, null, null);
+        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         File mathMl = api.downloadPortionAsMathMl(
-            c_fileName, c_slideIndex, c_shapeIndex, c_paragraphIndex, c_portionIndex, c_password, c_folderName, null);
+            fileName, c_slideIndex, c_shapeIndex, c_paragraphIndex, c_portionIndex, password, folderName, null);
         assertNotNull(mathMl);
         assertTrue(mathMl.length() > 0);
         assertTrue(mathMl.canRead());
@@ -167,11 +166,11 @@ public class MathTest extends ApiTest {
 
     @Test
     public void mathDownloadNullTest() throws ApiException, IOException {
-        initialize(null, null, null, null);
+        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         try {
             //Cannot convert an ordinary portion to MathML
             File mathMl = api.downloadPortionAsMathMl(
-                c_fileName, c_slideIndex, c_notMathShapeIndex, c_paragraphIndex, c_portionIndex, c_password, c_folderName, null);
+                fileName, c_slideIndex, c_notMathShapeIndex, c_paragraphIndex, c_portionIndex, password, folderName, null);
         } catch (Exception ex) {
             assertTrue(ex instanceof ApiException);
         }
@@ -179,17 +178,14 @@ public class MathTest extends ApiTest {
 
     @Test
     public void mathSaveTest() throws ApiException, IOException {
-        String outPath = c_folderName + "/mathml.xml";
-        initialize(null, null, null, null);
+        String outPath = testDataFolderName + "/mathml.xml";
+        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         api.savePortionAsMathMl(
-            c_fileName, c_slideIndex, c_shapeIndex, c_paragraphIndex, c_portionIndex, outPath, c_password, c_folderName, null);
+            fileName, c_slideIndex, c_shapeIndex, c_paragraphIndex, c_portionIndex, outPath, password, folderName, null);
         ObjectExist exists = api.objectExists(outPath, null, null);
         assertTrue(exists.isExists());
     }
 
-    private final String c_folderName = "TempSlidesSDK";
-    private final String c_fileName = "test.pptx";
-    private final String c_password = "password";
     private final int c_slideIndex = 2;
     private final int c_shapeIndex = 3;
     private final int c_notMathShapeIndex = 1;

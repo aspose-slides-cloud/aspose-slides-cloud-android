@@ -46,8 +46,8 @@ public class AbstractClassTest extends ApiTest {
      */
     @Test
     public void shapeTest() throws ApiException, IOException {
-        initialize("getSlideShape", null, null, null);
-        ShapeBase shape = api.getShape("test.pptx", 1, 1, "password", "TempSlidesSDK", null, null);
+        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        ShapeBase shape = api.getShape(fileName, 1, 1, password, folderName, null, null);
         assertTrue(shape instanceof Shape);
         assertTrue(((Shape)shape).getText().equals("1"));
     }

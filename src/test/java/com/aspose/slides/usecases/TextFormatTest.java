@@ -16,7 +16,7 @@ import static org.junit.Assert.assertTrue;
 public class TextFormatTest extends ApiTest {
     @Test
     public void textFormat3DTest() throws ApiException, IOException {
-        initialize(null, null, null, null);
+        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
 
         Shape dto = new Shape();
         dto.setShapeType(GeometryShape.ShapeTypeEnum.RECTANGLE);
@@ -64,13 +64,13 @@ public class TextFormatTest extends ApiTest {
 
         dto.setTextFrameFormat(textFrameFormat);
 
-        ShapeBase shape = api.createShape(c_fileName, c_slideIndex, dto, null, null, c_password, c_folderName, null, null);
+        ShapeBase shape = api.createShape(fileName, c_slideIndex, dto, null, null, password, folderName, null, null);
         assertTrue(shape instanceof Shape);
     }
 
     @Test
     public void textFrameFormatTest() throws ApiException, IOException {
-        initialize(null, null, null, null);
+        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
 
         Shape dto = new Shape();
         dto.setShapeType(GeometryShape.ShapeTypeEnum.RECTANGLE);
@@ -95,12 +95,9 @@ public class TextFormatTest extends ApiTest {
 
         dto.setTextFrameFormat(textFrameFormat);
 
-        ShapeBase shape = api.createShape(c_fileName, c_slideIndex, dto, null, null, c_password, c_folderName, null, null);
+        ShapeBase shape = api.createShape(fileName, c_slideIndex, dto, null, null, password, folderName, null, null);
         assertTrue(shape instanceof Shape);
     }
 
-    private final String c_folderName = "TempSlidesSDK";
-    private final String c_fileName = "test.pptx";
-    private final String c_password = "password";
     private final int c_slideIndex = 1;
 }

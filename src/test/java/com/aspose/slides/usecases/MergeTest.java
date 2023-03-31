@@ -48,35 +48,33 @@ import static org.junit.Assert.assertTrue;
 public class MergeTest extends ApiTest {
     @Test
     public void mergeStorageTest() throws ApiException, IOException {
-        initialize(null, null, null, null);
-        api.copyFile(tempFolderName + "/" + c_fileName, c_folderName + "/" + c_fileName, null, null, null);
-        api.copyFile(tempFolderName + "/" + c_fileName2, c_folderName + "/" + c_fileName2, null, null, null);
-        api.copyFile(tempFolderName + "/" + c_fileNamePdf, c_folderName + "/" + c_fileNamePdf, null, null, null);
+        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        api.copyFile(tempFolderName + "/" + c_fileName2, folderName + "/" + c_fileName2, null, null, null);
+        api.copyFile(tempFolderName + "/" + c_fileNamePdf, folderName + "/" + c_fileNamePdf, null, null, null);
         PresentationsMergeRequest request = new PresentationsMergeRequest();
         List<String> items = new ArrayList<String>();
-        items.add(c_folderName + "/" + c_fileName2);
-        items.add(c_folderName + "/" + c_fileNamePdf);
+        items.add(folderName + "/" + c_fileName2);
+        items.add(folderName + "/" + c_fileNamePdf);
         request.setPresentationPaths(items);
-        api.merge(c_fileName, request, c_password, c_folderName, null);
+        api.merge(fileName, request, password, folderName, null);
     }
 
     @Test
     public void mergeOrderedStorageTest() throws ApiException, IOException {
-        initialize(null, null, null, null);
-        api.copyFile(tempFolderName + "/" + c_fileName, c_folderName + "/" + c_fileName, null, null, null);
-        api.copyFile(tempFolderName + "/" + c_fileName2, c_folderName + "/" + c_fileName2, null, null, null);
+        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        api.copyFile(tempFolderName + "/" + c_fileName2, folderName + "/" + c_fileName2, null, null, null);
         OrderedMergeRequest request = new OrderedMergeRequest();
         PresentationToMerge presentation = new PresentationToMerge();
-        presentation.setPath(c_folderName + "/" + c_fileName2);
+        presentation.setPath(folderName + "/" + c_fileName2);
         presentation.setSlides(Arrays.asList( 2, 1 ));
         request.setPresentations(Arrays.asList( presentation ));
-        api.orderedMerge(c_fileName, request, c_password, c_folderName, null);
+        api.orderedMerge(fileName, request, password, folderName, null);
     }
 
     @Test
     public void mergeRequestTest() throws ApiException, IOException {
         FileInfo file1 = new FileInfo();
-        file1.setName(c_fileName);
+        file1.setName(fileName);
         file1.setData(Files.readAllBytes(Paths.get(testDataFolderName + "/TemplateCV.pptx")));
         FileInfo file2 = new FileInfo();
         file2.setName(c_fileName2);
@@ -88,7 +86,7 @@ public class MergeTest extends ApiTest {
     @Test
     public void mergeAndSaveRequestTest() throws ApiException, IOException {
         FileInfo file1 = new FileInfo();
-        file1.setName(c_fileName);
+        file1.setName(fileName);
         file1.setData(Files.readAllBytes(Paths.get(testDataFolderName + "/TemplateCV.pptx")));
         FileInfo file2 = new FileInfo();
         file2.setName(c_fileName2);
@@ -104,8 +102,8 @@ public class MergeTest extends ApiTest {
     @Test
     public void mergeOrderedRequestTest() throws ApiException, IOException {
         FileInfo file1 = new FileInfo();
-        file1.setName(c_fileName);
-        file1.setData(Files.readAllBytes(Paths.get(testDataFolderName + "/" + c_fileName)));
+        file1.setName(fileName);
+        file1.setData(Files.readAllBytes(Paths.get(testDataFolderName + "/" + fileName)));
         FileInfo file2 = new FileInfo();
         file2.setName(c_fileName2);
         file2.setData(Files.readAllBytes(Paths.get(testDataFolderName + "/" + c_fileName2)));
@@ -114,8 +112,8 @@ public class MergeTest extends ApiTest {
         files.add(file2);
         OrderedMergeRequest request = new OrderedMergeRequest();
         PresentationToMerge presentation1 = new PresentationToMerge();
-        presentation1.setPath(c_fileName);
-        presentation1.setPassword(c_password);
+        presentation1.setPath(fileName);
+        presentation1.setPassword(password);
         PresentationToMerge presentation2 = new PresentationToMerge();
         presentation2.setPath(c_fileName2);
         presentation2.setSlides(Arrays.asList( 1, 2 ));
@@ -125,19 +123,18 @@ public class MergeTest extends ApiTest {
 
     @Test
     public void mergeOrderedCombinedTest() throws ApiException, IOException {
-        initialize(null, null, null, null);
-        api.copyFile(tempFolderName + "/" + c_fileName2, c_folderName + "/" + c_fileName2, null, null, null);
+        api.copyFile(tempFolderName + "/" + c_fileName2, folderName + "/" + c_fileName2, null, null, null);
         FileInfo file1 = new FileInfo();
-        file1.setName(c_fileName);
-        file1.setData(Files.readAllBytes(Paths.get(testDataFolderName + "/" + c_fileName)));
+        file1.setName(fileName);
+        file1.setData(Files.readAllBytes(Paths.get(testDataFolderName + "/" + fileName)));
         List<FileInfo> files = new ArrayList<FileInfo>();
         files.add(file1);
         OrderedMergeRequest request = new OrderedMergeRequest();
         PresentationToMerge presentation1 = new PresentationToMerge();
-        presentation1.setPath(c_fileName);
-        presentation1.setPassword(c_password);
+        presentation1.setPath(fileName);
+        presentation1.setPassword(password);
         PresentationToMerge presentation2 = new PresentationToMerge();
-        presentation2.setPath(c_folderName + "/" + c_fileName2);
+        presentation2.setPath(folderName + "/" + c_fileName2);
         presentation2.setSource(PresentationToMerge.SourceEnum.STORAGE);
         presentation2.setSlides(Arrays.asList( 1, 2 ));
         request.setPresentations(Arrays.asList( presentation1, presentation2 ));
@@ -146,14 +143,12 @@ public class MergeTest extends ApiTest {
 
     @Test
     public void MergeOrderedUrl() throws ApiException, IOException {
-        initialize(null, null, null, null);
-        api.copyFile(tempFolderName + "/" + c_fileName, c_folderName + "/" + c_fileName, null,
-                null, null);
+        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
 
         OrderedMergeRequest request = new OrderedMergeRequest();
         PresentationToMerge presentation1 = new PresentationToMerge();
-        presentation1.setPath(tempFolderName + "/" + c_fileName);
-        presentation1.setPassword(c_password);
+        presentation1.setPath(folderName + "/" + fileName);
+        presentation1.setPassword(password);
         presentation1.setSlides(Arrays.asList( 1, 2 ));
         presentation1.setSource(PresentationToMerge.SourceEnum.STORAGE);
 
@@ -167,10 +162,7 @@ public class MergeTest extends ApiTest {
     }
 
     private final String c_url = "https://drive.google.com/uc?export=download&id=1ycMzd7e--Ro9H8eH2GL5fPP7-2HjX4My";
-    private final String c_folderName = "TempSlidesSDK";
-    private final String c_fileName = "test.pptx";
     private final String c_fileName2 = "test-unprotected.pptx";
     private final String c_fileNamePdf = "test.pdf";
-    private final String c_password = "password";
-    private final String c_outPath = c_folderName + "/merged.pptx";
+    private final String c_outPath = testDataFolderName + "/merged.pptx";
 }

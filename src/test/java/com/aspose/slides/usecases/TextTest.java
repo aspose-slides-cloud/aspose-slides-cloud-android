@@ -43,11 +43,11 @@ import static org.junit.Assert.*;
 public class TextTest extends ApiTest {
     @Test
     public void textGetTest() throws ApiException, IOException {
-        initialize(null, null, null, null);
-        TextItems presentationItems = api.getPresentationTextItems(c_fileName, null, c_password, c_folderName, null);
-        TextItems presentationItemsWithEmpty = api.getPresentationTextItems(c_fileName, true, c_password, c_folderName, null);
-        TextItems slideItems = api.getSlideTextItems(c_fileName, c_slideIndex, null, c_password, c_folderName, null);
-        TextItems slideItemsWithEmpty = api.getSlideTextItems(c_fileName, c_slideIndex, true, c_password, c_folderName, null);
+        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        TextItems presentationItems = api.getPresentationTextItems(fileName, null, password, folderName, null);
+        TextItems presentationItemsWithEmpty = api.getPresentationTextItems(fileName, true, password, folderName, null);
+        TextItems slideItems = api.getSlideTextItems(fileName, c_slideIndex, null, password, folderName, null);
+        TextItems slideItemsWithEmpty = api.getSlideTextItems(fileName, c_slideIndex, true, password, folderName, null);
         assertTrue(presentationItemsWithEmpty.getItems().size() > presentationItems.getItems().size());
         assertTrue(presentationItems.getItems().size() > slideItems.getItems().size());
         assertTrue(slideItemsWithEmpty.getItems().size() > slideItems.getItems().size());
@@ -55,17 +55,17 @@ public class TextTest extends ApiTest {
 
     @Test
     public void textReplaceStorageTest() throws ApiException, IOException {
-        initialize(null, null, null, null);
-        DocumentReplaceResult result = api.replacePresentationText(c_fileName, c_oldValue, c_newValue, null, c_password, c_folderName, null);
+        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        DocumentReplaceResult result = api.replacePresentationText(fileName, c_oldValue, c_newValue, null, password, folderName, null);
 
-        initialize(null, null, null, null);
-        DocumentReplaceResult resultIgnoreCase = api.replacePresentationText(c_fileName, c_oldValue, c_newValue, true, c_password, c_folderName, null);
+        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        DocumentReplaceResult resultIgnoreCase = api.replacePresentationText(fileName, c_oldValue, c_newValue, true, password, folderName, null);
 
-        initialize(null, null, null, null);
-        SlideReplaceResult slideResult = api.replaceSlideText(c_fileName, c_slideIndex, c_oldValue, c_newValue, null, c_password, c_folderName, null);
+        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        SlideReplaceResult slideResult = api.replaceSlideText(fileName, c_slideIndex, c_oldValue, c_newValue, null, password, folderName, null);
 
-        initialize(null, null, null, null);
-        SlideReplaceResult slideResultIgnoreCase = api.replaceSlideText(c_fileName, c_slideIndex, c_oldValue, c_newValue, true, c_password, c_folderName, null);
+        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        SlideReplaceResult slideResultIgnoreCase = api.replaceSlideText(fileName, c_slideIndex, c_oldValue, c_newValue, true, password, folderName, null);
 
         assertTrue(resultIgnoreCase.getMatches() > result.getMatches());
         assertTrue(result.getMatches() > slideResult.getMatches());
@@ -74,11 +74,11 @@ public class TextTest extends ApiTest {
 
     @Test
     public void textReplaceRequestTest() throws ApiException, IOException {
-        byte[] file = Files.readAllBytes(Paths.get(testDataFolderName + "/" + c_fileName));
-        File result = api.replacePresentationTextOnline(file, c_oldValue, c_newValue, null, c_password);
-        File resultIgnoreCase = api.replacePresentationTextOnline(file, c_oldValue, c_newValue, true, c_password);
-        File slideResult = api.replaceSlideTextOnline(file, c_slideIndex, c_oldValue, c_newValue, null, c_password);
-        File slideResultIgnoreCase = api.replaceSlideTextOnline(file, c_slideIndex, c_oldValue, c_newValue, true, c_password);
+        byte[] file = Files.readAllBytes(Paths.get(testDataFolderName + "/" + fileName));
+        File result = api.replacePresentationTextOnline(file, c_oldValue, c_newValue, null, password);
+        File resultIgnoreCase = api.replacePresentationTextOnline(file, c_oldValue, c_newValue, true, password);
+        File slideResult = api.replaceSlideTextOnline(file, c_slideIndex, c_oldValue, c_newValue, null, password);
+        File slideResultIgnoreCase = api.replaceSlideTextOnline(file, c_slideIndex, c_oldValue, c_newValue, true, password);
         assertTrue(result.canRead());
         assertTrue(resultIgnoreCase.canRead());
         assertTrue(slideResult.canRead());
@@ -87,11 +87,11 @@ public class TextTest extends ApiTest {
 
     @Test
     public void highlightShapeTextTest() throws ApiException, IOException {
-        initialize(null, null, null, null);
+        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
 
         final int shapeIndex = 1, slideIndex = 6, paragraphIndex = 1;
-        api.highlightShapeText(c_fileName, slideIndex, shapeIndex, c_textToHighlight, c_highlightColor, null, false, c_password, c_folderName, null);
-        Paragraph para = api.getParagraph(c_fileName, slideIndex, shapeIndex, paragraphIndex, c_password, c_folderName, null, null);
+        api.highlightShapeText(fileName, slideIndex, shapeIndex, c_textToHighlight, c_highlightColor, null, false, password, folderName, null);
+        Paragraph para = api.getParagraph(fileName, slideIndex, shapeIndex, paragraphIndex, password, folderName, null, null);
         assertNotEquals(para.getPortionList().get(0).getText(), c_textToHighlight);
         assertNotEquals(para.getPortionList().get(0).getHighlightColor(), c_highlightColor);
         assertEquals(para.getPortionList().get(1).getText(), c_textToHighlight);
@@ -100,20 +100,17 @@ public class TextTest extends ApiTest {
 
     @Test
     public void highlightShapeRegexTest() throws ApiException, IOException {
-        initialize(null, null, null, null);
+        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
 
         final int shapeIndex = 1, slideIndex = 6, paragraphIndex = 1;
-        api.highlightShapeRegex(c_fileName, slideIndex, shapeIndex, c_highlightRegex, c_highlightColor, null, false, c_password, c_folderName, null);
-        Paragraph para = api.getParagraph(c_fileName, slideIndex, shapeIndex, paragraphIndex, c_password, c_folderName, null, null);
+        api.highlightShapeRegex(fileName, slideIndex, shapeIndex, c_highlightRegex, c_highlightColor, null, false, password, folderName, null);
+        Paragraph para = api.getParagraph(fileName, slideIndex, shapeIndex, paragraphIndex, password, folderName, null, null);
         assertNotEquals(para.getPortionList().get(0).getText(), c_textToHighlight);
         assertNotEquals(para.getPortionList().get(0).getHighlightColor(), c_highlightColor);
         assertEquals(para.getPortionList().get(1).getText(), c_textToHighlight);
         assertEquals(para.getPortionList().get(1).getHighlightColor(), c_highlightColor);
     }
 
-    private final String c_folderName = "TempSlidesSDK";
-    private final String c_fileName = "test.pptx";
-    private final String c_password = "password";
     private final String c_oldValue = "text";
     private final String c_newValue = "new_text";
     private final int c_slideIndex = 1;

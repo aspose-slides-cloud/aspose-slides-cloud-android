@@ -32797,12 +32797,13 @@ public class SlidesApi {
      * @param password Document password. 
      * @param storage Document storage. 
      * @param fontsFolder Custom fonts folder. 
+     * @param options Export options. 
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call splitAndSaveOnlineCall(byte[] document, SlideExportFormat format, String destFolder, Integer width, Integer height, Integer from, Integer to, String password, String storage, String fontsFolder, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call splitAndSaveOnlineCall(byte[] document, SlideExportFormat format, String destFolder, Integer width, Integer height, Integer from, Integer to, String password, String storage, String fontsFolder, ExportOptions options, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         // verify the required parameter 'document' is set
         if (document == null) {
             throw new ApiException("Missing the required parameter 'document' when calling splitAndSaveOnline(Async)");
@@ -32811,7 +32812,7 @@ public class SlidesApi {
         if (format == null) {
             throw new ApiException("Missing the required parameter 'format' when calling splitAndSaveOnline(Async)");
         }
-        Object postBody = null;
+        Object postBody = options;
 
         // create path and map variables
         String methodPath = "/slides/split/{format}"
@@ -32873,15 +32874,16 @@ public class SlidesApi {
      * @param password Document password. 
      * @param storage Document storage. 
      * @param fontsFolder Custom fonts folder. 
+     * @param options Export options. 
      * @return SplitDocumentResult
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public SplitDocumentResult splitAndSaveOnline(byte[] document, SlideExportFormat format, String destFolder, Integer width, Integer height, Integer from, Integer to, String password, String storage, String fontsFolder) throws ApiException {
+    public SplitDocumentResult splitAndSaveOnline(byte[] document, SlideExportFormat format, String destFolder, Integer width, Integer height, Integer from, Integer to, String password, String storage, String fontsFolder, ExportOptions options) throws ApiException {
         try {
-            ApiResponse<SplitDocumentResult> resp = splitAndSaveOnlineWithHttpInfo(document, format, destFolder, width, height, from, to, password, storage, fontsFolder);
+            ApiResponse<SplitDocumentResult> resp = splitAndSaveOnlineWithHttpInfo(document, format, destFolder, width, height, from, to, password, storage, fontsFolder, options);
             return resp.getData();
         } catch (NeedRepeatRequestException e) {
-            ApiResponse<SplitDocumentResult> resp = splitAndSaveOnlineWithHttpInfo(document, format, destFolder, width, height, from, to, password, storage, fontsFolder);
+            ApiResponse<SplitDocumentResult> resp = splitAndSaveOnlineWithHttpInfo(document, format, destFolder, width, height, from, to, password, storage, fontsFolder, options);
             return resp.getData();
         }
     }
@@ -32899,11 +32901,12 @@ public class SlidesApi {
      * @param password Document password. 
      * @param storage Document storage. 
      * @param fontsFolder Custom fonts folder. 
+     * @param options Export options. 
      * @return ApiResponse&lt;SplitDocumentResult&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<SplitDocumentResult> splitAndSaveOnlineWithHttpInfo(byte[] document, SlideExportFormat format, String destFolder, Integer width, Integer height, Integer from, Integer to, String password, String storage, String fontsFolder) throws ApiException {
-        com.squareup.okhttp.Call call = splitAndSaveOnlineCall(document, format, destFolder, width, height, from, to, password, storage, fontsFolder, null, null);
+    public ApiResponse<SplitDocumentResult> splitAndSaveOnlineWithHttpInfo(byte[] document, SlideExportFormat format, String destFolder, Integer width, Integer height, Integer from, Integer to, String password, String storage, String fontsFolder, ExportOptions options) throws ApiException {
+        com.squareup.okhttp.Call call = splitAndSaveOnlineCall(document, format, destFolder, width, height, from, to, password, storage, fontsFolder, options, null, null);
         Type returnType = new TypeToken<SplitDocumentResult>(){}.getType();
         return apiClient.execute(call, returnType);
     }
@@ -32921,11 +32924,12 @@ public class SlidesApi {
      * @param password Document password. 
      * @param storage Document storage. 
      * @param fontsFolder Custom fonts folder. 
+     * @param options Export options. 
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call splitAndSaveOnlineAsync(byte[] document, SlideExportFormat format, String destFolder, Integer width, Integer height, Integer from, Integer to, String password, String storage, String fontsFolder, final ApiCallback<SplitDocumentResult> callback) throws ApiException {
+    public com.squareup.okhttp.Call splitAndSaveOnlineAsync(byte[] document, SlideExportFormat format, String destFolder, Integer width, Integer height, Integer from, Integer to, String password, String storage, String fontsFolder, ExportOptions options, final ApiCallback<SplitDocumentResult> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -32946,7 +32950,7 @@ public class SlidesApi {
             };
         }
 
-        com.squareup.okhttp.Call call = splitAndSaveOnlineCall(document, format, destFolder, width, height, from, to, password, storage, fontsFolder, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = splitAndSaveOnlineCall(document, format, destFolder, width, height, from, to, password, storage, fontsFolder, options, progressListener, progressRequestListener);
         Type returnType = new TypeToken<SplitDocumentResult>(){}.getType();
         apiClient.executeAsync(call, returnType, callback);
         return call;
@@ -32962,12 +32966,13 @@ public class SlidesApi {
      * @param password Document password. 
      * @param storage Document storage. 
      * @param fontsFolder Custom fonts folder. 
+     * @param options Export options. 
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call splitOnlineCall(byte[] document, SlideExportFormat format, Integer width, Integer height, Integer from, Integer to, String password, String storage, String fontsFolder, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call splitOnlineCall(byte[] document, SlideExportFormat format, Integer width, Integer height, Integer from, Integer to, String password, String storage, String fontsFolder, ExportOptions options, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         // verify the required parameter 'document' is set
         if (document == null) {
             throw new ApiException("Missing the required parameter 'document' when calling splitOnline(Async)");
@@ -32976,7 +32981,7 @@ public class SlidesApi {
         if (format == null) {
             throw new ApiException("Missing the required parameter 'format' when calling splitOnline(Async)");
         }
-        Object postBody = null;
+        Object postBody = options;
 
         // create path and map variables
         String methodPath = "/slides/split/{format}"
@@ -33036,15 +33041,16 @@ public class SlidesApi {
      * @param password Document password. 
      * @param storage Document storage. 
      * @param fontsFolder Custom fonts folder. 
+     * @param options Export options. 
      * @return File
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public File splitOnline(byte[] document, SlideExportFormat format, Integer width, Integer height, Integer from, Integer to, String password, String storage, String fontsFolder) throws ApiException {
+    public File splitOnline(byte[] document, SlideExportFormat format, Integer width, Integer height, Integer from, Integer to, String password, String storage, String fontsFolder, ExportOptions options) throws ApiException {
         try {
-            ApiResponse<File> resp = splitOnlineWithHttpInfo(document, format, width, height, from, to, password, storage, fontsFolder);
+            ApiResponse<File> resp = splitOnlineWithHttpInfo(document, format, width, height, from, to, password, storage, fontsFolder, options);
             return resp.getData();
         } catch (NeedRepeatRequestException e) {
-            ApiResponse<File> resp = splitOnlineWithHttpInfo(document, format, width, height, from, to, password, storage, fontsFolder);
+            ApiResponse<File> resp = splitOnlineWithHttpInfo(document, format, width, height, from, to, password, storage, fontsFolder, options);
             return resp.getData();
         }
     }
@@ -33061,11 +33067,12 @@ public class SlidesApi {
      * @param password Document password. 
      * @param storage Document storage. 
      * @param fontsFolder Custom fonts folder. 
+     * @param options Export options. 
      * @return ApiResponse&lt;File&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<File> splitOnlineWithHttpInfo(byte[] document, SlideExportFormat format, Integer width, Integer height, Integer from, Integer to, String password, String storage, String fontsFolder) throws ApiException {
-        com.squareup.okhttp.Call call = splitOnlineCall(document, format, width, height, from, to, password, storage, fontsFolder, null, null);
+    public ApiResponse<File> splitOnlineWithHttpInfo(byte[] document, SlideExportFormat format, Integer width, Integer height, Integer from, Integer to, String password, String storage, String fontsFolder, ExportOptions options) throws ApiException {
+        com.squareup.okhttp.Call call = splitOnlineCall(document, format, width, height, from, to, password, storage, fontsFolder, options, null, null);
         Type returnType = new TypeToken<File>(){}.getType();
         return apiClient.execute(call, returnType);
     }
@@ -33082,11 +33089,12 @@ public class SlidesApi {
      * @param password Document password. 
      * @param storage Document storage. 
      * @param fontsFolder Custom fonts folder. 
+     * @param options Export options. 
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call splitOnlineAsync(byte[] document, SlideExportFormat format, Integer width, Integer height, Integer from, Integer to, String password, String storage, String fontsFolder, final ApiCallback<File> callback) throws ApiException {
+    public com.squareup.okhttp.Call splitOnlineAsync(byte[] document, SlideExportFormat format, Integer width, Integer height, Integer from, Integer to, String password, String storage, String fontsFolder, ExportOptions options, final ApiCallback<File> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -33107,7 +33115,7 @@ public class SlidesApi {
             };
         }
 
-        com.squareup.okhttp.Call call = splitOnlineCall(document, format, width, height, from, to, password, storage, fontsFolder, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = splitOnlineCall(document, format, width, height, from, to, password, storage, fontsFolder, options, progressListener, progressRequestListener);
         Type returnType = new TypeToken<File>(){}.getType();
         apiClient.executeAsync(call, returnType, callback);
         return call;

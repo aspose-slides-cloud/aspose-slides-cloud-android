@@ -46,9 +46,9 @@ import static org.junit.Assert.assertTrue;
 public class SplitTest extends ApiTest {
     @Test
     public void splitStorageTest() throws ApiException, IOException {
-        initialize(null, null, null, null);
-        SplitDocumentResult result = api.split(c_fileName, null, null, null, null, null, null, null, c_password, c_folderName, null, null);
-        SplitDocumentResult resultFromTo = api.split(c_fileName, null, null, null, null, 2, 3, null, c_password, c_folderName, null, null);
+        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        SplitDocumentResult result = api.split(fileName, null, null, null, null, null, null, null, password, folderName, null, null);
+        SplitDocumentResult resultFromTo = api.split(fileName, null, null, null, null, 2, 3, null, password, folderName, null, null);
         assertEquals(2, resultFromTo.getSlides().size());
         assertTrue(result.getSlides().size() > resultFromTo.getSlides().size());
         String url = result.getSlides().get(0).getHref();
@@ -59,9 +59,9 @@ public class SplitTest extends ApiTest {
 
     @Test
     public void splitRequestTest() throws ApiException, IOException {
-        byte[] file = Files.readAllBytes(Paths.get(testDataFolderName + "/" + c_fileName));
-        File result = api.splitOnline(file, SlideExportFormat.PNG, null, null, null, null, c_password, null, null);
-        File resultFromTo = api.splitOnline(file, SlideExportFormat.PNG, null, null, 2, 3, c_password, null, null);
+        byte[] file = Files.readAllBytes(Paths.get(testDataFolderName + "/" + fileName));
+        File result = api.splitOnline(file, SlideExportFormat.PNG, null, null, null, null, password, null, null, null);
+        File resultFromTo = api.splitOnline(file, SlideExportFormat.PNG, null, null, 2, 3, password, null, null, null);
         assertTrue(result.canRead());
         assertTrue(resultFromTo.canRead());
         assertNotEquals(result.length(), resultFromTo.length());
@@ -73,9 +73,9 @@ public class SplitTest extends ApiTest {
 
     @Test
     public void splitAndSaveRequestTest() throws ApiException, IOException {
-        byte[] file = Files.readAllBytes(Paths.get(testDataFolderName + "/" + c_fileName));
-        SplitDocumentResult result = api.splitAndSaveOnline(file, SlideExportFormat.PNG, null, null, null, null, null, c_password, null, null);
-        SplitDocumentResult resultFromTo = api.splitAndSaveOnline(file, SlideExportFormat.PNG, null, null, null, 2, 3, c_password, null, null);
+        byte[] file = Files.readAllBytes(Paths.get(testDataFolderName + "/" + fileName));
+        SplitDocumentResult result = api.splitAndSaveOnline(file, SlideExportFormat.PNG, null, null, null, null, null, password, null, null, null);
+        SplitDocumentResult resultFromTo = api.splitAndSaveOnline(file, SlideExportFormat.PNG, null, null, null, 2, 3, password, null, null, null);
         assertEquals(2, resultFromTo.getSlides().size());
         assertTrue(result.getSlides().size() > resultFromTo.getSlides().size());
         String url = result.getSlides().get(0).getHref();
@@ -86,17 +86,13 @@ public class SplitTest extends ApiTest {
 
     @Test
     public void splitWithOptionsTest() throws ApiException, IOException {
-        initialize(null, null, null, null);
+        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         PdfExportOptions options = new PdfExportOptions();
         options.setJpegQuality(50);
-        SplitDocumentResult result = api.split(c_fileName, options, SlideExportFormat.PDF, null, null, null, null, null, c_password, c_folderName, null, null);
+        SplitDocumentResult result = api.split(fileName, options, SlideExportFormat.PDF, null, null, null, null, null, password, folderName, null, null);
         String url = result.getSlides().get(0).getHref();
         String path = url.substring(url.indexOf("/storage/file/") + "/storage/file/".length());
         ObjectExist exists = api.objectExists(path, null, null);
         assertTrue(exists.isExists());
     }
-
-    private final String c_folderName = "TempSlidesSDK";
-    private final String c_fileName = "test.pptx";
-    private final String c_password = "password";
 }

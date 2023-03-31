@@ -40,15 +40,15 @@ import org.junit.Test;
 public class HeaderFooterTest extends ApiTest {
     @Test
     public void slidesFooterTest() throws ApiException, IOException {
-        initialize(null, null, null, null);
+        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
 
         HeaderFooter dto = new HeaderFooter();
         dto.setIsFooterVisible(true);
         dto.setFooterText("footer");
         dto.setIsDateTimeVisible(false);
-        Document document = api.setPresentationHeaderFooter(c_fileName, dto, c_password, c_folderName, null);
+        Document document = api.setPresentationHeaderFooter(fileName, dto, password, folderName, null);
         assertNotNull(document);
-        HeaderFooter headerFooter = api.getSlideHeaderFooter(c_fileName, c_slideIndex, c_password, c_folderName, null);
+        HeaderFooter headerFooter = api.getSlideHeaderFooter(fileName, c_slideIndex, password, folderName, null);
         assertNotNull(headerFooter);
         assertTrue(headerFooter.isIsFooterVisible());
         assertFalse(headerFooter.isIsDateTimeVisible());
@@ -56,17 +56,17 @@ public class HeaderFooterTest extends ApiTest {
 
     @Test
     public void slideFooterTest() throws ApiException, IOException {
-        initialize(null, null, null, null);
+        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
 
         HeaderFooter dto = new HeaderFooter();
         dto.setIsFooterVisible(true);
         dto.setFooterText("footer");
         dto.setIsDateTimeVisible(false);
-        HeaderFooter headerFooter = api.setSlideHeaderFooter(c_fileName, c_slideIndex, dto, c_password, c_folderName, null);
+        HeaderFooter headerFooter = api.setSlideHeaderFooter(fileName, c_slideIndex, dto, password, folderName, null);
         assertNotNull(headerFooter);
         assertTrue(headerFooter.isIsFooterVisible());
         assertFalse(headerFooter.isIsDateTimeVisible());
-        headerFooter = api.getSlideHeaderFooter(c_fileName, c_slideIndex, c_password, c_folderName, null);
+        headerFooter = api.getSlideHeaderFooter(fileName, c_slideIndex, password, folderName, null);
         assertNotNull(headerFooter);
         assertTrue(headerFooter.isIsFooterVisible());
         assertFalse(headerFooter.isIsDateTimeVisible());
@@ -74,24 +74,21 @@ public class HeaderFooterTest extends ApiTest {
 
     @Test
     public void notesSlideFooterTest() throws ApiException, IOException {
-        initialize(null, null, null, null);
+        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
 
         NotesSlideHeaderFooter dto = new NotesSlideHeaderFooter();
         dto.setIsHeaderVisible(true);
         dto.setHeaderText("header");
         dto.setIsDateTimeVisible(false);
-        NotesSlideHeaderFooter headerFooter = api.setNotesSlideHeaderFooter(c_fileName, c_slideIndex, dto, c_password, c_folderName, null);
+        NotesSlideHeaderFooter headerFooter = api.setNotesSlideHeaderFooter(fileName, c_slideIndex, dto, password, folderName, null);
         assertNotNull(headerFooter);
         assertTrue(headerFooter.isIsHeaderVisible());
         assertFalse(headerFooter.isIsDateTimeVisible());
-        headerFooter = api.getNotesSlideHeaderFooter(c_fileName, c_slideIndex, c_password, c_folderName, null);
+        headerFooter = api.getNotesSlideHeaderFooter(fileName, c_slideIndex, password, folderName, null);
         assertNotNull(headerFooter);
         assertTrue(headerFooter.isIsHeaderVisible());
         assertFalse(headerFooter.isIsDateTimeVisible());
     }
 
-    private final String c_folderName = "TempSlidesSDK";
-    private final String c_fileName = "test.pptx";
-    private final String c_password = "password";
     private final int c_slideIndex = 1;
 }

@@ -159,6 +159,9 @@ public class ImageExportOptions extends ImageExportOptionsBase {
   @SerializedName(value = "commentsAreaColor", alternate = { "CommentsAreaColor" })
   private String commentsAreaColor;
 
+  @SerializedName(value = "showHiddenSlides", alternate = { "ShowHiddenSlides" })
+  private Boolean showHiddenSlides;
+
 
   public ImageExportOptions() {
     super();
@@ -237,6 +240,24 @@ public class ImageExportOptions extends ImageExportOptionsBase {
     this.commentsAreaColor = commentsAreaColor;
   }
 
+  public ImageExportOptions showHiddenSlides(Boolean showHiddenSlides) {
+    this.showHiddenSlides = showHiddenSlides;
+    return this;
+  }
+
+   /**
+   * Show hidden slides. If true, hidden are exported.
+   * @return showHiddenSlides
+  **/
+  @ApiModelProperty(value = "Show hidden slides. If true, hidden are exported.")
+  public Boolean isShowHiddenSlides() {
+    return showHiddenSlides;
+  }
+
+  public void setShowHiddenSlides(Boolean showHiddenSlides) {
+    this.showHiddenSlides = showHiddenSlides;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -247,12 +268,12 @@ public class ImageExportOptions extends ImageExportOptionsBase {
       return false;
     }
     ImageExportOptions imageExportOptions = (ImageExportOptions) o;
-    return true && Objects.equals(this.notesPosition, imageExportOptions.notesPosition) && Objects.equals(this.commentsPosition, imageExportOptions.commentsPosition) && Objects.equals(this.commentsAreaWidth, imageExportOptions.commentsAreaWidth) && Objects.equals(this.commentsAreaColor, imageExportOptions.commentsAreaColor) && super.equals(o);
+    return true && Objects.equals(this.notesPosition, imageExportOptions.notesPosition) && Objects.equals(this.commentsPosition, imageExportOptions.commentsPosition) && Objects.equals(this.commentsAreaWidth, imageExportOptions.commentsAreaWidth) && Objects.equals(this.commentsAreaColor, imageExportOptions.commentsAreaColor) && Objects.equals(this.showHiddenSlides, imageExportOptions.showHiddenSlides) && super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(notesPosition, commentsPosition, commentsAreaWidth, commentsAreaColor, super.hashCode());
+    return Objects.hash(notesPosition, commentsPosition, commentsAreaWidth, commentsAreaColor, showHiddenSlides, super.hashCode());
   }
 
 
@@ -265,6 +286,7 @@ public class ImageExportOptions extends ImageExportOptionsBase {
     sb.append("    commentsPosition: ").append(toIndentedString(commentsPosition)).append("\n");
     sb.append("    commentsAreaWidth: ").append(toIndentedString(commentsAreaWidth)).append("\n");
     sb.append("    commentsAreaColor: ").append(toIndentedString(commentsAreaColor)).append("\n");
+    sb.append("    showHiddenSlides: ").append(toIndentedString(showHiddenSlides)).append("\n");
     sb.append("}");
     return sb.toString();
   }

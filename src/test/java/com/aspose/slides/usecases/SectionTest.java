@@ -41,15 +41,15 @@ import org.junit.Test;
 public class SectionTest extends ApiTest {
     @Test
     public void sectionsGetTest() throws ApiException, IOException {
-        initialize(null, null, null, null);
-        Sections sections = api.getSections(c_fileName, c_password, c_folderName, null);
+        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        Sections sections = api.getSections(fileName, password, folderName, null);
         assertNotNull(sections);
         assertEquals(c_sectionCount, sections.getSectionList().size());
     }
 
     @Test
     public void sectionsPutTest() throws ApiException, IOException {
-        initialize(null, null, null, null);
+        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         Sections dto = new Sections();
         List<Section> sectionList = new ArrayList<Section>();
         Section section1 = new Section();
@@ -61,7 +61,7 @@ public class SectionTest extends ApiTest {
         sectionList.add(section1);
         sectionList.add(section2);
         dto.setSectionList(sectionList);
-        Sections sections = api.setSections(c_fileName, dto, c_password, c_folderName, null);
+        Sections sections = api.setSections(fileName, dto, password, folderName, null);
         assertNotNull(sections);
         assertEquals(dto.getSectionList().size(), sections.getSectionList().size());
         assertEquals(
@@ -71,8 +71,8 @@ public class SectionTest extends ApiTest {
 
     @Test
     public void sectionPostTest() throws ApiException, IOException {
-        initialize(null, null, null, null);
-        Sections sections = api.createSection(c_fileName, "NewSection", 5, c_password, c_folderName, null);
+        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        Sections sections = api.createSection(fileName, "NewSection", 5, password, folderName, null);
         assertNotNull(sections);
         assertEquals(c_sectionCount + 1, sections.getSectionList().size());
     }
@@ -80,8 +80,8 @@ public class SectionTest extends ApiTest {
     @Test
     public void sectionPutTest() throws ApiException, IOException {
         final String sectionName = "NewSection";
-        initialize(null, null, null, null);
-        Sections sections = api.updateSection(c_fileName, 2, sectionName, c_password, c_folderName, null);
+        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        Sections sections = api.updateSection(fileName, 2, sectionName, password, folderName, null);
         assertNotNull(sections);
         assertEquals(c_sectionCount, sections.getSectionList().size());
         assertEquals(sectionName, sections.getSectionList().get(1).getName());
@@ -89,41 +89,38 @@ public class SectionTest extends ApiTest {
 
     @Test
     public void sectionMoveTest() throws ApiException, IOException {
-        initialize(null, null, null, null);
-        Sections sections = api.moveSection(c_fileName, 1, 2, c_password, c_folderName, null);
+        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        Sections sections = api.moveSection(fileName, 1, 2, password, folderName, null);
         assertNotNull(sections);
         assertEquals(c_sectionCount, sections.getSectionList().size());
     }
 
     @Test
     public void sectionsClearTest() throws ApiException, IOException {
-        initialize(null, null, null, null);
-        Sections sections = api.deleteSections(c_fileName, null, null, c_password, c_folderName, null);
+        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        Sections sections = api.deleteSections(fileName, null, null, password, folderName, null);
         assertNotNull(sections);
         assertEquals(0, sections.getSectionList().size());
     }
 
     @Test
     public void sectionsDeleteTest() throws ApiException, IOException {
-        initialize(null, null, null, null);
+        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         List<Integer> indexes = new ArrayList<Integer>();
         indexes.add(2);
         indexes.add(3);
-        Sections sections = api.deleteSections(c_fileName, indexes, null, c_password, c_folderName, null);
+        Sections sections = api.deleteSections(fileName, indexes, null, password, folderName, null);
         assertNotNull(sections);
         assertEquals(c_sectionCount - 2, sections.getSectionList().size());
     }
 
     @Test
     public void sectionDeleteTest() throws ApiException, IOException {
-        initialize(null, null, null, null);
-        Sections sections = api.deleteSection(c_fileName, 2, null, c_password, c_folderName, null);
+        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        Sections sections = api.deleteSection(fileName, 2, null, password, folderName, null);
         assertNotNull(sections);
         assertEquals(c_sectionCount - 1, sections.getSectionList().size());
     }
 
-    private final String c_folderName = "TempSlidesSDK";
-    private final String c_fileName = "test.pptx";
-    private final String c_password = "password";
     private final int c_sectionCount = 3;
 }

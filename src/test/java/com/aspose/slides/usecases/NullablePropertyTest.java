@@ -48,10 +48,7 @@ public class NullablePropertyTest extends ApiTest {
      */
     @Test
     public void nullablePropertyTest() throws ApiException, IOException {
-        initialize("noSpecificMethod", "noSpecificProperty", null, null);
-        String folderName = "TempSlidesSDK";
-        String fileName = "test.pptx";
-        String password = "password";
+        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         double min1  = 44.3;
         double min2 = 12;
         double max1 = 104.3;

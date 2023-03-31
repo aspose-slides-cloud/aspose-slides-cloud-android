@@ -44,25 +44,22 @@ import static org.junit.Assert.*;
 public class FontTest extends ApiTest {
     @Test
     public void fontsGetTest() throws ApiException, IOException {
-        initialize(null, null, null, null);
-        api.copyFile(tempFolderName + "/" + c_fileName, c_folderName + "/" + c_fileName, null, null, null);
-        FontsData response = api.getFonts(c_fileName, c_password, c_folderName, null);
+        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        FontsData response = api.getFonts(fileName, password, folderName, null);
         assertEquals(3, response.getList().size());
     }
 
     @Test
     public void fontsGetOnlineTest() throws ApiException, IOException {
-        initialize(null, null, null, null);
-        byte[] file = Files.readAllBytes(Paths.get(testDataFolderName + "/" + c_fileName));
-        FontsData response = api.getFontsOnline(file, c_password);
+        byte[] file = Files.readAllBytes(Paths.get(testDataFolderName + "/" + fileName));
+        FontsData response = api.getFontsOnline(file, password);
         assertEquals(3, response.getList().size());
     }
 
     @Test
     public void fontEmbeddedSetTest() throws ApiException, IOException {
-        initialize(null, null, null, null);
-        api.copyFile(tempFolderName + "/" + c_fileName, c_folderName + "/" + c_fileName, null, null, null);
-        FontsData response = api.setEmbeddedFont(c_fileName, c_fontName, false, c_password, c_folderName, null, null);
+        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        FontsData response = api.setEmbeddedFont(fileName, c_fontName, false, password, folderName, null, null);
         assertNull(response.getList().get(0).isIsEmbedded());
         assertEquals(true, response.getList().get(1).isIsEmbedded());
         assertEquals(true, response.getList().get(2).isIsEmbedded());
@@ -71,18 +68,16 @@ public class FontTest extends ApiTest {
 
     @Test
     public void fontEmbeddedSetOnlineTest() throws ApiException, IOException {
-        initialize(null, null, null, null);
-        byte[] file = Files.readAllBytes(Paths.get(testDataFolderName + "/" + c_fileName));
-        File response = api.setEmbeddedFontOnline(file, c_fontName, false, c_password, null);
+        byte[] file = Files.readAllBytes(Paths.get(testDataFolderName + "/" + fileName));
+        File response = api.setEmbeddedFontOnline(file, c_fontName, false, password, null);
         assertTrue(file.length < response.length());
     }
 
     @Test
     public void fontSetEmbeddedFromRequestTest() throws ApiException, IOException {
-        initialize(null, null, null, null);
-        api.copyFile(tempFolderName + "/" + c_fileName, c_folderName + "/" + c_fileName, null, null, null);
+        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         byte[] fontFile = Files.readAllBytes(Paths.get(testDataFolderName + "/" + c_fontFileName));
-        FontsData response = api.setEmbeddedFontFromRequest(fontFile, c_fileName, false, c_password, c_folderName, null);
+        FontsData response = api.setEmbeddedFontFromRequest(fontFile, fileName, false, password, folderName, null);
         assertNull(response.getList().get(0).isIsEmbedded());
         assertEquals(true, response.getList().get(1).isIsEmbedded());
         assertEquals(true, response.getList().get(2).isIsEmbedded());
@@ -91,28 +86,25 @@ public class FontTest extends ApiTest {
 
     @Test
     public void fontSetEmbeddedFromRequestOnlineTest() throws ApiException, IOException {
-        initialize(null, null, null, null);
-        byte[] file = Files.readAllBytes(Paths.get(testDataFolderName + "/" + c_fileName));
+        byte[] file = Files.readAllBytes(Paths.get(testDataFolderName + "/" + fileName));
         byte[] fontFile = Files.readAllBytes(Paths.get(testDataFolderName + "/" + c_fontFileName));
-        File response = api.setEmbeddedFontFromRequestOnline(file, fontFile, false, c_password);
+        File response = api.setEmbeddedFontFromRequestOnline(file, fontFile, false, password);
         assertTrue(file.length < response.length());
     }
 
     @Test
     public void fontEmbeddedCompressTest() throws ApiException, IOException {
-        initialize(null, null, null, null);
-        api.copyFile(tempFolderName + "/" + c_fileName, c_folderName + "/" + c_fileName, null, null, null);
-        FontsData response = api.setEmbeddedFont(c_fileName, c_fontName, false, c_password, c_folderName, null, null);
+        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        FontsData response = api.setEmbeddedFont(fileName, c_fontName, false, password, folderName, null, null);
         assertEquals(true, response.getList().get(2).isIsEmbedded());
         //In a real world example, you would rather get the same result by calling SetEmbeddedFont with onlyUsed = true
-        api.compressEmbeddedFonts(c_fileName, c_password, c_folderName, null);
+        api.compressEmbeddedFonts(fileName, password, folderName, null);
     }
 
     @Test
     public void fontEmbeddedCompressOnlineTest() throws ApiException, IOException {
-        initialize(null, null, null, null);
-        byte[] file = Files.readAllBytes(Paths.get(testDataFolderName + "/" + c_fileName));
-        File responseEmbedded = api.setEmbeddedFontOnline(file, c_fontName, false, c_password, null);
+        byte[] file = Files.readAllBytes(Paths.get(testDataFolderName + "/" + fileName));
+        File responseEmbedded = api.setEmbeddedFontOnline(file, c_fontName, false, password, null);
         assertTrue(file.length < responseEmbedded.length());
 
         FileInputStream fl = new FileInputStream(responseEmbedded);
@@ -120,56 +112,51 @@ public class FontTest extends ApiTest {
         fl.read(arr);
         fl.close();
         //In a real world example, you would rather get the same result by calling SetEmbeddedFontOnline with onlyUsed = true
-        File responseCompressed = api.compressEmbeddedFontsOnline(arr, c_password);
+        File responseCompressed = api.compressEmbeddedFontsOnline(arr, password);
         assertTrue(responseCompressed.length() < responseEmbedded.length());
     }
 
     @Test
     public void fontEmbeddedDeleteTest() throws ApiException, IOException {
-        initialize(null, null, null, null);
-        api.copyFile(tempFolderName + "/" + c_fileName, c_folderName + "/" + c_fileName, null, null, null);
-        FontsData response = api.setEmbeddedFont(c_fileName, c_fontName, false, c_password, c_folderName, null, null);
+        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        FontsData response = api.setEmbeddedFont(fileName, c_fontName, false, password, folderName, null, null);
         assertEquals(true, response.getList().get(2).isIsEmbedded());
-        response = api.deleteEmbeddedFont(c_fileName, c_fontName, c_password, c_folderName, null);
+        response = api.deleteEmbeddedFont(fileName, c_fontName, password, folderName, null);
         assertEquals(null, response.getList().get(2).isIsEmbedded());
     }
 
     @Test
     public void fontEmbeddedDeleteOnlineTest() throws ApiException, IOException {
-        initialize(null, null, null, null);
-        byte[] file = Files.readAllBytes(Paths.get(testDataFolderName + "/" + c_fileName));
-        File responseEmbedded = api.setEmbeddedFontOnline(file, c_fontName, false, c_password, null);
+        byte[] file = Files.readAllBytes(Paths.get(testDataFolderName + "/" + fileName));
+        File responseEmbedded = api.setEmbeddedFontOnline(file, c_fontName, false, password, null);
         assertTrue(file.length < responseEmbedded.length());
 
         FileInputStream fl = new FileInputStream(responseEmbedded);
         byte[] arr = new byte[(int)responseEmbedded.length()];
         fl.read(arr);
         fl.close();
-        File responseDeleted = api.deleteEmbeddedFontOnline(arr, c_fontName, c_password);
+        File responseDeleted = api.deleteEmbeddedFontOnline(arr, c_fontName, password);
         assertTrue(responseDeleted.length() < responseEmbedded.length());
     }
 
     @Test
     public void fontReplaceTest() throws ApiException, IOException {
-        initialize(null, null, null, null);
-        api.copyFile(tempFolderName + "/" + c_fileName, c_folderName + "/" + c_fileName, null, null, null);
-        FontsData response = api.replaceFont(c_fileName, c_fontName, c_fontNameTimes, true, c_password, c_folderName, null, null);
+        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        FontsData response = api.replaceFont(fileName, c_fontName, c_fontNameTimes, true, password, folderName, null, null);
         assertEquals(true, response.getList().get(2).isIsEmbedded());
         assertEquals(c_fontNameTimes, response.getList().get(2).getFontName());
     }
 
     @Test
     public void fontReplaceOnlineTest() throws ApiException, IOException {
-        initialize(null, null, null, null);
-        byte[] file = Files.readAllBytes(Paths.get(testDataFolderName + "/" + c_fileName));
-        File response = api.replaceFontOnline(file, c_fontName, c_fontNameTimes, true, c_password, null);
+        byte[] file = Files.readAllBytes(Paths.get(testDataFolderName + "/" + fileName));
+        File response = api.replaceFontOnline(file, c_fontName, c_fontNameTimes, true, password, null);
         assertTrue(file.length < response.length());
     }
 
     @Test
     public void fontSubstitutionTest() throws ApiException, IOException {
-        initialize(null, null, null, null);
-        api.copyFile(tempFolderName + "/" + c_fileName, c_folderName + "/" + c_fileName, null, null, null);
+        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
 
         FontSubstRule rule1 = new FontSubstRule();
         rule1.setSourceFont("Arial");
@@ -185,14 +172,11 @@ public class FontTest extends ApiTest {
         ImageExportOptions exportOptions = new ImageExportOptions();
         exportOptions.setFontSubstRules(rules);
 
-        File response = api.downloadPresentation(c_fileName, ExportFormat.PNG, exportOptions, c_password, c_folderName, null, null, null);
+        File response = api.downloadPresentation(fileName, ExportFormat.PNG, exportOptions, password, folderName, null, null, null);
         assertTrue(response.length() > 0);
     }
 
     private final String c_fontName = "Calibri";
     private final String c_fontNameTimes = "Times New Roman";
-    private final String c_folderName = "TempSlidesSDK";
-    private final String c_fileName = "test.pptx";
     private final String c_fontFileName = "calibri.ttf";
-    private final String c_password = "password";
 }

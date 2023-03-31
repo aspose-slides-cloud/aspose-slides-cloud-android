@@ -39,32 +39,30 @@ import org.junit.Test;
 public class ShapeFormatTest extends ApiTest {
     @Test
     public void shapeFormatLine() throws ApiException, IOException {
-        initialize(null, null, null, null);
+        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         Shape dto = new Shape();
         LineFormat lineFormat = new LineFormat();
         lineFormat.setStyle(LineFormat.StyleEnum.THICKTHIN);
         lineFormat.setWidth(7.0);
         lineFormat.setDashStyle(LineFormat.DashStyleEnum.DASH);
         dto.setLineFormat(lineFormat);
-        ShapeBase shape = api.updateShape(c_fileName, c_slideIndex, c_shapeIndex, dto, c_password, c_folderName,
-                null, null);
+        ShapeBase shape = api.updateShape(fileName, c_slideIndex, c_shapeIndex, dto, password, folderName, null, null);
         assertTrue(shape instanceof Shape);
-        shape = api.getShape(c_fileName, c_slideIndex, c_shapeIndex, c_password, c_folderName, null, null);
+        shape = api.getShape(fileName, c_slideIndex, c_shapeIndex, password, folderName, null, null);
         assertTrue(shape instanceof Shape);
         assertEquals(dto.getLineFormat().getWidth(), shape.getLineFormat().getWidth());
     }
 
     @Test
     public void shapeFormatFill() throws ApiException, IOException {
-        initialize(null, null, null, null);
+        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         Shape dto = new Shape();
         SolidFill fillFormat = new SolidFill();
         fillFormat.setColor("#FFFFFF00");
         dto.setFillFormat(fillFormat);
-        ShapeBase shape = api.updateShape(c_fileName, c_slideIndex, c_shapeIndex, dto, c_password, c_folderName,
-                null, null);
+        ShapeBase shape = api.updateShape(fileName, c_slideIndex, c_shapeIndex, dto, password, folderName, null, null);
         assertTrue(shape instanceof Shape);
-        shape = api.getShape(c_fileName, c_slideIndex, c_shapeIndex, c_password, c_folderName, null, null);
+        shape = api.getShape(fileName, c_slideIndex, c_shapeIndex, password, folderName, null, null);
         assertTrue(shape instanceof Shape);
         assertTrue(shape.getFillFormat() instanceof SolidFill);
         assertEquals(((SolidFill)dto.getFillFormat()).getColor(), ((SolidFill)shape.getFillFormat()).getColor());
@@ -72,7 +70,7 @@ public class ShapeFormatTest extends ApiTest {
 
     @Test
     public void shapeFormatEffect() throws ApiException, IOException {
-        initialize(null, null, null, null);
+        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         Shape dto = new Shape();
         EffectFormat effectFormat = new EffectFormat();
         InnerShadowEffect innerShadow = new InnerShadowEffect();
@@ -82,17 +80,16 @@ public class ShapeFormatTest extends ApiTest {
         innerShadow.setShadowColor("#FFFFFF00");
         effectFormat.setInnerShadow(innerShadow);
         dto.setEffectFormat(effectFormat);
-        ShapeBase shape = api.updateShape(c_fileName, c_slideIndex, c_shapeIndex, dto, c_password, c_folderName,
-                null, null);
+        ShapeBase shape = api.updateShape(fileName, c_slideIndex, c_shapeIndex, dto, password, folderName, null, null);
         assertTrue(shape instanceof Shape);
-        shape = api.getShape(c_fileName, c_slideIndex, c_shapeIndex, c_password, c_folderName, null, null);
+        shape = api.getShape(fileName, c_slideIndex, c_shapeIndex, password, folderName, null, null);
         assertTrue(shape instanceof Shape);
         assertEquals(dto.getEffectFormat().getInnerShadow().getDirection(), shape.getEffectFormat().getInnerShadow().getDirection());
     }
 
     @Test
     public void shapeFormat3D() throws ApiException, IOException {
-        initialize(null, null, null, null);
+        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         Shape dto = new Shape();
         ThreeDFormat threeDFormat = new ThreeDFormat();
         threeDFormat.setDepth(4.0);
@@ -112,17 +109,13 @@ public class ShapeFormatTest extends ApiTest {
         lightRig.setDirection(LightRig.DirectionEnum.TOP);
         threeDFormat.setLightRig(lightRig);
         dto.setThreeDFormat(threeDFormat);
-        ShapeBase shape = api.updateShape(c_fileName, c_slideIndex, c_shapeIndex, dto, c_password, c_folderName,
-                null, null);
+        ShapeBase shape = api.updateShape(fileName, c_slideIndex, c_shapeIndex, dto, password, folderName, null, null);
         assertTrue(shape instanceof Shape);
-        shape = api.getShape(c_fileName, c_slideIndex, c_shapeIndex, c_password, c_folderName, null, null);
+        shape = api.getShape(fileName, c_slideIndex, c_shapeIndex, password, folderName, null, null);
         assertTrue(shape instanceof Shape);
         assertEquals(dto.getThreeDFormat().getDepth(), shape.getThreeDFormat().getDepth());
     }
 
-    private final String c_folderName = "TempSlidesSDK";
-    private final String c_fileName = "test.pptx";
-    private final String c_password = "password";
     private final int c_slideIndex = 1;
     private final int c_shapeIndex = 1;
 }
