@@ -107,6 +107,10 @@ import com.aspose.slides.model.Slides;
 import com.aspose.slides.model.SmartArt;
 import com.aspose.slides.model.SplitDocumentResult;
 import com.aspose.slides.model.StorageExist;
+import com.aspose.slides.model.Table;
+import com.aspose.slides.model.TableCell;
+import com.aspose.slides.model.TableCellMergeOptions;
+import com.aspose.slides.model.TableRow;
 import com.aspose.slides.model.TextBounds;
 import com.aspose.slides.model.TextItems;
 import com.aspose.slides.model.Theme;
@@ -5902,6 +5906,516 @@ public class SlidesApi {
 
         com.squareup.okhttp.Call call = createSpecialSlideShapeCall(name, slideIndex, slideType, dto, shapeToClone, position, password, folder, storage, subShape, progressListener, progressRequestListener);
         Type returnType = new TypeToken<ShapeBase>(){}.getType();
+        apiClient.executeAsync(call, returnType, callback);
+        return call;
+    }
+    /**
+     * Build call for createTableCellParagraph
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param shapeIndex Shape index. (required)
+     * @param rowIndex Row index. (required)
+     * @param cellIndex Table cell index. (required)
+     * @param dto Paragraph DTO. (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call createTableCellParagraphCall(String name, Integer slideIndex, Integer shapeIndex, Integer rowIndex, Integer cellIndex, Paragraph dto, String password, String folder, String storage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        // verify the required parameter 'name' is set
+        if (name == null) {
+            throw new ApiException("Missing the required parameter 'name' when calling createTableCellParagraph(Async)");
+        }
+        // verify the required parameter 'slideIndex' is set
+        if (slideIndex == null) {
+            throw new ApiException("Missing the required parameter 'slideIndex' when calling createTableCellParagraph(Async)");
+        }
+        // verify the required parameter 'shapeIndex' is set
+        if (shapeIndex == null) {
+            throw new ApiException("Missing the required parameter 'shapeIndex' when calling createTableCellParagraph(Async)");
+        }
+        // verify the required parameter 'rowIndex' is set
+        if (rowIndex == null) {
+            throw new ApiException("Missing the required parameter 'rowIndex' when calling createTableCellParagraph(Async)");
+        }
+        // verify the required parameter 'cellIndex' is set
+        if (cellIndex == null) {
+            throw new ApiException("Missing the required parameter 'cellIndex' when calling createTableCellParagraph(Async)");
+        }
+        // verify the required parameter 'dto' is set
+        if (dto == null) {
+            throw new ApiException("Missing the required parameter 'dto' when calling createTableCellParagraph(Async)");
+        }
+        Object postBody = dto;
+
+        // create path and map variables
+        String methodPath = "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/rows/{rowIndex}/cells/{cellIndex}/paragraphs"
+            .replaceAll("\\{" + "name" + "\\}", apiClient.objectToString(name)).replaceAll("\\{" + "slideIndex" + "\\}", apiClient.objectToString(slideIndex)).replaceAll("\\{" + "shapeIndex" + "\\}", apiClient.objectToString(shapeIndex)).replaceAll("\\{" + "rowIndex" + "\\}", apiClient.objectToString(rowIndex)).replaceAll("\\{" + "cellIndex" + "\\}", apiClient.objectToString(cellIndex));
+
+        List<Pair> queryParams = new ArrayList<Pair>();
+        apiClient.addQueryParameter(queryParams, "folder", folder);
+        apiClient.addQueryParameter(queryParams, "storage", storage);
+
+        Map<String, String> headerParams = new HashMap<String, String>();
+        if (password != null)
+        headerParams.put("password", apiClient.parameterToString(password));
+
+        Map<String, Object> formParams = new LinkedHashMap<String, Object>();
+
+        final String[] accepts = {
+            "application/json"
+        };
+        final String accept = apiClient.selectHeaderAccept(accepts);
+        if (accept != null) headerParams.put("Accept", accept);
+
+        final String[] contentTypes = {
+            "application/json"
+        };
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
+        headerParams.put("Content-Type", contentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+        return apiClient.buildCall(methodPath, "POST", queryParams, postBody, headerParams, formParams, progressRequestListener);
+    }
+
+    /**
+     * Creates table cell paragraph.
+     * 
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param shapeIndex Shape index. (required)
+     * @param rowIndex Row index. (required)
+     * @param cellIndex Table cell index. (required)
+     * @param dto Paragraph DTO. (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @return Paragraph
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public Paragraph createTableCellParagraph(String name, Integer slideIndex, Integer shapeIndex, Integer rowIndex, Integer cellIndex, Paragraph dto, String password, String folder, String storage) throws ApiException {
+        try {
+            ApiResponse<Paragraph> resp = createTableCellParagraphWithHttpInfo(name, slideIndex, shapeIndex, rowIndex, cellIndex, dto, password, folder, storage);
+            return resp.getData();
+        } catch (NeedRepeatRequestException e) {
+            ApiResponse<Paragraph> resp = createTableCellParagraphWithHttpInfo(name, slideIndex, shapeIndex, rowIndex, cellIndex, dto, password, folder, storage);
+            return resp.getData();
+        }
+    }
+
+    /**
+     * Creates table cell paragraph.
+     * 
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param shapeIndex Shape index. (required)
+     * @param rowIndex Row index. (required)
+     * @param cellIndex Table cell index. (required)
+     * @param dto Paragraph DTO. (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @return ApiResponse&lt;Paragraph&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<Paragraph> createTableCellParagraphWithHttpInfo(String name, Integer slideIndex, Integer shapeIndex, Integer rowIndex, Integer cellIndex, Paragraph dto, String password, String folder, String storage) throws ApiException {
+        com.squareup.okhttp.Call call = createTableCellParagraphCall(name, slideIndex, shapeIndex, rowIndex, cellIndex, dto, password, folder, storage, null, null);
+        Type returnType = new TypeToken<Paragraph>(){}.getType();
+        return apiClient.execute(call, returnType);
+    }
+
+    /**
+     * Creates table cell paragraph. (asynchronously)
+     * 
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param shapeIndex Shape index. (required)
+     * @param rowIndex Row index. (required)
+     * @param cellIndex Table cell index. (required)
+     * @param dto Paragraph DTO. (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call createTableCellParagraphAsync(String name, Integer slideIndex, Integer shapeIndex, Integer rowIndex, Integer cellIndex, Paragraph dto, String password, String folder, String storage, final ApiCallback<Paragraph> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = createTableCellParagraphCall(name, slideIndex, shapeIndex, rowIndex, cellIndex, dto, password, folder, storage, progressListener, progressRequestListener);
+        Type returnType = new TypeToken<Paragraph>(){}.getType();
+        apiClient.executeAsync(call, returnType, callback);
+        return call;
+    }
+    /**
+     * Build call for createTableCellPortion
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param shapeIndex Shape index. (required)
+     * @param rowIndex Row index. (required)
+     * @param cellIndex Table cell index. (required)
+     * @param paragraphIndex Paragraph index. (required)
+     * @param dto Portion DTO. (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call createTableCellPortionCall(String name, Integer slideIndex, Integer shapeIndex, Integer rowIndex, Integer cellIndex, Integer paragraphIndex, Portion dto, String password, String folder, String storage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        // verify the required parameter 'name' is set
+        if (name == null) {
+            throw new ApiException("Missing the required parameter 'name' when calling createTableCellPortion(Async)");
+        }
+        // verify the required parameter 'slideIndex' is set
+        if (slideIndex == null) {
+            throw new ApiException("Missing the required parameter 'slideIndex' when calling createTableCellPortion(Async)");
+        }
+        // verify the required parameter 'shapeIndex' is set
+        if (shapeIndex == null) {
+            throw new ApiException("Missing the required parameter 'shapeIndex' when calling createTableCellPortion(Async)");
+        }
+        // verify the required parameter 'rowIndex' is set
+        if (rowIndex == null) {
+            throw new ApiException("Missing the required parameter 'rowIndex' when calling createTableCellPortion(Async)");
+        }
+        // verify the required parameter 'cellIndex' is set
+        if (cellIndex == null) {
+            throw new ApiException("Missing the required parameter 'cellIndex' when calling createTableCellPortion(Async)");
+        }
+        // verify the required parameter 'paragraphIndex' is set
+        if (paragraphIndex == null) {
+            throw new ApiException("Missing the required parameter 'paragraphIndex' when calling createTableCellPortion(Async)");
+        }
+        // verify the required parameter 'dto' is set
+        if (dto == null) {
+            throw new ApiException("Missing the required parameter 'dto' when calling createTableCellPortion(Async)");
+        }
+        Object postBody = dto;
+
+        // create path and map variables
+        String methodPath = "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/rows/{rowIndex}/cells/{cellIndex}/paragraphs/{paragraphIndex}/portions"
+            .replaceAll("\\{" + "name" + "\\}", apiClient.objectToString(name)).replaceAll("\\{" + "slideIndex" + "\\}", apiClient.objectToString(slideIndex)).replaceAll("\\{" + "shapeIndex" + "\\}", apiClient.objectToString(shapeIndex)).replaceAll("\\{" + "rowIndex" + "\\}", apiClient.objectToString(rowIndex)).replaceAll("\\{" + "cellIndex" + "\\}", apiClient.objectToString(cellIndex)).replaceAll("\\{" + "paragraphIndex" + "\\}", apiClient.objectToString(paragraphIndex));
+
+        List<Pair> queryParams = new ArrayList<Pair>();
+        apiClient.addQueryParameter(queryParams, "folder", folder);
+        apiClient.addQueryParameter(queryParams, "storage", storage);
+
+        Map<String, String> headerParams = new HashMap<String, String>();
+        if (password != null)
+        headerParams.put("password", apiClient.parameterToString(password));
+
+        Map<String, Object> formParams = new LinkedHashMap<String, Object>();
+
+        final String[] accepts = {
+            "application/json"
+        };
+        final String accept = apiClient.selectHeaderAccept(accepts);
+        if (accept != null) headerParams.put("Accept", accept);
+
+        final String[] contentTypes = {
+            "application/json"
+        };
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
+        headerParams.put("Content-Type", contentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+        return apiClient.buildCall(methodPath, "POST", queryParams, postBody, headerParams, formParams, progressRequestListener);
+    }
+
+    /**
+     * Creates table cell portion.
+     * 
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param shapeIndex Shape index. (required)
+     * @param rowIndex Row index. (required)
+     * @param cellIndex Table cell index. (required)
+     * @param paragraphIndex Paragraph index. (required)
+     * @param dto Portion DTO. (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @return Portion
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public Portion createTableCellPortion(String name, Integer slideIndex, Integer shapeIndex, Integer rowIndex, Integer cellIndex, Integer paragraphIndex, Portion dto, String password, String folder, String storage) throws ApiException {
+        try {
+            ApiResponse<Portion> resp = createTableCellPortionWithHttpInfo(name, slideIndex, shapeIndex, rowIndex, cellIndex, paragraphIndex, dto, password, folder, storage);
+            return resp.getData();
+        } catch (NeedRepeatRequestException e) {
+            ApiResponse<Portion> resp = createTableCellPortionWithHttpInfo(name, slideIndex, shapeIndex, rowIndex, cellIndex, paragraphIndex, dto, password, folder, storage);
+            return resp.getData();
+        }
+    }
+
+    /**
+     * Creates table cell portion.
+     * 
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param shapeIndex Shape index. (required)
+     * @param rowIndex Row index. (required)
+     * @param cellIndex Table cell index. (required)
+     * @param paragraphIndex Paragraph index. (required)
+     * @param dto Portion DTO. (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @return ApiResponse&lt;Portion&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<Portion> createTableCellPortionWithHttpInfo(String name, Integer slideIndex, Integer shapeIndex, Integer rowIndex, Integer cellIndex, Integer paragraphIndex, Portion dto, String password, String folder, String storage) throws ApiException {
+        com.squareup.okhttp.Call call = createTableCellPortionCall(name, slideIndex, shapeIndex, rowIndex, cellIndex, paragraphIndex, dto, password, folder, storage, null, null);
+        Type returnType = new TypeToken<Portion>(){}.getType();
+        return apiClient.execute(call, returnType);
+    }
+
+    /**
+     * Creates table cell portion. (asynchronously)
+     * 
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param shapeIndex Shape index. (required)
+     * @param rowIndex Row index. (required)
+     * @param cellIndex Table cell index. (required)
+     * @param paragraphIndex Paragraph index. (required)
+     * @param dto Portion DTO. (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call createTableCellPortionAsync(String name, Integer slideIndex, Integer shapeIndex, Integer rowIndex, Integer cellIndex, Integer paragraphIndex, Portion dto, String password, String folder, String storage, final ApiCallback<Portion> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = createTableCellPortionCall(name, slideIndex, shapeIndex, rowIndex, cellIndex, paragraphIndex, dto, password, folder, storage, progressListener, progressRequestListener);
+        Type returnType = new TypeToken<Portion>(){}.getType();
+        apiClient.executeAsync(call, returnType, callback);
+        return call;
+    }
+    /**
+     * Build call for createTableRow
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param shapeIndex Shape index. (required)
+     * @param dto Table row data. (required)
+     * @param position Position. 
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call createTableRowCall(String name, Integer slideIndex, Integer shapeIndex, TableRow dto, Integer position, String password, String folder, String storage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        // verify the required parameter 'name' is set
+        if (name == null) {
+            throw new ApiException("Missing the required parameter 'name' when calling createTableRow(Async)");
+        }
+        // verify the required parameter 'slideIndex' is set
+        if (slideIndex == null) {
+            throw new ApiException("Missing the required parameter 'slideIndex' when calling createTableRow(Async)");
+        }
+        // verify the required parameter 'shapeIndex' is set
+        if (shapeIndex == null) {
+            throw new ApiException("Missing the required parameter 'shapeIndex' when calling createTableRow(Async)");
+        }
+        // verify the required parameter 'dto' is set
+        if (dto == null) {
+            throw new ApiException("Missing the required parameter 'dto' when calling createTableRow(Async)");
+        }
+        Object postBody = dto;
+
+        // create path and map variables
+        String methodPath = "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/rows"
+            .replaceAll("\\{" + "name" + "\\}", apiClient.objectToString(name)).replaceAll("\\{" + "slideIndex" + "\\}", apiClient.objectToString(slideIndex)).replaceAll("\\{" + "shapeIndex" + "\\}", apiClient.objectToString(shapeIndex));
+
+        List<Pair> queryParams = new ArrayList<Pair>();
+        apiClient.addQueryParameter(queryParams, "position", position);
+        apiClient.addQueryParameter(queryParams, "folder", folder);
+        apiClient.addQueryParameter(queryParams, "storage", storage);
+
+        Map<String, String> headerParams = new HashMap<String, String>();
+        if (password != null)
+        headerParams.put("password", apiClient.parameterToString(password));
+
+        Map<String, Object> formParams = new LinkedHashMap<String, Object>();
+
+        final String[] accepts = {
+            "application/json"
+        };
+        final String accept = apiClient.selectHeaderAccept(accepts);
+        if (accept != null) headerParams.put("Accept", accept);
+
+        final String[] contentTypes = {
+            "application/json"
+        };
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
+        headerParams.put("Content-Type", contentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+        return apiClient.buildCall(methodPath, "POST", queryParams, postBody, headerParams, formParams, progressRequestListener);
+    }
+
+    /**
+     * Inserts the table row in the specified position. If position is not specified, the row add to the end of the table.
+     * 
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param shapeIndex Shape index. (required)
+     * @param dto Table row data. (required)
+     * @param position Position. 
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @return TableRow
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public TableRow createTableRow(String name, Integer slideIndex, Integer shapeIndex, TableRow dto, Integer position, String password, String folder, String storage) throws ApiException {
+        try {
+            ApiResponse<TableRow> resp = createTableRowWithHttpInfo(name, slideIndex, shapeIndex, dto, position, password, folder, storage);
+            return resp.getData();
+        } catch (NeedRepeatRequestException e) {
+            ApiResponse<TableRow> resp = createTableRowWithHttpInfo(name, slideIndex, shapeIndex, dto, position, password, folder, storage);
+            return resp.getData();
+        }
+    }
+
+    /**
+     * Inserts the table row in the specified position. If position is not specified, the row add to the end of the table.
+     * 
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param shapeIndex Shape index. (required)
+     * @param dto Table row data. (required)
+     * @param position Position. 
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @return ApiResponse&lt;TableRow&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<TableRow> createTableRowWithHttpInfo(String name, Integer slideIndex, Integer shapeIndex, TableRow dto, Integer position, String password, String folder, String storage) throws ApiException {
+        com.squareup.okhttp.Call call = createTableRowCall(name, slideIndex, shapeIndex, dto, position, password, folder, storage, null, null);
+        Type returnType = new TypeToken<TableRow>(){}.getType();
+        return apiClient.execute(call, returnType);
+    }
+
+    /**
+     * Inserts the table row in the specified position. If position is not specified, the row add to the end of the table. (asynchronously)
+     * 
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param shapeIndex Shape index. (required)
+     * @param dto Table row data. (required)
+     * @param position Position. 
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call createTableRowAsync(String name, Integer slideIndex, Integer shapeIndex, TableRow dto, Integer position, String password, String folder, String storage, final ApiCallback<TableRow> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = createTableRowCall(name, slideIndex, shapeIndex, dto, position, password, folder, storage, progressListener, progressRequestListener);
+        Type returnType = new TypeToken<TableRow>(){}.getType();
         apiClient.executeAsync(call, returnType, callback);
         return call;
     }
@@ -12973,6 +13487,516 @@ public class SlidesApi {
 
         com.squareup.okhttp.Call call = deleteSpecialSlideShapesCall(name, slideIndex, slideType, shapes, password, folder, storage, subShape, progressListener, progressRequestListener);
         Type returnType = new TypeToken<Shapes>(){}.getType();
+        apiClient.executeAsync(call, returnType, callback);
+        return call;
+    }
+    /**
+     * Build call for deleteTableCellParagraph
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param shapeIndex Shape index. (required)
+     * @param rowIndex Row index. (required)
+     * @param cellIndex Table cell index. (required)
+     * @param paragraphIndex Paragraph index. (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call deleteTableCellParagraphCall(String name, Integer slideIndex, Integer shapeIndex, Integer rowIndex, Integer cellIndex, Integer paragraphIndex, String password, String folder, String storage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        // verify the required parameter 'name' is set
+        if (name == null) {
+            throw new ApiException("Missing the required parameter 'name' when calling deleteTableCellParagraph(Async)");
+        }
+        // verify the required parameter 'slideIndex' is set
+        if (slideIndex == null) {
+            throw new ApiException("Missing the required parameter 'slideIndex' when calling deleteTableCellParagraph(Async)");
+        }
+        // verify the required parameter 'shapeIndex' is set
+        if (shapeIndex == null) {
+            throw new ApiException("Missing the required parameter 'shapeIndex' when calling deleteTableCellParagraph(Async)");
+        }
+        // verify the required parameter 'rowIndex' is set
+        if (rowIndex == null) {
+            throw new ApiException("Missing the required parameter 'rowIndex' when calling deleteTableCellParagraph(Async)");
+        }
+        // verify the required parameter 'cellIndex' is set
+        if (cellIndex == null) {
+            throw new ApiException("Missing the required parameter 'cellIndex' when calling deleteTableCellParagraph(Async)");
+        }
+        // verify the required parameter 'paragraphIndex' is set
+        if (paragraphIndex == null) {
+            throw new ApiException("Missing the required parameter 'paragraphIndex' when calling deleteTableCellParagraph(Async)");
+        }
+        Object postBody = null;
+
+        // create path and map variables
+        String methodPath = "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/rows/{rowIndex}/cells/{cellIndex}/paragraphs/{paragraphIndex}"
+            .replaceAll("\\{" + "name" + "\\}", apiClient.objectToString(name)).replaceAll("\\{" + "slideIndex" + "\\}", apiClient.objectToString(slideIndex)).replaceAll("\\{" + "shapeIndex" + "\\}", apiClient.objectToString(shapeIndex)).replaceAll("\\{" + "rowIndex" + "\\}", apiClient.objectToString(rowIndex)).replaceAll("\\{" + "cellIndex" + "\\}", apiClient.objectToString(cellIndex)).replaceAll("\\{" + "paragraphIndex" + "\\}", apiClient.objectToString(paragraphIndex));
+
+        List<Pair> queryParams = new ArrayList<Pair>();
+        apiClient.addQueryParameter(queryParams, "folder", folder);
+        apiClient.addQueryParameter(queryParams, "storage", storage);
+
+        Map<String, String> headerParams = new HashMap<String, String>();
+        if (password != null)
+        headerParams.put("password", apiClient.parameterToString(password));
+
+        Map<String, Object> formParams = new LinkedHashMap<String, Object>();
+
+        final String[] accepts = {
+            "application/json"
+        };
+        final String accept = apiClient.selectHeaderAccept(accepts);
+        if (accept != null) headerParams.put("Accept", accept);
+
+        final String[] contentTypes = {
+            "application/json"
+        };
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
+        headerParams.put("Content-Type", contentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+        return apiClient.buildCall(methodPath, "DELETE", queryParams, postBody, headerParams, formParams, progressRequestListener);
+    }
+
+    /**
+     * Delete cell paragraph.
+     * 
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param shapeIndex Shape index. (required)
+     * @param rowIndex Row index. (required)
+     * @param cellIndex Table cell index. (required)
+     * @param paragraphIndex Paragraph index. (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @return Paragraphs
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public Paragraphs deleteTableCellParagraph(String name, Integer slideIndex, Integer shapeIndex, Integer rowIndex, Integer cellIndex, Integer paragraphIndex, String password, String folder, String storage) throws ApiException {
+        try {
+            ApiResponse<Paragraphs> resp = deleteTableCellParagraphWithHttpInfo(name, slideIndex, shapeIndex, rowIndex, cellIndex, paragraphIndex, password, folder, storage);
+            return resp.getData();
+        } catch (NeedRepeatRequestException e) {
+            ApiResponse<Paragraphs> resp = deleteTableCellParagraphWithHttpInfo(name, slideIndex, shapeIndex, rowIndex, cellIndex, paragraphIndex, password, folder, storage);
+            return resp.getData();
+        }
+    }
+
+    /**
+     * Delete cell paragraph.
+     * 
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param shapeIndex Shape index. (required)
+     * @param rowIndex Row index. (required)
+     * @param cellIndex Table cell index. (required)
+     * @param paragraphIndex Paragraph index. (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @return ApiResponse&lt;Paragraphs&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<Paragraphs> deleteTableCellParagraphWithHttpInfo(String name, Integer slideIndex, Integer shapeIndex, Integer rowIndex, Integer cellIndex, Integer paragraphIndex, String password, String folder, String storage) throws ApiException {
+        com.squareup.okhttp.Call call = deleteTableCellParagraphCall(name, slideIndex, shapeIndex, rowIndex, cellIndex, paragraphIndex, password, folder, storage, null, null);
+        Type returnType = new TypeToken<Paragraphs>(){}.getType();
+        return apiClient.execute(call, returnType);
+    }
+
+    /**
+     * Delete cell paragraph. (asynchronously)
+     * 
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param shapeIndex Shape index. (required)
+     * @param rowIndex Row index. (required)
+     * @param cellIndex Table cell index. (required)
+     * @param paragraphIndex Paragraph index. (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call deleteTableCellParagraphAsync(String name, Integer slideIndex, Integer shapeIndex, Integer rowIndex, Integer cellIndex, Integer paragraphIndex, String password, String folder, String storage, final ApiCallback<Paragraphs> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = deleteTableCellParagraphCall(name, slideIndex, shapeIndex, rowIndex, cellIndex, paragraphIndex, password, folder, storage, progressListener, progressRequestListener);
+        Type returnType = new TypeToken<Paragraphs>(){}.getType();
+        apiClient.executeAsync(call, returnType, callback);
+        return call;
+    }
+    /**
+     * Build call for deleteTableCellPortion
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param shapeIndex Shape index. (required)
+     * @param rowIndex Row index. (required)
+     * @param cellIndex Table cell index. (required)
+     * @param paragraphIndex Paragraph index. (required)
+     * @param portionIndex Portion index. (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call deleteTableCellPortionCall(String name, Integer slideIndex, Integer shapeIndex, Integer rowIndex, Integer cellIndex, Integer paragraphIndex, Integer portionIndex, String password, String folder, String storage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        // verify the required parameter 'name' is set
+        if (name == null) {
+            throw new ApiException("Missing the required parameter 'name' when calling deleteTableCellPortion(Async)");
+        }
+        // verify the required parameter 'slideIndex' is set
+        if (slideIndex == null) {
+            throw new ApiException("Missing the required parameter 'slideIndex' when calling deleteTableCellPortion(Async)");
+        }
+        // verify the required parameter 'shapeIndex' is set
+        if (shapeIndex == null) {
+            throw new ApiException("Missing the required parameter 'shapeIndex' when calling deleteTableCellPortion(Async)");
+        }
+        // verify the required parameter 'rowIndex' is set
+        if (rowIndex == null) {
+            throw new ApiException("Missing the required parameter 'rowIndex' when calling deleteTableCellPortion(Async)");
+        }
+        // verify the required parameter 'cellIndex' is set
+        if (cellIndex == null) {
+            throw new ApiException("Missing the required parameter 'cellIndex' when calling deleteTableCellPortion(Async)");
+        }
+        // verify the required parameter 'paragraphIndex' is set
+        if (paragraphIndex == null) {
+            throw new ApiException("Missing the required parameter 'paragraphIndex' when calling deleteTableCellPortion(Async)");
+        }
+        // verify the required parameter 'portionIndex' is set
+        if (portionIndex == null) {
+            throw new ApiException("Missing the required parameter 'portionIndex' when calling deleteTableCellPortion(Async)");
+        }
+        Object postBody = null;
+
+        // create path and map variables
+        String methodPath = "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/rows/{rowIndex}/cells/{cellIndex}/paragraphs/{paragraphIndex}/portions/{portionIndex}"
+            .replaceAll("\\{" + "name" + "\\}", apiClient.objectToString(name)).replaceAll("\\{" + "slideIndex" + "\\}", apiClient.objectToString(slideIndex)).replaceAll("\\{" + "shapeIndex" + "\\}", apiClient.objectToString(shapeIndex)).replaceAll("\\{" + "rowIndex" + "\\}", apiClient.objectToString(rowIndex)).replaceAll("\\{" + "cellIndex" + "\\}", apiClient.objectToString(cellIndex)).replaceAll("\\{" + "paragraphIndex" + "\\}", apiClient.objectToString(paragraphIndex)).replaceAll("\\{" + "portionIndex" + "\\}", apiClient.objectToString(portionIndex));
+
+        List<Pair> queryParams = new ArrayList<Pair>();
+        apiClient.addQueryParameter(queryParams, "folder", folder);
+        apiClient.addQueryParameter(queryParams, "storage", storage);
+
+        Map<String, String> headerParams = new HashMap<String, String>();
+        if (password != null)
+        headerParams.put("password", apiClient.parameterToString(password));
+
+        Map<String, Object> formParams = new LinkedHashMap<String, Object>();
+
+        final String[] accepts = {
+            "application/json"
+        };
+        final String accept = apiClient.selectHeaderAccept(accepts);
+        if (accept != null) headerParams.put("Accept", accept);
+
+        final String[] contentTypes = {
+            "application/json"
+        };
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
+        headerParams.put("Content-Type", contentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+        return apiClient.buildCall(methodPath, "DELETE", queryParams, postBody, headerParams, formParams, progressRequestListener);
+    }
+
+    /**
+     * Delete table ell portion.
+     * 
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param shapeIndex Shape index. (required)
+     * @param rowIndex Row index. (required)
+     * @param cellIndex Table cell index. (required)
+     * @param paragraphIndex Paragraph index. (required)
+     * @param portionIndex Portion index. (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @return Portions
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public Portions deleteTableCellPortion(String name, Integer slideIndex, Integer shapeIndex, Integer rowIndex, Integer cellIndex, Integer paragraphIndex, Integer portionIndex, String password, String folder, String storage) throws ApiException {
+        try {
+            ApiResponse<Portions> resp = deleteTableCellPortionWithHttpInfo(name, slideIndex, shapeIndex, rowIndex, cellIndex, paragraphIndex, portionIndex, password, folder, storage);
+            return resp.getData();
+        } catch (NeedRepeatRequestException e) {
+            ApiResponse<Portions> resp = deleteTableCellPortionWithHttpInfo(name, slideIndex, shapeIndex, rowIndex, cellIndex, paragraphIndex, portionIndex, password, folder, storage);
+            return resp.getData();
+        }
+    }
+
+    /**
+     * Delete table ell portion.
+     * 
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param shapeIndex Shape index. (required)
+     * @param rowIndex Row index. (required)
+     * @param cellIndex Table cell index. (required)
+     * @param paragraphIndex Paragraph index. (required)
+     * @param portionIndex Portion index. (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @return ApiResponse&lt;Portions&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<Portions> deleteTableCellPortionWithHttpInfo(String name, Integer slideIndex, Integer shapeIndex, Integer rowIndex, Integer cellIndex, Integer paragraphIndex, Integer portionIndex, String password, String folder, String storage) throws ApiException {
+        com.squareup.okhttp.Call call = deleteTableCellPortionCall(name, slideIndex, shapeIndex, rowIndex, cellIndex, paragraphIndex, portionIndex, password, folder, storage, null, null);
+        Type returnType = new TypeToken<Portions>(){}.getType();
+        return apiClient.execute(call, returnType);
+    }
+
+    /**
+     * Delete table ell portion. (asynchronously)
+     * 
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param shapeIndex Shape index. (required)
+     * @param rowIndex Row index. (required)
+     * @param cellIndex Table cell index. (required)
+     * @param paragraphIndex Paragraph index. (required)
+     * @param portionIndex Portion index. (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call deleteTableCellPortionAsync(String name, Integer slideIndex, Integer shapeIndex, Integer rowIndex, Integer cellIndex, Integer paragraphIndex, Integer portionIndex, String password, String folder, String storage, final ApiCallback<Portions> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = deleteTableCellPortionCall(name, slideIndex, shapeIndex, rowIndex, cellIndex, paragraphIndex, portionIndex, password, folder, storage, progressListener, progressRequestListener);
+        Type returnType = new TypeToken<Portions>(){}.getType();
+        apiClient.executeAsync(call, returnType, callback);
+        return call;
+    }
+    /**
+     * Build call for deleteTableRow
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param shapeIndex Shape index. (required)
+     * @param rowIndex Row index. (required)
+     * @param withAttachedRows Also delete all attached rows. 
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call deleteTableRowCall(String name, Integer slideIndex, Integer shapeIndex, Integer rowIndex, Boolean withAttachedRows, String password, String folder, String storage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        // verify the required parameter 'name' is set
+        if (name == null) {
+            throw new ApiException("Missing the required parameter 'name' when calling deleteTableRow(Async)");
+        }
+        // verify the required parameter 'slideIndex' is set
+        if (slideIndex == null) {
+            throw new ApiException("Missing the required parameter 'slideIndex' when calling deleteTableRow(Async)");
+        }
+        // verify the required parameter 'shapeIndex' is set
+        if (shapeIndex == null) {
+            throw new ApiException("Missing the required parameter 'shapeIndex' when calling deleteTableRow(Async)");
+        }
+        // verify the required parameter 'rowIndex' is set
+        if (rowIndex == null) {
+            throw new ApiException("Missing the required parameter 'rowIndex' when calling deleteTableRow(Async)");
+        }
+        Object postBody = null;
+
+        // create path and map variables
+        String methodPath = "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/rows/{rowIndex}"
+            .replaceAll("\\{" + "name" + "\\}", apiClient.objectToString(name)).replaceAll("\\{" + "slideIndex" + "\\}", apiClient.objectToString(slideIndex)).replaceAll("\\{" + "shapeIndex" + "\\}", apiClient.objectToString(shapeIndex)).replaceAll("\\{" + "rowIndex" + "\\}", apiClient.objectToString(rowIndex));
+
+        List<Pair> queryParams = new ArrayList<Pair>();
+        apiClient.addQueryParameter(queryParams, "withAttachedRows", withAttachedRows);
+        apiClient.addQueryParameter(queryParams, "folder", folder);
+        apiClient.addQueryParameter(queryParams, "storage", storage);
+
+        Map<String, String> headerParams = new HashMap<String, String>();
+        if (password != null)
+        headerParams.put("password", apiClient.parameterToString(password));
+
+        Map<String, Object> formParams = new LinkedHashMap<String, Object>();
+
+        final String[] accepts = {
+            "application/json"
+        };
+        final String accept = apiClient.selectHeaderAccept(accepts);
+        if (accept != null) headerParams.put("Accept", accept);
+
+        final String[] contentTypes = {
+            "application/json"
+        };
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
+        headerParams.put("Content-Type", contentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+        return apiClient.buildCall(methodPath, "DELETE", queryParams, postBody, headerParams, formParams, progressRequestListener);
+    }
+
+    /**
+     * Deletes the table row.
+     * 
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param shapeIndex Shape index. (required)
+     * @param rowIndex Row index. (required)
+     * @param withAttachedRows Also delete all attached rows. 
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @return Table
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public Table deleteTableRow(String name, Integer slideIndex, Integer shapeIndex, Integer rowIndex, Boolean withAttachedRows, String password, String folder, String storage) throws ApiException {
+        try {
+            ApiResponse<Table> resp = deleteTableRowWithHttpInfo(name, slideIndex, shapeIndex, rowIndex, withAttachedRows, password, folder, storage);
+            return resp.getData();
+        } catch (NeedRepeatRequestException e) {
+            ApiResponse<Table> resp = deleteTableRowWithHttpInfo(name, slideIndex, shapeIndex, rowIndex, withAttachedRows, password, folder, storage);
+            return resp.getData();
+        }
+    }
+
+    /**
+     * Deletes the table row.
+     * 
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param shapeIndex Shape index. (required)
+     * @param rowIndex Row index. (required)
+     * @param withAttachedRows Also delete all attached rows. 
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @return ApiResponse&lt;Table&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<Table> deleteTableRowWithHttpInfo(String name, Integer slideIndex, Integer shapeIndex, Integer rowIndex, Boolean withAttachedRows, String password, String folder, String storage) throws ApiException {
+        com.squareup.okhttp.Call call = deleteTableRowCall(name, slideIndex, shapeIndex, rowIndex, withAttachedRows, password, folder, storage, null, null);
+        Type returnType = new TypeToken<Table>(){}.getType();
+        return apiClient.execute(call, returnType);
+    }
+
+    /**
+     * Deletes the table row. (asynchronously)
+     * 
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param shapeIndex Shape index. (required)
+     * @param rowIndex Row index. (required)
+     * @param withAttachedRows Also delete all attached rows. 
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call deleteTableRowAsync(String name, Integer slideIndex, Integer shapeIndex, Integer rowIndex, Boolean withAttachedRows, String password, String folder, String storage, final ApiCallback<Table> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = deleteTableRowCall(name, slideIndex, shapeIndex, rowIndex, withAttachedRows, password, folder, storage, progressListener, progressRequestListener);
+        Type returnType = new TypeToken<Table>(){}.getType();
         apiClient.executeAsync(call, returnType, callback);
         return call;
     }
@@ -24135,6 +25159,690 @@ public class SlidesApi {
         return call;
     }
     /**
+     * Build call for getTableCellParagraph
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param shapeIndex Shape index. (required)
+     * @param rowIndex Row index. (required)
+     * @param cellIndex Table cell index. (required)
+     * @param paragraphIndex Paragraph index. (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call getTableCellParagraphCall(String name, Integer slideIndex, Integer shapeIndex, Integer rowIndex, Integer cellIndex, Integer paragraphIndex, String password, String folder, String storage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        // verify the required parameter 'name' is set
+        if (name == null) {
+            throw new ApiException("Missing the required parameter 'name' when calling getTableCellParagraph(Async)");
+        }
+        // verify the required parameter 'slideIndex' is set
+        if (slideIndex == null) {
+            throw new ApiException("Missing the required parameter 'slideIndex' when calling getTableCellParagraph(Async)");
+        }
+        // verify the required parameter 'shapeIndex' is set
+        if (shapeIndex == null) {
+            throw new ApiException("Missing the required parameter 'shapeIndex' when calling getTableCellParagraph(Async)");
+        }
+        // verify the required parameter 'rowIndex' is set
+        if (rowIndex == null) {
+            throw new ApiException("Missing the required parameter 'rowIndex' when calling getTableCellParagraph(Async)");
+        }
+        // verify the required parameter 'cellIndex' is set
+        if (cellIndex == null) {
+            throw new ApiException("Missing the required parameter 'cellIndex' when calling getTableCellParagraph(Async)");
+        }
+        // verify the required parameter 'paragraphIndex' is set
+        if (paragraphIndex == null) {
+            throw new ApiException("Missing the required parameter 'paragraphIndex' when calling getTableCellParagraph(Async)");
+        }
+        Object postBody = null;
+
+        // create path and map variables
+        String methodPath = "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/rows/{rowIndex}/cells/{cellIndex}/paragraphs/{paragraphIndex}"
+            .replaceAll("\\{" + "name" + "\\}", apiClient.objectToString(name)).replaceAll("\\{" + "slideIndex" + "\\}", apiClient.objectToString(slideIndex)).replaceAll("\\{" + "shapeIndex" + "\\}", apiClient.objectToString(shapeIndex)).replaceAll("\\{" + "rowIndex" + "\\}", apiClient.objectToString(rowIndex)).replaceAll("\\{" + "cellIndex" + "\\}", apiClient.objectToString(cellIndex)).replaceAll("\\{" + "paragraphIndex" + "\\}", apiClient.objectToString(paragraphIndex));
+
+        List<Pair> queryParams = new ArrayList<Pair>();
+        apiClient.addQueryParameter(queryParams, "folder", folder);
+        apiClient.addQueryParameter(queryParams, "storage", storage);
+
+        Map<String, String> headerParams = new HashMap<String, String>();
+        if (password != null)
+        headerParams.put("password", apiClient.parameterToString(password));
+
+        Map<String, Object> formParams = new LinkedHashMap<String, Object>();
+
+        final String[] accepts = {
+            "application/json"
+        };
+        final String accept = apiClient.selectHeaderAccept(accepts);
+        if (accept != null) headerParams.put("Accept", accept);
+
+        final String[] contentTypes = {
+            "application/json"
+        };
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
+        headerParams.put("Content-Type", contentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+        return apiClient.buildCall(methodPath, "GET", queryParams, postBody, headerParams, formParams, progressRequestListener);
+    }
+
+    /**
+     * Returns paragraph info.
+     * 
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param shapeIndex Shape index. (required)
+     * @param rowIndex Row index. (required)
+     * @param cellIndex Table cell index. (required)
+     * @param paragraphIndex Paragraph index. (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @return Paragraph
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public Paragraph getTableCellParagraph(String name, Integer slideIndex, Integer shapeIndex, Integer rowIndex, Integer cellIndex, Integer paragraphIndex, String password, String folder, String storage) throws ApiException {
+        try {
+            ApiResponse<Paragraph> resp = getTableCellParagraphWithHttpInfo(name, slideIndex, shapeIndex, rowIndex, cellIndex, paragraphIndex, password, folder, storage);
+            return resp.getData();
+        } catch (NeedRepeatRequestException e) {
+            ApiResponse<Paragraph> resp = getTableCellParagraphWithHttpInfo(name, slideIndex, shapeIndex, rowIndex, cellIndex, paragraphIndex, password, folder, storage);
+            return resp.getData();
+        }
+    }
+
+    /**
+     * Returns paragraph info.
+     * 
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param shapeIndex Shape index. (required)
+     * @param rowIndex Row index. (required)
+     * @param cellIndex Table cell index. (required)
+     * @param paragraphIndex Paragraph index. (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @return ApiResponse&lt;Paragraph&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<Paragraph> getTableCellParagraphWithHttpInfo(String name, Integer slideIndex, Integer shapeIndex, Integer rowIndex, Integer cellIndex, Integer paragraphIndex, String password, String folder, String storage) throws ApiException {
+        com.squareup.okhttp.Call call = getTableCellParagraphCall(name, slideIndex, shapeIndex, rowIndex, cellIndex, paragraphIndex, password, folder, storage, null, null);
+        Type returnType = new TypeToken<Paragraph>(){}.getType();
+        return apiClient.execute(call, returnType);
+    }
+
+    /**
+     * Returns paragraph info. (asynchronously)
+     * 
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param shapeIndex Shape index. (required)
+     * @param rowIndex Row index. (required)
+     * @param cellIndex Table cell index. (required)
+     * @param paragraphIndex Paragraph index. (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call getTableCellParagraphAsync(String name, Integer slideIndex, Integer shapeIndex, Integer rowIndex, Integer cellIndex, Integer paragraphIndex, String password, String folder, String storage, final ApiCallback<Paragraph> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = getTableCellParagraphCall(name, slideIndex, shapeIndex, rowIndex, cellIndex, paragraphIndex, password, folder, storage, progressListener, progressRequestListener);
+        Type returnType = new TypeToken<Paragraph>(){}.getType();
+        apiClient.executeAsync(call, returnType, callback);
+        return call;
+    }
+    /**
+     * Build call for getTableCellParagraphs
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param shapeIndex Shape index. (required)
+     * @param rowIndex Row index. (required)
+     * @param cellIndex Table cell index. (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call getTableCellParagraphsCall(String name, Integer slideIndex, Integer shapeIndex, Integer rowIndex, Integer cellIndex, String password, String folder, String storage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        // verify the required parameter 'name' is set
+        if (name == null) {
+            throw new ApiException("Missing the required parameter 'name' when calling getTableCellParagraphs(Async)");
+        }
+        // verify the required parameter 'slideIndex' is set
+        if (slideIndex == null) {
+            throw new ApiException("Missing the required parameter 'slideIndex' when calling getTableCellParagraphs(Async)");
+        }
+        // verify the required parameter 'shapeIndex' is set
+        if (shapeIndex == null) {
+            throw new ApiException("Missing the required parameter 'shapeIndex' when calling getTableCellParagraphs(Async)");
+        }
+        // verify the required parameter 'rowIndex' is set
+        if (rowIndex == null) {
+            throw new ApiException("Missing the required parameter 'rowIndex' when calling getTableCellParagraphs(Async)");
+        }
+        // verify the required parameter 'cellIndex' is set
+        if (cellIndex == null) {
+            throw new ApiException("Missing the required parameter 'cellIndex' when calling getTableCellParagraphs(Async)");
+        }
+        Object postBody = null;
+
+        // create path and map variables
+        String methodPath = "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/rows/{rowIndex}/cells/{cellIndex}/paragraphs"
+            .replaceAll("\\{" + "name" + "\\}", apiClient.objectToString(name)).replaceAll("\\{" + "slideIndex" + "\\}", apiClient.objectToString(slideIndex)).replaceAll("\\{" + "shapeIndex" + "\\}", apiClient.objectToString(shapeIndex)).replaceAll("\\{" + "rowIndex" + "\\}", apiClient.objectToString(rowIndex)).replaceAll("\\{" + "cellIndex" + "\\}", apiClient.objectToString(cellIndex));
+
+        List<Pair> queryParams = new ArrayList<Pair>();
+        apiClient.addQueryParameter(queryParams, "folder", folder);
+        apiClient.addQueryParameter(queryParams, "storage", storage);
+
+        Map<String, String> headerParams = new HashMap<String, String>();
+        if (password != null)
+        headerParams.put("password", apiClient.parameterToString(password));
+
+        Map<String, Object> formParams = new LinkedHashMap<String, Object>();
+
+        final String[] accepts = {
+            "application/json"
+        };
+        final String accept = apiClient.selectHeaderAccept(accepts);
+        if (accept != null) headerParams.put("Accept", accept);
+
+        final String[] contentTypes = {
+            "application/json"
+        };
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
+        headerParams.put("Content-Type", contentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+        return apiClient.buildCall(methodPath, "GET", queryParams, postBody, headerParams, formParams, progressRequestListener);
+    }
+
+    /**
+     * Returns table cell paragraphs.
+     * 
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param shapeIndex Shape index. (required)
+     * @param rowIndex Row index. (required)
+     * @param cellIndex Table cell index. (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @return Paragraphs
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public Paragraphs getTableCellParagraphs(String name, Integer slideIndex, Integer shapeIndex, Integer rowIndex, Integer cellIndex, String password, String folder, String storage) throws ApiException {
+        try {
+            ApiResponse<Paragraphs> resp = getTableCellParagraphsWithHttpInfo(name, slideIndex, shapeIndex, rowIndex, cellIndex, password, folder, storage);
+            return resp.getData();
+        } catch (NeedRepeatRequestException e) {
+            ApiResponse<Paragraphs> resp = getTableCellParagraphsWithHttpInfo(name, slideIndex, shapeIndex, rowIndex, cellIndex, password, folder, storage);
+            return resp.getData();
+        }
+    }
+
+    /**
+     * Returns table cell paragraphs.
+     * 
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param shapeIndex Shape index. (required)
+     * @param rowIndex Row index. (required)
+     * @param cellIndex Table cell index. (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @return ApiResponse&lt;Paragraphs&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<Paragraphs> getTableCellParagraphsWithHttpInfo(String name, Integer slideIndex, Integer shapeIndex, Integer rowIndex, Integer cellIndex, String password, String folder, String storage) throws ApiException {
+        com.squareup.okhttp.Call call = getTableCellParagraphsCall(name, slideIndex, shapeIndex, rowIndex, cellIndex, password, folder, storage, null, null);
+        Type returnType = new TypeToken<Paragraphs>(){}.getType();
+        return apiClient.execute(call, returnType);
+    }
+
+    /**
+     * Returns table cell paragraphs. (asynchronously)
+     * 
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param shapeIndex Shape index. (required)
+     * @param rowIndex Row index. (required)
+     * @param cellIndex Table cell index. (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call getTableCellParagraphsAsync(String name, Integer slideIndex, Integer shapeIndex, Integer rowIndex, Integer cellIndex, String password, String folder, String storage, final ApiCallback<Paragraphs> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = getTableCellParagraphsCall(name, slideIndex, shapeIndex, rowIndex, cellIndex, password, folder, storage, progressListener, progressRequestListener);
+        Type returnType = new TypeToken<Paragraphs>(){}.getType();
+        apiClient.executeAsync(call, returnType, callback);
+        return call;
+    }
+    /**
+     * Build call for getTableCellPortion
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param shapeIndex Shape index. (required)
+     * @param rowIndex Row index. (required)
+     * @param cellIndex Table cell index. (required)
+     * @param paragraphIndex Paragraph index. (required)
+     * @param portionIndex Portion index. (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call getTableCellPortionCall(String name, Integer slideIndex, Integer shapeIndex, Integer rowIndex, Integer cellIndex, Integer paragraphIndex, Integer portionIndex, String password, String folder, String storage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        // verify the required parameter 'name' is set
+        if (name == null) {
+            throw new ApiException("Missing the required parameter 'name' when calling getTableCellPortion(Async)");
+        }
+        // verify the required parameter 'slideIndex' is set
+        if (slideIndex == null) {
+            throw new ApiException("Missing the required parameter 'slideIndex' when calling getTableCellPortion(Async)");
+        }
+        // verify the required parameter 'shapeIndex' is set
+        if (shapeIndex == null) {
+            throw new ApiException("Missing the required parameter 'shapeIndex' when calling getTableCellPortion(Async)");
+        }
+        // verify the required parameter 'rowIndex' is set
+        if (rowIndex == null) {
+            throw new ApiException("Missing the required parameter 'rowIndex' when calling getTableCellPortion(Async)");
+        }
+        // verify the required parameter 'cellIndex' is set
+        if (cellIndex == null) {
+            throw new ApiException("Missing the required parameter 'cellIndex' when calling getTableCellPortion(Async)");
+        }
+        // verify the required parameter 'paragraphIndex' is set
+        if (paragraphIndex == null) {
+            throw new ApiException("Missing the required parameter 'paragraphIndex' when calling getTableCellPortion(Async)");
+        }
+        // verify the required parameter 'portionIndex' is set
+        if (portionIndex == null) {
+            throw new ApiException("Missing the required parameter 'portionIndex' when calling getTableCellPortion(Async)");
+        }
+        Object postBody = null;
+
+        // create path and map variables
+        String methodPath = "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/rows/{rowIndex}/cells/{cellIndex}/paragraphs/{paragraphIndex}/portions/{portionIndex}"
+            .replaceAll("\\{" + "name" + "\\}", apiClient.objectToString(name)).replaceAll("\\{" + "slideIndex" + "\\}", apiClient.objectToString(slideIndex)).replaceAll("\\{" + "shapeIndex" + "\\}", apiClient.objectToString(shapeIndex)).replaceAll("\\{" + "rowIndex" + "\\}", apiClient.objectToString(rowIndex)).replaceAll("\\{" + "cellIndex" + "\\}", apiClient.objectToString(cellIndex)).replaceAll("\\{" + "paragraphIndex" + "\\}", apiClient.objectToString(paragraphIndex)).replaceAll("\\{" + "portionIndex" + "\\}", apiClient.objectToString(portionIndex));
+
+        List<Pair> queryParams = new ArrayList<Pair>();
+        apiClient.addQueryParameter(queryParams, "folder", folder);
+        apiClient.addQueryParameter(queryParams, "storage", storage);
+
+        Map<String, String> headerParams = new HashMap<String, String>();
+        if (password != null)
+        headerParams.put("password", apiClient.parameterToString(password));
+
+        Map<String, Object> formParams = new LinkedHashMap<String, Object>();
+
+        final String[] accepts = {
+            "application/json"
+        };
+        final String accept = apiClient.selectHeaderAccept(accepts);
+        if (accept != null) headerParams.put("Accept", accept);
+
+        final String[] contentTypes = {
+            "application/json"
+        };
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
+        headerParams.put("Content-Type", contentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+        return apiClient.buildCall(methodPath, "GET", queryParams, postBody, headerParams, formParams, progressRequestListener);
+    }
+
+    /**
+     * Returns table cell portion.
+     * 
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param shapeIndex Shape index. (required)
+     * @param rowIndex Row index. (required)
+     * @param cellIndex Table cell index. (required)
+     * @param paragraphIndex Paragraph index. (required)
+     * @param portionIndex Portion index. (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @return Portion
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public Portion getTableCellPortion(String name, Integer slideIndex, Integer shapeIndex, Integer rowIndex, Integer cellIndex, Integer paragraphIndex, Integer portionIndex, String password, String folder, String storage) throws ApiException {
+        try {
+            ApiResponse<Portion> resp = getTableCellPortionWithHttpInfo(name, slideIndex, shapeIndex, rowIndex, cellIndex, paragraphIndex, portionIndex, password, folder, storage);
+            return resp.getData();
+        } catch (NeedRepeatRequestException e) {
+            ApiResponse<Portion> resp = getTableCellPortionWithHttpInfo(name, slideIndex, shapeIndex, rowIndex, cellIndex, paragraphIndex, portionIndex, password, folder, storage);
+            return resp.getData();
+        }
+    }
+
+    /**
+     * Returns table cell portion.
+     * 
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param shapeIndex Shape index. (required)
+     * @param rowIndex Row index. (required)
+     * @param cellIndex Table cell index. (required)
+     * @param paragraphIndex Paragraph index. (required)
+     * @param portionIndex Portion index. (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @return ApiResponse&lt;Portion&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<Portion> getTableCellPortionWithHttpInfo(String name, Integer slideIndex, Integer shapeIndex, Integer rowIndex, Integer cellIndex, Integer paragraphIndex, Integer portionIndex, String password, String folder, String storage) throws ApiException {
+        com.squareup.okhttp.Call call = getTableCellPortionCall(name, slideIndex, shapeIndex, rowIndex, cellIndex, paragraphIndex, portionIndex, password, folder, storage, null, null);
+        Type returnType = new TypeToken<Portion>(){}.getType();
+        return apiClient.execute(call, returnType);
+    }
+
+    /**
+     * Returns table cell portion. (asynchronously)
+     * 
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param shapeIndex Shape index. (required)
+     * @param rowIndex Row index. (required)
+     * @param cellIndex Table cell index. (required)
+     * @param paragraphIndex Paragraph index. (required)
+     * @param portionIndex Portion index. (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call getTableCellPortionAsync(String name, Integer slideIndex, Integer shapeIndex, Integer rowIndex, Integer cellIndex, Integer paragraphIndex, Integer portionIndex, String password, String folder, String storage, final ApiCallback<Portion> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = getTableCellPortionCall(name, slideIndex, shapeIndex, rowIndex, cellIndex, paragraphIndex, portionIndex, password, folder, storage, progressListener, progressRequestListener);
+        Type returnType = new TypeToken<Portion>(){}.getType();
+        apiClient.executeAsync(call, returnType, callback);
+        return call;
+    }
+    /**
+     * Build call for getTableCellPortions
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param shapeIndex Shape index. (required)
+     * @param rowIndex Row index. (required)
+     * @param cellIndex Table cell index. (required)
+     * @param paragraphIndex Paragraph index. (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call getTableCellPortionsCall(String name, Integer slideIndex, Integer shapeIndex, Integer rowIndex, Integer cellIndex, Integer paragraphIndex, String password, String folder, String storage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        // verify the required parameter 'name' is set
+        if (name == null) {
+            throw new ApiException("Missing the required parameter 'name' when calling getTableCellPortions(Async)");
+        }
+        // verify the required parameter 'slideIndex' is set
+        if (slideIndex == null) {
+            throw new ApiException("Missing the required parameter 'slideIndex' when calling getTableCellPortions(Async)");
+        }
+        // verify the required parameter 'shapeIndex' is set
+        if (shapeIndex == null) {
+            throw new ApiException("Missing the required parameter 'shapeIndex' when calling getTableCellPortions(Async)");
+        }
+        // verify the required parameter 'rowIndex' is set
+        if (rowIndex == null) {
+            throw new ApiException("Missing the required parameter 'rowIndex' when calling getTableCellPortions(Async)");
+        }
+        // verify the required parameter 'cellIndex' is set
+        if (cellIndex == null) {
+            throw new ApiException("Missing the required parameter 'cellIndex' when calling getTableCellPortions(Async)");
+        }
+        // verify the required parameter 'paragraphIndex' is set
+        if (paragraphIndex == null) {
+            throw new ApiException("Missing the required parameter 'paragraphIndex' when calling getTableCellPortions(Async)");
+        }
+        Object postBody = null;
+
+        // create path and map variables
+        String methodPath = "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/rows/{rowIndex}/cells/{cellIndex}/paragraphs/{paragraphIndex}/portions"
+            .replaceAll("\\{" + "name" + "\\}", apiClient.objectToString(name)).replaceAll("\\{" + "slideIndex" + "\\}", apiClient.objectToString(slideIndex)).replaceAll("\\{" + "shapeIndex" + "\\}", apiClient.objectToString(shapeIndex)).replaceAll("\\{" + "rowIndex" + "\\}", apiClient.objectToString(rowIndex)).replaceAll("\\{" + "cellIndex" + "\\}", apiClient.objectToString(cellIndex)).replaceAll("\\{" + "paragraphIndex" + "\\}", apiClient.objectToString(paragraphIndex));
+
+        List<Pair> queryParams = new ArrayList<Pair>();
+        apiClient.addQueryParameter(queryParams, "folder", folder);
+        apiClient.addQueryParameter(queryParams, "storage", storage);
+
+        Map<String, String> headerParams = new HashMap<String, String>();
+        if (password != null)
+        headerParams.put("password", apiClient.parameterToString(password));
+
+        Map<String, Object> formParams = new LinkedHashMap<String, Object>();
+
+        final String[] accepts = {
+            "application/json"
+        };
+        final String accept = apiClient.selectHeaderAccept(accepts);
+        if (accept != null) headerParams.put("Accept", accept);
+
+        final String[] contentTypes = {
+            "application/json"
+        };
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
+        headerParams.put("Content-Type", contentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+        return apiClient.buildCall(methodPath, "GET", queryParams, postBody, headerParams, formParams, progressRequestListener);
+    }
+
+    /**
+     * Returns table cell portions.
+     * 
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param shapeIndex Shape index. (required)
+     * @param rowIndex Row index. (required)
+     * @param cellIndex Table cell index. (required)
+     * @param paragraphIndex Paragraph index. (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @return Portions
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public Portions getTableCellPortions(String name, Integer slideIndex, Integer shapeIndex, Integer rowIndex, Integer cellIndex, Integer paragraphIndex, String password, String folder, String storage) throws ApiException {
+        try {
+            ApiResponse<Portions> resp = getTableCellPortionsWithHttpInfo(name, slideIndex, shapeIndex, rowIndex, cellIndex, paragraphIndex, password, folder, storage);
+            return resp.getData();
+        } catch (NeedRepeatRequestException e) {
+            ApiResponse<Portions> resp = getTableCellPortionsWithHttpInfo(name, slideIndex, shapeIndex, rowIndex, cellIndex, paragraphIndex, password, folder, storage);
+            return resp.getData();
+        }
+    }
+
+    /**
+     * Returns table cell portions.
+     * 
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param shapeIndex Shape index. (required)
+     * @param rowIndex Row index. (required)
+     * @param cellIndex Table cell index. (required)
+     * @param paragraphIndex Paragraph index. (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @return ApiResponse&lt;Portions&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<Portions> getTableCellPortionsWithHttpInfo(String name, Integer slideIndex, Integer shapeIndex, Integer rowIndex, Integer cellIndex, Integer paragraphIndex, String password, String folder, String storage) throws ApiException {
+        com.squareup.okhttp.Call call = getTableCellPortionsCall(name, slideIndex, shapeIndex, rowIndex, cellIndex, paragraphIndex, password, folder, storage, null, null);
+        Type returnType = new TypeToken<Portions>(){}.getType();
+        return apiClient.execute(call, returnType);
+    }
+
+    /**
+     * Returns table cell portions. (asynchronously)
+     * 
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param shapeIndex Shape index. (required)
+     * @param rowIndex Row index. (required)
+     * @param cellIndex Table cell index. (required)
+     * @param paragraphIndex Paragraph index. (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call getTableCellPortionsAsync(String name, Integer slideIndex, Integer shapeIndex, Integer rowIndex, Integer cellIndex, Integer paragraphIndex, String password, String folder, String storage, final ApiCallback<Portions> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = getTableCellPortionsCall(name, slideIndex, shapeIndex, rowIndex, cellIndex, paragraphIndex, password, folder, storage, progressListener, progressRequestListener);
+        Type returnType = new TypeToken<Portions>(){}.getType();
+        apiClient.executeAsync(call, returnType, callback);
+        return call;
+    }
+    /**
      * Build call for getTheme
      * @param name Document name. (required)
      * @param slideIndex Slide index. (required)
@@ -25590,6 +27298,161 @@ public class SlidesApi {
 
         com.squareup.okhttp.Call call = mergeOnlineCall(files, request, storage, progressListener, progressRequestListener);
         Type returnType = new TypeToken<File>(){}.getType();
+        apiClient.executeAsync(call, returnType, callback);
+        return call;
+    }
+    /**
+     * Build call for mergeTableCells
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param shapeIndex Shape index. (required)
+     * @param tableCellMergeOptions Merge settings. (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call mergeTableCellsCall(String name, Integer slideIndex, Integer shapeIndex, TableCellMergeOptions tableCellMergeOptions, String password, String folder, String storage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        // verify the required parameter 'name' is set
+        if (name == null) {
+            throw new ApiException("Missing the required parameter 'name' when calling mergeTableCells(Async)");
+        }
+        // verify the required parameter 'slideIndex' is set
+        if (slideIndex == null) {
+            throw new ApiException("Missing the required parameter 'slideIndex' when calling mergeTableCells(Async)");
+        }
+        // verify the required parameter 'shapeIndex' is set
+        if (shapeIndex == null) {
+            throw new ApiException("Missing the required parameter 'shapeIndex' when calling mergeTableCells(Async)");
+        }
+        // verify the required parameter 'tableCellMergeOptions' is set
+        if (tableCellMergeOptions == null) {
+            throw new ApiException("Missing the required parameter 'tableCellMergeOptions' when calling mergeTableCells(Async)");
+        }
+        Object postBody = tableCellMergeOptions;
+
+        // create path and map variables
+        String methodPath = "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/mergeCells"
+            .replaceAll("\\{" + "name" + "\\}", apiClient.objectToString(name)).replaceAll("\\{" + "slideIndex" + "\\}", apiClient.objectToString(slideIndex)).replaceAll("\\{" + "shapeIndex" + "\\}", apiClient.objectToString(shapeIndex));
+
+        List<Pair> queryParams = new ArrayList<Pair>();
+        apiClient.addQueryParameter(queryParams, "folder", folder);
+        apiClient.addQueryParameter(queryParams, "storage", storage);
+
+        Map<String, String> headerParams = new HashMap<String, String>();
+        if (password != null)
+        headerParams.put("password", apiClient.parameterToString(password));
+
+        Map<String, Object> formParams = new LinkedHashMap<String, Object>();
+
+        final String[] accepts = {
+            "application/json"
+        };
+        final String accept = apiClient.selectHeaderAccept(accepts);
+        if (accept != null) headerParams.put("Accept", accept);
+
+        final String[] contentTypes = {
+            "application/json"
+        };
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
+        headerParams.put("Content-Type", contentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+        return apiClient.buildCall(methodPath, "POST", queryParams, postBody, headerParams, formParams, progressRequestListener);
+    }
+
+    /**
+     * Merge table cells.
+     * 
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param shapeIndex Shape index. (required)
+     * @param tableCellMergeOptions Merge settings. (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @return Table
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public Table mergeTableCells(String name, Integer slideIndex, Integer shapeIndex, TableCellMergeOptions tableCellMergeOptions, String password, String folder, String storage) throws ApiException {
+        try {
+            ApiResponse<Table> resp = mergeTableCellsWithHttpInfo(name, slideIndex, shapeIndex, tableCellMergeOptions, password, folder, storage);
+            return resp.getData();
+        } catch (NeedRepeatRequestException e) {
+            ApiResponse<Table> resp = mergeTableCellsWithHttpInfo(name, slideIndex, shapeIndex, tableCellMergeOptions, password, folder, storage);
+            return resp.getData();
+        }
+    }
+
+    /**
+     * Merge table cells.
+     * 
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param shapeIndex Shape index. (required)
+     * @param tableCellMergeOptions Merge settings. (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @return ApiResponse&lt;Table&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<Table> mergeTableCellsWithHttpInfo(String name, Integer slideIndex, Integer shapeIndex, TableCellMergeOptions tableCellMergeOptions, String password, String folder, String storage) throws ApiException {
+        com.squareup.okhttp.Call call = mergeTableCellsCall(name, slideIndex, shapeIndex, tableCellMergeOptions, password, folder, storage, null, null);
+        Type returnType = new TypeToken<Table>(){}.getType();
+        return apiClient.execute(call, returnType);
+    }
+
+    /**
+     * Merge table cells. (asynchronously)
+     * 
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param shapeIndex Shape index. (required)
+     * @param tableCellMergeOptions Merge settings. (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call mergeTableCellsAsync(String name, Integer slideIndex, Integer shapeIndex, TableCellMergeOptions tableCellMergeOptions, String password, String folder, String storage, final ApiCallback<Table> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = mergeTableCellsCall(name, slideIndex, shapeIndex, tableCellMergeOptions, password, folder, storage, progressListener, progressRequestListener);
+        Type returnType = new TypeToken<Table>(){}.getType();
         apiClient.executeAsync(call, returnType, callback);
         return call;
     }
@@ -33121,6 +34984,185 @@ public class SlidesApi {
         return call;
     }
     /**
+     * Build call for splitTableCell
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param shapeIndex Shape index. (required)
+     * @param rowIndex Row index. (required)
+     * @param cellIndex Table cell index. (required)
+     * @param splitType Table cell split type (SplitByWidth, SplitByHeight,SplitByColSpan or SplitByRowSpan). (required)
+     * @param value Split value. In case of splitting by column or row span, the value must be an integer number. (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call splitTableCellCall(String name, Integer slideIndex, Integer shapeIndex, Integer rowIndex, Integer cellIndex, TableCellSplitType splitType, Double value, String password, String folder, String storage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        // verify the required parameter 'name' is set
+        if (name == null) {
+            throw new ApiException("Missing the required parameter 'name' when calling splitTableCell(Async)");
+        }
+        // verify the required parameter 'slideIndex' is set
+        if (slideIndex == null) {
+            throw new ApiException("Missing the required parameter 'slideIndex' when calling splitTableCell(Async)");
+        }
+        // verify the required parameter 'shapeIndex' is set
+        if (shapeIndex == null) {
+            throw new ApiException("Missing the required parameter 'shapeIndex' when calling splitTableCell(Async)");
+        }
+        // verify the required parameter 'rowIndex' is set
+        if (rowIndex == null) {
+            throw new ApiException("Missing the required parameter 'rowIndex' when calling splitTableCell(Async)");
+        }
+        // verify the required parameter 'cellIndex' is set
+        if (cellIndex == null) {
+            throw new ApiException("Missing the required parameter 'cellIndex' when calling splitTableCell(Async)");
+        }
+        // verify the required parameter 'splitType' is set
+        if (splitType == null) {
+            throw new ApiException("Missing the required parameter 'splitType' when calling splitTableCell(Async)");
+        }
+        // verify the required parameter 'value' is set
+        if (value == null) {
+            throw new ApiException("Missing the required parameter 'value' when calling splitTableCell(Async)");
+        }
+        Object postBody = null;
+
+        // create path and map variables
+        String methodPath = "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/rows/{rowIndex}/cells/{cellIndex}/{splitType}/{value}"
+            .replaceAll("\\{" + "name" + "\\}", apiClient.objectToString(name)).replaceAll("\\{" + "slideIndex" + "\\}", apiClient.objectToString(slideIndex)).replaceAll("\\{" + "shapeIndex" + "\\}", apiClient.objectToString(shapeIndex)).replaceAll("\\{" + "rowIndex" + "\\}", apiClient.objectToString(rowIndex)).replaceAll("\\{" + "cellIndex" + "\\}", apiClient.objectToString(cellIndex)).replaceAll("\\{" + "splitType" + "\\}", apiClient.objectToString(splitType)).replaceAll("\\{" + "value" + "\\}", apiClient.objectToString(value));
+
+        List<Pair> queryParams = new ArrayList<Pair>();
+        apiClient.addQueryParameter(queryParams, "folder", folder);
+        apiClient.addQueryParameter(queryParams, "storage", storage);
+
+        Map<String, String> headerParams = new HashMap<String, String>();
+        if (password != null)
+        headerParams.put("password", apiClient.parameterToString(password));
+
+        Map<String, Object> formParams = new LinkedHashMap<String, Object>();
+
+        final String[] accepts = {
+            "application/json"
+        };
+        final String accept = apiClient.selectHeaderAccept(accepts);
+        if (accept != null) headerParams.put("Accept", accept);
+
+        final String[] contentTypes = {
+            "application/json"
+        };
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
+        headerParams.put("Content-Type", contentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+        return apiClient.buildCall(methodPath, "POST", queryParams, postBody, headerParams, formParams, progressRequestListener);
+    }
+
+    /**
+     * Split table cell.
+     * 
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param shapeIndex Shape index. (required)
+     * @param rowIndex Row index. (required)
+     * @param cellIndex Table cell index. (required)
+     * @param splitType Table cell split type (SplitByWidth, SplitByHeight,SplitByColSpan or SplitByRowSpan). (required)
+     * @param value Split value. In case of splitting by column or row span, the value must be an integer number. (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @return Table
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public Table splitTableCell(String name, Integer slideIndex, Integer shapeIndex, Integer rowIndex, Integer cellIndex, TableCellSplitType splitType, Double value, String password, String folder, String storage) throws ApiException {
+        try {
+            ApiResponse<Table> resp = splitTableCellWithHttpInfo(name, slideIndex, shapeIndex, rowIndex, cellIndex, splitType, value, password, folder, storage);
+            return resp.getData();
+        } catch (NeedRepeatRequestException e) {
+            ApiResponse<Table> resp = splitTableCellWithHttpInfo(name, slideIndex, shapeIndex, rowIndex, cellIndex, splitType, value, password, folder, storage);
+            return resp.getData();
+        }
+    }
+
+    /**
+     * Split table cell.
+     * 
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param shapeIndex Shape index. (required)
+     * @param rowIndex Row index. (required)
+     * @param cellIndex Table cell index. (required)
+     * @param splitType Table cell split type (SplitByWidth, SplitByHeight,SplitByColSpan or SplitByRowSpan). (required)
+     * @param value Split value. In case of splitting by column or row span, the value must be an integer number. (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @return ApiResponse&lt;Table&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<Table> splitTableCellWithHttpInfo(String name, Integer slideIndex, Integer shapeIndex, Integer rowIndex, Integer cellIndex, TableCellSplitType splitType, Double value, String password, String folder, String storage) throws ApiException {
+        com.squareup.okhttp.Call call = splitTableCellCall(name, slideIndex, shapeIndex, rowIndex, cellIndex, splitType, value, password, folder, storage, null, null);
+        Type returnType = new TypeToken<Table>(){}.getType();
+        return apiClient.execute(call, returnType);
+    }
+
+    /**
+     * Split table cell. (asynchronously)
+     * 
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param shapeIndex Shape index. (required)
+     * @param rowIndex Row index. (required)
+     * @param cellIndex Table cell index. (required)
+     * @param splitType Table cell split type (SplitByWidth, SplitByHeight,SplitByColSpan or SplitByRowSpan). (required)
+     * @param value Split value. In case of splitting by column or row span, the value must be an integer number. (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call splitTableCellAsync(String name, Integer slideIndex, Integer shapeIndex, Integer rowIndex, Integer cellIndex, TableCellSplitType splitType, Double value, String password, String folder, String storage, final ApiCallback<Table> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = splitTableCellCall(name, slideIndex, shapeIndex, rowIndex, cellIndex, splitType, value, password, folder, storage, progressListener, progressRequestListener);
+        Type returnType = new TypeToken<Table>(){}.getType();
+        apiClient.executeAsync(call, returnType, callback);
+        return call;
+    }
+    /**
      * Build call for storageExists
      * @param storageName Storage name (required)
      * @param progressListener Progress listener
@@ -36002,6 +38044,706 @@ public class SlidesApi {
 
         com.squareup.okhttp.Call call = updateSpecialSlideShapeCall(name, slideIndex, slideType, shapeIndex, dto, password, folder, storage, subShape, progressListener, progressRequestListener);
         Type returnType = new TypeToken<ShapeBase>(){}.getType();
+        apiClient.executeAsync(call, returnType, callback);
+        return call;
+    }
+    /**
+     * Build call for updateTableCell
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param shapeIndex Shape index. (required)
+     * @param rowIndex Row index. (required)
+     * @param cellIndex Table cell index. (required)
+     * @param dto Table cell data. (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call updateTableCellCall(String name, Integer slideIndex, Integer shapeIndex, Integer rowIndex, Integer cellIndex, TableCell dto, String password, String folder, String storage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        // verify the required parameter 'name' is set
+        if (name == null) {
+            throw new ApiException("Missing the required parameter 'name' when calling updateTableCell(Async)");
+        }
+        // verify the required parameter 'slideIndex' is set
+        if (slideIndex == null) {
+            throw new ApiException("Missing the required parameter 'slideIndex' when calling updateTableCell(Async)");
+        }
+        // verify the required parameter 'shapeIndex' is set
+        if (shapeIndex == null) {
+            throw new ApiException("Missing the required parameter 'shapeIndex' when calling updateTableCell(Async)");
+        }
+        // verify the required parameter 'rowIndex' is set
+        if (rowIndex == null) {
+            throw new ApiException("Missing the required parameter 'rowIndex' when calling updateTableCell(Async)");
+        }
+        // verify the required parameter 'cellIndex' is set
+        if (cellIndex == null) {
+            throw new ApiException("Missing the required parameter 'cellIndex' when calling updateTableCell(Async)");
+        }
+        // verify the required parameter 'dto' is set
+        if (dto == null) {
+            throw new ApiException("Missing the required parameter 'dto' when calling updateTableCell(Async)");
+        }
+        Object postBody = dto;
+
+        // create path and map variables
+        String methodPath = "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/rows/{rowIndex}/cells/{cellIndex}"
+            .replaceAll("\\{" + "name" + "\\}", apiClient.objectToString(name)).replaceAll("\\{" + "slideIndex" + "\\}", apiClient.objectToString(slideIndex)).replaceAll("\\{" + "shapeIndex" + "\\}", apiClient.objectToString(shapeIndex)).replaceAll("\\{" + "rowIndex" + "\\}", apiClient.objectToString(rowIndex)).replaceAll("\\{" + "cellIndex" + "\\}", apiClient.objectToString(cellIndex));
+
+        List<Pair> queryParams = new ArrayList<Pair>();
+        apiClient.addQueryParameter(queryParams, "folder", folder);
+        apiClient.addQueryParameter(queryParams, "storage", storage);
+
+        Map<String, String> headerParams = new HashMap<String, String>();
+        if (password != null)
+        headerParams.put("password", apiClient.parameterToString(password));
+
+        Map<String, Object> formParams = new LinkedHashMap<String, Object>();
+
+        final String[] accepts = {
+            "application/json"
+        };
+        final String accept = apiClient.selectHeaderAccept(accepts);
+        if (accept != null) headerParams.put("Accept", accept);
+
+        final String[] contentTypes = {
+            "application/json"
+        };
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
+        headerParams.put("Content-Type", contentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+        return apiClient.buildCall(methodPath, "PUT", queryParams, postBody, headerParams, formParams, progressRequestListener);
+    }
+
+    /**
+     * Update the table cell.
+     * 
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param shapeIndex Shape index. (required)
+     * @param rowIndex Row index. (required)
+     * @param cellIndex Table cell index. (required)
+     * @param dto Table cell data. (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @return TableCell
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public TableCell updateTableCell(String name, Integer slideIndex, Integer shapeIndex, Integer rowIndex, Integer cellIndex, TableCell dto, String password, String folder, String storage) throws ApiException {
+        try {
+            ApiResponse<TableCell> resp = updateTableCellWithHttpInfo(name, slideIndex, shapeIndex, rowIndex, cellIndex, dto, password, folder, storage);
+            return resp.getData();
+        } catch (NeedRepeatRequestException e) {
+            ApiResponse<TableCell> resp = updateTableCellWithHttpInfo(name, slideIndex, shapeIndex, rowIndex, cellIndex, dto, password, folder, storage);
+            return resp.getData();
+        }
+    }
+
+    /**
+     * Update the table cell.
+     * 
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param shapeIndex Shape index. (required)
+     * @param rowIndex Row index. (required)
+     * @param cellIndex Table cell index. (required)
+     * @param dto Table cell data. (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @return ApiResponse&lt;TableCell&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<TableCell> updateTableCellWithHttpInfo(String name, Integer slideIndex, Integer shapeIndex, Integer rowIndex, Integer cellIndex, TableCell dto, String password, String folder, String storage) throws ApiException {
+        com.squareup.okhttp.Call call = updateTableCellCall(name, slideIndex, shapeIndex, rowIndex, cellIndex, dto, password, folder, storage, null, null);
+        Type returnType = new TypeToken<TableCell>(){}.getType();
+        return apiClient.execute(call, returnType);
+    }
+
+    /**
+     * Update the table cell. (asynchronously)
+     * 
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param shapeIndex Shape index. (required)
+     * @param rowIndex Row index. (required)
+     * @param cellIndex Table cell index. (required)
+     * @param dto Table cell data. (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call updateTableCellAsync(String name, Integer slideIndex, Integer shapeIndex, Integer rowIndex, Integer cellIndex, TableCell dto, String password, String folder, String storage, final ApiCallback<TableCell> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = updateTableCellCall(name, slideIndex, shapeIndex, rowIndex, cellIndex, dto, password, folder, storage, progressListener, progressRequestListener);
+        Type returnType = new TypeToken<TableCell>(){}.getType();
+        apiClient.executeAsync(call, returnType, callback);
+        return call;
+    }
+    /**
+     * Build call for updateTableCellParagraph
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param shapeIndex Shape index. (required)
+     * @param rowIndex Row index. (required)
+     * @param cellIndex Table cell index. (required)
+     * @param paragraphIndex Paragraph index. (required)
+     * @param dto Paragraph DTO. (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call updateTableCellParagraphCall(String name, Integer slideIndex, Integer shapeIndex, Integer rowIndex, Integer cellIndex, Integer paragraphIndex, Paragraph dto, String password, String folder, String storage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        // verify the required parameter 'name' is set
+        if (name == null) {
+            throw new ApiException("Missing the required parameter 'name' when calling updateTableCellParagraph(Async)");
+        }
+        // verify the required parameter 'slideIndex' is set
+        if (slideIndex == null) {
+            throw new ApiException("Missing the required parameter 'slideIndex' when calling updateTableCellParagraph(Async)");
+        }
+        // verify the required parameter 'shapeIndex' is set
+        if (shapeIndex == null) {
+            throw new ApiException("Missing the required parameter 'shapeIndex' when calling updateTableCellParagraph(Async)");
+        }
+        // verify the required parameter 'rowIndex' is set
+        if (rowIndex == null) {
+            throw new ApiException("Missing the required parameter 'rowIndex' when calling updateTableCellParagraph(Async)");
+        }
+        // verify the required parameter 'cellIndex' is set
+        if (cellIndex == null) {
+            throw new ApiException("Missing the required parameter 'cellIndex' when calling updateTableCellParagraph(Async)");
+        }
+        // verify the required parameter 'paragraphIndex' is set
+        if (paragraphIndex == null) {
+            throw new ApiException("Missing the required parameter 'paragraphIndex' when calling updateTableCellParagraph(Async)");
+        }
+        // verify the required parameter 'dto' is set
+        if (dto == null) {
+            throw new ApiException("Missing the required parameter 'dto' when calling updateTableCellParagraph(Async)");
+        }
+        Object postBody = dto;
+
+        // create path and map variables
+        String methodPath = "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/rows/{rowIndex}/cells/{cellIndex}/paragraphs/{paragraphIndex}"
+            .replaceAll("\\{" + "name" + "\\}", apiClient.objectToString(name)).replaceAll("\\{" + "slideIndex" + "\\}", apiClient.objectToString(slideIndex)).replaceAll("\\{" + "shapeIndex" + "\\}", apiClient.objectToString(shapeIndex)).replaceAll("\\{" + "rowIndex" + "\\}", apiClient.objectToString(rowIndex)).replaceAll("\\{" + "cellIndex" + "\\}", apiClient.objectToString(cellIndex)).replaceAll("\\{" + "paragraphIndex" + "\\}", apiClient.objectToString(paragraphIndex));
+
+        List<Pair> queryParams = new ArrayList<Pair>();
+        apiClient.addQueryParameter(queryParams, "folder", folder);
+        apiClient.addQueryParameter(queryParams, "storage", storage);
+
+        Map<String, String> headerParams = new HashMap<String, String>();
+        if (password != null)
+        headerParams.put("password", apiClient.parameterToString(password));
+
+        Map<String, Object> formParams = new LinkedHashMap<String, Object>();
+
+        final String[] accepts = {
+            "application/json"
+        };
+        final String accept = apiClient.selectHeaderAccept(accepts);
+        if (accept != null) headerParams.put("Accept", accept);
+
+        final String[] contentTypes = {
+            "application/json"
+        };
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
+        headerParams.put("Content-Type", contentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+        return apiClient.buildCall(methodPath, "PUT", queryParams, postBody, headerParams, formParams, progressRequestListener);
+    }
+
+    /**
+     * Updates table cell paragraph.
+     * 
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param shapeIndex Shape index. (required)
+     * @param rowIndex Row index. (required)
+     * @param cellIndex Table cell index. (required)
+     * @param paragraphIndex Paragraph index. (required)
+     * @param dto Paragraph DTO. (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @return Paragraph
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public Paragraph updateTableCellParagraph(String name, Integer slideIndex, Integer shapeIndex, Integer rowIndex, Integer cellIndex, Integer paragraphIndex, Paragraph dto, String password, String folder, String storage) throws ApiException {
+        try {
+            ApiResponse<Paragraph> resp = updateTableCellParagraphWithHttpInfo(name, slideIndex, shapeIndex, rowIndex, cellIndex, paragraphIndex, dto, password, folder, storage);
+            return resp.getData();
+        } catch (NeedRepeatRequestException e) {
+            ApiResponse<Paragraph> resp = updateTableCellParagraphWithHttpInfo(name, slideIndex, shapeIndex, rowIndex, cellIndex, paragraphIndex, dto, password, folder, storage);
+            return resp.getData();
+        }
+    }
+
+    /**
+     * Updates table cell paragraph.
+     * 
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param shapeIndex Shape index. (required)
+     * @param rowIndex Row index. (required)
+     * @param cellIndex Table cell index. (required)
+     * @param paragraphIndex Paragraph index. (required)
+     * @param dto Paragraph DTO. (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @return ApiResponse&lt;Paragraph&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<Paragraph> updateTableCellParagraphWithHttpInfo(String name, Integer slideIndex, Integer shapeIndex, Integer rowIndex, Integer cellIndex, Integer paragraphIndex, Paragraph dto, String password, String folder, String storage) throws ApiException {
+        com.squareup.okhttp.Call call = updateTableCellParagraphCall(name, slideIndex, shapeIndex, rowIndex, cellIndex, paragraphIndex, dto, password, folder, storage, null, null);
+        Type returnType = new TypeToken<Paragraph>(){}.getType();
+        return apiClient.execute(call, returnType);
+    }
+
+    /**
+     * Updates table cell paragraph. (asynchronously)
+     * 
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param shapeIndex Shape index. (required)
+     * @param rowIndex Row index. (required)
+     * @param cellIndex Table cell index. (required)
+     * @param paragraphIndex Paragraph index. (required)
+     * @param dto Paragraph DTO. (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call updateTableCellParagraphAsync(String name, Integer slideIndex, Integer shapeIndex, Integer rowIndex, Integer cellIndex, Integer paragraphIndex, Paragraph dto, String password, String folder, String storage, final ApiCallback<Paragraph> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = updateTableCellParagraphCall(name, slideIndex, shapeIndex, rowIndex, cellIndex, paragraphIndex, dto, password, folder, storage, progressListener, progressRequestListener);
+        Type returnType = new TypeToken<Paragraph>(){}.getType();
+        apiClient.executeAsync(call, returnType, callback);
+        return call;
+    }
+    /**
+     * Build call for updateTableCellPortion
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param shapeIndex Shape index. (required)
+     * @param rowIndex Row index. (required)
+     * @param cellIndex Table cell index. (required)
+     * @param paragraphIndex Paragraph index. (required)
+     * @param portionIndex Portion index. (required)
+     * @param dto Portion DTO. (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call updateTableCellPortionCall(String name, Integer slideIndex, Integer shapeIndex, Integer rowIndex, Integer cellIndex, Integer paragraphIndex, Integer portionIndex, Portion dto, String password, String folder, String storage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        // verify the required parameter 'name' is set
+        if (name == null) {
+            throw new ApiException("Missing the required parameter 'name' when calling updateTableCellPortion(Async)");
+        }
+        // verify the required parameter 'slideIndex' is set
+        if (slideIndex == null) {
+            throw new ApiException("Missing the required parameter 'slideIndex' when calling updateTableCellPortion(Async)");
+        }
+        // verify the required parameter 'shapeIndex' is set
+        if (shapeIndex == null) {
+            throw new ApiException("Missing the required parameter 'shapeIndex' when calling updateTableCellPortion(Async)");
+        }
+        // verify the required parameter 'rowIndex' is set
+        if (rowIndex == null) {
+            throw new ApiException("Missing the required parameter 'rowIndex' when calling updateTableCellPortion(Async)");
+        }
+        // verify the required parameter 'cellIndex' is set
+        if (cellIndex == null) {
+            throw new ApiException("Missing the required parameter 'cellIndex' when calling updateTableCellPortion(Async)");
+        }
+        // verify the required parameter 'paragraphIndex' is set
+        if (paragraphIndex == null) {
+            throw new ApiException("Missing the required parameter 'paragraphIndex' when calling updateTableCellPortion(Async)");
+        }
+        // verify the required parameter 'portionIndex' is set
+        if (portionIndex == null) {
+            throw new ApiException("Missing the required parameter 'portionIndex' when calling updateTableCellPortion(Async)");
+        }
+        // verify the required parameter 'dto' is set
+        if (dto == null) {
+            throw new ApiException("Missing the required parameter 'dto' when calling updateTableCellPortion(Async)");
+        }
+        Object postBody = dto;
+
+        // create path and map variables
+        String methodPath = "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/rows/{rowIndex}/cells/{cellIndex}/paragraphs/{paragraphIndex}/portions/{portionIndex}"
+            .replaceAll("\\{" + "name" + "\\}", apiClient.objectToString(name)).replaceAll("\\{" + "slideIndex" + "\\}", apiClient.objectToString(slideIndex)).replaceAll("\\{" + "shapeIndex" + "\\}", apiClient.objectToString(shapeIndex)).replaceAll("\\{" + "rowIndex" + "\\}", apiClient.objectToString(rowIndex)).replaceAll("\\{" + "cellIndex" + "\\}", apiClient.objectToString(cellIndex)).replaceAll("\\{" + "paragraphIndex" + "\\}", apiClient.objectToString(paragraphIndex)).replaceAll("\\{" + "portionIndex" + "\\}", apiClient.objectToString(portionIndex));
+
+        List<Pair> queryParams = new ArrayList<Pair>();
+        apiClient.addQueryParameter(queryParams, "folder", folder);
+        apiClient.addQueryParameter(queryParams, "storage", storage);
+
+        Map<String, String> headerParams = new HashMap<String, String>();
+        if (password != null)
+        headerParams.put("password", apiClient.parameterToString(password));
+
+        Map<String, Object> formParams = new LinkedHashMap<String, Object>();
+
+        final String[] accepts = {
+            "application/json"
+        };
+        final String accept = apiClient.selectHeaderAccept(accepts);
+        if (accept != null) headerParams.put("Accept", accept);
+
+        final String[] contentTypes = {
+            "application/json"
+        };
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
+        headerParams.put("Content-Type", contentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+        return apiClient.buildCall(methodPath, "PUT", queryParams, postBody, headerParams, formParams, progressRequestListener);
+    }
+
+    /**
+     * Updates table cell portion.
+     * 
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param shapeIndex Shape index. (required)
+     * @param rowIndex Row index. (required)
+     * @param cellIndex Table cell index. (required)
+     * @param paragraphIndex Paragraph index. (required)
+     * @param portionIndex Portion index. (required)
+     * @param dto Portion DTO. (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @return Portion
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public Portion updateTableCellPortion(String name, Integer slideIndex, Integer shapeIndex, Integer rowIndex, Integer cellIndex, Integer paragraphIndex, Integer portionIndex, Portion dto, String password, String folder, String storage) throws ApiException {
+        try {
+            ApiResponse<Portion> resp = updateTableCellPortionWithHttpInfo(name, slideIndex, shapeIndex, rowIndex, cellIndex, paragraphIndex, portionIndex, dto, password, folder, storage);
+            return resp.getData();
+        } catch (NeedRepeatRequestException e) {
+            ApiResponse<Portion> resp = updateTableCellPortionWithHttpInfo(name, slideIndex, shapeIndex, rowIndex, cellIndex, paragraphIndex, portionIndex, dto, password, folder, storage);
+            return resp.getData();
+        }
+    }
+
+    /**
+     * Updates table cell portion.
+     * 
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param shapeIndex Shape index. (required)
+     * @param rowIndex Row index. (required)
+     * @param cellIndex Table cell index. (required)
+     * @param paragraphIndex Paragraph index. (required)
+     * @param portionIndex Portion index. (required)
+     * @param dto Portion DTO. (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @return ApiResponse&lt;Portion&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<Portion> updateTableCellPortionWithHttpInfo(String name, Integer slideIndex, Integer shapeIndex, Integer rowIndex, Integer cellIndex, Integer paragraphIndex, Integer portionIndex, Portion dto, String password, String folder, String storage) throws ApiException {
+        com.squareup.okhttp.Call call = updateTableCellPortionCall(name, slideIndex, shapeIndex, rowIndex, cellIndex, paragraphIndex, portionIndex, dto, password, folder, storage, null, null);
+        Type returnType = new TypeToken<Portion>(){}.getType();
+        return apiClient.execute(call, returnType);
+    }
+
+    /**
+     * Updates table cell portion. (asynchronously)
+     * 
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param shapeIndex Shape index. (required)
+     * @param rowIndex Row index. (required)
+     * @param cellIndex Table cell index. (required)
+     * @param paragraphIndex Paragraph index. (required)
+     * @param portionIndex Portion index. (required)
+     * @param dto Portion DTO. (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call updateTableCellPortionAsync(String name, Integer slideIndex, Integer shapeIndex, Integer rowIndex, Integer cellIndex, Integer paragraphIndex, Integer portionIndex, Portion dto, String password, String folder, String storage, final ApiCallback<Portion> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = updateTableCellPortionCall(name, slideIndex, shapeIndex, rowIndex, cellIndex, paragraphIndex, portionIndex, dto, password, folder, storage, progressListener, progressRequestListener);
+        Type returnType = new TypeToken<Portion>(){}.getType();
+        apiClient.executeAsync(call, returnType, callback);
+        return call;
+    }
+    /**
+     * Build call for updateTableRow
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param shapeIndex Shape index. (required)
+     * @param rowIndex Row index. (required)
+     * @param dto Table cell data. (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call updateTableRowCall(String name, Integer slideIndex, Integer shapeIndex, Integer rowIndex, TableRow dto, String password, String folder, String storage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        // verify the required parameter 'name' is set
+        if (name == null) {
+            throw new ApiException("Missing the required parameter 'name' when calling updateTableRow(Async)");
+        }
+        // verify the required parameter 'slideIndex' is set
+        if (slideIndex == null) {
+            throw new ApiException("Missing the required parameter 'slideIndex' when calling updateTableRow(Async)");
+        }
+        // verify the required parameter 'shapeIndex' is set
+        if (shapeIndex == null) {
+            throw new ApiException("Missing the required parameter 'shapeIndex' when calling updateTableRow(Async)");
+        }
+        // verify the required parameter 'rowIndex' is set
+        if (rowIndex == null) {
+            throw new ApiException("Missing the required parameter 'rowIndex' when calling updateTableRow(Async)");
+        }
+        // verify the required parameter 'dto' is set
+        if (dto == null) {
+            throw new ApiException("Missing the required parameter 'dto' when calling updateTableRow(Async)");
+        }
+        Object postBody = dto;
+
+        // create path and map variables
+        String methodPath = "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/rows/{rowIndex}"
+            .replaceAll("\\{" + "name" + "\\}", apiClient.objectToString(name)).replaceAll("\\{" + "slideIndex" + "\\}", apiClient.objectToString(slideIndex)).replaceAll("\\{" + "shapeIndex" + "\\}", apiClient.objectToString(shapeIndex)).replaceAll("\\{" + "rowIndex" + "\\}", apiClient.objectToString(rowIndex));
+
+        List<Pair> queryParams = new ArrayList<Pair>();
+        apiClient.addQueryParameter(queryParams, "folder", folder);
+        apiClient.addQueryParameter(queryParams, "storage", storage);
+
+        Map<String, String> headerParams = new HashMap<String, String>();
+        if (password != null)
+        headerParams.put("password", apiClient.parameterToString(password));
+
+        Map<String, Object> formParams = new LinkedHashMap<String, Object>();
+
+        final String[] accepts = {
+            "application/json"
+        };
+        final String accept = apiClient.selectHeaderAccept(accepts);
+        if (accept != null) headerParams.put("Accept", accept);
+
+        final String[] contentTypes = {
+            "application/json"
+        };
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
+        headerParams.put("Content-Type", contentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+        return apiClient.buildCall(methodPath, "PUT", queryParams, postBody, headerParams, formParams, progressRequestListener);
+    }
+
+    /**
+     * Update the table row.
+     * 
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param shapeIndex Shape index. (required)
+     * @param rowIndex Row index. (required)
+     * @param dto Table cell data. (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @return TableRow
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public TableRow updateTableRow(String name, Integer slideIndex, Integer shapeIndex, Integer rowIndex, TableRow dto, String password, String folder, String storage) throws ApiException {
+        try {
+            ApiResponse<TableRow> resp = updateTableRowWithHttpInfo(name, slideIndex, shapeIndex, rowIndex, dto, password, folder, storage);
+            return resp.getData();
+        } catch (NeedRepeatRequestException e) {
+            ApiResponse<TableRow> resp = updateTableRowWithHttpInfo(name, slideIndex, shapeIndex, rowIndex, dto, password, folder, storage);
+            return resp.getData();
+        }
+    }
+
+    /**
+     * Update the table row.
+     * 
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param shapeIndex Shape index. (required)
+     * @param rowIndex Row index. (required)
+     * @param dto Table cell data. (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @return ApiResponse&lt;TableRow&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<TableRow> updateTableRowWithHttpInfo(String name, Integer slideIndex, Integer shapeIndex, Integer rowIndex, TableRow dto, String password, String folder, String storage) throws ApiException {
+        com.squareup.okhttp.Call call = updateTableRowCall(name, slideIndex, shapeIndex, rowIndex, dto, password, folder, storage, null, null);
+        Type returnType = new TypeToken<TableRow>(){}.getType();
+        return apiClient.execute(call, returnType);
+    }
+
+    /**
+     * Update the table row. (asynchronously)
+     * 
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param shapeIndex Shape index. (required)
+     * @param rowIndex Row index. (required)
+     * @param dto Table cell data. (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call updateTableRowAsync(String name, Integer slideIndex, Integer shapeIndex, Integer rowIndex, TableRow dto, String password, String folder, String storage, final ApiCallback<TableRow> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = updateTableRowCall(name, slideIndex, shapeIndex, rowIndex, dto, password, folder, storage, progressListener, progressRequestListener);
+        Type returnType = new TypeToken<TableRow>(){}.getType();
         apiClient.executeAsync(call, returnType, callback);
         return call;
     }

@@ -30,6 +30,8 @@ package com.aspose.slides.model;
 import java.util.Objects;
 import com.aspose.slides.model.FillFormat;
 import com.aspose.slides.model.LineFormat;
+import com.aspose.slides.model.ResourceUri;
+import com.aspose.slides.model.TextFrameFormat;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -214,6 +216,12 @@ public class TableCell {
 
   @SerializedName(value = "rowIndex", alternate = { "RowIndex" })
   private Integer rowIndex;
+
+  @SerializedName(value = "textFrameFormat", alternate = { "TextFrameFormat" })
+  private TextFrameFormat textFrameFormat;
+
+  @SerializedName(value = "paragraphs", alternate = { "Paragraphs" })
+  private ResourceUri paragraphs;
 
 
   public TableCell() {
@@ -544,6 +552,42 @@ public class TableCell {
     this.rowIndex = rowIndex;
   }
 
+  public TableCell textFrameFormat(TextFrameFormat textFrameFormat) {
+    this.textFrameFormat = textFrameFormat;
+    return this;
+  }
+
+   /**
+   * Returns TextFrame&#39;s formatting properties.
+   * @return textFrameFormat
+  **/
+  @ApiModelProperty(value = "Returns TextFrame's formatting properties.")
+  public TextFrameFormat getTextFrameFormat() {
+    return textFrameFormat;
+  }
+
+  public void setTextFrameFormat(TextFrameFormat textFrameFormat) {
+    this.textFrameFormat = textFrameFormat;
+  }
+
+  public TableCell paragraphs(ResourceUri paragraphs) {
+    this.paragraphs = paragraphs;
+    return this;
+  }
+
+   /**
+   * Get or sets list to paragraphs list
+   * @return paragraphs
+  **/
+  @ApiModelProperty(value = "Get or sets list to paragraphs list")
+  public ResourceUri getParagraphs() {
+    return paragraphs;
+  }
+
+  public void setParagraphs(ResourceUri paragraphs) {
+    this.paragraphs = paragraphs;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -554,12 +598,12 @@ public class TableCell {
       return false;
     }
     TableCell tableCell = (TableCell) o;
-    return true && Objects.equals(this.text, tableCell.text) && Objects.equals(this.rowSpan, tableCell.rowSpan) && Objects.equals(this.colSpan, tableCell.colSpan) && Objects.equals(this.marginTop, tableCell.marginTop) && Objects.equals(this.marginRight, tableCell.marginRight) && Objects.equals(this.marginLeft, tableCell.marginLeft) && Objects.equals(this.marginBottom, tableCell.marginBottom) && Objects.equals(this.textAnchorType, tableCell.textAnchorType) && Objects.equals(this.textVerticalType, tableCell.textVerticalType) && Objects.equals(this.fillFormat, tableCell.fillFormat) && Objects.equals(this.borderTop, tableCell.borderTop) && Objects.equals(this.borderRight, tableCell.borderRight) && Objects.equals(this.borderLeft, tableCell.borderLeft) && Objects.equals(this.borderBottom, tableCell.borderBottom) && Objects.equals(this.borderDiagonalUp, tableCell.borderDiagonalUp) && Objects.equals(this.borderDiagonalDown, tableCell.borderDiagonalDown) && Objects.equals(this.columnIndex, tableCell.columnIndex) && Objects.equals(this.rowIndex, tableCell.rowIndex);
+    return true && Objects.equals(this.text, tableCell.text) && Objects.equals(this.rowSpan, tableCell.rowSpan) && Objects.equals(this.colSpan, tableCell.colSpan) && Objects.equals(this.marginTop, tableCell.marginTop) && Objects.equals(this.marginRight, tableCell.marginRight) && Objects.equals(this.marginLeft, tableCell.marginLeft) && Objects.equals(this.marginBottom, tableCell.marginBottom) && Objects.equals(this.textAnchorType, tableCell.textAnchorType) && Objects.equals(this.textVerticalType, tableCell.textVerticalType) && Objects.equals(this.fillFormat, tableCell.fillFormat) && Objects.equals(this.borderTop, tableCell.borderTop) && Objects.equals(this.borderRight, tableCell.borderRight) && Objects.equals(this.borderLeft, tableCell.borderLeft) && Objects.equals(this.borderBottom, tableCell.borderBottom) && Objects.equals(this.borderDiagonalUp, tableCell.borderDiagonalUp) && Objects.equals(this.borderDiagonalDown, tableCell.borderDiagonalDown) && Objects.equals(this.columnIndex, tableCell.columnIndex) && Objects.equals(this.rowIndex, tableCell.rowIndex) && Objects.equals(this.textFrameFormat, tableCell.textFrameFormat) && Objects.equals(this.paragraphs, tableCell.paragraphs);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(text, rowSpan, colSpan, marginTop, marginRight, marginLeft, marginBottom, textAnchorType, textVerticalType, fillFormat, borderTop, borderRight, borderLeft, borderBottom, borderDiagonalUp, borderDiagonalDown, columnIndex, rowIndex);
+    return Objects.hash(text, rowSpan, colSpan, marginTop, marginRight, marginLeft, marginBottom, textAnchorType, textVerticalType, fillFormat, borderTop, borderRight, borderLeft, borderBottom, borderDiagonalUp, borderDiagonalDown, columnIndex, rowIndex, textFrameFormat, paragraphs);
   }
 
 
@@ -586,6 +630,8 @@ public class TableCell {
     sb.append("    borderDiagonalDown: ").append(toIndentedString(borderDiagonalDown)).append("\n");
     sb.append("    columnIndex: ").append(toIndentedString(columnIndex)).append("\n");
     sb.append("    rowIndex: ").append(toIndentedString(rowIndex)).append("\n");
+    sb.append("    textFrameFormat: ").append(toIndentedString(textFrameFormat)).append("\n");
+    sb.append("    paragraphs: ").append(toIndentedString(paragraphs)).append("\n");
     sb.append("}");
     return sb.toString();
   }

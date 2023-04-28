@@ -151,7 +151,7 @@ public class SlideTest extends ApiTest {
 
     private static final String c_sourceFileName = "TemplateCV.pptx";
     private static final int c_slideIndex = 1;
-    private static final int c_slideCount = 8;
+    private static final int c_slideCount = 9;
     private static final String c_layoutSlidePath = "layoutSlides/3";
     private static final String c_color = "#FFF5FF8A";
 }

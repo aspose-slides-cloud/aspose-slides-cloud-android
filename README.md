@@ -27,74 +27,32 @@ You may want to check out Aspose free [Powerpoint to PDF](https://products.aspos
 **Web:** HTML/HTML5
 **Other:** MPEG4, SWF (export whole presentations)
 
-## Enhancements in Version 22.8
 
-* With new **GetFonts** and **GetFontsOnline** methods you can get a list for fonts used in the presentation.
-* Added new **SetEmbeddedFont**, **SetEmbeddedFontOnline**, **DeleteEmbeddedFont** and **DeleteEmbeddedFontOnline** methods to embed/unembed presentation fonts.
-* Added new **ImportImagesFromSvg** method to import SVG images as individual geometry shapes.
+## Enhancements in Version 23.4
 
-## Enhancements in Version 22.7
+* Added **CreateTableRow**, **UpdateTableRow** and **DeleteTableRow** methods to add, update and delete table rows.
+* Added **UpdateTableCell** method to update table cells.
+* Added  **MergeTableCells** and **SplitTableCell** methods to merge &amp; split table cells.
+* Added methods to get, add, modify and delete paragraphs & portions within table cells: **GetTableCellParagraph**, **GetTableCellParagraphs**, **GetTableCellPortion**, **GetTableCellPortions**, **CreateTableCellParagraph**, **CreateTableCellPortion**, **UpdateTableCellPortion**, **UpdateTableCellParagraph**, **DeleteTableCellParagraph**,  **DeleteTableCellPortion**.
+* New **TextFrameFormat** property in **TableCell** class allows to specify text format for table cells.
 
-* Added **Html**, **Pdf**, **Xps**, **Pptx**, **Odp**, **Otp**, **Ppt**, **Pps**, **Ppsx**, **Pptm**, **Ppsm**, **Potx**, **Pot**, **Potm**, **Svg**, **Fodp**, **Xaml**, **Html5** to the list of allowed values for **SlideExportFormat** enum. You can now export slide notes to those formats.
-* Added **Html5** to the list of allowed values for **SlideExportFormat** enum. You can now export individual slides to HTML5.
-* Added **Url** to the list of allowed values for **PresentationToMerge.SourceEnum** enum. You can now merge presentations from external URLs.
-* New **DeleteUnusedMasterSlides** and **DeleteUnusedMasterSlidesOnline** methods.
-* New **SetChartAxis**, **SetChartLegend**, **SetChartWall** methods allow to moduly chart elements more conveniently.
-* **UpdateChartSeriesGroup** method was renamed to **SetChartSeriesGroup**.
+## Enhancements in Version 23.3
 
-## Enhancements in Version 22.6
-* Added ned **GetSubshapeParagraphEffective**, **GetParagraphEffective** and **GetSubshapePortionEffective**, **GetPortionEffective** methods to retrieve actual format values for paragraphs and portions, whether they are inherited from parent entities or not.
-* Password parameter is now optional for **GetProtectionProperties** method. So, you don't need to specify the password to check whether a presentation has a password.
-* Added new **ChartSeriesGroup** class and **SeriesGroups** property to **Chart** class to enable managing chart series groups. Added new **UpdateChartSeriesGroup** method.
-* Added **HasRoundedCorners** property to **Chart** class.
-* Added **InvertIfNegative** property to **OneValueChartDataPoint** class.
-* Changed **FormatScheme** class to return actual format values instead of resource links.
+* Added **options** parameter to **SplitOnline** and **SplitAndSaveOnline** methods. Those options are the same as for other split & convert methods.
+* Added **ShowHiddenSlides** boolean property to **ImageExportOptions** class.
 
-## Enhancements in Version 22.5
-* Added **Paragraphs** property to **SmartArtNode** class to enable getting and setting text for SmartArt nodes.
-* Added **ImageTransformList** property to **PictureFill** class to enable setting image transform effects. Added **ImageTransformEffect** class and subclasses for different kind of of effects.
-* Added **PictureFillFormat** property to **VideoFrame** class to enable setting poster image for video frames.
-* Added **SlideIndex** and **ShapeIndex** properties to **ResourceUri** class to simplify retrieveing slide & shape indexes for resources.
-* Removed redundant **BoxAndWhiskersSeries**, **WaterfallSeries** and **WaterfallChartDataPoint** classes.
+## Enhancements in Version 23.2
 
-## Enhancements in Version 22.4
-* Added **TransitionType** and **SlidesTransitionDuration** properties to **VideoExportOptions** class to enable creation videos with transitions.
-* Added **DefaultPortionFormat** property to **Paragraph** class. Added new **PortionFormat** class.
-* Added **EmbeddedFileBase64Data** and a number of other properties to **OleObjectFrame** class to enable creation of OLE Object frames.
-* Added **AccessPermissions** class to support access permissions for PDF export.
-* Added **PictureFillformat** property to **AudioFrame** class.
-* Added **RowIndex** and **ColumnIndex** properties to **TableCell** class.
-* Moved **Width** and **Height** properties from **ExportOptions** base class to the new **ImageExportOptionsBase class**. This is a superclass for **ImageExportOptions**, **GifExportOptions** and **TiffExportOptions** classes.
-* Removed redundant **Shapes** property from **ShapeBase** class. It is only left for **GroupShape** class.
+* New **DownloadShapeFromDto** method allows to convert charts and other shapes from DTO to SVG and other formats without creating and storing presentation files.
+* Added **SoundBase64** property to **Hyperlink** class to support getting and setting hyperlink sounds.
+* Added **BulletFillFormat** property to **Paragraph** class.
+* Added **StopPreviousSound** property to animation **Effect** class.
+* Added a number of properties to **TextFrameFormat** that enable formatting shape text: **MarginLeft**, **MarginRight**, **MarginTop**, **MarginBottom**, **WrapText**, **AnchoringType**, **CenterText**, **TextVerticalType**, **AutofitType**, **ColumnCount**, **ColumnSpacing**, **KeepTextFlat**, **RotationAngle**, **DefaultParagraphFormat**.
+* Added **Pdf16**, **Pdf17**, **PdfA2b**, **PdfA2a**, **PdfA2u**, **PdfA3a**, **PdfA3b** to the list of allowed values for **PdfExportOptions.Compliance** property.
 
-## Enhancements in Version 22.3
-* Added **ModernSlideComment** class to support modern comments. Also added **SlideCommentBase** as base class for comments.
-* Added optional **shapeIndex** parameter to **CreateComment** and **CreateCommentOnline** methods.
-* Added **GetParagraphRectangle**, **GetPortionRectangle** method and new **TextBounds** class to get paragraph or portion bounds.
-* Added optional **shapeType** parameter for **GetShapes** method. You can now get list of shapes of a particular type (e.g. charts or tables).
-* Added **FontFallbackRules** class and **FontFallbackRules** property to **ExportOptions** class.
-* Added **LatinFont**, **EastAsianFont** and **ComplexScriptFont** properties to **Portion** class to enable getting and seting portion font name.
-* Added **ChartLinesFormat** class; added **MajorGridLinesFormat** and **MinorGridLinesFormat** properties to Axis class.
-* Added **HideLegend** boolean property to **Legend** class.
+## Enhancements in Version 23.1
 
-## Enhancements in Version 22.2
-* Added **Mpeg4** to the list of allowed values for **ExportFormat** type. You can now convert presentations to video.
-* New **HighlightShapeText** and **HighlightShapeRegex** methods.
-* New **DeleteUnusedLayoutSlides** and **DeleteUnusedLayoutSlides** methods.
-* New **ZoomFrame** and **ZoomObject** classes with a number of subclasses.
-* Added **TextFrameFormat** property to **Shape** class to support WordArt.
-* Added **XYSeries** class as a supercalss for **ScatterSeries** and **BubbleSeries** methods.
-* Added **None** to the list of allowed values for **TimeUnitType** enum type.
-* **Level** property of **Category** class is deprecated and will be removed after v22.4.
-
-## Enhancements in Version 22.1
-* New **MathParagraph** property of **Portion** class allows to get and set math formulas. A set of **MathElement** subclasses allows to specify complex mathematical expressions.
-* New **DownloadPortionAsMathMl** and **SavePortionAsMathMl** methods allow to export math formulas to MathML format.
-* New **HyperlinkClick** and **HyperlinkMouseOver** methods of **ShapeBase** and **Portion** classes enable creation and manipulating hyperlinks for shapes and portions.
-* New methods **GetShapeGeometryPath** and **SetShapeGeometryPath** can be used to get or set geometry paths for shapes. You can use lines, arcs and curves to specify custom shape boundaries.
-* New **AlignSubshapes** method enables aligning shapes within a shape group.
-* New **PlayAcrossSlides** and **RewindAudio** properties are added to **AudioFrame** class.
-* Added **InClickSequence** to the list of allowable values for **AudioPlayModePreset** and **AudioPlayModePreset** enum types.
+* New **CompressEmbeddedFonts** and **CompressEmbeddedFontsOnline** methods allow to reduce the size taken by embedded fonts by excluding unused characters.
 
 ## Licensing
 All Aspose.Slides Cloud SDKs are licensed under MIT License.
