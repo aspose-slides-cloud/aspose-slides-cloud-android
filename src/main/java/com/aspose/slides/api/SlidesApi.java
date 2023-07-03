@@ -114,6 +114,8 @@ import com.aspose.slides.model.TableRow;
 import com.aspose.slides.model.TextBounds;
 import com.aspose.slides.model.TextItems;
 import com.aspose.slides.model.Theme;
+import com.aspose.slides.model.VbaModule;
+import com.aspose.slides.model.VbaProject;
 import com.aspose.slides.model.ViewProperties;
 import com.aspose.slides.model.*;
 
@@ -6416,6 +6418,145 @@ public class SlidesApi {
 
         com.squareup.okhttp.Call call = createTableRowCall(name, slideIndex, shapeIndex, dto, position, password, folder, storage, progressListener, progressRequestListener);
         Type returnType = new TypeToken<TableRow>(){}.getType();
+        apiClient.executeAsync(call, returnType, callback);
+        return call;
+    }
+    /**
+     * Build call for createVbaModule
+     * @param name Document name. (required)
+     * @param moduleDto VBA module DTO. (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call createVbaModuleCall(String name, VbaModule moduleDto, String password, String folder, String storage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        // verify the required parameter 'name' is set
+        if (name == null) {
+            throw new ApiException("Missing the required parameter 'name' when calling createVbaModule(Async)");
+        }
+        // verify the required parameter 'moduleDto' is set
+        if (moduleDto == null) {
+            throw new ApiException("Missing the required parameter 'moduleDto' when calling createVbaModule(Async)");
+        }
+        Object postBody = moduleDto;
+
+        // create path and map variables
+        String methodPath = "/slides/{name}/vbaProject/modules"
+            .replaceAll("\\{" + "name" + "\\}", apiClient.objectToString(name));
+
+        List<Pair> queryParams = new ArrayList<Pair>();
+        apiClient.addQueryParameter(queryParams, "folder", folder);
+        apiClient.addQueryParameter(queryParams, "storage", storage);
+
+        Map<String, String> headerParams = new HashMap<String, String>();
+        if (password != null)
+        headerParams.put("password", apiClient.parameterToString(password));
+
+        Map<String, Object> formParams = new LinkedHashMap<String, Object>();
+
+        final String[] accepts = {
+            "application/json"
+        };
+        final String accept = apiClient.selectHeaderAccept(accepts);
+        if (accept != null) headerParams.put("Accept", accept);
+
+        final String[] contentTypes = {
+            "application/json"
+        };
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
+        headerParams.put("Content-Type", contentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+        return apiClient.buildCall(methodPath, "POST", queryParams, postBody, headerParams, formParams, progressRequestListener);
+    }
+
+    /**
+     * Append module to VBA project             
+     * 
+     * @param name Document name. (required)
+     * @param moduleDto VBA module DTO. (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @return VbaModule
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public VbaModule createVbaModule(String name, VbaModule moduleDto, String password, String folder, String storage) throws ApiException {
+        try {
+            ApiResponse<VbaModule> resp = createVbaModuleWithHttpInfo(name, moduleDto, password, folder, storage);
+            return resp.getData();
+        } catch (NeedRepeatRequestException e) {
+            ApiResponse<VbaModule> resp = createVbaModuleWithHttpInfo(name, moduleDto, password, folder, storage);
+            return resp.getData();
+        }
+    }
+
+    /**
+     * Append module to VBA project             
+     * 
+     * @param name Document name. (required)
+     * @param moduleDto VBA module DTO. (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @return ApiResponse&lt;VbaModule&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<VbaModule> createVbaModuleWithHttpInfo(String name, VbaModule moduleDto, String password, String folder, String storage) throws ApiException {
+        com.squareup.okhttp.Call call = createVbaModuleCall(name, moduleDto, password, folder, storage, null, null);
+        Type returnType = new TypeToken<VbaModule>(){}.getType();
+        return apiClient.execute(call, returnType);
+    }
+
+    /**
+     * Append module to VBA project              (asynchronously)
+     * 
+     * @param name Document name. (required)
+     * @param moduleDto VBA module DTO. (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call createVbaModuleAsync(String name, VbaModule moduleDto, String password, String folder, String storage, final ApiCallback<VbaModule> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = createVbaModuleCall(name, moduleDto, password, folder, storage, progressListener, progressRequestListener);
+        Type returnType = new TypeToken<VbaModule>(){}.getType();
         apiClient.executeAsync(call, returnType, callback);
         return call;
     }
@@ -14515,6 +14656,145 @@ public class SlidesApi {
 
         com.squareup.okhttp.Call call = deleteUnusedMasterSlidesOnlineCall(document, ignorePreserveField, password, progressListener, progressRequestListener);
         Type returnType = new TypeToken<File>(){}.getType();
+        apiClient.executeAsync(call, returnType, callback);
+        return call;
+    }
+    /**
+     * Build call for deleteVbaModule
+     * @param name Document name. (required)
+     * @param moduleIndex The index of the macros module to remove. (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call deleteVbaModuleCall(String name, Integer moduleIndex, String password, String folder, String storage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        // verify the required parameter 'name' is set
+        if (name == null) {
+            throw new ApiException("Missing the required parameter 'name' when calling deleteVbaModule(Async)");
+        }
+        // verify the required parameter 'moduleIndex' is set
+        if (moduleIndex == null) {
+            throw new ApiException("Missing the required parameter 'moduleIndex' when calling deleteVbaModule(Async)");
+        }
+        Object postBody = null;
+
+        // create path and map variables
+        String methodPath = "/slides/{name}/vbaProject/modules/{moduleIndex}"
+            .replaceAll("\\{" + "name" + "\\}", apiClient.objectToString(name)).replaceAll("\\{" + "moduleIndex" + "\\}", apiClient.objectToString(moduleIndex));
+
+        List<Pair> queryParams = new ArrayList<Pair>();
+        apiClient.addQueryParameter(queryParams, "folder", folder);
+        apiClient.addQueryParameter(queryParams, "storage", storage);
+
+        Map<String, String> headerParams = new HashMap<String, String>();
+        if (password != null)
+        headerParams.put("password", apiClient.parameterToString(password));
+
+        Map<String, Object> formParams = new LinkedHashMap<String, Object>();
+
+        final String[] accepts = {
+            "application/json"
+        };
+        final String accept = apiClient.selectHeaderAccept(accepts);
+        if (accept != null) headerParams.put("Accept", accept);
+
+        final String[] contentTypes = {
+            "application/json"
+        };
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
+        headerParams.put("Content-Type", contentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+        return apiClient.buildCall(methodPath, "DELETE", queryParams, postBody, headerParams, formParams, progressRequestListener);
+    }
+
+    /**
+     * Delete module from VBA project.
+     * 
+     * @param name Document name. (required)
+     * @param moduleIndex The index of the macros module to remove. (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @return VbaProject
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public VbaProject deleteVbaModule(String name, Integer moduleIndex, String password, String folder, String storage) throws ApiException {
+        try {
+            ApiResponse<VbaProject> resp = deleteVbaModuleWithHttpInfo(name, moduleIndex, password, folder, storage);
+            return resp.getData();
+        } catch (NeedRepeatRequestException e) {
+            ApiResponse<VbaProject> resp = deleteVbaModuleWithHttpInfo(name, moduleIndex, password, folder, storage);
+            return resp.getData();
+        }
+    }
+
+    /**
+     * Delete module from VBA project.
+     * 
+     * @param name Document name. (required)
+     * @param moduleIndex The index of the macros module to remove. (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @return ApiResponse&lt;VbaProject&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<VbaProject> deleteVbaModuleWithHttpInfo(String name, Integer moduleIndex, String password, String folder, String storage) throws ApiException {
+        com.squareup.okhttp.Call call = deleteVbaModuleCall(name, moduleIndex, password, folder, storage, null, null);
+        Type returnType = new TypeToken<VbaProject>(){}.getType();
+        return apiClient.execute(call, returnType);
+    }
+
+    /**
+     * Delete module from VBA project. (asynchronously)
+     * 
+     * @param name Document name. (required)
+     * @param moduleIndex The index of the macros module to remove. (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call deleteVbaModuleAsync(String name, Integer moduleIndex, String password, String folder, String storage, final ApiCallback<VbaProject> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = deleteVbaModuleCall(name, moduleIndex, password, folder, storage, progressListener, progressRequestListener);
+        Type returnType = new TypeToken<VbaProject>(){}.getType();
         apiClient.executeAsync(call, returnType, callback);
         return call;
     }
@@ -25978,6 +26258,276 @@ public class SlidesApi {
 
         com.squareup.okhttp.Call call = getThemeCall(name, slideIndex, password, folder, storage, progressListener, progressRequestListener);
         Type returnType = new TypeToken<Theme>(){}.getType();
+        apiClient.executeAsync(call, returnType, callback);
+        return call;
+    }
+    /**
+     * Build call for getVbaModule
+     * @param name Document name. (required)
+     * @param moduleIndex The index of the macros module to remove. (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call getVbaModuleCall(String name, Integer moduleIndex, String password, String folder, String storage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        // verify the required parameter 'name' is set
+        if (name == null) {
+            throw new ApiException("Missing the required parameter 'name' when calling getVbaModule(Async)");
+        }
+        // verify the required parameter 'moduleIndex' is set
+        if (moduleIndex == null) {
+            throw new ApiException("Missing the required parameter 'moduleIndex' when calling getVbaModule(Async)");
+        }
+        Object postBody = null;
+
+        // create path and map variables
+        String methodPath = "/slides/{name}/vbaProject/modules/{moduleIndex}"
+            .replaceAll("\\{" + "name" + "\\}", apiClient.objectToString(name)).replaceAll("\\{" + "moduleIndex" + "\\}", apiClient.objectToString(moduleIndex));
+
+        List<Pair> queryParams = new ArrayList<Pair>();
+        apiClient.addQueryParameter(queryParams, "folder", folder);
+        apiClient.addQueryParameter(queryParams, "storage", storage);
+
+        Map<String, String> headerParams = new HashMap<String, String>();
+        if (password != null)
+        headerParams.put("password", apiClient.parameterToString(password));
+
+        Map<String, Object> formParams = new LinkedHashMap<String, Object>();
+
+        final String[] accepts = {
+            "application/json"
+        };
+        final String accept = apiClient.selectHeaderAccept(accepts);
+        if (accept != null) headerParams.put("Accept", accept);
+
+        final String[] contentTypes = {
+            "application/json"
+        };
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
+        headerParams.put("Content-Type", contentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+        return apiClient.buildCall(methodPath, "GET", queryParams, postBody, headerParams, formParams, progressRequestListener);
+    }
+
+    /**
+     * Get VBA module info.
+     * 
+     * @param name Document name. (required)
+     * @param moduleIndex The index of the macros module to remove. (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @return VbaModule
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public VbaModule getVbaModule(String name, Integer moduleIndex, String password, String folder, String storage) throws ApiException {
+        try {
+            ApiResponse<VbaModule> resp = getVbaModuleWithHttpInfo(name, moduleIndex, password, folder, storage);
+            return resp.getData();
+        } catch (NeedRepeatRequestException e) {
+            ApiResponse<VbaModule> resp = getVbaModuleWithHttpInfo(name, moduleIndex, password, folder, storage);
+            return resp.getData();
+        }
+    }
+
+    /**
+     * Get VBA module info.
+     * 
+     * @param name Document name. (required)
+     * @param moduleIndex The index of the macros module to remove. (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @return ApiResponse&lt;VbaModule&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<VbaModule> getVbaModuleWithHttpInfo(String name, Integer moduleIndex, String password, String folder, String storage) throws ApiException {
+        com.squareup.okhttp.Call call = getVbaModuleCall(name, moduleIndex, password, folder, storage, null, null);
+        Type returnType = new TypeToken<VbaModule>(){}.getType();
+        return apiClient.execute(call, returnType);
+    }
+
+    /**
+     * Get VBA module info. (asynchronously)
+     * 
+     * @param name Document name. (required)
+     * @param moduleIndex The index of the macros module to remove. (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call getVbaModuleAsync(String name, Integer moduleIndex, String password, String folder, String storage, final ApiCallback<VbaModule> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = getVbaModuleCall(name, moduleIndex, password, folder, storage, progressListener, progressRequestListener);
+        Type returnType = new TypeToken<VbaModule>(){}.getType();
+        apiClient.executeAsync(call, returnType, callback);
+        return call;
+    }
+    /**
+     * Build call for getVbaProject
+     * @param name Document name. (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call getVbaProjectCall(String name, String password, String folder, String storage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        // verify the required parameter 'name' is set
+        if (name == null) {
+            throw new ApiException("Missing the required parameter 'name' when calling getVbaProject(Async)");
+        }
+        Object postBody = null;
+
+        // create path and map variables
+        String methodPath = "/slides/{name}/vbaProject"
+            .replaceAll("\\{" + "name" + "\\}", apiClient.objectToString(name));
+
+        List<Pair> queryParams = new ArrayList<Pair>();
+        apiClient.addQueryParameter(queryParams, "folder", folder);
+        apiClient.addQueryParameter(queryParams, "storage", storage);
+
+        Map<String, String> headerParams = new HashMap<String, String>();
+        if (password != null)
+        headerParams.put("password", apiClient.parameterToString(password));
+
+        Map<String, Object> formParams = new LinkedHashMap<String, Object>();
+
+        final String[] accepts = {
+            "application/json"
+        };
+        final String accept = apiClient.selectHeaderAccept(accepts);
+        if (accept != null) headerParams.put("Accept", accept);
+
+        final String[] contentTypes = {
+            "application/json"
+        };
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
+        headerParams.put("Content-Type", contentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+        return apiClient.buildCall(methodPath, "GET", queryParams, postBody, headerParams, formParams, progressRequestListener);
+    }
+
+    /**
+     * Get VBA project info.
+     * 
+     * @param name Document name. (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @return VbaProject
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public VbaProject getVbaProject(String name, String password, String folder, String storage) throws ApiException {
+        try {
+            ApiResponse<VbaProject> resp = getVbaProjectWithHttpInfo(name, password, folder, storage);
+            return resp.getData();
+        } catch (NeedRepeatRequestException e) {
+            ApiResponse<VbaProject> resp = getVbaProjectWithHttpInfo(name, password, folder, storage);
+            return resp.getData();
+        }
+    }
+
+    /**
+     * Get VBA project info.
+     * 
+     * @param name Document name. (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @return ApiResponse&lt;VbaProject&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<VbaProject> getVbaProjectWithHttpInfo(String name, String password, String folder, String storage) throws ApiException {
+        com.squareup.okhttp.Call call = getVbaProjectCall(name, password, folder, storage, null, null);
+        Type returnType = new TypeToken<VbaProject>(){}.getType();
+        return apiClient.execute(call, returnType);
+    }
+
+    /**
+     * Get VBA project info. (asynchronously)
+     * 
+     * @param name Document name. (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call getVbaProjectAsync(String name, String password, String folder, String storage, final ApiCallback<VbaProject> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = getVbaProjectCall(name, password, folder, storage, progressListener, progressRequestListener);
+        Type returnType = new TypeToken<VbaProject>(){}.getType();
         apiClient.executeAsync(call, returnType, callback);
         return call;
     }
@@ -38744,6 +39294,149 @@ public class SlidesApi {
 
         com.squareup.okhttp.Call call = updateTableRowCall(name, slideIndex, shapeIndex, rowIndex, dto, password, folder, storage, progressListener, progressRequestListener);
         Type returnType = new TypeToken<TableRow>(){}.getType();
+        apiClient.executeAsync(call, returnType, callback);
+        return call;
+    }
+    /**
+     * Build call for updateVbaModule
+     * @param name Document name. (required)
+     * @param moduleIndex The index of the macros module to remove. (required)
+     * @param moduleDto VBA module DTO. 
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call updateVbaModuleCall(String name, Integer moduleIndex, VbaModule moduleDto, String password, String folder, String storage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        // verify the required parameter 'name' is set
+        if (name == null) {
+            throw new ApiException("Missing the required parameter 'name' when calling updateVbaModule(Async)");
+        }
+        // verify the required parameter 'moduleIndex' is set
+        if (moduleIndex == null) {
+            throw new ApiException("Missing the required parameter 'moduleIndex' when calling updateVbaModule(Async)");
+        }
+        Object postBody = moduleDto;
+
+        // create path and map variables
+        String methodPath = "/slides/{name}/vbaProject/modules/{moduleIndex}"
+            .replaceAll("\\{" + "name" + "\\}", apiClient.objectToString(name)).replaceAll("\\{" + "moduleIndex" + "\\}", apiClient.objectToString(moduleIndex));
+
+        List<Pair> queryParams = new ArrayList<Pair>();
+        apiClient.addQueryParameter(queryParams, "folder", folder);
+        apiClient.addQueryParameter(queryParams, "storage", storage);
+
+        Map<String, String> headerParams = new HashMap<String, String>();
+        if (password != null)
+        headerParams.put("password", apiClient.parameterToString(password));
+
+        Map<String, Object> formParams = new LinkedHashMap<String, Object>();
+
+        final String[] accepts = {
+            "application/json"
+        };
+        final String accept = apiClient.selectHeaderAccept(accepts);
+        if (accept != null) headerParams.put("Accept", accept);
+
+        final String[] contentTypes = {
+            "application/json"
+        };
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
+        headerParams.put("Content-Type", contentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+        return apiClient.buildCall(methodPath, "PUT", queryParams, postBody, headerParams, formParams, progressRequestListener);
+    }
+
+    /**
+     * Update VBA module.
+     * 
+     * @param name Document name. (required)
+     * @param moduleIndex The index of the macros module to remove. (required)
+     * @param moduleDto VBA module DTO. 
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @return VbaModule
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public VbaModule updateVbaModule(String name, Integer moduleIndex, VbaModule moduleDto, String password, String folder, String storage) throws ApiException {
+        try {
+            ApiResponse<VbaModule> resp = updateVbaModuleWithHttpInfo(name, moduleIndex, moduleDto, password, folder, storage);
+            return resp.getData();
+        } catch (NeedRepeatRequestException e) {
+            ApiResponse<VbaModule> resp = updateVbaModuleWithHttpInfo(name, moduleIndex, moduleDto, password, folder, storage);
+            return resp.getData();
+        }
+    }
+
+    /**
+     * Update VBA module.
+     * 
+     * @param name Document name. (required)
+     * @param moduleIndex The index of the macros module to remove. (required)
+     * @param moduleDto VBA module DTO. 
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @return ApiResponse&lt;VbaModule&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<VbaModule> updateVbaModuleWithHttpInfo(String name, Integer moduleIndex, VbaModule moduleDto, String password, String folder, String storage) throws ApiException {
+        com.squareup.okhttp.Call call = updateVbaModuleCall(name, moduleIndex, moduleDto, password, folder, storage, null, null);
+        Type returnType = new TypeToken<VbaModule>(){}.getType();
+        return apiClient.execute(call, returnType);
+    }
+
+    /**
+     * Update VBA module. (asynchronously)
+     * 
+     * @param name Document name. (required)
+     * @param moduleIndex The index of the macros module to remove. (required)
+     * @param moduleDto VBA module DTO. 
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call updateVbaModuleAsync(String name, Integer moduleIndex, VbaModule moduleDto, String password, String folder, String storage, final ApiCallback<VbaModule> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = updateVbaModuleCall(name, moduleIndex, moduleDto, password, folder, storage, progressListener, progressRequestListener);
+        Type returnType = new TypeToken<VbaModule>(){}.getType();
         apiClient.executeAsync(call, returnType, callback);
         return call;
     }
