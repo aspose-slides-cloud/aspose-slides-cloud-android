@@ -184,6 +184,12 @@ public class VideoFrame extends GeometryShape {
   @SerializedName(value = "pictureFillFormat", alternate = { "PictureFillFormat" })
   private PictureFill pictureFillFormat;
 
+  @SerializedName(value = "trimFromStart", alternate = { "TrimFromStart" })
+  private Double trimFromStart;
+
+  @SerializedName(value = "trimFromEnd", alternate = { "TrimFromEnd" })
+  private Double trimFromEnd;
+
 
   public VideoFrame() {
     super();
@@ -334,6 +340,42 @@ public class VideoFrame extends GeometryShape {
     this.pictureFillFormat = pictureFillFormat;
   }
 
+  public VideoFrame trimFromStart(Double trimFromStart) {
+    this.trimFromStart = trimFromStart;
+    return this;
+  }
+
+   /**
+   * Trim start [ms]
+   * @return trimFromStart
+  **/
+  @ApiModelProperty(value = "Trim start [ms]")
+  public Double getTrimFromStart() {
+    return trimFromStart;
+  }
+
+  public void setTrimFromStart(Double trimFromStart) {
+    this.trimFromStart = trimFromStart;
+  }
+
+  public VideoFrame trimFromEnd(Double trimFromEnd) {
+    this.trimFromEnd = trimFromEnd;
+    return this;
+  }
+
+   /**
+   * Trim end [ms]
+   * @return trimFromEnd
+  **/
+  @ApiModelProperty(value = "Trim end [ms]")
+  public Double getTrimFromEnd() {
+    return trimFromEnd;
+  }
+
+  public void setTrimFromEnd(Double trimFromEnd) {
+    this.trimFromEnd = trimFromEnd;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -344,12 +386,12 @@ public class VideoFrame extends GeometryShape {
       return false;
     }
     VideoFrame videoFrame = (VideoFrame) o;
-    return true && Objects.equals(this.fullScreenMode, videoFrame.fullScreenMode) && Objects.equals(this.hideAtShowing, videoFrame.hideAtShowing) && Objects.equals(this.playLoopMode, videoFrame.playLoopMode) && Objects.equals(this.playMode, videoFrame.playMode) && Objects.equals(this.rewindVideo, videoFrame.rewindVideo) && Objects.equals(this.volume, videoFrame.volume) && Objects.equals(this.base64Data, videoFrame.base64Data) && Objects.equals(this.pictureFillFormat, videoFrame.pictureFillFormat) && super.equals(o);
+    return true && Objects.equals(this.fullScreenMode, videoFrame.fullScreenMode) && Objects.equals(this.hideAtShowing, videoFrame.hideAtShowing) && Objects.equals(this.playLoopMode, videoFrame.playLoopMode) && Objects.equals(this.playMode, videoFrame.playMode) && Objects.equals(this.rewindVideo, videoFrame.rewindVideo) && Objects.equals(this.volume, videoFrame.volume) && Objects.equals(this.base64Data, videoFrame.base64Data) && Objects.equals(this.pictureFillFormat, videoFrame.pictureFillFormat) && Objects.equals(this.trimFromStart, videoFrame.trimFromStart) && Objects.equals(this.trimFromEnd, videoFrame.trimFromEnd) && super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(fullScreenMode, hideAtShowing, playLoopMode, playMode, rewindVideo, volume, base64Data, pictureFillFormat, super.hashCode());
+    return Objects.hash(fullScreenMode, hideAtShowing, playLoopMode, playMode, rewindVideo, volume, base64Data, pictureFillFormat, trimFromStart, trimFromEnd, super.hashCode());
   }
 
 
@@ -366,6 +408,8 @@ public class VideoFrame extends GeometryShape {
     sb.append("    volume: ").append(toIndentedString(volume)).append("\n");
     sb.append("    base64Data: ").append(toIndentedString(base64Data)).append("\n");
     sb.append("    pictureFillFormat: ").append(toIndentedString(pictureFillFormat)).append("\n");
+    sb.append("    trimFromStart: ").append(toIndentedString(trimFromStart)).append("\n");
+    sb.append("    trimFromEnd: ").append(toIndentedString(trimFromEnd)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -87,6 +87,7 @@ import com.aspose.slides.model.Pipeline;
 import com.aspose.slides.model.Placeholder;
 import com.aspose.slides.model.Placeholders;
 import com.aspose.slides.model.Portion;
+import com.aspose.slides.model.PortionFormat;
 import com.aspose.slides.model.Portions;
 import com.aspose.slides.model.PresentationsMergeRequest;
 import com.aspose.slides.model.ProtectionProperties;
@@ -30282,6 +30283,314 @@ public class SlidesApi {
         return call;
     }
     /**
+     * Build call for replaceTextFormatting
+     * @param name Document name. (required)
+     * @param oldValue Text value to be replaced. (required)
+     * @param newValue Text value to replace with. (required)
+     * @param portionFormat Portion format. 
+     * @param withMasters Text replacement includes master slides. 
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call replaceTextFormattingCall(String name, String oldValue, String newValue, PortionFormat portionFormat, Boolean withMasters, String password, String folder, String storage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        // verify the required parameter 'name' is set
+        if (name == null) {
+            throw new ApiException("Missing the required parameter 'name' when calling replaceTextFormatting(Async)");
+        }
+        // verify the required parameter 'oldValue' is set
+        if (oldValue == null) {
+            throw new ApiException("Missing the required parameter 'oldValue' when calling replaceTextFormatting(Async)");
+        }
+        // verify the required parameter 'newValue' is set
+        if (newValue == null) {
+            throw new ApiException("Missing the required parameter 'newValue' when calling replaceTextFormatting(Async)");
+        }
+        Object postBody = portionFormat;
+
+        // create path and map variables
+        String methodPath = "/slides/{name}/replaceTextFormatting"
+            .replaceAll("\\{" + "name" + "\\}", apiClient.objectToString(name));
+
+        List<Pair> queryParams = new ArrayList<Pair>();
+        apiClient.addQueryParameter(queryParams, "oldValue", oldValue);
+        apiClient.addQueryParameter(queryParams, "newValue", newValue);
+        apiClient.addQueryParameter(queryParams, "withMasters", withMasters);
+        apiClient.addQueryParameter(queryParams, "folder", folder);
+        apiClient.addQueryParameter(queryParams, "storage", storage);
+
+        Map<String, String> headerParams = new HashMap<String, String>();
+        if (password != null)
+        headerParams.put("password", apiClient.parameterToString(password));
+
+        Map<String, Object> formParams = new LinkedHashMap<String, Object>();
+
+        final String[] accepts = {
+            "application/json"
+        };
+        final String accept = apiClient.selectHeaderAccept(accepts);
+        if (accept != null) headerParams.put("Accept", accept);
+
+        final String[] contentTypes = {
+            "application/json"
+        };
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
+        headerParams.put("Content-Type", contentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+        return apiClient.buildCall(methodPath, "POST", queryParams, postBody, headerParams, formParams, progressRequestListener);
+    }
+
+    /**
+     * Finds and replaces text in presentation with given format.
+     * 
+     * @param name Document name. (required)
+     * @param oldValue Text value to be replaced. (required)
+     * @param newValue Text value to replace with. (required)
+     * @param portionFormat Portion format. 
+     * @param withMasters Text replacement includes master slides. 
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @return Document
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public Document replaceTextFormatting(String name, String oldValue, String newValue, PortionFormat portionFormat, Boolean withMasters, String password, String folder, String storage) throws ApiException {
+        try {
+            ApiResponse<Document> resp = replaceTextFormattingWithHttpInfo(name, oldValue, newValue, portionFormat, withMasters, password, folder, storage);
+            return resp.getData();
+        } catch (NeedRepeatRequestException e) {
+            ApiResponse<Document> resp = replaceTextFormattingWithHttpInfo(name, oldValue, newValue, portionFormat, withMasters, password, folder, storage);
+            return resp.getData();
+        }
+    }
+
+    /**
+     * Finds and replaces text in presentation with given format.
+     * 
+     * @param name Document name. (required)
+     * @param oldValue Text value to be replaced. (required)
+     * @param newValue Text value to replace with. (required)
+     * @param portionFormat Portion format. 
+     * @param withMasters Text replacement includes master slides. 
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @return ApiResponse&lt;Document&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<Document> replaceTextFormattingWithHttpInfo(String name, String oldValue, String newValue, PortionFormat portionFormat, Boolean withMasters, String password, String folder, String storage) throws ApiException {
+        com.squareup.okhttp.Call call = replaceTextFormattingCall(name, oldValue, newValue, portionFormat, withMasters, password, folder, storage, null, null);
+        Type returnType = new TypeToken<Document>(){}.getType();
+        return apiClient.execute(call, returnType);
+    }
+
+    /**
+     * Finds and replaces text in presentation with given format. (asynchronously)
+     * 
+     * @param name Document name. (required)
+     * @param oldValue Text value to be replaced. (required)
+     * @param newValue Text value to replace with. (required)
+     * @param portionFormat Portion format. 
+     * @param withMasters Text replacement includes master slides. 
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call replaceTextFormattingAsync(String name, String oldValue, String newValue, PortionFormat portionFormat, Boolean withMasters, String password, String folder, String storage, final ApiCallback<Document> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = replaceTextFormattingCall(name, oldValue, newValue, portionFormat, withMasters, password, folder, storage, progressListener, progressRequestListener);
+        Type returnType = new TypeToken<Document>(){}.getType();
+        apiClient.executeAsync(call, returnType, callback);
+        return call;
+    }
+    /**
+     * Build call for replaceTextFormattingOnline
+     * @param document Document data. (required)
+     * @param oldValue Text value to be replaced. (required)
+     * @param newValue Text value to replace with. (required)
+     * @param portionFormat Portion format. 
+     * @param withMasters Text replacement includes master slides. 
+     * @param password Document password. 
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call replaceTextFormattingOnlineCall(byte[] document, String oldValue, String newValue, PortionFormat portionFormat, Boolean withMasters, String password, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        // verify the required parameter 'document' is set
+        if (document == null) {
+            throw new ApiException("Missing the required parameter 'document' when calling replaceTextFormattingOnline(Async)");
+        }
+        // verify the required parameter 'oldValue' is set
+        if (oldValue == null) {
+            throw new ApiException("Missing the required parameter 'oldValue' when calling replaceTextFormattingOnline(Async)");
+        }
+        // verify the required parameter 'newValue' is set
+        if (newValue == null) {
+            throw new ApiException("Missing the required parameter 'newValue' when calling replaceTextFormattingOnline(Async)");
+        }
+        Object postBody = portionFormat;
+
+        // create path and map variables
+        String methodPath = "/slides/replaceTextFormatting"
+            ;
+
+        List<Pair> queryParams = new ArrayList<Pair>();
+        apiClient.addQueryParameter(queryParams, "oldValue", oldValue);
+        apiClient.addQueryParameter(queryParams, "newValue", newValue);
+        apiClient.addQueryParameter(queryParams, "withMasters", withMasters);
+
+        Map<String, String> headerParams = new HashMap<String, String>();
+        if (password != null)
+        headerParams.put("password", apiClient.parameterToString(password));
+
+        Map<String, Object> formParams = new LinkedHashMap<String, Object>();
+        if (document != null)
+        formParams.put("document", document);
+
+        final String[] accepts = {
+            "multipart/form-data"
+        };
+        final String accept = apiClient.selectHeaderAccept(accepts);
+        if (accept != null) headerParams.put("Accept", accept);
+
+        final String[] contentTypes = {
+            "multipart/form-data"
+        };
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
+        headerParams.put("Content-Type", contentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+        return apiClient.buildCall(methodPath, "POST", queryParams, postBody, headerParams, formParams, progressRequestListener);
+    }
+
+    /**
+     * Finds and replaces text in presentation with given format.
+     * 
+     * @param document Document data. (required)
+     * @param oldValue Text value to be replaced. (required)
+     * @param newValue Text value to replace with. (required)
+     * @param portionFormat Portion format. 
+     * @param withMasters Text replacement includes master slides. 
+     * @param password Document password. 
+     * @return File
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public File replaceTextFormattingOnline(byte[] document, String oldValue, String newValue, PortionFormat portionFormat, Boolean withMasters, String password) throws ApiException {
+        try {
+            ApiResponse<File> resp = replaceTextFormattingOnlineWithHttpInfo(document, oldValue, newValue, portionFormat, withMasters, password);
+            return resp.getData();
+        } catch (NeedRepeatRequestException e) {
+            ApiResponse<File> resp = replaceTextFormattingOnlineWithHttpInfo(document, oldValue, newValue, portionFormat, withMasters, password);
+            return resp.getData();
+        }
+    }
+
+    /**
+     * Finds and replaces text in presentation with given format.
+     * 
+     * @param document Document data. (required)
+     * @param oldValue Text value to be replaced. (required)
+     * @param newValue Text value to replace with. (required)
+     * @param portionFormat Portion format. 
+     * @param withMasters Text replacement includes master slides. 
+     * @param password Document password. 
+     * @return ApiResponse&lt;File&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<File> replaceTextFormattingOnlineWithHttpInfo(byte[] document, String oldValue, String newValue, PortionFormat portionFormat, Boolean withMasters, String password) throws ApiException {
+        com.squareup.okhttp.Call call = replaceTextFormattingOnlineCall(document, oldValue, newValue, portionFormat, withMasters, password, null, null);
+        Type returnType = new TypeToken<File>(){}.getType();
+        return apiClient.execute(call, returnType);
+    }
+
+    /**
+     * Finds and replaces text in presentation with given format. (asynchronously)
+     * 
+     * @param document Document data. (required)
+     * @param oldValue Text value to be replaced. (required)
+     * @param newValue Text value to replace with. (required)
+     * @param portionFormat Portion format. 
+     * @param withMasters Text replacement includes master slides. 
+     * @param password Document password. 
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call replaceTextFormattingOnlineAsync(byte[] document, String oldValue, String newValue, PortionFormat portionFormat, Boolean withMasters, String password, final ApiCallback<File> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = replaceTextFormattingOnlineCall(document, oldValue, newValue, portionFormat, withMasters, password, progressListener, progressRequestListener);
+        Type returnType = new TypeToken<File>(){}.getType();
+        apiClient.executeAsync(call, returnType, callback);
+        return call;
+    }
+    /**
      * Build call for savePortionAsMathMl
      * @param name Document name. (required)
      * @param slideIndex Slide index. (required)
@@ -39301,7 +39610,7 @@ public class SlidesApi {
      * Build call for updateVbaModule
      * @param name Document name. (required)
      * @param moduleIndex The index of the macros module to remove. (required)
-     * @param moduleDto VBA module DTO. 
+     * @param moduleDto VBA module DTO. (required)
      * @param password Document password. 
      * @param folder Document folder. 
      * @param storage Document storage. 
@@ -39318,6 +39627,10 @@ public class SlidesApi {
         // verify the required parameter 'moduleIndex' is set
         if (moduleIndex == null) {
             throw new ApiException("Missing the required parameter 'moduleIndex' when calling updateVbaModule(Async)");
+        }
+        // verify the required parameter 'moduleDto' is set
+        if (moduleDto == null) {
+            throw new ApiException("Missing the required parameter 'moduleDto' when calling updateVbaModule(Async)");
         }
         Object postBody = moduleDto;
 
@@ -39366,7 +39679,7 @@ public class SlidesApi {
      * 
      * @param name Document name. (required)
      * @param moduleIndex The index of the macros module to remove. (required)
-     * @param moduleDto VBA module DTO. 
+     * @param moduleDto VBA module DTO. (required)
      * @param password Document password. 
      * @param folder Document folder. 
      * @param storage Document storage. 
@@ -39388,7 +39701,7 @@ public class SlidesApi {
      * 
      * @param name Document name. (required)
      * @param moduleIndex The index of the macros module to remove. (required)
-     * @param moduleDto VBA module DTO. 
+     * @param moduleDto VBA module DTO. (required)
      * @param password Document password. 
      * @param folder Document folder. 
      * @param storage Document storage. 
@@ -39406,7 +39719,7 @@ public class SlidesApi {
      * 
      * @param name Document name. (required)
      * @param moduleIndex The index of the macros module to remove. (required)
-     * @param moduleDto VBA module DTO. 
+     * @param moduleDto VBA module DTO. (required)
      * @param password Document password. 
      * @param folder Document folder. 
      * @param storage Document storage. 

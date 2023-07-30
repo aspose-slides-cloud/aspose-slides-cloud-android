@@ -750,6 +750,66 @@ public class Effect {
   @SerializedName(value = "stopPreviousSound", alternate = { "StopPreviousSound" })
   private Boolean stopPreviousSound;
 
+  @SerializedName(value = "rewind", alternate = { "Rewind" })
+  private Boolean rewind;
+
+  /**
+   * Defined an after animation color for effect.
+   */
+  @JsonAdapter(AfterAnimationTypeEnum.Adapter.class)
+  public enum AfterAnimationTypeEnum {
+    DONOTDIM("DoNotDim"),
+    
+    COLOR("Color"),
+    
+    HIDEAFTERANIMATION("HideAfterAnimation"),
+    
+    HIDEONNEXTMOUSECLICK("HideOnNextMouseClick");
+
+    private String value;
+
+    AfterAnimationTypeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static AfterAnimationTypeEnum fromValue(String text) {
+      for (AfterAnimationTypeEnum b : AfterAnimationTypeEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<AfterAnimationTypeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final AfterAnimationTypeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public AfterAnimationTypeEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return AfterAnimationTypeEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
+  @SerializedName(value = "afterAnimationType", alternate = { "AfterAnimationType" })
+  private AfterAnimationTypeEnum afterAnimationType;
+
+  @SerializedName(value = "afterAnimationColor", alternate = { "AfterAnimationColor" })
+  private String afterAnimationColor;
+
 
   public Effect() {
     super();
@@ -1079,6 +1139,60 @@ public class Effect {
     this.stopPreviousSound = stopPreviousSound;
   }
 
+  public Effect rewind(Boolean rewind) {
+    this.rewind = rewind;
+    return this;
+  }
+
+   /**
+   * This attribute specifies if the effect will rewind when done playing.
+   * @return rewind
+  **/
+  @ApiModelProperty(value = "This attribute specifies if the effect will rewind when done playing.")
+  public Boolean isRewind() {
+    return rewind;
+  }
+
+  public void setRewind(Boolean rewind) {
+    this.rewind = rewind;
+  }
+
+  public Effect afterAnimationType(AfterAnimationTypeEnum afterAnimationType) {
+    this.afterAnimationType = afterAnimationType;
+    return this;
+  }
+
+   /**
+   * Defined an after animation color for effect.
+   * @return afterAnimationType
+  **/
+  @ApiModelProperty(value = "Defined an after animation color for effect.")
+  public AfterAnimationTypeEnum getAfterAnimationType() {
+    return afterAnimationType;
+  }
+
+  public void setAfterAnimationType(AfterAnimationTypeEnum afterAnimationType) {
+    this.afterAnimationType = afterAnimationType;
+  }
+
+  public Effect afterAnimationColor(String afterAnimationColor) {
+    this.afterAnimationColor = afterAnimationColor;
+    return this;
+  }
+
+   /**
+   * Defined an after animation color for effect. Applied when the AfterAnimationType property is set to Color.
+   * @return afterAnimationColor
+  **/
+  @ApiModelProperty(value = "Defined an after animation color for effect. Applied when the AfterAnimationType property is set to Color.")
+  public String getAfterAnimationColor() {
+    return afterAnimationColor;
+  }
+
+  public void setAfterAnimationColor(String afterAnimationColor) {
+    this.afterAnimationColor = afterAnimationColor;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -1089,12 +1203,12 @@ public class Effect {
       return false;
     }
     Effect effect = (Effect) o;
-    return true && Objects.equals(this.type, effect.type) && Objects.equals(this.subtype, effect.subtype) && Objects.equals(this.presetClassType, effect.presetClassType) && Objects.equals(this.shapeIndex, effect.shapeIndex) && Objects.equals(this.paragraphIndex, effect.paragraphIndex) && Objects.equals(this.triggerType, effect.triggerType) && Objects.equals(this.accelerate, effect.accelerate) && Objects.equals(this.autoReverse, effect.autoReverse) && Objects.equals(this.decelerate, effect.decelerate) && Objects.equals(this.duration, effect.duration) && Objects.equals(this.repeatCount, effect.repeatCount) && Objects.equals(this.repeatDuration, effect.repeatDuration) && Objects.equals(this.restart, effect.restart) && Objects.equals(this.speed, effect.speed) && Objects.equals(this.triggerDelayTime, effect.triggerDelayTime) && Objects.equals(this.repeatUntilEndSlide, effect.repeatUntilEndSlide) && Objects.equals(this.repeatUntilNextClick, effect.repeatUntilNextClick) && Objects.equals(this.stopPreviousSound, effect.stopPreviousSound);
+    return true && Objects.equals(this.type, effect.type) && Objects.equals(this.subtype, effect.subtype) && Objects.equals(this.presetClassType, effect.presetClassType) && Objects.equals(this.shapeIndex, effect.shapeIndex) && Objects.equals(this.paragraphIndex, effect.paragraphIndex) && Objects.equals(this.triggerType, effect.triggerType) && Objects.equals(this.accelerate, effect.accelerate) && Objects.equals(this.autoReverse, effect.autoReverse) && Objects.equals(this.decelerate, effect.decelerate) && Objects.equals(this.duration, effect.duration) && Objects.equals(this.repeatCount, effect.repeatCount) && Objects.equals(this.repeatDuration, effect.repeatDuration) && Objects.equals(this.restart, effect.restart) && Objects.equals(this.speed, effect.speed) && Objects.equals(this.triggerDelayTime, effect.triggerDelayTime) && Objects.equals(this.repeatUntilEndSlide, effect.repeatUntilEndSlide) && Objects.equals(this.repeatUntilNextClick, effect.repeatUntilNextClick) && Objects.equals(this.stopPreviousSound, effect.stopPreviousSound) && Objects.equals(this.rewind, effect.rewind) && Objects.equals(this.afterAnimationType, effect.afterAnimationType) && Objects.equals(this.afterAnimationColor, effect.afterAnimationColor);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, subtype, presetClassType, shapeIndex, paragraphIndex, triggerType, accelerate, autoReverse, decelerate, duration, repeatCount, repeatDuration, restart, speed, triggerDelayTime, repeatUntilEndSlide, repeatUntilNextClick, stopPreviousSound);
+    return Objects.hash(type, subtype, presetClassType, shapeIndex, paragraphIndex, triggerType, accelerate, autoReverse, decelerate, duration, repeatCount, repeatDuration, restart, speed, triggerDelayTime, repeatUntilEndSlide, repeatUntilNextClick, stopPreviousSound, rewind, afterAnimationType, afterAnimationColor);
   }
 
 
@@ -1121,6 +1235,9 @@ public class Effect {
     sb.append("    repeatUntilEndSlide: ").append(toIndentedString(repeatUntilEndSlide)).append("\n");
     sb.append("    repeatUntilNextClick: ").append(toIndentedString(repeatUntilNextClick)).append("\n");
     sb.append("    stopPreviousSound: ").append(toIndentedString(stopPreviousSound)).append("\n");
+    sb.append("    rewind: ").append(toIndentedString(rewind)).append("\n");
+    sb.append("    afterAnimationType: ").append(toIndentedString(afterAnimationType)).append("\n");
+    sb.append("    afterAnimationColor: ").append(toIndentedString(afterAnimationColor)).append("\n");
     sb.append("}");
     return sb.toString();
   }

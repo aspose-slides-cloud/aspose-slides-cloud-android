@@ -86,6 +86,37 @@ public class TextTest extends ApiTest {
     }
 
     @Test
+    public void replaceTextFormattingTest() throws ApiException, IOException {
+        String oldText = "banana";
+        String newText = "orange";
+        String color = "#FFFFA500";
+        int slideIndex = 1;
+        int shapeIndex = 1;
+        int paragraphIndex = 1;
+        int portionIndex = 1;
+        Portion portion = new Portion();
+        portion.setText(oldText);
+        PortionFormat portionFormat = new PortionFormat();
+        portionFormat.setFontColor(color);
+
+        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        api.createPortion(fileName, slideIndex, shapeIndex, paragraphIndex, portion, portionIndex, password, folderName, null, null);
+        api.replaceTextFormatting(fileName, oldText, newText, portionFormat, false, password, folderName, null);
+        Portion updatedPortion = api.getPortion(fileName, slideIndex, shapeIndex, paragraphIndex, portionIndex, password, folderName, null, null);
+        assertEquals(newText, updatedPortion.getText());
+        assertEquals(color, updatedPortion.getFontColor());
+    }
+
+    @Test
+    public void replaceTextFormattingOnlineTest() throws ApiException, IOException {
+        byte[] file = Files.readAllBytes(Paths.get(testDataFolderName + "/" + fileName));
+        PortionFormat portionFormat = new PortionFormat();
+        portionFormat.setFontColor("#FFFFA500");
+        File result = api.replaceTextFormattingOnline(file, "banana", "orange", portionFormat, false, password);
+        assertTrue(result.canRead());
+    }
+
+    @Test
     public void highlightShapeTextTest() throws ApiException, IOException {
         api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
 
