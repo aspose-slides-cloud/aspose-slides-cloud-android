@@ -98,5 +98,21 @@ public class ImageTest extends ApiTest {
         assertNotEquals(image.length(), imagePng.length());
     }
 
+    @Test
+    public void replaceImageTest() throws ApiException, IOException {
+        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        byte[] imageFile = Files.readAllBytes(Paths.get(testDataFolderName + "/" + c_imageFileName));
+        api.replaceImage(fileName, c_imageIndex, imageFile, password, folderName, null);
+    }
+
+    @Test
+    public void replaceImageRequestTest() throws ApiException, IOException {
+        byte[] file = Files.readAllBytes(Paths.get(testDataFolderName + "/" + fileName));
+        byte[] imageFile = Files.readAllBytes(Paths.get(testDataFolderName + "/" + c_imageFileName));
+        File response = api.replaceImageOnline(file, c_imageIndex, imageFile, password);
+        assertNotEquals(response.length(), 0);
+    }
+
     private final int c_imageIndex = 1;
+    private final String c_imageFileName = "watermark.png";
 }

@@ -5751,7 +5751,7 @@ public class SlidesApi {
      * @param name Document name. (required)
      * @param slideIndex Parent slide index. (required)
      * @param slideType Slide type (master, layout or notes). (required)
-     * @param dto Shape DTO. 
+     * @param dto Shape DTO. (required)
      * @param shapeToClone Optional index for clone shape instead of adding a new one. 
      * @param position Position of the new shape in the list. Default is at the end of the list. 
      * @param password Document password. 
@@ -5775,6 +5775,10 @@ public class SlidesApi {
         // verify the required parameter 'slideType' is set
         if (slideType == null) {
             throw new ApiException("Missing the required parameter 'slideType' when calling createSpecialSlideShape(Async)");
+        }
+        // verify the required parameter 'dto' is set
+        if (dto == null) {
+            throw new ApiException("Missing the required parameter 'dto' when calling createSpecialSlideShape(Async)");
         }
         Object postBody = dto;
 
@@ -5827,7 +5831,7 @@ public class SlidesApi {
      * @param name Document name. (required)
      * @param slideIndex Parent slide index. (required)
      * @param slideType Slide type (master, layout or notes). (required)
-     * @param dto Shape DTO. 
+     * @param dto Shape DTO. (required)
      * @param shapeToClone Optional index for clone shape instead of adding a new one. 
      * @param position Position of the new shape in the list. Default is at the end of the list. 
      * @param password Document password. 
@@ -5853,7 +5857,7 @@ public class SlidesApi {
      * @param name Document name. (required)
      * @param slideIndex Parent slide index. (required)
      * @param slideType Slide type (master, layout or notes). (required)
-     * @param dto Shape DTO. 
+     * @param dto Shape DTO. (required)
      * @param shapeToClone Optional index for clone shape instead of adding a new one. 
      * @param position Position of the new shape in the list. Default is at the end of the list. 
      * @param password Document password. 
@@ -5875,7 +5879,7 @@ public class SlidesApi {
      * @param name Document name. (required)
      * @param slideIndex Parent slide index. (required)
      * @param slideType Slide type (master, layout or notes). (required)
-     * @param dto Shape DTO. 
+     * @param dto Shape DTO. (required)
      * @param shapeToClone Optional index for clone shape instead of adding a new one. 
      * @param position Position of the new shape in the list. Default is at the end of the list. 
      * @param password Document password. 
@@ -10294,7 +10298,7 @@ public class SlidesApi {
     /**
      * Build call for deleteProtectionOnline
      * @param document Document data. (required)
-     * @param password Presentation password. (required)
+     * @param password Presentation password. 
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
@@ -10304,10 +10308,6 @@ public class SlidesApi {
         // verify the required parameter 'document' is set
         if (document == null) {
             throw new ApiException("Missing the required parameter 'document' when calling deleteProtectionOnline(Async)");
-        }
-        // verify the required parameter 'password' is set
-        if (password == null) {
-            throw new ApiException("Missing the required parameter 'password' when calling deleteProtectionOnline(Async)");
         }
         Object postBody = null;
 
@@ -10355,7 +10355,7 @@ public class SlidesApi {
      * Resets all presentation protection settings. 
      * 
      * @param document Document data. (required)
-     * @param password Presentation password. (required)
+     * @param password Presentation password. 
      * @return File
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
@@ -10373,7 +10373,7 @@ public class SlidesApi {
      * Resets all presentation protection settings. 
      * 
      * @param document Document data. (required)
-     * @param password Presentation password. (required)
+     * @param password Presentation password. 
      * @return ApiResponse&lt;File&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
@@ -10387,7 +10387,7 @@ public class SlidesApi {
      * Resets all presentation protection settings.  (asynchronously)
      * 
      * @param document Document data. (required)
-     * @param password Presentation password. (required)
+     * @param password Presentation password. 
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -29662,6 +29662,284 @@ public class SlidesApi {
         }
 
         com.squareup.okhttp.Call call = replaceFontOnlineCall(document, sourceFont, targetFont, embed, password, fontsFolder, progressListener, progressRequestListener);
+        Type returnType = new TypeToken<File>(){}.getType();
+        apiClient.executeAsync(call, returnType, callback);
+        return call;
+    }
+    /**
+     * Build call for replaceImage
+     * @param name Document name. (required)
+     * @param imageIndex Image index. (required)
+     * @param image Image data. 
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call replaceImageCall(String name, Integer imageIndex, byte[] image, String password, String folder, String storage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        // verify the required parameter 'name' is set
+        if (name == null) {
+            throw new ApiException("Missing the required parameter 'name' when calling replaceImage(Async)");
+        }
+        // verify the required parameter 'imageIndex' is set
+        if (imageIndex == null) {
+            throw new ApiException("Missing the required parameter 'imageIndex' when calling replaceImage(Async)");
+        }
+        Object postBody = null;
+
+        // create path and map variables
+        String methodPath = "/slides/{name}/images/{imageIndex}/replace"
+            .replaceAll("\\{" + "name" + "\\}", apiClient.objectToString(name)).replaceAll("\\{" + "imageIndex" + "\\}", apiClient.objectToString(imageIndex));
+
+        List<Pair> queryParams = new ArrayList<Pair>();
+        apiClient.addQueryParameter(queryParams, "folder", folder);
+        apiClient.addQueryParameter(queryParams, "storage", storage);
+
+        Map<String, String> headerParams = new HashMap<String, String>();
+        if (password != null)
+        headerParams.put("password", apiClient.parameterToString(password));
+
+        Map<String, Object> formParams = new LinkedHashMap<String, Object>();
+        if (image != null)
+        formParams.put("image", image);
+
+        final String[] accepts = {
+            "application/json"
+        };
+        final String accept = apiClient.selectHeaderAccept(accepts);
+        if (accept != null) headerParams.put("Accept", accept);
+
+        final String[] contentTypes = {
+            "multipart/form-data"
+        };
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
+        headerParams.put("Content-Type", contentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+        return apiClient.buildCall(methodPath, "PUT", queryParams, postBody, headerParams, formParams, progressRequestListener);
+    }
+
+    /**
+     * Replaces image by the specified index.
+     * 
+     * @param name Document name. (required)
+     * @param imageIndex Image index. (required)
+     * @param image Image data. 
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public void replaceImage(String name, Integer imageIndex, byte[] image, String password, String folder, String storage) throws ApiException {
+        try {
+            replaceImageWithHttpInfo(name, imageIndex, image, password, folder, storage);
+        } catch (NeedRepeatRequestException e) {
+            replaceImageWithHttpInfo(name, imageIndex, image, password, folder, storage);
+        }
+    }
+
+    /**
+     * Replaces image by the specified index.
+     * 
+     * @param name Document name. (required)
+     * @param imageIndex Image index. (required)
+     * @param image Image data. 
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @return ApiResponse&lt;Void&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<Void> replaceImageWithHttpInfo(String name, Integer imageIndex, byte[] image, String password, String folder, String storage) throws ApiException {
+        com.squareup.okhttp.Call call = replaceImageCall(name, imageIndex, image, password, folder, storage, null, null);
+        return apiClient.execute(call);
+    }
+
+    /**
+     * Replaces image by the specified index. (asynchronously)
+     * 
+     * @param name Document name. (required)
+     * @param imageIndex Image index. (required)
+     * @param image Image data. 
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call replaceImageAsync(String name, Integer imageIndex, byte[] image, String password, String folder, String storage, final ApiCallback<Void> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = replaceImageCall(name, imageIndex, image, password, folder, storage, progressListener, progressRequestListener);
+        apiClient.executeAsync(call, callback);
+        return call;
+    }
+    /**
+     * Build call for replaceImageOnline
+     * @param document Document data. (required)
+     * @param imageIndex Image index. (required)
+     * @param image Image data. 
+     * @param password Password. 
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call replaceImageOnlineCall(byte[] document, Integer imageIndex, byte[] image, String password, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        // verify the required parameter 'document' is set
+        if (document == null) {
+            throw new ApiException("Missing the required parameter 'document' when calling replaceImageOnline(Async)");
+        }
+        // verify the required parameter 'imageIndex' is set
+        if (imageIndex == null) {
+            throw new ApiException("Missing the required parameter 'imageIndex' when calling replaceImageOnline(Async)");
+        }
+        Object postBody = null;
+
+        // create path and map variables
+        String methodPath = "/slides/images/{imageIndex}/replace"
+            .replaceAll("\\{" + "imageIndex" + "\\}", apiClient.objectToString(imageIndex));
+
+        List<Pair> queryParams = new ArrayList<Pair>();
+
+        Map<String, String> headerParams = new HashMap<String, String>();
+        if (password != null)
+        headerParams.put("password", apiClient.parameterToString(password));
+
+        Map<String, Object> formParams = new LinkedHashMap<String, Object>();
+        if (document != null)
+        formParams.put("document", document);
+        if (image != null)
+        formParams.put("image", image);
+
+        final String[] accepts = {
+            "multipart/form-data"
+        };
+        final String accept = apiClient.selectHeaderAccept(accepts);
+        if (accept != null) headerParams.put("Accept", accept);
+
+        final String[] contentTypes = {
+            "multipart/form-data"
+        };
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
+        headerParams.put("Content-Type", contentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+        return apiClient.buildCall(methodPath, "POST", queryParams, postBody, headerParams, formParams, progressRequestListener);
+    }
+
+    /**
+     * Replaces image by the specified index and returns updated document. 
+     * 
+     * @param document Document data. (required)
+     * @param imageIndex Image index. (required)
+     * @param image Image data. 
+     * @param password Password. 
+     * @return File
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public File replaceImageOnline(byte[] document, Integer imageIndex, byte[] image, String password) throws ApiException {
+        try {
+            ApiResponse<File> resp = replaceImageOnlineWithHttpInfo(document, imageIndex, image, password);
+            return resp.getData();
+        } catch (NeedRepeatRequestException e) {
+            ApiResponse<File> resp = replaceImageOnlineWithHttpInfo(document, imageIndex, image, password);
+            return resp.getData();
+        }
+    }
+
+    /**
+     * Replaces image by the specified index and returns updated document. 
+     * 
+     * @param document Document data. (required)
+     * @param imageIndex Image index. (required)
+     * @param image Image data. 
+     * @param password Password. 
+     * @return ApiResponse&lt;File&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<File> replaceImageOnlineWithHttpInfo(byte[] document, Integer imageIndex, byte[] image, String password) throws ApiException {
+        com.squareup.okhttp.Call call = replaceImageOnlineCall(document, imageIndex, image, password, null, null);
+        Type returnType = new TypeToken<File>(){}.getType();
+        return apiClient.execute(call, returnType);
+    }
+
+    /**
+     * Replaces image by the specified index and returns updated document.  (asynchronously)
+     * 
+     * @param document Document data. (required)
+     * @param imageIndex Image index. (required)
+     * @param image Image data. 
+     * @param password Password. 
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call replaceImageOnlineAsync(byte[] document, Integer imageIndex, byte[] image, String password, final ApiCallback<File> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = replaceImageOnlineCall(document, imageIndex, image, password, progressListener, progressRequestListener);
         Type returnType = new TypeToken<File>(){}.getType();
         apiClient.executeAsync(call, returnType, callback);
         return call;
