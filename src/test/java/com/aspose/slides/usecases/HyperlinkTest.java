@@ -40,8 +40,8 @@ import org.junit.Test;
 public class HyperlinkTest extends ApiTest {
     @Test
     public void hyperlinkGetShapeTest() throws ApiException, IOException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
-        ShapeBase shape = api.getShape(fileName, c_slideIndex, c_shapeIndex, password, folderName, null, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        ShapeBase shape = testSlidesApi.getShape(fileName, c_slideIndex, c_shapeIndex, password, folderName, null, null);
         assertNotNull(shape.getHyperlinkClick());
         assertEquals(Hyperlink.ActionTypeEnum.HYPERLINK, shape.getHyperlinkClick().getActionType());
         assertNull(shape.getHyperlinkMouseOver());
@@ -49,8 +49,8 @@ public class HyperlinkTest extends ApiTest {
 
     @Test
     public void hyperlinkGetPortionTest() throws ApiException, IOException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
-        Portion portion = api.getPortion(fileName, c_slideIndex, c_hoverShapeIndex, c_paragraphIndex, c_portionIndex,
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        Portion portion = testSlidesApi.getPortion(fileName, c_slideIndex, c_hoverShapeIndex, c_paragraphIndex, c_portionIndex,
                 password, folderName, null, null);
         assertNull(portion.getHyperlinkClick());
         assertNotNull(portion.getHyperlinkMouseOver());
@@ -61,13 +61,13 @@ public class HyperlinkTest extends ApiTest {
     public void hyperlinkCreateShapeTest() throws ApiException, IOException {
         int slideIndex = 1;
         int shapeIndex = 1;
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         Shape shape = new Shape();
         Hyperlink hyperlink = new Hyperlink();
         hyperlink.setActionType(Hyperlink.ActionTypeEnum.HYPERLINK);
         hyperlink.setExternalUrl("https://docs.aspose.cloud/slides");
         shape.setHyperlinkClick(hyperlink);
-        Shape updatedShape = (Shape)api.updateShape(fileName, slideIndex, shapeIndex, shape, password, folderName, null, null);
+        Shape updatedShape = (Shape)testSlidesApi.updateShape(fileName, slideIndex, shapeIndex, shape, password, folderName, null, null);
         assertNotNull(updatedShape.getHyperlinkClick());
         assertEquals(shape.getHyperlinkClick().getExternalUrl(), updatedShape.getHyperlinkClick().getExternalUrl());
     }
@@ -76,25 +76,25 @@ public class HyperlinkTest extends ApiTest {
     public void hyperlinkCreatePortionTest() throws ApiException, IOException {
         int slideIndex = 1;
         int shapeIndex = 1;
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         Portion dto = new Portion();
         dto.setText("Link text");
         Hyperlink link = new Hyperlink();
         link.setActionType(Hyperlink.ActionTypeEnum.JUMPLASTSLIDE);
         dto.setHyperlinkMouseOver(link);
-        Portion updatedPortion = api.createPortion(fileName, slideIndex, shapeIndex, c_paragraphIndex, dto, null, password, folderName, null, null);
+        Portion updatedPortion = testSlidesApi.createPortion(fileName, slideIndex, shapeIndex, c_paragraphIndex, dto, null, password, folderName, null, null);
         assertNotNull(updatedPortion.getHyperlinkMouseOver());
         assertEquals(dto.getHyperlinkMouseOver().getActionType(), updatedPortion.getHyperlinkMouseOver().getActionType());
     }
 
     @Test
     public void hyperlinkDeleteTest() throws ApiException, IOException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         PictureFrame shape = new PictureFrame();
         Hyperlink hyperlink = new Hyperlink();
         hyperlink.setIsDisabled(true);
         shape.setHyperlinkClick(hyperlink);
-        ShapeBase updatedShape = api.updateShape(fileName, c_slideIndex, c_shapeIndex, shape, password, folderName, null, null);
+        ShapeBase updatedShape = testSlidesApi.updateShape(fileName, c_slideIndex, c_shapeIndex, shape, password, folderName, null, null);
         assertNull(updatedShape.getHyperlinkClick());
     }
 

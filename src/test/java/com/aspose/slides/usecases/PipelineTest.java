@@ -86,7 +86,7 @@ public class PipelineTest extends ApiTest {
         files.add(fileInfo1);
         files.add(fileInfo2);
         
-        File response = api.pipeline(pipeline, files);
+        File response = testSlidesApi.pipeline(pipeline, files);
         assertTrue(response.isFile());
     }
 }

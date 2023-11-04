@@ -46,17 +46,17 @@ import static org.junit.Assert.assertTrue;
 public class ImageTest extends ApiTest {
     @Test
     public void imagesGetTest() throws ApiException, IOException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
-        Images images = api.getPresentationImages(fileName, password, folderName, null);
-        Images slideImages = api.getSlideImages(fileName, 1, password, folderName, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        Images images = testSlidesApi.getPresentationImages(fileName, password, folderName, null);
+        Images slideImages = testSlidesApi.getSlideImages(fileName, 1, password, folderName, null);
         assertTrue(images.getList().size() > slideImages.getList().size());
     }
 
     @Test
     public void imagesDownloadStorageTest() throws ApiException, IOException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
-        File images = api.downloadImagesDefaultFormat(fileName, password, folderName, null);
-        File imagesPng = api.downloadImages(fileName, ImageExportFormat.PNG, password, folderName, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        File images = testSlidesApi.downloadImagesDefaultFormat(fileName, password, folderName, null);
+        File imagesPng = testSlidesApi.downloadImages(fileName, ImageExportFormat.PNG, password, folderName, null);
         assertTrue(images.canRead());
         assertTrue(imagesPng.canRead());
         assertNotEquals(images.length(), imagesPng.length());
@@ -68,8 +68,8 @@ public class ImageTest extends ApiTest {
     @Test
     public void imagesDownloadRequest() throws ApiException, IOException {
         byte[] file = Files.readAllBytes(Paths.get(testDataFolderName + "/" + fileName));
-        File images = api.downloadImagesDefaultFormatOnline(file, password);
-        File imagesPng = api.downloadImagesOnline(file, ImageExportFormat.PNG, password);
+        File images = testSlidesApi.downloadImagesDefaultFormatOnline(file, password);
+        File imagesPng = testSlidesApi.downloadImagesOnline(file, ImageExportFormat.PNG, password);
         assertTrue(images.canRead());
         assertTrue(imagesPng.canRead());
         assertNotEquals(images.length(), imagesPng.length());
@@ -80,9 +80,9 @@ public class ImageTest extends ApiTest {
 
     @Test
     public void imageDownloadStorageTest() throws ApiException, IOException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
-        File image = api.downloadImageDefaultFormat(fileName, c_imageIndex, password, folderName, null);
-        File imagePng = api.downloadImage(fileName, c_imageIndex, ImageExportFormat.PNG, password, folderName, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        File image = testSlidesApi.downloadImageDefaultFormat(fileName, c_imageIndex, password, folderName, null);
+        File imagePng = testSlidesApi.downloadImage(fileName, c_imageIndex, ImageExportFormat.PNG, password, folderName, null);
         assertTrue(image.canRead());
         assertTrue(imagePng.canRead());
         assertNotEquals(image.length(), imagePng.length());
@@ -91,8 +91,8 @@ public class ImageTest extends ApiTest {
     @Test
     public void imageDownloadRequestTest() throws ApiException, IOException {
         byte[] file = Files.readAllBytes(Paths.get(testDataFolderName + "/" + fileName));
-        File image = api.downloadImageDefaultFormatOnline(file, c_imageIndex, password);
-        File imagePng = api.downloadImageOnline(file, c_imageIndex, ImageExportFormat.PNG, password);
+        File image = testSlidesApi.downloadImageDefaultFormatOnline(file, c_imageIndex, password);
+        File imagePng = testSlidesApi.downloadImageOnline(file, c_imageIndex, ImageExportFormat.PNG, password);
         assertTrue(image.canRead());
         assertTrue(imagePng.canRead());
         assertNotEquals(image.length(), imagePng.length());
@@ -100,16 +100,16 @@ public class ImageTest extends ApiTest {
 
     @Test
     public void replaceImageTest() throws ApiException, IOException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         byte[] imageFile = Files.readAllBytes(Paths.get(testDataFolderName + "/" + c_imageFileName));
-        api.replaceImage(fileName, c_imageIndex, imageFile, password, folderName, null);
+        testSlidesApi.replaceImage(fileName, c_imageIndex, imageFile, password, folderName, null);
     }
 
     @Test
     public void replaceImageRequestTest() throws ApiException, IOException {
         byte[] file = Files.readAllBytes(Paths.get(testDataFolderName + "/" + fileName));
         byte[] imageFile = Files.readAllBytes(Paths.get(testDataFolderName + "/" + c_imageFileName));
-        File response = api.replaceImageOnline(file, c_imageIndex, imageFile, password);
+        File response = testSlidesApi.replaceImageOnline(file, c_imageIndex, imageFile, password);
         assertNotEquals(response.length(), 0);
     }
 

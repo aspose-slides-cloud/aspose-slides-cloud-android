@@ -42,67 +42,67 @@ import static org.junit.Assert.assertTrue;
 public class CreateTest extends ApiTest {
     @Test
     public void createEmptyTest() throws ApiException, IOException {
-        api.deleteFile(folderName + "/" + fileName, null, null);
-        Document created = api.createPresentation(fileName, null, null, null, folderName, null);
+        testSlidesApi.deleteFile(folderName + "/" + fileName, null, null);
+        Document created = testSlidesApi.createPresentation(fileName, null, null, null, folderName, null);
         assertNotNull(created);
     }
 
     @Test
     public void createFromRequestTest() throws ApiException, IOException {
-        api.deleteFile(folderName + "/" + fileName, null, null);
+        testSlidesApi.deleteFile(folderName + "/" + fileName, null, null);
         byte[] file = Files.readAllBytes(Paths.get(testDataFolderName + "/" + fileName));
-        Document created = api.createPresentation(fileName, file, password, null, folderName, null);
+        Document created = testSlidesApi.createPresentation(fileName, file, password, null, folderName, null);
         assertNotNull(created);
     }
 
     @Test
     public void createFromStorageTest() throws ApiException, IOException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
-        api.deleteFile(folderName + "/" + c_newFileName, null, null);
-        Document created = api.createPresentationFromSource(c_newFileName, folderName + "/" + fileName, password, null, null, folderName, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        testSlidesApi.deleteFile(folderName + "/" + c_newFileName, null, null);
+        Document created = testSlidesApi.createPresentationFromSource(c_newFileName, folderName + "/" + fileName, password, null, null, folderName, null);
         assertNotNull(created);
     }
 
     @Test
     public void createFromTemplateTest() throws ApiException, IOException {
-        api.deleteFile(folderName + "/" + fileName, null, null);
-        api.copyFile(tempFolderName + "/" + c_templateFileName, folderName + "/" + c_templateFileName, null, null, null);
-        Document created = api.createPresentationFromTemplate(fileName, folderName + "/" + c_templateFileName, c_template, null, null, null, null, folderName, null);
+        testSlidesApi.deleteFile(folderName + "/" + fileName, null, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + c_templateFileName, folderName + "/" + c_templateFileName, null, null, null);
+        Document created = testSlidesApi.createPresentationFromTemplate(fileName, folderName + "/" + c_templateFileName, c_template, null, null, null, null, folderName, null);
         assertNotNull(created);
     }
 
     @Test
     public void createFromHtml() throws ApiException, IOException {
-        api.deleteFile(folderName + "/" + fileName, null, null);
-        Document created = api.importFromHtml(fileName, c_html, null, folderName, null);
+        testSlidesApi.deleteFile(folderName + "/" + fileName, null, null);
+        Document created = testSlidesApi.importFromHtml(fileName, c_html, null, folderName, null);
         assertNotNull(created);
     }
 
     @Test
     public void appendFromHtml() throws ApiException, IOException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
-        int slideCount = api.getSlides(fileName, password, folderName, null).getSlideList().size();
-        Document updated = api.importFromHtml(fileName, c_html, password, folderName, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        int slideCount = testSlidesApi.getSlides(fileName, password, folderName, null).getSlideList().size();
+        Document updated = testSlidesApi.importFromHtml(fileName, c_html, password, folderName, null);
         assertNotNull(updated);
-        assertTrue(api.getSlides(fileName, password, folderName, null).getSlideList().size() > slideCount);
+        assertTrue(testSlidesApi.getSlides(fileName, password, folderName, null).getSlideList().size() > slideCount);
     }
 
     @Test
     public void createFromPdf() throws ApiException, IOException {
-        api.deleteFile(folderName + "/" + fileName, null, null);
+        testSlidesApi.deleteFile(folderName + "/" + fileName, null, null);
         byte[] pdf = Files.readAllBytes(Paths.get(testDataFolderName + "/" + c_pdfFileName));
-        Document created = api.importFromPdf(fileName, pdf, null, folderName, null);
+        Document created = testSlidesApi.importFromPdf(fileName, pdf, null, folderName, null);
         assertNotNull(created);
     }
 
     @Test
     public void appendFromPdf() throws ApiException, IOException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
-        int slideCount = api.getSlides(fileName, password, folderName, null).getSlideList().size();
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        int slideCount = testSlidesApi.getSlides(fileName, password, folderName, null).getSlideList().size();
         byte[] pdf = Files.readAllBytes(Paths.get(testDataFolderName + "/" + c_pdfFileName));
-        Document updated = api.importFromPdf(fileName, pdf, password, folderName, null);
+        Document updated = testSlidesApi.importFromPdf(fileName, pdf, password, folderName, null);
         assertNotNull(updated);
-        assertTrue(api.getSlides(fileName, password, folderName, null).getSlideList().size() > slideCount);
+        assertTrue(testSlidesApi.getSlides(fileName, password, folderName, null).getSlideList().size() > slideCount);
     }
 
     private final String c_newFileName = "test2.pptx";

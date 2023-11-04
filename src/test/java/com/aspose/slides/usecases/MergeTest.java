@@ -48,27 +48,27 @@ import static org.junit.Assert.assertTrue;
 public class MergeTest extends ApiTest {
     @Test
     public void mergeStorageTest() throws ApiException, IOException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
-        api.copyFile(tempFolderName + "/" + c_fileName2, folderName + "/" + c_fileName2, null, null, null);
-        api.copyFile(tempFolderName + "/" + c_fileNamePdf, folderName + "/" + c_fileNamePdf, null, null, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + c_fileName2, folderName + "/" + c_fileName2, null, null, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + c_fileNamePdf, folderName + "/" + c_fileNamePdf, null, null, null);
         PresentationsMergeRequest request = new PresentationsMergeRequest();
         List<String> items = new ArrayList<String>();
         items.add(folderName + "/" + c_fileName2);
         items.add(folderName + "/" + c_fileNamePdf);
         request.setPresentationPaths(items);
-        api.merge(fileName, request, password, folderName, null);
+        testSlidesApi.merge(fileName, request, password, folderName, null);
     }
 
     @Test
     public void mergeOrderedStorageTest() throws ApiException, IOException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
-        api.copyFile(tempFolderName + "/" + c_fileName2, folderName + "/" + c_fileName2, null, null, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + c_fileName2, folderName + "/" + c_fileName2, null, null, null);
         OrderedMergeRequest request = new OrderedMergeRequest();
         PresentationToMerge presentation = new PresentationToMerge();
         presentation.setPath(folderName + "/" + c_fileName2);
         presentation.setSlides(Arrays.asList( 2, 1 ));
         request.setPresentations(Arrays.asList( presentation ));
-        api.orderedMerge(fileName, request, password, folderName, null);
+        testSlidesApi.orderedMerge(fileName, request, password, folderName, null);
     }
 
     @Test
@@ -80,7 +80,7 @@ public class MergeTest extends ApiTest {
         file2.setName(c_fileName2);
         file2.setData(Files.readAllBytes(Paths.get(testDataFolderName + "/" + c_fileName2)));
         List<FileInfo> files = Arrays.asList(file1, file2);
-        api.mergeOnline(files, null, null);
+        testSlidesApi.mergeOnline(files, null, null);
     }
 
     @Test
@@ -94,8 +94,8 @@ public class MergeTest extends ApiTest {
         List<FileInfo> files = new ArrayList<FileInfo>();
         files.add(file1);
         files.add(file2);
-        api.mergeAndSaveOnline(c_outPath, files, null, null);
-        ObjectExist exists = api.objectExists(c_outPath, null, null);
+        testSlidesApi.mergeAndSaveOnline(c_outPath, files, null, null);
+        ObjectExist exists = testSlidesApi.objectExists(c_outPath, null, null);
         assertTrue(exists.isExists());
     }
 
@@ -118,12 +118,12 @@ public class MergeTest extends ApiTest {
         presentation2.setPath(c_fileName2);
         presentation2.setSlides(Arrays.asList( 1, 2 ));
         request.setPresentations(Arrays.asList( presentation1, presentation2 ));
-        api.mergeOnline(files, request, null);
+        testSlidesApi.mergeOnline(files, request, null);
     }
 
     @Test
     public void mergeOrderedCombinedTest() throws ApiException, IOException {
-        api.copyFile(tempFolderName + "/" + c_fileName2, folderName + "/" + c_fileName2, null, null, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + c_fileName2, folderName + "/" + c_fileName2, null, null, null);
         FileInfo file1 = new FileInfo();
         file1.setName(fileName);
         file1.setData(Files.readAllBytes(Paths.get(testDataFolderName + "/" + fileName)));
@@ -138,12 +138,12 @@ public class MergeTest extends ApiTest {
         presentation2.setSource(PresentationToMerge.SourceEnum.STORAGE);
         presentation2.setSlides(Arrays.asList( 1, 2 ));
         request.setPresentations(Arrays.asList( presentation1, presentation2 ));
-        api.mergeOnline(files, request, null);
+        testSlidesApi.mergeOnline(files, request, null);
     }
 
     @Test
     public void MergeOrderedUrl() throws ApiException, IOException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
 
         OrderedMergeRequest request = new OrderedMergeRequest();
         PresentationToMerge presentation1 = new PresentationToMerge();
@@ -158,7 +158,7 @@ public class MergeTest extends ApiTest {
         presentation2.setSlides(Arrays.asList( 1 ));
         request.setPresentations(Arrays.asList( presentation1, presentation2 ));
 
-        api.mergeOnline(null, request, null);
+        testSlidesApi.mergeOnline(null, request, null);
     }
 
     private final String c_url = "https://drive.google.com/uc?export=download&id=1ycMzd7e--Ro9H8eH2GL5fPP7-2HjX4My";

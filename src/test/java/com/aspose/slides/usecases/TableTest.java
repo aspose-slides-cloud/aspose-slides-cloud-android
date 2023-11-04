@@ -16,19 +16,19 @@ import static org.junit.Assert.*;
 public class TableTest extends ApiTest {
     @Test
     public void updateTableCell() throws ApiException, IOException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         int rowIndex = 2;
         int cellIndex = 1;
         TableCell dto = new TableCell();
         dto.setText("Test text");
 
-        TableCell response = api.updateTableCell(fileName, c_slideIndex, c_shapeIndex, rowIndex, cellIndex, dto, password, folderName, null);
+        TableCell response = testSlidesApi.updateTableCell(fileName, c_slideIndex, c_shapeIndex, rowIndex, cellIndex, dto, password, folderName, null);
         assertEquals(response.getText(), dto.getText());
     }
 
     @Test
     public void createTableRow() throws ApiException, IOException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
 
         TableCell cell0 = new TableCell();
         cell0.setText("Cell 1");
@@ -43,37 +43,37 @@ public class TableTest extends ApiTest {
         dto.setMinimalHeight(30.0);
         dto.setCells(new ArrayList(Arrays.asList(cell0, cell1, cell2, cell3)));
 
-        TableRow response = api.createTableRow(fileName, c_slideIndex, c_shapeIndex, dto, null, password, folderName, null);
+        TableRow response = testSlidesApi.createTableRow(fileName, c_slideIndex, c_shapeIndex, dto, null, password, folderName, null);
         assertEquals(response.getCells().size(), dto.getCells().size());
         assertEquals(response.getMinimalHeight(), dto.getMinimalHeight());
     }
 
     @Test
     public void deleteTableRow() throws ApiException, IOException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
 
         int rowIndex = 2;
         Boolean withAttachedRows = true;
 
-        Table response = api.deleteTableRow(fileName, c_slideIndex, c_shapeIndex, rowIndex, withAttachedRows, password, folderName, null);
+        Table response = testSlidesApi.deleteTableRow(fileName, c_slideIndex, c_shapeIndex, rowIndex, withAttachedRows, password, folderName, null);
         assertEquals(response.getRows().size(), 2);
     }
 
     @Test
     public void updateTableRow() throws ApiException, IOException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
 
         int rowIndex = 1;
         TableRow dto = new TableRow();
         dto.setMinimalHeight(30.0);
 
-        TableRow response = api.updateTableRow(fileName, c_slideIndex, c_shapeIndex, rowIndex, dto, password, folderName, null);
+        TableRow response = testSlidesApi.updateTableRow(fileName, c_slideIndex, c_shapeIndex, rowIndex, dto, password, folderName, null);
         assertEquals(response.getMinimalHeight(), dto.getMinimalHeight());
     }
 
     @Test
     public void mergeTableCell() throws ApiException, IOException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
 
         TableCellMergeOptions dto = new TableCellMergeOptions();
         dto.setFirstRowIndex(1);
@@ -82,7 +82,7 @@ public class TableTest extends ApiTest {
         dto.lastCellIndex(2);
         dto.setAllowSplitting(true);
 
-        Table response = api.mergeTableCells(fileName, c_slideIndex, c_shapeIndex, dto, password, folderName, null);
+        Table response = testSlidesApi.mergeTableCells(fileName, c_slideIndex, c_shapeIndex, dto, password, folderName, null);
 
         assertEquals(response.getRows().get(0).getCells().get(0).getColSpan(), (Integer) 2);
         assertEquals(response.getRows().get(0).getCells().get(0).getRowSpan(), (Integer) 2);
@@ -90,13 +90,13 @@ public class TableTest extends ApiTest {
 
     @Test
     public void splitTableCellByWidth() throws ApiException, IOException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
 
         int rowIndex =1;
         int cellIndex = 1;
         double cellWidth = 10.0;
 
-        Table response = api.splitTableCell(fileName, c_slideIndex,
+        Table response = testSlidesApi.splitTableCell(fileName, c_slideIndex,
                 c_shapeIndex, rowIndex, cellIndex, TableCellSplitType.SPLITBYWIDTH, cellWidth, password, folderName, null);
 
         assertEquals(response.getRows().get(0).getCells().size(),5);
@@ -104,13 +104,13 @@ public class TableTest extends ApiTest {
 
     @Test
     public void splitTableCellByHeight() throws ApiException, IOException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
 
         int rowIndex =1;
         int cellIndex = 1;
         double cellHeight = 10.0;
 
-        Table response = api.splitTableCell(fileName, c_slideIndex,
+        Table response = testSlidesApi.splitTableCell(fileName, c_slideIndex,
                 c_shapeIndex, rowIndex, cellIndex, TableCellSplitType.SPLITBYHEIGHT, cellHeight, password, folderName, null);
 
         assertEquals(response.getRows().size(),5);
@@ -118,13 +118,13 @@ public class TableTest extends ApiTest {
 
     @Test
     public void splitTableCellByColSpan() throws ApiException, IOException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
 
         int rowIndex = 3;
         int cellIndex = 1;
         double colSpan = 1;
 
-        Table response = api.splitTableCell(fileName, c_slideIndex,
+        Table response = testSlidesApi.splitTableCell(fileName, c_slideIndex,
                 c_shapeIndex, rowIndex, cellIndex, TableCellSplitType.SPLITBYCOLSPAN, colSpan, password, folderName, null);
 
         assertEquals(response.getRows().get(2).getCells().get(0).getColSpan(),null);
@@ -132,13 +132,13 @@ public class TableTest extends ApiTest {
 
     @Test
     public void splitTableCellByRowSpan() throws ApiException, IOException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
 
         int rowIndex = 2;
         int cellIndex = 3;
         double rowSpan = 1;
 
-        Table response = api.splitTableCell(fileName, c_slideIndex,
+        Table response = testSlidesApi.splitTableCell(fileName, c_slideIndex,
                 c_shapeIndex, rowIndex, cellIndex, TableCellSplitType.SPLITBYROWSPAN, rowSpan, password, folderName, null);
 
         assertEquals(response.getRows().get(1).getCells().get(2).getRowSpan(),null);
@@ -146,12 +146,12 @@ public class TableTest extends ApiTest {
 
     @Test
     public void getTableCellParagraphs() throws ApiException, IOException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
 
         int rowIndex = 1;
         int cellIndex = 1;
 
-        Paragraphs response = api.getTableCellParagraphs(fileName, c_slideIndex,
+        Paragraphs response = testSlidesApi.getTableCellParagraphs(fileName, c_slideIndex,
                 c_shapeIndex, rowIndex, cellIndex, password, folderName, null);
 
         assertEquals(response.getParagraphLinks().size(), 1);
@@ -159,7 +159,7 @@ public class TableTest extends ApiTest {
 
     @Test
     public void createTableCellParagraph() throws ApiException, IOException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
 
         int rowIndex = 1;
         int cellIndex = 1;
@@ -172,7 +172,7 @@ public class TableTest extends ApiTest {
         Paragraph dto = new Paragraph();
         dto.setPortionList(new ArrayList(Arrays.asList(portion0, portion1)));
 
-        Paragraph response = api.createTableCellParagraph(fileName, c_slideIndex,
+        Paragraph response = testSlidesApi.createTableCellParagraph(fileName, c_slideIndex,
                 c_shapeIndex, rowIndex, cellIndex, dto, password, folderName, null);
 
         assertEquals(response.getPortionList().size(), 2);
@@ -180,7 +180,7 @@ public class TableTest extends ApiTest {
 
     @Test
     public void updateTableCellParagraph() throws ApiException, IOException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
 
         int rowIndex = 1;
         int cellIndex = 1;
@@ -194,7 +194,7 @@ public class TableTest extends ApiTest {
         Paragraph dto = new Paragraph();
         dto.setPortionList(new ArrayList(Arrays.asList(portion0, portion1)));
 
-        Paragraph response = api.updateTableCellParagraph(fileName, c_slideIndex,
+        Paragraph response = testSlidesApi.updateTableCellParagraph(fileName, c_slideIndex,
                 c_shapeIndex, rowIndex, cellIndex, paragraphIndex, dto, password, folderName, null);
 
         assertEquals(response.getPortionList().size(), 2);
@@ -202,13 +202,13 @@ public class TableTest extends ApiTest {
 
     @Test
     public void deleteTableCellParagraph() throws ApiException, IOException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
 
         int rowIndex = 1;
         int cellIndex = 1;
         int paragraphIndex = 1;
 
-        Paragraphs response = api.deleteTableCellParagraph(fileName, c_slideIndex,
+        Paragraphs response = testSlidesApi.deleteTableCellParagraph(fileName, c_slideIndex,
                 c_shapeIndex, rowIndex, cellIndex, paragraphIndex, password, folderName, null);
 
         assertEquals(response.getParagraphLinks().size(), 0);
@@ -216,13 +216,13 @@ public class TableTest extends ApiTest {
 
     @Test
     public void getTableCellPortions() throws ApiException, IOException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
 
         int rowIndex = 1;
         int cellIndex = 1;
         int paragraphIndex = 1;
 
-        Portions response = api.getTableCellPortions(fileName, c_slideIndex,
+        Portions response = testSlidesApi.getTableCellPortions(fileName, c_slideIndex,
                 c_shapeIndex, rowIndex, cellIndex, paragraphIndex, password, folderName, null);
 
         assertEquals(response.getItems().size(), 2);
@@ -230,14 +230,14 @@ public class TableTest extends ApiTest {
 
     @Test
     public void getTableCellPortion() throws ApiException, IOException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
 
         int rowIndex = 1;
         int cellIndex = 1;
         int paragraphIndex = 1;
         int portionIndex = 1;
 
-        Portion response = api.getTableCellPortion(fileName, c_slideIndex,
+        Portion response = testSlidesApi.getTableCellPortion(fileName, c_slideIndex,
                 c_shapeIndex, rowIndex, cellIndex, paragraphIndex, portionIndex, password, folderName, null);
 
         assertEquals(response.getText(), "Header");
@@ -245,7 +245,7 @@ public class TableTest extends ApiTest {
 
     @Test
     public void createTableCellPortion() throws ApiException, IOException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
 
         int rowIndex = 1;
         int cellIndex = 1;
@@ -253,7 +253,7 @@ public class TableTest extends ApiTest {
         Portion dto = new Portion();
         dto.setText("Portion 1");
 
-        Portion response = api.createTableCellPortion(fileName, c_slideIndex,
+        Portion response = testSlidesApi.createTableCellPortion(fileName, c_slideIndex,
                 c_shapeIndex, rowIndex, cellIndex, paragraphIndex, dto, password, folderName, null);
 
         assertEquals(response.getText(), dto.getText());
@@ -261,7 +261,7 @@ public class TableTest extends ApiTest {
 
     @Test
     public void updateTableCellPortion() throws ApiException, IOException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
 
         int rowIndex = 1;
         int cellIndex = 1;
@@ -270,7 +270,7 @@ public class TableTest extends ApiTest {
         Portion dto = new Portion();
         dto.setText("Portion 1");
 
-        Portion response = api.updateTableCellPortion(fileName, c_slideIndex,
+        Portion response = testSlidesApi.updateTableCellPortion(fileName, c_slideIndex,
                 c_shapeIndex, rowIndex, cellIndex, paragraphIndex, portionIndex, dto, password, folderName, null);
 
         assertEquals(response.getText(), dto.getText());
@@ -278,14 +278,14 @@ public class TableTest extends ApiTest {
 
     @Test
     public void deleteTableCellPortion() throws ApiException, IOException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
 
         int rowIndex = 1;
         int cellIndex = 1;
         int paragraphIndex = 1;
         int portionIndex = 1;
 
-        Portions response = api.deleteTableCellPortion(fileName, c_slideIndex,
+        Portions response = testSlidesApi.deleteTableCellPortion(fileName, c_slideIndex,
                 c_shapeIndex, rowIndex, cellIndex, paragraphIndex, portionIndex, password, folderName, null);
 
         assertEquals(response.getItems().size(), 1);

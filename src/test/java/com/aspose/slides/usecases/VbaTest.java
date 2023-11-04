@@ -34,7 +34,7 @@ import java.util.List;
 public class VbaTest extends ApiTest {
     @Test
     public void createVbaModuleTest() throws ApiException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
 
         VbaModule dto = new VbaModule();
         dto.setName("Module1");
@@ -49,7 +49,7 @@ public class VbaTest extends ApiTest {
         references.add(reference0);
         references.add(reference1);
         dto.setReferences(references);
-        VbaModule response = (VbaModule)api.createVbaModule(fileName, dto, password, folderName, null);
+        VbaModule response = (VbaModule)testSlidesApi.createVbaModule(fileName, dto, password, folderName, null);
         String s = String.format("\"%s\" has been created \n%s", response.getName(), response.getSelfUri().getHref());
         System.out.println(s);
     }
@@ -59,8 +59,8 @@ public class VbaTest extends ApiTest {
         int moduleIndex = 1;
         String macrosFileName = "macros.pptm";
 
-        api.copyFile(tempFolderName + "/" + macrosFileName, folderName + "/" + macrosFileName, null, null, null);
-        VbaProject response = (VbaProject)api.deleteVbaModule(macrosFileName, moduleIndex, null, folderName, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + macrosFileName, folderName + "/" + macrosFileName, null, null, null);
+        VbaProject response = (VbaProject)testSlidesApi.deleteVbaModule(macrosFileName, moduleIndex, null, folderName, null);
         System.out.println("VBA project contains: " + response.getModules().size() + " module(s), and " + response.getReferences().size() + " references");
     }
 
@@ -69,8 +69,8 @@ public class VbaTest extends ApiTest {
         int moduleIndex = 1;
         String macrosFileName = "macros.pptm";
 
-        api.copyFile(tempFolderName + "/" + macrosFileName, folderName + "/" + macrosFileName, null, null, null);
-        VbaModule response = (VbaModule) api.getVbaModule(macrosFileName, moduleIndex, null, folderName, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + macrosFileName, folderName + "/" + macrosFileName, null, null, null);
+        VbaModule response = (VbaModule) testSlidesApi.getVbaModule(macrosFileName, moduleIndex, null, folderName, null);
         String s = String.format("Module: \"%s\"\n%s", response.getName(), response.getSourceCode());
         System.out.println(s);
     }
@@ -78,21 +78,21 @@ public class VbaTest extends ApiTest {
     @Test
     public void getVbaProjectTest() throws ApiException {
         String macrosFileName = "macros.pptm";
-        api.copyFile(tempFolderName + "/" + macrosFileName, folderName + "/" + macrosFileName, null, null, null);
-        VbaProject response = (VbaProject)api.getVbaProject(macrosFileName, null, folderName, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + macrosFileName, folderName + "/" + macrosFileName, null, null, null);
+        VbaProject response = (VbaProject)testSlidesApi.getVbaProject(macrosFileName, null, folderName, null);
         System.out.println("VBA project contains: " + response.getModules().size() + " module(s), and " + response.getReferences().size() + " references");
     }
 
     @Test
     public void updateVbaModuleTest() throws ApiException {
         String macrosFileName = "macros.pptm";
-        api.copyFile(tempFolderName + "/" + macrosFileName, folderName + "/" + macrosFileName, null, null, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + macrosFileName, folderName + "/" + macrosFileName, null, null, null);
 
         VbaModule dto = new VbaModule();
         dto.setSourceCode("Sub Test() MsgBox \"Test\" End Sub");
 
         int moduleIndex = 1;
-        VbaModule response = (VbaModule)api.updateVbaModule(macrosFileName, moduleIndex, dto, password, folderName, null);
+        VbaModule response = (VbaModule)testSlidesApi.updateVbaModule(macrosFileName, moduleIndex, dto, password, folderName, null);
         String s = String.format("\"%s\" has been updated \n%s", response.getName(), response.getSelfUri().getHref());
         System.out.println(s);
     }

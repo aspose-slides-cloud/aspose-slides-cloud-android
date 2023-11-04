@@ -27,43 +27,27 @@
 
 package com.aspose.slides;
 
-import java.io.IOException;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import com.google.gson.reflect.TypeToken;
-import com.aspose.slides.api.SlidesApi;
-import com.aspose.slides.api.SlidesAsyncApi;
+import com.google.gson.annotations.SerializedName;
+import java.util.HashMap;
+import java.util.Map;
 
-public class ApiTest {
-    protected static SlidesApi testSlidesApi;
-    protected static SlidesAsyncApi testSlidesAsyncApi;
+public class TestConfiguration extends Configuration {
+    @SerializedName("AsyncBaseUrl")
+    private String asyncBaseUrl;
 
-    protected final String tempFolderName = "TempTests";
-    protected final String testDataFolderName = "TestData";
-    protected final String folderName = "TempSlidesSDK";
-    protected final String fileName = "test.pptx";
-    protected final String password = "password";
-
-    protected ApiTest() {
-        if (testSlidesApi == null)
-        {
-            testSlidesApi = new SlidesApi(readConfiguration());
-        }
-        if (testSlidesAsyncApi == null)
-        {
-            TestConfiguration config = readConfiguration();
-            config.setBaseUrl(config.getAsyncBaseUrl());
-            testSlidesAsyncApi = new SlidesAsyncApi(config);
-        }
+    public String getAsyncBaseUrl() {
+        return asyncBaseUrl != null ? asyncBaseUrl : getBaseUrl();
     }
 
-    private TestConfiguration readConfiguration() {
-        try {
-            String configContents = new String(Files.readAllBytes(Paths.get("testConfig.json")), Charset.defaultCharset());
-            return new JSON().deserialize(configContents, new TypeToken<TestConfiguration>(){}.getType());
-        } catch (IOException ex) {
-            return new TestConfiguration();
-        }
+    public void setAsyncBaseUrl(String value) {
+        asyncBaseUrl = value;
+    }
+
+    public TestConfiguration() {
+        super();
+    }
+    
+    public TestConfiguration(String appSid, String appKey) {
+        super(appSid, appKey);
     }
 }

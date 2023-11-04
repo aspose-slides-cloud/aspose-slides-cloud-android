@@ -637,11 +637,11 @@ public class ApiClient {
             // ensuring a default content type
             contentType = "application/json";
         }
-        if (isJsonMime(contentType)) {
-            return json.deserialize(respBody, returnType);
-        } else if (returnType.equals(String.class)) {
+        if (returnType.equals(String.class)) {
             // Expecting string, return the raw response body.
-            return (T) respBody;
+            return (T) respBody.replaceAll("^\"|\"$", "");
+        } else if (isJsonMime(contentType)) {
+            return json.deserialize(respBody, returnType);
         } else {
             throw new ApiException(
                     "Content type \"" + contentType + "\" is not supported for type: " + returnType,

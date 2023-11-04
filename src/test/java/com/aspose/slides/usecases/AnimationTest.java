@@ -40,22 +40,22 @@ import java.util.List;
 public class AnimationTest extends ApiTest {
     @Test
     public void animationGetTest() throws ApiException, IOException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         Shape dto = new Shape();
         dto.setShapeType(GeometryShape.ShapeTypeEnum.CALLOUT1);
-        SlideAnimation animation = api.getAnimation(fileName, c_slideIndex, null, null, password, folderName, null);
+        SlideAnimation animation = testSlidesApi.getAnimation(fileName, c_slideIndex, null, null, password, folderName, null);
         assertEquals(c_effectCount, animation.getMainSequence().size());
         assertEquals(c_interactiveSequenceCount, animation.getInteractiveSequences().size());
-        animation = api.getAnimation(fileName, c_slideIndex, 3, null, password, folderName, null);
+        animation = testSlidesApi.getAnimation(fileName, c_slideIndex, 3, null, password, folderName, null);
         assertEquals(1, animation.getMainSequence().size());
         assertEquals(0, animation.getInteractiveSequences().size());
-        animation = api.getAnimation(fileName, c_slideIndex, 3, 1, password, folderName, null);
+        animation = testSlidesApi.getAnimation(fileName, c_slideIndex, 3, 1, password, folderName, null);
         assertEquals(0, animation.getMainSequence().size());
     }
 
     @Test
     public void animationSetTest() throws ApiException, IOException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         SlideAnimation dto = new SlideAnimation();
         List<Effect> effects = new ArrayList<Effect>();
 
@@ -73,25 +73,25 @@ public class AnimationTest extends ApiTest {
         effects.add(effect2);
         dto.setMainSequence(effects);
         dto.setInteractiveSequences(new ArrayList<InteractiveSequence>());
-        SlideAnimation animation = api.setAnimation(fileName, c_slideIndex, dto, password, folderName, null);
+        SlideAnimation animation = testSlidesApi.setAnimation(fileName, c_slideIndex, dto, password, folderName, null);
         assertEquals(dto.getMainSequence().size(), animation.getMainSequence().size());
         assertEquals(0, animation.getInteractiveSequences().size());
     }
 
     @Test
     public void animationCreateEffectTest() throws ApiException, IOException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         Effect dto = new Effect();
         dto.setType(Effect.TypeEnum.BLAST);
         dto.setShapeIndex(3);
-        SlideAnimation animation = api.createAnimationEffect(fileName, c_slideIndex, dto, password, folderName, null);
+        SlideAnimation animation = testSlidesApi.createAnimationEffect(fileName, c_slideIndex, dto, password, folderName, null);
         assertEquals(c_effectCount + 1, animation.getMainSequence().size());
         assertEquals(c_interactiveSequenceCount, animation.getInteractiveSequences().size());
     }
 
     @Test
     public void animationCreateInteractiveSequenceTest() throws ApiException, IOException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         InteractiveSequence dto = new InteractiveSequence();
         dto.setTriggerShapeIndex(2);
         List<Effect> effects = new ArrayList<Effect>();
@@ -100,88 +100,88 @@ public class AnimationTest extends ApiTest {
         effect.setShapeIndex(3);
         effects.add(effect);
         dto.setEffects(effects);
-        SlideAnimation animation = api.createAnimationInteractiveSequence(fileName, c_slideIndex, dto, password, folderName, null);
+        SlideAnimation animation = testSlidesApi.createAnimationInteractiveSequence(fileName, c_slideIndex, dto, password, folderName, null);
         assertEquals(c_effectCount, animation.getMainSequence().size());
         assertEquals(c_interactiveSequenceCount + 1, animation.getInteractiveSequences().size());
     }
 
     @Test
     public void animationCreateInteractiveSequenceEffectTest() throws ApiException, IOException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         Effect dto = new Effect();
         dto.setType(Effect.TypeEnum.BLAST);
         dto.setShapeIndex(3);
-        SlideAnimation animation = api.createAnimationInteractiveSequenceEffect(fileName, c_slideIndex, 1, dto, password, folderName, null);
+        SlideAnimation animation = testSlidesApi.createAnimationInteractiveSequenceEffect(fileName, c_slideIndex, 1, dto, password, folderName, null);
         assertEquals(c_effectCount, animation.getMainSequence().size());
         assertEquals(c_interactiveSequenceCount, animation.getInteractiveSequences().size());
     }
 
     @Test
     public void animationUpdateEffectTest() throws ApiException, IOException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         Effect dto = new Effect();
         dto.setType(Effect.TypeEnum.BLAST);
         dto.setShapeIndex(3);
-        SlideAnimation animation = api.updateAnimationEffect(fileName, c_slideIndex, 1, dto, password, folderName, null);
+        SlideAnimation animation = testSlidesApi.updateAnimationEffect(fileName, c_slideIndex, 1, dto, password, folderName, null);
         assertEquals(c_effectCount, animation.getMainSequence().size());
         assertEquals(c_interactiveSequenceCount, animation.getInteractiveSequences().size());
     }
 
     @Test
     public void animationUpdateInteractiveSequenceEffectTest() throws ApiException, IOException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         Effect dto = new Effect();
         dto.setType(Effect.TypeEnum.BLAST);
         dto.setShapeIndex(3);
-        SlideAnimation animation = api.updateAnimationInteractiveSequenceEffect(fileName, c_slideIndex, 1, 1, dto, password, folderName, null);
+        SlideAnimation animation = testSlidesApi.updateAnimationInteractiveSequenceEffect(fileName, c_slideIndex, 1, 1, dto, password, folderName, null);
         assertEquals(c_effectCount, animation.getMainSequence().size());
         assertEquals(c_interactiveSequenceCount, animation.getInteractiveSequences().size());
     }
 
     @Test
     public void animationDeleteTest() throws ApiException, IOException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
-        SlideAnimation animation = api.deleteAnimation(fileName, c_slideIndex, password, folderName, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        SlideAnimation animation = testSlidesApi.deleteAnimation(fileName, c_slideIndex, password, folderName, null);
         assertEquals(0, animation.getMainSequence().size());
         assertEquals(0, animation.getInteractiveSequences().size());
     }
 
     @Test
     public void animationDeleteMainSequenceTest() throws ApiException, IOException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
-        SlideAnimation animation = api.deleteAnimationMainSequence(fileName, c_slideIndex, password, folderName, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        SlideAnimation animation = testSlidesApi.deleteAnimationMainSequence(fileName, c_slideIndex, password, folderName, null);
         assertEquals(0, animation.getMainSequence().size());
         assertEquals(c_interactiveSequenceCount, animation.getInteractiveSequences().size());
     }
 
     @Test
     public void animationDeleteMainSequenceEffectTest() throws ApiException, IOException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
-        SlideAnimation animation = api.deleteAnimationEffect(fileName, c_slideIndex, 1, password, folderName, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        SlideAnimation animation = testSlidesApi.deleteAnimationEffect(fileName, c_slideIndex, 1, password, folderName, null);
         assertEquals(c_effectCount - 1, animation.getMainSequence().size());
         assertEquals(c_interactiveSequenceCount, animation.getInteractiveSequences().size());
     }
 
     @Test
     public void animationDeleteInteractiveSequencesTest() throws ApiException, IOException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
-        SlideAnimation animation = api.deleteAnimationInteractiveSequences(fileName, c_slideIndex, password, folderName, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        SlideAnimation animation = testSlidesApi.deleteAnimationInteractiveSequences(fileName, c_slideIndex, password, folderName, null);
         assertEquals(c_effectCount, animation.getMainSequence().size());
         assertEquals(0, animation.getInteractiveSequences().size());
     }
 
     @Test
     public void animationDeleteInteractiveSequenceTest() throws ApiException, IOException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
-        SlideAnimation animation = api.deleteAnimationInteractiveSequence(fileName, c_slideIndex, 1, password, folderName, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        SlideAnimation animation = testSlidesApi.deleteAnimationInteractiveSequence(fileName, c_slideIndex, 1, password, folderName, null);
         assertEquals(c_effectCount, animation.getMainSequence().size());
         assertEquals(c_interactiveSequenceCount - 1, animation.getInteractiveSequences().size());
     }
 
     @Test
     public void animationDeleteInteractiveSequenceEffectTest() throws ApiException, IOException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
-        SlideAnimation animation = api.deleteAnimationInteractiveSequenceEffect(fileName, c_slideIndex, 1, 1, password, folderName, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        SlideAnimation animation = testSlidesApi.deleteAnimationInteractiveSequenceEffect(fileName, c_slideIndex, 1, 1, password, folderName, null);
         assertEquals(c_effectCount, animation.getMainSequence().size());
         assertEquals(c_interactiveSequenceCount, animation.getInteractiveSequences().size());
     }

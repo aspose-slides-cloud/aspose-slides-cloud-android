@@ -45,8 +45,8 @@ import static org.junit.Assert.*;
 public class ChartTest extends ApiTest {
     @Test
     public void chartGetTest() throws ApiException, IOException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
-        Chart chart = (Chart)api.getShape(fileName, c_slideIndex, c_shapeIndex, password, folderName, null, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        Chart chart = (Chart)testSlidesApi.getShape(fileName, c_slideIndex, c_shapeIndex, password, folderName, null, null);
         assertNotNull(chart);
         assertEquals(c_seriesCount, chart.getSeries().size());
         assertEquals(c_categoryCount, chart.getCategories().size());
@@ -54,7 +54,7 @@ public class ChartTest extends ApiTest {
 
     @Test
     public void chartCreateAutoDataSourceTest() throws ApiException, IOException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         Chart dto = new Chart();
         dto.setChartType(Chart.ChartTypeEnum.CLUSTEREDCOLUMN);
         dto.setWidth(400.0);
@@ -100,7 +100,7 @@ public class ChartTest extends ApiTest {
         series2.setDataPoints(dataPoints2);
         seriesList.add(series2);
         dto.setSeries(seriesList);
-        Chart chart = (Chart)api.createShape(fileName, c_slideIndex, dto, null, null, password, folderName, null, null);
+        Chart chart = (Chart)testSlidesApi.createShape(fileName, c_slideIndex, dto, null, null, password, folderName, null, null);
         assertNotNull(chart);
         assertEquals(2, chart.getSeries().size());
         assertEquals(3, chart.getCategories().size());
@@ -108,7 +108,7 @@ public class ChartTest extends ApiTest {
 
     @Test
     public void chartCreateWorkbookTest() throws ApiException, IOException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         Chart dto = new Chart();
         dto.setChartType(Chart.ChartTypeEnum.CLUSTEREDCOLUMN);
         dto.setWidth(400.0);
@@ -187,7 +187,7 @@ public class ChartTest extends ApiTest {
         series2.setDataPoints(dataPoints2);
         seriesList.add(series2);
         dto.setSeries(seriesList);
-        Chart chart = (Chart)api.createShape(fileName, c_slideIndex, dto, null, null, password, folderName, null, null);
+        Chart chart = (Chart)testSlidesApi.createShape(fileName, c_slideIndex, dto, null, null, password, folderName, null, null);
         assertNotNull(chart);
         assertEquals(2, chart.getSeries().size());
         assertEquals(3, chart.getCategories().size());
@@ -195,7 +195,7 @@ public class ChartTest extends ApiTest {
 
     @Test
     public void chartCreateLiteralsTest() throws ApiException, IOException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         Chart dto = new Chart();
         dto.setChartType(Chart.ChartTypeEnum.CLUSTEREDCOLUMN);
         dto.setWidth(400.0);
@@ -259,7 +259,7 @@ public class ChartTest extends ApiTest {
         series2.setDataPoints(dataPoints2);
         seriesList.add(series2);
         dto.setSeries(seriesList);
-        Chart chart = (Chart)api.createShape(fileName, c_slideIndex, dto, null, null, password, folderName, null, null);
+        Chart chart = (Chart)testSlidesApi.createShape(fileName, c_slideIndex, dto, null, null, password, folderName, null, null);
         assertNotNull(chart);
         assertEquals(2, chart.getSeries().size());
         assertEquals(3, chart.getCategories().size());
@@ -267,7 +267,7 @@ public class ChartTest extends ApiTest {
 
     @Test
     public void chartUpdateTest() throws ApiException, IOException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         Chart dto = new Chart();
         dto.setChartType(Chart.ChartTypeEnum.CLUSTEREDCOLUMN);
         dto.setWidth(400.0);
@@ -313,7 +313,7 @@ public class ChartTest extends ApiTest {
         series2.setDataPoints(dataPoints2);
         seriesList.add(series2);
         dto.setSeries(seriesList);
-        Chart chart = (Chart)api.updateShape(fileName, c_slideIndex, c_shapeIndex, dto, password, folderName, null, null);
+        Chart chart = (Chart)testSlidesApi.updateShape(fileName, c_slideIndex, c_shapeIndex, dto, password, folderName, null, null);
         assertNotNull(chart);
         assertEquals(2, chart.getSeries().size());
         assertEquals(3, chart.getCategories().size());
@@ -321,7 +321,7 @@ public class ChartTest extends ApiTest {
 
     @Test
     public void chartSeriesCreateTest() throws ApiException, IOException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         OneValueSeries series = new OneValueSeries();
         series.setName("Series1");
         List<OneValueChartDataPoint> dataPoints = new ArrayList<OneValueChartDataPoint>();
@@ -338,7 +338,7 @@ public class ChartTest extends ApiTest {
         dataPoint4.setValue(70.0);
         dataPoints.add(dataPoint4);
         series.setDataPoints(dataPoints);
-        Chart chart = api.createChartSeries(fileName, c_slideIndex, c_shapeIndex, series, password, folderName, null);
+        Chart chart = testSlidesApi.createChartSeries(fileName, c_slideIndex, c_shapeIndex, series, password, folderName, null);
         assertNotNull(chart);
         assertEquals(c_seriesCount + 1, chart.getSeries().size());
         assertEquals(c_categoryCount, chart.getCategories().size());
@@ -346,7 +346,7 @@ public class ChartTest extends ApiTest {
 
     @Test
     public void chartSeriesUpdateTest() throws ApiException, IOException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         OneValueSeries series = new OneValueSeries();
         series.setName("Series1");
         List<OneValueChartDataPoint> dataPoints = new ArrayList<OneValueChartDataPoint>();
@@ -363,7 +363,7 @@ public class ChartTest extends ApiTest {
         dataPoint4.setValue(70.0);
         dataPoints.add(dataPoint4);
         series.setDataPoints(dataPoints);
-        Chart chart = api.updateChartSeries(fileName, c_slideIndex, c_shapeIndex, c_seriesIndex, series, password, folderName, null);
+        Chart chart = testSlidesApi.updateChartSeries(fileName, c_slideIndex, c_shapeIndex, c_seriesIndex, series, password, folderName, null);
         assertNotNull(chart);
         assertEquals(c_seriesCount, chart.getSeries().size());
         assertEquals(c_categoryCount, chart.getCategories().size());
@@ -371,8 +371,8 @@ public class ChartTest extends ApiTest {
 
     @Test
     public void chartSeriesDeleteTest() throws ApiException, IOException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
-        Chart chart = api.deleteChartSeries(fileName, c_slideIndex, c_shapeIndex, c_seriesIndex, password, folderName, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        Chart chart = testSlidesApi.deleteChartSeries(fileName, c_slideIndex, c_shapeIndex, c_seriesIndex, password, folderName, null);
         assertNotNull(chart);
         assertEquals(c_seriesCount - 1, chart.getSeries().size());
         assertEquals(c_categoryCount, chart.getCategories().size());
@@ -381,7 +381,7 @@ public class ChartTest extends ApiTest {
     @Test
     public void chartCategoryCreateTest() throws ApiException, IOException {
         //SLIDESCLOUD-1133
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         ChartCategory category = new ChartCategory();
         category.setValue("NewCategory");
         List<OneValueChartDataPoint> dataPoints = new ArrayList<OneValueChartDataPoint>();
@@ -395,7 +395,7 @@ public class ChartTest extends ApiTest {
         dataPoint3.setValue(14.0);
         dataPoints.add(dataPoint3);
         category.setDataPoints(dataPoints);
-        Chart chart = api.createChartCategory(fileName, c_slideIndex, c_shapeIndex, category, password, folderName, null);
+        Chart chart = testSlidesApi.createChartCategory(fileName, c_slideIndex, c_shapeIndex, category, password, folderName, null);
         assertNotNull(chart);
         assertEquals(c_seriesCount, chart.getSeries().size());
         assertEquals(c_categoryCount + 1, chart.getCategories().size());
@@ -406,7 +406,7 @@ public class ChartTest extends ApiTest {
     @Test
     public void chartCategoryUpdateTest() throws ApiException, IOException {
         //SLIDESCLOUD-1133
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         ChartCategory category = new ChartCategory();
         category.setValue("NewCategory");
         List<OneValueChartDataPoint> dataPoints = new ArrayList<OneValueChartDataPoint>();
@@ -420,7 +420,7 @@ public class ChartTest extends ApiTest {
         dataPoint3.setValue(14.0);
         dataPoints.add(dataPoint3);
         category.setDataPoints(dataPoints);
-        Chart chart = api.updateChartCategory(fileName, c_slideIndex, c_shapeIndex, c_categoryIndex, category, password, folderName, null);
+        Chart chart = testSlidesApi.updateChartCategory(fileName, c_slideIndex, c_shapeIndex, c_categoryIndex, category, password, folderName, null);
         assertNotNull(chart);
         assertEquals(c_seriesCount, chart.getSeries().size());
         assertEquals(c_categoryCount, chart.getCategories().size());
@@ -431,8 +431,8 @@ public class ChartTest extends ApiTest {
     @Test
     public void chartCategoryDeleteTest() throws ApiException, IOException {
         //SLIDESCLOUD-1133
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
-        Chart chart = api.deleteChartCategory(fileName, c_slideIndex, c_shapeIndex, c_categoryIndex, password, folderName, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        Chart chart = testSlidesApi.deleteChartCategory(fileName, c_slideIndex, c_shapeIndex, c_categoryIndex, password, folderName, null);
         assertNotNull(chart);
         assertEquals(c_seriesCount, chart.getSeries().size());
         assertEquals(c_categoryCount - 1, chart.getCategories().size());
@@ -441,11 +441,11 @@ public class ChartTest extends ApiTest {
 
     @Test
     public void chartDataPointCreateTest() throws ApiException, IOException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         OneValueChartDataPoint dataPoint = new OneValueChartDataPoint();
         dataPoint.setValue(40.0);
         try {
-            api.createChartDataPoint(fileName, c_slideIndex, c_shapeIndex, c_seriesIndex, dataPoint, password, folderName, null);
+            testSlidesApi.createChartDataPoint(fileName, c_slideIndex, c_shapeIndex, c_seriesIndex, dataPoint, password, folderName, null);
         } catch (Exception ex) {
             //Must throw ApiException because adding data points only works with Scatter & Bubble charts.
             assertTrue(ex instanceof ApiException);
@@ -455,10 +455,10 @@ public class ChartTest extends ApiTest {
     @Test
     public void chartDataPointUpdateTest() throws ApiException, IOException {
         //SLIDESCLOUD-1133
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         OneValueChartDataPoint dataPoint = new OneValueChartDataPoint();
         dataPoint.setValue(40.0);
-        Chart chart = api.updateChartDataPoint(fileName, c_slideIndex, c_shapeIndex, c_seriesIndex, c_categoryIndex, dataPoint, password, folderName, null);
+        Chart chart = testSlidesApi.updateChartDataPoint(fileName, c_slideIndex, c_shapeIndex, c_seriesIndex, c_categoryIndex, dataPoint, password, folderName, null);
         assertNotNull(chart);
         assertEquals(c_seriesCount, chart.getSeries().size());
         assertEquals(c_categoryCount, chart.getCategories().size());
@@ -469,8 +469,8 @@ public class ChartTest extends ApiTest {
     @Test
     public void chartDataPointDeleteTest() throws ApiException, IOException {
         //SLIDESCLOUD-1133
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
-        Chart chart = api.deleteChartDataPoint(fileName, c_slideIndex, c_shapeIndex, c_seriesIndex, c_categoryIndex, password, folderName, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        Chart chart = testSlidesApi.deleteChartDataPoint(fileName, c_slideIndex, c_shapeIndex, c_seriesIndex, c_categoryIndex, password, folderName, null);
         assertNotNull(chart);
         assertEquals(c_seriesCount, chart.getSeries().size());
         assertEquals(c_categoryCount, chart.getCategories().size());
@@ -480,7 +480,7 @@ public class ChartTest extends ApiTest {
 
     @Test
     public void sunburstChartTest() throws ApiException, IOException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         Chart dto = new Chart();
         dto.setChartType(Chart.ChartTypeEnum.SUNBURST);
         dto.setWidth(400.0);
@@ -529,7 +529,7 @@ public class ChartTest extends ApiTest {
         series.setDataPoints(dataPoints);
         seriesList.add(series);
         dto.setSeries(seriesList);
-        Chart chart = (Chart)api.createShape(fileName, c_slideIndex, dto, null, null, password, folderName, null, null);
+        Chart chart = (Chart)testSlidesApi.createShape(fileName, c_slideIndex, dto, null, null, password, folderName, null, null);
         assertNotNull(chart);
         assertEquals(1, chart.getSeries().size());
         assertEquals(4, chart.getCategories().size());
@@ -537,7 +537,7 @@ public class ChartTest extends ApiTest {
 
     @Test
     public void multiLevelCategoryAxisTest() throws ApiException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         Chart dto = new Chart();
         dto.setX(100.0);
         dto.setY(100.0);
@@ -590,7 +590,7 @@ public class ChartTest extends ApiTest {
         dto.setSeries(seriesList);
         dto.setCategories(categoryList);
 
-        Chart chart = (Chart)api.createShape(fileName, c_slideIndex, dto, null, null, password, folderName, null, null);
+        Chart chart = (Chart)testSlidesApi.createShape(fileName, c_slideIndex, dto, null, null, password, folderName, null, null);
 
         assertEquals(Chart.ChartTypeEnum.CLUSTEREDCOLUMN, chart.getChartType());
         assertEquals(1, chart.getSeries().size());
@@ -600,17 +600,17 @@ public class ChartTest extends ApiTest {
 
     @Test
     public void hideChartLegendTest() throws ApiException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         Legend legend = new Legend();
         legend.setHasLegend(false);
-        api.setChartLegend(fileName, c_slideIndex, c_shapeIndex, legend, password, folderName, null);
-        Chart chart = (Chart)api.getShape(fileName, c_slideIndex, c_shapeIndex, password, folderName, null, null);
+        testSlidesApi.setChartLegend(fileName, c_slideIndex, c_shapeIndex, legend, password, folderName, null);
+        Chart chart = (Chart)testSlidesApi.getShape(fileName, c_slideIndex, c_shapeIndex, password, folderName, null, null);
         assertFalse(chart.getLegend().isHasLegend());
     }
 
     @Test
     public void chartGridLinesFormatTest() throws ApiException, IOException{
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
 
         Axis horizontalAxis = new Axis();
         ChartLinesFormat horizontalMajorGridLineFormat = new ChartLinesFormat();
@@ -643,10 +643,10 @@ public class ChartTest extends ApiTest {
         verticalMinorGridLineFormat.getLineFormat().setFillFormat(new NoFill());
         verticalAxis.setMinorGridLinesFormat(verticalMinorGridLineFormat);
 
-        api.setChartAxis(fileName, c_slideIndex, c_shapeIndex, AxisType.HORIZONTALAXIS, horizontalAxis, password, folderName, null);
-        api.setChartAxis(fileName, c_slideIndex, c_shapeIndex, AxisType.VERTICALAXIS, verticalAxis, password, folderName, null);
+        testSlidesApi.setChartAxis(fileName, c_slideIndex, c_shapeIndex, AxisType.HORIZONTALAXIS, horizontalAxis, password, folderName, null);
+        testSlidesApi.setChartAxis(fileName, c_slideIndex, c_shapeIndex, AxisType.VERTICALAXIS, verticalAxis, password, folderName, null);
 
-        Chart chart = (Chart)api.getShape(fileName, c_slideIndex, c_shapeIndex, password, folderName, null, null);
+        Chart chart = (Chart)testSlidesApi.getShape(fileName, c_slideIndex, c_shapeIndex, password, folderName, null, null);
         assertTrue(chart.getAxes().getHorizontalAxis().getMajorGridLinesFormat().getLineFormat().getFillFormat() instanceof NoFill);
         assertTrue(chart.getAxes().getHorizontalAxis().getMinorGridLinesFormat().getLineFormat().getFillFormat() instanceof SolidFill);
         assertTrue(chart.getAxes().getVerticalAxis().getMajorGridLinesFormat().getLineFormat().getFillFormat() instanceof GradientFill);
@@ -655,39 +655,39 @@ public class ChartTest extends ApiTest {
 
     @Test
     public void chartSeriesGroupsTest() throws ApiException, IOException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
-        Chart chart = (Chart)api.getShape(fileName, c_slideIndex, c_shapeIndex, password, folderName, null, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        Chart chart = (Chart)testSlidesApi.getShape(fileName, c_slideIndex, c_shapeIndex, password, folderName, null, null);
         assertEquals(1, chart.getSeriesGroups().size());
         ChartSeriesGroup seriesGroup = chart.getSeriesGroups().get(0);
         seriesGroup.setOverlap(10);
-        chart = api.setChartSeriesGroup(fileName, c_slideIndex, c_shapeIndex, c_seriesGroupIndex, seriesGroup, password, folderName, null);
+        chart = testSlidesApi.setChartSeriesGroup(fileName, c_slideIndex, c_shapeIndex, c_seriesGroupIndex, seriesGroup, password, folderName, null);
         int overlap = chart.getSeriesGroups().get(0).getOverlap();
         assertEquals(10, overlap);
     }
 
     @Test
     public void setChartLegend() throws ApiException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         Legend legend = new Legend();
         legend.setOverlay(true);
         SolidFill fillFormat = new SolidFill();
         fillFormat.setColor(c_color);
         legend.setFillFormat(fillFormat);
 
-        Legend response = api.setChartLegend(fileName, c_slideIndex, c_shapeIndex, legend, password, folderName, null);
+        Legend response = testSlidesApi.setChartLegend(fileName, c_slideIndex, c_shapeIndex, legend, password, folderName, null);
         assertEquals(response.getFillFormat().getType(), FillFormat.TypeEnum.SOLID);
         assertTrue(response.isOverlay());
     }
 
     @Test
     public void setChartAxis() throws ApiException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         Axis axis = new Axis();
         axis.setHasTitle(true);
         axis.setIsAutomaticMaxValue(false);
         axis.setMaxValue(10.0);
 
-        Axis response = api.setChartAxis(fileName, c_slideIndex, c_shapeIndex, AxisType.VERTICALAXIS, axis, password, folderName, null);
+        Axis response = testSlidesApi.setChartAxis(fileName, c_slideIndex, c_shapeIndex, AxisType.VERTICALAXIS, axis, password, folderName, null);
         assertTrue(response.isHasTitle());
 
         assertEquals(axis.getMaxValue(), response.getMaxValue());
@@ -695,19 +695,19 @@ public class ChartTest extends ApiTest {
 
     @Test
     public void setChartWall() throws ApiException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         ChartWall wall = new ChartWall();
         SolidFill fillFormat = new SolidFill();
         fillFormat.setColor(c_color);
         wall.setFillFormat(fillFormat);
 
-        ChartWall response = api.setChartWall(fileName, c_slideIndex, c_shapeIndex, ChartWallType.BACKWALL, wall, password, folderName, null);
+        ChartWall response = testSlidesApi.setChartWall(fileName, c_slideIndex, c_shapeIndex, ChartWallType.BACKWALL, wall, password, folderName, null);
         assertEquals(response.getFillFormat().getType(), FillFormat.TypeEnum.SOLID);
     }
 
     @Test
     public void updateDataPointFormat() throws ApiException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         int slideIndex = 8;
         int shapeIndex = 2;
 
@@ -729,7 +729,7 @@ public class ChartTest extends ApiTest {
         dto.setLineFormat(lineFormat);
         dto.setEffectFormat(effectFormat);
 
-        Chart chart = api.updateChartDataPoint(fileName, slideIndex, shapeIndex, c_seriesIndex, c_dataPointIndex, dto, password, folderName, null);
+        Chart chart = testSlidesApi.updateChartDataPoint(fileName, slideIndex, shapeIndex, c_seriesIndex, c_dataPointIndex, dto, password, folderName, null);
         OneValueSeries series = (OneValueSeries)chart.getSeries().get(c_seriesIndex - 1);
         OneValueChartDataPoint dataPoint = series.getDataPoints().get(c_dataPointIndex - 1);
         assertEquals(dataPoint.getFillFormat().getType(), FillFormat.TypeEnum.SOLID);
@@ -739,7 +739,7 @@ public class ChartTest extends ApiTest {
 
     @Test
     public void chartFormulasTest() throws ApiException, IOException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         Chart dto = new Chart();
         dto.setChartType(Chart.ChartTypeEnum.CLUSTEREDCOLUMN);
         dto.setWidth(400.0);
@@ -792,7 +792,7 @@ public class ChartTest extends ApiTest {
         seriesList.add(series1);
 
         dto.setSeries(seriesList);
-        Chart chart = (Chart) api.createShape(fileName, c_slideIndex, dto, null, null, password, folderName, null, null);
+        Chart chart = (Chart) testSlidesApi.createShape(fileName, c_slideIndex, dto, null, null, password, folderName, null, null);
 
         assertEquals(90.0, ((OneValueSeries)chart.getSeries().get(0)).getDataPoints().get(2).getValue().doubleValue(), 0);
     }

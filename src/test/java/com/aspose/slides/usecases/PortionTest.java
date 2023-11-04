@@ -21,36 +21,36 @@ public class PortionTest extends ApiTest {
 
     @Test
     public void getPortionsTest() throws ApiException, IOException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
-        Portions response = api.getPortions(fileName, c_slideIndex, c_shapeIndex, c_paragraphIndex, password, folderName, null, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        Portions response = testSlidesApi.getPortions(fileName, c_slideIndex, c_shapeIndex, c_paragraphIndex, password, folderName, null, null);
         assertEquals(2, response.getItems().size());
     }
 
     @Test
     public void getSubShapePortionsTest() throws ApiException, IOException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
-        Portions response = api.getPortions(fileName, c_slideIndex, 3, c_paragraphIndex, password, folderName, null, "1");
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        Portions response = testSlidesApi.getPortions(fileName, c_slideIndex, 3, c_paragraphIndex, password, folderName, null, "1");
         assertEquals(2, response.getItems().size());
     }
 
     @Test
     public void getPortionTest() throws ApiException, IOException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
-        Portion response = api.getPortion(fileName, c_slideIndex, c_shapeIndex, c_paragraphIndex, c_portionIndex,
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        Portion response = testSlidesApi.getPortion(fileName, c_slideIndex, c_shapeIndex, c_paragraphIndex, c_portionIndex,
                 password, folderName, null, null);
         assertTrue(response.getText().contains(c_portionText));
     }
 
     @Test
     public void getSubShapePortionTest() throws ApiException, IOException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
-        Portion response = api.getPortion(fileName, c_slideIndex, 3, c_paragraphIndex, c_portionIndex, password, folderName, null, "1");
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        Portion response = testSlidesApi.getPortion(fileName, c_slideIndex, 3, c_paragraphIndex, c_portionIndex, password, folderName, null, "1");
         assertTrue(response.getText().contains(c_portionText));
     }
 
     @Test
     public void createPortionTest() throws ApiException, IOException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
 
         Portion dto = new Portion();
         dto.setText(c_newPortionText);
@@ -61,7 +61,7 @@ public class PortionTest extends ApiTest {
         fillFormat.setColor(c_fontColor);
         dto.setFillFormat(fillFormat);
 
-        Portion response = api.createPortion(fileName, c_slideIndex, c_shapeIndex, 1, dto, null, password, folderName, null, null);
+        Portion response = testSlidesApi.createPortion(fileName, c_slideIndex, c_shapeIndex, 1, dto, null, password, folderName, null, null);
         assertEquals(dto.getText(), response.getText());
         assertEquals(dto.getFontBold(), response.getFontBold());
         assertEquals(dto.getFontHeight(), response.getFontHeight());
@@ -71,7 +71,7 @@ public class PortionTest extends ApiTest {
 
     @Test
     public void createSubShapePortionTest() throws ApiException, IOException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
 
         Portion dto = new Portion();
         dto.setText(c_newPortionText);
@@ -82,7 +82,7 @@ public class PortionTest extends ApiTest {
         fillFormat.setColor(c_fontColor);
         dto.setFillFormat(fillFormat);
 
-        Portion response = api.createPortion(fileName, c_slideIndex, 3, 1, dto, null, password, folderName, null, "2");
+        Portion response = testSlidesApi.createPortion(fileName, c_slideIndex, 3, 1, dto, null, password, folderName, null, "2");
         assertEquals(dto.getText(), response.getText());
         assertEquals(dto.getFontBold(), response.getFontBold());
         assertEquals(dto.getFontHeight(), response.getFontHeight());
@@ -92,7 +92,7 @@ public class PortionTest extends ApiTest {
 
     @Test
     public void updatePortionTest() throws ApiException, IOException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
 
         Portion dto = new Portion();
         dto.setText(c_newPortionText);
@@ -103,7 +103,7 @@ public class PortionTest extends ApiTest {
         fillFormat.setColor(c_fontColor);
         dto.setFillFormat(fillFormat);
 
-        Portion response = api.updatePortion(fileName, c_slideIndex, c_shapeIndex, 1, 1, dto, password, folderName, null, null);
+        Portion response = testSlidesApi.updatePortion(fileName, c_slideIndex, c_shapeIndex, 1, 1, dto, password, folderName, null, null);
         assertEquals(dto.getText(), response.getText());
         assertEquals(dto.getFontBold(), response.getFontBold());
         assertEquals(dto.getFontHeight(), response.getFontHeight());
@@ -113,7 +113,7 @@ public class PortionTest extends ApiTest {
 
     @Test
     public void updateSubShapePortionTest() throws ApiException, IOException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
 
         Portion dto = new Portion();
         dto.setText(c_newPortionText);
@@ -124,7 +124,7 @@ public class PortionTest extends ApiTest {
         fillFormat.setColor(c_fontColor);
         dto.setFillFormat(fillFormat);
 
-        Portion response = api.updatePortion(fileName, c_slideIndex, 3, 1, 1, dto, password, folderName, null, "2");
+        Portion response = testSlidesApi.updatePortion(fileName, c_slideIndex, 3, 1, 1, dto, password, folderName, null, "2");
         assertEquals(dto.getText(), response.getText());
         assertEquals(dto.getFontBold(), response.getFontBold());
         assertEquals(dto.getFontHeight(), response.getFontHeight());
@@ -134,60 +134,60 @@ public class PortionTest extends ApiTest {
 
     @Test
     public void deletePortionsTest() throws ApiException, IOException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
 
-        Portions response = api.deletePortions(fileName, c_slideIndex, c_shapeIndex, c_paragraphIndex, null,
+        Portions response = testSlidesApi.deletePortions(fileName, c_slideIndex, c_shapeIndex, c_paragraphIndex, null,
                 password, folderName, null, null);
         assertEquals(0, response.getItems().size());
     }
 
     @Test
     public void deletePortionsIndexesTest() throws ApiException, IOException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
-        Portions response = api.deletePortions(fileName, c_slideIndex, c_shapeIndex, c_paragraphIndex,
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        Portions response = testSlidesApi.deletePortions(fileName, c_slideIndex, c_shapeIndex, c_paragraphIndex,
                 new ArrayList<Integer>(Arrays.asList(1)), password, folderName, null, null);
         assertEquals(1, response.getItems().size());
     }
 
     @Test
     public void deleteSubShapePortionsTest() throws ApiException, IOException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
 
-        Portions response = api.deletePortions(fileName, c_slideIndex, 3, c_paragraphIndex, null, password, folderName, null, "1");
+        Portions response = testSlidesApi.deletePortions(fileName, c_slideIndex, 3, c_paragraphIndex, null, password, folderName, null, "1");
         assertEquals(0, response.getItems().size());
     }
 
     @Test
     public void deleteSubShapePortionsIndexesTest() throws ApiException, IOException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
 
-        Portions response = api.deletePortions(fileName, c_slideIndex, 3, c_paragraphIndex,
+        Portions response = testSlidesApi.deletePortions(fileName, c_slideIndex, 3, c_paragraphIndex,
                 new ArrayList<Integer>(Arrays.asList(1)), password, folderName, null, "1");
         assertEquals(1, response.getItems().size());
     }
 
     @Test
     public void deletePortionTest() throws ApiException, IOException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
 
-        Portions response = api.deletePortion(fileName, c_slideIndex, c_shapeIndex, c_paragraphIndex, c_portionIndex,
+        Portions response = testSlidesApi.deletePortion(fileName, c_slideIndex, c_shapeIndex, c_paragraphIndex, c_portionIndex,
                 password, folderName, null, null);
         assertEquals(1, response.getItems().size());
     }
 
     @Test
     public void deleteSubShapePortionTest() throws ApiException, IOException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
 
-        Portions response = api.deletePortion(fileName, c_slideIndex, 3, c_paragraphIndex, c_portionIndex, password,
+        Portions response = testSlidesApi.deletePortion(fileName, c_slideIndex, 3, c_paragraphIndex, c_portionIndex, password,
                 folderName, null, "1");
         assertEquals(1, response.getItems().size());
     }
 
     @Test
     public void getPortionRectTest() throws ApiException, IOException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
-        TextBounds response = api.getPortionRectangle(fileName, c_slideIndex, c_shapeIndex, c_paragraphIndex,
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        TextBounds response = testSlidesApi.getPortionRectangle(fileName, c_slideIndex, c_shapeIndex, c_paragraphIndex,
                 c_portionIndex, password, folderName, null);
         assertNotNull(response);
         assertTrue(response.getX() > 0);
@@ -198,16 +198,16 @@ public class PortionTest extends ApiTest {
 
     @Test
     public void getPortionEffectiveTest() throws ApiException, IOException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
-        Portion response = api.getPortionEffective(fileName, c_slideIndex, c_shapeIndex, c_paragraphIndex,
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        Portion response = testSlidesApi.getPortionEffective(fileName, c_slideIndex, c_shapeIndex, c_paragraphIndex,
                 c_portionIndex, password, folderName, null, null);
         assertEquals((Double)18.0, response.getFontHeight());
     }
 
     @Test
     public void getSubshapePortionEffectiveTest() throws ApiException, IOException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
-        Portion response = api.getPortionEffective(fileName, c_slideIndex, 3,
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        Portion response = testSlidesApi.getPortionEffective(fileName, c_slideIndex, 3,
                 c_paragraphIndex, c_portionIndex, password, folderName, null, "1");
         assertEquals((Double)18.0, response.getFontHeight());
     }

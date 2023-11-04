@@ -47,24 +47,24 @@ public class MasterSlideTest extends ApiTest {
     public void masterSlidesTest() throws ApiException, IOException {
         String sourceFile = "TemplateCV.pptx";
         String sourcePath = folderName + "/" + sourceFile;
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
-        MasterSlides masterSlides = api.getMasterSlides(fileName, password, folderName, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        MasterSlides masterSlides = testSlidesApi.getMasterSlides(fileName, password, folderName, null);
         assertEquals(1, masterSlides.getSlideList().size());
 
-        MasterSlide masterSlide = api.getMasterSlide(fileName, 1, password, folderName, null);
+        MasterSlide masterSlide = testSlidesApi.getMasterSlide(fileName, 1, password, folderName, null);
         assertEquals("Office Theme", masterSlide.getName());
 
-        masterSlide = api.copyMasterSlide(fileName, sourcePath, 1, null, null, null, password, folderName, null);
+        masterSlide = testSlidesApi.copyMasterSlide(fileName, sourcePath, 1, null, null, null, password, folderName, null);
         assertEquals("Digital portfolio", masterSlide.getName());
 
-        masterSlides = api.getMasterSlides(fileName, password, folderName, null);
+        masterSlides = testSlidesApi.getMasterSlides(fileName, password, folderName, null);
         assertEquals(2, masterSlides.getSlideList().size());
     }
 
     @Test
     public void masterSlideShapesTest() throws ApiException, IOException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
-        Shapes shapes = api.getSpecialSlideShapes(
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        Shapes shapes = testSlidesApi.getSpecialSlideShapes(
             fileName, c_slideIndex, SpecialSlideType.MASTERSLIDE, password, folderName, null, null);
         assertEquals(c_shapeCount, shapes.getShapesLinks().size());
 
@@ -75,29 +75,29 @@ public class MasterSlideTest extends ApiTest {
         dto.setHeight(200.0);
         dto.setShapeType(GeometryShape.ShapeTypeEnum.RECTANGLE);
         dto.setText("New shape");
-        Shape shape = (Shape)api.createSpecialSlideShape(fileName, c_slideIndex, SpecialSlideType.MASTERSLIDE, dto,
+        Shape shape = (Shape)testSlidesApi.createSpecialSlideShape(fileName, c_slideIndex, SpecialSlideType.MASTERSLIDE, dto,
                 null, null, password, folderName, null, null);
         assertEquals(dto.getText(), shape.getText());
-        shapes = api.getSpecialSlideShapes(fileName, c_slideIndex, SpecialSlideType.MASTERSLIDE, password, folderName, null, null);
+        shapes = testSlidesApi.getSpecialSlideShapes(fileName, c_slideIndex, SpecialSlideType.MASTERSLIDE, password, folderName, null, null);
         assertEquals(c_shapeCount + 1, shapes.getShapesLinks().size());
 
         dto.setText("Updated shape");
-        shape = (Shape)api.updateSpecialSlideShape(fileName, c_slideIndex, SpecialSlideType.MASTERSLIDE,
+        shape = (Shape)testSlidesApi.updateSpecialSlideShape(fileName, c_slideIndex, SpecialSlideType.MASTERSLIDE,
                 c_shapeCount + 1, dto, password, folderName, null, null);
         assertEquals(dto.getText(), shape.getText());
-        shapes = api.getSpecialSlideShapes(fileName, c_slideIndex, SpecialSlideType.MASTERSLIDE, password, folderName, null, null);
+        shapes = testSlidesApi.getSpecialSlideShapes(fileName, c_slideIndex, SpecialSlideType.MASTERSLIDE, password, folderName, null, null);
         assertEquals(c_shapeCount + 1, shapes.getShapesLinks().size());
 
-        api.deleteSpecialSlideShape(
+        testSlidesApi.deleteSpecialSlideShape(
                 fileName, c_slideIndex, SpecialSlideType.MASTERSLIDE, c_shapeCount + 1, password, folderName, null, null);
-        shapes = api.getSpecialSlideShapes(fileName, c_slideIndex, SpecialSlideType.MASTERSLIDE, password, folderName, null, null);
+        shapes = testSlidesApi.getSpecialSlideShapes(fileName, c_slideIndex, SpecialSlideType.MASTERSLIDE, password, folderName, null, null);
         assertEquals(c_shapeCount, shapes.getShapesLinks().size());
     }
 
     @Test
     public void masterSlideParagraphsTest() throws ApiException, IOException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
-        Paragraphs paragraphs = api.getSpecialSlideParagraphs(fileName, c_slideIndex, SpecialSlideType.MASTERSLIDE,
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        Paragraphs paragraphs = testSlidesApi.getSpecialSlideParagraphs(fileName, c_slideIndex, SpecialSlideType.MASTERSLIDE,
                 c_shapeIndex, password, folderName, null, null);
         assertEquals(c_paragraphCount, paragraphs.getParagraphLinks().size());
 
@@ -108,70 +108,70 @@ public class MasterSlideTest extends ApiTest {
         portion.setText("New paragraph");
         portions.add(portion);
         dto.setPortionList(portions);
-        Paragraph paragraph = api.createSpecialSlideParagraph(fileName, c_slideIndex, SpecialSlideType.MASTERSLIDE,
+        Paragraph paragraph = testSlidesApi.createSpecialSlideParagraph(fileName, c_slideIndex, SpecialSlideType.MASTERSLIDE,
                 c_shapeIndex, dto, null, password, folderName, null, null);
         assertEquals(dto.getAlignment(), paragraph.getAlignment());
-        paragraphs = api.getSpecialSlideParagraphs(fileName, c_slideIndex, SpecialSlideType.MASTERSLIDE, c_shapeIndex,
+        paragraphs = testSlidesApi.getSpecialSlideParagraphs(fileName, c_slideIndex, SpecialSlideType.MASTERSLIDE, c_shapeIndex,
                 password, folderName, null, null);
         assertEquals(c_paragraphCount + 1, paragraphs.getParagraphLinks().size());
 
         dto = new Paragraph();
         dto.setAlignment(Paragraph.AlignmentEnum.CENTER);
-        paragraph = api.updateSpecialSlideParagraph(fileName, c_slideIndex, SpecialSlideType.MASTERSLIDE, c_shapeIndex,
+        paragraph = testSlidesApi.updateSpecialSlideParagraph(fileName, c_slideIndex, SpecialSlideType.MASTERSLIDE, c_shapeIndex,
             c_paragraphCount + 1, dto, password, folderName, null, null);
         assertEquals(dto.getAlignment(), paragraph.getAlignment());
-        paragraphs = api.getSpecialSlideParagraphs(fileName, c_slideIndex, SpecialSlideType.MASTERSLIDE, c_shapeIndex,
+        paragraphs = testSlidesApi.getSpecialSlideParagraphs(fileName, c_slideIndex, SpecialSlideType.MASTERSLIDE, c_shapeIndex,
                 password, folderName, null, null);
         assertEquals(c_paragraphCount + 1, paragraphs.getParagraphLinks().size());
 
-        api.deleteSpecialSlideParagraph(fileName, c_slideIndex, SpecialSlideType.MASTERSLIDE, c_shapeIndex,
+        testSlidesApi.deleteSpecialSlideParagraph(fileName, c_slideIndex, SpecialSlideType.MASTERSLIDE, c_shapeIndex,
                 c_paragraphCount + 1, password, folderName, null, null);
-        paragraphs = api.getSpecialSlideParagraphs(fileName, c_slideIndex, SpecialSlideType.MASTERSLIDE, c_shapeIndex,
+        paragraphs = testSlidesApi.getSpecialSlideParagraphs(fileName, c_slideIndex, SpecialSlideType.MASTERSLIDE, c_shapeIndex,
                 password, folderName, null, null);
         assertEquals(c_paragraphCount, paragraphs.getParagraphLinks().size());
     }
 
     @Test
     public void masterSlidePortionsTest() throws ApiException, IOException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
-        Portions portions = api.getSpecialSlidePortions(fileName, c_slideIndex, SpecialSlideType.MASTERSLIDE, c_shapeIndex,
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        Portions portions = testSlidesApi.getSpecialSlidePortions(fileName, c_slideIndex, SpecialSlideType.MASTERSLIDE, c_shapeIndex,
                 c_paragraphIndex, password, folderName, null, null);
         assertEquals(c_portionCount, portions.getItems().size());
 
         Portion dto = new Portion();
         dto.setFontBold(Portion.FontBoldEnum.TRUE);
         dto.setText("New portion");
-        Portion portion = api.createSpecialSlidePortion(fileName, c_slideIndex, SpecialSlideType.MASTERSLIDE, c_shapeIndex,
+        Portion portion = testSlidesApi.createSpecialSlidePortion(fileName, c_slideIndex, SpecialSlideType.MASTERSLIDE, c_shapeIndex,
             c_paragraphIndex, dto,null, password, folderName, null, null);
         assertEquals(dto.getFontBold(), portion.getFontBold());
         assertEquals(dto.getText(), portion.getText());
-        portions = api.getSpecialSlidePortions(fileName, c_slideIndex, SpecialSlideType.MASTERSLIDE, c_shapeIndex,
+        portions = testSlidesApi.getSpecialSlidePortions(fileName, c_slideIndex, SpecialSlideType.MASTERSLIDE, c_shapeIndex,
                 c_paragraphIndex, password, folderName, null, null);
         assertEquals(c_portionCount + 1, portions.getItems().size());
 
         Portion dto2 = new Portion();
         dto2.setFontHeight(22.0);
         dto2.setText("Updated portion");
-        portion = api.updateSpecialSlidePortion(fileName, c_slideIndex, SpecialSlideType.MASTERSLIDE, c_shapeIndex,
+        portion = testSlidesApi.updateSpecialSlidePortion(fileName, c_slideIndex, SpecialSlideType.MASTERSLIDE, c_shapeIndex,
             c_paragraphIndex, c_portionCount + 1, dto2, password, folderName, null, null);
         assertEquals(dto.getFontBold(), portion.getFontBold());
         assertEquals(dto2.getFontHeight(), portion.getFontHeight());
         assertEquals(dto2.getText(), portion.getText());
-        portions = api.getSpecialSlidePortions(fileName, c_slideIndex, SpecialSlideType.MASTERSLIDE, c_shapeIndex,
+        portions = testSlidesApi.getSpecialSlidePortions(fileName, c_slideIndex, SpecialSlideType.MASTERSLIDE, c_shapeIndex,
                 c_paragraphIndex, password, folderName, null, null);
         assertEquals(c_portionCount + 1, portions.getItems().size());
 
-        api.deleteSpecialSlidePortion(fileName, c_slideIndex, SpecialSlideType.MASTERSLIDE, c_shapeIndex, c_paragraphIndex,
+        testSlidesApi.deleteSpecialSlidePortion(fileName, c_slideIndex, SpecialSlideType.MASTERSLIDE, c_shapeIndex, c_paragraphIndex,
             c_portionCount + 1, password, folderName, null, null);
-        portions = api.getSpecialSlidePortions(fileName, c_slideIndex, SpecialSlideType.MASTERSLIDE, c_shapeIndex,
+        portions = testSlidesApi.getSpecialSlidePortions(fileName, c_slideIndex, SpecialSlideType.MASTERSLIDE, c_shapeIndex,
                 c_paragraphIndex, password, folderName, null, null);
         assertEquals(c_portionCount, portions.getItems().size());
     }
 
     @Test
     public void masterSlideAnimationTest() throws ApiException, IOException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
-        SlideAnimation animation = api.getSpecialSlideAnimation(
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        SlideAnimation animation = testSlidesApi.getSpecialSlideAnimation(
             fileName, c_slideIndex, SpecialSlideType.MASTERSLIDE, null, null, password, folderName, null);
         assertEquals(1, animation.getMainSequence().size());
 
@@ -186,34 +186,34 @@ public class MasterSlideTest extends ApiTest {
         effect2.setShapeIndex(3);
         effects.add(effect2);
         dto.setMainSequence(effects);
-        animation = api.setSpecialSlideAnimation(fileName, c_slideIndex, SpecialSlideType.MASTERSLIDE, dto, password, folderName, null);
+        animation = testSlidesApi.setSpecialSlideAnimation(fileName, c_slideIndex, SpecialSlideType.MASTERSLIDE, dto, password, folderName, null);
         assertEquals(dto.getMainSequence().size(), animation.getMainSequence().size());
-        animation = api.getSpecialSlideAnimation(
+        animation = testSlidesApi.getSpecialSlideAnimation(
             fileName, c_slideIndex, SpecialSlideType.MASTERSLIDE, 3, null, password, folderName, null);
         assertEquals(1, animation.getMainSequence().size());
 
-        animation = api.deleteSpecialSlideAnimationEffect(
+        animation = testSlidesApi.deleteSpecialSlideAnimationEffect(
             fileName, c_slideIndex, SpecialSlideType.MASTERSLIDE, 2, password, folderName, null);
         assertEquals(dto.getMainSequence().size() - 1, animation.getMainSequence().size());
-        animation = api.getSpecialSlideAnimation(
+        animation = testSlidesApi.getSpecialSlideAnimation(
             fileName, c_slideIndex, SpecialSlideType.MASTERSLIDE, 3, null, password, folderName, null);
         assertEquals(0, animation.getMainSequence().size());
 
-        animation = api.deleteSpecialSlideAnimation(fileName, c_slideIndex, SpecialSlideType.MASTERSLIDE, password, folderName, null);
+        animation = testSlidesApi.deleteSpecialSlideAnimation(fileName, c_slideIndex, SpecialSlideType.MASTERSLIDE, password, folderName, null);
         assertEquals(0, animation.getMainSequence().size());
     }
 
     @Test
     public void masterSlideDeleteUnusedTest() throws ApiException, IOException{
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
-        MasterSlides result = (MasterSlides) api.deleteUnusedMasterSlides(fileName, true, password, folderName, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        MasterSlides result = (MasterSlides) testSlidesApi.deleteUnusedMasterSlides(fileName, true, password, folderName, null);
         assertEquals(1, result.getSlideList().size());
     }
 
     @Test
     public void masterSlideDeleteUnusedOnlineTest() throws ApiException, IOException{
         byte[] document = Files.readAllBytes(Paths.get(testDataFolderName + "/" + fileName));
-        File response = api.deleteUnusedMasterSlidesOnline(document, true, password);
+        File response = testSlidesApi.deleteUnusedMasterSlidesOnline(document, true, password);
         assertNotNull(response);
         assertTrue(response.length() > 0);
     }

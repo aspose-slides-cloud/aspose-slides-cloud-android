@@ -16,7 +16,7 @@ import static org.junit.Assert.assertTrue;
 public class TextFormatTest extends ApiTest {
     @Test
     public void textFormat3DTest() throws ApiException, IOException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
 
         Shape dto = new Shape();
         dto.setShapeType(GeometryShape.ShapeTypeEnum.RECTANGLE);
@@ -64,13 +64,13 @@ public class TextFormatTest extends ApiTest {
 
         dto.setTextFrameFormat(textFrameFormat);
 
-        ShapeBase shape = api.createShape(fileName, c_slideIndex, dto, null, null, password, folderName, null, null);
+        ShapeBase shape = testSlidesApi.createShape(fileName, c_slideIndex, dto, null, null, password, folderName, null, null);
         assertTrue(shape instanceof Shape);
     }
 
     @Test
     public void textFrameFormatTest() throws ApiException, IOException {
-        api.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
 
         Shape dto = new Shape();
         dto.setShapeType(GeometryShape.ShapeTypeEnum.RECTANGLE);
@@ -95,7 +95,7 @@ public class TextFormatTest extends ApiTest {
 
         dto.setTextFrameFormat(textFrameFormat);
 
-        ShapeBase shape = api.createShape(fileName, c_slideIndex, dto, null, null, password, folderName, null, null);
+        ShapeBase shape = testSlidesApi.createShape(fileName, c_slideIndex, dto, null, null, password, folderName, null, null);
         assertTrue(shape instanceof Shape);
     }
 
