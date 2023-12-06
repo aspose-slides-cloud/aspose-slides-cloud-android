@@ -28,6 +28,7 @@
 package com.aspose.slides.model;
 
 import java.util.Objects;
+import com.aspose.slides.model.OperationProgress;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -55,7 +56,15 @@ public class Operation {
   public enum MethodEnum {
     CONVERT("Convert"),
     
-    DOWNLOADPRESENTATION("DownloadPresentation");
+    DOWNLOADPRESENTATION("DownloadPresentation"),
+    
+    CONVERTANDSAVE("ConvertAndSave"),
+    
+    SAVEPRESENTATION("SavePresentation"),
+    
+    MERGE("Merge"),
+    
+    MERGEANDSAVE("MergeAndSave");
 
     private String value;
 
@@ -156,6 +165,9 @@ public class Operation {
   @SerializedName(value = "status", alternate = { "Status" })
   private StatusEnum status;
 
+  @SerializedName(value = "progress", alternate = { "Progress" })
+  private OperationProgress progress;
+
   @SerializedName(value = "created", alternate = { "Created" })
   private OffsetDateTime created;
 
@@ -234,6 +246,24 @@ public class Operation {
 
   public void setStatus(StatusEnum status) {
     this.status = status;
+  }
+
+  public Operation progress(OperationProgress progress) {
+    this.progress = progress;
+    return this;
+  }
+
+   /**
+   * Get progress
+   * @return progress
+  **/
+  @ApiModelProperty(value = "")
+  public OperationProgress getProgress() {
+    return progress;
+  }
+
+  public void setProgress(OperationProgress progress) {
+    this.progress = progress;
   }
 
   public Operation created(OffsetDateTime created) {
@@ -372,12 +402,12 @@ public class Operation {
       return false;
     }
     Operation operation = (Operation) o;
-    return true && Objects.equals(this.id, operation.id) && Objects.equals(this.method, operation.method) && Objects.equals(this.status, operation.status) && Objects.equals(this.created, operation.created) && Objects.equals(this.enqueued, operation.enqueued) && Objects.equals(this.started, operation.started) && Objects.equals(this.failed, operation.failed) && Objects.equals(this.canceled, operation.canceled) && Objects.equals(this.finished, operation.finished) && Objects.equals(this.error, operation.error);
+    return true && Objects.equals(this.id, operation.id) && Objects.equals(this.method, operation.method) && Objects.equals(this.status, operation.status) && Objects.equals(this.progress, operation.progress) && Objects.equals(this.created, operation.created) && Objects.equals(this.enqueued, operation.enqueued) && Objects.equals(this.started, operation.started) && Objects.equals(this.failed, operation.failed) && Objects.equals(this.canceled, operation.canceled) && Objects.equals(this.finished, operation.finished) && Objects.equals(this.error, operation.error);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, method, status, created, enqueued, started, failed, canceled, finished, error);
+    return Objects.hash(id, method, status, progress, created, enqueued, started, failed, canceled, finished, error);
   }
 
 
@@ -389,6 +419,7 @@ public class Operation {
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    method: ").append(toIndentedString(method)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    progress: ").append(toIndentedString(progress)).append("\n");
     sb.append("    created: ").append(toIndentedString(created)).append("\n");
     sb.append("    enqueued: ").append(toIndentedString(enqueued)).append("\n");
     sb.append("    started: ").append(toIndentedString(started)).append("\n");

@@ -29670,7 +29670,7 @@ public class SlidesApi {
      * Build call for replaceImage
      * @param name Document name. (required)
      * @param imageIndex Image index. (required)
-     * @param image Image data. 
+     * @param image Image data. (required)
      * @param password Document password. 
      * @param folder Document folder. 
      * @param storage Document storage. 
@@ -29687,6 +29687,10 @@ public class SlidesApi {
         // verify the required parameter 'imageIndex' is set
         if (imageIndex == null) {
             throw new ApiException("Missing the required parameter 'imageIndex' when calling replaceImage(Async)");
+        }
+        // verify the required parameter 'image' is set
+        if (image == null) {
+            throw new ApiException("Missing the required parameter 'image' when calling replaceImage(Async)");
         }
         Object postBody = null;
 
@@ -29737,7 +29741,7 @@ public class SlidesApi {
      * 
      * @param name Document name. (required)
      * @param imageIndex Image index. (required)
-     * @param image Image data. 
+     * @param image Image data. (required)
      * @param password Document password. 
      * @param folder Document folder. 
      * @param storage Document storage. 
@@ -29757,7 +29761,7 @@ public class SlidesApi {
      * 
      * @param name Document name. (required)
      * @param imageIndex Image index. (required)
-     * @param image Image data. 
+     * @param image Image data. (required)
      * @param password Document password. 
      * @param folder Document folder. 
      * @param storage Document storage. 
@@ -29774,7 +29778,7 @@ public class SlidesApi {
      * 
      * @param name Document name. (required)
      * @param imageIndex Image index. (required)
-     * @param image Image data. 
+     * @param image Image data. (required)
      * @param password Document password. 
      * @param folder Document folder. 
      * @param storage Document storage. 
@@ -29811,7 +29815,7 @@ public class SlidesApi {
      * Build call for replaceImageOnline
      * @param document Document data. (required)
      * @param imageIndex Image index. (required)
-     * @param image Image data. 
+     * @param image Image data. (required)
      * @param password Password. 
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
@@ -29826,6 +29830,10 @@ public class SlidesApi {
         // verify the required parameter 'imageIndex' is set
         if (imageIndex == null) {
             throw new ApiException("Missing the required parameter 'imageIndex' when calling replaceImageOnline(Async)");
+        }
+        // verify the required parameter 'image' is set
+        if (image == null) {
+            throw new ApiException("Missing the required parameter 'image' when calling replaceImageOnline(Async)");
         }
         Object postBody = null;
 
@@ -29876,7 +29884,7 @@ public class SlidesApi {
      * 
      * @param document Document data. (required)
      * @param imageIndex Image index. (required)
-     * @param image Image data. 
+     * @param image Image data. (required)
      * @param password Password. 
      * @return File
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -29896,7 +29904,7 @@ public class SlidesApi {
      * 
      * @param document Document data. (required)
      * @param imageIndex Image index. (required)
-     * @param image Image data. 
+     * @param image Image data. (required)
      * @param password Password. 
      * @return ApiResponse&lt;File&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -29912,7 +29920,7 @@ public class SlidesApi {
      * 
      * @param document Document data. (required)
      * @param imageIndex Image index. (required)
-     * @param image Image data. 
+     * @param image Image data. (required)
      * @param password Password. 
      * @param callback The callback to be executed when the API call finishes
      * @return The request call

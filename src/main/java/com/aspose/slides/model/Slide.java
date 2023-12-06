@@ -30,6 +30,7 @@ package com.aspose.slides.model;
 import java.util.Objects;
 import com.aspose.slides.model.ResourceBase;
 import com.aspose.slides.model.ResourceUri;
+import com.aspose.slides.model.SlideShowTransition;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -56,6 +57,9 @@ public class Slide extends ResourceBase {
 
   @SerializedName(value = "showMasterShapes", alternate = { "ShowMasterShapes" })
   private Boolean showMasterShapes;
+
+  @SerializedName(value = "slideShowTransition", alternate = { "SlideShowTransition" })
+  private SlideShowTransition slideShowTransition;
 
   @SerializedName(value = "layoutSlide", alternate = { "LayoutSlide" })
   private ResourceUri layoutSlide;
@@ -138,6 +142,24 @@ public class Slide extends ResourceBase {
 
   public void setShowMasterShapes(Boolean showMasterShapes) {
     this.showMasterShapes = showMasterShapes;
+  }
+
+  public Slide slideShowTransition(SlideShowTransition slideShowTransition) {
+    this.slideShowTransition = slideShowTransition;
+    return this;
+  }
+
+   /**
+   * Specifies if shapes of the master slide should be shown on the slide. True by default.
+   * @return slideShowTransition
+  **/
+  @ApiModelProperty(value = "Specifies if shapes of the master slide should be shown on the slide. True by default.")
+  public SlideShowTransition getSlideShowTransition() {
+    return slideShowTransition;
+  }
+
+  public void setSlideShowTransition(SlideShowTransition slideShowTransition) {
+    this.slideShowTransition = slideShowTransition;
   }
 
   public Slide layoutSlide(ResourceUri layoutSlide) {
@@ -294,12 +316,12 @@ public class Slide extends ResourceBase {
       return false;
     }
     Slide slide = (Slide) o;
-    return true && Objects.equals(this.width, slide.width) && Objects.equals(this.height, slide.height) && Objects.equals(this.showMasterShapes, slide.showMasterShapes) && Objects.equals(this.layoutSlide, slide.layoutSlide) && Objects.equals(this.shapes, slide.shapes) && Objects.equals(this.theme, slide.theme) && Objects.equals(this.placeholders, slide.placeholders) && Objects.equals(this.images, slide.images) && Objects.equals(this.comments, slide.comments) && Objects.equals(this.background, slide.background) && Objects.equals(this.notesSlide, slide.notesSlide) && super.equals(o);
+    return true && Objects.equals(this.width, slide.width) && Objects.equals(this.height, slide.height) && Objects.equals(this.showMasterShapes, slide.showMasterShapes) && Objects.equals(this.slideShowTransition, slide.slideShowTransition) && Objects.equals(this.layoutSlide, slide.layoutSlide) && Objects.equals(this.shapes, slide.shapes) && Objects.equals(this.theme, slide.theme) && Objects.equals(this.placeholders, slide.placeholders) && Objects.equals(this.images, slide.images) && Objects.equals(this.comments, slide.comments) && Objects.equals(this.background, slide.background) && Objects.equals(this.notesSlide, slide.notesSlide) && super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(width, height, showMasterShapes, layoutSlide, shapes, theme, placeholders, images, comments, background, notesSlide, super.hashCode());
+    return Objects.hash(width, height, showMasterShapes, slideShowTransition, layoutSlide, shapes, theme, placeholders, images, comments, background, notesSlide, super.hashCode());
   }
 
 
@@ -311,6 +333,7 @@ public class Slide extends ResourceBase {
     sb.append("    width: ").append(toIndentedString(width)).append("\n");
     sb.append("    height: ").append(toIndentedString(height)).append("\n");
     sb.append("    showMasterShapes: ").append(toIndentedString(showMasterShapes)).append("\n");
+    sb.append("    slideShowTransition: ").append(toIndentedString(slideShowTransition)).append("\n");
     sb.append("    layoutSlide: ").append(toIndentedString(layoutSlide)).append("\n");
     sb.append("    shapes: ").append(toIndentedString(shapes)).append("\n");
     sb.append("    theme: ").append(toIndentedString(theme)).append("\n");

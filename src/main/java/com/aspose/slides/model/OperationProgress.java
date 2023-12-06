@@ -28,9 +28,6 @@
 package com.aspose.slides.model;
 
 import java.util.Objects;
-import com.aspose.slides.model.ResourceUri;
-import com.aspose.slides.model.Slide;
-import com.aspose.slides.model.SlideShowTransition;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -39,40 +36,81 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.List;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Map;
 
 /**
- * Represents slide replace result DTO.
+ * Operation progress.
  */
-@ApiModel(description = "Represents slide replace result DTO.")
-public class SlideReplaceResult extends Slide {
-  @SerializedName(value = "matches", alternate = { "Matches" })
-  private Integer matches;
+@ApiModel(description = "Operation progress.")
+public class OperationProgress {
+  @SerializedName(value = "description", alternate = { "Description" })
+  private String description;
+
+  @SerializedName(value = "stepIndex", alternate = { "StepIndex" })
+  private Integer stepIndex;
+
+  @SerializedName(value = "stepCount", alternate = { "StepCount" })
+  private Integer stepCount;
 
 
-  public SlideReplaceResult() {
+  public OperationProgress() {
     super();
   }
 
-  public SlideReplaceResult matches(Integer matches) {
-    this.matches = matches;
+  public OperationProgress description(String description) {
+    this.description = description;
     return this;
   }
 
    /**
-   * Gets or sets the number of matches 
-   * @return matches
+   * Description.
+   * @return description
   **/
-  @ApiModelProperty(required = true, value = "Gets or sets the number of matches ")
-  public Integer getMatches() {
-    return matches;
+  @ApiModelProperty(value = "Description.")
+  public String getDescription() {
+    return description;
   }
 
-  public void setMatches(Integer matches) {
-    this.matches = matches;
+  public void setDescription(String description) {
+    this.description = description;
+  }
+
+  public OperationProgress stepIndex(Integer stepIndex) {
+    this.stepIndex = stepIndex;
+    return this;
+  }
+
+   /**
+   * Current Step Index.
+   * @return stepIndex
+  **/
+  @ApiModelProperty(required = true, value = "Current Step Index.")
+  public Integer getStepIndex() {
+    return stepIndex;
+  }
+
+  public void setStepIndex(Integer stepIndex) {
+    this.stepIndex = stepIndex;
+  }
+
+  public OperationProgress stepCount(Integer stepCount) {
+    this.stepCount = stepCount;
+    return this;
+  }
+
+   /**
+   * Current Step Index.
+   * @return stepCount
+  **/
+  @ApiModelProperty(required = true, value = "Current Step Index.")
+  public Integer getStepCount() {
+    return stepCount;
+  }
+
+  public void setStepCount(Integer stepCount) {
+    this.stepCount = stepCount;
   }
 
 
@@ -84,22 +122,24 @@ public class SlideReplaceResult extends Slide {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    SlideReplaceResult slideReplaceResult = (SlideReplaceResult) o;
-    return true && Objects.equals(this.matches, slideReplaceResult.matches) && super.equals(o);
+    OperationProgress operationProgress = (OperationProgress) o;
+    return true && Objects.equals(this.description, operationProgress.description) && Objects.equals(this.stepIndex, operationProgress.stepIndex) && Objects.equals(this.stepCount, operationProgress.stepCount);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(matches, super.hashCode());
+    return Objects.hash(description, stepIndex, stepCount);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class SlideReplaceResult {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
-    sb.append("    matches: ").append(toIndentedString(matches)).append("\n");
+    sb.append("class OperationProgress {\n");
+    
+    sb.append("    description: ").append(toIndentedString(description)).append("\n");
+    sb.append("    stepIndex: ").append(toIndentedString(stepIndex)).append("\n");
+    sb.append("    stepCount: ").append(toIndentedString(stepCount)).append("\n");
     sb.append("}");
     return sb.toString();
   }

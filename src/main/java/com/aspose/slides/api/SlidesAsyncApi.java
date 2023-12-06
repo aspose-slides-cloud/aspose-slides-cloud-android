@@ -46,6 +46,7 @@ import java.io.IOException;
 import com.aspose.slides.model.ExportOptions;
 import java.io.File;
 import com.aspose.slides.model.Operation;
+import com.aspose.slides.model.OrderedMergeRequest;
 import com.aspose.slides.model.*;
 
 import java.lang.reflect.Type;
@@ -445,6 +446,165 @@ public class SlidesAsyncApi {
         return call;
     }
     /**
+     * Build call for startConvertAndSave
+     * @param document Document data. (required)
+     * @param format  (required)
+     * @param outPath  (required)
+     * @param password  
+     * @param storage  
+     * @param fontsFolder  
+     * @param slides  
+     * @param options  
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call startConvertAndSaveCall(byte[] document, ExportFormat format, String outPath, String password, String storage, String fontsFolder, List<Integer> slides, ExportOptions options, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        // verify the required parameter 'document' is set
+        if (document == null) {
+            throw new ApiException("Missing the required parameter 'document' when calling startConvertAndSave(Async)");
+        }
+        // verify the required parameter 'format' is set
+        if (format == null) {
+            throw new ApiException("Missing the required parameter 'format' when calling startConvertAndSave(Async)");
+        }
+        // verify the required parameter 'outPath' is set
+        if (outPath == null) {
+            throw new ApiException("Missing the required parameter 'outPath' when calling startConvertAndSave(Async)");
+        }
+        Object postBody = options;
+
+        // create path and map variables
+        String methodPath = "/slides/async/convert/{format}"
+            .replaceAll("\\{" + "format" + "\\}", apiClient.objectToString(format));
+
+        List<Pair> queryParams = new ArrayList<Pair>();
+        apiClient.addQueryParameter(queryParams, "outPath", outPath);
+        apiClient.addQueryParameter(queryParams, "storage", storage);
+        apiClient.addQueryParameter(queryParams, "fontsFolder", fontsFolder);
+        apiClient.addQueryParameter(queryParams, "slides", slides);
+
+        Map<String, String> headerParams = new HashMap<String, String>();
+        if (password != null)
+        headerParams.put("password", apiClient.parameterToString(password));
+
+        Map<String, Object> formParams = new LinkedHashMap<String, Object>();
+        if (document != null)
+        formParams.put("document", document);
+
+        final String[] accepts = {
+            "application/json"
+        };
+        final String accept = apiClient.selectHeaderAccept(accepts);
+        if (accept != null) headerParams.put("Accept", accept);
+
+        final String[] contentTypes = {
+            "multipart/form-data"
+        };
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
+        headerParams.put("Content-Type", contentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+        return apiClient.buildCall(methodPath, "PUT", queryParams, postBody, headerParams, formParams, progressRequestListener);
+    }
+
+    /**
+     * 
+     * 
+     * @param document Document data. (required)
+     * @param format  (required)
+     * @param outPath  (required)
+     * @param password  
+     * @param storage  
+     * @param fontsFolder  
+     * @param slides  
+     * @param options  
+     * @return String
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public String startConvertAndSave(byte[] document, ExportFormat format, String outPath, String password, String storage, String fontsFolder, List<Integer> slides, ExportOptions options) throws ApiException {
+        try {
+            ApiResponse<String> resp = startConvertAndSaveWithHttpInfo(document, format, outPath, password, storage, fontsFolder, slides, options);
+            return resp.getData();
+        } catch (NeedRepeatRequestException e) {
+            ApiResponse<String> resp = startConvertAndSaveWithHttpInfo(document, format, outPath, password, storage, fontsFolder, slides, options);
+            return resp.getData();
+        }
+    }
+
+    /**
+     * 
+     * 
+     * @param document Document data. (required)
+     * @param format  (required)
+     * @param outPath  (required)
+     * @param password  
+     * @param storage  
+     * @param fontsFolder  
+     * @param slides  
+     * @param options  
+     * @return ApiResponse&lt;String&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<String> startConvertAndSaveWithHttpInfo(byte[] document, ExportFormat format, String outPath, String password, String storage, String fontsFolder, List<Integer> slides, ExportOptions options) throws ApiException {
+        com.squareup.okhttp.Call call = startConvertAndSaveCall(document, format, outPath, password, storage, fontsFolder, slides, options, null, null);
+        Type returnType = new TypeToken<String>(){}.getType();
+        return apiClient.execute(call, returnType);
+    }
+
+    /**
+     *  (asynchronously)
+     * 
+     * @param document Document data. (required)
+     * @param format  (required)
+     * @param outPath  (required)
+     * @param password  
+     * @param storage  
+     * @param fontsFolder  
+     * @param slides  
+     * @param options  
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call startConvertAndSaveAsync(byte[] document, ExportFormat format, String outPath, String password, String storage, String fontsFolder, List<Integer> slides, ExportOptions options, final ApiCallback<String> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = startConvertAndSaveCall(document, format, outPath, password, storage, fontsFolder, slides, options, progressListener, progressRequestListener);
+        Type returnType = new TypeToken<String>(){}.getType();
+        apiClient.executeAsync(call, returnType, callback);
+        return call;
+    }
+    /**
      * Build call for startDownloadPresentation
      * @param name  (required)
      * @param format  (required)
@@ -593,6 +753,421 @@ public class SlidesAsyncApi {
         }
 
         com.squareup.okhttp.Call call = startDownloadPresentationCall(name, format, options, password, folder, storage, fontsFolder, slides, progressListener, progressRequestListener);
+        Type returnType = new TypeToken<String>(){}.getType();
+        apiClient.executeAsync(call, returnType, callback);
+        return call;
+    }
+    /**
+     * Build call for startMerge
+     * @param files Files to merge 
+     * @param request  
+     * @param storage  
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call startMergeCall(List<FileInfo> files, OrderedMergeRequest request, String storage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object postBody = request;
+
+        // create path and map variables
+        String methodPath = "/slides/async/merge"
+            ;
+
+        List<Pair> queryParams = new ArrayList<Pair>();
+        apiClient.addQueryParameter(queryParams, "storage", storage);
+
+        Map<String, String> headerParams = new HashMap<String, String>();
+
+        Map<String, Object> formParams = new LinkedHashMap<String, Object>();
+        if (files != null)
+        formParams.put("files", files);
+
+        final String[] accepts = {
+            "application/json"
+        };
+        final String accept = apiClient.selectHeaderAccept(accepts);
+        if (accept != null) headerParams.put("Accept", accept);
+
+        final String[] contentTypes = {
+            "multipart/form-data"
+        };
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
+        headerParams.put("Content-Type", contentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+        return apiClient.buildCall(methodPath, "POST", queryParams, postBody, headerParams, formParams, progressRequestListener);
+    }
+
+    /**
+     * 
+     * 
+     * @param files Files to merge 
+     * @param request  
+     * @param storage  
+     * @return String
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public String startMerge(List<FileInfo> files, OrderedMergeRequest request, String storage) throws ApiException {
+        try {
+            ApiResponse<String> resp = startMergeWithHttpInfo(files, request, storage);
+            return resp.getData();
+        } catch (NeedRepeatRequestException e) {
+            ApiResponse<String> resp = startMergeWithHttpInfo(files, request, storage);
+            return resp.getData();
+        }
+    }
+
+    /**
+     * 
+     * 
+     * @param files Files to merge 
+     * @param request  
+     * @param storage  
+     * @return ApiResponse&lt;String&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<String> startMergeWithHttpInfo(List<FileInfo> files, OrderedMergeRequest request, String storage) throws ApiException {
+        com.squareup.okhttp.Call call = startMergeCall(files, request, storage, null, null);
+        Type returnType = new TypeToken<String>(){}.getType();
+        return apiClient.execute(call, returnType);
+    }
+
+    /**
+     *  (asynchronously)
+     * 
+     * @param files Files to merge 
+     * @param request  
+     * @param storage  
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call startMergeAsync(List<FileInfo> files, OrderedMergeRequest request, String storage, final ApiCallback<String> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = startMergeCall(files, request, storage, progressListener, progressRequestListener);
+        Type returnType = new TypeToken<String>(){}.getType();
+        apiClient.executeAsync(call, returnType, callback);
+        return call;
+    }
+    /**
+     * Build call for startMergeAndSave
+     * @param outPath  (required)
+     * @param files Files to merge 
+     * @param request  
+     * @param storage  
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call startMergeAndSaveCall(String outPath, List<FileInfo> files, OrderedMergeRequest request, String storage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        // verify the required parameter 'outPath' is set
+        if (outPath == null) {
+            throw new ApiException("Missing the required parameter 'outPath' when calling startMergeAndSave(Async)");
+        }
+        Object postBody = request;
+
+        // create path and map variables
+        String methodPath = "/slides/async/merge"
+            ;
+
+        List<Pair> queryParams = new ArrayList<Pair>();
+        apiClient.addQueryParameter(queryParams, "outPath", outPath);
+        apiClient.addQueryParameter(queryParams, "storage", storage);
+
+        Map<String, String> headerParams = new HashMap<String, String>();
+
+        Map<String, Object> formParams = new LinkedHashMap<String, Object>();
+        if (files != null)
+        formParams.put("files", files);
+
+        final String[] accepts = {
+            "application/json"
+        };
+        final String accept = apiClient.selectHeaderAccept(accepts);
+        if (accept != null) headerParams.put("Accept", accept);
+
+        final String[] contentTypes = {
+            "multipart/form-data"
+        };
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
+        headerParams.put("Content-Type", contentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+        return apiClient.buildCall(methodPath, "PUT", queryParams, postBody, headerParams, formParams, progressRequestListener);
+    }
+
+    /**
+     * 
+     * 
+     * @param outPath  (required)
+     * @param files Files to merge 
+     * @param request  
+     * @param storage  
+     * @return String
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public String startMergeAndSave(String outPath, List<FileInfo> files, OrderedMergeRequest request, String storage) throws ApiException {
+        try {
+            ApiResponse<String> resp = startMergeAndSaveWithHttpInfo(outPath, files, request, storage);
+            return resp.getData();
+        } catch (NeedRepeatRequestException e) {
+            ApiResponse<String> resp = startMergeAndSaveWithHttpInfo(outPath, files, request, storage);
+            return resp.getData();
+        }
+    }
+
+    /**
+     * 
+     * 
+     * @param outPath  (required)
+     * @param files Files to merge 
+     * @param request  
+     * @param storage  
+     * @return ApiResponse&lt;String&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<String> startMergeAndSaveWithHttpInfo(String outPath, List<FileInfo> files, OrderedMergeRequest request, String storage) throws ApiException {
+        com.squareup.okhttp.Call call = startMergeAndSaveCall(outPath, files, request, storage, null, null);
+        Type returnType = new TypeToken<String>(){}.getType();
+        return apiClient.execute(call, returnType);
+    }
+
+    /**
+     *  (asynchronously)
+     * 
+     * @param outPath  (required)
+     * @param files Files to merge 
+     * @param request  
+     * @param storage  
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call startMergeAndSaveAsync(String outPath, List<FileInfo> files, OrderedMergeRequest request, String storage, final ApiCallback<String> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = startMergeAndSaveCall(outPath, files, request, storage, progressListener, progressRequestListener);
+        Type returnType = new TypeToken<String>(){}.getType();
+        apiClient.executeAsync(call, returnType, callback);
+        return call;
+    }
+    /**
+     * Build call for startSavePresentation
+     * @param name  (required)
+     * @param format  (required)
+     * @param outPath  (required)
+     * @param options  
+     * @param password  
+     * @param folder  
+     * @param storage  
+     * @param fontsFolder  
+     * @param slides  
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call startSavePresentationCall(String name, ExportFormat format, String outPath, ExportOptions options, String password, String folder, String storage, String fontsFolder, List<Integer> slides, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        // verify the required parameter 'name' is set
+        if (name == null) {
+            throw new ApiException("Missing the required parameter 'name' when calling startSavePresentation(Async)");
+        }
+        // verify the required parameter 'format' is set
+        if (format == null) {
+            throw new ApiException("Missing the required parameter 'format' when calling startSavePresentation(Async)");
+        }
+        // verify the required parameter 'outPath' is set
+        if (outPath == null) {
+            throw new ApiException("Missing the required parameter 'outPath' when calling startSavePresentation(Async)");
+        }
+        Object postBody = options;
+
+        // create path and map variables
+        String methodPath = "/slides/async/{name}/{format}"
+            .replaceAll("\\{" + "name" + "\\}", apiClient.objectToString(name)).replaceAll("\\{" + "format" + "\\}", apiClient.objectToString(format));
+
+        List<Pair> queryParams = new ArrayList<Pair>();
+        apiClient.addQueryParameter(queryParams, "outPath", outPath);
+        apiClient.addQueryParameter(queryParams, "folder", folder);
+        apiClient.addQueryParameter(queryParams, "storage", storage);
+        apiClient.addQueryParameter(queryParams, "fontsFolder", fontsFolder);
+        apiClient.addQueryParameter(queryParams, "slides", slides);
+
+        Map<String, String> headerParams = new HashMap<String, String>();
+        if (password != null)
+        headerParams.put("password", apiClient.parameterToString(password));
+
+        Map<String, Object> formParams = new LinkedHashMap<String, Object>();
+
+        final String[] accepts = {
+            "application/json"
+        };
+        final String accept = apiClient.selectHeaderAccept(accepts);
+        if (accept != null) headerParams.put("Accept", accept);
+
+        final String[] contentTypes = {
+            "application/json"
+        };
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
+        headerParams.put("Content-Type", contentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+        return apiClient.buildCall(methodPath, "PUT", queryParams, postBody, headerParams, formParams, progressRequestListener);
+    }
+
+    /**
+     * 
+     * 
+     * @param name  (required)
+     * @param format  (required)
+     * @param outPath  (required)
+     * @param options  
+     * @param password  
+     * @param folder  
+     * @param storage  
+     * @param fontsFolder  
+     * @param slides  
+     * @return String
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public String startSavePresentation(String name, ExportFormat format, String outPath, ExportOptions options, String password, String folder, String storage, String fontsFolder, List<Integer> slides) throws ApiException {
+        try {
+            ApiResponse<String> resp = startSavePresentationWithHttpInfo(name, format, outPath, options, password, folder, storage, fontsFolder, slides);
+            return resp.getData();
+        } catch (NeedRepeatRequestException e) {
+            ApiResponse<String> resp = startSavePresentationWithHttpInfo(name, format, outPath, options, password, folder, storage, fontsFolder, slides);
+            return resp.getData();
+        }
+    }
+
+    /**
+     * 
+     * 
+     * @param name  (required)
+     * @param format  (required)
+     * @param outPath  (required)
+     * @param options  
+     * @param password  
+     * @param folder  
+     * @param storage  
+     * @param fontsFolder  
+     * @param slides  
+     * @return ApiResponse&lt;String&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<String> startSavePresentationWithHttpInfo(String name, ExportFormat format, String outPath, ExportOptions options, String password, String folder, String storage, String fontsFolder, List<Integer> slides) throws ApiException {
+        com.squareup.okhttp.Call call = startSavePresentationCall(name, format, outPath, options, password, folder, storage, fontsFolder, slides, null, null);
+        Type returnType = new TypeToken<String>(){}.getType();
+        return apiClient.execute(call, returnType);
+    }
+
+    /**
+     *  (asynchronously)
+     * 
+     * @param name  (required)
+     * @param format  (required)
+     * @param outPath  (required)
+     * @param options  
+     * @param password  
+     * @param folder  
+     * @param storage  
+     * @param fontsFolder  
+     * @param slides  
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call startSavePresentationAsync(String name, ExportFormat format, String outPath, ExportOptions options, String password, String folder, String storage, String fontsFolder, List<Integer> slides, final ApiCallback<String> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = startSavePresentationCall(name, format, outPath, options, password, folder, storage, fontsFolder, slides, progressListener, progressRequestListener);
         Type returnType = new TypeToken<String>(){}.getType();
         apiClient.executeAsync(call, returnType, callback);
         return call;

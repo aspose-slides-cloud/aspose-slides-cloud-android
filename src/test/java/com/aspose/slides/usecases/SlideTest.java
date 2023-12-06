@@ -85,6 +85,20 @@ public class SlideTest extends ApiTest {
     }
 
     @Test
+    public void setSlideTransitionTest() throws ApiException, IOException {
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+
+        Slide dto = new Slide();
+        SlideShowTransition transition = new SlideShowTransition();
+        transition.setType(SlideShowTransition.TypeEnum.CIRCLE);
+        transition.setSpeed(SlideShowTransition.SpeedEnum.MEDIUM);
+        dto.setSlideShowTransition(transition);
+
+        Slide slide = testSlidesApi.updateSlide(fileName, c_slideIndex, dto, password, folderName, null);
+        assertEquals(transition.getType(), slide.getSlideShowTransition().getType());
+    }
+
+    @Test
     public void deleteSlidesTest() throws ApiException, IOException {
         testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
 
