@@ -92,6 +92,14 @@ public class ShapeTest extends ApiTest {
     }
 
     @Test
+    public void shapeLoadAndSaveTest() throws ApiException, IOException {
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        ShapeBase dto = testSlidesApi.getShape(fileName, c_slideIndex, 1, password, folderName, null, null);
+        ShapeBase shape = testSlidesApi.updateShape(fileName, c_slideIndex, 1, dto, password, folderName, null, null);
+        assertTrue(shape instanceof Chart);
+    }
+
+    @Test
     public void shapeEmptyTest() throws ApiException, IOException {
         testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         try {

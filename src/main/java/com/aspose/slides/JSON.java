@@ -362,7 +362,7 @@ public class JSON {
 
         @Override
         public void write(JsonWriter out, Float value) throws IOException {
-            if (value == null) {
+            if (value == null || value.isNaN() || value.isInfinite()) {
                 out.nullValue();
             } else {
                 out.value(value);
@@ -391,7 +391,7 @@ public class JSON {
 
         @Override
         public void write(JsonWriter out, Double value) throws IOException {
-            if (value == null) {
+            if (value == null || value.isNaN() || value.isInfinite()) {
                 out.nullValue();
             } else {
                 out.value(value);
