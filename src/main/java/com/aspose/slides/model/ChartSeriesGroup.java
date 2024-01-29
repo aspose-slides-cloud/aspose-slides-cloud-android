@@ -440,7 +440,7 @@ public class ChartSeriesGroup {
    * @return isColorVaried
   **/
   @ApiModelProperty(value = "Specifies that each data marker in the series has a different color.")
-  public Boolean isIsColorVaried() {
+  public Boolean getIsColorVaried() {
     return isColorVaried;
   }
 

@@ -51,6 +51,9 @@ public class FontData {
   @SerializedName(value = "isEmbedded", alternate = { "IsEmbedded" })
   private Boolean isEmbedded;
 
+  @SerializedName(value = "isCustom", alternate = { "IsCustom" })
+  private Boolean isCustom;
+
 
   public FontData() {
     super();
@@ -84,12 +87,30 @@ public class FontData {
    * @return isEmbedded
   **/
   @ApiModelProperty(value = "Returns true if font is embedded.")
-  public Boolean isIsEmbedded() {
+  public Boolean getIsEmbedded() {
     return isEmbedded;
   }
 
   public void setIsEmbedded(Boolean isEmbedded) {
     this.isEmbedded = isEmbedded;
+  }
+
+  public FontData isCustom(Boolean isCustom) {
+    this.isCustom = isCustom;
+    return this;
+  }
+
+   /**
+   * Returns true for a custom font (contained in fontsFolder directory).
+   * @return isCustom
+  **/
+  @ApiModelProperty(value = "Returns true for a custom font (contained in fontsFolder directory).")
+  public Boolean getIsCustom() {
+    return isCustom;
+  }
+
+  public void setIsCustom(Boolean isCustom) {
+    this.isCustom = isCustom;
   }
 
 
@@ -102,12 +123,12 @@ public class FontData {
       return false;
     }
     FontData fontData = (FontData) o;
-    return true && Objects.equals(this.fontName, fontData.fontName) && Objects.equals(this.isEmbedded, fontData.isEmbedded);
+    return true && Objects.equals(this.fontName, fontData.fontName) && Objects.equals(this.isEmbedded, fontData.isEmbedded) && Objects.equals(this.isCustom, fontData.isCustom);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(fontName, isEmbedded);
+    return Objects.hash(fontName, isEmbedded, isCustom);
   }
 
 
@@ -118,6 +139,7 @@ public class FontData {
     
     sb.append("    fontName: ").append(toIndentedString(fontName)).append("\n");
     sb.append("    isEmbedded: ").append(toIndentedString(isEmbedded)).append("\n");
+    sb.append("    isCustom: ").append(toIndentedString(isCustom)).append("\n");
     sb.append("}");
     return sb.toString();
   }

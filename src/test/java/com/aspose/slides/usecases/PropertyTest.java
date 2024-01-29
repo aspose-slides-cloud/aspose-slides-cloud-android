@@ -156,7 +156,7 @@ public class PropertyTest extends ApiTest {
         testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         ProtectionProperties protectionProperties = testSlidesApi.deleteProtection(fileName, password, folderName, null);
         assertFalse(protectionProperties.isReadOnlyRecommended());
-        assertFalse(protectionProperties.isIsEncrypted());
+        assertFalse(protectionProperties.getIsEncrypted());
         assertNull(protectionProperties.getReadPassword());
     }
 
@@ -201,11 +201,11 @@ public class PropertyTest extends ApiTest {
     public void protectionCheckTest() throws ApiException, IOException {
         testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         ProtectionProperties protectionProperties = testSlidesApi.getProtectionProperties(fileName, null, folderName, null);
-        Assert.assertTrue(protectionProperties.isIsEncrypted());
+        Assert.assertTrue(protectionProperties.getIsEncrypted());
         Assert.assertNull(protectionProperties.getReadPassword());
 
         protectionProperties = testSlidesApi.getProtectionProperties(fileName, password, folderName, null);
-        Assert.assertTrue(protectionProperties.isIsEncrypted());
+        Assert.assertTrue(protectionProperties.getIsEncrypted());
         Assert.assertNotNull(protectionProperties.getReadPassword());
     }
 

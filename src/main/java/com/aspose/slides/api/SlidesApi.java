@@ -18153,6 +18153,123 @@ public class SlidesApi {
         return call;
     }
     /**
+     * Build call for getAvailableFonts
+     * @param fontsFolder Storage folder for custom fonts. 
+     * @param storage Storage for custom fonts. 
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call getAvailableFontsCall(String fontsFolder, String storage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object postBody = null;
+
+        // create path and map variables
+        String methodPath = "/slides/fonts/available"
+            ;
+
+        List<Pair> queryParams = new ArrayList<Pair>();
+        apiClient.addQueryParameter(queryParams, "fontsFolder", fontsFolder);
+        apiClient.addQueryParameter(queryParams, "storage", storage);
+
+        Map<String, String> headerParams = new HashMap<String, String>();
+
+        Map<String, Object> formParams = new LinkedHashMap<String, Object>();
+
+        final String[] accepts = {
+            "application/json"
+        };
+        final String accept = apiClient.selectHeaderAccept(accepts);
+        if (accept != null) headerParams.put("Accept", accept);
+
+        final String[] contentTypes = {
+            "application/json"
+        };
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
+        headerParams.put("Content-Type", contentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+        return apiClient.buildCall(methodPath, "GET", queryParams, postBody, headerParams, formParams, progressRequestListener);
+    }
+
+    /**
+     * Returns presentation fonts info.
+     * 
+     * @param fontsFolder Storage folder for custom fonts. 
+     * @param storage Storage for custom fonts. 
+     * @return FontsData
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public FontsData getAvailableFonts(String fontsFolder, String storage) throws ApiException {
+        try {
+            ApiResponse<FontsData> resp = getAvailableFontsWithHttpInfo(fontsFolder, storage);
+            return resp.getData();
+        } catch (NeedRepeatRequestException e) {
+            ApiResponse<FontsData> resp = getAvailableFontsWithHttpInfo(fontsFolder, storage);
+            return resp.getData();
+        }
+    }
+
+    /**
+     * Returns presentation fonts info.
+     * 
+     * @param fontsFolder Storage folder for custom fonts. 
+     * @param storage Storage for custom fonts. 
+     * @return ApiResponse&lt;FontsData&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<FontsData> getAvailableFontsWithHttpInfo(String fontsFolder, String storage) throws ApiException {
+        com.squareup.okhttp.Call call = getAvailableFontsCall(fontsFolder, storage, null, null);
+        Type returnType = new TypeToken<FontsData>(){}.getType();
+        return apiClient.execute(call, returnType);
+    }
+
+    /**
+     * Returns presentation fonts info. (asynchronously)
+     * 
+     * @param fontsFolder Storage folder for custom fonts. 
+     * @param storage Storage for custom fonts. 
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call getAvailableFontsAsync(String fontsFolder, String storage, final ApiCallback<FontsData> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = getAvailableFontsCall(fontsFolder, storage, progressListener, progressRequestListener);
+        Type returnType = new TypeToken<FontsData>(){}.getType();
+        apiClient.executeAsync(call, returnType, callback);
+        return call;
+    }
+    /**
      * Build call for getBackground
      * @param name Document name. (required)
      * @param slideIndex Slide index. (required)

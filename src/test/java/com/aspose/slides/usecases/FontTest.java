@@ -43,6 +43,13 @@ import static org.junit.Assert.*;
 
 public class FontTest extends ApiTest {
     @Test
+    public void fontsGetAvailableTest() throws ApiException, IOException {
+        FontsData response = testSlidesApi.getAvailableFonts(null, null);
+        assertTrue(response.getList().size() > 1);
+        assertTrue(response.getList().get(0).getIsCustom() == null);
+    }
+
+    @Test
     public void fontsGetTest() throws ApiException, IOException {
         testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         FontsData response = testSlidesApi.getFonts(fileName, password, folderName, null);
@@ -60,9 +67,9 @@ public class FontTest extends ApiTest {
     public void fontEmbeddedSetTest() throws ApiException, IOException {
         testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         FontsData response = testSlidesApi.setEmbeddedFont(fileName, c_fontName, false, password, folderName, null, null);
-        assertNull(response.getList().get(0).isIsEmbedded());
-        assertEquals(true, response.getList().get(1).isIsEmbedded());
-        assertEquals(true, response.getList().get(2).isIsEmbedded());
+        assertNull(response.getList().get(0).getIsEmbedded());
+        assertEquals(true, response.getList().get(1).getIsEmbedded());
+        assertEquals(true, response.getList().get(2).getIsEmbedded());
         assertEquals(c_fontName, response.getList().get(2).getFontName());
     }
 
@@ -78,9 +85,9 @@ public class FontTest extends ApiTest {
         testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         byte[] fontFile = Files.readAllBytes(Paths.get(testDataFolderName + "/" + c_fontFileName));
         FontsData response = testSlidesApi.setEmbeddedFontFromRequest(fontFile, fileName, false, password, folderName, null);
-        assertNull(response.getList().get(0).isIsEmbedded());
-        assertEquals(true, response.getList().get(1).isIsEmbedded());
-        assertEquals(true, response.getList().get(2).isIsEmbedded());
+        assertNull(response.getList().get(0).getIsEmbedded());
+        assertEquals(true, response.getList().get(1).getIsEmbedded());
+        assertEquals(true, response.getList().get(2).getIsEmbedded());
         assertEquals(c_fontName, response.getList().get(2).getFontName());
     }
 
@@ -96,7 +103,7 @@ public class FontTest extends ApiTest {
     public void fontEmbeddedCompressTest() throws ApiException, IOException {
         testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         FontsData response = testSlidesApi.setEmbeddedFont(fileName, c_fontName, false, password, folderName, null, null);
-        assertEquals(true, response.getList().get(2).isIsEmbedded());
+        assertEquals(true, response.getList().get(2).getIsEmbedded());
         //In a real world example, you would rather get the same result by calling SetEmbeddedFont with onlyUsed = true
         testSlidesApi.compressEmbeddedFonts(fileName, password, folderName, null);
     }
@@ -120,9 +127,9 @@ public class FontTest extends ApiTest {
     public void fontEmbeddedDeleteTest() throws ApiException, IOException {
         testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         FontsData response = testSlidesApi.setEmbeddedFont(fileName, c_fontName, false, password, folderName, null, null);
-        assertEquals(true, response.getList().get(2).isIsEmbedded());
+        assertEquals(true, response.getList().get(2).getIsEmbedded());
         response = testSlidesApi.deleteEmbeddedFont(fileName, c_fontName, password, folderName, null);
-        assertEquals(null, response.getList().get(2).isIsEmbedded());
+        assertEquals(null, response.getList().get(2).getIsEmbedded());
     }
 
     @Test
@@ -143,7 +150,7 @@ public class FontTest extends ApiTest {
     public void fontReplaceTest() throws ApiException, IOException {
         testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         FontsData response = testSlidesApi.replaceFont(fileName, c_fontName, c_fontNameTimes, true, password, folderName, null, null);
-        assertEquals(true, response.getList().get(2).isIsEmbedded());
+        assertEquals(true, response.getList().get(2).getIsEmbedded());
         assertEquals(c_fontNameTimes, response.getList().get(2).getFontName());
     }
 

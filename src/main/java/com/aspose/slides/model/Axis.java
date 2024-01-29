@@ -696,7 +696,7 @@ public class Axis {
    * @return isVisible
   **/
   @ApiModelProperty(value = "True if the axis is visible")
-  public Boolean isIsVisible() {
+  public Boolean getIsVisible() {
     return isVisible;
   }
 
@@ -786,7 +786,7 @@ public class Axis {
    * @return isAutomaticMajorUnit
   **/
   @ApiModelProperty(value = "True the major unit of the axis is automatically assigned")
-  public Boolean isIsAutomaticMajorUnit() {
+  public Boolean getIsAutomaticMajorUnit() {
     return isAutomaticMajorUnit;
   }
 
@@ -858,7 +858,7 @@ public class Axis {
    * @return isAutomaticMinorUnit
   **/
   @ApiModelProperty(value = "True the minor unit of the axis is automatically assigned")
-  public Boolean isIsAutomaticMinorUnit() {
+  public Boolean getIsAutomaticMinorUnit() {
     return isAutomaticMinorUnit;
   }
 
@@ -930,7 +930,7 @@ public class Axis {
    * @return isAutomaticMaxValue
   **/
   @ApiModelProperty(value = "True if the max value is automatically assigned")
-  public Boolean isIsAutomaticMaxValue() {
+  public Boolean getIsAutomaticMaxValue() {
     return isAutomaticMaxValue;
   }
 
@@ -966,7 +966,7 @@ public class Axis {
    * @return isAutomaticMinValue
   **/
   @ApiModelProperty(value = "True if the min value is automatically assigned")
-  public Boolean isIsAutomaticMinValue() {
+  public Boolean getIsAutomaticMinValue() {
     return isAutomaticMinValue;
   }
 
@@ -1002,7 +1002,7 @@ public class Axis {
    * @return isLogarithmic
   **/
   @ApiModelProperty(value = "True if the value axis scale type is logarithmic")
-  public Boolean isIsLogarithmic() {
+  public Boolean getIsLogarithmic() {
     return isLogarithmic;
   }
 
@@ -1092,7 +1092,7 @@ public class Axis {
    * @return isPlotOrderReversed
   **/
   @ApiModelProperty(value = "True if MS PowerPoint plots data points from last to first")
-  public Boolean isIsPlotOrderReversed() {
+  public Boolean getIsPlotOrderReversed() {
     return isPlotOrderReversed;
   }
 
@@ -1110,7 +1110,7 @@ public class Axis {
    * @return isNumberFormatLinkedToSource
   **/
   @ApiModelProperty(value = "True if the format is linked to source data")
-  public Boolean isIsNumberFormatLinkedToSource() {
+  public Boolean getIsNumberFormatLinkedToSource() {
     return isNumberFormatLinkedToSource;
   }
 
@@ -1182,7 +1182,7 @@ public class Axis {
    * @return isAutomaticTickMarksSpacing
   **/
   @ApiModelProperty(value = "True for automatic tick marks spacing value")
-  public Boolean isIsAutomaticTickMarksSpacing() {
+  public Boolean getIsAutomaticTickMarksSpacing() {
     return isAutomaticTickMarksSpacing;
   }
 
@@ -1218,7 +1218,7 @@ public class Axis {
    * @return isAutomaticTickLabelSpacing
   **/
   @ApiModelProperty(value = "True for automatic tick label spacing value")
-  public Boolean isIsAutomaticTickLabelSpacing() {
+  public Boolean getIsAutomaticTickLabelSpacing() {
     return isAutomaticTickLabelSpacing;
   }
 

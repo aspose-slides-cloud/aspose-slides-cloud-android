@@ -86,7 +86,7 @@ public class FileVersion extends StorageFile {
    * @return isLatest
   **/
   @ApiModelProperty(required = true, value = "Specifies whether the file is (true) or is not (false) the latest version of an file.")
-  public Boolean isIsLatest() {
+  public Boolean getIsLatest() {
     return isLatest;
   }
 

@@ -50,8 +50,8 @@ public class HeaderFooterTest extends ApiTest {
         assertNotNull(document);
         HeaderFooter headerFooter = testSlidesApi.getSlideHeaderFooter(fileName, c_slideIndex, password, folderName, null);
         assertNotNull(headerFooter);
-        assertTrue(headerFooter.isIsFooterVisible());
-        assertFalse(headerFooter.isIsDateTimeVisible());
+        assertTrue(headerFooter.getIsFooterVisible());
+        assertFalse(headerFooter.getIsDateTimeVisible());
     }
 
     @Test
@@ -64,12 +64,12 @@ public class HeaderFooterTest extends ApiTest {
         dto.setIsDateTimeVisible(false);
         HeaderFooter headerFooter = testSlidesApi.setSlideHeaderFooter(fileName, c_slideIndex, dto, password, folderName, null);
         assertNotNull(headerFooter);
-        assertTrue(headerFooter.isIsFooterVisible());
-        assertFalse(headerFooter.isIsDateTimeVisible());
+        assertTrue(headerFooter.getIsFooterVisible());
+        assertFalse(headerFooter.getIsDateTimeVisible());
         headerFooter = testSlidesApi.getSlideHeaderFooter(fileName, c_slideIndex, password, folderName, null);
         assertNotNull(headerFooter);
-        assertTrue(headerFooter.isIsFooterVisible());
-        assertFalse(headerFooter.isIsDateTimeVisible());
+        assertTrue(headerFooter.getIsFooterVisible());
+        assertFalse(headerFooter.getIsDateTimeVisible());
     }
 
     @Test
@@ -82,12 +82,12 @@ public class HeaderFooterTest extends ApiTest {
         dto.setIsDateTimeVisible(false);
         NotesSlideHeaderFooter headerFooter = testSlidesApi.setNotesSlideHeaderFooter(fileName, c_slideIndex, dto, password, folderName, null);
         assertNotNull(headerFooter);
-        assertTrue(headerFooter.isIsHeaderVisible());
-        assertFalse(headerFooter.isIsDateTimeVisible());
+        assertTrue(headerFooter.getIsHeaderVisible());
+        assertFalse(headerFooter.getIsDateTimeVisible());
         headerFooter = testSlidesApi.getNotesSlideHeaderFooter(fileName, c_slideIndex, password, folderName, null);
         assertNotNull(headerFooter);
-        assertTrue(headerFooter.isIsHeaderVisible());
-        assertFalse(headerFooter.isIsDateTimeVisible());
+        assertTrue(headerFooter.getIsHeaderVisible());
+        assertFalse(headerFooter.getIsDateTimeVisible());
     }
 
     private final int c_slideIndex = 1;

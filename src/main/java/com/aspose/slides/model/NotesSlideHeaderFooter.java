@@ -84,7 +84,7 @@ public class NotesSlideHeaderFooter extends ResourceBase {
    * @return isDateTimeVisible
   **/
   @ApiModelProperty(value = "True if date is displayed in the footer")
-  public Boolean isIsDateTimeVisible() {
+  public Boolean getIsDateTimeVisible() {
     return isDateTimeVisible;
   }
 
@@ -120,7 +120,7 @@ public class NotesSlideHeaderFooter extends ResourceBase {
    * @return isFooterVisible
   **/
   @ApiModelProperty(value = "True if footer is displayed")
-  public Boolean isIsFooterVisible() {
+  public Boolean getIsFooterVisible() {
     return isFooterVisible;
   }
 
@@ -156,7 +156,7 @@ public class NotesSlideHeaderFooter extends ResourceBase {
    * @return isHeaderVisible
   **/
   @ApiModelProperty(value = "True if header is displayed")
-  public Boolean isIsHeaderVisible() {
+  public Boolean getIsHeaderVisible() {
     return isHeaderVisible;
   }
 
@@ -192,7 +192,7 @@ public class NotesSlideHeaderFooter extends ResourceBase {
    * @return isSlideNumberVisible
   **/
   @ApiModelProperty(value = "True if slide number is displayed in the footer")
-  public Boolean isIsSlideNumberVisible() {
+  public Boolean getIsSlideNumberVisible() {
     return isSlideNumberVisible;
   }
 

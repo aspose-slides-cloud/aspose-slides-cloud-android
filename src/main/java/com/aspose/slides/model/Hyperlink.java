@@ -215,7 +215,7 @@ public class Hyperlink {
    * @return isDisabled
   **/
   @ApiModelProperty(value = "If true Hypelink is not applied. ")
-  public Boolean isIsDisabled() {
+  public Boolean getIsDisabled() {
     return isDisabled;
   }
 

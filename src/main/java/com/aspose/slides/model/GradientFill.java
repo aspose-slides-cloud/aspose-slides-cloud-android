@@ -324,7 +324,7 @@ public class GradientFill extends FillFormat {
    * @return isScaled
   **/
   @ApiModelProperty(required = true, value = "True if the gradient is scaled.")
-  public Boolean isIsScaled() {
+  public Boolean getIsScaled() {
     return isScaled;
   }
 

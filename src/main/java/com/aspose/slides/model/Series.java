@@ -420,7 +420,7 @@ public class Series {
    * @return isColorVaried
   **/
   @ApiModelProperty(value = "True if each data marker in the series has a different color.")
-  public Boolean isIsColorVaried() {
+  public Boolean getIsColorVaried() {
     return isColorVaried;
   }
 

@@ -84,7 +84,7 @@ public class ObjectExist {
    * @return isFolder
   **/
   @ApiModelProperty(required = true, value = "True if it is a folder, false if it is a file.")
-  public Boolean isIsFolder() {
+  public Boolean getIsFolder() {
     return isFolder;
   }
 

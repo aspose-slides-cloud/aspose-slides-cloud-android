@@ -671,7 +671,7 @@ public class SmartArt extends ShapeBase {
    * @return isReversed
   **/
   @ApiModelProperty(required = true, value = "The state of the SmartArt diagram with regard to (left-to-right) LTR or (right-to-left) RTL, if the diagram supports reversal.")
-  public Boolean isIsReversed() {
+  public Boolean getIsReversed() {
     return isReversed;
   }
 
