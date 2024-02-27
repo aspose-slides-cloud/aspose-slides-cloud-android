@@ -204,14 +204,14 @@ public class MasterSlideTest extends ApiTest {
     }
 
     @Test
-    public void masterSlideDeleteUnusedTest() throws ApiException, IOException{
+    public void deleteUnusedMasterSlidesTest() throws ApiException, IOException{
         testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         MasterSlides result = (MasterSlides) testSlidesApi.deleteUnusedMasterSlides(fileName, true, password, folderName, null);
         assertEquals(1, result.getSlideList().size());
     }
 
     @Test
-    public void masterSlideDeleteUnusedOnlineTest() throws ApiException, IOException{
+    public void deleteUnusedMasterSlidesOnlineTest() throws ApiException, IOException{
         byte[] document = Files.readAllBytes(Paths.get(testDataFolderName + "/" + fileName));
         File response = testSlidesApi.deleteUnusedMasterSlidesOnline(document, true, password);
         assertNotNull(response);

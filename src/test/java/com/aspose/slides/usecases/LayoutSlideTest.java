@@ -233,7 +233,7 @@ public class LayoutSlideTest extends ApiTest {
     }
 
     @Test
-    public void layoutSlideDeleteUnusedTest() throws ApiException, IOException{
+    public void deleteUnusedLayoutSlidesTest() throws ApiException, IOException{
         testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         LayoutSlides layoutSlidesBefore = (LayoutSlides)testSlidesApi.getLayoutSlides(fileName, password, folderName, null);
         assertEquals(c_slidesCount, layoutSlidesBefore.getSlideList().size());
@@ -242,7 +242,7 @@ public class LayoutSlideTest extends ApiTest {
     }
 
     @Test
-    public void layoutSlideDeleteUnusedOnlineTest() throws ApiException, IOException{
+    public void deleteUnusedLayoutSlidesOnlineTest() throws ApiException, IOException{
         byte[] document = Files.readAllBytes(Paths.get(testDataFolderName + "/" + fileName));
         File response = testSlidesApi.deleteUnusedLayoutSlidesOnline(document, password);
         assertNotNull(response);

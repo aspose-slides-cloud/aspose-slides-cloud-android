@@ -40,7 +40,7 @@ import org.junit.Test;
  */
 public class SectionTest extends ApiTest {
     @Test
-    public void sectionsGetTest() throws ApiException, IOException {
+    public void getSectionsTest() throws ApiException, IOException {
         testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         Sections sections = testSlidesApi.getSections(fileName, password, folderName, null);
         assertNotNull(sections);
@@ -48,7 +48,7 @@ public class SectionTest extends ApiTest {
     }
 
     @Test
-    public void sectionsPutTest() throws ApiException, IOException {
+    public void setSectionsTest() throws ApiException, IOException {
         testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         Sections dto = new Sections();
         List<Section> sectionList = new ArrayList<Section>();
@@ -70,7 +70,7 @@ public class SectionTest extends ApiTest {
     }
 
     @Test
-    public void sectionPostTest() throws ApiException, IOException {
+    public void createSectionTest() throws ApiException, IOException {
         testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         Sections sections = testSlidesApi.createSection(fileName, "NewSection", 5, password, folderName, null);
         assertNotNull(sections);
@@ -78,7 +78,7 @@ public class SectionTest extends ApiTest {
     }
 
     @Test
-    public void sectionPutTest() throws ApiException, IOException {
+    public void updateSectionTest() throws ApiException, IOException {
         final String sectionName = "NewSection";
         testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         Sections sections = testSlidesApi.updateSection(fileName, 2, sectionName, password, folderName, null);
@@ -88,7 +88,7 @@ public class SectionTest extends ApiTest {
     }
 
     @Test
-    public void sectionMoveTest() throws ApiException, IOException {
+    public void moveSectionTest() throws ApiException, IOException {
         testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         Sections sections = testSlidesApi.moveSection(fileName, 1, 2, password, folderName, null);
         assertNotNull(sections);
@@ -96,7 +96,7 @@ public class SectionTest extends ApiTest {
     }
 
     @Test
-    public void sectionsClearTest() throws ApiException, IOException {
+    public void clearSectionsTest() throws ApiException, IOException {
         testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         Sections sections = testSlidesApi.deleteSections(fileName, null, null, password, folderName, null);
         assertNotNull(sections);
@@ -104,7 +104,7 @@ public class SectionTest extends ApiTest {
     }
 
     @Test
-    public void sectionsDeleteTest() throws ApiException, IOException {
+    public void deleteSectionsTest() throws ApiException, IOException {
         testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         List<Integer> indexes = new ArrayList<Integer>();
         indexes.add(2);
@@ -115,7 +115,7 @@ public class SectionTest extends ApiTest {
     }
 
     @Test
-    public void sectionDeleteTest() throws ApiException, IOException {
+    public void deleteSectionTest() throws ApiException, IOException {
         testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         Sections sections = testSlidesApi.deleteSection(fileName, 2, null, password, folderName, null);
         assertNotNull(sections);

@@ -6,6 +6,7 @@ import com.aspose.slides.model.SlideComment;
 import com.aspose.slides.model.SlideCommentBase;
 import com.aspose.slides.model.SlideComments;
 import com.aspose.slides.model.SlideModernComment;
+import com.aspose.slides.model.CommentAuthors;
 import org.junit.Test;
 
 import java.io.File;
@@ -93,7 +94,7 @@ public class CommentTest extends ApiTest {
     }
 
     @Test
-    public void createModernCommentTestTest() throws ApiException, IOException {
+    public void createModernCommentTest() throws ApiException, IOException {
         testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         int textSelectionStartIndex = 1;
         int textSelectionLength = 5;
@@ -115,7 +116,7 @@ public class CommentTest extends ApiTest {
     }
 
     @Test
-    public void createShapeModernCommentTest() throws ApiException, IOException {
+    public void createModernCommentShapeTest() throws ApiException, IOException {
         testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         int textSelectionStartIndex = 1;
         int textSelectionLength = 5;
@@ -134,6 +135,13 @@ public class CommentTest extends ApiTest {
         SlideComments response = (SlideComments)testSlidesApi.createComment(fileName, 3, comment, c_shapeIndex, password, folderName, null);
         assertEquals(1, response.getList().size());
         assertTrue(response.getList().get(0) instanceof SlideModernComment);
+    }
+
+    @Test
+    public void getCommentAuthorsTest() throws ApiException, IOException {
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        CommentAuthors response = testSlidesApi.getCommentAuthors(fileName, password, folderName, null);
+        assertEquals(1, response.getList().size());
     }
 
     private static final String c_author = "Test author";

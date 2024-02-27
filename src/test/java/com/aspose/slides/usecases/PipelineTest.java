@@ -51,7 +51,7 @@ public class PipelineTest extends ApiTest {
      * @throws java.io.IOException
      */
     @Test
-    public void pipelineTest() throws ApiException, IOException {
+    public void templateInputTest() throws ApiException, IOException {
         RequestInputFile file1 = new RequestInputFile();
         file1.setIndex(0);
 

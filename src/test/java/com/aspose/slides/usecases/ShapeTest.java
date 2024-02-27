@@ -719,7 +719,7 @@ public class ShapeTest extends ApiTest {
     }
 
     @Test
-    public void ImportFromSvgTest() throws ApiException, IOException {
+    public void importShapesFromSvgTest() throws ApiException, IOException {
         testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         int slideIndex = 5;
         testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
@@ -731,7 +731,7 @@ public class ShapeTest extends ApiTest {
     }
 
     @Test
-    public void CreateSmartArtNodeTest() throws ApiException, IOException {
+    public void createSmartArtNodeTest() throws ApiException, IOException {
         testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         int slideIndex = 7;
         String newNodeText = "New root node";
@@ -742,7 +742,7 @@ public class ShapeTest extends ApiTest {
     }
 
     @Test
-    public void CreateSmartArtSubNodeTest() throws ApiException, IOException {
+    public void createSmartArtSubNodeTest() throws ApiException, IOException {
         testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         int slideIndex = 7;
         String newSubNodeText = "New sub-node";
@@ -755,7 +755,7 @@ public class ShapeTest extends ApiTest {
     }
 
     @Test
-    public void CreateSmartArtSubSubNodeTest() throws ApiException, IOException {
+    public void createSmartArtSubSubNodeTest() throws ApiException, IOException {
         testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         int slideIndex = 7;
         String newSubNodeText = "New sub-sub-node";
@@ -767,7 +767,7 @@ public class ShapeTest extends ApiTest {
     }
 
     @Test
-    public void DeleteSmartArtNodeTest() throws ApiException, IOException {
+    public void deleteSmartArtNodeTest() throws ApiException, IOException {
         int slideIndex = 7;
         int smartArtIndex = 2;
         int nodeIndex = 1;
@@ -776,7 +776,7 @@ public class ShapeTest extends ApiTest {
     }
 
     @Test
-    public void DeleteSmartArtSubNodeTest() throws ApiException, IOException {
+    public void deleteSmartArtSubNodeTest() throws ApiException, IOException {
         int slideIndex = 7;
         int nodeIndex = 1;
         String subNodePath = "2";

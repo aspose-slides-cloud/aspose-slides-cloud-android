@@ -47,7 +47,7 @@ import static org.junit.Assert.assertTrue;
  */
 public class MergeTest extends ApiTest {
     @Test
-    public void mergeStorageTest() throws ApiException, IOException {
+    public void mergeTest() throws ApiException, IOException {
         testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         testSlidesApi.copyFile(tempFolderName + "/" + c_fileName2, folderName + "/" + c_fileName2, null, null, null);
         testSlidesApi.copyFile(tempFolderName + "/" + c_fileNamePdf, folderName + "/" + c_fileNamePdf, null, null, null);
@@ -60,7 +60,7 @@ public class MergeTest extends ApiTest {
     }
 
     @Test
-    public void mergeOrderedStorageTest() throws ApiException, IOException {
+    public void orderedMergeTest() throws ApiException, IOException {
         testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         testSlidesApi.copyFile(tempFolderName + "/" + c_fileName2, folderName + "/" + c_fileName2, null, null, null);
         OrderedMergeRequest request = new OrderedMergeRequest();
@@ -72,7 +72,7 @@ public class MergeTest extends ApiTest {
     }
 
     @Test
-    public void mergeRequestTest() throws ApiException, IOException {
+    public void mergeOnlineTest() throws ApiException, IOException {
         FileInfo file1 = new FileInfo();
         file1.setName(fileName);
         file1.setData(Files.readAllBytes(Paths.get(testDataFolderName + "/TemplateCV.pptx")));
@@ -84,7 +84,7 @@ public class MergeTest extends ApiTest {
     }
 
     @Test
-    public void mergeAndSaveRequestTest() throws ApiException, IOException {
+    public void mergeAndSaveOnlineTest() throws ApiException, IOException {
         FileInfo file1 = new FileInfo();
         file1.setName(fileName);
         file1.setData(Files.readAllBytes(Paths.get(testDataFolderName + "/TemplateCV.pptx")));
@@ -100,7 +100,7 @@ public class MergeTest extends ApiTest {
     }
 
     @Test
-    public void mergeOrderedRequestTest() throws ApiException, IOException {
+    public void mergeOnlineWithRequestTest() throws ApiException, IOException {
         FileInfo file1 = new FileInfo();
         file1.setName(fileName);
         file1.setData(Files.readAllBytes(Paths.get(testDataFolderName + "/" + fileName)));
@@ -122,7 +122,7 @@ public class MergeTest extends ApiTest {
     }
 
     @Test
-    public void mergeOrderedCombinedTest() throws ApiException, IOException {
+    public void mergeOnlineCombinedTest() throws ApiException, IOException {
         testSlidesApi.copyFile(tempFolderName + "/" + c_fileName2, folderName + "/" + c_fileName2, null, null, null);
         FileInfo file1 = new FileInfo();
         file1.setName(fileName);
@@ -142,7 +142,7 @@ public class MergeTest extends ApiTest {
     }
 
     @Test
-    public void MergeOrderedUrl() throws ApiException, IOException {
+    public void MergeOnlineUrl() throws ApiException, IOException {
         testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
 
         OrderedMergeRequest request = new OrderedMergeRequest();

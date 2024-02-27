@@ -45,7 +45,7 @@ public class AbstractClassTest extends ApiTest {
      * @throws java.io.IOException
      */
     @Test
-    public void shapeTest() throws ApiException, IOException {
+    public void shapeTypeTest() throws ApiException, IOException {
         testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         ShapeBase shape = testSlidesApi.getShape(fileName, 1, 1, password, folderName, null, null);
         assertTrue(shape instanceof Shape);
@@ -57,7 +57,7 @@ public class AbstractClassTest extends ApiTest {
      * @throws ApiException
      */
     @Test
-    public void chartTest() throws ApiException {
+    public void chartTypeTest() throws ApiException {
         Chart chart = new Chart();
         assertTrue(chart.getType().equals(Chart.TypeEnum.CHART));
     }

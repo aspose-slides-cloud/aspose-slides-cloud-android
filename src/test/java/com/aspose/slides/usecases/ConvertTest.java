@@ -46,7 +46,7 @@ import static org.junit.Assert.assertTrue;
  */
 public class ConvertTest extends ApiTest {
     @Test
-    public void convertPostFromRequestTest() throws ApiException, IOException {
+    public void convertRequestToRequestTest() throws ApiException, IOException {
         byte[] file = Files.readAllBytes(Paths.get(testDataFolderName + "/" + fileName));
         File converted = testSlidesApi.convert(file, c_format, password, null, null, null, null);
         assertNotNull(converted);
@@ -60,7 +60,7 @@ public class ConvertTest extends ApiTest {
     }
 
     @Test
-    public void convertPutFromRequestTest() throws ApiException, IOException {
+    public void convertRequestToStorageTest() throws ApiException, IOException {
         byte[] file = Files.readAllBytes(Paths.get(testDataFolderName + "/" + fileName));
         testSlidesApi.convertAndSave(file, c_format, c_outPath, password, null, null, null, null);
         ObjectExist exists = testSlidesApi.objectExists(c_outPath, null, null);
@@ -68,7 +68,7 @@ public class ConvertTest extends ApiTest {
     }
 
     @Test
-    public void convertPostFromStorageTest() throws ApiException, IOException {
+    public void convertStorageToRequestTest() throws ApiException, IOException {
         String pdfFileName = "test.pdf";
         testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         testSlidesApi.copyFile(tempFolderName + "/" + pdfFileName, folderName + "/" + pdfFileName, null, null, null);
@@ -79,7 +79,7 @@ public class ConvertTest extends ApiTest {
     }
 
     @Test
-    public void convertPutFromStorageTest() throws ApiException, IOException {
+    public void convertStorageToStorageTest() throws ApiException, IOException {
         testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         testSlidesApi.savePresentation(fileName, c_format, c_outPath, null, password, folderName, null, null, null);
         ObjectExist exists = testSlidesApi.objectExists(c_outPath, null, null);
@@ -87,7 +87,7 @@ public class ConvertTest extends ApiTest {
     }
 
     @Test
-    public void convertWithOptionsFromRequestTest() throws ApiException, IOException {
+    public void convertRequestWithOptionsTest() throws ApiException, IOException {
         byte[] file = Files.readAllBytes(Paths.get(testDataFolderName + "/" + fileName));
         File converted1 = testSlidesApi.convert(file, c_format, password, null, null, null, null);
         PdfExportOptions options = new PdfExportOptions();
@@ -97,7 +97,7 @@ public class ConvertTest extends ApiTest {
     }
 
     @Test
-    public void convertWithOptionsFromStorageTest() throws ApiException, IOException {
+    public void convertStorageWithOptionsTest() throws ApiException, IOException {
         ExportFormat format = ExportFormat.PNG;
         testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         File converted1 = testSlidesApi.downloadPresentation(fileName, format, null, password, folderName, null, null, null);
@@ -109,7 +109,7 @@ public class ConvertTest extends ApiTest {
     }
 
     @Test
-    public void convertSlidePostFromRequestTest() throws ApiException, IOException {
+    public void convertSlideRequestToRequestTest() throws ApiException, IOException {
         byte[] file = Files.readAllBytes(Paths.get(testDataFolderName + "/" + fileName));
         File converted = testSlidesApi.downloadSlideOnline(file, c_slideIndex, c_slideFormat, null, null, password, null, null, null);
         assertNotNull(converted);
@@ -118,7 +118,7 @@ public class ConvertTest extends ApiTest {
     }
 
     @Test
-    public void convertSlidePutFromRequestTest() throws ApiException, IOException {
+    public void convertSlideRequestToStorageTest() throws ApiException, IOException {
         byte[] file = Files.readAllBytes(Paths.get(testDataFolderName + "/" + fileName));
         testSlidesApi.saveSlideOnline(file, c_slideIndex, c_slideFormat, c_outPath, null, null, password, null, null, null);
         ObjectExist exists = testSlidesApi.objectExists(c_outPath, null, null);
@@ -126,7 +126,7 @@ public class ConvertTest extends ApiTest {
     }
 
     @Test
-    public void convertSlidePostFromStorageTest() throws ApiException, IOException {
+    public void convertSlideStorageToRequestTest() throws ApiException, IOException {
         testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         File converted = testSlidesApi.downloadSlide(fileName, c_slideIndex, c_slideFormat, null, null, null, password, folderName, null, null);
         assertNotNull(converted);
@@ -135,7 +135,7 @@ public class ConvertTest extends ApiTest {
     }
 
     @Test
-    public void convertSlidePutFromStorageTest() throws ApiException, IOException {
+    public void convertSlideStorageToStorageTest() throws ApiException, IOException {
         testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         testSlidesApi.saveSlide(fileName, c_slideIndex, c_slideFormat, c_outPath, null, null, null, password, folderName, null, null);
         ObjectExist exists = testSlidesApi.objectExists(c_outPath, null, null);
@@ -143,7 +143,7 @@ public class ConvertTest extends ApiTest {
     }
 
     @Test
-    public void convertSlideWithOptionsFromRequestTest() throws ApiException, IOException {
+    public void convertSlideRequestWithOptionsTest() throws ApiException, IOException {
         byte[] file = Files.readAllBytes(Paths.get(testDataFolderName + "/" + fileName));
         File converted1 = testSlidesApi.downloadSlideOnline(file, c_slideIndex, c_slideFormat, null, null, password, null, null, null);
         PdfExportOptions options = new PdfExportOptions();
@@ -153,7 +153,7 @@ public class ConvertTest extends ApiTest {
     }
 
     @Test
-    public void convertSlideWithOptionsFromStorageTest() throws ApiException, IOException {
+    public void convertSlideStorageWithOptionsTest() throws ApiException, IOException {
         testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         File converted1 = testSlidesApi.downloadSlide(fileName, c_slideIndex, c_slideFormat, null, null, null, password, folderName, null, null);
         PdfExportOptions options = new PdfExportOptions();
@@ -163,7 +163,7 @@ public class ConvertTest extends ApiTest {
     }
 
     @Test
-    public void convertShapePostFromRequestTest() throws ApiException, IOException {
+    public void convertShapeRequestToRequestTest() throws ApiException, IOException {
         byte[] file = Files.readAllBytes(Paths.get(testDataFolderName + "/" + fileName));
         File converted = testSlidesApi.downloadShapeOnline(file, c_slideIndex, c_shapeIndex, c_shapeFormat, null, null, null, password, null, null, null);
         assertNotNull(converted);
@@ -172,7 +172,7 @@ public class ConvertTest extends ApiTest {
     }
 
     @Test
-    public void convertShapePutFromRequestTest() throws ApiException, IOException {
+    public void convertShapeRequestToStorageTest() throws ApiException, IOException {
         byte[] file = Files.readAllBytes(Paths.get(testDataFolderName + "/" + fileName));
         testSlidesApi.saveShapeOnline(file, c_slideIndex, c_shapeIndex, c_shapeFormat, c_outPath, null, null, null, password, null, null, null);
         ObjectExist exists = testSlidesApi.objectExists(c_outPath, null, null);
@@ -180,7 +180,7 @@ public class ConvertTest extends ApiTest {
     }
 
     @Test
-    public void convertShapePostFromStorageTest() throws ApiException, IOException {
+    public void convertShapeStorageToRequestTest() throws ApiException, IOException {
         File converted = testSlidesApi.downloadShape(fileName, c_slideIndex, c_shapeIndex, c_shapeFormat,
                 null, null, null, null, password, folderName, null, null, null);
         assertNotNull(converted);
@@ -189,7 +189,7 @@ public class ConvertTest extends ApiTest {
     }
 
     @Test
-    public void convertSubShapePostFromStorageTest() throws ApiException, IOException {
+    public void convertSubShapeStorageToRequestTest() throws ApiException, IOException {
         testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         File converted = testSlidesApi.downloadShape(fileName, c_slideIndex, 4, c_shapeFormat, null, null,
                 null, null, password, folderName, null, null, "1");
@@ -199,7 +199,7 @@ public class ConvertTest extends ApiTest {
     }
 
     @Test
-    public void convertShapePutFromStorageTest() throws ApiException, IOException {
+    public void convertShapeStorageToStorageTest() throws ApiException, IOException {
         testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         testSlidesApi.saveShape(fileName, c_slideIndex, c_shapeIndex, c_shapeFormat, c_outPath, null, null, null,
                 null, password, folderName, null, null, null);
@@ -208,7 +208,7 @@ public class ConvertTest extends ApiTest {
     }
 
     @Test
-    public void convertSubShapePutFromStorageTest() throws ApiException, IOException {
+    public void convertSubShapeStorageToStorageTest() throws ApiException, IOException {
         testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         testSlidesApi.saveShape(fileName, c_slideIndex, 4, c_shapeFormat, c_outPath, null, null, null,
                 null, password, folderName, null, null, "1");

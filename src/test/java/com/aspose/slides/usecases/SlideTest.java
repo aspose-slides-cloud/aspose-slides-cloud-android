@@ -107,7 +107,7 @@ public class SlideTest extends ApiTest {
     }
 
     @Test
-    public void deleteSlidesIndexesTest() throws ApiException, IOException {
+    public void deleteSlidesByIndexesTest() throws ApiException, IOException {
         testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
 
         ArrayList indexes = new ArrayList(Arrays.asList(1,3,5));

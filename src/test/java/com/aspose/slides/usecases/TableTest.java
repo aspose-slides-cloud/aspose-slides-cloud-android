@@ -72,7 +72,7 @@ public class TableTest extends ApiTest {
     }
 
     @Test
-    public void mergeTableCell() throws ApiException, IOException {
+    public void mergeTableCells() throws ApiException, IOException {
         testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
 
         TableCellMergeOptions dto = new TableCellMergeOptions();

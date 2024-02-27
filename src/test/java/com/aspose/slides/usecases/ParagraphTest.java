@@ -123,7 +123,7 @@ public class ParagraphTest extends ApiTest {
     }
 
     @Test
-    public void deleteParagraphsIndexesTest() throws ApiException, IOException {
+    public void deleteParagraphsByIndexesTest() throws ApiException, IOException {
         testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         Paragraphs response = testSlidesApi.deleteParagraphs(fileName, c_slideIndex, c_shapeIndex, new ArrayList<Integer>(Arrays.asList(2)),
                 password, folderName, null, null);
@@ -138,7 +138,7 @@ public class ParagraphTest extends ApiTest {
     }
 
     @Test
-    public void deleteSubShapeParagraphsIndexesTest() throws ApiException, IOException {
+    public void deleteSubShapeParagraphsByIndexesTest() throws ApiException, IOException {
         testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         Paragraphs response = testSlidesApi.deleteParagraphs(fileName, c_slideIndex, 3, new ArrayList<Integer>(Arrays.asList(1)),
                 password, folderName, null, "1");
@@ -160,7 +160,7 @@ public class ParagraphTest extends ApiTest {
     }
 
     @Test
-    public void getParagraphRectTest() throws ApiException, IOException {
+    public void getParagraphRectangleTest() throws ApiException, IOException {
         testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         TextBounds response = testSlidesApi.getParagraphRectangle(fileName, c_slideIndex, c_shapeIndex, 1, password, folderName, null);
         assertNotNull(response);

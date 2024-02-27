@@ -45,7 +45,7 @@ import static org.junit.Assert.assertTrue;
  */
 public class SplitTest extends ApiTest {
     @Test
-    public void splitStorageTest() throws ApiException, IOException {
+    public void splitTest() throws ApiException, IOException {
         testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         SplitDocumentResult result = testSlidesApi.split(fileName, null, null, null, null, null, null, null, password, folderName, null, null);
         SplitDocumentResult resultFromTo = testSlidesApi.split(fileName, null, null, null, null, 2, 3, null, password, folderName, null, null);
@@ -58,7 +58,7 @@ public class SplitTest extends ApiTest {
     }
 
     @Test
-    public void splitRequestTest() throws ApiException, IOException {
+    public void splitOnlineTest() throws ApiException, IOException {
         byte[] file = Files.readAllBytes(Paths.get(testDataFolderName + "/" + fileName));
         File result = testSlidesApi.splitOnline(file, SlideExportFormat.PNG, null, null, null, null, password, null, null, null);
         File resultFromTo = testSlidesApi.splitOnline(file, SlideExportFormat.PNG, null, null, 2, 3, password, null, null, null);
@@ -72,7 +72,7 @@ public class SplitTest extends ApiTest {
     }
 
     @Test
-    public void splitAndSaveRequestTest() throws ApiException, IOException {
+    public void splitAndSaveOnlineTest() throws ApiException, IOException {
         byte[] file = Files.readAllBytes(Paths.get(testDataFolderName + "/" + fileName));
         SplitDocumentResult result = testSlidesApi.splitAndSaveOnline(file, SlideExportFormat.PNG, null, null, null, null, null, password, null, null, null);
         SplitDocumentResult resultFromTo = testSlidesApi.splitAndSaveOnline(file, SlideExportFormat.PNG, null, null, null, 2, 3, password, null, null, null);

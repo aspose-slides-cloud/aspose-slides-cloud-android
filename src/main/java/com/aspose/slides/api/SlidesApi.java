@@ -50,6 +50,7 @@ import com.aspose.slides.model.ChartCategory;
 import com.aspose.slides.model.ChartSeriesGroup;
 import com.aspose.slides.model.ChartWall;
 import com.aspose.slides.model.ColorScheme;
+import com.aspose.slides.model.CommentAuthors;
 import com.aspose.slides.model.DataPoint;
 import com.aspose.slides.model.DiscUsage;
 import com.aspose.slides.model.Document;
@@ -18544,6 +18545,137 @@ public class SlidesApi {
 
         com.squareup.okhttp.Call call = getColorSchemeCall(name, slideIndex, password, folder, storage, progressListener, progressRequestListener);
         Type returnType = new TypeToken<ColorScheme>(){}.getType();
+        apiClient.executeAsync(call, returnType, callback);
+        return call;
+    }
+    /**
+     * Build call for getCommentAuthors
+     * @param name Document name. (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call getCommentAuthorsCall(String name, String password, String folder, String storage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        // verify the required parameter 'name' is set
+        if (name == null) {
+            throw new ApiException("Missing the required parameter 'name' when calling getCommentAuthors(Async)");
+        }
+        Object postBody = null;
+
+        // create path and map variables
+        String methodPath = "/slides/{name}/comments/authors"
+            .replaceAll("\\{" + "name" + "\\}", apiClient.objectToString(name));
+
+        List<Pair> queryParams = new ArrayList<Pair>();
+        apiClient.addQueryParameter(queryParams, "folder", folder);
+        apiClient.addQueryParameter(queryParams, "storage", storage);
+
+        Map<String, String> headerParams = new HashMap<String, String>();
+        if (password != null)
+        headerParams.put("password", apiClient.parameterToString(password));
+
+        Map<String, Object> formParams = new LinkedHashMap<String, Object>();
+
+        final String[] accepts = {
+            "application/json"
+        };
+        final String accept = apiClient.selectHeaderAccept(accepts);
+        if (accept != null) headerParams.put("Accept", accept);
+
+        final String[] contentTypes = {
+            "application/json"
+        };
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
+        headerParams.put("Content-Type", contentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+        return apiClient.buildCall(methodPath, "GET", queryParams, postBody, headerParams, formParams, progressRequestListener);
+    }
+
+    /**
+     * Lists comment authors.
+     * 
+     * @param name Document name. (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @return CommentAuthors
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public CommentAuthors getCommentAuthors(String name, String password, String folder, String storage) throws ApiException {
+        try {
+            ApiResponse<CommentAuthors> resp = getCommentAuthorsWithHttpInfo(name, password, folder, storage);
+            return resp.getData();
+        } catch (NeedRepeatRequestException e) {
+            ApiResponse<CommentAuthors> resp = getCommentAuthorsWithHttpInfo(name, password, folder, storage);
+            return resp.getData();
+        }
+    }
+
+    /**
+     * Lists comment authors.
+     * 
+     * @param name Document name. (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @return ApiResponse&lt;CommentAuthors&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<CommentAuthors> getCommentAuthorsWithHttpInfo(String name, String password, String folder, String storage) throws ApiException {
+        com.squareup.okhttp.Call call = getCommentAuthorsCall(name, password, folder, storage, null, null);
+        Type returnType = new TypeToken<CommentAuthors>(){}.getType();
+        return apiClient.execute(call, returnType);
+    }
+
+    /**
+     * Lists comment authors. (asynchronously)
+     * 
+     * @param name Document name. (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call getCommentAuthorsAsync(String name, String password, String folder, String storage, final ApiCallback<CommentAuthors> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = getCommentAuthorsCall(name, password, folder, storage, progressListener, progressRequestListener);
+        Type returnType = new TypeToken<CommentAuthors>(){}.getType();
         apiClient.executeAsync(call, returnType, callback);
         return call;
     }

@@ -44,21 +44,21 @@ import static org.junit.Assert.*;
  */
 public class NotesSlideTest extends ApiTest {
     @Test
-    public void notesSlideStorageTest() throws ApiException, IOException {
+    public void getNotesSlideTest() throws ApiException, IOException {
         testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         NotesSlide notesSlide = testSlidesApi.getNotesSlide(fileName, c_slideIndex, password, folderName, null);
         assertNotNull(notesSlide);
     }
 
     @Test
-    public void notesSlideExistsStorageTest() throws ApiException, IOException {
+    public void notesSlideExistsTest() throws ApiException, IOException {
         testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         EntityExists exists = testSlidesApi.notesSlideExists(fileName, c_slideIndex, password, folderName, null);
         assertNotNull(exists);
     }
 
     @Test
-    public void notesSlideDownloadStorageTest() throws ApiException, IOException {
+    public void downloadNotesSlideTest() throws ApiException, IOException {
         testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         File notesSlide = testSlidesApi.downloadNotesSlide(fileName, c_slideIndex, c_format, null, null, password, folderName, null, null);
         assertNotNull(notesSlide);
@@ -67,21 +67,21 @@ public class NotesSlideTest extends ApiTest {
     }
 
     @Test
-    public void notesSlideGetRequestTest() throws ApiException, IOException {
+    public void getNotesSlideOnlineTest() throws ApiException, IOException {
         byte[] file = Files.readAllBytes(Paths.get(testDataFolderName + "/" + fileName));
         NotesSlide notesSlide = testSlidesApi.getNotesSlideOnline(file, c_slideIndex, password);
         assertNotNull(notesSlide);
     }
 
     @Test
-    public void notesSlideExistsRequestTest() throws ApiException, IOException {
+    public void notesSlideExistsOnlineTest() throws ApiException, IOException {
         byte[] file = Files.readAllBytes(Paths.get(testDataFolderName + "/" + fileName));
         EntityExists exists = testSlidesApi.notesSlideExistsOnline(file, c_slideIndex, password);
         assertTrue(exists.isExists());
     }
 
     @Test
-    public void notesSlideDownloadRequestTest() throws ApiException, IOException {
+    public void downloadNotesSlideOnlineTest() throws ApiException, IOException {
         byte[] file = Files.readAllBytes(Paths.get(testDataFolderName + "/" + fileName));
         File notesSlide = testSlidesApi.downloadNotesSlideOnline(file, c_slideIndex, c_format, null, null, password, null);
         assertNotNull(notesSlide);

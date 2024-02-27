@@ -152,7 +152,7 @@ public class PropertyTest extends ApiTest {
     }
 
     @Test
-    public void protectionDeleteTest() throws ApiException, IOException {
+    public void deleteProtectionTest() throws ApiException, IOException {
         testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         ProtectionProperties protectionProperties = testSlidesApi.deleteProtection(fileName, password, folderName, null);
         assertFalse(protectionProperties.isReadOnlyRecommended());

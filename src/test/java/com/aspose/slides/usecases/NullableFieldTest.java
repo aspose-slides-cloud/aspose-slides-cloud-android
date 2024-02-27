@@ -38,16 +38,16 @@ import java.util.List;
 import static org.junit.Assert.assertTrue;
 
 /**
- * API tests for nullable property deserialization
+ * API tests for nullable field deserialization
  */
-public class NullablePropertyTest extends ApiTest {
+public class NullableFieldTest extends ApiTest {
     /**
      * Read slide placeholder info.
      * @throws ApiException
      * @throws java.io.IOException
      */
     @Test
-    public void nullablePropertyTest() throws ApiException, IOException {
+    public void defaultChartValuesTest() throws ApiException, IOException {
         testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         double min1  = 44.3;
         double min2 = 12;

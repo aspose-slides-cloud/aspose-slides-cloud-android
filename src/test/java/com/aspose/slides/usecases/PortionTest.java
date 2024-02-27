@@ -142,7 +142,7 @@ public class PortionTest extends ApiTest {
     }
 
     @Test
-    public void deletePortionsIndexesTest() throws ApiException, IOException {
+    public void deletePortionsByIndexesTest() throws ApiException, IOException {
         testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         Portions response = testSlidesApi.deletePortions(fileName, c_slideIndex, c_shapeIndex, c_paragraphIndex,
                 new ArrayList<Integer>(Arrays.asList(1)), password, folderName, null, null);
@@ -158,7 +158,7 @@ public class PortionTest extends ApiTest {
     }
 
     @Test
-    public void deleteSubShapePortionsIndexesTest() throws ApiException, IOException {
+    public void deleteSubShapePortionsByIndexesTest() throws ApiException, IOException {
         testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
 
         Portions response = testSlidesApi.deletePortions(fileName, c_slideIndex, 3, c_paragraphIndex,
@@ -185,7 +185,7 @@ public class PortionTest extends ApiTest {
     }
 
     @Test
-    public void getPortionRectTest() throws ApiException, IOException {
+    public void getPortionRectangleTest() throws ApiException, IOException {
         testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         TextBounds response = testSlidesApi.getPortionRectangle(fileName, c_slideIndex, c_shapeIndex, c_paragraphIndex,
                 c_portionIndex, password, folderName, null);

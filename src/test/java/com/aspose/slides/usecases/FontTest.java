@@ -43,28 +43,28 @@ import static org.junit.Assert.*;
 
 public class FontTest extends ApiTest {
     @Test
-    public void fontsGetAvailableTest() throws ApiException, IOException {
+    public void getAvailableFontsTest() throws ApiException, IOException {
         FontsData response = testSlidesApi.getAvailableFonts(null, null);
         assertTrue(response.getList().size() > 1);
         assertTrue(response.getList().get(0).getIsCustom() == null);
     }
 
     @Test
-    public void fontsGetTest() throws ApiException, IOException {
+    public void getFontsTest() throws ApiException, IOException {
         testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         FontsData response = testSlidesApi.getFonts(fileName, password, folderName, null);
         assertEquals(3, response.getList().size());
     }
 
     @Test
-    public void fontsGetOnlineTest() throws ApiException, IOException {
+    public void getFontsOnlineTest() throws ApiException, IOException {
         byte[] file = Files.readAllBytes(Paths.get(testDataFolderName + "/" + fileName));
         FontsData response = testSlidesApi.getFontsOnline(file, password);
         assertEquals(3, response.getList().size());
     }
 
     @Test
-    public void fontEmbeddedSetTest() throws ApiException, IOException {
+    public void setEmbeddedFontTest() throws ApiException, IOException {
         testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         FontsData response = testSlidesApi.setEmbeddedFont(fileName, c_fontName, false, password, folderName, null, null);
         assertNull(response.getList().get(0).getIsEmbedded());
@@ -74,14 +74,14 @@ public class FontTest extends ApiTest {
     }
 
     @Test
-    public void fontEmbeddedSetOnlineTest() throws ApiException, IOException {
+    public void setEmbeddedFontOnlineTest() throws ApiException, IOException {
         byte[] file = Files.readAllBytes(Paths.get(testDataFolderName + "/" + fileName));
         File response = testSlidesApi.setEmbeddedFontOnline(file, c_fontName, false, password, null);
         assertTrue(file.length < response.length());
     }
 
     @Test
-    public void fontSetEmbeddedFromRequestTest() throws ApiException, IOException {
+    public void setEmbeddedFontFromRequestTest() throws ApiException, IOException {
         testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         byte[] fontFile = Files.readAllBytes(Paths.get(testDataFolderName + "/" + c_fontFileName));
         FontsData response = testSlidesApi.setEmbeddedFontFromRequest(fontFile, fileName, false, password, folderName, null);
@@ -92,7 +92,7 @@ public class FontTest extends ApiTest {
     }
 
     @Test
-    public void fontSetEmbeddedFromRequestOnlineTest() throws ApiException, IOException {
+    public void setEmbeddedFontFromRequestOnlineTest() throws ApiException, IOException {
         byte[] file = Files.readAllBytes(Paths.get(testDataFolderName + "/" + fileName));
         byte[] fontFile = Files.readAllBytes(Paths.get(testDataFolderName + "/" + c_fontFileName));
         File response = testSlidesApi.setEmbeddedFontFromRequestOnline(file, fontFile, false, password);
@@ -100,7 +100,7 @@ public class FontTest extends ApiTest {
     }
 
     @Test
-    public void fontEmbeddedCompressTest() throws ApiException, IOException {
+    public void compressEmbeddedFontsTest() throws ApiException, IOException {
         testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         FontsData response = testSlidesApi.setEmbeddedFont(fileName, c_fontName, false, password, folderName, null, null);
         assertEquals(true, response.getList().get(2).getIsEmbedded());
@@ -109,7 +109,7 @@ public class FontTest extends ApiTest {
     }
 
     @Test
-    public void fontEmbeddedCompressOnlineTest() throws ApiException, IOException {
+    public void compressEmbeddedFontsOnlineTest() throws ApiException, IOException {
         byte[] file = Files.readAllBytes(Paths.get(testDataFolderName + "/" + fileName));
         File responseEmbedded = testSlidesApi.setEmbeddedFontOnline(file, c_fontName, false, password, null);
         assertTrue(file.length < responseEmbedded.length());
@@ -124,7 +124,7 @@ public class FontTest extends ApiTest {
     }
 
     @Test
-    public void fontEmbeddedDeleteTest() throws ApiException, IOException {
+    public void deleteEmbeddedFontTest() throws ApiException, IOException {
         testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         FontsData response = testSlidesApi.setEmbeddedFont(fileName, c_fontName, false, password, folderName, null, null);
         assertEquals(true, response.getList().get(2).getIsEmbedded());
@@ -133,7 +133,7 @@ public class FontTest extends ApiTest {
     }
 
     @Test
-    public void fontEmbeddedDeleteOnlineTest() throws ApiException, IOException {
+    public void deleteEmbeddedFontOnlineTest() throws ApiException, IOException {
         byte[] file = Files.readAllBytes(Paths.get(testDataFolderName + "/" + fileName));
         File responseEmbedded = testSlidesApi.setEmbeddedFontOnline(file, c_fontName, false, password, null);
         assertTrue(file.length < responseEmbedded.length());
@@ -147,7 +147,7 @@ public class FontTest extends ApiTest {
     }
 
     @Test
-    public void fontReplaceTest() throws ApiException, IOException {
+    public void replaceFontTest() throws ApiException, IOException {
         testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         FontsData response = testSlidesApi.replaceFont(fileName, c_fontName, c_fontNameTimes, true, password, folderName, null, null);
         assertEquals(true, response.getList().get(2).getIsEmbedded());
@@ -155,7 +155,7 @@ public class FontTest extends ApiTest {
     }
 
     @Test
-    public void fontReplaceOnlineTest() throws ApiException, IOException {
+    public void replaceFontOnlineTest() throws ApiException, IOException {
         byte[] file = Files.readAllBytes(Paths.get(testDataFolderName + "/" + fileName));
         File response = testSlidesApi.replaceFontOnline(file, c_fontName, c_fontNameTimes, true, password, null);
         assertTrue(file.length < response.length());

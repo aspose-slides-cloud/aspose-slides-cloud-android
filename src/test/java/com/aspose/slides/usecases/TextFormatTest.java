@@ -69,7 +69,7 @@ public class TextFormatTest extends ApiTest {
     }
 
     @Test
-    public void textFrameFormatTest() throws ApiException, IOException {
+    public void textFrameFormatGeneralTest() throws ApiException, IOException {
         testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
 
         Shape dto = new Shape();
