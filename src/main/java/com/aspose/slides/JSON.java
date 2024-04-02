@@ -118,6 +118,7 @@ public class JSON {
         registerType(com.aspose.slides.model.ImageTransformEffect.class, com.aspose.slides.model.GrayScaleEffect.class, "type", com.aspose.slides.model.ImageTransformEffect.TypeEnum.GRAYSCALE.getValue(), typeAdapters, valueMap);
         registerType(com.aspose.slides.model.ShapeBase.class, com.aspose.slides.model.GroupShape.class, "type", com.aspose.slides.model.ShapeBase.TypeEnum.GROUPSHAPE.getValue(), typeAdapters, valueMap);
         registerType(com.aspose.slides.model.MathElement.class, com.aspose.slides.model.GroupingCharacterElement.class, "type", com.aspose.slides.model.MathElement.TypeEnum.GROUPINGCHARACTER.getValue(), typeAdapters, valueMap);
+        registerType(com.aspose.slides.model.SlidesLayoutOptions.class, com.aspose.slides.model.HandoutLayoutingOptions.class, "layoutType", com.aspose.slides.model.SlidesLayoutOptions.LayoutTypeEnum.HANDOUT.getValue(), typeAdapters, valueMap);
         registerType(com.aspose.slides.model.ImageTransformEffect.class, com.aspose.slides.model.HslEffect.class, "type", com.aspose.slides.model.ImageTransformEffect.TypeEnum.HSL.getValue(), typeAdapters, valueMap);
         registerType(com.aspose.slides.model.MathElement.class, com.aspose.slides.model.LeftSubSuperscriptElement.class, "type", com.aspose.slides.model.MathElement.TypeEnum.LEFTSUBSUPERSCRIPTELEMENT.getValue(), typeAdapters, valueMap);
         registerType(com.aspose.slides.model.MathElement.class, com.aspose.slides.model.LimitElement.class, "type", com.aspose.slides.model.MathElement.TypeEnum.LIMIT.getValue(), typeAdapters, valueMap);
@@ -129,6 +130,7 @@ public class JSON {
         registerType(com.aspose.slides.model.PathSegment.class, com.aspose.slides.model.MoveToPathSegment.class, "type", com.aspose.slides.model.PathSegment.TypeEnum.MOVETO.getValue(), typeAdapters, valueMap);
         registerType(com.aspose.slides.model.MathElement.class, com.aspose.slides.model.NaryOperatorElement.class, "type", com.aspose.slides.model.MathElement.TypeEnum.NARYOPERATOR.getValue(), typeAdapters, valueMap);
         registerType(com.aspose.slides.model.FillFormat.class, com.aspose.slides.model.NoFill.class, "type", com.aspose.slides.model.FillFormat.TypeEnum.NOFILL.getValue(), typeAdapters, valueMap);
+        registerType(com.aspose.slides.model.SlidesLayoutOptions.class, com.aspose.slides.model.NotesCommentsLayoutingOptions.class, "layoutType", com.aspose.slides.model.SlidesLayoutOptions.LayoutTypeEnum.NOTESCOMMENTS.getValue(), typeAdapters, valueMap);
         registerType(com.aspose.slides.model.ShapeBase.class, com.aspose.slides.model.OleObjectFrame.class, "type", com.aspose.slides.model.ShapeBase.TypeEnum.OLEOBJECTFRAME.getValue(), typeAdapters, valueMap);
         registerType(com.aspose.slides.model.DataPoint.class, com.aspose.slides.model.OneValueChartDataPoint.class, "type", com.aspose.slides.model.DataPoint.TypeEnum.ONEVALUE.getValue(), typeAdapters, valueMap);
         registerType(com.aspose.slides.model.Series.class, com.aspose.slides.model.OneValueSeries.class, "dataPointType", com.aspose.slides.model.Series.DataPointTypeEnum.ONEVALUE.getValue(), typeAdapters, valueMap);

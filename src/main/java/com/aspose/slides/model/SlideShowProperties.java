@@ -66,6 +66,9 @@ public class SlideShowProperties extends ResourceBase {
   @SerializedName(value = "showNarration", alternate = { "ShowNarration" })
   private Boolean showNarration;
 
+  @SerializedName(value = "showMediaControls", alternate = { "ShowMediaControls" })
+  private Boolean showMediaControls;
+
   @SerializedName(value = "useTimings", alternate = { "UseTimings" })
   private Boolean useTimings;
 
@@ -237,6 +240,24 @@ public class SlideShowProperties extends ResourceBase {
     this.showNarration = showNarration;
   }
 
+  public SlideShowProperties showMediaControls(Boolean showMediaControls) {
+    this.showMediaControls = showMediaControls;
+    return this;
+  }
+
+   /**
+   * Show media controls.
+   * @return showMediaControls
+  **/
+  @ApiModelProperty(value = "Show media controls.")
+  public Boolean isShowMediaControls() {
+    return showMediaControls;
+  }
+
+  public void setShowMediaControls(Boolean showMediaControls) {
+    this.showMediaControls = showMediaControls;
+  }
+
   public SlideShowProperties useTimings(Boolean useTimings) {
     this.useTimings = useTimings;
     return this;
@@ -301,12 +322,12 @@ public class SlideShowProperties extends ResourceBase {
       return false;
     }
     SlideShowProperties slideShowProperties = (SlideShowProperties) o;
-    return true && Objects.equals(this.loop, slideShowProperties.loop) && Objects.equals(this.startSlide, slideShowProperties.startSlide) && Objects.equals(this.endSlide, slideShowProperties.endSlide) && Objects.equals(this.penColor, slideShowProperties.penColor) && Objects.equals(this.showAnimation, slideShowProperties.showAnimation) && Objects.equals(this.showNarration, slideShowProperties.showNarration) && Objects.equals(this.useTimings, slideShowProperties.useTimings) && Objects.equals(this.slideShowType, slideShowProperties.slideShowType) && Objects.equals(this.showScrollbar, slideShowProperties.showScrollbar) && super.equals(o);
+    return true && Objects.equals(this.loop, slideShowProperties.loop) && Objects.equals(this.startSlide, slideShowProperties.startSlide) && Objects.equals(this.endSlide, slideShowProperties.endSlide) && Objects.equals(this.penColor, slideShowProperties.penColor) && Objects.equals(this.showAnimation, slideShowProperties.showAnimation) && Objects.equals(this.showNarration, slideShowProperties.showNarration) && Objects.equals(this.showMediaControls, slideShowProperties.showMediaControls) && Objects.equals(this.useTimings, slideShowProperties.useTimings) && Objects.equals(this.slideShowType, slideShowProperties.slideShowType) && Objects.equals(this.showScrollbar, slideShowProperties.showScrollbar) && super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(loop, startSlide, endSlide, penColor, showAnimation, showNarration, useTimings, slideShowType, showScrollbar, super.hashCode());
+    return Objects.hash(loop, startSlide, endSlide, penColor, showAnimation, showNarration, showMediaControls, useTimings, slideShowType, showScrollbar, super.hashCode());
   }
 
 
@@ -321,6 +342,7 @@ public class SlideShowProperties extends ResourceBase {
     sb.append("    penColor: ").append(toIndentedString(penColor)).append("\n");
     sb.append("    showAnimation: ").append(toIndentedString(showAnimation)).append("\n");
     sb.append("    showNarration: ").append(toIndentedString(showNarration)).append("\n");
+    sb.append("    showMediaControls: ").append(toIndentedString(showMediaControls)).append("\n");
     sb.append("    useTimings: ").append(toIndentedString(useTimings)).append("\n");
     sb.append("    slideShowType: ").append(toIndentedString(slideShowType)).append("\n");
     sb.append("    showScrollbar: ").append(toIndentedString(showScrollbar)).append("\n");

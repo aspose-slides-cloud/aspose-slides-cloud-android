@@ -31,6 +31,7 @@ import java.util.Objects;
 import com.aspose.slides.model.ExportOptions;
 import com.aspose.slides.model.FontFallbackRule;
 import com.aspose.slides.model.FontSubstRule;
+import com.aspose.slides.model.NotesCommentsLayoutingOptions;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -54,6 +55,12 @@ public class Html5ExportOptions extends ExportOptions {
 
   @SerializedName(value = "animateShapes", alternate = { "AnimateShapes" })
   private Boolean animateShapes;
+
+  @SerializedName(value = "embedImages", alternate = { "EmbedImages" })
+  private Boolean embedImages;
+
+  @SerializedName(value = "notesCommentsLayouting", alternate = { "NotesCommentsLayouting" })
+  private NotesCommentsLayoutingOptions notesCommentsLayouting;
 
 
   public Html5ExportOptions() {
@@ -97,6 +104,42 @@ public class Html5ExportOptions extends ExportOptions {
     this.animateShapes = animateShapes;
   }
 
+  public Html5ExportOptions embedImages(Boolean embedImages) {
+    this.embedImages = embedImages;
+    return this;
+  }
+
+   /**
+   * Gets or sets embed images option.
+   * @return embedImages
+  **/
+  @ApiModelProperty(value = "Gets or sets embed images option.")
+  public Boolean isEmbedImages() {
+    return embedImages;
+  }
+
+  public void setEmbedImages(Boolean embedImages) {
+    this.embedImages = embedImages;
+  }
+
+  public Html5ExportOptions notesCommentsLayouting(NotesCommentsLayoutingOptions notesCommentsLayouting) {
+    this.notesCommentsLayouting = notesCommentsLayouting;
+    return this;
+  }
+
+   /**
+   * Slides layouting options
+   * @return notesCommentsLayouting
+  **/
+  @ApiModelProperty(value = "Slides layouting options")
+  public NotesCommentsLayoutingOptions getNotesCommentsLayouting() {
+    return notesCommentsLayouting;
+  }
+
+  public void setNotesCommentsLayouting(NotesCommentsLayoutingOptions notesCommentsLayouting) {
+    this.notesCommentsLayouting = notesCommentsLayouting;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -107,12 +150,12 @@ public class Html5ExportOptions extends ExportOptions {
       return false;
     }
     Html5ExportOptions html5ExportOptions = (Html5ExportOptions) o;
-    return true && Objects.equals(this.animateTransitions, html5ExportOptions.animateTransitions) && Objects.equals(this.animateShapes, html5ExportOptions.animateShapes) && super.equals(o);
+    return true && Objects.equals(this.animateTransitions, html5ExportOptions.animateTransitions) && Objects.equals(this.animateShapes, html5ExportOptions.animateShapes) && Objects.equals(this.embedImages, html5ExportOptions.embedImages) && Objects.equals(this.notesCommentsLayouting, html5ExportOptions.notesCommentsLayouting) && super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(animateTransitions, animateShapes, super.hashCode());
+    return Objects.hash(animateTransitions, animateShapes, embedImages, notesCommentsLayouting, super.hashCode());
   }
 
 
@@ -123,6 +166,8 @@ public class Html5ExportOptions extends ExportOptions {
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    animateTransitions: ").append(toIndentedString(animateTransitions)).append("\n");
     sb.append("    animateShapes: ").append(toIndentedString(animateShapes)).append("\n");
+    sb.append("    embedImages: ").append(toIndentedString(embedImages)).append("\n");
+    sb.append("    notesCommentsLayouting: ").append(toIndentedString(notesCommentsLayouting)).append("\n");
     sb.append("}");
     return sb.toString();
   }

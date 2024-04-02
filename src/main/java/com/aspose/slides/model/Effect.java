@@ -605,6 +605,58 @@ public class Effect {
   @SerializedName(value = "presetClassType", alternate = { "PresetClassType" })
   private PresetClassTypeEnum presetClassType;
 
+  /**
+   * Preset class type.
+   */
+  @JsonAdapter(AnimateTextTypeEnum.Adapter.class)
+  public enum AnimateTextTypeEnum {
+    ALLATONCE("AllAtOnce"),
+    
+    BYWORD("ByWord"),
+    
+    BYLETTER("ByLetter");
+
+    private String value;
+
+    AnimateTextTypeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static AnimateTextTypeEnum fromValue(String text) {
+      for (AnimateTextTypeEnum b : AnimateTextTypeEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<AnimateTextTypeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final AnimateTextTypeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public AnimateTextTypeEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return AnimateTextTypeEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
+  @SerializedName(value = "animateTextType", alternate = { "AnimateTextType" })
+  private AnimateTextTypeEnum animateTextType;
+
   @SerializedName(value = "shapeIndex", alternate = { "ShapeIndex" })
   private Integer shapeIndex;
 
@@ -867,6 +919,24 @@ public class Effect {
 
   public void setPresetClassType(PresetClassTypeEnum presetClassType) {
     this.presetClassType = presetClassType;
+  }
+
+  public Effect animateTextType(AnimateTextTypeEnum animateTextType) {
+    this.animateTextType = animateTextType;
+    return this;
+  }
+
+   /**
+   * Preset class type.
+   * @return animateTextType
+  **/
+  @ApiModelProperty(value = "Preset class type.")
+  public AnimateTextTypeEnum getAnimateTextType() {
+    return animateTextType;
+  }
+
+  public void setAnimateTextType(AnimateTextTypeEnum animateTextType) {
+    this.animateTextType = animateTextType;
   }
 
   public Effect shapeIndex(Integer shapeIndex) {
@@ -1203,12 +1273,12 @@ public class Effect {
       return false;
     }
     Effect effect = (Effect) o;
-    return true && Objects.equals(this.type, effect.type) && Objects.equals(this.subtype, effect.subtype) && Objects.equals(this.presetClassType, effect.presetClassType) && Objects.equals(this.shapeIndex, effect.shapeIndex) && Objects.equals(this.paragraphIndex, effect.paragraphIndex) && Objects.equals(this.triggerType, effect.triggerType) && Objects.equals(this.accelerate, effect.accelerate) && Objects.equals(this.autoReverse, effect.autoReverse) && Objects.equals(this.decelerate, effect.decelerate) && Objects.equals(this.duration, effect.duration) && Objects.equals(this.repeatCount, effect.repeatCount) && Objects.equals(this.repeatDuration, effect.repeatDuration) && Objects.equals(this.restart, effect.restart) && Objects.equals(this.speed, effect.speed) && Objects.equals(this.triggerDelayTime, effect.triggerDelayTime) && Objects.equals(this.repeatUntilEndSlide, effect.repeatUntilEndSlide) && Objects.equals(this.repeatUntilNextClick, effect.repeatUntilNextClick) && Objects.equals(this.stopPreviousSound, effect.stopPreviousSound) && Objects.equals(this.rewind, effect.rewind) && Objects.equals(this.afterAnimationType, effect.afterAnimationType) && Objects.equals(this.afterAnimationColor, effect.afterAnimationColor);
+    return true && Objects.equals(this.type, effect.type) && Objects.equals(this.subtype, effect.subtype) && Objects.equals(this.presetClassType, effect.presetClassType) && Objects.equals(this.animateTextType, effect.animateTextType) && Objects.equals(this.shapeIndex, effect.shapeIndex) && Objects.equals(this.paragraphIndex, effect.paragraphIndex) && Objects.equals(this.triggerType, effect.triggerType) && Objects.equals(this.accelerate, effect.accelerate) && Objects.equals(this.autoReverse, effect.autoReverse) && Objects.equals(this.decelerate, effect.decelerate) && Objects.equals(this.duration, effect.duration) && Objects.equals(this.repeatCount, effect.repeatCount) && Objects.equals(this.repeatDuration, effect.repeatDuration) && Objects.equals(this.restart, effect.restart) && Objects.equals(this.speed, effect.speed) && Objects.equals(this.triggerDelayTime, effect.triggerDelayTime) && Objects.equals(this.repeatUntilEndSlide, effect.repeatUntilEndSlide) && Objects.equals(this.repeatUntilNextClick, effect.repeatUntilNextClick) && Objects.equals(this.stopPreviousSound, effect.stopPreviousSound) && Objects.equals(this.rewind, effect.rewind) && Objects.equals(this.afterAnimationType, effect.afterAnimationType) && Objects.equals(this.afterAnimationColor, effect.afterAnimationColor);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, subtype, presetClassType, shapeIndex, paragraphIndex, triggerType, accelerate, autoReverse, decelerate, duration, repeatCount, repeatDuration, restart, speed, triggerDelayTime, repeatUntilEndSlide, repeatUntilNextClick, stopPreviousSound, rewind, afterAnimationType, afterAnimationColor);
+    return Objects.hash(type, subtype, presetClassType, animateTextType, shapeIndex, paragraphIndex, triggerType, accelerate, autoReverse, decelerate, duration, repeatCount, repeatDuration, restart, speed, triggerDelayTime, repeatUntilEndSlide, repeatUntilNextClick, stopPreviousSound, rewind, afterAnimationType, afterAnimationColor);
   }
 
 
@@ -1220,6 +1290,7 @@ public class Effect {
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    subtype: ").append(toIndentedString(subtype)).append("\n");
     sb.append("    presetClassType: ").append(toIndentedString(presetClassType)).append("\n");
+    sb.append("    animateTextType: ").append(toIndentedString(animateTextType)).append("\n");
     sb.append("    shapeIndex: ").append(toIndentedString(shapeIndex)).append("\n");
     sb.append("    paragraphIndex: ").append(toIndentedString(paragraphIndex)).append("\n");
     sb.append("    triggerType: ").append(toIndentedString(triggerType)).append("\n");

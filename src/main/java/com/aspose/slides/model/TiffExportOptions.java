@@ -31,6 +31,7 @@ import java.util.Objects;
 import com.aspose.slides.model.FontFallbackRule;
 import com.aspose.slides.model.FontSubstRule;
 import com.aspose.slides.model.ImageExportOptionsBase;
+import com.aspose.slides.model.SlidesLayoutOptions;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -172,20 +173,33 @@ public class TiffExportOptions extends ImageExportOptionsBase {
   @SerializedName(value = "pixelFormat", alternate = { "PixelFormat" })
   private PixelFormatEnum pixelFormat;
 
+  @SerializedName(value = "slidesLayoutOptions", alternate = { "SlidesLayoutOptions" })
+  private SlidesLayoutOptions slidesLayoutOptions;
+
   /**
-   * Gets or sets the position of the notes on the page.
+   * Specifies the algorithm for converting a color image into a black and white image. This option will applied only if Aspose.Slides.Export.TiffOptions.CompressionType is set to Aspose.Slides.Export.TiffCompressionTypes.CCITT4 or Aspose.Slides.Export.TiffCompressionTypes.CCITT3.
    */
-  @JsonAdapter(NotesPositionEnum.Adapter.class)
-  public enum NotesPositionEnum {
-    NONE("None"),
+  @JsonAdapter(BwConversionModeEnum.Adapter.class)
+  public enum BwConversionModeEnum {
+    DEFAULT("Default"),
     
-    BOTTOMFULL("BottomFull"),
+    DITHERING("Dithering"),
     
-    BOTTOMTRUNCATED("BottomTruncated");
+    DITHERINGFLOYDSTEINBERG("DitheringFloydSteinberg"),
+    
+    AUTO("Auto"),
+    
+    AUTOOTSU("AutoOtsu"),
+    
+    THRESHOLD25("Threshold25"),
+    
+    THRESHOLD50("Threshold50"),
+    
+    THRESHOLD75("Threshold75");
 
     private String value;
 
-    NotesPositionEnum(String value) {
+    BwConversionModeEnum(String value) {
       this.value = value;
     }
 
@@ -198,8 +212,8 @@ public class TiffExportOptions extends ImageExportOptionsBase {
       return String.valueOf(value);
     }
 
-    public static NotesPositionEnum fromValue(String text) {
-      for (NotesPositionEnum b : NotesPositionEnum.values()) {
+    public static BwConversionModeEnum fromValue(String text) {
+      for (BwConversionModeEnum b : BwConversionModeEnum.values()) {
         if (String.valueOf(b.value).equals(text)) {
           return b;
         }
@@ -207,83 +221,22 @@ public class TiffExportOptions extends ImageExportOptionsBase {
       return null;
     }
 
-    public static class Adapter extends TypeAdapter<NotesPositionEnum> {
+    public static class Adapter extends TypeAdapter<BwConversionModeEnum> {
       @Override
-      public void write(final JsonWriter jsonWriter, final NotesPositionEnum enumeration) throws IOException {
+      public void write(final JsonWriter jsonWriter, final BwConversionModeEnum enumeration) throws IOException {
         jsonWriter.value(enumeration.getValue());
       }
 
       @Override
-      public NotesPositionEnum read(final JsonReader jsonReader) throws IOException {
+      public BwConversionModeEnum read(final JsonReader jsonReader) throws IOException {
         String value = jsonReader.nextString();
-        return NotesPositionEnum.fromValue(String.valueOf(value));
+        return BwConversionModeEnum.fromValue(String.valueOf(value));
       }
     }
   }
 
-  @SerializedName(value = "notesPosition", alternate = { "NotesPosition" })
-  private NotesPositionEnum notesPosition;
-
-  /**
-   * Gets or sets the position of the comments on the page.
-   */
-  @JsonAdapter(CommentsPositionEnum.Adapter.class)
-  public enum CommentsPositionEnum {
-    NONE("None"),
-    
-    BOTTOM("Bottom"),
-    
-    RIGHT("Right");
-
-    private String value;
-
-    CommentsPositionEnum(String value) {
-      this.value = value;
-    }
-
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    public static CommentsPositionEnum fromValue(String text) {
-      for (CommentsPositionEnum b : CommentsPositionEnum.values()) {
-        if (String.valueOf(b.value).equals(text)) {
-          return b;
-        }
-      }
-      return null;
-    }
-
-    public static class Adapter extends TypeAdapter<CommentsPositionEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final CommentsPositionEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public CommentsPositionEnum read(final JsonReader jsonReader) throws IOException {
-        String value = jsonReader.nextString();
-        return CommentsPositionEnum.fromValue(String.valueOf(value));
-      }
-    }
-  }
-
-  @SerializedName(value = "commentsPosition", alternate = { "CommentsPosition" })
-  private CommentsPositionEnum commentsPosition;
-
-  @SerializedName(value = "commentsAreaWidth", alternate = { "CommentsAreaWidth" })
-  private Integer commentsAreaWidth;
-
-  @SerializedName(value = "commentsAreaColor", alternate = { "CommentsAreaColor" })
-  private String commentsAreaColor;
-
-  @SerializedName(value = "showCommentsByNoAuthor", alternate = { "ShowCommentsByNoAuthor" })
-  private Boolean showCommentsByNoAuthor;
+  @SerializedName(value = "bwConversionMode", alternate = { "BwConversionMode" })
+  private BwConversionModeEnum bwConversionMode;
 
 
   public TiffExportOptions() {
@@ -381,94 +334,40 @@ public class TiffExportOptions extends ImageExportOptionsBase {
     this.pixelFormat = pixelFormat;
   }
 
-  public TiffExportOptions notesPosition(NotesPositionEnum notesPosition) {
-    this.notesPosition = notesPosition;
+  public TiffExportOptions slidesLayoutOptions(SlidesLayoutOptions slidesLayoutOptions) {
+    this.slidesLayoutOptions = slidesLayoutOptions;
     return this;
   }
 
    /**
-   * Gets or sets the position of the notes on the page.
-   * @return notesPosition
+   * Slides layouting options
+   * @return slidesLayoutOptions
   **/
-  @ApiModelProperty(value = "Gets or sets the position of the notes on the page.")
-  public NotesPositionEnum getNotesPosition() {
-    return notesPosition;
+  @ApiModelProperty(value = "Slides layouting options")
+  public SlidesLayoutOptions getSlidesLayoutOptions() {
+    return slidesLayoutOptions;
   }
 
-  public void setNotesPosition(NotesPositionEnum notesPosition) {
-    this.notesPosition = notesPosition;
+  public void setSlidesLayoutOptions(SlidesLayoutOptions slidesLayoutOptions) {
+    this.slidesLayoutOptions = slidesLayoutOptions;
   }
 
-  public TiffExportOptions commentsPosition(CommentsPositionEnum commentsPosition) {
-    this.commentsPosition = commentsPosition;
+  public TiffExportOptions bwConversionMode(BwConversionModeEnum bwConversionMode) {
+    this.bwConversionMode = bwConversionMode;
     return this;
   }
 
    /**
-   * Gets or sets the position of the comments on the page.
-   * @return commentsPosition
+   * Specifies the algorithm for converting a color image into a black and white image. This option will applied only if Aspose.Slides.Export.TiffOptions.CompressionType is set to Aspose.Slides.Export.TiffCompressionTypes.CCITT4 or Aspose.Slides.Export.TiffCompressionTypes.CCITT3.
+   * @return bwConversionMode
   **/
-  @ApiModelProperty(value = "Gets or sets the position of the comments on the page.")
-  public CommentsPositionEnum getCommentsPosition() {
-    return commentsPosition;
+  @ApiModelProperty(value = "Specifies the algorithm for converting a color image into a black and white image. This option will applied only if Aspose.Slides.Export.TiffOptions.CompressionType is set to Aspose.Slides.Export.TiffCompressionTypes.CCITT4 or Aspose.Slides.Export.TiffCompressionTypes.CCITT3.")
+  public BwConversionModeEnum getBwConversionMode() {
+    return bwConversionMode;
   }
 
-  public void setCommentsPosition(CommentsPositionEnum commentsPosition) {
-    this.commentsPosition = commentsPosition;
-  }
-
-  public TiffExportOptions commentsAreaWidth(Integer commentsAreaWidth) {
-    this.commentsAreaWidth = commentsAreaWidth;
-    return this;
-  }
-
-   /**
-   * Gets or sets the width of the comment output area in pixels (Applies only if comments are displayed on the right).
-   * @return commentsAreaWidth
-  **/
-  @ApiModelProperty(value = "Gets or sets the width of the comment output area in pixels (Applies only if comments are displayed on the right).")
-  public Integer getCommentsAreaWidth() {
-    return commentsAreaWidth;
-  }
-
-  public void setCommentsAreaWidth(Integer commentsAreaWidth) {
-    this.commentsAreaWidth = commentsAreaWidth;
-  }
-
-  public TiffExportOptions commentsAreaColor(String commentsAreaColor) {
-    this.commentsAreaColor = commentsAreaColor;
-    return this;
-  }
-
-   /**
-   * Gets or sets the color of comments area (Applies only if comments are displayed on the right).
-   * @return commentsAreaColor
-  **/
-  @ApiModelProperty(value = "Gets or sets the color of comments area (Applies only if comments are displayed on the right).")
-  public String getCommentsAreaColor() {
-    return commentsAreaColor;
-  }
-
-  public void setCommentsAreaColor(String commentsAreaColor) {
-    this.commentsAreaColor = commentsAreaColor;
-  }
-
-  public TiffExportOptions showCommentsByNoAuthor(Boolean showCommentsByNoAuthor) {
-    this.showCommentsByNoAuthor = showCommentsByNoAuthor;
-    return this;
-  }
-
-   /**
-   * True if comments that have no author are displayed. (Applies only if comments are displayed).
-   * @return showCommentsByNoAuthor
-  **/
-  @ApiModelProperty(value = "True if comments that have no author are displayed. (Applies only if comments are displayed).")
-  public Boolean isShowCommentsByNoAuthor() {
-    return showCommentsByNoAuthor;
-  }
-
-  public void setShowCommentsByNoAuthor(Boolean showCommentsByNoAuthor) {
-    this.showCommentsByNoAuthor = showCommentsByNoAuthor;
+  public void setBwConversionMode(BwConversionModeEnum bwConversionMode) {
+    this.bwConversionMode = bwConversionMode;
   }
 
 
@@ -481,12 +380,12 @@ public class TiffExportOptions extends ImageExportOptionsBase {
       return false;
     }
     TiffExportOptions tiffExportOptions = (TiffExportOptions) o;
-    return true && Objects.equals(this.compression, tiffExportOptions.compression) && Objects.equals(this.dpiX, tiffExportOptions.dpiX) && Objects.equals(this.dpiY, tiffExportOptions.dpiY) && Objects.equals(this.showHiddenSlides, tiffExportOptions.showHiddenSlides) && Objects.equals(this.pixelFormat, tiffExportOptions.pixelFormat) && Objects.equals(this.notesPosition, tiffExportOptions.notesPosition) && Objects.equals(this.commentsPosition, tiffExportOptions.commentsPosition) && Objects.equals(this.commentsAreaWidth, tiffExportOptions.commentsAreaWidth) && Objects.equals(this.commentsAreaColor, tiffExportOptions.commentsAreaColor) && Objects.equals(this.showCommentsByNoAuthor, tiffExportOptions.showCommentsByNoAuthor) && super.equals(o);
+    return true && Objects.equals(this.compression, tiffExportOptions.compression) && Objects.equals(this.dpiX, tiffExportOptions.dpiX) && Objects.equals(this.dpiY, tiffExportOptions.dpiY) && Objects.equals(this.showHiddenSlides, tiffExportOptions.showHiddenSlides) && Objects.equals(this.pixelFormat, tiffExportOptions.pixelFormat) && Objects.equals(this.slidesLayoutOptions, tiffExportOptions.slidesLayoutOptions) && Objects.equals(this.bwConversionMode, tiffExportOptions.bwConversionMode) && super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(compression, dpiX, dpiY, showHiddenSlides, pixelFormat, notesPosition, commentsPosition, commentsAreaWidth, commentsAreaColor, showCommentsByNoAuthor, super.hashCode());
+    return Objects.hash(compression, dpiX, dpiY, showHiddenSlides, pixelFormat, slidesLayoutOptions, bwConversionMode, super.hashCode());
   }
 
 
@@ -500,11 +399,8 @@ public class TiffExportOptions extends ImageExportOptionsBase {
     sb.append("    dpiY: ").append(toIndentedString(dpiY)).append("\n");
     sb.append("    showHiddenSlides: ").append(toIndentedString(showHiddenSlides)).append("\n");
     sb.append("    pixelFormat: ").append(toIndentedString(pixelFormat)).append("\n");
-    sb.append("    notesPosition: ").append(toIndentedString(notesPosition)).append("\n");
-    sb.append("    commentsPosition: ").append(toIndentedString(commentsPosition)).append("\n");
-    sb.append("    commentsAreaWidth: ").append(toIndentedString(commentsAreaWidth)).append("\n");
-    sb.append("    commentsAreaColor: ").append(toIndentedString(commentsAreaColor)).append("\n");
-    sb.append("    showCommentsByNoAuthor: ").append(toIndentedString(showCommentsByNoAuthor)).append("\n");
+    sb.append("    slidesLayoutOptions: ").append(toIndentedString(slidesLayoutOptions)).append("\n");
+    sb.append("    bwConversionMode: ").append(toIndentedString(bwConversionMode)).append("\n");
     sb.append("}");
     return sb.toString();
   }

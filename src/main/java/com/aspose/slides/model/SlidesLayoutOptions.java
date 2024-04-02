@@ -28,10 +28,6 @@
 package com.aspose.slides.model;
 
 import java.util.Objects;
-import com.aspose.slides.model.FontFallbackRule;
-import com.aspose.slides.model.FontSubstRule;
-import com.aspose.slides.model.ImageExportOptionsBase;
-import com.aspose.slides.model.SlidesLayoutOptions;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -40,62 +36,81 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.List;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Map;
 
 /**
- * Provides options that control how a presentation is saved in an image format.
+ * Slides layouting options.
  */
-@ApiModel(description = "Provides options that control how a presentation is saved in an image format.")
-public class ImageExportOptions extends ImageExportOptionsBase {
-  @SerializedName(value = "showHiddenSlides", alternate = { "ShowHiddenSlides" })
-  private Boolean showHiddenSlides;
+@ApiModel(description = "Slides layouting options.")
+public class SlidesLayoutOptions {
+  /**
+   * Gets or Sets layoutType
+   */
+  @JsonAdapter(LayoutTypeEnum.Adapter.class)
+  public enum LayoutTypeEnum {
+    NOTESCOMMENTS("NotesComments"),
+    
+    HANDOUT("Handout");
 
-  @SerializedName(value = "slidesLayoutOptions", alternate = { "SlidesLayoutOptions" })
-  private SlidesLayoutOptions slidesLayoutOptions;
+    private String value;
+
+    LayoutTypeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static LayoutTypeEnum fromValue(String text) {
+      for (LayoutTypeEnum b : LayoutTypeEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<LayoutTypeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final LayoutTypeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public LayoutTypeEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return LayoutTypeEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
+  @SerializedName(value = "layoutType", alternate = { "LayoutType" })
+  private LayoutTypeEnum layoutType;
 
 
-  public ImageExportOptions() {
+  public SlidesLayoutOptions() {
     super();
-    setFormat("IMAGE");
-  }
-
-  public ImageExportOptions showHiddenSlides(Boolean showHiddenSlides) {
-    this.showHiddenSlides = showHiddenSlides;
-    return this;
   }
 
    /**
-   * Show hidden slides. If true, hidden are exported.
-   * @return showHiddenSlides
+   * Get layoutType
+   * @return layoutType
   **/
-  @ApiModelProperty(value = "Show hidden slides. If true, hidden are exported.")
-  public Boolean isShowHiddenSlides() {
-    return showHiddenSlides;
+  @ApiModelProperty(value = "")
+  public LayoutTypeEnum getLayoutType() {
+    return layoutType;
   }
 
-  public void setShowHiddenSlides(Boolean showHiddenSlides) {
-    this.showHiddenSlides = showHiddenSlides;
-  }
-
-  public ImageExportOptions slidesLayoutOptions(SlidesLayoutOptions slidesLayoutOptions) {
-    this.slidesLayoutOptions = slidesLayoutOptions;
-    return this;
-  }
-
-   /**
-   * Slides layouting options
-   * @return slidesLayoutOptions
-  **/
-  @ApiModelProperty(value = "Slides layouting options")
-  public SlidesLayoutOptions getSlidesLayoutOptions() {
-    return slidesLayoutOptions;
-  }
-
-  public void setSlidesLayoutOptions(SlidesLayoutOptions slidesLayoutOptions) {
-    this.slidesLayoutOptions = slidesLayoutOptions;
+  protected void setLayoutType(LayoutTypeEnum layoutType) {
+    this.layoutType = layoutType;
   }
 
 
@@ -107,23 +122,22 @@ public class ImageExportOptions extends ImageExportOptionsBase {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ImageExportOptions imageExportOptions = (ImageExportOptions) o;
-    return true && Objects.equals(this.showHiddenSlides, imageExportOptions.showHiddenSlides) && Objects.equals(this.slidesLayoutOptions, imageExportOptions.slidesLayoutOptions) && super.equals(o);
+    SlidesLayoutOptions slidesLayoutOptions = (SlidesLayoutOptions) o;
+    return true && Objects.equals(this.layoutType, slidesLayoutOptions.layoutType);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(showHiddenSlides, slidesLayoutOptions, super.hashCode());
+    return Objects.hash(layoutType);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ImageExportOptions {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
-    sb.append("    showHiddenSlides: ").append(toIndentedString(showHiddenSlides)).append("\n");
-    sb.append("    slidesLayoutOptions: ").append(toIndentedString(slidesLayoutOptions)).append("\n");
+    sb.append("class SlidesLayoutOptions {\n");
+    
+    sb.append("    layoutType: ").append(toIndentedString(layoutType)).append("\n");
     sb.append("}");
     return sb.toString();
   }

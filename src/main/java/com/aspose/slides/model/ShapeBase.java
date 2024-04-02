@@ -71,6 +71,9 @@ public class ShapeBase extends ResourceBase {
   @SerializedName(value = "hidden", alternate = { "Hidden" })
   private Boolean hidden;
 
+  @SerializedName(value = "isDecorative", alternate = { "IsDecorative" })
+  private Boolean isDecorative;
+
   @SerializedName(value = "x", alternate = { "X" })
   private Double x;
 
@@ -289,6 +292,24 @@ public class ShapeBase extends ResourceBase {
     this.hidden = hidden;
   }
 
+  public ShapeBase isDecorative(Boolean isDecorative) {
+    this.isDecorative = isDecorative;
+    return this;
+  }
+
+   /**
+   * Gets or sets &#39;Mark as decorative&#39; option.
+   * @return isDecorative
+  **/
+  @ApiModelProperty(value = "Gets or sets 'Mark as decorative' option.")
+  public Boolean getIsDecorative() {
+    return isDecorative;
+  }
+
+  public void setIsDecorative(Boolean isDecorative) {
+    this.isDecorative = isDecorative;
+  }
+
   public ShapeBase x(Double x) {
     this.x = x;
     return this;
@@ -474,12 +495,12 @@ public class ShapeBase extends ResourceBase {
       return false;
     }
     ShapeBase shapeBase = (ShapeBase) o;
-    return true && Objects.equals(this.name, shapeBase.name) && Objects.equals(this.width, shapeBase.width) && Objects.equals(this.height, shapeBase.height) && Objects.equals(this.alternativeText, shapeBase.alternativeText) && Objects.equals(this.alternativeTextTitle, shapeBase.alternativeTextTitle) && Objects.equals(this.hidden, shapeBase.hidden) && Objects.equals(this.x, shapeBase.x) && Objects.equals(this.y, shapeBase.y) && Objects.equals(this.zorderPosition, shapeBase.zorderPosition) && Objects.equals(this.fillFormat, shapeBase.fillFormat) && Objects.equals(this.effectFormat, shapeBase.effectFormat) && Objects.equals(this.threeDFormat, shapeBase.threeDFormat) && Objects.equals(this.lineFormat, shapeBase.lineFormat) && Objects.equals(this.hyperlinkClick, shapeBase.hyperlinkClick) && Objects.equals(this.hyperlinkMouseOver, shapeBase.hyperlinkMouseOver) && Objects.equals(this.type, shapeBase.type) && super.equals(o);
+    return true && Objects.equals(this.name, shapeBase.name) && Objects.equals(this.width, shapeBase.width) && Objects.equals(this.height, shapeBase.height) && Objects.equals(this.alternativeText, shapeBase.alternativeText) && Objects.equals(this.alternativeTextTitle, shapeBase.alternativeTextTitle) && Objects.equals(this.hidden, shapeBase.hidden) && Objects.equals(this.isDecorative, shapeBase.isDecorative) && Objects.equals(this.x, shapeBase.x) && Objects.equals(this.y, shapeBase.y) && Objects.equals(this.zorderPosition, shapeBase.zorderPosition) && Objects.equals(this.fillFormat, shapeBase.fillFormat) && Objects.equals(this.effectFormat, shapeBase.effectFormat) && Objects.equals(this.threeDFormat, shapeBase.threeDFormat) && Objects.equals(this.lineFormat, shapeBase.lineFormat) && Objects.equals(this.hyperlinkClick, shapeBase.hyperlinkClick) && Objects.equals(this.hyperlinkMouseOver, shapeBase.hyperlinkMouseOver) && Objects.equals(this.type, shapeBase.type) && super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, width, height, alternativeText, alternativeTextTitle, hidden, x, y, zorderPosition, fillFormat, effectFormat, threeDFormat, lineFormat, hyperlinkClick, hyperlinkMouseOver, type, super.hashCode());
+    return Objects.hash(name, width, height, alternativeText, alternativeTextTitle, hidden, isDecorative, x, y, zorderPosition, fillFormat, effectFormat, threeDFormat, lineFormat, hyperlinkClick, hyperlinkMouseOver, type, super.hashCode());
   }
 
 
@@ -494,6 +515,7 @@ public class ShapeBase extends ResourceBase {
     sb.append("    alternativeText: ").append(toIndentedString(alternativeText)).append("\n");
     sb.append("    alternativeTextTitle: ").append(toIndentedString(alternativeTextTitle)).append("\n");
     sb.append("    hidden: ").append(toIndentedString(hidden)).append("\n");
+    sb.append("    isDecorative: ").append(toIndentedString(isDecorative)).append("\n");
     sb.append("    x: ").append(toIndentedString(x)).append("\n");
     sb.append("    y: ").append(toIndentedString(y)).append("\n");
     sb.append("    zorderPosition: ").append(toIndentedString(zorderPosition)).append("\n");

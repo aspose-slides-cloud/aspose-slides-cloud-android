@@ -90,7 +90,9 @@ public enum SlideExportFormat {
   
   XAML("Xaml"),
   
-  HTML5("Html5");
+  HTML5("Html5"),
+  
+  MD("Md");
 
   private String value;
 

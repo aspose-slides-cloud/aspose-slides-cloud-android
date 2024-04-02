@@ -242,6 +242,21 @@ public class ConvertTest extends ApiTest {
         assertTrue(response.length()>0);
     }
 
+    @Test
+    public void convertWithSlideLayoutOptionsTest() throws ApiException, IOException {
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+
+        HandoutLayoutingOptions slidesLayoutOptions = new HandoutLayoutingOptions();
+        slidesLayoutOptions.setHandout(HandoutLayoutingOptions.HandoutEnum.HANDOUTS2);
+        slidesLayoutOptions.setPrintSlideNumbers(true);
+
+        PdfExportOptions exportOptions = new PdfExportOptions();
+        exportOptions.setSlidesLayoutOptions(slidesLayoutOptions);
+        File response = testSlidesApi.downloadPresentation(fileName, ExportFormat.PDF, exportOptions, password, folderName, null, null, null);
+        assertNotNull(response);
+        assertTrue(response.length()>0);
+    }
+
     private final String c_outPath = testDataFolderName + "/converted.pdf";
     private final int c_slideIndex = 1;
     private final int c_shapeIndex = 3;

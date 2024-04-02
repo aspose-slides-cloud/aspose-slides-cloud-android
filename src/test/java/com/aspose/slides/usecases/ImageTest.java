@@ -39,6 +39,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 /**
  * API tests for image methods
@@ -111,6 +112,23 @@ public class ImageTest extends ApiTest {
         byte[] imageFile = Files.readAllBytes(Paths.get(testDataFolderName + "/" + c_imageFileName));
         File response = testSlidesApi.replaceImageOnline(file, c_imageIndex, imageFile, password);
         assertNotEquals(response.length(), 0);
+    }
+
+    @Test
+    public void deletePictureCroppedAreasTest() throws ApiException, IOException {
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        testSlidesApi.deletePictureCroppedAreas(fileName, 2, 2, password, folderName, null);
+    }
+
+    @Test
+    public void deletePictureCroppedAreasWrongShapeTypeTest() throws ApiException, IOException {
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        try {
+            testSlidesApi.deletePictureCroppedAreas(fileName, 2, 3, password, folderName, null);
+            fail("deletePictureCroppedAreas works only with picture frames.");
+        } catch (Exception ex) {
+            assertTrue(ex instanceof ApiException);
+        }
     }
 
     private final int c_imageIndex = 1;

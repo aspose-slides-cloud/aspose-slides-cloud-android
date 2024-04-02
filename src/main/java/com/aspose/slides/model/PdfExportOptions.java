@@ -32,6 +32,7 @@ import com.aspose.slides.model.AccessPermissions;
 import com.aspose.slides.model.ExportOptions;
 import com.aspose.slides.model.FontFallbackRule;
 import com.aspose.slides.model.FontSubstRule;
+import com.aspose.slides.model.SlidesLayoutOptions;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -196,118 +197,8 @@ public class PdfExportOptions extends ExportOptions {
   @SerializedName(value = "additionalCommonFontFamilies", alternate = { "AdditionalCommonFontFamilies" })
   private List<String> additionalCommonFontFamilies = null;
 
-  /**
-   * Gets or sets the position of the notes on the page.
-   */
-  @JsonAdapter(NotesPositionEnum.Adapter.class)
-  public enum NotesPositionEnum {
-    NONE("None"),
-    
-    BOTTOMFULL("BottomFull"),
-    
-    BOTTOMTRUNCATED("BottomTruncated");
-
-    private String value;
-
-    NotesPositionEnum(String value) {
-      this.value = value;
-    }
-
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    public static NotesPositionEnum fromValue(String text) {
-      for (NotesPositionEnum b : NotesPositionEnum.values()) {
-        if (String.valueOf(b.value).equals(text)) {
-          return b;
-        }
-      }
-      return null;
-    }
-
-    public static class Adapter extends TypeAdapter<NotesPositionEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final NotesPositionEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public NotesPositionEnum read(final JsonReader jsonReader) throws IOException {
-        String value = jsonReader.nextString();
-        return NotesPositionEnum.fromValue(String.valueOf(value));
-      }
-    }
-  }
-
-  @SerializedName(value = "notesPosition", alternate = { "NotesPosition" })
-  private NotesPositionEnum notesPosition;
-
-  /**
-   * Gets or sets the position of the comments on the page.
-   */
-  @JsonAdapter(CommentsPositionEnum.Adapter.class)
-  public enum CommentsPositionEnum {
-    NONE("None"),
-    
-    BOTTOM("Bottom"),
-    
-    RIGHT("Right");
-
-    private String value;
-
-    CommentsPositionEnum(String value) {
-      this.value = value;
-    }
-
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    public static CommentsPositionEnum fromValue(String text) {
-      for (CommentsPositionEnum b : CommentsPositionEnum.values()) {
-        if (String.valueOf(b.value).equals(text)) {
-          return b;
-        }
-      }
-      return null;
-    }
-
-    public static class Adapter extends TypeAdapter<CommentsPositionEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final CommentsPositionEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public CommentsPositionEnum read(final JsonReader jsonReader) throws IOException {
-        String value = jsonReader.nextString();
-        return CommentsPositionEnum.fromValue(String.valueOf(value));
-      }
-    }
-  }
-
-  @SerializedName(value = "commentsPosition", alternate = { "CommentsPosition" })
-  private CommentsPositionEnum commentsPosition;
-
-  @SerializedName(value = "commentsAreaWidth", alternate = { "CommentsAreaWidth" })
-  private Integer commentsAreaWidth;
-
-  @SerializedName(value = "commentsAreaColor", alternate = { "CommentsAreaColor" })
-  private String commentsAreaColor;
-
-  @SerializedName(value = "showCommentsByNoAuthor", alternate = { "ShowCommentsByNoAuthor" })
-  private Boolean showCommentsByNoAuthor;
+  @SerializedName(value = "slidesLayoutOptions", alternate = { "SlidesLayoutOptions" })
+  private SlidesLayoutOptions slidesLayoutOptions;
 
   @SerializedName(value = "imageTransparentColor", alternate = { "ImageTransparentColor" })
   private String imageTransparentColor;
@@ -530,94 +421,22 @@ public class PdfExportOptions extends ExportOptions {
     this.additionalCommonFontFamilies = additionalCommonFontFamilies;
   }
 
-  public PdfExportOptions notesPosition(NotesPositionEnum notesPosition) {
-    this.notesPosition = notesPosition;
+  public PdfExportOptions slidesLayoutOptions(SlidesLayoutOptions slidesLayoutOptions) {
+    this.slidesLayoutOptions = slidesLayoutOptions;
     return this;
   }
 
    /**
-   * Gets or sets the position of the notes on the page.
-   * @return notesPosition
+   * Slides layouting options
+   * @return slidesLayoutOptions
   **/
-  @ApiModelProperty(value = "Gets or sets the position of the notes on the page.")
-  public NotesPositionEnum getNotesPosition() {
-    return notesPosition;
+  @ApiModelProperty(value = "Slides layouting options")
+  public SlidesLayoutOptions getSlidesLayoutOptions() {
+    return slidesLayoutOptions;
   }
 
-  public void setNotesPosition(NotesPositionEnum notesPosition) {
-    this.notesPosition = notesPosition;
-  }
-
-  public PdfExportOptions commentsPosition(CommentsPositionEnum commentsPosition) {
-    this.commentsPosition = commentsPosition;
-    return this;
-  }
-
-   /**
-   * Gets or sets the position of the comments on the page.
-   * @return commentsPosition
-  **/
-  @ApiModelProperty(value = "Gets or sets the position of the comments on the page.")
-  public CommentsPositionEnum getCommentsPosition() {
-    return commentsPosition;
-  }
-
-  public void setCommentsPosition(CommentsPositionEnum commentsPosition) {
-    this.commentsPosition = commentsPosition;
-  }
-
-  public PdfExportOptions commentsAreaWidth(Integer commentsAreaWidth) {
-    this.commentsAreaWidth = commentsAreaWidth;
-    return this;
-  }
-
-   /**
-   * Gets or sets the width of the comment output area in pixels (Applies only if comments are displayed on the right).
-   * @return commentsAreaWidth
-  **/
-  @ApiModelProperty(value = "Gets or sets the width of the comment output area in pixels (Applies only if comments are displayed on the right).")
-  public Integer getCommentsAreaWidth() {
-    return commentsAreaWidth;
-  }
-
-  public void setCommentsAreaWidth(Integer commentsAreaWidth) {
-    this.commentsAreaWidth = commentsAreaWidth;
-  }
-
-  public PdfExportOptions commentsAreaColor(String commentsAreaColor) {
-    this.commentsAreaColor = commentsAreaColor;
-    return this;
-  }
-
-   /**
-   * Gets or sets the color of comments area (Applies only if comments are displayed on the right).
-   * @return commentsAreaColor
-  **/
-  @ApiModelProperty(value = "Gets or sets the color of comments area (Applies only if comments are displayed on the right).")
-  public String getCommentsAreaColor() {
-    return commentsAreaColor;
-  }
-
-  public void setCommentsAreaColor(String commentsAreaColor) {
-    this.commentsAreaColor = commentsAreaColor;
-  }
-
-  public PdfExportOptions showCommentsByNoAuthor(Boolean showCommentsByNoAuthor) {
-    this.showCommentsByNoAuthor = showCommentsByNoAuthor;
-    return this;
-  }
-
-   /**
-   * True if comments that have no author are displayed. (Applies only if comments are displayed).
-   * @return showCommentsByNoAuthor
-  **/
-  @ApiModelProperty(value = "True if comments that have no author are displayed. (Applies only if comments are displayed).")
-  public Boolean isShowCommentsByNoAuthor() {
-    return showCommentsByNoAuthor;
-  }
-
-  public void setShowCommentsByNoAuthor(Boolean showCommentsByNoAuthor) {
-    this.showCommentsByNoAuthor = showCommentsByNoAuthor;
+  public void setSlidesLayoutOptions(SlidesLayoutOptions slidesLayoutOptions) {
+    this.slidesLayoutOptions = slidesLayoutOptions;
   }
 
   public PdfExportOptions imageTransparentColor(String imageTransparentColor) {
@@ -684,12 +503,12 @@ public class PdfExportOptions extends ExportOptions {
       return false;
     }
     PdfExportOptions pdfExportOptions = (PdfExportOptions) o;
-    return true && Objects.equals(this.textCompression, pdfExportOptions.textCompression) && Objects.equals(this.embedFullFonts, pdfExportOptions.embedFullFonts) && Objects.equals(this.compliance, pdfExportOptions.compliance) && Objects.equals(this.sufficientResolution, pdfExportOptions.sufficientResolution) && Objects.equals(this.jpegQuality, pdfExportOptions.jpegQuality) && Objects.equals(this.drawSlidesFrame, pdfExportOptions.drawSlidesFrame) && Objects.equals(this.showHiddenSlides, pdfExportOptions.showHiddenSlides) && Objects.equals(this.saveMetafilesAsPng, pdfExportOptions.saveMetafilesAsPng) && Objects.equals(this.password, pdfExportOptions.password) && Objects.equals(this.embedTrueTypeFontsForASCII, pdfExportOptions.embedTrueTypeFontsForASCII) && Objects.equals(this.additionalCommonFontFamilies, pdfExportOptions.additionalCommonFontFamilies) && Objects.equals(this.notesPosition, pdfExportOptions.notesPosition) && Objects.equals(this.commentsPosition, pdfExportOptions.commentsPosition) && Objects.equals(this.commentsAreaWidth, pdfExportOptions.commentsAreaWidth) && Objects.equals(this.commentsAreaColor, pdfExportOptions.commentsAreaColor) && Objects.equals(this.showCommentsByNoAuthor, pdfExportOptions.showCommentsByNoAuthor) && Objects.equals(this.imageTransparentColor, pdfExportOptions.imageTransparentColor) && Objects.equals(this.applyImageTransparent, pdfExportOptions.applyImageTransparent) && Objects.equals(this.accessPermissions, pdfExportOptions.accessPermissions) && super.equals(o);
+    return true && Objects.equals(this.textCompression, pdfExportOptions.textCompression) && Objects.equals(this.embedFullFonts, pdfExportOptions.embedFullFonts) && Objects.equals(this.compliance, pdfExportOptions.compliance) && Objects.equals(this.sufficientResolution, pdfExportOptions.sufficientResolution) && Objects.equals(this.jpegQuality, pdfExportOptions.jpegQuality) && Objects.equals(this.drawSlidesFrame, pdfExportOptions.drawSlidesFrame) && Objects.equals(this.showHiddenSlides, pdfExportOptions.showHiddenSlides) && Objects.equals(this.saveMetafilesAsPng, pdfExportOptions.saveMetafilesAsPng) && Objects.equals(this.password, pdfExportOptions.password) && Objects.equals(this.embedTrueTypeFontsForASCII, pdfExportOptions.embedTrueTypeFontsForASCII) && Objects.equals(this.additionalCommonFontFamilies, pdfExportOptions.additionalCommonFontFamilies) && Objects.equals(this.slidesLayoutOptions, pdfExportOptions.slidesLayoutOptions) && Objects.equals(this.imageTransparentColor, pdfExportOptions.imageTransparentColor) && Objects.equals(this.applyImageTransparent, pdfExportOptions.applyImageTransparent) && Objects.equals(this.accessPermissions, pdfExportOptions.accessPermissions) && super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(textCompression, embedFullFonts, compliance, sufficientResolution, jpegQuality, drawSlidesFrame, showHiddenSlides, saveMetafilesAsPng, password, embedTrueTypeFontsForASCII, additionalCommonFontFamilies, notesPosition, commentsPosition, commentsAreaWidth, commentsAreaColor, showCommentsByNoAuthor, imageTransparentColor, applyImageTransparent, accessPermissions, super.hashCode());
+    return Objects.hash(textCompression, embedFullFonts, compliance, sufficientResolution, jpegQuality, drawSlidesFrame, showHiddenSlides, saveMetafilesAsPng, password, embedTrueTypeFontsForASCII, additionalCommonFontFamilies, slidesLayoutOptions, imageTransparentColor, applyImageTransparent, accessPermissions, super.hashCode());
   }
 
 
@@ -709,11 +528,7 @@ public class PdfExportOptions extends ExportOptions {
     sb.append("    password: ").append(toIndentedString(password)).append("\n");
     sb.append("    embedTrueTypeFontsForASCII: ").append(toIndentedString(embedTrueTypeFontsForASCII)).append("\n");
     sb.append("    additionalCommonFontFamilies: ").append(toIndentedString(additionalCommonFontFamilies)).append("\n");
-    sb.append("    notesPosition: ").append(toIndentedString(notesPosition)).append("\n");
-    sb.append("    commentsPosition: ").append(toIndentedString(commentsPosition)).append("\n");
-    sb.append("    commentsAreaWidth: ").append(toIndentedString(commentsAreaWidth)).append("\n");
-    sb.append("    commentsAreaColor: ").append(toIndentedString(commentsAreaColor)).append("\n");
-    sb.append("    showCommentsByNoAuthor: ").append(toIndentedString(showCommentsByNoAuthor)).append("\n");
+    sb.append("    slidesLayoutOptions: ").append(toIndentedString(slidesLayoutOptions)).append("\n");
     sb.append("    imageTransparentColor: ").append(toIndentedString(imageTransparentColor)).append("\n");
     sb.append("    applyImageTransparent: ").append(toIndentedString(applyImageTransparent)).append("\n");
     sb.append("    accessPermissions: ").append(toIndentedString(accessPermissions)).append("\n");
