@@ -157,8 +157,8 @@ public class MathTest extends ApiTest {
     @Test
     public void mathDownloadTest() throws ApiException, IOException {
         testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
-        File mathMl = testSlidesApi.downloadPortionAsMathMl(
-            fileName, c_slideIndex, c_shapeIndex, c_paragraphIndex, c_portionIndex, password, folderName, null);
+        File mathMl = testSlidesApi.downloadMathPortion(
+            fileName, c_slideIndex, c_shapeIndex, c_paragraphIndex, c_portionIndex, MathFormat.MATHML, password, folderName, null);
         assertNotNull(mathMl);
         assertTrue(mathMl.length() > 0);
         assertTrue(mathMl.canRead());
@@ -169,8 +169,8 @@ public class MathTest extends ApiTest {
         testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         try {
             //Cannot convert an ordinary portion to MathML
-            File mathMl = testSlidesApi.downloadPortionAsMathMl(
-                fileName, c_slideIndex, c_notMathShapeIndex, c_paragraphIndex, c_portionIndex, password, folderName, null);
+            File mathMl = testSlidesApi.downloadMathPortion(
+                fileName, c_slideIndex, c_notMathShapeIndex, c_paragraphIndex, c_portionIndex, MathFormat.MATHML, password, folderName, null);
         } catch (Exception ex) {
             assertTrue(ex instanceof ApiException);
         }
@@ -180,8 +180,8 @@ public class MathTest extends ApiTest {
     public void mathSaveTest() throws ApiException, IOException {
         String outPath = testDataFolderName + "/mathml.xml";
         testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
-        testSlidesApi.savePortionAsMathMl(
-            fileName, c_slideIndex, c_shapeIndex, c_paragraphIndex, c_portionIndex, outPath, password, folderName, null);
+        testSlidesApi.saveMathPortion(
+            fileName, c_slideIndex, c_shapeIndex, c_paragraphIndex, c_portionIndex, MathFormat.MATHML, outPath, password, folderName, null);
         ObjectExist exists = testSlidesApi.objectExists(outPath, null, null);
         assertTrue(exists.isExists());
     }

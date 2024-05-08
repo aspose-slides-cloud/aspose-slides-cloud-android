@@ -31,6 +31,7 @@ import java.util.Objects;
 import com.aspose.slides.model.EffectFormat;
 import com.aspose.slides.model.FillFormat;
 import com.aspose.slides.model.LineFormat;
+import com.aspose.slides.model.SeriesMarker;
 import com.aspose.slides.model.ThreeDFormat;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -60,6 +61,9 @@ public class DataPoint {
 
   @SerializedName(value = "lineFormat", alternate = { "LineFormat" })
   private LineFormat lineFormat;
+
+  @SerializedName(value = "marker", alternate = { "Marker" })
+  private SeriesMarker marker;
 
   /**
    * Gets or Sets type
@@ -190,6 +194,24 @@ public class DataPoint {
     this.lineFormat = lineFormat;
   }
 
+  public DataPoint marker(SeriesMarker marker) {
+    this.marker = marker;
+    return this;
+  }
+
+   /**
+   * Gets or sets the marker.
+   * @return marker
+  **/
+  @ApiModelProperty(value = "Gets or sets the marker.")
+  public SeriesMarker getMarker() {
+    return marker;
+  }
+
+  public void setMarker(SeriesMarker marker) {
+    this.marker = marker;
+  }
+
    /**
    * Get type
    * @return type
@@ -213,12 +235,12 @@ public class DataPoint {
       return false;
     }
     DataPoint dataPoint = (DataPoint) o;
-    return true && Objects.equals(this.fillFormat, dataPoint.fillFormat) && Objects.equals(this.effectFormat, dataPoint.effectFormat) && Objects.equals(this.threeDFormat, dataPoint.threeDFormat) && Objects.equals(this.lineFormat, dataPoint.lineFormat) && Objects.equals(this.type, dataPoint.type);
+    return true && Objects.equals(this.fillFormat, dataPoint.fillFormat) && Objects.equals(this.effectFormat, dataPoint.effectFormat) && Objects.equals(this.threeDFormat, dataPoint.threeDFormat) && Objects.equals(this.lineFormat, dataPoint.lineFormat) && Objects.equals(this.marker, dataPoint.marker) && Objects.equals(this.type, dataPoint.type);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(fillFormat, effectFormat, threeDFormat, lineFormat, type);
+    return Objects.hash(fillFormat, effectFormat, threeDFormat, lineFormat, marker, type);
   }
 
 
@@ -231,6 +253,7 @@ public class DataPoint {
     sb.append("    effectFormat: ").append(toIndentedString(effectFormat)).append("\n");
     sb.append("    threeDFormat: ").append(toIndentedString(threeDFormat)).append("\n");
     sb.append("    lineFormat: ").append(toIndentedString(lineFormat)).append("\n");
+    sb.append("    marker: ").append(toIndentedString(marker)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("}");
     return sb.toString();
