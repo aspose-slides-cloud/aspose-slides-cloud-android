@@ -91,7 +91,7 @@ public class CreateTest extends ApiTest {
     public void createFromPdf() throws ApiException, IOException {
         testSlidesApi.deleteFile(folderName + "/" + fileName, null, null);
         byte[] pdf = Files.readAllBytes(Paths.get(testDataFolderName + "/" + c_pdfFileName));
-        Document created = testSlidesApi.importFromPdf(fileName, pdf, null, folderName, null);
+        Document created = testSlidesApi.importFromPdf(fileName, pdf, null, null, folderName, null);
         assertNotNull(created);
     }
 
@@ -100,7 +100,9 @@ public class CreateTest extends ApiTest {
         testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         int slideCount = testSlidesApi.getSlides(fileName, password, folderName, null).getSlideList().size();
         byte[] pdf = Files.readAllBytes(Paths.get(testDataFolderName + "/" + c_pdfFileName));
-        Document updated = testSlidesApi.importFromPdf(fileName, pdf, password, folderName, null);
+        PdfImportOptions options = new PdfImportOptions();
+        options.setDetectTables(false);
+        Document updated = testSlidesApi.importFromPdf(fileName, pdf, options, password, folderName, null);
         assertNotNull(updated);
         assertTrue(testSlidesApi.getSlides(fileName, password, folderName, null).getSlideList().size() > slideCount);
     }

@@ -59,8 +59,8 @@ public class NullableFieldTest extends ApiTest {
         testDto.setChartType(Chart.ChartTypeEnum.LINE);
         testDto.setWidth(400.0);
         testDto.setHeight(300.0);
+        testDto.setHasTitle(true);
         ChartTitle testTitle = new ChartTitle();
-        testTitle.setHasTitle(true);
         testTitle.setText("MyTitle");
         testDto.setTitle(testTitle);
 

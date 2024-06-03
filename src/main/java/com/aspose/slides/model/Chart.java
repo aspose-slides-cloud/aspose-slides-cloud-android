@@ -285,6 +285,9 @@ public class Chart extends ShapeBase {
   @SerializedName(value = "dataSourceForCategories", alternate = { "DataSourceForCategories" })
   private DataSource dataSourceForCategories;
 
+  @SerializedName(value = "hasTitle", alternate = { "HasTitle" })
+  private Boolean hasTitle;
+
   @SerializedName(value = "title", alternate = { "Title" })
   private ChartTitle title;
 
@@ -422,6 +425,24 @@ public class Chart extends ShapeBase {
 
   public void setDataSourceForCategories(DataSource dataSourceForCategories) {
     this.dataSourceForCategories = dataSourceForCategories;
+  }
+
+  public Chart hasTitle(Boolean hasTitle) {
+    this.hasTitle = hasTitle;
+    return this;
+  }
+
+   /**
+   * True if the chart has a title.
+   * @return hasTitle
+  **/
+  @ApiModelProperty(value = "True if the chart has a title.")
+  public Boolean isHasTitle() {
+    return hasTitle;
+  }
+
+  public void setHasTitle(Boolean hasTitle) {
+    this.hasTitle = hasTitle;
   }
 
   public Chart title(ChartTitle title) {
@@ -604,12 +625,12 @@ public class Chart extends ShapeBase {
       return false;
     }
     Chart chart = (Chart) o;
-    return true && Objects.equals(this.chartType, chart.chartType) && Objects.equals(this.showDataLabelsOverMaximum, chart.showDataLabelsOverMaximum) && Objects.equals(this.series, chart.series) && Objects.equals(this.categories, chart.categories) && Objects.equals(this.dataSourceForCategories, chart.dataSourceForCategories) && Objects.equals(this.title, chart.title) && Objects.equals(this.backWall, chart.backWall) && Objects.equals(this.sideWall, chart.sideWall) && Objects.equals(this.floor, chart.floor) && Objects.equals(this.legend, chart.legend) && Objects.equals(this.axes, chart.axes) && Objects.equals(this.plotArea, chart.plotArea) && Objects.equals(this.hasRoundedCorners, chart.hasRoundedCorners) && Objects.equals(this.seriesGroups, chart.seriesGroups) && super.equals(o);
+    return true && Objects.equals(this.chartType, chart.chartType) && Objects.equals(this.showDataLabelsOverMaximum, chart.showDataLabelsOverMaximum) && Objects.equals(this.series, chart.series) && Objects.equals(this.categories, chart.categories) && Objects.equals(this.dataSourceForCategories, chart.dataSourceForCategories) && Objects.equals(this.hasTitle, chart.hasTitle) && Objects.equals(this.title, chart.title) && Objects.equals(this.backWall, chart.backWall) && Objects.equals(this.sideWall, chart.sideWall) && Objects.equals(this.floor, chart.floor) && Objects.equals(this.legend, chart.legend) && Objects.equals(this.axes, chart.axes) && Objects.equals(this.plotArea, chart.plotArea) && Objects.equals(this.hasRoundedCorners, chart.hasRoundedCorners) && Objects.equals(this.seriesGroups, chart.seriesGroups) && super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(chartType, showDataLabelsOverMaximum, series, categories, dataSourceForCategories, title, backWall, sideWall, floor, legend, axes, plotArea, hasRoundedCorners, seriesGroups, super.hashCode());
+    return Objects.hash(chartType, showDataLabelsOverMaximum, series, categories, dataSourceForCategories, hasTitle, title, backWall, sideWall, floor, legend, axes, plotArea, hasRoundedCorners, seriesGroups, super.hashCode());
   }
 
 
@@ -623,6 +644,7 @@ public class Chart extends ShapeBase {
     sb.append("    series: ").append(toIndentedString(series)).append("\n");
     sb.append("    categories: ").append(toIndentedString(categories)).append("\n");
     sb.append("    dataSourceForCategories: ").append(toIndentedString(dataSourceForCategories)).append("\n");
+    sb.append("    hasTitle: ").append(toIndentedString(hasTitle)).append("\n");
     sb.append("    title: ").append(toIndentedString(title)).append("\n");
     sb.append("    backWall: ").append(toIndentedString(backWall)).append("\n");
     sb.append("    sideWall: ").append(toIndentedString(sideWall)).append("\n");

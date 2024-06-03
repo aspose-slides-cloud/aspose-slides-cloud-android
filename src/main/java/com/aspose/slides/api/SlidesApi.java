@@ -83,6 +83,7 @@ import com.aspose.slides.model.ObjectExist;
 import com.aspose.slides.model.OrderedMergeRequest;
 import com.aspose.slides.model.Paragraph;
 import com.aspose.slides.model.Paragraphs;
+import com.aspose.slides.model.PdfImportOptions;
 import com.aspose.slides.model.PictureFrame;
 import com.aspose.slides.model.Pipeline;
 import com.aspose.slides.model.Placeholder;
@@ -27715,6 +27716,7 @@ public class SlidesApi {
      * Build call for importFromPdf
      * @param name Document name. (required)
      * @param pdf PDF data. (required)
+     * @param options Import options. 
      * @param password Document password. 
      * @param folder Document folder. 
      * @param storage Document storage. 
@@ -27723,7 +27725,7 @@ public class SlidesApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call importFromPdfCall(String name, byte[] pdf, String password, String folder, String storage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call importFromPdfCall(String name, byte[] pdf, PdfImportOptions options, String password, String folder, String storage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         // verify the required parameter 'name' is set
         if (name == null) {
             throw new ApiException("Missing the required parameter 'name' when calling importFromPdf(Async)");
@@ -27732,7 +27734,7 @@ public class SlidesApi {
         if (pdf == null) {
             throw new ApiException("Missing the required parameter 'pdf' when calling importFromPdf(Async)");
         }
-        Object postBody = null;
+        Object postBody = options;
 
         // create path and map variables
         String methodPath = "/slides/{name}/fromPdf"
@@ -27781,18 +27783,19 @@ public class SlidesApi {
      * 
      * @param name Document name. (required)
      * @param pdf PDF data. (required)
+     * @param options Import options. 
      * @param password Document password. 
      * @param folder Document folder. 
      * @param storage Document storage. 
      * @return Document
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public Document importFromPdf(String name, byte[] pdf, String password, String folder, String storage) throws ApiException {
+    public Document importFromPdf(String name, byte[] pdf, PdfImportOptions options, String password, String folder, String storage) throws ApiException {
         try {
-            ApiResponse<Document> resp = importFromPdfWithHttpInfo(name, pdf, password, folder, storage);
+            ApiResponse<Document> resp = importFromPdfWithHttpInfo(name, pdf, options, password, folder, storage);
             return resp.getData();
         } catch (NeedRepeatRequestException e) {
-            ApiResponse<Document> resp = importFromPdfWithHttpInfo(name, pdf, password, folder, storage);
+            ApiResponse<Document> resp = importFromPdfWithHttpInfo(name, pdf, options, password, folder, storage);
             return resp.getData();
         }
     }
@@ -27802,14 +27805,15 @@ public class SlidesApi {
      * 
      * @param name Document name. (required)
      * @param pdf PDF data. (required)
+     * @param options Import options. 
      * @param password Document password. 
      * @param folder Document folder. 
      * @param storage Document storage. 
      * @return ApiResponse&lt;Document&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Document> importFromPdfWithHttpInfo(String name, byte[] pdf, String password, String folder, String storage) throws ApiException {
-        com.squareup.okhttp.Call call = importFromPdfCall(name, pdf, password, folder, storage, null, null);
+    public ApiResponse<Document> importFromPdfWithHttpInfo(String name, byte[] pdf, PdfImportOptions options, String password, String folder, String storage) throws ApiException {
+        com.squareup.okhttp.Call call = importFromPdfCall(name, pdf, options, password, folder, storage, null, null);
         Type returnType = new TypeToken<Document>(){}.getType();
         return apiClient.execute(call, returnType);
     }
@@ -27819,6 +27823,7 @@ public class SlidesApi {
      * 
      * @param name Document name. (required)
      * @param pdf PDF data. (required)
+     * @param options Import options. 
      * @param password Document password. 
      * @param folder Document folder. 
      * @param storage Document storage. 
@@ -27826,7 +27831,7 @@ public class SlidesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call importFromPdfAsync(String name, byte[] pdf, String password, String folder, String storage, final ApiCallback<Document> callback) throws ApiException {
+    public com.squareup.okhttp.Call importFromPdfAsync(String name, byte[] pdf, PdfImportOptions options, String password, String folder, String storage, final ApiCallback<Document> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -27847,7 +27852,7 @@ public class SlidesApi {
             };
         }
 
-        com.squareup.okhttp.Call call = importFromPdfCall(name, pdf, password, folder, storage, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = importFromPdfCall(name, pdf, options, password, folder, storage, progressListener, progressRequestListener);
         Type returnType = new TypeToken<Document>(){}.getType();
         apiClient.executeAsync(call, returnType, callback);
         return call;
