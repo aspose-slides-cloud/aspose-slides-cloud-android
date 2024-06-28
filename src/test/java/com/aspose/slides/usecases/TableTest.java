@@ -158,6 +158,20 @@ public class TableTest extends ApiTest {
     }
 
     @Test
+    public void getTableCellParagraph() throws ApiException, IOException {
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+
+        int rowIndex = 1;
+        int cellIndex = 1;
+        int paragraphIndex = 1;
+
+        Paragraph response = testSlidesApi.getTableCellParagraph(fileName, c_slideIndex,
+                c_shapeIndex, rowIndex, cellIndex, paragraphIndex, password, folderName, null);
+
+        assertEquals(response.getPortionList().size(), 2);
+    }
+
+    @Test
     public void createTableCellParagraph() throws ApiException, IOException {
         testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
 

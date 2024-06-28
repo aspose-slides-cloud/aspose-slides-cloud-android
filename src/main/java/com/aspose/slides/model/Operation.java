@@ -171,9 +171,6 @@ public class Operation {
   @SerializedName(value = "created", alternate = { "Created" })
   private OffsetDateTime created;
 
-  @SerializedName(value = "enqueued", alternate = { "Enqueued" })
-  private OffsetDateTime enqueued;
-
   @SerializedName(value = "started", alternate = { "Started" })
   private OffsetDateTime started;
 
@@ -284,24 +281,6 @@ public class Operation {
     this.created = created;
   }
 
-  public Operation enqueued(OffsetDateTime enqueued) {
-    this.enqueued = enqueued;
-    return this;
-  }
-
-   /**
-   * Get enqueued
-   * @return enqueued
-  **/
-  @ApiModelProperty(value = "")
-  public OffsetDateTime getEnqueued() {
-    return enqueued;
-  }
-
-  public void setEnqueued(OffsetDateTime enqueued) {
-    this.enqueued = enqueued;
-  }
-
   public Operation started(OffsetDateTime started) {
     this.started = started;
     return this;
@@ -402,12 +381,12 @@ public class Operation {
       return false;
     }
     Operation operation = (Operation) o;
-    return true && Objects.equals(this.id, operation.id) && Objects.equals(this.method, operation.method) && Objects.equals(this.status, operation.status) && Objects.equals(this.progress, operation.progress) && Objects.equals(this.created, operation.created) && Objects.equals(this.enqueued, operation.enqueued) && Objects.equals(this.started, operation.started) && Objects.equals(this.failed, operation.failed) && Objects.equals(this.canceled, operation.canceled) && Objects.equals(this.finished, operation.finished) && Objects.equals(this.error, operation.error);
+    return true && Objects.equals(this.id, operation.id) && Objects.equals(this.method, operation.method) && Objects.equals(this.status, operation.status) && Objects.equals(this.progress, operation.progress) && Objects.equals(this.created, operation.created) && Objects.equals(this.started, operation.started) && Objects.equals(this.failed, operation.failed) && Objects.equals(this.canceled, operation.canceled) && Objects.equals(this.finished, operation.finished) && Objects.equals(this.error, operation.error);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, method, status, progress, created, enqueued, started, failed, canceled, finished, error);
+    return Objects.hash(id, method, status, progress, created, started, failed, canceled, finished, error);
   }
 
 
@@ -421,7 +400,6 @@ public class Operation {
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    progress: ").append(toIndentedString(progress)).append("\n");
     sb.append("    created: ").append(toIndentedString(created)).append("\n");
-    sb.append("    enqueued: ").append(toIndentedString(enqueued)).append("\n");
     sb.append("    started: ").append(toIndentedString(started)).append("\n");
     sb.append("    failed: ").append(toIndentedString(failed)).append("\n");
     sb.append("    canceled: ").append(toIndentedString(canceled)).append("\n");

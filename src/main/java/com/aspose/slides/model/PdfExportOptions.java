@@ -209,6 +209,12 @@ public class PdfExportOptions extends ExportOptions {
   @SerializedName(value = "accessPermissions", alternate = { "AccessPermissions" })
   private AccessPermissions accessPermissions;
 
+  @SerializedName(value = "hideInk", alternate = { "HideInk" })
+  private Boolean hideInk;
+
+  @SerializedName(value = "interpretMaskOpAsOpacity", alternate = { "InterpretMaskOpAsOpacity" })
+  private Boolean interpretMaskOpAsOpacity;
+
 
   public PdfExportOptions() {
     super();
@@ -493,6 +499,42 @@ public class PdfExportOptions extends ExportOptions {
     this.accessPermissions = accessPermissions;
   }
 
+  public PdfExportOptions hideInk(Boolean hideInk) {
+    this.hideInk = hideInk;
+    return this;
+  }
+
+   /**
+   * True to hide Ink elements in exported document.
+   * @return hideInk
+  **/
+  @ApiModelProperty(value = "True to hide Ink elements in exported document.")
+  public Boolean isHideInk() {
+    return hideInk;
+  }
+
+  public void setHideInk(Boolean hideInk) {
+    this.hideInk = hideInk;
+  }
+
+  public PdfExportOptions interpretMaskOpAsOpacity(Boolean interpretMaskOpAsOpacity) {
+    this.interpretMaskOpAsOpacity = interpretMaskOpAsOpacity;
+    return this;
+  }
+
+   /**
+   * True to use ROP operation or Opacity for rendering brush.
+   * @return interpretMaskOpAsOpacity
+  **/
+  @ApiModelProperty(value = "True to use ROP operation or Opacity for rendering brush.")
+  public Boolean isInterpretMaskOpAsOpacity() {
+    return interpretMaskOpAsOpacity;
+  }
+
+  public void setInterpretMaskOpAsOpacity(Boolean interpretMaskOpAsOpacity) {
+    this.interpretMaskOpAsOpacity = interpretMaskOpAsOpacity;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -503,12 +545,12 @@ public class PdfExportOptions extends ExportOptions {
       return false;
     }
     PdfExportOptions pdfExportOptions = (PdfExportOptions) o;
-    return true && Objects.equals(this.textCompression, pdfExportOptions.textCompression) && Objects.equals(this.embedFullFonts, pdfExportOptions.embedFullFonts) && Objects.equals(this.compliance, pdfExportOptions.compliance) && Objects.equals(this.sufficientResolution, pdfExportOptions.sufficientResolution) && Objects.equals(this.jpegQuality, pdfExportOptions.jpegQuality) && Objects.equals(this.drawSlidesFrame, pdfExportOptions.drawSlidesFrame) && Objects.equals(this.showHiddenSlides, pdfExportOptions.showHiddenSlides) && Objects.equals(this.saveMetafilesAsPng, pdfExportOptions.saveMetafilesAsPng) && Objects.equals(this.password, pdfExportOptions.password) && Objects.equals(this.embedTrueTypeFontsForASCII, pdfExportOptions.embedTrueTypeFontsForASCII) && Objects.equals(this.additionalCommonFontFamilies, pdfExportOptions.additionalCommonFontFamilies) && Objects.equals(this.slidesLayoutOptions, pdfExportOptions.slidesLayoutOptions) && Objects.equals(this.imageTransparentColor, pdfExportOptions.imageTransparentColor) && Objects.equals(this.applyImageTransparent, pdfExportOptions.applyImageTransparent) && Objects.equals(this.accessPermissions, pdfExportOptions.accessPermissions) && super.equals(o);
+    return true && Objects.equals(this.textCompression, pdfExportOptions.textCompression) && Objects.equals(this.embedFullFonts, pdfExportOptions.embedFullFonts) && Objects.equals(this.compliance, pdfExportOptions.compliance) && Objects.equals(this.sufficientResolution, pdfExportOptions.sufficientResolution) && Objects.equals(this.jpegQuality, pdfExportOptions.jpegQuality) && Objects.equals(this.drawSlidesFrame, pdfExportOptions.drawSlidesFrame) && Objects.equals(this.showHiddenSlides, pdfExportOptions.showHiddenSlides) && Objects.equals(this.saveMetafilesAsPng, pdfExportOptions.saveMetafilesAsPng) && Objects.equals(this.password, pdfExportOptions.password) && Objects.equals(this.embedTrueTypeFontsForASCII, pdfExportOptions.embedTrueTypeFontsForASCII) && Objects.equals(this.additionalCommonFontFamilies, pdfExportOptions.additionalCommonFontFamilies) && Objects.equals(this.slidesLayoutOptions, pdfExportOptions.slidesLayoutOptions) && Objects.equals(this.imageTransparentColor, pdfExportOptions.imageTransparentColor) && Objects.equals(this.applyImageTransparent, pdfExportOptions.applyImageTransparent) && Objects.equals(this.accessPermissions, pdfExportOptions.accessPermissions) && Objects.equals(this.hideInk, pdfExportOptions.hideInk) && Objects.equals(this.interpretMaskOpAsOpacity, pdfExportOptions.interpretMaskOpAsOpacity) && super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(textCompression, embedFullFonts, compliance, sufficientResolution, jpegQuality, drawSlidesFrame, showHiddenSlides, saveMetafilesAsPng, password, embedTrueTypeFontsForASCII, additionalCommonFontFamilies, slidesLayoutOptions, imageTransparentColor, applyImageTransparent, accessPermissions, super.hashCode());
+    return Objects.hash(textCompression, embedFullFonts, compliance, sufficientResolution, jpegQuality, drawSlidesFrame, showHiddenSlides, saveMetafilesAsPng, password, embedTrueTypeFontsForASCII, additionalCommonFontFamilies, slidesLayoutOptions, imageTransparentColor, applyImageTransparent, accessPermissions, hideInk, interpretMaskOpAsOpacity, super.hashCode());
   }
 
 
@@ -532,6 +574,8 @@ public class PdfExportOptions extends ExportOptions {
     sb.append("    imageTransparentColor: ").append(toIndentedString(imageTransparentColor)).append("\n");
     sb.append("    applyImageTransparent: ").append(toIndentedString(applyImageTransparent)).append("\n");
     sb.append("    accessPermissions: ").append(toIndentedString(accessPermissions)).append("\n");
+    sb.append("    hideInk: ").append(toIndentedString(hideInk)).append("\n");
+    sb.append("    interpretMaskOpAsOpacity: ").append(toIndentedString(interpretMaskOpAsOpacity)).append("\n");
     sb.append("}");
     return sb.toString();
   }
