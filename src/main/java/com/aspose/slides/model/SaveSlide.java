@@ -102,7 +102,9 @@ public class SaveSlide extends Task {
     
     HTML5("Html5"),
     
-    MD("Md");
+    MD("Md"),
+    
+    XML("Xml");
 
     private String value;
 

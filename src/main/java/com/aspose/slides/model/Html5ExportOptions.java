@@ -62,6 +62,9 @@ public class Html5ExportOptions extends ExportOptions {
   @SerializedName(value = "notesCommentsLayouting", alternate = { "NotesCommentsLayouting" })
   private NotesCommentsLayoutingOptions notesCommentsLayouting;
 
+  @SerializedName(value = "templatesPath", alternate = { "TemplatesPath" })
+  private String templatesPath;
+
 
   public Html5ExportOptions() {
     super();
@@ -140,6 +143,24 @@ public class Html5ExportOptions extends ExportOptions {
     this.notesCommentsLayouting = notesCommentsLayouting;
   }
 
+  public Html5ExportOptions templatesPath(String templatesPath) {
+    this.templatesPath = templatesPath;
+    return this;
+  }
+
+   /**
+   * Path to custom templates
+   * @return templatesPath
+  **/
+  @ApiModelProperty(value = "Path to custom templates")
+  public String getTemplatesPath() {
+    return templatesPath;
+  }
+
+  public void setTemplatesPath(String templatesPath) {
+    this.templatesPath = templatesPath;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -150,12 +171,12 @@ public class Html5ExportOptions extends ExportOptions {
       return false;
     }
     Html5ExportOptions html5ExportOptions = (Html5ExportOptions) o;
-    return true && Objects.equals(this.animateTransitions, html5ExportOptions.animateTransitions) && Objects.equals(this.animateShapes, html5ExportOptions.animateShapes) && Objects.equals(this.embedImages, html5ExportOptions.embedImages) && Objects.equals(this.notesCommentsLayouting, html5ExportOptions.notesCommentsLayouting) && super.equals(o);
+    return true && Objects.equals(this.animateTransitions, html5ExportOptions.animateTransitions) && Objects.equals(this.animateShapes, html5ExportOptions.animateShapes) && Objects.equals(this.embedImages, html5ExportOptions.embedImages) && Objects.equals(this.notesCommentsLayouting, html5ExportOptions.notesCommentsLayouting) && Objects.equals(this.templatesPath, html5ExportOptions.templatesPath) && super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(animateTransitions, animateShapes, embedImages, notesCommentsLayouting, super.hashCode());
+    return Objects.hash(animateTransitions, animateShapes, embedImages, notesCommentsLayouting, templatesPath, super.hashCode());
   }
 
 
@@ -168,6 +189,7 @@ public class Html5ExportOptions extends ExportOptions {
     sb.append("    animateShapes: ").append(toIndentedString(animateShapes)).append("\n");
     sb.append("    embedImages: ").append(toIndentedString(embedImages)).append("\n");
     sb.append("    notesCommentsLayouting: ").append(toIndentedString(notesCommentsLayouting)).append("\n");
+    sb.append("    templatesPath: ").append(toIndentedString(templatesPath)).append("\n");
     sb.append("}");
     return sb.toString();
   }

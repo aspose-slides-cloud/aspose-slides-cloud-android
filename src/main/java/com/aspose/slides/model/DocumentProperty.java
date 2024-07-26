@@ -107,7 +107,7 @@ public class DocumentProperty extends ResourceBase {
    * True for builtin property.
    * @return builtIn
   **/
-  @ApiModelProperty(required = true, value = "True for builtin property.")
+  @ApiModelProperty(value = "True for builtin property.")
   public Boolean isBuiltIn() {
     return builtIn;
   }

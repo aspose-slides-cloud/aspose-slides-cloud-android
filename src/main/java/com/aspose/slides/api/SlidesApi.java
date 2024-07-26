@@ -16893,169 +16893,6 @@ public class SlidesApi {
         return call;
     }
     /**
-     * Build call for downloadPortionAsMathMl
-     * @param name Document name. (required)
-     * @param slideIndex Slide index. (required)
-     * @param shapeIndex Shape index. (required)
-     * @param paragraphIndex Paragraph index. (required)
-     * @param portionIndex Portion index. (required)
-     * @param password Document password. 
-     * @param folder Document folder. 
-     * @param storage Document storage. 
-     * @param progressListener Progress listener
-     * @param progressRequestListener Progress request listener
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     */
-    public com.squareup.okhttp.Call downloadPortionAsMathMlCall(String name, Integer slideIndex, Integer shapeIndex, Integer paragraphIndex, Integer portionIndex, String password, String folder, String storage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        // verify the required parameter 'name' is set
-        if (name == null) {
-            throw new ApiException("Missing the required parameter 'name' when calling downloadPortionAsMathMl(Async)");
-        }
-        // verify the required parameter 'slideIndex' is set
-        if (slideIndex == null) {
-            throw new ApiException("Missing the required parameter 'slideIndex' when calling downloadPortionAsMathMl(Async)");
-        }
-        // verify the required parameter 'shapeIndex' is set
-        if (shapeIndex == null) {
-            throw new ApiException("Missing the required parameter 'shapeIndex' when calling downloadPortionAsMathMl(Async)");
-        }
-        // verify the required parameter 'paragraphIndex' is set
-        if (paragraphIndex == null) {
-            throw new ApiException("Missing the required parameter 'paragraphIndex' when calling downloadPortionAsMathMl(Async)");
-        }
-        // verify the required parameter 'portionIndex' is set
-        if (portionIndex == null) {
-            throw new ApiException("Missing the required parameter 'portionIndex' when calling downloadPortionAsMathMl(Async)");
-        }
-        Object postBody = null;
-
-        // create path and map variables
-        String methodPath = "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/paragraphs/{paragraphIndex}/portions/{portionIndex}/mathml"
-            .replaceAll("\\{" + "name" + "\\}", apiClient.objectToString(name)).replaceAll("\\{" + "slideIndex" + "\\}", apiClient.objectToString(slideIndex)).replaceAll("\\{" + "shapeIndex" + "\\}", apiClient.objectToString(shapeIndex)).replaceAll("\\{" + "paragraphIndex" + "\\}", apiClient.objectToString(paragraphIndex)).replaceAll("\\{" + "portionIndex" + "\\}", apiClient.objectToString(portionIndex));
-
-        List<Pair> queryParams = new ArrayList<Pair>();
-        apiClient.addQueryParameter(queryParams, "folder", folder);
-        apiClient.addQueryParameter(queryParams, "storage", storage);
-
-        Map<String, String> headerParams = new HashMap<String, String>();
-        if (password != null)
-        headerParams.put("password", apiClient.parameterToString(password));
-
-        Map<String, Object> formParams = new LinkedHashMap<String, Object>();
-
-        final String[] accepts = {
-            "multipart/form-data"
-        };
-        final String accept = apiClient.selectHeaderAccept(accepts);
-        if (accept != null) headerParams.put("Accept", accept);
-
-        final String[] contentTypes = {
-            "application/json"
-        };
-        final String contentType = apiClient.selectHeaderContentType(contentTypes);
-        headerParams.put("Content-Type", contentType);
-
-        if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
-                @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
-                    return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
-                }
-            });
-        }
-        return apiClient.buildCall(methodPath, "POST", queryParams, postBody, headerParams, formParams, progressRequestListener);
-    }
-
-    /**
-     * Convert Mathematical Text to MathML Format
-     * 
-     * @param name Document name. (required)
-     * @param slideIndex Slide index. (required)
-     * @param shapeIndex Shape index. (required)
-     * @param paragraphIndex Paragraph index. (required)
-     * @param portionIndex Portion index. (required)
-     * @param password Document password. 
-     * @param folder Document folder. 
-     * @param storage Document storage. 
-     * @return File
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     */
-    public File downloadPortionAsMathMl(String name, Integer slideIndex, Integer shapeIndex, Integer paragraphIndex, Integer portionIndex, String password, String folder, String storage) throws ApiException {
-        try {
-            ApiResponse<File> resp = downloadPortionAsMathMlWithHttpInfo(name, slideIndex, shapeIndex, paragraphIndex, portionIndex, password, folder, storage);
-            return resp.getData();
-        } catch (NeedRepeatRequestException e) {
-            ApiResponse<File> resp = downloadPortionAsMathMlWithHttpInfo(name, slideIndex, shapeIndex, paragraphIndex, portionIndex, password, folder, storage);
-            return resp.getData();
-        }
-    }
-
-    /**
-     * Convert Mathematical Text to MathML Format
-     * 
-     * @param name Document name. (required)
-     * @param slideIndex Slide index. (required)
-     * @param shapeIndex Shape index. (required)
-     * @param paragraphIndex Paragraph index. (required)
-     * @param portionIndex Portion index. (required)
-     * @param password Document password. 
-     * @param folder Document folder. 
-     * @param storage Document storage. 
-     * @return ApiResponse&lt;File&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     */
-    public ApiResponse<File> downloadPortionAsMathMlWithHttpInfo(String name, Integer slideIndex, Integer shapeIndex, Integer paragraphIndex, Integer portionIndex, String password, String folder, String storage) throws ApiException {
-        com.squareup.okhttp.Call call = downloadPortionAsMathMlCall(name, slideIndex, shapeIndex, paragraphIndex, portionIndex, password, folder, storage, null, null);
-        Type returnType = new TypeToken<File>(){}.getType();
-        return apiClient.execute(call, returnType);
-    }
-
-    /**
-     * Convert Mathematical Text to MathML Format (asynchronously)
-     * 
-     * @param name Document name. (required)
-     * @param slideIndex Slide index. (required)
-     * @param shapeIndex Shape index. (required)
-     * @param paragraphIndex Paragraph index. (required)
-     * @param portionIndex Portion index. (required)
-     * @param password Document password. 
-     * @param folder Document folder. 
-     * @param storage Document storage. 
-     * @param callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     */
-    public com.squareup.okhttp.Call downloadPortionAsMathMlAsync(String name, Integer slideIndex, Integer shapeIndex, Integer paragraphIndex, Integer portionIndex, String password, String folder, String storage, final ApiCallback<File> callback) throws ApiException {
-
-        ProgressResponseBody.ProgressListener progressListener = null;
-        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
-
-        if (callback != null) {
-            progressListener = new ProgressResponseBody.ProgressListener() {
-                @Override
-                public void update(long bytesRead, long contentLength, boolean done) {
-                    callback.onDownloadProgress(bytesRead, contentLength, done);
-                }
-            };
-
-            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
-                @Override
-                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
-                    callback.onUploadProgress(bytesWritten, contentLength, done);
-                }
-            };
-        }
-
-        com.squareup.okhttp.Call call = downloadPortionAsMathMlCall(name, slideIndex, shapeIndex, paragraphIndex, portionIndex, password, folder, storage, progressListener, progressRequestListener);
-        Type returnType = new TypeToken<File>(){}.getType();
-        apiClient.executeAsync(call, returnType, callback);
-        return call;
-    }
-    /**
      * Build call for downloadPresentation
      * @param name Document name. (required)
      * @param format Export format. (required)
@@ -20137,6 +19974,113 @@ public class SlidesApi {
 
         com.squareup.okhttp.Call call = getFormatSchemeCall(name, slideIndex, password, folder, storage, progressListener, progressRequestListener);
         Type returnType = new TypeToken<FormatScheme>(){}.getType();
+        apiClient.executeAsync(call, returnType, callback);
+        return call;
+    }
+    /**
+     * Build call for getHtml5Templates
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call getHtml5TemplatesCall(final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object postBody = null;
+
+        // create path and map variables
+        String methodPath = "/slides/html5Templates"
+            ;
+
+        List<Pair> queryParams = new ArrayList<Pair>();
+
+        Map<String, String> headerParams = new HashMap<String, String>();
+
+        Map<String, Object> formParams = new LinkedHashMap<String, Object>();
+
+        final String[] accepts = {
+            "multipart/form-data"
+        };
+        final String accept = apiClient.selectHeaderAccept(accepts);
+        if (accept != null) headerParams.put("Accept", accept);
+
+        final String[] contentTypes = {
+            "application/json"
+        };
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
+        headerParams.put("Content-Type", contentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+        return apiClient.buildCall(methodPath, "GET", queryParams, postBody, headerParams, formParams, progressRequestListener);
+    }
+
+    /**
+     * Get default templates for HTML5 export.
+     * 
+     * @return File
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public File getHtml5Templates() throws ApiException {
+        try {
+            ApiResponse<File> resp = getHtml5TemplatesWithHttpInfo();
+            return resp.getData();
+        } catch (NeedRepeatRequestException e) {
+            ApiResponse<File> resp = getHtml5TemplatesWithHttpInfo();
+            return resp.getData();
+        }
+    }
+
+    /**
+     * Get default templates for HTML5 export.
+     * 
+     * @return ApiResponse&lt;File&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<File> getHtml5TemplatesWithHttpInfo() throws ApiException {
+        com.squareup.okhttp.Call call = getHtml5TemplatesCall(null, null);
+        Type returnType = new TypeToken<File>(){}.getType();
+        return apiClient.execute(call, returnType);
+    }
+
+    /**
+     * Get default templates for HTML5 export. (asynchronously)
+     * 
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call getHtml5TemplatesAsync(final ApiCallback<File> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = getHtml5TemplatesCall(progressListener, progressRequestListener);
+        Type returnType = new TypeToken<File>(){}.getType();
         apiClient.executeAsync(call, returnType, callback);
         return call;
     }
@@ -30526,6 +30470,7 @@ public class SlidesApi {
      * @param oldValue Text value to be replaced. (required)
      * @param newValue Text value to replace with. (required)
      * @param ignoreCase True if character case must be ignored. 
+     * @param wholeWordsOnly True to replace whole words only. 
      * @param password Document password. 
      * @param folder Document folder. 
      * @param storage Document storage. 
@@ -30534,7 +30479,7 @@ public class SlidesApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call replacePresentationTextCall(String name, String oldValue, String newValue, Boolean ignoreCase, String password, String folder, String storage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call replacePresentationTextCall(String name, String oldValue, String newValue, Boolean ignoreCase, Boolean wholeWordsOnly, String password, String folder, String storage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         // verify the required parameter 'name' is set
         if (name == null) {
             throw new ApiException("Missing the required parameter 'name' when calling replacePresentationText(Async)");
@@ -30557,6 +30502,7 @@ public class SlidesApi {
         apiClient.addQueryParameter(queryParams, "oldValue", oldValue);
         apiClient.addQueryParameter(queryParams, "newValue", newValue);
         apiClient.addQueryParameter(queryParams, "ignoreCase", ignoreCase);
+        apiClient.addQueryParameter(queryParams, "wholeWordsOnly", wholeWordsOnly);
         apiClient.addQueryParameter(queryParams, "folder", folder);
         apiClient.addQueryParameter(queryParams, "storage", storage);
 
@@ -30599,18 +30545,19 @@ public class SlidesApi {
      * @param oldValue Text value to be replaced. (required)
      * @param newValue Text value to replace with. (required)
      * @param ignoreCase True if character case must be ignored. 
+     * @param wholeWordsOnly True to replace whole words only. 
      * @param password Document password. 
      * @param folder Document folder. 
      * @param storage Document storage. 
      * @return DocumentReplaceResult
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public DocumentReplaceResult replacePresentationText(String name, String oldValue, String newValue, Boolean ignoreCase, String password, String folder, String storage) throws ApiException {
+    public DocumentReplaceResult replacePresentationText(String name, String oldValue, String newValue, Boolean ignoreCase, Boolean wholeWordsOnly, String password, String folder, String storage) throws ApiException {
         try {
-            ApiResponse<DocumentReplaceResult> resp = replacePresentationTextWithHttpInfo(name, oldValue, newValue, ignoreCase, password, folder, storage);
+            ApiResponse<DocumentReplaceResult> resp = replacePresentationTextWithHttpInfo(name, oldValue, newValue, ignoreCase, wholeWordsOnly, password, folder, storage);
             return resp.getData();
         } catch (NeedRepeatRequestException e) {
-            ApiResponse<DocumentReplaceResult> resp = replacePresentationTextWithHttpInfo(name, oldValue, newValue, ignoreCase, password, folder, storage);
+            ApiResponse<DocumentReplaceResult> resp = replacePresentationTextWithHttpInfo(name, oldValue, newValue, ignoreCase, wholeWordsOnly, password, folder, storage);
             return resp.getData();
         }
     }
@@ -30622,14 +30569,15 @@ public class SlidesApi {
      * @param oldValue Text value to be replaced. (required)
      * @param newValue Text value to replace with. (required)
      * @param ignoreCase True if character case must be ignored. 
+     * @param wholeWordsOnly True to replace whole words only. 
      * @param password Document password. 
      * @param folder Document folder. 
      * @param storage Document storage. 
      * @return ApiResponse&lt;DocumentReplaceResult&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<DocumentReplaceResult> replacePresentationTextWithHttpInfo(String name, String oldValue, String newValue, Boolean ignoreCase, String password, String folder, String storage) throws ApiException {
-        com.squareup.okhttp.Call call = replacePresentationTextCall(name, oldValue, newValue, ignoreCase, password, folder, storage, null, null);
+    public ApiResponse<DocumentReplaceResult> replacePresentationTextWithHttpInfo(String name, String oldValue, String newValue, Boolean ignoreCase, Boolean wholeWordsOnly, String password, String folder, String storage) throws ApiException {
+        com.squareup.okhttp.Call call = replacePresentationTextCall(name, oldValue, newValue, ignoreCase, wholeWordsOnly, password, folder, storage, null, null);
         Type returnType = new TypeToken<DocumentReplaceResult>(){}.getType();
         return apiClient.execute(call, returnType);
     }
@@ -30641,6 +30589,7 @@ public class SlidesApi {
      * @param oldValue Text value to be replaced. (required)
      * @param newValue Text value to replace with. (required)
      * @param ignoreCase True if character case must be ignored. 
+     * @param wholeWordsOnly True to replace whole words only. 
      * @param password Document password. 
      * @param folder Document folder. 
      * @param storage Document storage. 
@@ -30648,7 +30597,7 @@ public class SlidesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call replacePresentationTextAsync(String name, String oldValue, String newValue, Boolean ignoreCase, String password, String folder, String storage, final ApiCallback<DocumentReplaceResult> callback) throws ApiException {
+    public com.squareup.okhttp.Call replacePresentationTextAsync(String name, String oldValue, String newValue, Boolean ignoreCase, Boolean wholeWordsOnly, String password, String folder, String storage, final ApiCallback<DocumentReplaceResult> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -30669,7 +30618,7 @@ public class SlidesApi {
             };
         }
 
-        com.squareup.okhttp.Call call = replacePresentationTextCall(name, oldValue, newValue, ignoreCase, password, folder, storage, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = replacePresentationTextCall(name, oldValue, newValue, ignoreCase, wholeWordsOnly, password, folder, storage, progressListener, progressRequestListener);
         Type returnType = new TypeToken<DocumentReplaceResult>(){}.getType();
         apiClient.executeAsync(call, returnType, callback);
         return call;
@@ -30680,13 +30629,14 @@ public class SlidesApi {
      * @param oldValue Text value to be replaced. (required)
      * @param newValue Text value to replace with. (required)
      * @param ignoreCase True if character case must be ignored. 
+     * @param wholeWordsOnly True to replace whole words only. 
      * @param password Document password. 
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call replacePresentationTextOnlineCall(byte[] document, String oldValue, String newValue, Boolean ignoreCase, String password, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call replacePresentationTextOnlineCall(byte[] document, String oldValue, String newValue, Boolean ignoreCase, Boolean wholeWordsOnly, String password, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         // verify the required parameter 'document' is set
         if (document == null) {
             throw new ApiException("Missing the required parameter 'document' when calling replacePresentationTextOnline(Async)");
@@ -30709,6 +30659,7 @@ public class SlidesApi {
         apiClient.addQueryParameter(queryParams, "oldValue", oldValue);
         apiClient.addQueryParameter(queryParams, "newValue", newValue);
         apiClient.addQueryParameter(queryParams, "ignoreCase", ignoreCase);
+        apiClient.addQueryParameter(queryParams, "wholeWordsOnly", wholeWordsOnly);
 
         Map<String, String> headerParams = new HashMap<String, String>();
         if (password != null)
@@ -30751,16 +30702,17 @@ public class SlidesApi {
      * @param oldValue Text value to be replaced. (required)
      * @param newValue Text value to replace with. (required)
      * @param ignoreCase True if character case must be ignored. 
+     * @param wholeWordsOnly True to replace whole words only. 
      * @param password Document password. 
      * @return File
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public File replacePresentationTextOnline(byte[] document, String oldValue, String newValue, Boolean ignoreCase, String password) throws ApiException {
+    public File replacePresentationTextOnline(byte[] document, String oldValue, String newValue, Boolean ignoreCase, Boolean wholeWordsOnly, String password) throws ApiException {
         try {
-            ApiResponse<File> resp = replacePresentationTextOnlineWithHttpInfo(document, oldValue, newValue, ignoreCase, password);
+            ApiResponse<File> resp = replacePresentationTextOnlineWithHttpInfo(document, oldValue, newValue, ignoreCase, wholeWordsOnly, password);
             return resp.getData();
         } catch (NeedRepeatRequestException e) {
-            ApiResponse<File> resp = replacePresentationTextOnlineWithHttpInfo(document, oldValue, newValue, ignoreCase, password);
+            ApiResponse<File> resp = replacePresentationTextOnlineWithHttpInfo(document, oldValue, newValue, ignoreCase, wholeWordsOnly, password);
             return resp.getData();
         }
     }
@@ -30772,12 +30724,13 @@ public class SlidesApi {
      * @param oldValue Text value to be replaced. (required)
      * @param newValue Text value to replace with. (required)
      * @param ignoreCase True if character case must be ignored. 
+     * @param wholeWordsOnly True to replace whole words only. 
      * @param password Document password. 
      * @return ApiResponse&lt;File&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<File> replacePresentationTextOnlineWithHttpInfo(byte[] document, String oldValue, String newValue, Boolean ignoreCase, String password) throws ApiException {
-        com.squareup.okhttp.Call call = replacePresentationTextOnlineCall(document, oldValue, newValue, ignoreCase, password, null, null);
+    public ApiResponse<File> replacePresentationTextOnlineWithHttpInfo(byte[] document, String oldValue, String newValue, Boolean ignoreCase, Boolean wholeWordsOnly, String password) throws ApiException {
+        com.squareup.okhttp.Call call = replacePresentationTextOnlineCall(document, oldValue, newValue, ignoreCase, wholeWordsOnly, password, null, null);
         Type returnType = new TypeToken<File>(){}.getType();
         return apiClient.execute(call, returnType);
     }
@@ -30789,12 +30742,13 @@ public class SlidesApi {
      * @param oldValue Text value to be replaced. (required)
      * @param newValue Text value to replace with. (required)
      * @param ignoreCase True if character case must be ignored. 
+     * @param wholeWordsOnly True to replace whole words only. 
      * @param password Document password. 
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call replacePresentationTextOnlineAsync(byte[] document, String oldValue, String newValue, Boolean ignoreCase, String password, final ApiCallback<File> callback) throws ApiException {
+    public com.squareup.okhttp.Call replacePresentationTextOnlineAsync(byte[] document, String oldValue, String newValue, Boolean ignoreCase, Boolean wholeWordsOnly, String password, final ApiCallback<File> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -30815,7 +30769,7 @@ public class SlidesApi {
             };
         }
 
-        com.squareup.okhttp.Call call = replacePresentationTextOnlineCall(document, oldValue, newValue, ignoreCase, password, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = replacePresentationTextOnlineCall(document, oldValue, newValue, ignoreCase, wholeWordsOnly, password, progressListener, progressRequestListener);
         Type returnType = new TypeToken<File>(){}.getType();
         apiClient.executeAsync(call, returnType, callback);
         return call;
@@ -31617,174 +31571,6 @@ public class SlidesApi {
         }
 
         com.squareup.okhttp.Call call = saveMathPortionCall(name, slideIndex, shapeIndex, paragraphIndex, portionIndex, format, outPath, password, folder, storage, progressListener, progressRequestListener);
-        apiClient.executeAsync(call, callback);
-        return call;
-    }
-    /**
-     * Build call for savePortionAsMathMl
-     * @param name Document name. (required)
-     * @param slideIndex Slide index. (required)
-     * @param shapeIndex Shape index. (required)
-     * @param paragraphIndex Paragraph index. (required)
-     * @param portionIndex Portion index. (required)
-     * @param outPath Path to save result. (required)
-     * @param password Document password. 
-     * @param folder Presentation folder. 
-     * @param storage Presentation storage. 
-     * @param progressListener Progress listener
-     * @param progressRequestListener Progress request listener
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     */
-    public com.squareup.okhttp.Call savePortionAsMathMlCall(String name, Integer slideIndex, Integer shapeIndex, Integer paragraphIndex, Integer portionIndex, String outPath, String password, String folder, String storage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        // verify the required parameter 'name' is set
-        if (name == null) {
-            throw new ApiException("Missing the required parameter 'name' when calling savePortionAsMathMl(Async)");
-        }
-        // verify the required parameter 'slideIndex' is set
-        if (slideIndex == null) {
-            throw new ApiException("Missing the required parameter 'slideIndex' when calling savePortionAsMathMl(Async)");
-        }
-        // verify the required parameter 'shapeIndex' is set
-        if (shapeIndex == null) {
-            throw new ApiException("Missing the required parameter 'shapeIndex' when calling savePortionAsMathMl(Async)");
-        }
-        // verify the required parameter 'paragraphIndex' is set
-        if (paragraphIndex == null) {
-            throw new ApiException("Missing the required parameter 'paragraphIndex' when calling savePortionAsMathMl(Async)");
-        }
-        // verify the required parameter 'portionIndex' is set
-        if (portionIndex == null) {
-            throw new ApiException("Missing the required parameter 'portionIndex' when calling savePortionAsMathMl(Async)");
-        }
-        // verify the required parameter 'outPath' is set
-        if (outPath == null) {
-            throw new ApiException("Missing the required parameter 'outPath' when calling savePortionAsMathMl(Async)");
-        }
-        Object postBody = null;
-
-        // create path and map variables
-        String methodPath = "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/paragraphs/{paragraphIndex}/portions/{portionIndex}/mathml"
-            .replaceAll("\\{" + "name" + "\\}", apiClient.objectToString(name)).replaceAll("\\{" + "slideIndex" + "\\}", apiClient.objectToString(slideIndex)).replaceAll("\\{" + "shapeIndex" + "\\}", apiClient.objectToString(shapeIndex)).replaceAll("\\{" + "paragraphIndex" + "\\}", apiClient.objectToString(paragraphIndex)).replaceAll("\\{" + "portionIndex" + "\\}", apiClient.objectToString(portionIndex));
-
-        List<Pair> queryParams = new ArrayList<Pair>();
-        apiClient.addQueryParameter(queryParams, "outPath", outPath);
-        apiClient.addQueryParameter(queryParams, "folder", folder);
-        apiClient.addQueryParameter(queryParams, "storage", storage);
-
-        Map<String, String> headerParams = new HashMap<String, String>();
-        if (password != null)
-        headerParams.put("password", apiClient.parameterToString(password));
-
-        Map<String, Object> formParams = new LinkedHashMap<String, Object>();
-
-        final String[] accepts = {
-            "application/json"
-        };
-        final String accept = apiClient.selectHeaderAccept(accepts);
-        if (accept != null) headerParams.put("Accept", accept);
-
-        final String[] contentTypes = {
-            "application/json"
-        };
-        final String contentType = apiClient.selectHeaderContentType(contentTypes);
-        headerParams.put("Content-Type", contentType);
-
-        if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
-                @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
-                    return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
-                }
-            });
-        }
-        return apiClient.buildCall(methodPath, "PUT", queryParams, postBody, headerParams, formParams, progressRequestListener);
-    }
-
-    /**
-     * Convert Mathematical Text to MathML Format and saves result to the storage
-     * 
-     * @param name Document name. (required)
-     * @param slideIndex Slide index. (required)
-     * @param shapeIndex Shape index. (required)
-     * @param paragraphIndex Paragraph index. (required)
-     * @param portionIndex Portion index. (required)
-     * @param outPath Path to save result. (required)
-     * @param password Document password. 
-     * @param folder Presentation folder. 
-     * @param storage Presentation storage. 
-     
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     */
-    public void savePortionAsMathMl(String name, Integer slideIndex, Integer shapeIndex, Integer paragraphIndex, Integer portionIndex, String outPath, String password, String folder, String storage) throws ApiException {
-        try {
-            savePortionAsMathMlWithHttpInfo(name, slideIndex, shapeIndex, paragraphIndex, portionIndex, outPath, password, folder, storage);
-        } catch (NeedRepeatRequestException e) {
-            savePortionAsMathMlWithHttpInfo(name, slideIndex, shapeIndex, paragraphIndex, portionIndex, outPath, password, folder, storage);
-        }
-    }
-
-    /**
-     * Convert Mathematical Text to MathML Format and saves result to the storage
-     * 
-     * @param name Document name. (required)
-     * @param slideIndex Slide index. (required)
-     * @param shapeIndex Shape index. (required)
-     * @param paragraphIndex Paragraph index. (required)
-     * @param portionIndex Portion index. (required)
-     * @param outPath Path to save result. (required)
-     * @param password Document password. 
-     * @param folder Presentation folder. 
-     * @param storage Presentation storage. 
-     * @return ApiResponse&lt;Void&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     */
-    public ApiResponse<Void> savePortionAsMathMlWithHttpInfo(String name, Integer slideIndex, Integer shapeIndex, Integer paragraphIndex, Integer portionIndex, String outPath, String password, String folder, String storage) throws ApiException {
-        com.squareup.okhttp.Call call = savePortionAsMathMlCall(name, slideIndex, shapeIndex, paragraphIndex, portionIndex, outPath, password, folder, storage, null, null);
-        return apiClient.execute(call);
-    }
-
-    /**
-     * Convert Mathematical Text to MathML Format and saves result to the storage (asynchronously)
-     * 
-     * @param name Document name. (required)
-     * @param slideIndex Slide index. (required)
-     * @param shapeIndex Shape index. (required)
-     * @param paragraphIndex Paragraph index. (required)
-     * @param portionIndex Portion index. (required)
-     * @param outPath Path to save result. (required)
-     * @param password Document password. 
-     * @param folder Presentation folder. 
-     * @param storage Presentation storage. 
-     * @param callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     */
-    public com.squareup.okhttp.Call savePortionAsMathMlAsync(String name, Integer slideIndex, Integer shapeIndex, Integer paragraphIndex, Integer portionIndex, String outPath, String password, String folder, String storage, final ApiCallback<Void> callback) throws ApiException {
-
-        ProgressResponseBody.ProgressListener progressListener = null;
-        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
-
-        if (callback != null) {
-            progressListener = new ProgressResponseBody.ProgressListener() {
-                @Override
-                public void update(long bytesRead, long contentLength, boolean done) {
-                    callback.onDownloadProgress(bytesRead, contentLength, done);
-                }
-            };
-
-            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
-                @Override
-                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
-                    callback.onUploadProgress(bytesWritten, contentLength, done);
-                }
-            };
-        }
-
-        com.squareup.okhttp.Call call = savePortionAsMathMlCall(name, slideIndex, shapeIndex, paragraphIndex, portionIndex, outPath, password, folder, storage, progressListener, progressRequestListener);
         apiClient.executeAsync(call, callback);
         return call;
     }

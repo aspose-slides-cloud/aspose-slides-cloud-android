@@ -152,7 +152,7 @@ public class ProtectionProperties extends ResourceBase {
    * Returns true if the presentation protected for editing. 
    * @return isWriteProtected
   **/
-  @ApiModelProperty(required = true, value = "Returns true if the presentation protected for editing. ")
+  @ApiModelProperty(value = "Returns true if the presentation protected for editing. ")
   public Boolean getIsWriteProtected() {
     return isWriteProtected;
   }
@@ -170,7 +170,7 @@ public class ProtectionProperties extends ResourceBase {
    * Returns true if the presentation protected for reading. 
    * @return isEncrypted
   **/
-  @ApiModelProperty(required = true, value = "Returns true if the presentation protected for reading. ")
+  @ApiModelProperty(value = "Returns true if the presentation protected for reading. ")
   public Boolean getIsEncrypted() {
     return isEncrypted;
   }

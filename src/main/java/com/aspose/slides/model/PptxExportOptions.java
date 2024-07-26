@@ -50,7 +50,7 @@ import java.util.Map;
 @ApiModel(description = "Provides options that control how a presentation is saved in PPTX format.")
 public class PptxExportOptions extends ExportOptions {
   /**
-   * The conformance class to which the PresentationML document conforms. Read/write Conformance.
+   * The conformance class to which the PresentationML document conforms.
    */
   @JsonAdapter(ConformanceEnum.Adapter.class)
   public enum ConformanceEnum {
@@ -101,6 +101,58 @@ public class PptxExportOptions extends ExportOptions {
   @SerializedName(value = "conformance", alternate = { "Conformance" })
   private ConformanceEnum conformance;
 
+  /**
+   * Specifies whether the ZIP64 format is used for the Presentation document. The default value is Zip64Mode.IfNecessary.
+   */
+  @JsonAdapter(Zip64ModeEnum.Adapter.class)
+  public enum Zip64ModeEnum {
+    NEVER("Never"),
+    
+    IFNECESSARY("IfNecessary"),
+    
+    ALWAYS("Always");
+
+    private String value;
+
+    Zip64ModeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static Zip64ModeEnum fromValue(String text) {
+      for (Zip64ModeEnum b : Zip64ModeEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<Zip64ModeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final Zip64ModeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public Zip64ModeEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return Zip64ModeEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
+  @SerializedName(value = "zip64Mode", alternate = { "Zip64Mode" })
+  private Zip64ModeEnum zip64Mode;
+
 
   public PptxExportOptions() {
     super();
@@ -113,16 +165,34 @@ public class PptxExportOptions extends ExportOptions {
   }
 
    /**
-   * The conformance class to which the PresentationML document conforms. Read/write Conformance.
+   * The conformance class to which the PresentationML document conforms.
    * @return conformance
   **/
-  @ApiModelProperty(value = "The conformance class to which the PresentationML document conforms. Read/write Conformance.")
+  @ApiModelProperty(value = "The conformance class to which the PresentationML document conforms.")
   public ConformanceEnum getConformance() {
     return conformance;
   }
 
   public void setConformance(ConformanceEnum conformance) {
     this.conformance = conformance;
+  }
+
+  public PptxExportOptions zip64Mode(Zip64ModeEnum zip64Mode) {
+    this.zip64Mode = zip64Mode;
+    return this;
+  }
+
+   /**
+   * Specifies whether the ZIP64 format is used for the Presentation document. The default value is Zip64Mode.IfNecessary.
+   * @return zip64Mode
+  **/
+  @ApiModelProperty(value = "Specifies whether the ZIP64 format is used for the Presentation document. The default value is Zip64Mode.IfNecessary.")
+  public Zip64ModeEnum getZip64Mode() {
+    return zip64Mode;
+  }
+
+  public void setZip64Mode(Zip64ModeEnum zip64Mode) {
+    this.zip64Mode = zip64Mode;
   }
 
 
@@ -135,12 +205,12 @@ public class PptxExportOptions extends ExportOptions {
       return false;
     }
     PptxExportOptions pptxExportOptions = (PptxExportOptions) o;
-    return true && Objects.equals(this.conformance, pptxExportOptions.conformance) && super.equals(o);
+    return true && Objects.equals(this.conformance, pptxExportOptions.conformance) && Objects.equals(this.zip64Mode, pptxExportOptions.zip64Mode) && super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(conformance, super.hashCode());
+    return Objects.hash(conformance, zip64Mode, super.hashCode());
   }
 
 
@@ -150,6 +220,7 @@ public class PptxExportOptions extends ExportOptions {
     sb.append("class PptxExportOptions {\n");
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    conformance: ").append(toIndentedString(conformance)).append("\n");
+    sb.append("    zip64Mode: ").append(toIndentedString(zip64Mode)).append("\n");
     sb.append("}");
     return sb.toString();
   }

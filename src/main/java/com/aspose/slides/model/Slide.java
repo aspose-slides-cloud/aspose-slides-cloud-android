@@ -135,7 +135,7 @@ public class Slide extends ResourceBase {
    * Specifies if shapes of the master slide should be shown on the slide. True by default.
    * @return showMasterShapes
   **/
-  @ApiModelProperty(required = true, value = "Specifies if shapes of the master slide should be shown on the slide. True by default.")
+  @ApiModelProperty(value = "Specifies if shapes of the master slide should be shown on the slide. True by default.")
   public Boolean isShowMasterShapes() {
     return showMasterShapes;
   }

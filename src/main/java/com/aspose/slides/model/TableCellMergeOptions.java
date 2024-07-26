@@ -146,7 +146,7 @@ public class TableCellMergeOptions {
    * Allow splitting
    * @return allowSplitting
   **/
-  @ApiModelProperty(required = true, value = "Allow splitting")
+  @ApiModelProperty(value = "Allow splitting")
   public Boolean isAllowSplitting() {
     return allowSplitting;
   }

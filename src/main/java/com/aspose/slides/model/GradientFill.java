@@ -243,7 +243,7 @@ public class GradientFill extends FillFormat {
    * Gradient style.
    * @return direction
   **/
-  @ApiModelProperty(required = true, value = "Gradient style.")
+  @ApiModelProperty(value = "Gradient style.")
   public DirectionEnum getDirection() {
     return direction;
   }
@@ -261,7 +261,7 @@ public class GradientFill extends FillFormat {
    * Gradient shape.
    * @return shape
   **/
-  @ApiModelProperty(required = true, value = "Gradient shape.")
+  @ApiModelProperty(value = "Gradient shape.")
   public ShapeEnum getShape() {
     return shape;
   }
@@ -305,7 +305,7 @@ public class GradientFill extends FillFormat {
    * Gradient angle.
    * @return linearAngle
   **/
-  @ApiModelProperty(required = true, value = "Gradient angle.")
+  @ApiModelProperty(value = "Gradient angle.")
   public Double getLinearAngle() {
     return linearAngle;
   }
@@ -323,7 +323,7 @@ public class GradientFill extends FillFormat {
    * True if the gradient is scaled.
    * @return isScaled
   **/
-  @ApiModelProperty(required = true, value = "True if the gradient is scaled.")
+  @ApiModelProperty(value = "True if the gradient is scaled.")
   public Boolean getIsScaled() {
     return isScaled;
   }
@@ -341,7 +341,7 @@ public class GradientFill extends FillFormat {
    * Gradient flipping mode.
    * @return tileFlip
   **/
-  @ApiModelProperty(required = true, value = "Gradient flipping mode.")
+  @ApiModelProperty(value = "Gradient flipping mode.")
   public TileFlipEnum getTileFlip() {
     return tileFlip;
   }

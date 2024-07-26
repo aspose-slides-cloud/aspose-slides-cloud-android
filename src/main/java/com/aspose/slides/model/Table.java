@@ -281,6 +281,9 @@ public class Table extends ShapeBase {
   @SerializedName(value = "verticalBanding", alternate = { "VerticalBanding" })
   private Boolean verticalBanding;
 
+  @SerializedName(value = "transparency", alternate = { "Transparency" })
+  private Double transparency;
+
 
   public Table() {
     super();
@@ -483,6 +486,24 @@ public class Table extends ShapeBase {
     this.verticalBanding = verticalBanding;
   }
 
+  public Table transparency(Double transparency) {
+    this.transparency = transparency;
+    return this;
+  }
+
+   /**
+   * Transparency.
+   * @return transparency
+  **/
+  @ApiModelProperty(value = "Transparency.")
+  public Double getTransparency() {
+    return transparency;
+  }
+
+  public void setTransparency(Double transparency) {
+    this.transparency = transparency;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -493,12 +514,12 @@ public class Table extends ShapeBase {
       return false;
     }
     Table table = (Table) o;
-    return true && Objects.equals(this.style, table.style) && Objects.equals(this.rows, table.rows) && Objects.equals(this.columns, table.columns) && Objects.equals(this.firstCol, table.firstCol) && Objects.equals(this.firstRow, table.firstRow) && Objects.equals(this.horizontalBanding, table.horizontalBanding) && Objects.equals(this.lastCol, table.lastCol) && Objects.equals(this.lastRow, table.lastRow) && Objects.equals(this.rightToLeft, table.rightToLeft) && Objects.equals(this.verticalBanding, table.verticalBanding) && super.equals(o);
+    return true && Objects.equals(this.style, table.style) && Objects.equals(this.rows, table.rows) && Objects.equals(this.columns, table.columns) && Objects.equals(this.firstCol, table.firstCol) && Objects.equals(this.firstRow, table.firstRow) && Objects.equals(this.horizontalBanding, table.horizontalBanding) && Objects.equals(this.lastCol, table.lastCol) && Objects.equals(this.lastRow, table.lastRow) && Objects.equals(this.rightToLeft, table.rightToLeft) && Objects.equals(this.verticalBanding, table.verticalBanding) && Objects.equals(this.transparency, table.transparency) && super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(style, rows, columns, firstCol, firstRow, horizontalBanding, lastCol, lastRow, rightToLeft, verticalBanding, super.hashCode());
+    return Objects.hash(style, rows, columns, firstCol, firstRow, horizontalBanding, lastCol, lastRow, rightToLeft, verticalBanding, transparency, super.hashCode());
   }
 
 
@@ -517,6 +538,7 @@ public class Table extends ShapeBase {
     sb.append("    lastRow: ").append(toIndentedString(lastRow)).append("\n");
     sb.append("    rightToLeft: ").append(toIndentedString(rightToLeft)).append("\n");
     sb.append("    verticalBanding: ").append(toIndentedString(verticalBanding)).append("\n");
+    sb.append("    transparency: ").append(toIndentedString(transparency)).append("\n");
     sb.append("}");
     return sb.toString();
   }

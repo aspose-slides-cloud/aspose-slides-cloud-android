@@ -52,6 +52,56 @@ public class ExportOptions {
   @SerializedName(value = "defaultRegularFont", alternate = { "DefaultRegularFont" })
   private String defaultRegularFont;
 
+  /**
+   * Default regular font for rendering the presentation. 
+   */
+  @JsonAdapter(GradientStyleEnum.Adapter.class)
+  public enum GradientStyleEnum {
+    DEFAULT("Default"),
+    
+    POWERPOINTUI("PowerPointUI");
+
+    private String value;
+
+    GradientStyleEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static GradientStyleEnum fromValue(String text) {
+      for (GradientStyleEnum b : GradientStyleEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<GradientStyleEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final GradientStyleEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public GradientStyleEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return GradientStyleEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
+  @SerializedName(value = "gradientStyle", alternate = { "GradientStyle" })
+  private GradientStyleEnum gradientStyle;
+
   @SerializedName(value = "fontFallbackRules", alternate = { "FontFallbackRules" })
   private List<FontFallbackRule> fontFallbackRules = null;
 
@@ -82,6 +132,24 @@ public class ExportOptions {
 
   public void setDefaultRegularFont(String defaultRegularFont) {
     this.defaultRegularFont = defaultRegularFont;
+  }
+
+  public ExportOptions gradientStyle(GradientStyleEnum gradientStyle) {
+    this.gradientStyle = gradientStyle;
+    return this;
+  }
+
+   /**
+   * Default regular font for rendering the presentation. 
+   * @return gradientStyle
+  **/
+  @ApiModelProperty(value = "Default regular font for rendering the presentation. ")
+  public GradientStyleEnum getGradientStyle() {
+    return gradientStyle;
+  }
+
+  public void setGradientStyle(GradientStyleEnum gradientStyle) {
+    this.gradientStyle = gradientStyle;
   }
 
   public ExportOptions fontFallbackRules(List<FontFallbackRule> fontFallbackRules) {
@@ -159,12 +227,12 @@ public class ExportOptions {
       return false;
     }
     ExportOptions exportOptions = (ExportOptions) o;
-    return true && Objects.equals(this.defaultRegularFont, exportOptions.defaultRegularFont) && Objects.equals(this.fontFallbackRules, exportOptions.fontFallbackRules) && Objects.equals(this.fontSubstRules, exportOptions.fontSubstRules) && Objects.equals(this.format, exportOptions.format);
+    return true && Objects.equals(this.defaultRegularFont, exportOptions.defaultRegularFont) && Objects.equals(this.gradientStyle, exportOptions.gradientStyle) && Objects.equals(this.fontFallbackRules, exportOptions.fontFallbackRules) && Objects.equals(this.fontSubstRules, exportOptions.fontSubstRules) && Objects.equals(this.format, exportOptions.format);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(defaultRegularFont, fontFallbackRules, fontSubstRules, format);
+    return Objects.hash(defaultRegularFont, gradientStyle, fontFallbackRules, fontSubstRules, format);
   }
 
 
@@ -174,6 +242,7 @@ public class ExportOptions {
     sb.append("class ExportOptions {\n");
     
     sb.append("    defaultRegularFont: ").append(toIndentedString(defaultRegularFont)).append("\n");
+    sb.append("    gradientStyle: ").append(toIndentedString(gradientStyle)).append("\n");
     sb.append("    fontFallbackRules: ").append(toIndentedString(fontFallbackRules)).append("\n");
     sb.append("    fontSubstRules: ").append(toIndentedString(fontSubstRules)).append("\n");
     sb.append("    format: ").append(toIndentedString(format)).append("\n");

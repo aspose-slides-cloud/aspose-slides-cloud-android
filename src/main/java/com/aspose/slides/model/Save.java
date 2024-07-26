@@ -103,7 +103,9 @@ public class Save extends Task {
     
     MPEG4("Mpeg4"),
     
-    MD("Md");
+    MD("Md"),
+    
+    XML("Xml");
 
     private String value;
 

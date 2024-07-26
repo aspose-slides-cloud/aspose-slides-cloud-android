@@ -257,6 +257,31 @@ public class ConvertTest extends ApiTest {
         assertTrue(response.length()>0);
     }
 
+    @Test
+    public void convertWithCustomHtml5TemplatesTest() throws ApiException, IOException
+    {
+        String templatesPath = "Html5Templates";
+        String templateFileName = "pictureFrame.html";
+        testSlidesApi.createFolder(templatesPath, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + templateFileName, templatesPath + "/" + templateFileName, null, null, null);
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+
+        Html5ExportOptions exportOptions = new Html5ExportOptions();
+        exportOptions.setTemplatesPath(templatesPath);
+        exportOptions.setAnimateTransitions(true);
+        File response = testSlidesApi.downloadPresentation(fileName, ExportFormat.HTML5, exportOptions, password, folderName, null, null, null);
+        assertNotNull(response);
+        assertTrue(response.length()>0);
+    }
+
+    @Test
+    public void getHtml5TemplatesTest() throws ApiException, IOException
+    {
+        File response = testSlidesApi.getHtml5Templates();
+        assertNotNull(response);
+        assertTrue(response.length()>0);
+    }
+
     private final String c_outPath = testDataFolderName + "/converted.pdf";
     private final int c_slideIndex = 1;
     private final int c_shapeIndex = 3;

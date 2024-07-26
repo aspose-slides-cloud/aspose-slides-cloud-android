@@ -56,10 +56,13 @@ public class TextTest extends ApiTest {
     @Test
     public void textReplaceStorageTest() throws ApiException, IOException {
         testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
-        DocumentReplaceResult result = testSlidesApi.replacePresentationText(fileName, c_oldValue, c_newValue, null, password, folderName, null);
+        DocumentReplaceResult result = testSlidesApi.replacePresentationText(fileName, c_oldValue, c_newValue, null, null, password, folderName, null);
 
         testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
-        DocumentReplaceResult resultIgnoreCase = testSlidesApi.replacePresentationText(fileName, c_oldValue, c_newValue, true, password, folderName, null);
+        DocumentReplaceResult resultIgnoreCase = testSlidesApi.replacePresentationText(fileName, c_oldValue, c_newValue, true, null, password, folderName, null);
+
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        DocumentReplaceResult resultWholeWords = testSlidesApi.replacePresentationText(fileName, c_oldValue, c_newValue, true, true, password, folderName, null);
 
         testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         SlideReplaceResult slideResult = testSlidesApi.replaceSlideText(fileName, c_slideIndex, c_oldValue, c_newValue, null, password, folderName, null);
@@ -68,6 +71,7 @@ public class TextTest extends ApiTest {
         SlideReplaceResult slideResultIgnoreCase = testSlidesApi.replaceSlideText(fileName, c_slideIndex, c_oldValue, c_newValue, true, password, folderName, null);
 
         assertTrue(resultIgnoreCase.getMatches() > result.getMatches());
+        assertTrue(resultIgnoreCase.getMatches() > resultWholeWords.getMatches());
         assertTrue(result.getMatches() > slideResult.getMatches());
         assertTrue(slideResultIgnoreCase.getMatches() > slideResult.getMatches());
     }
@@ -75,8 +79,8 @@ public class TextTest extends ApiTest {
     @Test
     public void textReplaceRequestTest() throws ApiException, IOException {
         byte[] file = Files.readAllBytes(Paths.get(testDataFolderName + "/" + fileName));
-        File result = testSlidesApi.replacePresentationTextOnline(file, c_oldValue, c_newValue, null, password);
-        File resultIgnoreCase = testSlidesApi.replacePresentationTextOnline(file, c_oldValue, c_newValue, true, password);
+        File result = testSlidesApi.replacePresentationTextOnline(file, c_oldValue, c_newValue, null, null, password);
+        File resultIgnoreCase = testSlidesApi.replacePresentationTextOnline(file, c_oldValue, c_newValue, true, null, password);
         File slideResult = testSlidesApi.replaceSlideTextOnline(file, c_slideIndex, c_oldValue, c_newValue, null, password);
         File slideResultIgnoreCase = testSlidesApi.replaceSlideTextOnline(file, c_slideIndex, c_oldValue, c_newValue, true, password);
         assertTrue(result.canRead());

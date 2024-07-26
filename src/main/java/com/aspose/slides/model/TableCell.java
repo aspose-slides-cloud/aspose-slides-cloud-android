@@ -70,6 +70,9 @@ public class TableCell {
   @SerializedName(value = "marginBottom", alternate = { "MarginBottom" })
   private Double marginBottom;
 
+  @SerializedName(value = "transparency", alternate = { "Transparency" })
+  private Double transparency;
+
   /**
    * Text anchor type.
    */
@@ -354,6 +357,24 @@ public class TableCell {
     this.marginBottom = marginBottom;
   }
 
+  public TableCell transparency(Double transparency) {
+    this.transparency = transparency;
+    return this;
+  }
+
+   /**
+   * Transparency.
+   * @return transparency
+  **/
+  @ApiModelProperty(value = "Transparency.")
+  public Double getTransparency() {
+    return transparency;
+  }
+
+  public void setTransparency(Double transparency) {
+    this.transparency = transparency;
+  }
+
   public TableCell textAnchorType(TextAnchorTypeEnum textAnchorType) {
     this.textAnchorType = textAnchorType;
     return this;
@@ -598,12 +619,12 @@ public class TableCell {
       return false;
     }
     TableCell tableCell = (TableCell) o;
-    return true && Objects.equals(this.text, tableCell.text) && Objects.equals(this.rowSpan, tableCell.rowSpan) && Objects.equals(this.colSpan, tableCell.colSpan) && Objects.equals(this.marginTop, tableCell.marginTop) && Objects.equals(this.marginRight, tableCell.marginRight) && Objects.equals(this.marginLeft, tableCell.marginLeft) && Objects.equals(this.marginBottom, tableCell.marginBottom) && Objects.equals(this.textAnchorType, tableCell.textAnchorType) && Objects.equals(this.textVerticalType, tableCell.textVerticalType) && Objects.equals(this.fillFormat, tableCell.fillFormat) && Objects.equals(this.borderTop, tableCell.borderTop) && Objects.equals(this.borderRight, tableCell.borderRight) && Objects.equals(this.borderLeft, tableCell.borderLeft) && Objects.equals(this.borderBottom, tableCell.borderBottom) && Objects.equals(this.borderDiagonalUp, tableCell.borderDiagonalUp) && Objects.equals(this.borderDiagonalDown, tableCell.borderDiagonalDown) && Objects.equals(this.columnIndex, tableCell.columnIndex) && Objects.equals(this.rowIndex, tableCell.rowIndex) && Objects.equals(this.textFrameFormat, tableCell.textFrameFormat) && Objects.equals(this.paragraphs, tableCell.paragraphs);
+    return true && Objects.equals(this.text, tableCell.text) && Objects.equals(this.rowSpan, tableCell.rowSpan) && Objects.equals(this.colSpan, tableCell.colSpan) && Objects.equals(this.marginTop, tableCell.marginTop) && Objects.equals(this.marginRight, tableCell.marginRight) && Objects.equals(this.marginLeft, tableCell.marginLeft) && Objects.equals(this.marginBottom, tableCell.marginBottom) && Objects.equals(this.transparency, tableCell.transparency) && Objects.equals(this.textAnchorType, tableCell.textAnchorType) && Objects.equals(this.textVerticalType, tableCell.textVerticalType) && Objects.equals(this.fillFormat, tableCell.fillFormat) && Objects.equals(this.borderTop, tableCell.borderTop) && Objects.equals(this.borderRight, tableCell.borderRight) && Objects.equals(this.borderLeft, tableCell.borderLeft) && Objects.equals(this.borderBottom, tableCell.borderBottom) && Objects.equals(this.borderDiagonalUp, tableCell.borderDiagonalUp) && Objects.equals(this.borderDiagonalDown, tableCell.borderDiagonalDown) && Objects.equals(this.columnIndex, tableCell.columnIndex) && Objects.equals(this.rowIndex, tableCell.rowIndex) && Objects.equals(this.textFrameFormat, tableCell.textFrameFormat) && Objects.equals(this.paragraphs, tableCell.paragraphs);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(text, rowSpan, colSpan, marginTop, marginRight, marginLeft, marginBottom, textAnchorType, textVerticalType, fillFormat, borderTop, borderRight, borderLeft, borderBottom, borderDiagonalUp, borderDiagonalDown, columnIndex, rowIndex, textFrameFormat, paragraphs);
+    return Objects.hash(text, rowSpan, colSpan, marginTop, marginRight, marginLeft, marginBottom, transparency, textAnchorType, textVerticalType, fillFormat, borderTop, borderRight, borderLeft, borderBottom, borderDiagonalUp, borderDiagonalDown, columnIndex, rowIndex, textFrameFormat, paragraphs);
   }
 
 
@@ -619,6 +640,7 @@ public class TableCell {
     sb.append("    marginRight: ").append(toIndentedString(marginRight)).append("\n");
     sb.append("    marginLeft: ").append(toIndentedString(marginLeft)).append("\n");
     sb.append("    marginBottom: ").append(toIndentedString(marginBottom)).append("\n");
+    sb.append("    transparency: ").append(toIndentedString(transparency)).append("\n");
     sb.append("    textAnchorType: ").append(toIndentedString(textAnchorType)).append("\n");
     sb.append("    textVerticalType: ").append(toIndentedString(textVerticalType)).append("\n");
     sb.append("    fillFormat: ").append(toIndentedString(fillFormat)).append("\n");
