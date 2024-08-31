@@ -27172,11 +27172,163 @@ public class SlidesApi {
         return call;
     }
     /**
-     * Build call for highlightShapeRegex
+     * Build call for highlightPresentationRegex
      * @param name Document name. (required)
-     * @param slideIndex Slide index. (required)
-     * @param shapeIndex Shape index. (required)
      * @param regex Regular expression. (required)
+     * @param color Highlighting color. (required)
+     * @param ignoreCase True to search ignoring char case. 
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call highlightPresentationRegexCall(String name, String regex, String color, Boolean ignoreCase, String password, String folder, String storage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        // verify the required parameter 'name' is set
+        if (name == null) {
+            throw new ApiException("Missing the required parameter 'name' when calling highlightPresentationRegex(Async)");
+        }
+        // verify the required parameter 'regex' is set
+        if (regex == null) {
+            throw new ApiException("Missing the required parameter 'regex' when calling highlightPresentationRegex(Async)");
+        }
+        // verify the required parameter 'color' is set
+        if (color == null) {
+            throw new ApiException("Missing the required parameter 'color' when calling highlightPresentationRegex(Async)");
+        }
+        Object postBody = null;
+
+        // create path and map variables
+        String methodPath = "/slides/{name}/highlightRegex"
+            .replaceAll("\\{" + "name" + "\\}", apiClient.objectToString(name));
+
+        List<Pair> queryParams = new ArrayList<Pair>();
+        apiClient.addQueryParameter(queryParams, "regex", regex);
+        apiClient.addQueryParameter(queryParams, "color", color);
+        apiClient.addQueryParameter(queryParams, "ignoreCase", ignoreCase);
+        apiClient.addQueryParameter(queryParams, "folder", folder);
+        apiClient.addQueryParameter(queryParams, "storage", storage);
+
+        Map<String, String> headerParams = new HashMap<String, String>();
+        if (password != null)
+        headerParams.put("password", apiClient.parameterToString(password));
+
+        Map<String, Object> formParams = new LinkedHashMap<String, Object>();
+
+        final String[] accepts = {
+            "application/json"
+        };
+        final String accept = apiClient.selectHeaderAccept(accepts);
+        if (accept != null) headerParams.put("Accept", accept);
+
+        final String[] contentTypes = {
+            "application/json"
+        };
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
+        headerParams.put("Content-Type", contentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+        return apiClient.buildCall(methodPath, "POST", queryParams, postBody, headerParams, formParams, progressRequestListener);
+    }
+
+    /**
+     * Highlight all matches of sample in text frame text using specified color.
+     * 
+     * @param name Document name. (required)
+     * @param regex Regular expression. (required)
+     * @param color Highlighting color. (required)
+     * @param ignoreCase True to search ignoring char case. 
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @return DocumentReplaceResult
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public DocumentReplaceResult highlightPresentationRegex(String name, String regex, String color, Boolean ignoreCase, String password, String folder, String storage) throws ApiException {
+        try {
+            ApiResponse<DocumentReplaceResult> resp = highlightPresentationRegexWithHttpInfo(name, regex, color, ignoreCase, password, folder, storage);
+            return resp.getData();
+        } catch (NeedRepeatRequestException e) {
+            ApiResponse<DocumentReplaceResult> resp = highlightPresentationRegexWithHttpInfo(name, regex, color, ignoreCase, password, folder, storage);
+            return resp.getData();
+        }
+    }
+
+    /**
+     * Highlight all matches of sample in text frame text using specified color.
+     * 
+     * @param name Document name. (required)
+     * @param regex Regular expression. (required)
+     * @param color Highlighting color. (required)
+     * @param ignoreCase True to search ignoring char case. 
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @return ApiResponse&lt;DocumentReplaceResult&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<DocumentReplaceResult> highlightPresentationRegexWithHttpInfo(String name, String regex, String color, Boolean ignoreCase, String password, String folder, String storage) throws ApiException {
+        com.squareup.okhttp.Call call = highlightPresentationRegexCall(name, regex, color, ignoreCase, password, folder, storage, null, null);
+        Type returnType = new TypeToken<DocumentReplaceResult>(){}.getType();
+        return apiClient.execute(call, returnType);
+    }
+
+    /**
+     * Highlight all matches of sample in text frame text using specified color. (asynchronously)
+     * 
+     * @param name Document name. (required)
+     * @param regex Regular expression. (required)
+     * @param color Highlighting color. (required)
+     * @param ignoreCase True to search ignoring char case. 
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call highlightPresentationRegexAsync(String name, String regex, String color, Boolean ignoreCase, String password, String folder, String storage, final ApiCallback<DocumentReplaceResult> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = highlightPresentationRegexCall(name, regex, color, ignoreCase, password, folder, storage, progressListener, progressRequestListener);
+        Type returnType = new TypeToken<DocumentReplaceResult>(){}.getType();
+        apiClient.executeAsync(call, returnType, callback);
+        return call;
+    }
+    /**
+     * Build call for highlightPresentationText
+     * @param name Document name. (required)
+     * @param text Text sample to highlight. (required)
      * @param color Highlighting color. (required)
      * @param wholeWordsOnly Match only whole words. 
      * @param ignoreCase True to search ignoring char case. 
@@ -27188,7 +27340,167 @@ public class SlidesApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call highlightShapeRegexCall(String name, Integer slideIndex, Integer shapeIndex, String regex, String color, Boolean wholeWordsOnly, Boolean ignoreCase, String password, String folder, String storage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call highlightPresentationTextCall(String name, String text, String color, Boolean wholeWordsOnly, Boolean ignoreCase, String password, String folder, String storage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        // verify the required parameter 'name' is set
+        if (name == null) {
+            throw new ApiException("Missing the required parameter 'name' when calling highlightPresentationText(Async)");
+        }
+        // verify the required parameter 'text' is set
+        if (text == null) {
+            throw new ApiException("Missing the required parameter 'text' when calling highlightPresentationText(Async)");
+        }
+        // verify the required parameter 'color' is set
+        if (color == null) {
+            throw new ApiException("Missing the required parameter 'color' when calling highlightPresentationText(Async)");
+        }
+        Object postBody = null;
+
+        // create path and map variables
+        String methodPath = "/slides/{name}/highlightText"
+            .replaceAll("\\{" + "name" + "\\}", apiClient.objectToString(name));
+
+        List<Pair> queryParams = new ArrayList<Pair>();
+        apiClient.addQueryParameter(queryParams, "text", text);
+        apiClient.addQueryParameter(queryParams, "color", color);
+        apiClient.addQueryParameter(queryParams, "wholeWordsOnly", wholeWordsOnly);
+        apiClient.addQueryParameter(queryParams, "ignoreCase", ignoreCase);
+        apiClient.addQueryParameter(queryParams, "folder", folder);
+        apiClient.addQueryParameter(queryParams, "storage", storage);
+
+        Map<String, String> headerParams = new HashMap<String, String>();
+        if (password != null)
+        headerParams.put("password", apiClient.parameterToString(password));
+
+        Map<String, Object> formParams = new LinkedHashMap<String, Object>();
+
+        final String[] accepts = {
+            "application/json"
+        };
+        final String accept = apiClient.selectHeaderAccept(accepts);
+        if (accept != null) headerParams.put("Accept", accept);
+
+        final String[] contentTypes = {
+            "application/json"
+        };
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
+        headerParams.put("Content-Type", contentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+        return apiClient.buildCall(methodPath, "POST", queryParams, postBody, headerParams, formParams, progressRequestListener);
+    }
+
+    /**
+     * Highlight all matches of sample using specified color.
+     * 
+     * @param name Document name. (required)
+     * @param text Text sample to highlight. (required)
+     * @param color Highlighting color. (required)
+     * @param wholeWordsOnly Match only whole words. 
+     * @param ignoreCase True to search ignoring char case. 
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @return DocumentReplaceResult
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public DocumentReplaceResult highlightPresentationText(String name, String text, String color, Boolean wholeWordsOnly, Boolean ignoreCase, String password, String folder, String storage) throws ApiException {
+        try {
+            ApiResponse<DocumentReplaceResult> resp = highlightPresentationTextWithHttpInfo(name, text, color, wholeWordsOnly, ignoreCase, password, folder, storage);
+            return resp.getData();
+        } catch (NeedRepeatRequestException e) {
+            ApiResponse<DocumentReplaceResult> resp = highlightPresentationTextWithHttpInfo(name, text, color, wholeWordsOnly, ignoreCase, password, folder, storage);
+            return resp.getData();
+        }
+    }
+
+    /**
+     * Highlight all matches of sample using specified color.
+     * 
+     * @param name Document name. (required)
+     * @param text Text sample to highlight. (required)
+     * @param color Highlighting color. (required)
+     * @param wholeWordsOnly Match only whole words. 
+     * @param ignoreCase True to search ignoring char case. 
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @return ApiResponse&lt;DocumentReplaceResult&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<DocumentReplaceResult> highlightPresentationTextWithHttpInfo(String name, String text, String color, Boolean wholeWordsOnly, Boolean ignoreCase, String password, String folder, String storage) throws ApiException {
+        com.squareup.okhttp.Call call = highlightPresentationTextCall(name, text, color, wholeWordsOnly, ignoreCase, password, folder, storage, null, null);
+        Type returnType = new TypeToken<DocumentReplaceResult>(){}.getType();
+        return apiClient.execute(call, returnType);
+    }
+
+    /**
+     * Highlight all matches of sample using specified color. (asynchronously)
+     * 
+     * @param name Document name. (required)
+     * @param text Text sample to highlight. (required)
+     * @param color Highlighting color. (required)
+     * @param wholeWordsOnly Match only whole words. 
+     * @param ignoreCase True to search ignoring char case. 
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call highlightPresentationTextAsync(String name, String text, String color, Boolean wholeWordsOnly, Boolean ignoreCase, String password, String folder, String storage, final ApiCallback<DocumentReplaceResult> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = highlightPresentationTextCall(name, text, color, wholeWordsOnly, ignoreCase, password, folder, storage, progressListener, progressRequestListener);
+        Type returnType = new TypeToken<DocumentReplaceResult>(){}.getType();
+        apiClient.executeAsync(call, returnType, callback);
+        return call;
+    }
+    /**
+     * Build call for highlightShapeRegex
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param shapeIndex Shape index. (required)
+     * @param regex Regular expression. (required)
+     * @param color Highlighting color. (required)
+     * @param ignoreCase True to search ignoring char case. 
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call highlightShapeRegexCall(String name, Integer slideIndex, Integer shapeIndex, String regex, String color, Boolean ignoreCase, String password, String folder, String storage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         // verify the required parameter 'name' is set
         if (name == null) {
             throw new ApiException("Missing the required parameter 'name' when calling highlightShapeRegex(Async)");
@@ -27218,7 +27530,6 @@ public class SlidesApi {
         List<Pair> queryParams = new ArrayList<Pair>();
         apiClient.addQueryParameter(queryParams, "regex", regex);
         apiClient.addQueryParameter(queryParams, "color", color);
-        apiClient.addQueryParameter(queryParams, "wholeWordsOnly", wholeWordsOnly);
         apiClient.addQueryParameter(queryParams, "ignoreCase", ignoreCase);
         apiClient.addQueryParameter(queryParams, "folder", folder);
         apiClient.addQueryParameter(queryParams, "storage", storage);
@@ -27263,7 +27574,6 @@ public class SlidesApi {
      * @param shapeIndex Shape index. (required)
      * @param regex Regular expression. (required)
      * @param color Highlighting color. (required)
-     * @param wholeWordsOnly Match only whole words. 
      * @param ignoreCase True to search ignoring char case. 
      * @param password Document password. 
      * @param folder Document folder. 
@@ -27271,12 +27581,12 @@ public class SlidesApi {
      * @return Shape
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public Shape highlightShapeRegex(String name, Integer slideIndex, Integer shapeIndex, String regex, String color, Boolean wholeWordsOnly, Boolean ignoreCase, String password, String folder, String storage) throws ApiException {
+    public Shape highlightShapeRegex(String name, Integer slideIndex, Integer shapeIndex, String regex, String color, Boolean ignoreCase, String password, String folder, String storage) throws ApiException {
         try {
-            ApiResponse<Shape> resp = highlightShapeRegexWithHttpInfo(name, slideIndex, shapeIndex, regex, color, wholeWordsOnly, ignoreCase, password, folder, storage);
+            ApiResponse<Shape> resp = highlightShapeRegexWithHttpInfo(name, slideIndex, shapeIndex, regex, color, ignoreCase, password, folder, storage);
             return resp.getData();
         } catch (NeedRepeatRequestException e) {
-            ApiResponse<Shape> resp = highlightShapeRegexWithHttpInfo(name, slideIndex, shapeIndex, regex, color, wholeWordsOnly, ignoreCase, password, folder, storage);
+            ApiResponse<Shape> resp = highlightShapeRegexWithHttpInfo(name, slideIndex, shapeIndex, regex, color, ignoreCase, password, folder, storage);
             return resp.getData();
         }
     }
@@ -27289,7 +27599,6 @@ public class SlidesApi {
      * @param shapeIndex Shape index. (required)
      * @param regex Regular expression. (required)
      * @param color Highlighting color. (required)
-     * @param wholeWordsOnly Match only whole words. 
      * @param ignoreCase True to search ignoring char case. 
      * @param password Document password. 
      * @param folder Document folder. 
@@ -27297,8 +27606,8 @@ public class SlidesApi {
      * @return ApiResponse&lt;Shape&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Shape> highlightShapeRegexWithHttpInfo(String name, Integer slideIndex, Integer shapeIndex, String regex, String color, Boolean wholeWordsOnly, Boolean ignoreCase, String password, String folder, String storage) throws ApiException {
-        com.squareup.okhttp.Call call = highlightShapeRegexCall(name, slideIndex, shapeIndex, regex, color, wholeWordsOnly, ignoreCase, password, folder, storage, null, null);
+    public ApiResponse<Shape> highlightShapeRegexWithHttpInfo(String name, Integer slideIndex, Integer shapeIndex, String regex, String color, Boolean ignoreCase, String password, String folder, String storage) throws ApiException {
+        com.squareup.okhttp.Call call = highlightShapeRegexCall(name, slideIndex, shapeIndex, regex, color, ignoreCase, password, folder, storage, null, null);
         Type returnType = new TypeToken<Shape>(){}.getType();
         return apiClient.execute(call, returnType);
     }
@@ -27311,7 +27620,6 @@ public class SlidesApi {
      * @param shapeIndex Shape index. (required)
      * @param regex Regular expression. (required)
      * @param color Highlighting color. (required)
-     * @param wholeWordsOnly Match only whole words. 
      * @param ignoreCase True to search ignoring char case. 
      * @param password Document password. 
      * @param folder Document folder. 
@@ -27320,7 +27628,7 @@ public class SlidesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call highlightShapeRegexAsync(String name, Integer slideIndex, Integer shapeIndex, String regex, String color, Boolean wholeWordsOnly, Boolean ignoreCase, String password, String folder, String storage, final ApiCallback<Shape> callback) throws ApiException {
+    public com.squareup.okhttp.Call highlightShapeRegexAsync(String name, Integer slideIndex, Integer shapeIndex, String regex, String color, Boolean ignoreCase, String password, String folder, String storage, final ApiCallback<Shape> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -27341,7 +27649,7 @@ public class SlidesApi {
             };
         }
 
-        com.squareup.okhttp.Call call = highlightShapeRegexCall(name, slideIndex, shapeIndex, regex, color, wholeWordsOnly, ignoreCase, password, folder, storage, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = highlightShapeRegexCall(name, slideIndex, shapeIndex, regex, color, ignoreCase, password, folder, storage, progressListener, progressRequestListener);
         Type returnType = new TypeToken<Shape>(){}.getType();
         apiClient.executeAsync(call, returnType, callback);
         return call;
@@ -30460,6 +30768,306 @@ public class SlidesApi {
         }
 
         com.squareup.okhttp.Call call = replaceImageOnlineCall(document, imageIndex, image, password, progressListener, progressRequestListener);
+        Type returnType = new TypeToken<File>(){}.getType();
+        apiClient.executeAsync(call, returnType, callback);
+        return call;
+    }
+    /**
+     * Build call for replacePresentationRegex
+     * @param name Document name. (required)
+     * @param pattern Text value pattern to be replaced. (required)
+     * @param newValue Text value to replace with. (required)
+     * @param ignoreCase True if character case must be ignored. 
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call replacePresentationRegexCall(String name, String pattern, String newValue, Boolean ignoreCase, String password, String folder, String storage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        // verify the required parameter 'name' is set
+        if (name == null) {
+            throw new ApiException("Missing the required parameter 'name' when calling replacePresentationRegex(Async)");
+        }
+        // verify the required parameter 'pattern' is set
+        if (pattern == null) {
+            throw new ApiException("Missing the required parameter 'pattern' when calling replacePresentationRegex(Async)");
+        }
+        // verify the required parameter 'newValue' is set
+        if (newValue == null) {
+            throw new ApiException("Missing the required parameter 'newValue' when calling replacePresentationRegex(Async)");
+        }
+        Object postBody = null;
+
+        // create path and map variables
+        String methodPath = "/slides/{name}/replaceRegex"
+            .replaceAll("\\{" + "name" + "\\}", apiClient.objectToString(name));
+
+        List<Pair> queryParams = new ArrayList<Pair>();
+        apiClient.addQueryParameter(queryParams, "pattern", pattern);
+        apiClient.addQueryParameter(queryParams, "newValue", newValue);
+        apiClient.addQueryParameter(queryParams, "ignoreCase", ignoreCase);
+        apiClient.addQueryParameter(queryParams, "folder", folder);
+        apiClient.addQueryParameter(queryParams, "storage", storage);
+
+        Map<String, String> headerParams = new HashMap<String, String>();
+        if (password != null)
+        headerParams.put("password", apiClient.parameterToString(password));
+
+        Map<String, Object> formParams = new LinkedHashMap<String, Object>();
+
+        final String[] accepts = {
+            "application/json"
+        };
+        final String accept = apiClient.selectHeaderAccept(accepts);
+        if (accept != null) headerParams.put("Accept", accept);
+
+        final String[] contentTypes = {
+            "application/json"
+        };
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
+        headerParams.put("Content-Type", contentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+        return apiClient.buildCall(methodPath, "POST", queryParams, postBody, headerParams, formParams, progressRequestListener);
+    }
+
+    /**
+     * Replace text with a new value using a regex.
+     * 
+     * @param name Document name. (required)
+     * @param pattern Text value pattern to be replaced. (required)
+     * @param newValue Text value to replace with. (required)
+     * @param ignoreCase True if character case must be ignored. 
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @return DocumentReplaceResult
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public DocumentReplaceResult replacePresentationRegex(String name, String pattern, String newValue, Boolean ignoreCase, String password, String folder, String storage) throws ApiException {
+        try {
+            ApiResponse<DocumentReplaceResult> resp = replacePresentationRegexWithHttpInfo(name, pattern, newValue, ignoreCase, password, folder, storage);
+            return resp.getData();
+        } catch (NeedRepeatRequestException e) {
+            ApiResponse<DocumentReplaceResult> resp = replacePresentationRegexWithHttpInfo(name, pattern, newValue, ignoreCase, password, folder, storage);
+            return resp.getData();
+        }
+    }
+
+    /**
+     * Replace text with a new value using a regex.
+     * 
+     * @param name Document name. (required)
+     * @param pattern Text value pattern to be replaced. (required)
+     * @param newValue Text value to replace with. (required)
+     * @param ignoreCase True if character case must be ignored. 
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @return ApiResponse&lt;DocumentReplaceResult&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<DocumentReplaceResult> replacePresentationRegexWithHttpInfo(String name, String pattern, String newValue, Boolean ignoreCase, String password, String folder, String storage) throws ApiException {
+        com.squareup.okhttp.Call call = replacePresentationRegexCall(name, pattern, newValue, ignoreCase, password, folder, storage, null, null);
+        Type returnType = new TypeToken<DocumentReplaceResult>(){}.getType();
+        return apiClient.execute(call, returnType);
+    }
+
+    /**
+     * Replace text with a new value using a regex. (asynchronously)
+     * 
+     * @param name Document name. (required)
+     * @param pattern Text value pattern to be replaced. (required)
+     * @param newValue Text value to replace with. (required)
+     * @param ignoreCase True if character case must be ignored. 
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Document storage. 
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call replacePresentationRegexAsync(String name, String pattern, String newValue, Boolean ignoreCase, String password, String folder, String storage, final ApiCallback<DocumentReplaceResult> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = replacePresentationRegexCall(name, pattern, newValue, ignoreCase, password, folder, storage, progressListener, progressRequestListener);
+        Type returnType = new TypeToken<DocumentReplaceResult>(){}.getType();
+        apiClient.executeAsync(call, returnType, callback);
+        return call;
+    }
+    /**
+     * Build call for replacePresentationRegexOnline
+     * @param document Document data. (required)
+     * @param pattern Text regex pattern to be replaced. (required)
+     * @param newValue Text value to replace with. (required)
+     * @param ignoreCase True if character case must be ignored. 
+     * @param password Document password. 
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call replacePresentationRegexOnlineCall(byte[] document, String pattern, String newValue, Boolean ignoreCase, String password, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        // verify the required parameter 'document' is set
+        if (document == null) {
+            throw new ApiException("Missing the required parameter 'document' when calling replacePresentationRegexOnline(Async)");
+        }
+        // verify the required parameter 'pattern' is set
+        if (pattern == null) {
+            throw new ApiException("Missing the required parameter 'pattern' when calling replacePresentationRegexOnline(Async)");
+        }
+        // verify the required parameter 'newValue' is set
+        if (newValue == null) {
+            throw new ApiException("Missing the required parameter 'newValue' when calling replacePresentationRegexOnline(Async)");
+        }
+        Object postBody = null;
+
+        // create path and map variables
+        String methodPath = "/slides/replaceRegex"
+            ;
+
+        List<Pair> queryParams = new ArrayList<Pair>();
+        apiClient.addQueryParameter(queryParams, "pattern", pattern);
+        apiClient.addQueryParameter(queryParams, "newValue", newValue);
+        apiClient.addQueryParameter(queryParams, "ignoreCase", ignoreCase);
+
+        Map<String, String> headerParams = new HashMap<String, String>();
+        if (password != null)
+        headerParams.put("password", apiClient.parameterToString(password));
+
+        Map<String, Object> formParams = new LinkedHashMap<String, Object>();
+        if (document != null)
+        formParams.put("document", document);
+
+        final String[] accepts = {
+            "multipart/form-data"
+        };
+        final String accept = apiClient.selectHeaderAccept(accepts);
+        if (accept != null) headerParams.put("Accept", accept);
+
+        final String[] contentTypes = {
+            "multipart/form-data"
+        };
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
+        headerParams.put("Content-Type", contentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+        return apiClient.buildCall(methodPath, "POST", queryParams, postBody, headerParams, formParams, progressRequestListener);
+    }
+
+    /**
+     * Replace text with a new value using a regex.
+     * 
+     * @param document Document data. (required)
+     * @param pattern Text regex pattern to be replaced. (required)
+     * @param newValue Text value to replace with. (required)
+     * @param ignoreCase True if character case must be ignored. 
+     * @param password Document password. 
+     * @return File
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public File replacePresentationRegexOnline(byte[] document, String pattern, String newValue, Boolean ignoreCase, String password) throws ApiException {
+        try {
+            ApiResponse<File> resp = replacePresentationRegexOnlineWithHttpInfo(document, pattern, newValue, ignoreCase, password);
+            return resp.getData();
+        } catch (NeedRepeatRequestException e) {
+            ApiResponse<File> resp = replacePresentationRegexOnlineWithHttpInfo(document, pattern, newValue, ignoreCase, password);
+            return resp.getData();
+        }
+    }
+
+    /**
+     * Replace text with a new value using a regex.
+     * 
+     * @param document Document data. (required)
+     * @param pattern Text regex pattern to be replaced. (required)
+     * @param newValue Text value to replace with. (required)
+     * @param ignoreCase True if character case must be ignored. 
+     * @param password Document password. 
+     * @return ApiResponse&lt;File&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<File> replacePresentationRegexOnlineWithHttpInfo(byte[] document, String pattern, String newValue, Boolean ignoreCase, String password) throws ApiException {
+        com.squareup.okhttp.Call call = replacePresentationRegexOnlineCall(document, pattern, newValue, ignoreCase, password, null, null);
+        Type returnType = new TypeToken<File>(){}.getType();
+        return apiClient.execute(call, returnType);
+    }
+
+    /**
+     * Replace text with a new value using a regex. (asynchronously)
+     * 
+     * @param document Document data. (required)
+     * @param pattern Text regex pattern to be replaced. (required)
+     * @param newValue Text value to replace with. (required)
+     * @param ignoreCase True if character case must be ignored. 
+     * @param password Document password. 
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call replacePresentationRegexOnlineAsync(byte[] document, String pattern, String newValue, Boolean ignoreCase, String password, final ApiCallback<File> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = replacePresentationRegexOnlineCall(document, pattern, newValue, ignoreCase, password, progressListener, progressRequestListener);
         Type returnType = new TypeToken<File>(){}.getType();
         apiClient.executeAsync(call, returnType, callback);
         return call;

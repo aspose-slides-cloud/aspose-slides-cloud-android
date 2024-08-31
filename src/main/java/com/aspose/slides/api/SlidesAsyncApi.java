@@ -1172,6 +1172,349 @@ public class SlidesAsyncApi {
         apiClient.executeAsync(call, returnType, callback);
         return call;
     }
+    /**
+     * Build call for startSplit
+     * @param name  (required)
+     * @param format  (required)
+     * @param options  
+     * @param width  
+     * @param height  
+     * @param from  
+     * @param to  
+     * @param destFolder  
+     * @param password  
+     * @param folder  
+     * @param storage  
+     * @param fontsFolder  
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call startSplitCall(String name, SlideExportFormat format, ExportOptions options, Integer width, Integer height, Integer from, Integer to, String destFolder, String password, String folder, String storage, String fontsFolder, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        // verify the required parameter 'name' is set
+        if (name == null) {
+            throw new ApiException("Missing the required parameter 'name' when calling startSplit(Async)");
+        }
+        // verify the required parameter 'format' is set
+        if (format == null) {
+            throw new ApiException("Missing the required parameter 'format' when calling startSplit(Async)");
+        }
+        Object postBody = options;
+
+        // create path and map variables
+        String methodPath = "/slides/async/{name}/split/{format}"
+            .replaceAll("\\{" + "name" + "\\}", apiClient.objectToString(name)).replaceAll("\\{" + "format" + "\\}", apiClient.objectToString(format));
+
+        List<Pair> queryParams = new ArrayList<Pair>();
+        apiClient.addQueryParameter(queryParams, "width", width);
+        apiClient.addQueryParameter(queryParams, "height", height);
+        apiClient.addQueryParameter(queryParams, "from", from);
+        apiClient.addQueryParameter(queryParams, "to", to);
+        apiClient.addQueryParameter(queryParams, "destFolder", destFolder);
+        apiClient.addQueryParameter(queryParams, "folder", folder);
+        apiClient.addQueryParameter(queryParams, "storage", storage);
+        apiClient.addQueryParameter(queryParams, "fontsFolder", fontsFolder);
+
+        Map<String, String> headerParams = new HashMap<String, String>();
+        if (password != null)
+        headerParams.put("password", apiClient.parameterToString(password));
+
+        Map<String, Object> formParams = new LinkedHashMap<String, Object>();
+
+        final String[] accepts = {
+            "application/json"
+        };
+        final String accept = apiClient.selectHeaderAccept(accepts);
+        if (accept != null) headerParams.put("Accept", accept);
+
+        final String[] contentTypes = {
+            "application/json"
+        };
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
+        headerParams.put("Content-Type", contentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+        return apiClient.buildCall(methodPath, "POST", queryParams, postBody, headerParams, formParams, progressRequestListener);
+    }
+
+    /**
+     * 
+     * 
+     * @param name  (required)
+     * @param format  (required)
+     * @param options  
+     * @param width  
+     * @param height  
+     * @param from  
+     * @param to  
+     * @param destFolder  
+     * @param password  
+     * @param folder  
+     * @param storage  
+     * @param fontsFolder  
+     * @return String
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public String startSplit(String name, SlideExportFormat format, ExportOptions options, Integer width, Integer height, Integer from, Integer to, String destFolder, String password, String folder, String storage, String fontsFolder) throws ApiException {
+        try {
+            ApiResponse<String> resp = startSplitWithHttpInfo(name, format, options, width, height, from, to, destFolder, password, folder, storage, fontsFolder);
+            return resp.getData();
+        } catch (NeedRepeatRequestException e) {
+            ApiResponse<String> resp = startSplitWithHttpInfo(name, format, options, width, height, from, to, destFolder, password, folder, storage, fontsFolder);
+            return resp.getData();
+        }
+    }
+
+    /**
+     * 
+     * 
+     * @param name  (required)
+     * @param format  (required)
+     * @param options  
+     * @param width  
+     * @param height  
+     * @param from  
+     * @param to  
+     * @param destFolder  
+     * @param password  
+     * @param folder  
+     * @param storage  
+     * @param fontsFolder  
+     * @return ApiResponse&lt;String&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<String> startSplitWithHttpInfo(String name, SlideExportFormat format, ExportOptions options, Integer width, Integer height, Integer from, Integer to, String destFolder, String password, String folder, String storage, String fontsFolder) throws ApiException {
+        com.squareup.okhttp.Call call = startSplitCall(name, format, options, width, height, from, to, destFolder, password, folder, storage, fontsFolder, null, null);
+        Type returnType = new TypeToken<String>(){}.getType();
+        return apiClient.execute(call, returnType);
+    }
+
+    /**
+     *  (asynchronously)
+     * 
+     * @param name  (required)
+     * @param format  (required)
+     * @param options  
+     * @param width  
+     * @param height  
+     * @param from  
+     * @param to  
+     * @param destFolder  
+     * @param password  
+     * @param folder  
+     * @param storage  
+     * @param fontsFolder  
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call startSplitAsync(String name, SlideExportFormat format, ExportOptions options, Integer width, Integer height, Integer from, Integer to, String destFolder, String password, String folder, String storage, String fontsFolder, final ApiCallback<String> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = startSplitCall(name, format, options, width, height, from, to, destFolder, password, folder, storage, fontsFolder, progressListener, progressRequestListener);
+        Type returnType = new TypeToken<String>(){}.getType();
+        apiClient.executeAsync(call, returnType, callback);
+        return call;
+    }
+    /**
+     * Build call for startUploadAndSplit
+     * @param document Document data. (required)
+     * @param format  (required)
+     * @param destFolder  
+     * @param width  
+     * @param height  
+     * @param from  
+     * @param to  
+     * @param password  
+     * @param storage  
+     * @param fontsFolder  
+     * @param options  
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call startUploadAndSplitCall(byte[] document, SlideExportFormat format, String destFolder, Integer width, Integer height, Integer from, Integer to, String password, String storage, String fontsFolder, ExportOptions options, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        // verify the required parameter 'document' is set
+        if (document == null) {
+            throw new ApiException("Missing the required parameter 'document' when calling startUploadAndSplit(Async)");
+        }
+        // verify the required parameter 'format' is set
+        if (format == null) {
+            throw new ApiException("Missing the required parameter 'format' when calling startUploadAndSplit(Async)");
+        }
+        Object postBody = options;
+
+        // create path and map variables
+        String methodPath = "/slides/async/split/{format}"
+            .replaceAll("\\{" + "format" + "\\}", apiClient.objectToString(format));
+
+        List<Pair> queryParams = new ArrayList<Pair>();
+        apiClient.addQueryParameter(queryParams, "destFolder", destFolder);
+        apiClient.addQueryParameter(queryParams, "width", width);
+        apiClient.addQueryParameter(queryParams, "height", height);
+        apiClient.addQueryParameter(queryParams, "from", from);
+        apiClient.addQueryParameter(queryParams, "to", to);
+        apiClient.addQueryParameter(queryParams, "storage", storage);
+        apiClient.addQueryParameter(queryParams, "fontsFolder", fontsFolder);
+
+        Map<String, String> headerParams = new HashMap<String, String>();
+        if (password != null)
+        headerParams.put("password", apiClient.parameterToString(password));
+
+        Map<String, Object> formParams = new LinkedHashMap<String, Object>();
+        if (document != null)
+        formParams.put("document", document);
+
+        final String[] accepts = {
+            "application/json"
+        };
+        final String accept = apiClient.selectHeaderAccept(accepts);
+        if (accept != null) headerParams.put("Accept", accept);
+
+        final String[] contentTypes = {
+            "multipart/form-data"
+        };
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
+        headerParams.put("Content-Type", contentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+        return apiClient.buildCall(methodPath, "POST", queryParams, postBody, headerParams, formParams, progressRequestListener);
+    }
+
+    /**
+     * 
+     * 
+     * @param document Document data. (required)
+     * @param format  (required)
+     * @param destFolder  
+     * @param width  
+     * @param height  
+     * @param from  
+     * @param to  
+     * @param password  
+     * @param storage  
+     * @param fontsFolder  
+     * @param options  
+     * @return String
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public String startUploadAndSplit(byte[] document, SlideExportFormat format, String destFolder, Integer width, Integer height, Integer from, Integer to, String password, String storage, String fontsFolder, ExportOptions options) throws ApiException {
+        try {
+            ApiResponse<String> resp = startUploadAndSplitWithHttpInfo(document, format, destFolder, width, height, from, to, password, storage, fontsFolder, options);
+            return resp.getData();
+        } catch (NeedRepeatRequestException e) {
+            ApiResponse<String> resp = startUploadAndSplitWithHttpInfo(document, format, destFolder, width, height, from, to, password, storage, fontsFolder, options);
+            return resp.getData();
+        }
+    }
+
+    /**
+     * 
+     * 
+     * @param document Document data. (required)
+     * @param format  (required)
+     * @param destFolder  
+     * @param width  
+     * @param height  
+     * @param from  
+     * @param to  
+     * @param password  
+     * @param storage  
+     * @param fontsFolder  
+     * @param options  
+     * @return ApiResponse&lt;String&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<String> startUploadAndSplitWithHttpInfo(byte[] document, SlideExportFormat format, String destFolder, Integer width, Integer height, Integer from, Integer to, String password, String storage, String fontsFolder, ExportOptions options) throws ApiException {
+        com.squareup.okhttp.Call call = startUploadAndSplitCall(document, format, destFolder, width, height, from, to, password, storage, fontsFolder, options, null, null);
+        Type returnType = new TypeToken<String>(){}.getType();
+        return apiClient.execute(call, returnType);
+    }
+
+    /**
+     *  (asynchronously)
+     * 
+     * @param document Document data. (required)
+     * @param format  (required)
+     * @param destFolder  
+     * @param width  
+     * @param height  
+     * @param from  
+     * @param to  
+     * @param password  
+     * @param storage  
+     * @param fontsFolder  
+     * @param options  
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call startUploadAndSplitAsync(byte[] document, SlideExportFormat format, String destFolder, Integer width, Integer height, Integer from, Integer to, String password, String storage, String fontsFolder, ExportOptions options, final ApiCallback<String> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = startUploadAndSplitCall(document, format, destFolder, width, height, from, to, password, storage, fontsFolder, options, progressListener, progressRequestListener);
+        Type returnType = new TypeToken<String>(){}.getType();
+        apiClient.executeAsync(call, returnType, callback);
+        return call;
+    }
 
     private final ApiClient apiClient;
 }

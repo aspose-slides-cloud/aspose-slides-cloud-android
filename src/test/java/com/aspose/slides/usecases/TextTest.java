@@ -59,6 +59,9 @@ public class TextTest extends ApiTest {
         DocumentReplaceResult result = testSlidesApi.replacePresentationText(fileName, c_oldValue, c_newValue, null, null, password, folderName, null);
 
         testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        DocumentReplaceResult resultRegex = testSlidesApi.replacePresentationRegex(fileName, c_oldValue, c_newValue, null, password, folderName, null);
+
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         DocumentReplaceResult resultIgnoreCase = testSlidesApi.replacePresentationText(fileName, c_oldValue, c_newValue, true, null, password, folderName, null);
 
         testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
@@ -70,6 +73,7 @@ public class TextTest extends ApiTest {
         testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         SlideReplaceResult slideResultIgnoreCase = testSlidesApi.replaceSlideText(fileName, c_slideIndex, c_oldValue, c_newValue, true, password, folderName, null);
 
+        assertEquals(result.getMatches(), resultRegex.getMatches());
         assertTrue(resultIgnoreCase.getMatches() > result.getMatches());
         assertTrue(resultIgnoreCase.getMatches() > resultWholeWords.getMatches());
         assertTrue(result.getMatches() > slideResult.getMatches());
@@ -80,10 +84,12 @@ public class TextTest extends ApiTest {
     public void textReplaceRequestTest() throws ApiException, IOException {
         byte[] file = Files.readAllBytes(Paths.get(testDataFolderName + "/" + fileName));
         File result = testSlidesApi.replacePresentationTextOnline(file, c_oldValue, c_newValue, null, null, password);
+        File resultRegex = testSlidesApi.replacePresentationRegexOnline(file, c_oldValue, c_newValue, null, password);
         File resultIgnoreCase = testSlidesApi.replacePresentationTextOnline(file, c_oldValue, c_newValue, true, null, password);
         File slideResult = testSlidesApi.replaceSlideTextOnline(file, c_slideIndex, c_oldValue, c_newValue, null, password);
         File slideResultIgnoreCase = testSlidesApi.replaceSlideTextOnline(file, c_slideIndex, c_oldValue, c_newValue, true, password);
         assertTrue(result.canRead());
+        assertTrue(resultRegex.canRead());
         assertTrue(resultIgnoreCase.canRead());
         assertTrue(slideResult.canRead());
         assertTrue(slideResultIgnoreCase.canRead());
@@ -138,7 +144,39 @@ public class TextTest extends ApiTest {
         testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
 
         final int shapeIndex = 1, slideIndex = 6, paragraphIndex = 1;
-        testSlidesApi.highlightShapeRegex(fileName, slideIndex, shapeIndex, c_highlightRegex, c_highlightColor, null, false, password, folderName, null);
+        testSlidesApi.highlightShapeRegex(fileName, slideIndex, shapeIndex, c_highlightRegex, c_highlightColor, false, password, folderName, null);
+        Paragraph para = testSlidesApi.getParagraph(fileName, slideIndex, shapeIndex, paragraphIndex, password, folderName, null, null);
+        assertNotEquals(para.getPortionList().get(0).getText(), c_textToHighlight);
+        assertNotEquals(para.getPortionList().get(0).getHighlightColor(), c_highlightColor);
+        assertEquals(para.getPortionList().get(1).getText(), c_textToHighlight);
+        assertEquals(para.getPortionList().get(1).getHighlightColor(), c_highlightColor);
+    }
+
+    @Test
+    public void highlightPresentationTextTest() throws ApiException, IOException {
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+
+        DocumentReplaceResult result = testSlidesApi.highlightPresentationText(fileName, c_textToHighlight, c_highlightColor, null, false, password, folderName, null);
+        DocumentReplaceResult resultIgnoreCase = testSlidesApi.highlightPresentationText(fileName, c_textToHighlight, c_highlightColor, null, true, password, folderName, null);
+        assertEquals(result.getMatches(), resultIgnoreCase.getMatches());
+
+        final int shapeIndex = 1, slideIndex = 6, paragraphIndex = 1;
+        Paragraph para = testSlidesApi.getParagraph(fileName, slideIndex, shapeIndex, paragraphIndex, password, folderName, null, null);
+        assertNotEquals(para.getPortionList().get(0).getText(), c_textToHighlight);
+        assertNotEquals(para.getPortionList().get(0).getHighlightColor(), c_highlightColor);
+        assertEquals(para.getPortionList().get(1).getText(), c_textToHighlight);
+        assertEquals(para.getPortionList().get(1).getHighlightColor(), c_highlightColor);
+    }
+
+    @Test
+    public void highlightPresentationRegexTest() throws ApiException, IOException {
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+
+        DocumentReplaceResult result = testSlidesApi.highlightPresentationRegex(fileName, c_highlightRegex, c_highlightColor, false, password, folderName, null);
+        DocumentReplaceResult resultIgnoreCase = testSlidesApi.highlightPresentationRegex(fileName, c_highlightRegex, c_highlightColor, true, password, folderName, null);
+        assertEquals(result.getMatches(), resultIgnoreCase.getMatches());
+
+        final int shapeIndex = 1, slideIndex = 6, paragraphIndex = 1;
         Paragraph para = testSlidesApi.getParagraph(fileName, slideIndex, shapeIndex, paragraphIndex, password, folderName, null, null);
         assertNotEquals(para.getPortionList().get(0).getText(), c_textToHighlight);
         assertNotEquals(para.getPortionList().get(0).getHighlightColor(), c_highlightColor);

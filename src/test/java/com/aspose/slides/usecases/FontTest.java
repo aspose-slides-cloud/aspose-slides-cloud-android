@@ -53,14 +53,14 @@ public class FontTest extends ApiTest {
     public void getFontsTest() throws ApiException, IOException {
         testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         FontsData response = testSlidesApi.getFonts(fileName, password, folderName, null);
-        assertEquals(3, response.getList().size());
+        assertEquals(4, response.getList().size());
     }
 
     @Test
     public void getFontsOnlineTest() throws ApiException, IOException {
         byte[] file = Files.readAllBytes(Paths.get(testDataFolderName + "/" + fileName));
         FontsData response = testSlidesApi.getFontsOnline(file, password);
-        assertEquals(3, response.getList().size());
+        assertEquals(4, response.getList().size());
     }
 
     @Test

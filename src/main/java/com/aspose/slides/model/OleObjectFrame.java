@@ -96,7 +96,7 @@ public class OleObjectFrame extends ShapeBase {
    * True if an object is visible as icon.
    * @return isObjectIcon
   **/
-  @ApiModelProperty(required = true, value = "True if an object is visible as icon.")
+  @ApiModelProperty(value = "True if an object is visible as icon.")
   public Boolean getIsObjectIcon() {
     return isObjectIcon;
   }

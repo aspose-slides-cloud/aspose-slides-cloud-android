@@ -221,6 +221,60 @@ public class AsyncApiTest extends ApiTest {
     }
 
     @Test
+    public void asyncSplitTest() throws ApiException, IOException, InterruptedException {
+        String outFolder = "splitResult";
+        testSlidesApi.deleteFolder(outFolder, null, true);
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        String operationId = testSlidesAsyncApi.startSplit(fileName, SlideExportFormat.PNG, null, null, null, null, null, outFolder, password, folderName, null, null);
+
+        Operation operation = null;
+        for (int i = 0; i < c_maxTries; i++)
+        {
+            TimeUnit.SECONDS.sleep(c_sleepTimeout);
+            operation = testSlidesAsyncApi.getOperationStatus(operationId);
+            if (operation.getStatus() != Operation.StatusEnum.CREATED
+                && operation.getStatus() != Operation.StatusEnum.ENQUEUED
+                && operation.getStatus() != Operation.StatusEnum.STARTED)
+            {
+                break;
+            }
+        }
+
+        assertEquals(Operation.StatusEnum.FINISHED, operation.getStatus());
+        assertNull(operation.getError());
+
+        ObjectExist exists = testSlidesApi.objectExists(outFolder, null, null);
+        assertTrue(exists.isExists());
+    }
+
+    @Test
+    public void asyncUploadAndSplitTest() throws ApiException, IOException, InterruptedException {
+        String outFolder = "splitResult";
+        testSlidesApi.deleteFolder(outFolder, null, true);
+        byte[] file = Files.readAllBytes(Paths.get(testDataFolderName + "/" + fileName));
+        String operationId = testSlidesAsyncApi.startUploadAndSplit(file, SlideExportFormat.PNG, outFolder, null, null, null, null, password, null, null, null);
+
+        Operation operation = null;
+        for (int i = 0; i < c_maxTries; i++)
+        {
+            TimeUnit.SECONDS.sleep(c_sleepTimeout);
+            operation = testSlidesAsyncApi.getOperationStatus(operationId);
+            if (operation.getStatus() != Operation.StatusEnum.CREATED
+                && operation.getStatus() != Operation.StatusEnum.ENQUEUED
+                && operation.getStatus() != Operation.StatusEnum.STARTED)
+            {
+                break;
+            }
+        }
+
+        assertEquals(Operation.StatusEnum.FINISHED, operation.getStatus());
+        assertNull(operation.getError());
+
+        ObjectExist exists = testSlidesApi.objectExists(outFolder, null, null);
+        assertTrue(exists.isExists());
+    }
+
+    @Test
     public void asyncBadOperationTest() throws ApiException, IOException, InterruptedException {
         String operationId = testSlidesAsyncApi.startDownloadPresentation("IDoNotExist.pptx", c_format, null, null, null, null, null, null);
 

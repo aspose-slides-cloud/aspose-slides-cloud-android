@@ -178,7 +178,7 @@ public class SmartArtNode {
    * True for and assistant node.
    * @return isAssistant
   **/
-  @ApiModelProperty(required = true, value = "True for and assistant node.")
+  @ApiModelProperty(value = "True for and assistant node.")
   public Boolean getIsAssistant() {
     return isAssistant;
   }

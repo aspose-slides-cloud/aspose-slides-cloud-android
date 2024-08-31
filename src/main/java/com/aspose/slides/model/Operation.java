@@ -28,6 +28,7 @@
 package com.aspose.slides.model;
 
 import java.util.Objects;
+import com.aspose.slides.model.OperationError;
 import com.aspose.slides.model.OperationProgress;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -64,7 +65,11 @@ public class Operation {
     
     MERGE("Merge"),
     
-    MERGEANDSAVE("MergeAndSave");
+    MERGEANDSAVE("MergeAndSave"),
+    
+    SPLIT("Split"),
+    
+    UPLOADANDSPLIT("UploadAndSplit");
 
     private String value;
 
@@ -184,7 +189,7 @@ public class Operation {
   private OffsetDateTime finished;
 
   @SerializedName(value = "error", alternate = { "Error" })
-  private String error;
+  private OperationError error;
 
 
   public Operation() {
@@ -353,7 +358,7 @@ public class Operation {
     this.finished = finished;
   }
 
-  public Operation error(String error) {
+  public Operation error(OperationError error) {
     this.error = error;
     return this;
   }
@@ -363,11 +368,11 @@ public class Operation {
    * @return error
   **/
   @ApiModelProperty(value = "")
-  public String getError() {
+  public OperationError getError() {
     return error;
   }
 
-  public void setError(String error) {
+  public void setError(OperationError error) {
     this.error = error;
   }
 
