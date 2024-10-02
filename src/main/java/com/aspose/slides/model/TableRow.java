@@ -97,7 +97,7 @@ public class TableRow {
    * Minimal height of the row.
    * @return minimalHeight
   **/
-  @ApiModelProperty(required = true, value = "Minimal height of the row.")
+  @ApiModelProperty(value = "Minimal height of the row.")
   public Double getMinimalHeight() {
     return minimalHeight;
   }
@@ -115,7 +115,7 @@ public class TableRow {
    * Height of the row.
    * @return height
   **/
-  @ApiModelProperty(required = true, value = "Height of the row.")
+  @ApiModelProperty(value = "Height of the row.")
   public Double getHeight() {
     return height;
   }

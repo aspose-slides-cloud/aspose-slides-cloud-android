@@ -355,7 +355,7 @@ public class ShapeBase extends ResourceBase {
    * Gets z-order position of shape
    * @return zorderPosition
   **/
-  @ApiModelProperty(required = true, value = "Gets z-order position of shape")
+  @ApiModelProperty(value = "Gets z-order position of shape")
   public Integer getZorderPosition() {
     return zorderPosition;
   }

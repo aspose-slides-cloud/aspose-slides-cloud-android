@@ -45,6 +45,7 @@ import java.io.IOException;
 
 import com.aspose.slides.model.ExportOptions;
 import java.io.File;
+import com.aspose.slides.model.FilesUploadResult;
 import com.aspose.slides.model.Operation;
 import com.aspose.slides.model.OrderedMergeRequest;
 import com.aspose.slides.model.*;
@@ -65,6 +66,127 @@ public class SlidesAsyncApi {
         this(new Configuration(appSid, appKey));
     }
 
+    /**
+     * Build call for download
+     * @param path  
+     * @param storageName  
+     * @param versionId  
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call downloadCall(String path, String storageName, String versionId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object postBody = null;
+
+        // create path and map variables
+        String methodPath = "/slides/async/storage/file/{path}"
+            .replaceAll("\\{" + "path" + "\\}", apiClient.objectToString(path));
+
+        List<Pair> queryParams = new ArrayList<Pair>();
+        apiClient.addQueryParameter(queryParams, "storageName", storageName);
+        apiClient.addQueryParameter(queryParams, "versionId", versionId);
+
+        Map<String, String> headerParams = new HashMap<String, String>();
+
+        Map<String, Object> formParams = new LinkedHashMap<String, Object>();
+
+        final String[] accepts = {
+            "multipart/form-data"
+        };
+        final String accept = apiClient.selectHeaderAccept(accepts);
+        if (accept != null) headerParams.put("Accept", accept);
+
+        final String[] contentTypes = {
+            "application/json"
+        };
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
+        headerParams.put("Content-Type", contentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+        return apiClient.buildCall(methodPath, "GET", queryParams, postBody, headerParams, formParams, progressRequestListener);
+    }
+
+    /**
+     * 
+     * 
+     * @param path  
+     * @param storageName  
+     * @param versionId  
+     * @return File
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public File download(String path, String storageName, String versionId) throws ApiException {
+        try {
+            ApiResponse<File> resp = downloadWithHttpInfo(path, storageName, versionId);
+            return resp.getData();
+        } catch (NeedRepeatRequestException e) {
+            ApiResponse<File> resp = downloadWithHttpInfo(path, storageName, versionId);
+            return resp.getData();
+        }
+    }
+
+    /**
+     * 
+     * 
+     * @param path  
+     * @param storageName  
+     * @param versionId  
+     * @return ApiResponse&lt;File&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<File> downloadWithHttpInfo(String path, String storageName, String versionId) throws ApiException {
+        com.squareup.okhttp.Call call = downloadCall(path, storageName, versionId, null, null);
+        Type returnType = new TypeToken<File>(){}.getType();
+        return apiClient.execute(call, returnType);
+    }
+
+    /**
+     *  (asynchronously)
+     * 
+     * @param path  
+     * @param storageName  
+     * @param versionId  
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call downloadAsync(String path, String storageName, String versionId, final ApiCallback<File> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = downloadCall(path, storageName, versionId, progressListener, progressRequestListener);
+        Type returnType = new TypeToken<File>(){}.getType();
+        apiClient.executeAsync(call, returnType, callback);
+        return call;
+    }
     /**
      * Build call for getOperationResult
      * @param id  (required)
@@ -1512,6 +1634,132 @@ public class SlidesAsyncApi {
 
         com.squareup.okhttp.Call call = startUploadAndSplitCall(document, format, destFolder, width, height, from, to, password, storage, fontsFolder, options, progressListener, progressRequestListener);
         Type returnType = new TypeToken<String>(){}.getType();
+        apiClient.executeAsync(call, returnType, callback);
+        return call;
+    }
+    /**
+     * Build call for upload
+     * @param path  
+     * @param file File to upload (required)
+     * @param storageName  
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call uploadCall(String path, byte[] file, String storageName, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        // verify the required parameter 'file' is set
+        if (file == null) {
+            throw new ApiException("Missing the required parameter 'file' when calling upload(Async)");
+        }
+        Object postBody = null;
+
+        // create path and map variables
+        String methodPath = "/slides/async/storage/file/{path}"
+            .replaceAll("\\{" + "path" + "\\}", apiClient.objectToString(path));
+
+        List<Pair> queryParams = new ArrayList<Pair>();
+        apiClient.addQueryParameter(queryParams, "storageName", storageName);
+
+        Map<String, String> headerParams = new HashMap<String, String>();
+
+        Map<String, Object> formParams = new LinkedHashMap<String, Object>();
+        if (file != null)
+        formParams.put("file", file);
+
+        final String[] accepts = {
+            "application/json"
+        };
+        final String accept = apiClient.selectHeaderAccept(accepts);
+        if (accept != null) headerParams.put("Accept", accept);
+
+        final String[] contentTypes = {
+            "multipart/form-data"
+        };
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
+        headerParams.put("Content-Type", contentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+        return apiClient.buildCall(methodPath, "PUT", queryParams, postBody, headerParams, formParams, progressRequestListener);
+    }
+
+    /**
+     * 
+     * 
+     * @param path  
+     * @param file File to upload (required)
+     * @param storageName  
+     * @return FilesUploadResult
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public FilesUploadResult upload(String path, byte[] file, String storageName) throws ApiException {
+        try {
+            ApiResponse<FilesUploadResult> resp = uploadWithHttpInfo(path, file, storageName);
+            return resp.getData();
+        } catch (NeedRepeatRequestException e) {
+            ApiResponse<FilesUploadResult> resp = uploadWithHttpInfo(path, file, storageName);
+            return resp.getData();
+        }
+    }
+
+    /**
+     * 
+     * 
+     * @param path  
+     * @param file File to upload (required)
+     * @param storageName  
+     * @return ApiResponse&lt;FilesUploadResult&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<FilesUploadResult> uploadWithHttpInfo(String path, byte[] file, String storageName) throws ApiException {
+        com.squareup.okhttp.Call call = uploadCall(path, file, storageName, null, null);
+        Type returnType = new TypeToken<FilesUploadResult>(){}.getType();
+        return apiClient.execute(call, returnType);
+    }
+
+    /**
+     *  (asynchronously)
+     * 
+     * @param path  
+     * @param file File to upload (required)
+     * @param storageName  
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call uploadAsync(String path, byte[] file, String storageName, final ApiCallback<FilesUploadResult> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = uploadCall(path, file, storageName, progressListener, progressRequestListener);
+        Type returnType = new TypeToken<FilesUploadResult>(){}.getType();
         apiClient.executeAsync(call, returnType, callback);
         return call;
     }
