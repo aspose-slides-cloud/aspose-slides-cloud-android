@@ -65,6 +65,140 @@ public class PictureFill extends FillFormat {
   @SerializedName(value = "dpi", alternate = { "Dpi" })
   private Integer dpi;
 
+  @SerializedName(value = "tileOffsetX", alternate = { "TileOffsetX" })
+  private Double tileOffsetX;
+
+  @SerializedName(value = "tileOffsetY", alternate = { "TileOffsetY" })
+  private Double tileOffsetY;
+
+  @SerializedName(value = "tileScaleX", alternate = { "TileScaleX" })
+  private Double tileScaleX;
+
+  @SerializedName(value = "tileScaleY", alternate = { "TileScaleY" })
+  private Double tileScaleY;
+
+  /**
+   * The way texture is aligned within the shape. This setting controls the starting point of the texture pattern and how it repeats across the shape.
+   */
+  @JsonAdapter(TileAlignmentEnum.Adapter.class)
+  public enum TileAlignmentEnum {
+    TOPLEFT("TopLeft"),
+    
+    TOP("Top"),
+    
+    TOPRIGHT("TopRight"),
+    
+    LEFT("Left"),
+    
+    CENTER("Center"),
+    
+    RIGHT("Right"),
+    
+    BOTTOMLEFT("BottomLeft"),
+    
+    BOTTOM("Bottom"),
+    
+    BOTTOMRIGHT("BottomRight"),
+    
+    NOTDEFINED("NotDefined");
+
+    private String value;
+
+    TileAlignmentEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static TileAlignmentEnum fromValue(String text) {
+      for (TileAlignmentEnum b : TileAlignmentEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<TileAlignmentEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final TileAlignmentEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public TileAlignmentEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return TileAlignmentEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
+  @SerializedName(value = "tileAlignment", alternate = { "TileAlignment" })
+  private TileAlignmentEnum tileAlignment;
+
+  /**
+   * Flips the texture tile around its horizontal, vertical or both axis.
+   */
+  @JsonAdapter(TileFlipEnum.Adapter.class)
+  public enum TileFlipEnum {
+    NOFLIP("NoFlip"),
+    
+    FLIPX("FlipX"),
+    
+    FLIPY("FlipY"),
+    
+    FLIPBOTH("FlipBoth"),
+    
+    NOTDEFINED("NotDefined");
+
+    private String value;
+
+    TileFlipEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static TileFlipEnum fromValue(String text) {
+      for (TileFlipEnum b : TileFlipEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<TileFlipEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final TileFlipEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public TileFlipEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return TileFlipEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
+  @SerializedName(value = "tileFlip", alternate = { "TileFlip" })
+  private TileFlipEnum tileFlip;
+
   @SerializedName(value = "image", alternate = { "Image" })
   private ResourceUri image;
 
@@ -223,6 +357,114 @@ public class PictureFill extends FillFormat {
     this.dpi = dpi;
   }
 
+  public PictureFill tileOffsetX(Double tileOffsetX) {
+    this.tileOffsetX = tileOffsetX;
+    return this;
+  }
+
+   /**
+   * The horizontal offset of the texture from the shape&#39;s origin in points. A positive value moves the texture to the right, while a negative value moves it to the left.
+   * @return tileOffsetX
+  **/
+  @ApiModelProperty(value = "The horizontal offset of the texture from the shape's origin in points. A positive value moves the texture to the right, while a negative value moves it to the left.")
+  public Double getTileOffsetX() {
+    return tileOffsetX;
+  }
+
+  public void setTileOffsetX(Double tileOffsetX) {
+    this.tileOffsetX = tileOffsetX;
+  }
+
+  public PictureFill tileOffsetY(Double tileOffsetY) {
+    this.tileOffsetY = tileOffsetY;
+    return this;
+  }
+
+   /**
+   * The vertical offset of the texture from the shape&#39;s origin in points. A positive value moves the texture down, while a negative value moves it up.
+   * @return tileOffsetY
+  **/
+  @ApiModelProperty(value = "The vertical offset of the texture from the shape's origin in points. A positive value moves the texture down, while a negative value moves it up.")
+  public Double getTileOffsetY() {
+    return tileOffsetY;
+  }
+
+  public void setTileOffsetY(Double tileOffsetY) {
+    this.tileOffsetY = tileOffsetY;
+  }
+
+  public PictureFill tileScaleX(Double tileScaleX) {
+    this.tileScaleX = tileScaleX;
+    return this;
+  }
+
+   /**
+   * The horizontal scale for the texture fill as a percentage.
+   * @return tileScaleX
+  **/
+  @ApiModelProperty(value = "The horizontal scale for the texture fill as a percentage.")
+  public Double getTileScaleX() {
+    return tileScaleX;
+  }
+
+  public void setTileScaleX(Double tileScaleX) {
+    this.tileScaleX = tileScaleX;
+  }
+
+  public PictureFill tileScaleY(Double tileScaleY) {
+    this.tileScaleY = tileScaleY;
+    return this;
+  }
+
+   /**
+   * The vertical scale for the texture fill as a percentage.
+   * @return tileScaleY
+  **/
+  @ApiModelProperty(value = "The vertical scale for the texture fill as a percentage.")
+  public Double getTileScaleY() {
+    return tileScaleY;
+  }
+
+  public void setTileScaleY(Double tileScaleY) {
+    this.tileScaleY = tileScaleY;
+  }
+
+  public PictureFill tileAlignment(TileAlignmentEnum tileAlignment) {
+    this.tileAlignment = tileAlignment;
+    return this;
+  }
+
+   /**
+   * The way texture is aligned within the shape. This setting controls the starting point of the texture pattern and how it repeats across the shape.
+   * @return tileAlignment
+  **/
+  @ApiModelProperty(value = "The way texture is aligned within the shape. This setting controls the starting point of the texture pattern and how it repeats across the shape.")
+  public TileAlignmentEnum getTileAlignment() {
+    return tileAlignment;
+  }
+
+  public void setTileAlignment(TileAlignmentEnum tileAlignment) {
+    this.tileAlignment = tileAlignment;
+  }
+
+  public PictureFill tileFlip(TileFlipEnum tileFlip) {
+    this.tileFlip = tileFlip;
+    return this;
+  }
+
+   /**
+   * Flips the texture tile around its horizontal, vertical or both axis.
+   * @return tileFlip
+  **/
+  @ApiModelProperty(value = "Flips the texture tile around its horizontal, vertical or both axis.")
+  public TileFlipEnum getTileFlip() {
+    return tileFlip;
+  }
+
+  public void setTileFlip(TileFlipEnum tileFlip) {
+    this.tileFlip = tileFlip;
+  }
+
   public PictureFill image(ResourceUri image) {
     this.image = image;
     return this;
@@ -331,12 +573,12 @@ public class PictureFill extends FillFormat {
       return false;
     }
     PictureFill pictureFill = (PictureFill) o;
-    return true && Objects.equals(this.cropBottom, pictureFill.cropBottom) && Objects.equals(this.cropLeft, pictureFill.cropLeft) && Objects.equals(this.cropRight, pictureFill.cropRight) && Objects.equals(this.cropTop, pictureFill.cropTop) && Objects.equals(this.dpi, pictureFill.dpi) && Objects.equals(this.image, pictureFill.image) && Objects.equals(this.base64Data, pictureFill.base64Data) && Objects.equals(this.svgData, pictureFill.svgData) && Objects.equals(this.pictureFillMode, pictureFill.pictureFillMode) && Objects.equals(this.imageTransformList, pictureFill.imageTransformList) && super.equals(o);
+    return true && Objects.equals(this.cropBottom, pictureFill.cropBottom) && Objects.equals(this.cropLeft, pictureFill.cropLeft) && Objects.equals(this.cropRight, pictureFill.cropRight) && Objects.equals(this.cropTop, pictureFill.cropTop) && Objects.equals(this.dpi, pictureFill.dpi) && Objects.equals(this.tileOffsetX, pictureFill.tileOffsetX) && Objects.equals(this.tileOffsetY, pictureFill.tileOffsetY) && Objects.equals(this.tileScaleX, pictureFill.tileScaleX) && Objects.equals(this.tileScaleY, pictureFill.tileScaleY) && Objects.equals(this.tileAlignment, pictureFill.tileAlignment) && Objects.equals(this.tileFlip, pictureFill.tileFlip) && Objects.equals(this.image, pictureFill.image) && Objects.equals(this.base64Data, pictureFill.base64Data) && Objects.equals(this.svgData, pictureFill.svgData) && Objects.equals(this.pictureFillMode, pictureFill.pictureFillMode) && Objects.equals(this.imageTransformList, pictureFill.imageTransformList) && super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(cropBottom, cropLeft, cropRight, cropTop, dpi, image, base64Data, svgData, pictureFillMode, imageTransformList, super.hashCode());
+    return Objects.hash(cropBottom, cropLeft, cropRight, cropTop, dpi, tileOffsetX, tileOffsetY, tileScaleX, tileScaleY, tileAlignment, tileFlip, image, base64Data, svgData, pictureFillMode, imageTransformList, super.hashCode());
   }
 
 
@@ -350,6 +592,12 @@ public class PictureFill extends FillFormat {
     sb.append("    cropRight: ").append(toIndentedString(cropRight)).append("\n");
     sb.append("    cropTop: ").append(toIndentedString(cropTop)).append("\n");
     sb.append("    dpi: ").append(toIndentedString(dpi)).append("\n");
+    sb.append("    tileOffsetX: ").append(toIndentedString(tileOffsetX)).append("\n");
+    sb.append("    tileOffsetY: ").append(toIndentedString(tileOffsetY)).append("\n");
+    sb.append("    tileScaleX: ").append(toIndentedString(tileScaleX)).append("\n");
+    sb.append("    tileScaleY: ").append(toIndentedString(tileScaleY)).append("\n");
+    sb.append("    tileAlignment: ").append(toIndentedString(tileAlignment)).append("\n");
+    sb.append("    tileFlip: ").append(toIndentedString(tileFlip)).append("\n");
     sb.append("    image: ").append(toIndentedString(image)).append("\n");
     sb.append("    base64Data: ").append(toIndentedString(base64Data)).append("\n");
     sb.append("    svgData: ").append(toIndentedString(svgData)).append("\n");

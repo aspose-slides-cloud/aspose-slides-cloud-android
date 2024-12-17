@@ -122,6 +122,16 @@ public class Configuration {
         timeout = value;
     }
     
+    private int httpRequestTimeout = 300;
+
+    public int getHttpRequestTimeout() {
+        return httpRequestTimeout;
+    }
+
+    public void setHttpRequestTimeout(int value) {
+        httpRequestTimeout = value;
+    }
+    
     @SerializedName("AllowInsecureRequests")
     private Boolean allowInsecureRequests = false;
 

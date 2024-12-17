@@ -285,6 +285,9 @@ public class ViewProperties extends ResourceBase {
   @SerializedName(value = "showComments", alternate = { "ShowComments" })
   private ShowCommentsEnum showComments;
 
+  @SerializedName(value = "gridSpacing", alternate = { "GridSpacing" })
+  private Double gridSpacing;
+
 
   public ViewProperties() {
     super();
@@ -452,6 +455,24 @@ public class ViewProperties extends ResourceBase {
     this.showComments = showComments;
   }
 
+  public ViewProperties gridSpacing(Double gridSpacing) {
+    this.gridSpacing = gridSpacing;
+    return this;
+  }
+
+   /**
+   * The grid spacing that should be used for the grid underlying the presentation document, in points.
+   * @return gridSpacing
+  **/
+  @ApiModelProperty(value = "The grid spacing that should be used for the grid underlying the presentation document, in points.")
+  public Double getGridSpacing() {
+    return gridSpacing;
+  }
+
+  public void setGridSpacing(Double gridSpacing) {
+    this.gridSpacing = gridSpacing;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -462,12 +483,12 @@ public class ViewProperties extends ResourceBase {
       return false;
     }
     ViewProperties viewProperties = (ViewProperties) o;
-    return true && Objects.equals(this.lastView, viewProperties.lastView) && Objects.equals(this.horizontalBarState, viewProperties.horizontalBarState) && Objects.equals(this.verticalBarState, viewProperties.verticalBarState) && Objects.equals(this.preferSingleView, viewProperties.preferSingleView) && Objects.equals(this.restoredLeft, viewProperties.restoredLeft) && Objects.equals(this.restoredTop, viewProperties.restoredTop) && Objects.equals(this.slideViewProperties, viewProperties.slideViewProperties) && Objects.equals(this.notesViewProperties, viewProperties.notesViewProperties) && Objects.equals(this.showComments, viewProperties.showComments) && super.equals(o);
+    return true && Objects.equals(this.lastView, viewProperties.lastView) && Objects.equals(this.horizontalBarState, viewProperties.horizontalBarState) && Objects.equals(this.verticalBarState, viewProperties.verticalBarState) && Objects.equals(this.preferSingleView, viewProperties.preferSingleView) && Objects.equals(this.restoredLeft, viewProperties.restoredLeft) && Objects.equals(this.restoredTop, viewProperties.restoredTop) && Objects.equals(this.slideViewProperties, viewProperties.slideViewProperties) && Objects.equals(this.notesViewProperties, viewProperties.notesViewProperties) && Objects.equals(this.showComments, viewProperties.showComments) && Objects.equals(this.gridSpacing, viewProperties.gridSpacing) && super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(lastView, horizontalBarState, verticalBarState, preferSingleView, restoredLeft, restoredTop, slideViewProperties, notesViewProperties, showComments, super.hashCode());
+    return Objects.hash(lastView, horizontalBarState, verticalBarState, preferSingleView, restoredLeft, restoredTop, slideViewProperties, notesViewProperties, showComments, gridSpacing, super.hashCode());
   }
 
 
@@ -485,6 +506,7 @@ public class ViewProperties extends ResourceBase {
     sb.append("    slideViewProperties: ").append(toIndentedString(slideViewProperties)).append("\n");
     sb.append("    notesViewProperties: ").append(toIndentedString(notesViewProperties)).append("\n");
     sb.append("    showComments: ").append(toIndentedString(showComments)).append("\n");
+    sb.append("    gridSpacing: ").append(toIndentedString(gridSpacing)).append("\n");
     sb.append("}");
     return sb.toString();
   }

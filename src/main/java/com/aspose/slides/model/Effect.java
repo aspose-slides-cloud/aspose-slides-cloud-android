@@ -56,6 +56,8 @@ public class Effect {
     
     ASCEND("Ascend"),
     
+    FLOATUP("FloatUp"),
+    
     BLAST("Blast"),
     
     BLINDS("Blinds"),
@@ -119,6 +121,8 @@ public class Effect {
     DESATURATE("Desaturate"),
     
     DESCEND("Descend"),
+    
+    FLOATDOWN("Floatdown"),
     
     DIAMOND("Diamond"),
     
@@ -417,6 +421,10 @@ public class Effect {
     BOTTOMRIGHT("BottomRight"),
     
     CENTER("Center"),
+    
+    OBJECTCENTER("ObjectCenter"),
+    
+    SLIDECENTER("SlideCenter"),
     
     CLOCKWISE("Clockwise"),
     

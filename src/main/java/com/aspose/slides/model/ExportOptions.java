@@ -52,6 +52,9 @@ public class ExportOptions {
   @SerializedName(value = "defaultRegularFont", alternate = { "DefaultRegularFont" })
   private String defaultRegularFont;
 
+  @SerializedName(value = "deleteEmbeddedBinaryObjects", alternate = { "DeleteEmbeddedBinaryObjects" })
+  private Boolean deleteEmbeddedBinaryObjects;
+
   /**
    * Default regular font for rendering the presentation. 
    */
@@ -132,6 +135,24 @@ public class ExportOptions {
 
   public void setDefaultRegularFont(String defaultRegularFont) {
     this.defaultRegularFont = defaultRegularFont;
+  }
+
+  public ExportOptions deleteEmbeddedBinaryObjects(Boolean deleteEmbeddedBinaryObjects) {
+    this.deleteEmbeddedBinaryObjects = deleteEmbeddedBinaryObjects;
+    return this;
+  }
+
+   /**
+   * True to delete delete all embedded binary objects.
+   * @return deleteEmbeddedBinaryObjects
+  **/
+  @ApiModelProperty(value = "True to delete delete all embedded binary objects.")
+  public Boolean isDeleteEmbeddedBinaryObjects() {
+    return deleteEmbeddedBinaryObjects;
+  }
+
+  public void setDeleteEmbeddedBinaryObjects(Boolean deleteEmbeddedBinaryObjects) {
+    this.deleteEmbeddedBinaryObjects = deleteEmbeddedBinaryObjects;
   }
 
   public ExportOptions gradientStyle(GradientStyleEnum gradientStyle) {
@@ -227,12 +248,12 @@ public class ExportOptions {
       return false;
     }
     ExportOptions exportOptions = (ExportOptions) o;
-    return true && Objects.equals(this.defaultRegularFont, exportOptions.defaultRegularFont) && Objects.equals(this.gradientStyle, exportOptions.gradientStyle) && Objects.equals(this.fontFallbackRules, exportOptions.fontFallbackRules) && Objects.equals(this.fontSubstRules, exportOptions.fontSubstRules) && Objects.equals(this.format, exportOptions.format);
+    return true && Objects.equals(this.defaultRegularFont, exportOptions.defaultRegularFont) && Objects.equals(this.deleteEmbeddedBinaryObjects, exportOptions.deleteEmbeddedBinaryObjects) && Objects.equals(this.gradientStyle, exportOptions.gradientStyle) && Objects.equals(this.fontFallbackRules, exportOptions.fontFallbackRules) && Objects.equals(this.fontSubstRules, exportOptions.fontSubstRules) && Objects.equals(this.format, exportOptions.format);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(defaultRegularFont, gradientStyle, fontFallbackRules, fontSubstRules, format);
+    return Objects.hash(defaultRegularFont, deleteEmbeddedBinaryObjects, gradientStyle, fontFallbackRules, fontSubstRules, format);
   }
 
 
@@ -242,6 +263,7 @@ public class ExportOptions {
     sb.append("class ExportOptions {\n");
     
     sb.append("    defaultRegularFont: ").append(toIndentedString(defaultRegularFont)).append("\n");
+    sb.append("    deleteEmbeddedBinaryObjects: ").append(toIndentedString(deleteEmbeddedBinaryObjects)).append("\n");
     sb.append("    gradientStyle: ").append(toIndentedString(gradientStyle)).append("\n");
     sb.append("    fontFallbackRules: ").append(toIndentedString(fontFallbackRules)).append("\n");
     sb.append("    fontSubstRules: ").append(toIndentedString(fontSubstRules)).append("\n");

@@ -28,6 +28,7 @@
 package com.aspose.slides.model;
 
 import java.util.Objects;
+import com.aspose.slides.model.DrawingGuide;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -36,6 +37,8 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Map;
@@ -50,6 +53,9 @@ public class CommonSlideViewProperties {
 
   @SerializedName(value = "variableScale", alternate = { "VariableScale" })
   private Boolean variableScale;
+
+  @SerializedName(value = "drawingGuides", alternate = { "DrawingGuides" })
+  private List<DrawingGuide> drawingGuides = null;
 
 
   public CommonSlideViewProperties() {
@@ -92,6 +98,32 @@ public class CommonSlideViewProperties {
     this.variableScale = variableScale;
   }
 
+  public CommonSlideViewProperties drawingGuides(List<DrawingGuide> drawingGuides) {
+    this.drawingGuides = drawingGuides;
+    return this;
+  }
+
+  public CommonSlideViewProperties addDrawingGuidesItem(DrawingGuide drawingGuidesItem) {
+    if (this.drawingGuides == null) {
+      this.drawingGuides = new ArrayList<DrawingGuide>();
+    }
+    this.drawingGuides.add(drawingGuidesItem);
+    return this;
+  }
+
+   /**
+   * Drawing guides
+   * @return drawingGuides
+  **/
+  @ApiModelProperty(value = "Drawing guides")
+  public List<DrawingGuide> getDrawingGuides() {
+    return drawingGuides;
+  }
+
+  public void setDrawingGuides(List<DrawingGuide> drawingGuides) {
+    this.drawingGuides = drawingGuides;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -102,12 +134,12 @@ public class CommonSlideViewProperties {
       return false;
     }
     CommonSlideViewProperties commonSlideViewProperties = (CommonSlideViewProperties) o;
-    return true && Objects.equals(this.scale, commonSlideViewProperties.scale) && Objects.equals(this.variableScale, commonSlideViewProperties.variableScale);
+    return true && Objects.equals(this.scale, commonSlideViewProperties.scale) && Objects.equals(this.variableScale, commonSlideViewProperties.variableScale) && Objects.equals(this.drawingGuides, commonSlideViewProperties.drawingGuides);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(scale, variableScale);
+    return Objects.hash(scale, variableScale, drawingGuides);
   }
 
 
@@ -118,6 +150,7 @@ public class CommonSlideViewProperties {
     
     sb.append("    scale: ").append(toIndentedString(scale)).append("\n");
     sb.append("    variableScale: ").append(toIndentedString(variableScale)).append("\n");
+    sb.append("    drawingGuides: ").append(toIndentedString(drawingGuides)).append("\n");
     sb.append("}");
     return sb.toString();
   }

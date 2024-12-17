@@ -28,15 +28,6 @@
 package com.aspose.slides.model;
 
 import java.util.Objects;
-import com.aspose.slides.model.EffectFormat;
-import com.aspose.slides.model.FillFormat;
-import com.aspose.slides.model.GeometryShape;
-import com.aspose.slides.model.Hyperlink;
-import com.aspose.slides.model.LineFormat;
-import com.aspose.slides.model.Paragraph;
-import com.aspose.slides.model.ResourceUri;
-import com.aspose.slides.model.TextFrameFormat;
-import com.aspose.slides.model.ThreeDFormat;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -46,78 +37,106 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Map;
 
 /**
- * Represents AutoShape resource.
+ * Drawing guide.
  */
-@ApiModel(description = "Represents AutoShape resource.")
-public class Shape extends GeometryShape {
-  @SerializedName(value = "text", alternate = { "Text" })
-  private String text;
+@ApiModel(description = "Drawing guide.")
+public class DrawingGuide {
+  /**
+   * Last used view mode.
+   */
+  @JsonAdapter(OrientationEnum.Adapter.class)
+  public enum OrientationEnum {
+    HORIZONTAL("Horizontal"),
+    
+    VERTICAL("Vertical");
 
-  @SerializedName(value = "paragraphs", alternate = { "Paragraphs" })
-  private List<Paragraph> paragraphs = null;
+    private String value;
 
-  @SerializedName(value = "textFrameFormat", alternate = { "TextFrameFormat" })
-  private TextFrameFormat textFrameFormat;
+    OrientationEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static OrientationEnum fromValue(String text) {
+      for (OrientationEnum b : OrientationEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<OrientationEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final OrientationEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public OrientationEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return OrientationEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
+  @SerializedName(value = "orientation", alternate = { "Orientation" })
+  private OrientationEnum orientation;
+
+  @SerializedName(value = "position", alternate = { "Position" })
+  private Double position;
 
 
-  public Shape() {
+  public DrawingGuide() {
     super();
-    setType(TypeEnum.SHAPE);
   }
 
-  public Shape text(String text) {
-    this.text = text;
+  public DrawingGuide orientation(OrientationEnum orientation) {
+    this.orientation = orientation;
     return this;
   }
 
    /**
-   * Gets or sets the text.
-   * @return text
+   * Last used view mode.
+   * @return orientation
   **/
-  @ApiModelProperty(value = "Gets or sets the text.")
-  public String getText() {
-    return text;
+  @ApiModelProperty(required = true, value = "Last used view mode.")
+  public OrientationEnum getOrientation() {
+    return orientation;
   }
 
-  public void setText(String text) {
-    this.text = text;
+  public void setOrientation(OrientationEnum orientation) {
+    this.orientation = orientation;
   }
 
-   /**
-   * Get or sets list to paragraphs list
-   * @return paragraphs
-  **/
-  @ApiModelProperty(value = "Get or sets list to paragraphs list")
-  public List<Paragraph> getParagraphs() {
-    return paragraphs;
-  }
-
-  protected void setParagraphs(List<Paragraph> paragraphs) {
-    this.paragraphs = paragraphs;
-  }
-
-  public Shape textFrameFormat(TextFrameFormat textFrameFormat) {
-    this.textFrameFormat = textFrameFormat;
+  public DrawingGuide position(Double position) {
+    this.position = position;
     return this;
   }
 
    /**
-   * Returns TextFrame&#39;s formatting properties.
-   * @return textFrameFormat
+   * Horizontal bar state.
+   * @return position
   **/
-  @ApiModelProperty(value = "Returns TextFrame's formatting properties.")
-  public TextFrameFormat getTextFrameFormat() {
-    return textFrameFormat;
+  @ApiModelProperty(required = true, value = "Horizontal bar state.")
+  public Double getPosition() {
+    return position;
   }
 
-  public void setTextFrameFormat(TextFrameFormat textFrameFormat) {
-    this.textFrameFormat = textFrameFormat;
+  public void setPosition(Double position) {
+    this.position = position;
   }
 
 
@@ -129,24 +148,23 @@ public class Shape extends GeometryShape {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Shape shape = (Shape) o;
-    return true && Objects.equals(this.text, shape.text) && Objects.equals(this.paragraphs, shape.paragraphs) && Objects.equals(this.textFrameFormat, shape.textFrameFormat) && super.equals(o);
+    DrawingGuide drawingGuide = (DrawingGuide) o;
+    return true && Objects.equals(this.orientation, drawingGuide.orientation) && Objects.equals(this.position, drawingGuide.position);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(text, paragraphs, textFrameFormat, super.hashCode());
+    return Objects.hash(orientation, position);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Shape {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
-    sb.append("    text: ").append(toIndentedString(text)).append("\n");
-    sb.append("    paragraphs: ").append(toIndentedString(paragraphs)).append("\n");
-    sb.append("    textFrameFormat: ").append(toIndentedString(textFrameFormat)).append("\n");
+    sb.append("class DrawingGuide {\n");
+    
+    sb.append("    orientation: ").append(toIndentedString(orientation)).append("\n");
+    sb.append("    position: ").append(toIndentedString(position)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -166,7 +184,4 @@ public class Shape extends GeometryShape {
 
   private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
 
-  static {
-      typeDeterminers.put("Type", TypeEnum.SHAPE);
-  }
 }

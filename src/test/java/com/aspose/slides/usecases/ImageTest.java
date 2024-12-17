@@ -115,17 +115,23 @@ public class ImageTest extends ApiTest {
     }
 
     @Test
+    public void compressImageTest() throws ApiException, IOException {
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        testSlidesApi.compressImage(fileName, 2, 2, 150.0, false, password, folderName, null);
+    }
+
+    @Test
     public void deletePictureCroppedAreasTest() throws ApiException, IOException {
         testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
-        testSlidesApi.deletePictureCroppedAreas(fileName, 2, 2, password, folderName, null);
+        testSlidesApi.compressImage(fileName, 2, 2, null, true, password, folderName, null);
     }
 
     @Test
     public void deletePictureCroppedAreasWrongShapeTypeTest() throws ApiException, IOException {
         testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         try {
-            testSlidesApi.deletePictureCroppedAreas(fileName, 2, 3, password, folderName, null);
-            fail("deletePictureCroppedAreas works only with picture frames.");
+            testSlidesApi.compressImage(fileName, 2, 3, null, true, password, folderName, null);
+            fail("compressImage works only with picture frames.");
         } catch (Exception ex) {
             assertTrue(ex instanceof ApiException);
         }

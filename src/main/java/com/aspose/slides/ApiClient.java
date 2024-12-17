@@ -94,6 +94,7 @@ public class ApiClient {
             new JWTAuth(configuration),
             configuration.getDebug(),
             configuration.getTimeout(),
+            configuration.getHttpRequestTimeout(),
             configuration.getAllowInsecureRequests(),
             configuration.getCustomHeaders());
     }
@@ -102,22 +103,22 @@ public class ApiClient {
      * Constructor for ApiClient
      */
     public ApiClient(String baseUrl, Authentication authentication) {
-        this(baseUrl, authentication, false, 0, false, null);
+        this(baseUrl, authentication, false, 0, 300, false, null);
     }
 
     /*
      * Constructor for ApiClient
      */
-    private ApiClient(String baseUrl, Authentication authentication, Boolean debugging, Integer timeout, Boolean allowInsecureRequests, Map<String, String> customHeaders) {
+    private ApiClient(String baseUrl, Authentication authentication, Boolean debugging, Integer timeout, Integer httpRequestTimeout, Boolean allowInsecureRequests, Map<String, String> customHeaders) {
         this.baseUrl = baseUrl;
         this.authentication = authentication;
         httpClient = new OkHttpClient();
         List<Protocol> protocols = new ArrayList<Protocol>();
         protocols.add(Protocol.HTTP_1_1);
         httpClient.setProtocols(protocols);
-        httpClient.setConnectTimeout(1, TimeUnit.MINUTES);
-        httpClient.setReadTimeout(1, TimeUnit.MINUTES);
-        httpClient.setWriteTimeout(1, TimeUnit.MINUTES);
+        httpClient.setConnectTimeout(httpRequestTimeout, TimeUnit.SECONDS);
+        httpClient.setReadTimeout(httpRequestTimeout, TimeUnit.SECONDS);
+        httpClient.setWriteTimeout(httpRequestTimeout, TimeUnit.SECONDS);
         setDebugging(debugging);
         setVerifyingSsl(!allowInsecureRequests);
         json = new JSON();
