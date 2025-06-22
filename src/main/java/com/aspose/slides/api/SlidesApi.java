@@ -45,6 +45,8 @@ import java.io.IOException;
 
 import com.aspose.slides.model.ApiInfo;
 import com.aspose.slides.model.Axis;
+import com.aspose.slides.model.CaptionTrack;
+import com.aspose.slides.model.CaptionTracks;
 import com.aspose.slides.model.Chart;
 import com.aspose.slides.model.ChartCategory;
 import com.aspose.slides.model.ChartSeriesGroup;
@@ -6721,6 +6723,166 @@ public class SlidesApi {
         return call;
     }
     /**
+     * Build call for createVideoCaptionTrack
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param shapeIndex Shape index (must refer to a picture frame). (required)
+     * @param label Caption track label. (required)
+     * @param data Caption track data. 
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Presentation storage. 
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call createVideoCaptionTrackCall(String name, Integer slideIndex, Integer shapeIndex, String label, String data, String password, String folder, String storage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        // verify the required parameter 'name' is set
+        if (name == null) {
+            throw new ApiException("Missing the required parameter 'name' when calling createVideoCaptionTrack(Async)");
+        }
+        // verify the required parameter 'slideIndex' is set
+        if (slideIndex == null) {
+            throw new ApiException("Missing the required parameter 'slideIndex' when calling createVideoCaptionTrack(Async)");
+        }
+        // verify the required parameter 'shapeIndex' is set
+        if (shapeIndex == null) {
+            throw new ApiException("Missing the required parameter 'shapeIndex' when calling createVideoCaptionTrack(Async)");
+        }
+        // verify the required parameter 'label' is set
+        if (label == null) {
+            throw new ApiException("Missing the required parameter 'label' when calling createVideoCaptionTrack(Async)");
+        }
+        Object postBody = data;
+
+        // create path and map variables
+        String methodPath = "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/captionTracks"
+            .replaceAll("\\{" + "name" + "\\}", apiClient.objectToString(name)).replaceAll("\\{" + "slideIndex" + "\\}", apiClient.objectToString(slideIndex)).replaceAll("\\{" + "shapeIndex" + "\\}", apiClient.objectToString(shapeIndex));
+
+        List<Pair> queryParams = new ArrayList<Pair>();
+        apiClient.addQueryParameter(queryParams, "label", label);
+        apiClient.addQueryParameter(queryParams, "folder", folder);
+        apiClient.addQueryParameter(queryParams, "storage", storage);
+
+        Map<String, String> headerParams = new HashMap<String, String>();
+        if (password != null)
+        headerParams.put("password", apiClient.parameterToString(password));
+
+        Map<String, Object> formParams = new LinkedHashMap<String, Object>();
+
+        final String[] accepts = {
+            "application/json"
+        };
+        final String accept = apiClient.selectHeaderAccept(accepts);
+        if (accept != null) headerParams.put("Accept", accept);
+
+        final String[] contentTypes = {
+            "application/json"
+        };
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
+        headerParams.put("Content-Type", contentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+        return apiClient.buildCall(methodPath, "POST", queryParams, postBody, headerParams, formParams, progressRequestListener);
+    }
+
+    /**
+     * Create video captions track.
+     * 
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param shapeIndex Shape index (must refer to a picture frame). (required)
+     * @param label Caption track label. (required)
+     * @param data Caption track data. 
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Presentation storage. 
+     * @return CaptionTrack
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public CaptionTrack createVideoCaptionTrack(String name, Integer slideIndex, Integer shapeIndex, String label, String data, String password, String folder, String storage) throws ApiException {
+        try {
+            ApiResponse<CaptionTrack> resp = createVideoCaptionTrackWithHttpInfo(name, slideIndex, shapeIndex, label, data, password, folder, storage);
+            return resp.getData();
+        } catch (NeedRepeatRequestException e) {
+            ApiResponse<CaptionTrack> resp = createVideoCaptionTrackWithHttpInfo(name, slideIndex, shapeIndex, label, data, password, folder, storage);
+            return resp.getData();
+        }
+    }
+
+    /**
+     * Create video captions track.
+     * 
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param shapeIndex Shape index (must refer to a picture frame). (required)
+     * @param label Caption track label. (required)
+     * @param data Caption track data. 
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Presentation storage. 
+     * @return ApiResponse&lt;CaptionTrack&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<CaptionTrack> createVideoCaptionTrackWithHttpInfo(String name, Integer slideIndex, Integer shapeIndex, String label, String data, String password, String folder, String storage) throws ApiException {
+        com.squareup.okhttp.Call call = createVideoCaptionTrackCall(name, slideIndex, shapeIndex, label, data, password, folder, storage, null, null);
+        Type returnType = new TypeToken<CaptionTrack>(){}.getType();
+        return apiClient.execute(call, returnType);
+    }
+
+    /**
+     * Create video captions track. (asynchronously)
+     * 
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param shapeIndex Shape index (must refer to a picture frame). (required)
+     * @param label Caption track label. (required)
+     * @param data Caption track data. 
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Presentation storage. 
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call createVideoCaptionTrackAsync(String name, Integer slideIndex, Integer shapeIndex, String label, String data, String password, String folder, String storage, final ApiCallback<CaptionTrack> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = createVideoCaptionTrackCall(name, slideIndex, shapeIndex, label, data, password, folder, storage, progressListener, progressRequestListener);
+        Type returnType = new TypeToken<CaptionTrack>(){}.getType();
+        apiClient.executeAsync(call, returnType, callback);
+        return call;
+    }
+    /**
      * Build call for createWatermark
      * @param name Document name. (required)
      * @param shape Shape DTO 
@@ -9984,157 +10146,6 @@ public class SlidesApi {
         com.squareup.okhttp.Call call = deleteParagraphsCall(name, slideIndex, shapeIndex, paragraphs, password, folder, storage, subShape, progressListener, progressRequestListener);
         Type returnType = new TypeToken<Paragraphs>(){}.getType();
         apiClient.executeAsync(call, returnType, callback);
-        return call;
-    }
-    /**
-     * Build call for deletePictureCroppedAreas
-     * @param name Document name. (required)
-     * @param slideIndex Slide index. (required)
-     * @param shapeIndex Shape index (must refer to a picture frame). (required)
-     * @param password Document password. 
-     * @param folder Document folder. 
-     * @param storage Presentation storage. 
-     * @param progressListener Progress listener
-     * @param progressRequestListener Progress request listener
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @deprecated
-     */
-    @Deprecated
-    public com.squareup.okhttp.Call deletePictureCroppedAreasCall(String name, Integer slideIndex, Integer shapeIndex, String password, String folder, String storage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        // verify the required parameter 'name' is set
-        if (name == null) {
-            throw new ApiException("Missing the required parameter 'name' when calling deletePictureCroppedAreas(Async)");
-        }
-        // verify the required parameter 'slideIndex' is set
-        if (slideIndex == null) {
-            throw new ApiException("Missing the required parameter 'slideIndex' when calling deletePictureCroppedAreas(Async)");
-        }
-        // verify the required parameter 'shapeIndex' is set
-        if (shapeIndex == null) {
-            throw new ApiException("Missing the required parameter 'shapeIndex' when calling deletePictureCroppedAreas(Async)");
-        }
-        Object postBody = null;
-
-        // create path and map variables
-        String methodPath = "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/pictureCroppedAreas"
-            .replaceAll("\\{" + "name" + "\\}", apiClient.objectToString(name)).replaceAll("\\{" + "slideIndex" + "\\}", apiClient.objectToString(slideIndex)).replaceAll("\\{" + "shapeIndex" + "\\}", apiClient.objectToString(shapeIndex));
-
-        List<Pair> queryParams = new ArrayList<Pair>();
-        apiClient.addQueryParameter(queryParams, "folder", folder);
-        apiClient.addQueryParameter(queryParams, "storage", storage);
-
-        Map<String, String> headerParams = new HashMap<String, String>();
-        if (password != null)
-        headerParams.put("password", apiClient.parameterToString(password));
-
-        Map<String, Object> formParams = new LinkedHashMap<String, Object>();
-
-        final String[] accepts = {
-            "application/json"
-        };
-        final String accept = apiClient.selectHeaderAccept(accepts);
-        if (accept != null) headerParams.put("Accept", accept);
-
-        final String[] contentTypes = {
-            "application/json"
-        };
-        final String contentType = apiClient.selectHeaderContentType(contentTypes);
-        headerParams.put("Content-Type", contentType);
-
-        if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
-                @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
-                    return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
-                }
-            });
-        }
-        return apiClient.buildCall(methodPath, "DELETE", queryParams, postBody, headerParams, formParams, progressRequestListener);
-    }
-
-    /**
-     * Deletes cropped areas of a pictire.
-     * 
-     * @param name Document name. (required)
-     * @param slideIndex Slide index. (required)
-     * @param shapeIndex Shape index (must refer to a picture frame). (required)
-     * @param password Document password. 
-     * @param folder Document folder. 
-     * @param storage Presentation storage. 
-     
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @deprecated
-     */
-    @Deprecated
-    public void deletePictureCroppedAreas(String name, Integer slideIndex, Integer shapeIndex, String password, String folder, String storage) throws ApiException {
-        try {
-            deletePictureCroppedAreasWithHttpInfo(name, slideIndex, shapeIndex, password, folder, storage);
-        } catch (NeedRepeatRequestException e) {
-            deletePictureCroppedAreasWithHttpInfo(name, slideIndex, shapeIndex, password, folder, storage);
-        }
-    }
-
-    /**
-     * Deletes cropped areas of a pictire.
-     * 
-     * @param name Document name. (required)
-     * @param slideIndex Slide index. (required)
-     * @param shapeIndex Shape index (must refer to a picture frame). (required)
-     * @param password Document password. 
-     * @param folder Document folder. 
-     * @param storage Presentation storage. 
-     * @return ApiResponse&lt;Void&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @deprecated
-     */
-    @Deprecated
-    public ApiResponse<Void> deletePictureCroppedAreasWithHttpInfo(String name, Integer slideIndex, Integer shapeIndex, String password, String folder, String storage) throws ApiException {
-        com.squareup.okhttp.Call call = deletePictureCroppedAreasCall(name, slideIndex, shapeIndex, password, folder, storage, null, null);
-        return apiClient.execute(call);
-    }
-
-    /**
-     * Deletes cropped areas of a pictire. (asynchronously)
-     * 
-     * @param name Document name. (required)
-     * @param slideIndex Slide index. (required)
-     * @param shapeIndex Shape index (must refer to a picture frame). (required)
-     * @param password Document password. 
-     * @param folder Document folder. 
-     * @param storage Presentation storage. 
-     * @param callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @deprecated
-     */
-    @Deprecated
-    public com.squareup.okhttp.Call deletePictureCroppedAreasAsync(String name, Integer slideIndex, Integer shapeIndex, String password, String folder, String storage, final ApiCallback<Void> callback) throws ApiException {
-
-        ProgressResponseBody.ProgressListener progressListener = null;
-        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
-
-        if (callback != null) {
-            progressListener = new ProgressResponseBody.ProgressListener() {
-                @Override
-                public void update(long bytesRead, long contentLength, boolean done) {
-                    callback.onDownloadProgress(bytesRead, contentLength, done);
-                }
-            };
-
-            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
-                @Override
-                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
-                    callback.onUploadProgress(bytesWritten, contentLength, done);
-                }
-            };
-        }
-
-        com.squareup.okhttp.Call call = deletePictureCroppedAreasCall(name, slideIndex, shapeIndex, password, folder, storage, progressListener, progressRequestListener);
-        apiClient.executeAsync(call, callback);
         return call;
     }
     /**
@@ -15106,6 +15117,300 @@ public class SlidesApi {
         return call;
     }
     /**
+     * Build call for deleteVideoCaptionTrack
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param shapeIndex Shape index (must refer to a video frame). (required)
+     * @param captionsIndex Captions track index. (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Presentation storage. 
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call deleteVideoCaptionTrackCall(String name, Integer slideIndex, Integer shapeIndex, Integer captionsIndex, String password, String folder, String storage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        // verify the required parameter 'name' is set
+        if (name == null) {
+            throw new ApiException("Missing the required parameter 'name' when calling deleteVideoCaptionTrack(Async)");
+        }
+        // verify the required parameter 'slideIndex' is set
+        if (slideIndex == null) {
+            throw new ApiException("Missing the required parameter 'slideIndex' when calling deleteVideoCaptionTrack(Async)");
+        }
+        // verify the required parameter 'shapeIndex' is set
+        if (shapeIndex == null) {
+            throw new ApiException("Missing the required parameter 'shapeIndex' when calling deleteVideoCaptionTrack(Async)");
+        }
+        // verify the required parameter 'captionsIndex' is set
+        if (captionsIndex == null) {
+            throw new ApiException("Missing the required parameter 'captionsIndex' when calling deleteVideoCaptionTrack(Async)");
+        }
+        Object postBody = null;
+
+        // create path and map variables
+        String methodPath = "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/captionTracks/{captionsIndex}"
+            .replaceAll("\\{" + "name" + "\\}", apiClient.objectToString(name)).replaceAll("\\{" + "slideIndex" + "\\}", apiClient.objectToString(slideIndex)).replaceAll("\\{" + "shapeIndex" + "\\}", apiClient.objectToString(shapeIndex)).replaceAll("\\{" + "captionsIndex" + "\\}", apiClient.objectToString(captionsIndex));
+
+        List<Pair> queryParams = new ArrayList<Pair>();
+        apiClient.addQueryParameter(queryParams, "folder", folder);
+        apiClient.addQueryParameter(queryParams, "storage", storage);
+
+        Map<String, String> headerParams = new HashMap<String, String>();
+        if (password != null)
+        headerParams.put("password", apiClient.parameterToString(password));
+
+        Map<String, Object> formParams = new LinkedHashMap<String, Object>();
+
+        final String[] accepts = {
+            "application/json"
+        };
+        final String accept = apiClient.selectHeaderAccept(accepts);
+        if (accept != null) headerParams.put("Accept", accept);
+
+        final String[] contentTypes = {
+            "application/json"
+        };
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
+        headerParams.put("Content-Type", contentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+        return apiClient.buildCall(methodPath, "DELETE", queryParams, postBody, headerParams, formParams, progressRequestListener);
+    }
+
+    /**
+     * Delete video captions track.
+     * 
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param shapeIndex Shape index (must refer to a video frame). (required)
+     * @param captionsIndex Captions track index. (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Presentation storage. 
+     
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public void deleteVideoCaptionTrack(String name, Integer slideIndex, Integer shapeIndex, Integer captionsIndex, String password, String folder, String storage) throws ApiException {
+        try {
+            deleteVideoCaptionTrackWithHttpInfo(name, slideIndex, shapeIndex, captionsIndex, password, folder, storage);
+        } catch (NeedRepeatRequestException e) {
+            deleteVideoCaptionTrackWithHttpInfo(name, slideIndex, shapeIndex, captionsIndex, password, folder, storage);
+        }
+    }
+
+    /**
+     * Delete video captions track.
+     * 
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param shapeIndex Shape index (must refer to a video frame). (required)
+     * @param captionsIndex Captions track index. (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Presentation storage. 
+     * @return ApiResponse&lt;Void&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<Void> deleteVideoCaptionTrackWithHttpInfo(String name, Integer slideIndex, Integer shapeIndex, Integer captionsIndex, String password, String folder, String storage) throws ApiException {
+        com.squareup.okhttp.Call call = deleteVideoCaptionTrackCall(name, slideIndex, shapeIndex, captionsIndex, password, folder, storage, null, null);
+        return apiClient.execute(call);
+    }
+
+    /**
+     * Delete video captions track. (asynchronously)
+     * 
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param shapeIndex Shape index (must refer to a video frame). (required)
+     * @param captionsIndex Captions track index. (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Presentation storage. 
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call deleteVideoCaptionTrackAsync(String name, Integer slideIndex, Integer shapeIndex, Integer captionsIndex, String password, String folder, String storage, final ApiCallback<Void> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = deleteVideoCaptionTrackCall(name, slideIndex, shapeIndex, captionsIndex, password, folder, storage, progressListener, progressRequestListener);
+        apiClient.executeAsync(call, callback);
+        return call;
+    }
+    /**
+     * Build call for deleteVideoCaptionTracks
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param shapeIndex Shape index (must refer to a video frame). (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Presentation storage. 
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call deleteVideoCaptionTracksCall(String name, Integer slideIndex, Integer shapeIndex, String password, String folder, String storage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        // verify the required parameter 'name' is set
+        if (name == null) {
+            throw new ApiException("Missing the required parameter 'name' when calling deleteVideoCaptionTracks(Async)");
+        }
+        // verify the required parameter 'slideIndex' is set
+        if (slideIndex == null) {
+            throw new ApiException("Missing the required parameter 'slideIndex' when calling deleteVideoCaptionTracks(Async)");
+        }
+        // verify the required parameter 'shapeIndex' is set
+        if (shapeIndex == null) {
+            throw new ApiException("Missing the required parameter 'shapeIndex' when calling deleteVideoCaptionTracks(Async)");
+        }
+        Object postBody = null;
+
+        // create path and map variables
+        String methodPath = "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/captionTracks"
+            .replaceAll("\\{" + "name" + "\\}", apiClient.objectToString(name)).replaceAll("\\{" + "slideIndex" + "\\}", apiClient.objectToString(slideIndex)).replaceAll("\\{" + "shapeIndex" + "\\}", apiClient.objectToString(shapeIndex));
+
+        List<Pair> queryParams = new ArrayList<Pair>();
+        apiClient.addQueryParameter(queryParams, "folder", folder);
+        apiClient.addQueryParameter(queryParams, "storage", storage);
+
+        Map<String, String> headerParams = new HashMap<String, String>();
+        if (password != null)
+        headerParams.put("password", apiClient.parameterToString(password));
+
+        Map<String, Object> formParams = new LinkedHashMap<String, Object>();
+
+        final String[] accepts = {
+            "application/json"
+        };
+        final String accept = apiClient.selectHeaderAccept(accepts);
+        if (accept != null) headerParams.put("Accept", accept);
+
+        final String[] contentTypes = {
+            "application/json"
+        };
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
+        headerParams.put("Content-Type", contentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+        return apiClient.buildCall(methodPath, "DELETE", queryParams, postBody, headerParams, formParams, progressRequestListener);
+    }
+
+    /**
+     * Delete all video captions tracks.
+     * 
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param shapeIndex Shape index (must refer to a video frame). (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Presentation storage. 
+     
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public void deleteVideoCaptionTracks(String name, Integer slideIndex, Integer shapeIndex, String password, String folder, String storage) throws ApiException {
+        try {
+            deleteVideoCaptionTracksWithHttpInfo(name, slideIndex, shapeIndex, password, folder, storage);
+        } catch (NeedRepeatRequestException e) {
+            deleteVideoCaptionTracksWithHttpInfo(name, slideIndex, shapeIndex, password, folder, storage);
+        }
+    }
+
+    /**
+     * Delete all video captions tracks.
+     * 
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param shapeIndex Shape index (must refer to a video frame). (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Presentation storage. 
+     * @return ApiResponse&lt;Void&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<Void> deleteVideoCaptionTracksWithHttpInfo(String name, Integer slideIndex, Integer shapeIndex, String password, String folder, String storage) throws ApiException {
+        com.squareup.okhttp.Call call = deleteVideoCaptionTracksCall(name, slideIndex, shapeIndex, password, folder, storage, null, null);
+        return apiClient.execute(call);
+    }
+
+    /**
+     * Delete all video captions tracks. (asynchronously)
+     * 
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param shapeIndex Shape index (must refer to a video frame). (required)
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Presentation storage. 
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call deleteVideoCaptionTracksAsync(String name, Integer slideIndex, Integer shapeIndex, String password, String folder, String storage, final ApiCallback<Void> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = deleteVideoCaptionTracksCall(name, slideIndex, shapeIndex, password, folder, storage, progressListener, progressRequestListener);
+        apiClient.executeAsync(call, callback);
+        return call;
+    }
+    /**
      * Build call for deleteWatermark
      * @param name Document name. (required)
      * @param shapeName Name of the watermark shape. If null, default value \"watermark\"is used. 
@@ -15494,12 +15799,13 @@ public class SlidesApi {
      * @param password Document password. 
      * @param folder Document folder. 
      * @param storage Document storage. 
+     * @param quality Image quality (0 to 100; has effect only on Jpeg format). 
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call downloadImageCall(String name, Integer index, ImageExportFormat format, String password, String folder, String storage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call downloadImageCall(String name, Integer index, ImageExportFormat format, String password, String folder, String storage, Integer quality, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         // verify the required parameter 'name' is set
         if (name == null) {
             throw new ApiException("Missing the required parameter 'name' when calling downloadImage(Async)");
@@ -15521,6 +15827,7 @@ public class SlidesApi {
         List<Pair> queryParams = new ArrayList<Pair>();
         apiClient.addQueryParameter(queryParams, "folder", folder);
         apiClient.addQueryParameter(queryParams, "storage", storage);
+        apiClient.addQueryParameter(queryParams, "quality", quality);
 
         Map<String, String> headerParams = new HashMap<String, String>();
         if (password != null)
@@ -15563,15 +15870,16 @@ public class SlidesApi {
      * @param password Document password. 
      * @param folder Document folder. 
      * @param storage Document storage. 
+     * @param quality Image quality (0 to 100; has effect only on Jpeg format). 
      * @return File
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public File downloadImage(String name, Integer index, ImageExportFormat format, String password, String folder, String storage) throws ApiException {
+    public File downloadImage(String name, Integer index, ImageExportFormat format, String password, String folder, String storage, Integer quality) throws ApiException {
         try {
-            ApiResponse<File> resp = downloadImageWithHttpInfo(name, index, format, password, folder, storage);
+            ApiResponse<File> resp = downloadImageWithHttpInfo(name, index, format, password, folder, storage, quality);
             return resp.getData();
         } catch (NeedRepeatRequestException e) {
-            ApiResponse<File> resp = downloadImageWithHttpInfo(name, index, format, password, folder, storage);
+            ApiResponse<File> resp = downloadImageWithHttpInfo(name, index, format, password, folder, storage, quality);
             return resp.getData();
         }
     }
@@ -15585,11 +15893,12 @@ public class SlidesApi {
      * @param password Document password. 
      * @param folder Document folder. 
      * @param storage Document storage. 
+     * @param quality Image quality (0 to 100; has effect only on Jpeg format). 
      * @return ApiResponse&lt;File&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<File> downloadImageWithHttpInfo(String name, Integer index, ImageExportFormat format, String password, String folder, String storage) throws ApiException {
-        com.squareup.okhttp.Call call = downloadImageCall(name, index, format, password, folder, storage, null, null);
+    public ApiResponse<File> downloadImageWithHttpInfo(String name, Integer index, ImageExportFormat format, String password, String folder, String storage, Integer quality) throws ApiException {
+        com.squareup.okhttp.Call call = downloadImageCall(name, index, format, password, folder, storage, quality, null, null);
         Type returnType = new TypeToken<File>(){}.getType();
         return apiClient.execute(call, returnType);
     }
@@ -15603,11 +15912,12 @@ public class SlidesApi {
      * @param password Document password. 
      * @param folder Document folder. 
      * @param storage Document storage. 
+     * @param quality Image quality (0 to 100; has effect only on Jpeg format). 
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call downloadImageAsync(String name, Integer index, ImageExportFormat format, String password, String folder, String storage, final ApiCallback<File> callback) throws ApiException {
+    public com.squareup.okhttp.Call downloadImageAsync(String name, Integer index, ImageExportFormat format, String password, String folder, String storage, Integer quality, final ApiCallback<File> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -15628,7 +15938,7 @@ public class SlidesApi {
             };
         }
 
-        com.squareup.okhttp.Call call = downloadImageCall(name, index, format, password, folder, storage, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = downloadImageCall(name, index, format, password, folder, storage, quality, progressListener, progressRequestListener);
         Type returnType = new TypeToken<File>(){}.getType();
         apiClient.executeAsync(call, returnType, callback);
         return call;
@@ -15909,12 +16219,13 @@ public class SlidesApi {
      * @param index Image index. (required)
      * @param format Export format (png, jpg, gif). (required)
      * @param password Document password. 
+     * @param quality Image quality (0 to 100; has effect only on Jpeg format). 
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call downloadImageOnlineCall(byte[] document, Integer index, ImageExportFormat format, String password, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call downloadImageOnlineCall(byte[] document, Integer index, ImageExportFormat format, String password, Integer quality, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         // verify the required parameter 'document' is set
         if (document == null) {
             throw new ApiException("Missing the required parameter 'document' when calling downloadImageOnline(Async)");
@@ -15934,6 +16245,7 @@ public class SlidesApi {
             .replaceAll("\\{" + "index" + "\\}", apiClient.objectToString(index)).replaceAll("\\{" + "format" + "\\}", apiClient.objectToString(format));
 
         List<Pair> queryParams = new ArrayList<Pair>();
+        apiClient.addQueryParameter(queryParams, "quality", quality);
 
         Map<String, String> headerParams = new HashMap<String, String>();
         if (password != null)
@@ -15976,15 +16288,16 @@ public class SlidesApi {
      * @param index Image index. (required)
      * @param format Export format (png, jpg, gif). (required)
      * @param password Document password. 
+     * @param quality Image quality (0 to 100; has effect only on Jpeg format). 
      * @return File
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public File downloadImageOnline(byte[] document, Integer index, ImageExportFormat format, String password) throws ApiException {
+    public File downloadImageOnline(byte[] document, Integer index, ImageExportFormat format, String password, Integer quality) throws ApiException {
         try {
-            ApiResponse<File> resp = downloadImageOnlineWithHttpInfo(document, index, format, password);
+            ApiResponse<File> resp = downloadImageOnlineWithHttpInfo(document, index, format, password, quality);
             return resp.getData();
         } catch (NeedRepeatRequestException e) {
-            ApiResponse<File> resp = downloadImageOnlineWithHttpInfo(document, index, format, password);
+            ApiResponse<File> resp = downloadImageOnlineWithHttpInfo(document, index, format, password, quality);
             return resp.getData();
         }
     }
@@ -15996,11 +16309,12 @@ public class SlidesApi {
      * @param index Image index. (required)
      * @param format Export format (png, jpg, gif). (required)
      * @param password Document password. 
+     * @param quality Image quality (0 to 100; has effect only on Jpeg format). 
      * @return ApiResponse&lt;File&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<File> downloadImageOnlineWithHttpInfo(byte[] document, Integer index, ImageExportFormat format, String password) throws ApiException {
-        com.squareup.okhttp.Call call = downloadImageOnlineCall(document, index, format, password, null, null);
+    public ApiResponse<File> downloadImageOnlineWithHttpInfo(byte[] document, Integer index, ImageExportFormat format, String password, Integer quality) throws ApiException {
+        com.squareup.okhttp.Call call = downloadImageOnlineCall(document, index, format, password, quality, null, null);
         Type returnType = new TypeToken<File>(){}.getType();
         return apiClient.execute(call, returnType);
     }
@@ -16012,11 +16326,12 @@ public class SlidesApi {
      * @param index Image index. (required)
      * @param format Export format (png, jpg, gif). (required)
      * @param password Document password. 
+     * @param quality Image quality (0 to 100; has effect only on Jpeg format). 
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call downloadImageOnlineAsync(byte[] document, Integer index, ImageExportFormat format, String password, final ApiCallback<File> callback) throws ApiException {
+    public com.squareup.okhttp.Call downloadImageOnlineAsync(byte[] document, Integer index, ImageExportFormat format, String password, Integer quality, final ApiCallback<File> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -16037,7 +16352,7 @@ public class SlidesApi {
             };
         }
 
-        com.squareup.okhttp.Call call = downloadImageOnlineCall(document, index, format, password, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = downloadImageOnlineCall(document, index, format, password, quality, progressListener, progressRequestListener);
         Type returnType = new TypeToken<File>(){}.getType();
         apiClient.executeAsync(call, returnType, callback);
         return call;
@@ -16049,12 +16364,13 @@ public class SlidesApi {
      * @param password Document password. 
      * @param folder Document folder. 
      * @param storage Document storage. 
+     * @param quality Image quality (0 to 100; has effect only on Jpeg format). 
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call downloadImagesCall(String name, ImageExportFormat format, String password, String folder, String storage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call downloadImagesCall(String name, ImageExportFormat format, String password, String folder, String storage, Integer quality, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         // verify the required parameter 'name' is set
         if (name == null) {
             throw new ApiException("Missing the required parameter 'name' when calling downloadImages(Async)");
@@ -16072,6 +16388,7 @@ public class SlidesApi {
         List<Pair> queryParams = new ArrayList<Pair>();
         apiClient.addQueryParameter(queryParams, "folder", folder);
         apiClient.addQueryParameter(queryParams, "storage", storage);
+        apiClient.addQueryParameter(queryParams, "quality", quality);
 
         Map<String, String> headerParams = new HashMap<String, String>();
         if (password != null)
@@ -16113,15 +16430,16 @@ public class SlidesApi {
      * @param password Document password. 
      * @param folder Document folder. 
      * @param storage Document storage. 
+     * @param quality Image quality (0 to 100; has effect only on Jpeg format). 
      * @return File
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public File downloadImages(String name, ImageExportFormat format, String password, String folder, String storage) throws ApiException {
+    public File downloadImages(String name, ImageExportFormat format, String password, String folder, String storage, Integer quality) throws ApiException {
         try {
-            ApiResponse<File> resp = downloadImagesWithHttpInfo(name, format, password, folder, storage);
+            ApiResponse<File> resp = downloadImagesWithHttpInfo(name, format, password, folder, storage, quality);
             return resp.getData();
         } catch (NeedRepeatRequestException e) {
-            ApiResponse<File> resp = downloadImagesWithHttpInfo(name, format, password, folder, storage);
+            ApiResponse<File> resp = downloadImagesWithHttpInfo(name, format, password, folder, storage, quality);
             return resp.getData();
         }
     }
@@ -16134,11 +16452,12 @@ public class SlidesApi {
      * @param password Document password. 
      * @param folder Document folder. 
      * @param storage Document storage. 
+     * @param quality Image quality (0 to 100; has effect only on Jpeg format). 
      * @return ApiResponse&lt;File&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<File> downloadImagesWithHttpInfo(String name, ImageExportFormat format, String password, String folder, String storage) throws ApiException {
-        com.squareup.okhttp.Call call = downloadImagesCall(name, format, password, folder, storage, null, null);
+    public ApiResponse<File> downloadImagesWithHttpInfo(String name, ImageExportFormat format, String password, String folder, String storage, Integer quality) throws ApiException {
+        com.squareup.okhttp.Call call = downloadImagesCall(name, format, password, folder, storage, quality, null, null);
         Type returnType = new TypeToken<File>(){}.getType();
         return apiClient.execute(call, returnType);
     }
@@ -16151,11 +16470,12 @@ public class SlidesApi {
      * @param password Document password. 
      * @param folder Document folder. 
      * @param storage Document storage. 
+     * @param quality Image quality (0 to 100; has effect only on Jpeg format). 
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call downloadImagesAsync(String name, ImageExportFormat format, String password, String folder, String storage, final ApiCallback<File> callback) throws ApiException {
+    public com.squareup.okhttp.Call downloadImagesAsync(String name, ImageExportFormat format, String password, String folder, String storage, Integer quality, final ApiCallback<File> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -16176,7 +16496,7 @@ public class SlidesApi {
             };
         }
 
-        com.squareup.okhttp.Call call = downloadImagesCall(name, format, password, folder, storage, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = downloadImagesCall(name, format, password, folder, storage, quality, progressListener, progressRequestListener);
         Type returnType = new TypeToken<File>(){}.getType();
         apiClient.executeAsync(call, returnType, callback);
         return call;
@@ -16440,12 +16760,13 @@ public class SlidesApi {
      * @param document Document data. (required)
      * @param format Export format (png, jpg, gif). (required)
      * @param password Document password. 
+     * @param quality Image quality (0 to 100; has effect only on Jpeg format). 
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call downloadImagesOnlineCall(byte[] document, ImageExportFormat format, String password, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call downloadImagesOnlineCall(byte[] document, ImageExportFormat format, String password, Integer quality, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         // verify the required parameter 'document' is set
         if (document == null) {
             throw new ApiException("Missing the required parameter 'document' when calling downloadImagesOnline(Async)");
@@ -16461,6 +16782,7 @@ public class SlidesApi {
             .replaceAll("\\{" + "format" + "\\}", apiClient.objectToString(format));
 
         List<Pair> queryParams = new ArrayList<Pair>();
+        apiClient.addQueryParameter(queryParams, "quality", quality);
 
         Map<String, String> headerParams = new HashMap<String, String>();
         if (password != null)
@@ -16502,15 +16824,16 @@ public class SlidesApi {
      * @param document Document data. (required)
      * @param format Export format (png, jpg, gif). (required)
      * @param password Document password. 
+     * @param quality Image quality (0 to 100; has effect only on Jpeg format). 
      * @return File
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public File downloadImagesOnline(byte[] document, ImageExportFormat format, String password) throws ApiException {
+    public File downloadImagesOnline(byte[] document, ImageExportFormat format, String password, Integer quality) throws ApiException {
         try {
-            ApiResponse<File> resp = downloadImagesOnlineWithHttpInfo(document, format, password);
+            ApiResponse<File> resp = downloadImagesOnlineWithHttpInfo(document, format, password, quality);
             return resp.getData();
         } catch (NeedRepeatRequestException e) {
-            ApiResponse<File> resp = downloadImagesOnlineWithHttpInfo(document, format, password);
+            ApiResponse<File> resp = downloadImagesOnlineWithHttpInfo(document, format, password, quality);
             return resp.getData();
         }
     }
@@ -16521,11 +16844,12 @@ public class SlidesApi {
      * @param document Document data. (required)
      * @param format Export format (png, jpg, gif). (required)
      * @param password Document password. 
+     * @param quality Image quality (0 to 100; has effect only on Jpeg format). 
      * @return ApiResponse&lt;File&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<File> downloadImagesOnlineWithHttpInfo(byte[] document, ImageExportFormat format, String password) throws ApiException {
-        com.squareup.okhttp.Call call = downloadImagesOnlineCall(document, format, password, null, null);
+    public ApiResponse<File> downloadImagesOnlineWithHttpInfo(byte[] document, ImageExportFormat format, String password, Integer quality) throws ApiException {
+        com.squareup.okhttp.Call call = downloadImagesOnlineCall(document, format, password, quality, null, null);
         Type returnType = new TypeToken<File>(){}.getType();
         return apiClient.execute(call, returnType);
     }
@@ -16536,11 +16860,12 @@ public class SlidesApi {
      * @param document Document data. (required)
      * @param format Export format (png, jpg, gif). (required)
      * @param password Document password. 
+     * @param quality Image quality (0 to 100; has effect only on Jpeg format). 
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call downloadImagesOnlineAsync(byte[] document, ImageExportFormat format, String password, final ApiCallback<File> callback) throws ApiException {
+    public com.squareup.okhttp.Call downloadImagesOnlineAsync(byte[] document, ImageExportFormat format, String password, Integer quality, final ApiCallback<File> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -16561,7 +16886,7 @@ public class SlidesApi {
             };
         }
 
-        com.squareup.okhttp.Call call = downloadImagesOnlineCall(document, format, password, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = downloadImagesOnlineCall(document, format, password, quality, progressListener, progressRequestListener);
         Type returnType = new TypeToken<File>(){}.getType();
         apiClient.executeAsync(call, returnType, callback);
         return call;
@@ -27202,6 +27527,158 @@ public class SlidesApi {
         return call;
     }
     /**
+     * Build call for getVideoCaptionTracks
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param shapeIndex Shape index (must refer to a picture frame). (required)
+     * @param includeData true to include caption data string values in the response. 
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Presentation storage. 
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call getVideoCaptionTracksCall(String name, Integer slideIndex, Integer shapeIndex, Boolean includeData, String password, String folder, String storage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        // verify the required parameter 'name' is set
+        if (name == null) {
+            throw new ApiException("Missing the required parameter 'name' when calling getVideoCaptionTracks(Async)");
+        }
+        // verify the required parameter 'slideIndex' is set
+        if (slideIndex == null) {
+            throw new ApiException("Missing the required parameter 'slideIndex' when calling getVideoCaptionTracks(Async)");
+        }
+        // verify the required parameter 'shapeIndex' is set
+        if (shapeIndex == null) {
+            throw new ApiException("Missing the required parameter 'shapeIndex' when calling getVideoCaptionTracks(Async)");
+        }
+        Object postBody = null;
+
+        // create path and map variables
+        String methodPath = "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/captionTracks"
+            .replaceAll("\\{" + "name" + "\\}", apiClient.objectToString(name)).replaceAll("\\{" + "slideIndex" + "\\}", apiClient.objectToString(slideIndex)).replaceAll("\\{" + "shapeIndex" + "\\}", apiClient.objectToString(shapeIndex));
+
+        List<Pair> queryParams = new ArrayList<Pair>();
+        apiClient.addQueryParameter(queryParams, "includeData", includeData);
+        apiClient.addQueryParameter(queryParams, "folder", folder);
+        apiClient.addQueryParameter(queryParams, "storage", storage);
+
+        Map<String, String> headerParams = new HashMap<String, String>();
+        if (password != null)
+        headerParams.put("password", apiClient.parameterToString(password));
+
+        Map<String, Object> formParams = new LinkedHashMap<String, Object>();
+
+        final String[] accepts = {
+            "application/json"
+        };
+        final String accept = apiClient.selectHeaderAccept(accepts);
+        if (accept != null) headerParams.put("Accept", accept);
+
+        final String[] contentTypes = {
+            "application/json"
+        };
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
+        headerParams.put("Content-Type", contentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+        return apiClient.buildCall(methodPath, "GET", queryParams, postBody, headerParams, formParams, progressRequestListener);
+    }
+
+    /**
+     * Gets video captions tracks.
+     * 
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param shapeIndex Shape index (must refer to a picture frame). (required)
+     * @param includeData true to include caption data string values in the response. 
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Presentation storage. 
+     * @return CaptionTracks
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public CaptionTracks getVideoCaptionTracks(String name, Integer slideIndex, Integer shapeIndex, Boolean includeData, String password, String folder, String storage) throws ApiException {
+        try {
+            ApiResponse<CaptionTracks> resp = getVideoCaptionTracksWithHttpInfo(name, slideIndex, shapeIndex, includeData, password, folder, storage);
+            return resp.getData();
+        } catch (NeedRepeatRequestException e) {
+            ApiResponse<CaptionTracks> resp = getVideoCaptionTracksWithHttpInfo(name, slideIndex, shapeIndex, includeData, password, folder, storage);
+            return resp.getData();
+        }
+    }
+
+    /**
+     * Gets video captions tracks.
+     * 
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param shapeIndex Shape index (must refer to a picture frame). (required)
+     * @param includeData true to include caption data string values in the response. 
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Presentation storage. 
+     * @return ApiResponse&lt;CaptionTracks&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<CaptionTracks> getVideoCaptionTracksWithHttpInfo(String name, Integer slideIndex, Integer shapeIndex, Boolean includeData, String password, String folder, String storage) throws ApiException {
+        com.squareup.okhttp.Call call = getVideoCaptionTracksCall(name, slideIndex, shapeIndex, includeData, password, folder, storage, null, null);
+        Type returnType = new TypeToken<CaptionTracks>(){}.getType();
+        return apiClient.execute(call, returnType);
+    }
+
+    /**
+     * Gets video captions tracks. (asynchronously)
+     * 
+     * @param name Document name. (required)
+     * @param slideIndex Slide index. (required)
+     * @param shapeIndex Shape index (must refer to a picture frame). (required)
+     * @param includeData true to include caption data string values in the response. 
+     * @param password Document password. 
+     * @param folder Document folder. 
+     * @param storage Presentation storage. 
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call getVideoCaptionTracksAsync(String name, Integer slideIndex, Integer shapeIndex, Boolean includeData, String password, String folder, String storage, final ApiCallback<CaptionTracks> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = getVideoCaptionTracksCall(name, slideIndex, shapeIndex, includeData, password, folder, storage, progressListener, progressRequestListener);
+        Type returnType = new TypeToken<CaptionTracks>(){}.getType();
+        apiClient.executeAsync(call, returnType, callback);
+        return call;
+    }
+    /**
      * Build call for getViewProperties
      * @param name Document name. (required)
      * @param password Document password. 
@@ -27997,12 +28474,14 @@ public class SlidesApi {
      * @param password Document password. 
      * @param folder Document folder. 
      * @param storage Document storage. 
+     * @param position Slide index before which the HTML should be added (add to the end by default). 
+     * @param useSlideWithIndexAsStart true to insert data starting from an empty space on the slide with the specified index; false to add data to the created slides. 
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call importFromHtmlCall(String name, String html, String password, String folder, String storage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call importFromHtmlCall(String name, String html, String password, String folder, String storage, Integer position, Boolean useSlideWithIndexAsStart, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         // verify the required parameter 'name' is set
         if (name == null) {
             throw new ApiException("Missing the required parameter 'name' when calling importFromHtml(Async)");
@@ -28016,6 +28495,8 @@ public class SlidesApi {
         List<Pair> queryParams = new ArrayList<Pair>();
         apiClient.addQueryParameter(queryParams, "folder", folder);
         apiClient.addQueryParameter(queryParams, "storage", storage);
+        apiClient.addQueryParameter(queryParams, "position", position);
+        apiClient.addQueryParameter(queryParams, "useSlideWithIndexAsStart", useSlideWithIndexAsStart);
 
         Map<String, String> headerParams = new HashMap<String, String>();
         if (password != null)
@@ -28057,15 +28538,17 @@ public class SlidesApi {
      * @param password Document password. 
      * @param folder Document folder. 
      * @param storage Document storage. 
+     * @param position Slide index before which the HTML should be added (add to the end by default). 
+     * @param useSlideWithIndexAsStart true to insert data starting from an empty space on the slide with the specified index; false to add data to the created slides. 
      * @return Document
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public Document importFromHtml(String name, String html, String password, String folder, String storage) throws ApiException {
+    public Document importFromHtml(String name, String html, String password, String folder, String storage, Integer position, Boolean useSlideWithIndexAsStart) throws ApiException {
         try {
-            ApiResponse<Document> resp = importFromHtmlWithHttpInfo(name, html, password, folder, storage);
+            ApiResponse<Document> resp = importFromHtmlWithHttpInfo(name, html, password, folder, storage, position, useSlideWithIndexAsStart);
             return resp.getData();
         } catch (NeedRepeatRequestException e) {
-            ApiResponse<Document> resp = importFromHtmlWithHttpInfo(name, html, password, folder, storage);
+            ApiResponse<Document> resp = importFromHtmlWithHttpInfo(name, html, password, folder, storage, position, useSlideWithIndexAsStart);
             return resp.getData();
         }
     }
@@ -28078,11 +28561,13 @@ public class SlidesApi {
      * @param password Document password. 
      * @param folder Document folder. 
      * @param storage Document storage. 
+     * @param position Slide index before which the HTML should be added (add to the end by default). 
+     * @param useSlideWithIndexAsStart true to insert data starting from an empty space on the slide with the specified index; false to add data to the created slides. 
      * @return ApiResponse&lt;Document&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Document> importFromHtmlWithHttpInfo(String name, String html, String password, String folder, String storage) throws ApiException {
-        com.squareup.okhttp.Call call = importFromHtmlCall(name, html, password, folder, storage, null, null);
+    public ApiResponse<Document> importFromHtmlWithHttpInfo(String name, String html, String password, String folder, String storage, Integer position, Boolean useSlideWithIndexAsStart) throws ApiException {
+        com.squareup.okhttp.Call call = importFromHtmlCall(name, html, password, folder, storage, position, useSlideWithIndexAsStart, null, null);
         Type returnType = new TypeToken<Document>(){}.getType();
         return apiClient.execute(call, returnType);
     }
@@ -28095,11 +28580,13 @@ public class SlidesApi {
      * @param password Document password. 
      * @param folder Document folder. 
      * @param storage Document storage. 
+     * @param position Slide index before which the HTML should be added (add to the end by default). 
+     * @param useSlideWithIndexAsStart true to insert data starting from an empty space on the slide with the specified index; false to add data to the created slides. 
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call importFromHtmlAsync(String name, String html, String password, String folder, String storage, final ApiCallback<Document> callback) throws ApiException {
+    public com.squareup.okhttp.Call importFromHtmlAsync(String name, String html, String password, String folder, String storage, Integer position, Boolean useSlideWithIndexAsStart, final ApiCallback<Document> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -28120,7 +28607,7 @@ public class SlidesApi {
             };
         }
 
-        com.squareup.okhttp.Call call = importFromHtmlCall(name, html, password, folder, storage, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = importFromHtmlCall(name, html, password, folder, storage, position, useSlideWithIndexAsStart, progressListener, progressRequestListener);
         Type returnType = new TypeToken<Document>(){}.getType();
         apiClient.executeAsync(call, returnType, callback);
         return call;

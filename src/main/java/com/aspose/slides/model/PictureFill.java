@@ -208,6 +208,12 @@ public class PictureFill extends FillFormat {
   @SerializedName(value = "svgData", alternate = { "SvgData" })
   private String svgData;
 
+  @SerializedName(value = "deletePictureCroppedAreas", alternate = { "DeletePictureCroppedAreas" })
+  private Boolean deletePictureCroppedAreas;
+
+  @SerializedName(value = "resolution", alternate = { "Resolution" })
+  private Double resolution;
+
   /**
    * Fill mode.
    */
@@ -519,6 +525,42 @@ public class PictureFill extends FillFormat {
     this.svgData = svgData;
   }
 
+  public PictureFill deletePictureCroppedAreas(Boolean deletePictureCroppedAreas) {
+    this.deletePictureCroppedAreas = deletePictureCroppedAreas;
+    return this;
+  }
+
+   /**
+   * true to delete picture cropped areas on save.
+   * @return deletePictureCroppedAreas
+  **/
+  @ApiModelProperty(value = "true to delete picture cropped areas on save.")
+  public Boolean isDeletePictureCroppedAreas() {
+    return deletePictureCroppedAreas;
+  }
+
+  public void setDeletePictureCroppedAreas(Boolean deletePictureCroppedAreas) {
+    this.deletePictureCroppedAreas = deletePictureCroppedAreas;
+  }
+
+  public PictureFill resolution(Double resolution) {
+    this.resolution = resolution;
+    return this;
+  }
+
+   /**
+   * true to compress the picture image with the specified resolution (in dpi) on save.
+   * @return resolution
+  **/
+  @ApiModelProperty(value = "true to compress the picture image with the specified resolution (in dpi) on save.")
+  public Double getResolution() {
+    return resolution;
+  }
+
+  public void setResolution(Double resolution) {
+    this.resolution = resolution;
+  }
+
   public PictureFill pictureFillMode(PictureFillModeEnum pictureFillMode) {
     this.pictureFillMode = pictureFillMode;
     return this;
@@ -573,12 +615,12 @@ public class PictureFill extends FillFormat {
       return false;
     }
     PictureFill pictureFill = (PictureFill) o;
-    return true && Objects.equals(this.cropBottom, pictureFill.cropBottom) && Objects.equals(this.cropLeft, pictureFill.cropLeft) && Objects.equals(this.cropRight, pictureFill.cropRight) && Objects.equals(this.cropTop, pictureFill.cropTop) && Objects.equals(this.dpi, pictureFill.dpi) && Objects.equals(this.tileOffsetX, pictureFill.tileOffsetX) && Objects.equals(this.tileOffsetY, pictureFill.tileOffsetY) && Objects.equals(this.tileScaleX, pictureFill.tileScaleX) && Objects.equals(this.tileScaleY, pictureFill.tileScaleY) && Objects.equals(this.tileAlignment, pictureFill.tileAlignment) && Objects.equals(this.tileFlip, pictureFill.tileFlip) && Objects.equals(this.image, pictureFill.image) && Objects.equals(this.base64Data, pictureFill.base64Data) && Objects.equals(this.svgData, pictureFill.svgData) && Objects.equals(this.pictureFillMode, pictureFill.pictureFillMode) && Objects.equals(this.imageTransformList, pictureFill.imageTransformList) && super.equals(o);
+    return true && Objects.equals(this.cropBottom, pictureFill.cropBottom) && Objects.equals(this.cropLeft, pictureFill.cropLeft) && Objects.equals(this.cropRight, pictureFill.cropRight) && Objects.equals(this.cropTop, pictureFill.cropTop) && Objects.equals(this.dpi, pictureFill.dpi) && Objects.equals(this.tileOffsetX, pictureFill.tileOffsetX) && Objects.equals(this.tileOffsetY, pictureFill.tileOffsetY) && Objects.equals(this.tileScaleX, pictureFill.tileScaleX) && Objects.equals(this.tileScaleY, pictureFill.tileScaleY) && Objects.equals(this.tileAlignment, pictureFill.tileAlignment) && Objects.equals(this.tileFlip, pictureFill.tileFlip) && Objects.equals(this.image, pictureFill.image) && Objects.equals(this.base64Data, pictureFill.base64Data) && Objects.equals(this.svgData, pictureFill.svgData) && Objects.equals(this.deletePictureCroppedAreas, pictureFill.deletePictureCroppedAreas) && Objects.equals(this.resolution, pictureFill.resolution) && Objects.equals(this.pictureFillMode, pictureFill.pictureFillMode) && Objects.equals(this.imageTransformList, pictureFill.imageTransformList) && super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(cropBottom, cropLeft, cropRight, cropTop, dpi, tileOffsetX, tileOffsetY, tileScaleX, tileScaleY, tileAlignment, tileFlip, image, base64Data, svgData, pictureFillMode, imageTransformList, super.hashCode());
+    return Objects.hash(cropBottom, cropLeft, cropRight, cropTop, dpi, tileOffsetX, tileOffsetY, tileScaleX, tileScaleY, tileAlignment, tileFlip, image, base64Data, svgData, deletePictureCroppedAreas, resolution, pictureFillMode, imageTransformList, super.hashCode());
   }
 
 
@@ -601,6 +643,8 @@ public class PictureFill extends FillFormat {
     sb.append("    image: ").append(toIndentedString(image)).append("\n");
     sb.append("    base64Data: ").append(toIndentedString(base64Data)).append("\n");
     sb.append("    svgData: ").append(toIndentedString(svgData)).append("\n");
+    sb.append("    deletePictureCroppedAreas: ").append(toIndentedString(deletePictureCroppedAreas)).append("\n");
+    sb.append("    resolution: ").append(toIndentedString(resolution)).append("\n");
     sb.append("    pictureFillMode: ").append(toIndentedString(pictureFillMode)).append("\n");
     sb.append("    imageTransformList: ").append(toIndentedString(imageTransformList)).append("\n");
     sb.append("}");

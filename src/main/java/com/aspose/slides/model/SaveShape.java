@@ -63,7 +63,9 @@ public class SaveShape extends Task {
     
     TIFF("Tiff"),
     
-    SVG("Svg");
+    SVG("Svg"),
+    
+    EMF("Emf");
 
     private String value;
 

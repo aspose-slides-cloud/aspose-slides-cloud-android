@@ -104,7 +104,9 @@ public class SaveSlide extends Task {
     
     MD("Md"),
     
-    XML("Xml");
+    XML("Xml"),
+    
+    EMF("Emf");
 
     private String value;
 

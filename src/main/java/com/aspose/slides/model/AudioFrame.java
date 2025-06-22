@@ -187,6 +187,9 @@ public class AudioFrame extends GeometryShape {
   @SerializedName(value = "volume", alternate = { "Volume" })
   private VolumeEnum volume;
 
+  @SerializedName(value = "volumeValue", alternate = { "VolumeValue" })
+  private Double volumeValue;
+
   @SerializedName(value = "base64Data", alternate = { "Base64Data" })
   private String base64Data;
 
@@ -195,6 +198,18 @@ public class AudioFrame extends GeometryShape {
 
   @SerializedName(value = "rewindAudio", alternate = { "RewindAudio" })
   private Boolean rewindAudio;
+
+  @SerializedName(value = "fadeInDuration", alternate = { "FadeInDuration" })
+  private Double fadeInDuration;
+
+  @SerializedName(value = "fadeOutDuration", alternate = { "FadeOutDuration" })
+  private Double fadeOutDuration;
+
+  @SerializedName(value = "trimFromStart", alternate = { "TrimFromStart" })
+  private Double trimFromStart;
+
+  @SerializedName(value = "trimFromEnd", alternate = { "TrimFromEnd" })
+  private Double trimFromEnd;
 
   @SerializedName(value = "pictureFillFormat", alternate = { "PictureFillFormat" })
   private PictureFill pictureFillFormat;
@@ -367,6 +382,24 @@ public class AudioFrame extends GeometryShape {
     this.volume = volume;
   }
 
+  public AudioFrame volumeValue(Double volumeValue) {
+    this.volumeValue = volumeValue;
+    return this;
+  }
+
+   /**
+   * Audio volume percent.
+   * @return volumeValue
+  **/
+  @ApiModelProperty(value = "Audio volume percent.")
+  public Double getVolumeValue() {
+    return volumeValue;
+  }
+
+  public void setVolumeValue(Double volumeValue) {
+    this.volumeValue = volumeValue;
+  }
+
   public AudioFrame base64Data(String base64Data) {
     this.base64Data = base64Data;
     return this;
@@ -421,6 +454,78 @@ public class AudioFrame extends GeometryShape {
     this.rewindAudio = rewindAudio;
   }
 
+  public AudioFrame fadeInDuration(Double fadeInDuration) {
+    this.fadeInDuration = fadeInDuration;
+    return this;
+  }
+
+   /**
+   * Time duration for the initial fade-in of the media in milliseconds.
+   * @return fadeInDuration
+  **/
+  @ApiModelProperty(value = "Time duration for the initial fade-in of the media in milliseconds.")
+  public Double getFadeInDuration() {
+    return fadeInDuration;
+  }
+
+  public void setFadeInDuration(Double fadeInDuration) {
+    this.fadeInDuration = fadeInDuration;
+  }
+
+  public AudioFrame fadeOutDuration(Double fadeOutDuration) {
+    this.fadeOutDuration = fadeOutDuration;
+    return this;
+  }
+
+   /**
+   * Time duration for the ending fade-out of the media in milliseconds.
+   * @return fadeOutDuration
+  **/
+  @ApiModelProperty(value = "Time duration for the ending fade-out of the media in milliseconds.")
+  public Double getFadeOutDuration() {
+    return fadeOutDuration;
+  }
+
+  public void setFadeOutDuration(Double fadeOutDuration) {
+    this.fadeOutDuration = fadeOutDuration;
+  }
+
+  public AudioFrame trimFromStart(Double trimFromStart) {
+    this.trimFromStart = trimFromStart;
+    return this;
+  }
+
+   /**
+   * Time duration to be removed from the beginning of the media during playback in milliseconds.
+   * @return trimFromStart
+  **/
+  @ApiModelProperty(value = "Time duration to be removed from the beginning of the media during playback in milliseconds.")
+  public Double getTrimFromStart() {
+    return trimFromStart;
+  }
+
+  public void setTrimFromStart(Double trimFromStart) {
+    this.trimFromStart = trimFromStart;
+  }
+
+  public AudioFrame trimFromEnd(Double trimFromEnd) {
+    this.trimFromEnd = trimFromEnd;
+    return this;
+  }
+
+   /**
+   * Time duration to be removed from the end of the media during playback in milliseconds.
+   * @return trimFromEnd
+  **/
+  @ApiModelProperty(value = "Time duration to be removed from the end of the media during playback in milliseconds.")
+  public Double getTrimFromEnd() {
+    return trimFromEnd;
+  }
+
+  public void setTrimFromEnd(Double trimFromEnd) {
+    this.trimFromEnd = trimFromEnd;
+  }
+
   public AudioFrame pictureFillFormat(PictureFill pictureFillFormat) {
     this.pictureFillFormat = pictureFillFormat;
     return this;
@@ -449,12 +554,12 @@ public class AudioFrame extends GeometryShape {
       return false;
     }
     AudioFrame audioFrame = (AudioFrame) o;
-    return true && Objects.equals(this.audioCdEndTrack, audioFrame.audioCdEndTrack) && Objects.equals(this.audioCdEndTrackTime, audioFrame.audioCdEndTrackTime) && Objects.equals(this.audioCdStartTrack, audioFrame.audioCdStartTrack) && Objects.equals(this.audioCdStartTrackTime, audioFrame.audioCdStartTrackTime) && Objects.equals(this.embedded, audioFrame.embedded) && Objects.equals(this.hideAtShowing, audioFrame.hideAtShowing) && Objects.equals(this.playLoopMode, audioFrame.playLoopMode) && Objects.equals(this.playMode, audioFrame.playMode) && Objects.equals(this.volume, audioFrame.volume) && Objects.equals(this.base64Data, audioFrame.base64Data) && Objects.equals(this.playAcrossSlides, audioFrame.playAcrossSlides) && Objects.equals(this.rewindAudio, audioFrame.rewindAudio) && Objects.equals(this.pictureFillFormat, audioFrame.pictureFillFormat) && super.equals(o);
+    return true && Objects.equals(this.audioCdEndTrack, audioFrame.audioCdEndTrack) && Objects.equals(this.audioCdEndTrackTime, audioFrame.audioCdEndTrackTime) && Objects.equals(this.audioCdStartTrack, audioFrame.audioCdStartTrack) && Objects.equals(this.audioCdStartTrackTime, audioFrame.audioCdStartTrackTime) && Objects.equals(this.embedded, audioFrame.embedded) && Objects.equals(this.hideAtShowing, audioFrame.hideAtShowing) && Objects.equals(this.playLoopMode, audioFrame.playLoopMode) && Objects.equals(this.playMode, audioFrame.playMode) && Objects.equals(this.volume, audioFrame.volume) && Objects.equals(this.volumeValue, audioFrame.volumeValue) && Objects.equals(this.base64Data, audioFrame.base64Data) && Objects.equals(this.playAcrossSlides, audioFrame.playAcrossSlides) && Objects.equals(this.rewindAudio, audioFrame.rewindAudio) && Objects.equals(this.fadeInDuration, audioFrame.fadeInDuration) && Objects.equals(this.fadeOutDuration, audioFrame.fadeOutDuration) && Objects.equals(this.trimFromStart, audioFrame.trimFromStart) && Objects.equals(this.trimFromEnd, audioFrame.trimFromEnd) && Objects.equals(this.pictureFillFormat, audioFrame.pictureFillFormat) && super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(audioCdEndTrack, audioCdEndTrackTime, audioCdStartTrack, audioCdStartTrackTime, embedded, hideAtShowing, playLoopMode, playMode, volume, base64Data, playAcrossSlides, rewindAudio, pictureFillFormat, super.hashCode());
+    return Objects.hash(audioCdEndTrack, audioCdEndTrackTime, audioCdStartTrack, audioCdStartTrackTime, embedded, hideAtShowing, playLoopMode, playMode, volume, volumeValue, base64Data, playAcrossSlides, rewindAudio, fadeInDuration, fadeOutDuration, trimFromStart, trimFromEnd, pictureFillFormat, super.hashCode());
   }
 
 
@@ -472,9 +577,14 @@ public class AudioFrame extends GeometryShape {
     sb.append("    playLoopMode: ").append(toIndentedString(playLoopMode)).append("\n");
     sb.append("    playMode: ").append(toIndentedString(playMode)).append("\n");
     sb.append("    volume: ").append(toIndentedString(volume)).append("\n");
+    sb.append("    volumeValue: ").append(toIndentedString(volumeValue)).append("\n");
     sb.append("    base64Data: ").append(toIndentedString(base64Data)).append("\n");
     sb.append("    playAcrossSlides: ").append(toIndentedString(playAcrossSlides)).append("\n");
     sb.append("    rewindAudio: ").append(toIndentedString(rewindAudio)).append("\n");
+    sb.append("    fadeInDuration: ").append(toIndentedString(fadeInDuration)).append("\n");
+    sb.append("    fadeOutDuration: ").append(toIndentedString(fadeOutDuration)).append("\n");
+    sb.append("    trimFromStart: ").append(toIndentedString(trimFromStart)).append("\n");
+    sb.append("    trimFromEnd: ").append(toIndentedString(trimFromEnd)).append("\n");
     sb.append("    pictureFillFormat: ").append(toIndentedString(pictureFillFormat)).append("\n");
     sb.append("}");
     return sb.toString();

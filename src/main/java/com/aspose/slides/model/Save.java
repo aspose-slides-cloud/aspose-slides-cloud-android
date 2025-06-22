@@ -105,7 +105,9 @@ public class Save extends Task {
     
     MD("Md"),
     
-    XML("Xml");
+    XML("Xml"),
+    
+    EMF("Emf");
 
     private String value;
 

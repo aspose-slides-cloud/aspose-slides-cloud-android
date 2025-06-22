@@ -57,7 +57,7 @@ public class ImageTest extends ApiTest {
     public void imagesDownloadStorageTest() throws ApiException, IOException {
         testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         File images = testSlidesApi.downloadImagesDefaultFormat(fileName, password, folderName, null);
-        File imagesPng = testSlidesApi.downloadImages(fileName, ImageExportFormat.PNG, password, folderName, null);
+        File imagesPng = testSlidesApi.downloadImages(fileName, ImageExportFormat.PNG, password, folderName, null, null);
         assertTrue(images.canRead());
         assertTrue(imagesPng.canRead());
         assertNotEquals(images.length(), imagesPng.length());
@@ -70,7 +70,7 @@ public class ImageTest extends ApiTest {
     public void imagesDownloadRequest() throws ApiException, IOException {
         byte[] file = Files.readAllBytes(Paths.get(testDataFolderName + "/" + fileName));
         File images = testSlidesApi.downloadImagesDefaultFormatOnline(file, password);
-        File imagesPng = testSlidesApi.downloadImagesOnline(file, ImageExportFormat.PNG, password);
+        File imagesPng = testSlidesApi.downloadImagesOnline(file, ImageExportFormat.PNG, password, null);
         assertTrue(images.canRead());
         assertTrue(imagesPng.canRead());
         assertNotEquals(images.length(), imagesPng.length());
@@ -83,7 +83,7 @@ public class ImageTest extends ApiTest {
     public void imageDownloadStorageTest() throws ApiException, IOException {
         testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         File image = testSlidesApi.downloadImageDefaultFormat(fileName, c_imageIndex, password, folderName, null);
-        File imagePng = testSlidesApi.downloadImage(fileName, c_imageIndex, ImageExportFormat.PNG, password, folderName, null);
+        File imagePng = testSlidesApi.downloadImage(fileName, c_imageIndex, ImageExportFormat.PNG, password, folderName, null, null);
         assertTrue(image.canRead());
         assertTrue(imagePng.canRead());
         assertNotEquals(image.length(), imagePng.length());
@@ -93,10 +93,30 @@ public class ImageTest extends ApiTest {
     public void imageDownloadRequestTest() throws ApiException, IOException {
         byte[] file = Files.readAllBytes(Paths.get(testDataFolderName + "/" + fileName));
         File image = testSlidesApi.downloadImageDefaultFormatOnline(file, c_imageIndex, password);
-        File imagePng = testSlidesApi.downloadImageOnline(file, c_imageIndex, ImageExportFormat.PNG, password);
+        File imagePng = testSlidesApi.downloadImageOnline(file, c_imageIndex, ImageExportFormat.PNG, password, null);
         assertTrue(image.canRead());
         assertTrue(imagePng.canRead());
         assertNotEquals(image.length(), imagePng.length());
+    }
+
+    @Test
+    public void imageDownloadQualityTest() throws ApiException, IOException {
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        File imageGood = testSlidesApi.downloadImage(fileName, c_imageIndex, ImageExportFormat.JPEG, password, folderName, null, 100);
+        File imageBad = testSlidesApi.downloadImage(fileName, c_imageIndex, ImageExportFormat.JPEG, password, folderName, null, 50);
+        assertTrue(imageGood.canRead());
+        assertTrue(imageBad.canRead());
+        assertTrue(imageGood.length() > imageBad.length());
+    }
+
+    @Test
+    public void imageDownloadQualityUselessTest() throws ApiException, IOException {
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        File imageGood = testSlidesApi.downloadImage(fileName, c_imageIndex, ImageExportFormat.PNG, password, folderName, null, 100);
+        File imageBad = testSlidesApi.downloadImage(fileName, c_imageIndex, ImageExportFormat.PNG, password, folderName, null, 50);
+        assertTrue(imageGood.canRead());
+        assertTrue(imageBad.canRead());
+        assertEquals(imageGood.length(), imageBad.length());
     }
 
     @Test

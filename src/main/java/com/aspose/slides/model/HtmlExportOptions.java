@@ -129,6 +129,9 @@ public class HtmlExportOptions extends ExportOptions {
   @SerializedName(value = "slidesLayoutOptions", alternate = { "SlidesLayoutOptions" })
   private SlidesLayoutOptions slidesLayoutOptions;
 
+  @SerializedName(value = "disableFontLigatures", alternate = { "DisableFontLigatures" })
+  private Boolean disableFontLigatures;
+
 
   public HtmlExportOptions() {
     super();
@@ -279,6 +282,24 @@ public class HtmlExportOptions extends ExportOptions {
     this.slidesLayoutOptions = slidesLayoutOptions;
   }
 
+  public HtmlExportOptions disableFontLigatures(Boolean disableFontLigatures) {
+    this.disableFontLigatures = disableFontLigatures;
+    return this;
+  }
+
+   /**
+   * true to disable ligatures in the rendered output.
+   * @return disableFontLigatures
+  **/
+  @ApiModelProperty(value = "true to disable ligatures in the rendered output.")
+  public Boolean isDisableFontLigatures() {
+    return disableFontLigatures;
+  }
+
+  public void setDisableFontLigatures(Boolean disableFontLigatures) {
+    this.disableFontLigatures = disableFontLigatures;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -289,12 +310,12 @@ public class HtmlExportOptions extends ExportOptions {
       return false;
     }
     HtmlExportOptions htmlExportOptions = (HtmlExportOptions) o;
-    return true && Objects.equals(this.saveAsZip, htmlExportOptions.saveAsZip) && Objects.equals(this.subDirectoryName, htmlExportOptions.subDirectoryName) && Objects.equals(this.showHiddenSlides, htmlExportOptions.showHiddenSlides) && Objects.equals(this.svgResponsiveLayout, htmlExportOptions.svgResponsiveLayout) && Objects.equals(this.jpegQuality, htmlExportOptions.jpegQuality) && Objects.equals(this.picturesCompression, htmlExportOptions.picturesCompression) && Objects.equals(this.deletePicturesCroppedAreas, htmlExportOptions.deletePicturesCroppedAreas) && Objects.equals(this.slidesLayoutOptions, htmlExportOptions.slidesLayoutOptions) && super.equals(o);
+    return true && Objects.equals(this.saveAsZip, htmlExportOptions.saveAsZip) && Objects.equals(this.subDirectoryName, htmlExportOptions.subDirectoryName) && Objects.equals(this.showHiddenSlides, htmlExportOptions.showHiddenSlides) && Objects.equals(this.svgResponsiveLayout, htmlExportOptions.svgResponsiveLayout) && Objects.equals(this.jpegQuality, htmlExportOptions.jpegQuality) && Objects.equals(this.picturesCompression, htmlExportOptions.picturesCompression) && Objects.equals(this.deletePicturesCroppedAreas, htmlExportOptions.deletePicturesCroppedAreas) && Objects.equals(this.slidesLayoutOptions, htmlExportOptions.slidesLayoutOptions) && Objects.equals(this.disableFontLigatures, htmlExportOptions.disableFontLigatures) && super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(saveAsZip, subDirectoryName, showHiddenSlides, svgResponsiveLayout, jpegQuality, picturesCompression, deletePicturesCroppedAreas, slidesLayoutOptions, super.hashCode());
+    return Objects.hash(saveAsZip, subDirectoryName, showHiddenSlides, svgResponsiveLayout, jpegQuality, picturesCompression, deletePicturesCroppedAreas, slidesLayoutOptions, disableFontLigatures, super.hashCode());
   }
 
 
@@ -311,6 +332,7 @@ public class HtmlExportOptions extends ExportOptions {
     sb.append("    picturesCompression: ").append(toIndentedString(picturesCompression)).append("\n");
     sb.append("    deletePicturesCroppedAreas: ").append(toIndentedString(deletePicturesCroppedAreas)).append("\n");
     sb.append("    slidesLayoutOptions: ").append(toIndentedString(slidesLayoutOptions)).append("\n");
+    sb.append("    disableFontLigatures: ").append(toIndentedString(disableFontLigatures)).append("\n");
     sb.append("}");
     return sb.toString();
   }

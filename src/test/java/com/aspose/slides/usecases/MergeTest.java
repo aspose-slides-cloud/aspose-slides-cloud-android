@@ -142,7 +142,7 @@ public class MergeTest extends ApiTest {
     }
 
     @Test
-    public void MergeOnlineUrl() throws ApiException, IOException {
+    public void mergeOnlineUrl() throws ApiException, IOException {
         testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
 
         OrderedMergeRequest request = new OrderedMergeRequest();
@@ -161,7 +161,7 @@ public class MergeTest extends ApiTest {
         testSlidesApi.mergeOnline(null, request, null);
     }
 
-    private final String c_url = "https://drive.google.com/uc?export=download&id=1ycMzd7e--Ro9H8eH2GL5fPP7-2HjX4My";
+    private final String c_url = "https://www.dropbox.com/scl/fi/nz3yt2wpg4eugiw12bz3g/info.pptx?rlkey=wju4vbi6h46q8733tzzvfgufz&e=1&st=pqt66x86&dl=1";
     private final String c_fileName2 = "test-unprotected.pptx";
     private final String c_fileNamePdf = "test.pdf";
     private final String c_outPath = testDataFolderName + "/merged.pptx";

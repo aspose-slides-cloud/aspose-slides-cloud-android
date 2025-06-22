@@ -111,6 +111,9 @@ public class ExportOptions {
   @SerializedName(value = "fontSubstRules", alternate = { "FontSubstRules" })
   private List<FontSubstRule> fontSubstRules = null;
 
+  @SerializedName(value = "skipJavaScriptLinks", alternate = { "SkipJavaScriptLinks" })
+  private Boolean skipJavaScriptLinks;
+
   @SerializedName(value = "format", alternate = { "Format" })
   private String format;
 
@@ -225,6 +228,24 @@ public class ExportOptions {
     this.fontSubstRules = fontSubstRules;
   }
 
+  public ExportOptions skipJavaScriptLinks(Boolean skipJavaScriptLinks) {
+    this.skipJavaScriptLinks = skipJavaScriptLinks;
+    return this;
+  }
+
+   /**
+   * True to skip hyperlinks with javascript calls when saving the presentation.
+   * @return skipJavaScriptLinks
+  **/
+  @ApiModelProperty(value = "True to skip hyperlinks with javascript calls when saving the presentation.")
+  public Boolean isSkipJavaScriptLinks() {
+    return skipJavaScriptLinks;
+  }
+
+  public void setSkipJavaScriptLinks(Boolean skipJavaScriptLinks) {
+    this.skipJavaScriptLinks = skipJavaScriptLinks;
+  }
+
    /**
    * Get format
    * @return format
@@ -248,12 +269,12 @@ public class ExportOptions {
       return false;
     }
     ExportOptions exportOptions = (ExportOptions) o;
-    return true && Objects.equals(this.defaultRegularFont, exportOptions.defaultRegularFont) && Objects.equals(this.deleteEmbeddedBinaryObjects, exportOptions.deleteEmbeddedBinaryObjects) && Objects.equals(this.gradientStyle, exportOptions.gradientStyle) && Objects.equals(this.fontFallbackRules, exportOptions.fontFallbackRules) && Objects.equals(this.fontSubstRules, exportOptions.fontSubstRules) && Objects.equals(this.format, exportOptions.format);
+    return true && Objects.equals(this.defaultRegularFont, exportOptions.defaultRegularFont) && Objects.equals(this.deleteEmbeddedBinaryObjects, exportOptions.deleteEmbeddedBinaryObjects) && Objects.equals(this.gradientStyle, exportOptions.gradientStyle) && Objects.equals(this.fontFallbackRules, exportOptions.fontFallbackRules) && Objects.equals(this.fontSubstRules, exportOptions.fontSubstRules) && Objects.equals(this.skipJavaScriptLinks, exportOptions.skipJavaScriptLinks) && Objects.equals(this.format, exportOptions.format);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(defaultRegularFont, deleteEmbeddedBinaryObjects, gradientStyle, fontFallbackRules, fontSubstRules, format);
+    return Objects.hash(defaultRegularFont, deleteEmbeddedBinaryObjects, gradientStyle, fontFallbackRules, fontSubstRules, skipJavaScriptLinks, format);
   }
 
 
@@ -267,6 +288,7 @@ public class ExportOptions {
     sb.append("    gradientStyle: ").append(toIndentedString(gradientStyle)).append("\n");
     sb.append("    fontFallbackRules: ").append(toIndentedString(fontFallbackRules)).append("\n");
     sb.append("    fontSubstRules: ").append(toIndentedString(fontSubstRules)).append("\n");
+    sb.append("    skipJavaScriptLinks: ").append(toIndentedString(skipJavaScriptLinks)).append("\n");
     sb.append("    format: ").append(toIndentedString(format)).append("\n");
     sb.append("}");
     return sb.toString();

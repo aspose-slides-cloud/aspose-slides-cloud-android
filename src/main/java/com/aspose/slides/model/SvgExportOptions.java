@@ -186,6 +186,9 @@ public class SvgExportOptions extends ExportOptions {
   @SerializedName(value = "useFrameRotation", alternate = { "UseFrameRotation" })
   private Boolean useFrameRotation;
 
+  @SerializedName(value = "disableFontLigatures", alternate = { "DisableFontLigatures" })
+  private Boolean disableFontLigatures;
+
 
   public SvgExportOptions() {
     super();
@@ -390,6 +393,24 @@ public class SvgExportOptions extends ExportOptions {
     this.useFrameRotation = useFrameRotation;
   }
 
+  public SvgExportOptions disableFontLigatures(Boolean disableFontLigatures) {
+    this.disableFontLigatures = disableFontLigatures;
+    return this;
+  }
+
+   /**
+   * true to disable ligatures in the rendered output.
+   * @return disableFontLigatures
+  **/
+  @ApiModelProperty(value = "true to disable ligatures in the rendered output.")
+  public Boolean isDisableFontLigatures() {
+    return disableFontLigatures;
+  }
+
+  public void setDisableFontLigatures(Boolean disableFontLigatures) {
+    this.disableFontLigatures = disableFontLigatures;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -400,12 +421,12 @@ public class SvgExportOptions extends ExportOptions {
       return false;
     }
     SvgExportOptions svgExportOptions = (SvgExportOptions) o;
-    return true && Objects.equals(this.vectorizeText, svgExportOptions.vectorizeText) && Objects.equals(this.metafileRasterizationDpi, svgExportOptions.metafileRasterizationDpi) && Objects.equals(this.disable3DText, svgExportOptions.disable3DText) && Objects.equals(this.disableGradientSplit, svgExportOptions.disableGradientSplit) && Objects.equals(this.disableLineEndCropping, svgExportOptions.disableLineEndCropping) && Objects.equals(this.jpegQuality, svgExportOptions.jpegQuality) && Objects.equals(this.picturesCompression, svgExportOptions.picturesCompression) && Objects.equals(this.deletePicturesCroppedAreas, svgExportOptions.deletePicturesCroppedAreas) && Objects.equals(this.externalFontsHandling, svgExportOptions.externalFontsHandling) && Objects.equals(this.useFrameSize, svgExportOptions.useFrameSize) && Objects.equals(this.useFrameRotation, svgExportOptions.useFrameRotation) && super.equals(o);
+    return true && Objects.equals(this.vectorizeText, svgExportOptions.vectorizeText) && Objects.equals(this.metafileRasterizationDpi, svgExportOptions.metafileRasterizationDpi) && Objects.equals(this.disable3DText, svgExportOptions.disable3DText) && Objects.equals(this.disableGradientSplit, svgExportOptions.disableGradientSplit) && Objects.equals(this.disableLineEndCropping, svgExportOptions.disableLineEndCropping) && Objects.equals(this.jpegQuality, svgExportOptions.jpegQuality) && Objects.equals(this.picturesCompression, svgExportOptions.picturesCompression) && Objects.equals(this.deletePicturesCroppedAreas, svgExportOptions.deletePicturesCroppedAreas) && Objects.equals(this.externalFontsHandling, svgExportOptions.externalFontsHandling) && Objects.equals(this.useFrameSize, svgExportOptions.useFrameSize) && Objects.equals(this.useFrameRotation, svgExportOptions.useFrameRotation) && Objects.equals(this.disableFontLigatures, svgExportOptions.disableFontLigatures) && super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(vectorizeText, metafileRasterizationDpi, disable3DText, disableGradientSplit, disableLineEndCropping, jpegQuality, picturesCompression, deletePicturesCroppedAreas, externalFontsHandling, useFrameSize, useFrameRotation, super.hashCode());
+    return Objects.hash(vectorizeText, metafileRasterizationDpi, disable3DText, disableGradientSplit, disableLineEndCropping, jpegQuality, picturesCompression, deletePicturesCroppedAreas, externalFontsHandling, useFrameSize, useFrameRotation, disableFontLigatures, super.hashCode());
   }
 
 
@@ -425,6 +446,7 @@ public class SvgExportOptions extends ExportOptions {
     sb.append("    externalFontsHandling: ").append(toIndentedString(externalFontsHandling)).append("\n");
     sb.append("    useFrameSize: ").append(toIndentedString(useFrameSize)).append("\n");
     sb.append("    useFrameRotation: ").append(toIndentedString(useFrameRotation)).append("\n");
+    sb.append("    disableFontLigatures: ").append(toIndentedString(disableFontLigatures)).append("\n");
     sb.append("}");
     return sb.toString();
   }

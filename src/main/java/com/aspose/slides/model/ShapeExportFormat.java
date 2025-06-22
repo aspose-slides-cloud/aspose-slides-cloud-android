@@ -56,7 +56,9 @@ public enum ShapeExportFormat {
   
   TIFF("Tiff"),
   
-  SVG("Svg");
+  SVG("Svg"),
+  
+  EMF("Emf");
 
   private String value;
 

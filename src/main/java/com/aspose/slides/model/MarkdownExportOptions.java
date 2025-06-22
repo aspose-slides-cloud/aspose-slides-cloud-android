@@ -259,6 +259,64 @@ public class MarkdownExportOptions extends ExportOptions {
   @SerializedName(value = "showHiddenSlides", alternate = { "ShowHiddenSlides" })
   private Boolean showHiddenSlides;
 
+  @SerializedName(value = "removeEmptyLines", alternate = { "RemoveEmptyLines" })
+  private Boolean removeEmptyLines;
+
+  /**
+   * Specifies how repeated space characters are preserved to maintain visual alignment. 
+   */
+  @JsonAdapter(HandleRepeatedSpacesEnum.Adapter.class)
+  public enum HandleRepeatedSpacesEnum {
+    NONE("None"),
+    
+    ALTERNATESPACESTONBSP("AlternateSpacesToNbsp"),
+    
+    MULTIPLESPACESTONBSP("MultipleSpacesToNbsp");
+
+    private String value;
+
+    HandleRepeatedSpacesEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static HandleRepeatedSpacesEnum fromValue(String text) {
+      for (HandleRepeatedSpacesEnum b : HandleRepeatedSpacesEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<HandleRepeatedSpacesEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final HandleRepeatedSpacesEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public HandleRepeatedSpacesEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return HandleRepeatedSpacesEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
+  @SerializedName(value = "handleRepeatedSpaces", alternate = { "HandleRepeatedSpaces" })
+  private HandleRepeatedSpacesEnum handleRepeatedSpaces;
+
+  @SerializedName(value = "slideNumberFormat", alternate = { "SlideNumberFormat" })
+  private String slideNumberFormat;
+
 
   public MarkdownExportOptions() {
     super();
@@ -391,6 +449,60 @@ public class MarkdownExportOptions extends ExportOptions {
     this.showHiddenSlides = showHiddenSlides;
   }
 
+  public MarkdownExportOptions removeEmptyLines(Boolean removeEmptyLines) {
+    this.removeEmptyLines = removeEmptyLines;
+    return this;
+  }
+
+   /**
+   * true to remove empty or whitespace-only lines from the final Markdown output. Default is false. 
+   * @return removeEmptyLines
+  **/
+  @ApiModelProperty(value = "true to remove empty or whitespace-only lines from the final Markdown output. Default is false. ")
+  public Boolean isRemoveEmptyLines() {
+    return removeEmptyLines;
+  }
+
+  public void setRemoveEmptyLines(Boolean removeEmptyLines) {
+    this.removeEmptyLines = removeEmptyLines;
+  }
+
+  public MarkdownExportOptions handleRepeatedSpaces(HandleRepeatedSpacesEnum handleRepeatedSpaces) {
+    this.handleRepeatedSpaces = handleRepeatedSpaces;
+    return this;
+  }
+
+   /**
+   * Specifies how repeated space characters are preserved to maintain visual alignment. 
+   * @return handleRepeatedSpaces
+  **/
+  @ApiModelProperty(value = "Specifies how repeated space characters are preserved to maintain visual alignment. ")
+  public HandleRepeatedSpacesEnum getHandleRepeatedSpaces() {
+    return handleRepeatedSpaces;
+  }
+
+  public void setHandleRepeatedSpaces(HandleRepeatedSpacesEnum handleRepeatedSpaces) {
+    this.handleRepeatedSpaces = handleRepeatedSpaces;
+  }
+
+  public MarkdownExportOptions slideNumberFormat(String slideNumberFormat) {
+    this.slideNumberFormat = slideNumberFormat;
+    return this;
+  }
+
+   /**
+   * The format of slide number headers. 
+   * @return slideNumberFormat
+  **/
+  @ApiModelProperty(value = "The format of slide number headers. ")
+  public String getSlideNumberFormat() {
+    return slideNumberFormat;
+  }
+
+  public void setSlideNumberFormat(String slideNumberFormat) {
+    this.slideNumberFormat = slideNumberFormat;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -401,12 +513,12 @@ public class MarkdownExportOptions extends ExportOptions {
       return false;
     }
     MarkdownExportOptions markdownExportOptions = (MarkdownExportOptions) o;
-    return true && Objects.equals(this.exportType, markdownExportOptions.exportType) && Objects.equals(this.flavor, markdownExportOptions.flavor) && Objects.equals(this.newLineType, markdownExportOptions.newLineType) && Objects.equals(this.imagesSaveFolderName, markdownExportOptions.imagesSaveFolderName) && Objects.equals(this.showSlideNumber, markdownExportOptions.showSlideNumber) && Objects.equals(this.showComments, markdownExportOptions.showComments) && Objects.equals(this.showHiddenSlides, markdownExportOptions.showHiddenSlides) && super.equals(o);
+    return true && Objects.equals(this.exportType, markdownExportOptions.exportType) && Objects.equals(this.flavor, markdownExportOptions.flavor) && Objects.equals(this.newLineType, markdownExportOptions.newLineType) && Objects.equals(this.imagesSaveFolderName, markdownExportOptions.imagesSaveFolderName) && Objects.equals(this.showSlideNumber, markdownExportOptions.showSlideNumber) && Objects.equals(this.showComments, markdownExportOptions.showComments) && Objects.equals(this.showHiddenSlides, markdownExportOptions.showHiddenSlides) && Objects.equals(this.removeEmptyLines, markdownExportOptions.removeEmptyLines) && Objects.equals(this.handleRepeatedSpaces, markdownExportOptions.handleRepeatedSpaces) && Objects.equals(this.slideNumberFormat, markdownExportOptions.slideNumberFormat) && super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(exportType, flavor, newLineType, imagesSaveFolderName, showSlideNumber, showComments, showHiddenSlides, super.hashCode());
+    return Objects.hash(exportType, flavor, newLineType, imagesSaveFolderName, showSlideNumber, showComments, showHiddenSlides, removeEmptyLines, handleRepeatedSpaces, slideNumberFormat, super.hashCode());
   }
 
 
@@ -422,6 +534,9 @@ public class MarkdownExportOptions extends ExportOptions {
     sb.append("    showSlideNumber: ").append(toIndentedString(showSlideNumber)).append("\n");
     sb.append("    showComments: ").append(toIndentedString(showComments)).append("\n");
     sb.append("    showHiddenSlides: ").append(toIndentedString(showHiddenSlides)).append("\n");
+    sb.append("    removeEmptyLines: ").append(toIndentedString(removeEmptyLines)).append("\n");
+    sb.append("    handleRepeatedSpaces: ").append(toIndentedString(handleRepeatedSpaces)).append("\n");
+    sb.append("    slideNumberFormat: ").append(toIndentedString(slideNumberFormat)).append("\n");
     sb.append("}");
     return sb.toString();
   }

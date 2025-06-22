@@ -153,6 +153,9 @@ public class PptxExportOptions extends ExportOptions {
   @SerializedName(value = "zip64Mode", alternate = { "Zip64Mode" })
   private Zip64ModeEnum zip64Mode;
 
+  @SerializedName(value = "refreshThumbnail", alternate = { "RefreshThumbnail" })
+  private Boolean refreshThumbnail;
+
 
   public PptxExportOptions() {
     super();
@@ -195,6 +198,24 @@ public class PptxExportOptions extends ExportOptions {
     this.zip64Mode = zip64Mode;
   }
 
+  public PptxExportOptions refreshThumbnail(Boolean refreshThumbnail) {
+    this.refreshThumbnail = refreshThumbnail;
+    return this;
+  }
+
+   /**
+   * True to refresh the presentation thumbnail on save
+   * @return refreshThumbnail
+  **/
+  @ApiModelProperty(value = "True to refresh the presentation thumbnail on save")
+  public Boolean isRefreshThumbnail() {
+    return refreshThumbnail;
+  }
+
+  public void setRefreshThumbnail(Boolean refreshThumbnail) {
+    this.refreshThumbnail = refreshThumbnail;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -205,12 +226,12 @@ public class PptxExportOptions extends ExportOptions {
       return false;
     }
     PptxExportOptions pptxExportOptions = (PptxExportOptions) o;
-    return true && Objects.equals(this.conformance, pptxExportOptions.conformance) && Objects.equals(this.zip64Mode, pptxExportOptions.zip64Mode) && super.equals(o);
+    return true && Objects.equals(this.conformance, pptxExportOptions.conformance) && Objects.equals(this.zip64Mode, pptxExportOptions.zip64Mode) && Objects.equals(this.refreshThumbnail, pptxExportOptions.refreshThumbnail) && super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(conformance, zip64Mode, super.hashCode());
+    return Objects.hash(conformance, zip64Mode, refreshThumbnail, super.hashCode());
   }
 
 
@@ -221,6 +242,7 @@ public class PptxExportOptions extends ExportOptions {
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    conformance: ").append(toIndentedString(conformance)).append("\n");
     sb.append("    zip64Mode: ").append(toIndentedString(zip64Mode)).append("\n");
+    sb.append("    refreshThumbnail: ").append(toIndentedString(refreshThumbnail)).append("\n");
     sb.append("}");
     return sb.toString();
   }

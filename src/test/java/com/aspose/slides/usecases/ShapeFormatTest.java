@@ -29,6 +29,9 @@ import com.aspose.slides.ApiException;
 import com.aspose.slides.ApiTest;
 import com.aspose.slides.model.*;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Base64;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
@@ -66,6 +69,23 @@ public class ShapeFormatTest extends ApiTest {
         assertTrue(shape instanceof Shape);
         assertTrue(shape.getFillFormat() instanceof SolidFill);
         assertEquals(((SolidFill)dto.getFillFormat()).getColor(), ((SolidFill)shape.getFillFormat()).getColor());
+    }
+
+    @Test
+    public void shapeFormatPictureFill() throws ApiException, IOException {
+        testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
+        Shape dto = new Shape();
+        PictureFill fillFormat = new PictureFill();
+        byte[] pictureFile = Files.readAllBytes(Paths.get(testDataFolderName + "/watermark.png"));
+        String base64Data = new String(Base64.getEncoder().encode(pictureFile));
+        fillFormat.setBase64Data(base64Data);
+        fillFormat.setResolution(150.0);
+        dto.setFillFormat(fillFormat);
+        ShapeBase shape = testSlidesApi.updateShape(fileName, c_slideIndex, c_shapeIndex, dto, password, folderName, null, null);
+        assertTrue(shape instanceof Shape);
+        shape = testSlidesApi.getShape(fileName, c_slideIndex, c_shapeIndex, password, folderName, null, null);
+        assertTrue(shape instanceof Shape);
+        assertTrue(shape.getFillFormat() instanceof PictureFill);
     }
 
     @Test

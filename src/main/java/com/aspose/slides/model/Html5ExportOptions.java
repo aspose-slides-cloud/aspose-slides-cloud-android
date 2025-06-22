@@ -31,7 +31,7 @@ import java.util.Objects;
 import com.aspose.slides.model.ExportOptions;
 import com.aspose.slides.model.FontFallbackRule;
 import com.aspose.slides.model.FontSubstRule;
-import com.aspose.slides.model.NotesCommentsLayoutingOptions;
+import com.aspose.slides.model.SlidesLayoutOptions;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -59,11 +59,14 @@ public class Html5ExportOptions extends ExportOptions {
   @SerializedName(value = "embedImages", alternate = { "EmbedImages" })
   private Boolean embedImages;
 
-  @SerializedName(value = "notesCommentsLayouting", alternate = { "NotesCommentsLayouting" })
-  private NotesCommentsLayoutingOptions notesCommentsLayouting;
+  @SerializedName(value = "slidesLayoutOptions", alternate = { "SlidesLayoutOptions" })
+  private SlidesLayoutOptions slidesLayoutOptions;
 
   @SerializedName(value = "templatesPath", alternate = { "TemplatesPath" })
   private String templatesPath;
+
+  @SerializedName(value = "disableFontLigatures", alternate = { "DisableFontLigatures" })
+  private Boolean disableFontLigatures;
 
 
   public Html5ExportOptions() {
@@ -125,22 +128,22 @@ public class Html5ExportOptions extends ExportOptions {
     this.embedImages = embedImages;
   }
 
-  public Html5ExportOptions notesCommentsLayouting(NotesCommentsLayoutingOptions notesCommentsLayouting) {
-    this.notesCommentsLayouting = notesCommentsLayouting;
+  public Html5ExportOptions slidesLayoutOptions(SlidesLayoutOptions slidesLayoutOptions) {
+    this.slidesLayoutOptions = slidesLayoutOptions;
     return this;
   }
 
    /**
    * Slides layouting options
-   * @return notesCommentsLayouting
+   * @return slidesLayoutOptions
   **/
   @ApiModelProperty(value = "Slides layouting options")
-  public NotesCommentsLayoutingOptions getNotesCommentsLayouting() {
-    return notesCommentsLayouting;
+  public SlidesLayoutOptions getSlidesLayoutOptions() {
+    return slidesLayoutOptions;
   }
 
-  public void setNotesCommentsLayouting(NotesCommentsLayoutingOptions notesCommentsLayouting) {
-    this.notesCommentsLayouting = notesCommentsLayouting;
+  public void setSlidesLayoutOptions(SlidesLayoutOptions slidesLayoutOptions) {
+    this.slidesLayoutOptions = slidesLayoutOptions;
   }
 
   public Html5ExportOptions templatesPath(String templatesPath) {
@@ -161,6 +164,24 @@ public class Html5ExportOptions extends ExportOptions {
     this.templatesPath = templatesPath;
   }
 
+  public Html5ExportOptions disableFontLigatures(Boolean disableFontLigatures) {
+    this.disableFontLigatures = disableFontLigatures;
+    return this;
+  }
+
+   /**
+   * true to disable ligatures in the rendered output.
+   * @return disableFontLigatures
+  **/
+  @ApiModelProperty(value = "true to disable ligatures in the rendered output.")
+  public Boolean isDisableFontLigatures() {
+    return disableFontLigatures;
+  }
+
+  public void setDisableFontLigatures(Boolean disableFontLigatures) {
+    this.disableFontLigatures = disableFontLigatures;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -171,12 +192,12 @@ public class Html5ExportOptions extends ExportOptions {
       return false;
     }
     Html5ExportOptions html5ExportOptions = (Html5ExportOptions) o;
-    return true && Objects.equals(this.animateTransitions, html5ExportOptions.animateTransitions) && Objects.equals(this.animateShapes, html5ExportOptions.animateShapes) && Objects.equals(this.embedImages, html5ExportOptions.embedImages) && Objects.equals(this.notesCommentsLayouting, html5ExportOptions.notesCommentsLayouting) && Objects.equals(this.templatesPath, html5ExportOptions.templatesPath) && super.equals(o);
+    return true && Objects.equals(this.animateTransitions, html5ExportOptions.animateTransitions) && Objects.equals(this.animateShapes, html5ExportOptions.animateShapes) && Objects.equals(this.embedImages, html5ExportOptions.embedImages) && Objects.equals(this.slidesLayoutOptions, html5ExportOptions.slidesLayoutOptions) && Objects.equals(this.templatesPath, html5ExportOptions.templatesPath) && Objects.equals(this.disableFontLigatures, html5ExportOptions.disableFontLigatures) && super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(animateTransitions, animateShapes, embedImages, notesCommentsLayouting, templatesPath, super.hashCode());
+    return Objects.hash(animateTransitions, animateShapes, embedImages, slidesLayoutOptions, templatesPath, disableFontLigatures, super.hashCode());
   }
 
 
@@ -188,8 +209,9 @@ public class Html5ExportOptions extends ExportOptions {
     sb.append("    animateTransitions: ").append(toIndentedString(animateTransitions)).append("\n");
     sb.append("    animateShapes: ").append(toIndentedString(animateShapes)).append("\n");
     sb.append("    embedImages: ").append(toIndentedString(embedImages)).append("\n");
-    sb.append("    notesCommentsLayouting: ").append(toIndentedString(notesCommentsLayouting)).append("\n");
+    sb.append("    slidesLayoutOptions: ").append(toIndentedString(slidesLayoutOptions)).append("\n");
     sb.append("    templatesPath: ").append(toIndentedString(templatesPath)).append("\n");
+    sb.append("    disableFontLigatures: ").append(toIndentedString(disableFontLigatures)).append("\n");
     sb.append("}");
     return sb.toString();
   }

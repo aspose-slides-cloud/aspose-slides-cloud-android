@@ -74,7 +74,7 @@ public class CreateTest extends ApiTest {
     @Test
     public void createFromHtml() throws ApiException, IOException {
         testSlidesApi.deleteFile(folderName + "/" + fileName, null, null);
-        Document created = testSlidesApi.importFromHtml(fileName, c_html, null, folderName, null);
+        Document created = testSlidesApi.importFromHtml(fileName, c_html, null, folderName, null, null, null);
         assertNotNull(created);
     }
 
@@ -82,7 +82,7 @@ public class CreateTest extends ApiTest {
     public void appendFromHtml() throws ApiException, IOException {
         testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         int slideCount = testSlidesApi.getSlides(fileName, password, folderName, null).getSlideList().size();
-        Document updated = testSlidesApi.importFromHtml(fileName, c_html, password, folderName, null);
+        Document updated = testSlidesApi.importFromHtml(fileName, c_html, password, folderName, null, null, null);
         assertNotNull(updated);
         assertTrue(testSlidesApi.getSlides(fileName, password, folderName, null).getSlideList().size() > slideCount);
     }

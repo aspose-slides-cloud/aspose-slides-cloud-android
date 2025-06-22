@@ -31,6 +31,8 @@ import com.aspose.slides.model.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.Assert.*;
+
 public class VbaTest extends ApiTest {
     @Test
     public void createVbaModuleTest() throws ApiException {
@@ -50,8 +52,7 @@ public class VbaTest extends ApiTest {
         references.add(reference1);
         dto.setReferences(references);
         VbaModule response = (VbaModule)testSlidesApi.createVbaModule(fileName, dto, password, folderName, null);
-        String s = String.format("\"%s\" has been created \n%s", response.getName(), response.getSelfUri().getHref());
-        System.out.println(s);
+        assertNotNull(response);
     }
 
     @Test
@@ -61,7 +62,7 @@ public class VbaTest extends ApiTest {
 
         testSlidesApi.copyFile(tempFolderName + "/" + macrosFileName, folderName + "/" + macrosFileName, null, null, null);
         VbaProject response = (VbaProject)testSlidesApi.deleteVbaModule(macrosFileName, moduleIndex, null, folderName, null);
-        System.out.println("VBA project contains: " + response.getModules().size() + " module(s), and " + response.getReferences().size() + " references");
+        assertEquals(0, response.getModules().size());
     }
 
     @Test
@@ -71,8 +72,7 @@ public class VbaTest extends ApiTest {
 
         testSlidesApi.copyFile(tempFolderName + "/" + macrosFileName, folderName + "/" + macrosFileName, null, null, null);
         VbaModule response = (VbaModule) testSlidesApi.getVbaModule(macrosFileName, moduleIndex, null, folderName, null);
-        String s = String.format("Module: \"%s\"\n%s", response.getName(), response.getSourceCode());
-        System.out.println(s);
+        assertEquals("Module1", response.getName());
     }
 
     @Test
@@ -80,7 +80,7 @@ public class VbaTest extends ApiTest {
         String macrosFileName = "macros.pptm";
         testSlidesApi.copyFile(tempFolderName + "/" + macrosFileName, folderName + "/" + macrosFileName, null, null, null);
         VbaProject response = (VbaProject)testSlidesApi.getVbaProject(macrosFileName, null, folderName, null);
-        System.out.println("VBA project contains: " + response.getModules().size() + " module(s), and " + response.getReferences().size() + " references");
+        assertEquals(1, response.getModules().size());
     }
 
     @Test
@@ -93,7 +93,6 @@ public class VbaTest extends ApiTest {
 
         int moduleIndex = 1;
         VbaModule response = (VbaModule)testSlidesApi.updateVbaModule(macrosFileName, moduleIndex, dto, password, folderName, null);
-        String s = String.format("\"%s\" has been updated \n%s", response.getName(), response.getSelfUri().getHref());
-        System.out.println(s);
+        assertEquals("Module1", response.getName());
     }
 }
