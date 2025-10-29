@@ -49,8 +49,12 @@ public class ImageTest extends ApiTest {
     public void imagesGetTest() throws ApiException, IOException {
         testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
         Images images = testSlidesApi.getPresentationImages(fileName, password, folderName, null);
-        Images slideImages = testSlidesApi.getSlideImages(fileName, 1, password, folderName, null);
+        Images slideImages = testSlidesApi.getSlideImages(fileName, 1, null, null, password, folderName, null);
         assertTrue(images.getList().size() > slideImages.getList().size());
+        Images shapeImages = testSlidesApi.getSlideImages(fileName, 2, 2, null, password, folderName, null);
+        assertEquals(1, shapeImages.getList().size());
+        Images altImages = testSlidesApi.getSlideImages(fileName, 2, null, "title", password, folderName, null);
+        assertEquals(0, altImages.getList().size());
     }
 
     @Test

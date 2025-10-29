@@ -37,7 +37,7 @@ import static org.junit.Assert.assertNull;
 /**
  * API tests for image methods
  */
-public class VideoTest extends ApiTest {
+public class AudioTest extends ApiTest {
     @Test
     public void captionTracksTest() throws ApiException, IOException {
         int slideIndex = 3;
@@ -48,7 +48,7 @@ public class VideoTest extends ApiTest {
         String track2Data = "WEBVTT\n\n00:00:00.000 --> 00:00:10.000\nCaption 2 text.";
 
         testSlidesApi.copyFile(tempFolderName + "/" + fileName, folderName + "/" + fileName, null, null, null);
-        VideoFrame dto = new VideoFrame();
+        AudioFrame dto = new AudioFrame();
         dto.setBase64Data("bXAzc2FtcGxl");
         testSlidesApi.createShape(fileName, slideIndex, dto, null, null, password, folderName, null, null);
         CaptionTracks captions = testSlidesApi.getCaptionTracks(fileName, slideIndex, shapeIndex, null, password, folderName, null);
